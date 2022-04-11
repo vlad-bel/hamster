@@ -6,6 +6,7 @@ import 'package:business_terminal/presentation/registration/cubit/registration_c
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class RegistrationPage extends StatelessWidget {
@@ -39,7 +40,6 @@ class RegistrationBodyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final count = context.select((RegistrationCubit cubit) => cubit.state);
     return Stack(
       children: [
         Image.asset(
@@ -48,13 +48,23 @@ class RegistrationBodyView extends StatelessWidget {
           width: double.infinity,
           fit: BoxFit.cover,
         ),
+        Padding(
+          padding: const EdgeInsets.all(25),
+          child: SizedBox(
+            width: 120,
+            height: 45,
+            child: SvgPicture.asset(
+              Assets.imagesHamsterLogo,
+            ),
+          ),
+        ),
         Center(
           child: SizedBox(
-            width: 326,
+            width: 390,
             child: Container(
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(25),
+                padding: const EdgeInsets.all(35),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -66,18 +76,18 @@ class RegistrationBodyView extends StatelessWidget {
                       ),
                     ),
                     Container(height: 18),
-                    Align(alignment: Alignment.centerLeft,
+                    Align(
+                      alignment: Alignment.centerLeft,
                       child: Container(
                         height: 3,
-                        width:44,
+                        width: 44,
                         decoration: BoxDecoration(
-                          color:
-                              Color(0xff676f86).withOpacity(0.10000000149011612),
+                          color: Color(0xff676f86)
+                              .withOpacity(0.10000000149011612),
                         ),
                       ),
                     ),
                     Container(height: 18),
-
                     // Small line ----
                     Text(
                         'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.'),
@@ -159,24 +169,48 @@ class RegistrationBodyView extends StatelessWidget {
                       ),
                     ),
 
-                    Container(height: 18),
+                    Container(height: 25),
 
-                    ///
-                    SizedBox(
-                      width: 100,
-                      height: 37,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.5),
+                    /// Buttons:
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 145,
+                          height: 37,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.5),
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: Text(
+                              'ZURÜCK',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontFamily: 'Inter',
+                              ),
+                            ),
                           ),
                         ),
-                        onPressed: () {},
-                        child: Text(
-                          'WEITER',
-                          style: TextStyle(fontSize: 14),
+                        SizedBox(
+                          width: 145,
+                          height: 37,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.5),
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: Text(
+                              'WEITER',
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     )
                   ],
                 ),

@@ -15,6 +15,13 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(
           accentColor: const Color(0xFF13B9FF),
         ),
+        textTheme: const TextTheme(
+          bodyText1: TextStyle(),
+          bodyText2: TextStyle(),
+        ).apply(
+          bodyColor: const Color(0xff676f86),
+          displayColor: const Color(0xff676f86),
+        ),
       ),
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: const [
