@@ -58,19 +58,33 @@ class RegistrationBodyView extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ///////
-
-                    Text(
-                      'Nutzen Sie Hamster für Ihr \nUnternehmen.',
-                      style: TextStyle(fontSize: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Nutzen Sie Hamster für Ihr \nUnternehmen.',
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
+                    Container(height: 18),
+                    Align(alignment: Alignment.centerLeft,
+                      child: Container(
+                        height: 3,
+                        width:44,
+                        decoration: BoxDecoration(
+                          color:
+                              Color(0xff676f86).withOpacity(0.10000000149011612),
+                        ),
+                      ),
+                    ),
+                    Container(height: 18),
+
                     // Small line ----
                     Text(
                         'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.'),
                     Container(height: 18),
                     FormBuilder(
                       key: _formKey,
-                      autovalidateMode: AutovalidateMode.always,
+                      autovalidateMode: AutovalidateMode.disabled,
                       child: Column(
                         children: [
                           FormBuilderTextField(
@@ -149,12 +163,12 @@ class RegistrationBodyView extends StatelessWidget {
 
                     ///
                     SizedBox(
-                      width: 83,
-                      height: 28,
+                      width: 100,
+                      height: 37,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
+                            borderRadius: BorderRadius.circular(18.5),
                           ),
                         ),
                         onPressed: () {},
