@@ -2,7 +2,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:business_terminal/generated/assets.dart';
-import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/registration/cubit/registration_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +25,6 @@ class RegistrationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final l10n = context.l10n;
     return Scaffold(
       body: Center(child: RegistrationBodyView()),
     );
@@ -37,8 +35,6 @@ class RegistrationBodyView extends StatelessWidget {
   RegistrationBodyView({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormBuilderState>();
-
-  // final TextEditingController _controllerName = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,36 +50,14 @@ class RegistrationBodyView extends StatelessWidget {
         ),
         Center(
           child: SizedBox(
-            width: 325,
-            height: 412,
+            width: 326,
             child: Container(
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(25),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    FormBuilder(
-                      key: _formKey,
-                      autovalidateMode: AutovalidateMode.always,
-                      child: Column(
-                        children: [
-                          FormBuilderTextField(
-                            name: 'name',
-                            decoration:InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Vor- und Nachname',
-                            ),
-                            onChanged: _onChangedName,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.max(70),
-                            ]),
-                            keyboardType: TextInputType.name,
-                          )
-                        ],
-                      ),
-                    ),
-
                     ///////
 
                     Text(
@@ -93,15 +67,102 @@ class RegistrationBodyView extends StatelessWidget {
                     // Small line ----
                     Text(
                         'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.'),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Vor- und Nachname',
+                    Container(height: 18),
+                    FormBuilder(
+                      key: _formKey,
+                      autovalidateMode: AutovalidateMode.always,
+                      child: Column(
+                        children: [
+                          FormBuilderTextField(
+                            name: 'name',
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Vor- und Nachname',
+                            ),
+                            onChanged: _onChangedName,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.max(70),
+                            ]),
+                            keyboardType: TextInputType.name,
+                          ),
+                          Container(height: 18),
+                          FormBuilderTextField(
+                            name: 'surname',
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Nachnamen eingeben',
+                            ),
+                            onChanged: _onChangedName,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.max(70),
+                            ]),
+                            keyboardType: TextInputType.name,
+                          ),
+                          Container(height: 18),
+                          FormBuilderTextField(
+                            name: 'e-mail',
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'E-Mail',
+                            ),
+                            onChanged: _onChangedName,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.email(),
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.max(70),
+                            ]),
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          Container(height: 18),
+                          FormBuilderTextField(
+                            name: 'password',
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Passwort wählen',
+                            ),
+                            onChanged: _onChangedName,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.max(70),
+                            ]),
+                          ),
+                          Container(height: 18),
+                          FormBuilderTextField(
+                            name: 'password_repeat',
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Passwort wiederholen',
+                            ),
+                            onChanged: _onChangedName,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.max(70),
+                            ]),
+                          ),
+                        ],
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () => onPressedRegister(context),
-                      child: const Text('Submit'),
+
+                    Container(height: 18),
+
+                    ///
+                    SizedBox(
+                      width: 83,
+                      height: 28,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          'WEITER',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
                     )
                   ],
                 ),
