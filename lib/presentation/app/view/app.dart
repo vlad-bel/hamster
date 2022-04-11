@@ -2,6 +2,7 @@ import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/registration/view/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:form_builder_validators/localization/l10n.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -15,11 +16,13 @@ class App extends StatelessWidget {
           accentColor: const Color(0xFF13B9FF),
         ),
       ),
+      supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        FormBuilderLocalizations.delegate,
       ],
-      supportedLocales: AppLocalizations.supportedLocales,
       home: const RegistrationPage(),
     );
   }

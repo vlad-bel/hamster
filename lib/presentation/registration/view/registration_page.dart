@@ -6,6 +6,8 @@ import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/registration/cubit/registration_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -24,15 +26,19 @@ class RegistrationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    // final l10n = context.l10n;
     return Scaffold(
-      body: const Center(child: RegistrationBodyView()),
+      body: Center(child: RegistrationBodyView()),
     );
   }
 }
 
 class RegistrationBodyView extends StatelessWidget {
-  const RegistrationBodyView({Key? key}) : super(key: key);
+  RegistrationBodyView({Key? key}) : super(key: key);
+
+  final _formKey = GlobalKey<FormBuilderState>();
+
+  // final TextEditingController _controllerName = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -53,20 +59,50 @@ class RegistrationBodyView extends StatelessWidget {
             child: Container(
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(25.0),
+                padding: const EdgeInsets.all(25),
                 child: Column(
                   children: [
-                    Text('Nutzen Sie Hamster für Ihr \nUnternehmen.',
-                        style: TextStyle(fontSize: 20)),
+                    FormBuilder(
+                      key: _formKey,
+                      autovalidateMode: AutovalidateMode.always,
+                      child: Column(
+                        children: [
+                          FormBuilderTextField(
+                            name: 'name',
+                            decoration:InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Vor- und Nachname',
+                            ),
+                            onChanged: _onChangedName,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.max(70),
+                            ]),
+                            keyboardType: TextInputType.name,
+                          )
+                        ],
+                      ),
+                    ),
+
+                    ///////
+
+                    Text(
+                      'Nutzen Sie Hamster für Ihr \nUnternehmen.',
+                      style: TextStyle(fontSize: 20),
+                    ),
                     // Small line ----
                     Text(
                         'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.'),
-                    TextField(
+                    TextFormField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Vor- und Nachname',
                       ),
                     ),
+                    ElevatedButton(
+                      onPressed: () => onPressedRegister(context),
+                      child: const Text('Submit'),
+                    )
                   ],
                 ),
               ),
@@ -76,4 +112,12 @@ class RegistrationBodyView extends StatelessWidget {
       ],
     );
   }
+
+  void onPressedRegister(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Processing Data')),
+    );
+  }
+
+  void _onChangedName(String? value) {}
 }
