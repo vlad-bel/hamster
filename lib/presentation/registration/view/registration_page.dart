@@ -38,33 +38,80 @@ class RegistrationBodyView extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
   final shouldEnable = true;
 
-  final outlineInputBorder = OutlineInputBorder(
-    borderSide: BorderSide(
-      color: Color(0xff676f86).withAlpha(30),
-    ),
-  );
+  final nameValidators = FormBuilderValidators.compose<String>([
+    FormBuilderValidators.required(),
+    FormBuilderValidators.max(70),
+  ]);
+  final surnameValidators = FormBuilderValidators.compose<String>([
+    FormBuilderValidators.required(),
+    FormBuilderValidators.max(70),
+  ]);
+  final emailValidators = FormBuilderValidators.compose<String>([
+    FormBuilderValidators.email(),
+    FormBuilderValidators.required(),
+    FormBuilderValidators.max(70),
+  ]);
+  final passwordValidators = FormBuilderValidators.compose<String>([
+    FormBuilderValidators.required(),
+    FormBuilderValidators.max(70),
+  ]);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final horizontalLine = Container(
+      height: 3,
+      width: 44,
+      decoration: BoxDecoration(
+        color: Color(0xff676f86).withOpacity(0.1),
+      ),
+    );
+    final titleText = Text(
+      'Nutzen Sie Hamster für Ihr \nUnternehmen.',
+      style: TextStyle(fontSize: 20),
+    );
+    final subtitleText = Text(
+      'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
+    );
 
-    final nameValidators = FormBuilderValidators.compose<String>([
-      FormBuilderValidators.required(),
-      FormBuilderValidators.max(70),
-    ]);
-    final surnameValidators = FormBuilderValidators.compose<String>([
-      FormBuilderValidators.required(),
-      FormBuilderValidators.max(70),
-    ]);
-    final emailValidators = FormBuilderValidators.compose<String>([
-      FormBuilderValidators.email(),
-      FormBuilderValidators.required(),
-      FormBuilderValidators.max(70),
-    ]);
-    final passwordValidators = FormBuilderValidators.compose<String>([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.max(70),
-                            ]);
+    final buttonBack = SizedBox(
+      width: 145,
+      height: 37,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          primary: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18.5),
+            side: BorderSide(width: 1)
+          ),
+        ),
+        onPressed: () {},
+        child: Text(
+          'ZURÜCK',
+          style: TextStyle(
+            color: Color(0xff147bd9),
+          ),
+        ),
+      ),
+    );
+
+    final buttonNextStep = SizedBox(
+      width: 145,
+      height: 37,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18.5),
+          ),
+        ),
+        onPressed: shouldEnable ? () => onPressedRegister(context) : null,
+        child: Text(
+          'WEITER',
+        ),
+      ),
+    );
+
     return Stack(
       children: [
         Image.asset(
@@ -92,32 +139,14 @@ class RegistrationBodyView extends StatelessWidget {
                 padding: const EdgeInsets.all(35),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Nutzen Sie Hamster für Ihr \nUnternehmen.',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
+                    titleText,
                     Container(height: 18),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                        height: 3,
-                        width: 44,
-                        decoration: BoxDecoration(
-                          color: Color(0xff676f86)
-                              .withOpacity(0.10000000149011612),
-                        ),
-                      ),
-                    ),
+                    horizontalLine,
                     Container(height: 18),
-                    // Small line ----
-                    Text(
-                      'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
-                    ),
-                    Container(height: 18),
+                    subtitleText,
+                    Container(height: 25),
 
                     // Form:
                     FormBuilder(
@@ -169,46 +198,10 @@ class RegistrationBodyView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          width: 145,
-                          height: 37,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.5),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: Text(
-                              'ZURÜCK',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontFamily: 'Inter',
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 145,
-                          height: 37,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.5),
-                              ),
-                            ),
-                            onPressed: shouldEnable
-                                ? () => onPressedRegister(context)
-                                : null,
-                            child: Text(
-                              'WEITER',
-                            ),
-                          ),
-                        ),
+                        buttonBack,
+                        buttonNextStep,
                       ],
                     ),
-
                   ],
                 ),
               ),
@@ -224,8 +217,6 @@ class RegistrationBodyView extends StatelessWidget {
       const SnackBar(content: Text('Processing Data')),
     );
   }
-
-  void _onChangedName(String? value) {}
 }
 
 class FormTextField extends StatelessWidget {
@@ -243,9 +234,7 @@ class FormTextField extends StatelessWidget {
   final TextInputType keyboardType;
 
   final outlineInputBorder = OutlineInputBorder(
-    borderSide: BorderSide(
-      color: Color(0xff676f86).withAlpha(30),
-    ),
+    borderSide: BorderSide(color: Color(0x4d676f86)),
   );
 
   @override

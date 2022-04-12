@@ -3,6 +3,7 @@ import 'package:business_terminal/presentation/registration/view/registration_pa
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -15,12 +16,11 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(
           accentColor: const Color(0xFF13B9FF),
         ),
-        textTheme: const TextTheme(
-          bodyText1: TextStyle(),
-          bodyText2: TextStyle(),
-        ).apply(
-          bodyColor: const Color(0xff676f86),
-          displayColor: const Color(0xff676f86),
+        textTheme: GoogleFonts.interTextTheme(
+          Theme.of(context).textTheme.apply(
+                bodyColor: const Color(0xff676f86),
+                displayColor: const Color(0xff676f86),
+              ),
         ),
       ),
       supportedLocales: AppLocalizations.supportedLocales,
