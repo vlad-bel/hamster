@@ -48,6 +48,14 @@ class RegistrationBodyView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    const firstTextName = 'name';
+    const firstTextHint = 'Vor- und Nachname';
+    final firstTextValidators = FormBuilderValidators.compose<String>([
+      FormBuilderValidators.required(),
+      FormBuilderValidators.max(70),
+    ]);
+    const firstTextKeyboardType = TextInputType.name;
+
     return Stack(
       children: [
         Image.asset(
@@ -98,7 +106,8 @@ class RegistrationBodyView extends StatelessWidget {
                     Container(height: 18),
                     // Small line ----
                     Text(
-                        'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.'),
+                      'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
+                    ),
                     Container(height: 18),
 
                     // Form:
@@ -108,20 +117,17 @@ class RegistrationBodyView extends StatelessWidget {
                       child: Column(
                         children: [
                           FormBuilderTextField(
-                            name: 'name',
+                            name: firstTextName,
                             decoration: InputDecoration(
                               border: outlineInputBorder,
                               focusedBorder: outlineInputBorder,
                               enabledBorder: outlineInputBorder,
-                              hintText: 'Vor- und Nachname',
+                              hintText: firstTextHint,
                               hintStyle: TextStyle(color: Color(0x4d676f86)),
                             ),
                             onChanged: _onChangedName,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.max(70),
-                            ]),
-                            keyboardType: TextInputType.name,
+                            validator: firstTextValidators,
+                            keyboardType: firstTextKeyboardType,
                           ),
                           Container(height: 18),
                           FormBuilderTextField(
@@ -251,4 +257,41 @@ class RegistrationBodyView extends StatelessWidget {
   }
 
   void _onChangedName(String? value) {}
+}
+
+class FormTextField extends StatelessWidget {
+  FormTextField(
+    this.name,
+    this.hint,
+    this.validators,
+    this.keyboardType, {
+    Key? key,
+  }) : super(key: key);
+
+  final String name;
+  final String hint;
+  final FormFieldValidator<String> validators;
+  final TextInputType keyboardType;
+
+  final outlineInputBorder = OutlineInputBorder(
+    borderSide: BorderSide(
+      color: Color(0xff676f86).withAlpha(30),
+    ),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return FormBuilderTextField(
+      name: name,
+      decoration: InputDecoration(
+        border: outlineInputBorder,
+        focusedBorder: outlineInputBorder,
+        enabledBorder: outlineInputBorder,
+        hintText: hint,
+        hintStyle: TextStyle(color: Color(0x4d676f86)),
+      ),
+      validator: validators,
+      keyboardType: keyboardType,
+    );
+  }
 }
