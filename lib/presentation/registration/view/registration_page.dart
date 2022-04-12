@@ -36,10 +36,18 @@ class RegistrationBodyView extends StatelessWidget {
   RegistrationBodyView({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormBuilderState>();
+  final shouldEnable = true;
+
+  final outlineInputBorder = OutlineInputBorder(
+    borderSide: BorderSide(
+      color: Color(0xff676f86).withAlpha(30),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Stack(
       children: [
         Image.asset(
@@ -92,6 +100,8 @@ class RegistrationBodyView extends StatelessWidget {
                     Text(
                         'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.'),
                     Container(height: 18),
+
+                    // Form:
                     FormBuilder(
                       key: _formKey,
                       autovalidateMode: AutovalidateMode.disabled,
@@ -100,8 +110,11 @@ class RegistrationBodyView extends StatelessWidget {
                           FormBuilderTextField(
                             name: 'name',
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              border: outlineInputBorder,
+                              focusedBorder: outlineInputBorder,
+                              enabledBorder: outlineInputBorder,
                               hintText: 'Vor- und Nachname',
+                              hintStyle: TextStyle(color: Color(0x4d676f86)),
                             ),
                             onChanged: _onChangedName,
                             validator: FormBuilderValidators.compose([
@@ -114,8 +127,11 @@ class RegistrationBodyView extends StatelessWidget {
                           FormBuilderTextField(
                             name: 'surname',
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              border: outlineInputBorder,
+                              focusedBorder: outlineInputBorder,
+                              enabledBorder: outlineInputBorder,
                               hintText: 'Nachnamen eingeben',
+                              hintStyle: TextStyle(color: Color(0x4d676f86)),
                             ),
                             onChanged: _onChangedName,
                             validator: FormBuilderValidators.compose([
@@ -128,7 +144,9 @@ class RegistrationBodyView extends StatelessWidget {
                           FormBuilderTextField(
                             name: 'e-mail',
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              border: outlineInputBorder,
+                              focusedBorder: outlineInputBorder,
+                              enabledBorder: outlineInputBorder,
                               hintText: 'E-Mail',
                             ),
                             onChanged: _onChangedName,
@@ -143,7 +161,9 @@ class RegistrationBodyView extends StatelessWidget {
                           FormBuilderTextField(
                             name: 'password',
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
                               hintText: 'Passwort wählen',
                             ),
                             onChanged: _onChangedName,
@@ -204,7 +224,9 @@ class RegistrationBodyView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(18.5),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: shouldEnable
+                                ? () => onPressedRegister(context)
+                                : null,
                             child: Text(
                               'WEITER',
                             ),
