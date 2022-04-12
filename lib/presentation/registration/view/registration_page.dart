@@ -273,9 +273,9 @@ class PasswordCheckboxes extends StatelessWidget {
       decoration: boxDecoration,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
           children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center,
+            Row(
               children: [
                 Icon(
                   Icons.error_outline_rounded,
@@ -285,36 +285,50 @@ class PasswordCheckboxes extends StatelessWidget {
               ],
             ),
             Container(height: 20),
-            Text(
-              'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
+                ),
+                Container(height: 20),
+                CheckBoxIconGreen(
+                  text: '10 Zeichen lang',
+                  enabled: true,
+                ),
+                CheckBoxIconGreen(
+                  text: '1 Kleinbuchstabe',
+                  enabled: false,
+                ),
+                CheckBoxIconGreen(
+                  text: '1 Großbuchstabe',
+                  enabled: false,
+                ),
+                CheckBoxIconGreen(
+                  text: '1 Zahl',
+                  enabled: false,
+                ),
+                CheckBoxIconGreen(
+                  text: '1 Sonderzeichen',
+                  enabled: false,
+                ),
+                Container(height: 24),
+              ],
             ),
-            Container(height: 20),
-            CheckBoxIconGreen(
-              text: '10 Zeichen lang',
-              enabled: true,
-            ),
-            CheckBoxIconGreen(
-              text: '1 Kleinbuchstabe',
-              enabled: false,
-            ),
-            CheckBoxIconGreen(
-              text: '1 Großbuchstabe',
-              enabled: false,
-            ),
-            CheckBoxIconGreen(
-              text: '1 Zahl',
-              enabled: false,
-            ),
-            CheckBoxIconGreen(
-              text: '1 Sonderzeichen',
-              enabled: false,
-            ),
-            Container(height: 34),
-            Text('Hinweis schließen',
-              style: TextStyle(
-                color: Color(0xffe10054),
-                fontFamily: 'Inter',
-              ),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 28),
+                  child: Text(
+                    'Hinweis schließen',
+                    style: TextStyle(
+                      color: Color(0xffe10054),
+                      fontFamily: 'Inter',
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -336,7 +350,7 @@ class CheckBoxIconGreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10, left: 14),
       child: Row(
         children: [
           Icon(
@@ -344,7 +358,7 @@ class CheckBoxIconGreen extends StatelessWidget {
             color: enabled ? Color(0xff549d4c) : Color(0xfff3f6f8),
           ),
           Container(width: 8),
-          Text('10 Zeichen lang')
+          Text(text)
         ],
       ),
     );
