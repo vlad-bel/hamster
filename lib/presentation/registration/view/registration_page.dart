@@ -151,16 +151,20 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
             ),
           ),
         ),
-        Center(
-          child: Row(
-            children: [
-              Padding(
+        Row(mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Visibility(
+              visible: false,
+              child: Padding(
                 padding: const EdgeInsets.all(25),
                 child: PasswordCheckboxes(),
               ),
+            ),
 
-              ///
-              SizedBox(
+            ///
+            Center(
+              child: SizedBox(
                 width: 390,
                 child: Container(
                   color: Colors.white,
@@ -236,8 +240,8 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         )
       ],
     );
@@ -285,7 +289,6 @@ class PasswordCheckboxes extends StatelessWidget {
               ],
             ),
             Container(height: 20),
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
