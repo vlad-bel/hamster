@@ -48,14 +48,23 @@ class RegistrationBodyView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    const firstTextName = 'name';
-    const firstTextHint = 'Vor- und Nachname';
-    final firstTextValidators = FormBuilderValidators.compose<String>([
+    final nameValidators = FormBuilderValidators.compose<String>([
       FormBuilderValidators.required(),
       FormBuilderValidators.max(70),
     ]);
-    const firstTextKeyboardType = TextInputType.name;
-
+    final surnameValidators = FormBuilderValidators.compose<String>([
+      FormBuilderValidators.required(),
+      FormBuilderValidators.max(70),
+    ]);
+    final emailValidators = FormBuilderValidators.compose<String>([
+      FormBuilderValidators.email(),
+      FormBuilderValidators.required(),
+      FormBuilderValidators.max(70),
+    ]);
+    final passwordValidators = FormBuilderValidators.compose<String>([
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.max(70),
+                            ]);
     return Stack(
       children: [
         Image.asset(
@@ -116,86 +125,45 @@ class RegistrationBodyView extends StatelessWidget {
                       autovalidateMode: AutovalidateMode.disabled,
                       child: Column(
                         children: [
-                          FormBuilderTextField(
-                            name: firstTextName,
-                            decoration: InputDecoration(
-                              border: outlineInputBorder,
-                              focusedBorder: outlineInputBorder,
-                              enabledBorder: outlineInputBorder,
-                              hintText: firstTextHint,
-                              hintStyle: TextStyle(color: Color(0x4d676f86)),
-                            ),
-                            onChanged: _onChangedName,
-                            validator: firstTextValidators,
-                            keyboardType: firstTextKeyboardType,
-                          ),
-                          Container(height: 18),
-                          FormBuilderTextField(
-                            name: 'surname',
-                            decoration: InputDecoration(
-                              border: outlineInputBorder,
-                              focusedBorder: outlineInputBorder,
-                              enabledBorder: outlineInputBorder,
-                              hintText: 'Nachnamen eingeben',
-                              hintStyle: TextStyle(color: Color(0x4d676f86)),
-                            ),
-                            onChanged: _onChangedName,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.max(70),
-                            ]),
+                          FormTextField(
+                            name: 'name',
+                            hint: 'Vor- und Nachname',
+                            validators: nameValidators,
                             keyboardType: TextInputType.name,
                           ),
                           Container(height: 18),
-                          FormBuilderTextField(
-                            name: 'e-mail',
-                            decoration: InputDecoration(
-                              border: outlineInputBorder,
-                              focusedBorder: outlineInputBorder,
-                              enabledBorder: outlineInputBorder,
-                              hintText: 'E-Mail',
-                            ),
-                            onChanged: _onChangedName,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.email(),
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.max(70),
-                            ]),
+                          FormTextField(
+                            name: 'surname',
+                            hint: 'Nachnamen eingeben',
+                            validators: surnameValidators,
+                            keyboardType: TextInputType.name,
+                          ),
+                          Container(height: 18),
+                          FormTextField(
+                            name: 'email',
+                            hint: 'E-Mail',
+                            validators: emailValidators,
                             keyboardType: TextInputType.emailAddress,
                           ),
                           Container(height: 18),
-                          FormBuilderTextField(
+                          FormTextField(
                             name: 'password',
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              hintText: 'Passwort wählen',
-                            ),
-                            onChanged: _onChangedName,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.max(70),
-                            ]),
+                            hint: 'Passwort wählen',
+                            validators: passwordValidators,
+                            keyboardType: TextInputType.emailAddress,
                           ),
                           Container(height: 18),
-                          FormBuilderTextField(
+                          FormTextField(
                             name: 'password_repeat',
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Passwort wiederholen',
-                            ),
-                            onChanged: _onChangedName,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.max(70),
-                            ]),
-                          ),
+                            hint: 'Passwort wiederholen',
+                            validators: passwordValidators,
+                            keyboardType: TextInputType.emailAddress,
+                          )
                         ],
                       ),
                     ),
 
-                    Container(height: 25),
+                    Container(height: 28),
 
                     /// Buttons:
                     Row(
@@ -239,7 +207,8 @@ class RegistrationBodyView extends StatelessWidget {
                           ),
                         ),
                       ],
-                    )
+                    ),
+
                   ],
                 ),
               ),
@@ -260,11 +229,11 @@ class RegistrationBodyView extends StatelessWidget {
 }
 
 class FormTextField extends StatelessWidget {
-  FormTextField(
-    this.name,
-    this.hint,
-    this.validators,
-    this.keyboardType, {
+  FormTextField({
+    required this.name,
+    required this.hint,
+    required this.validators,
+    required this.keyboardType,
     Key? key,
   }) : super(key: key);
 
