@@ -156,39 +156,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(25),
-                child: Container(
-                  height: 450,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                      color: Color(0xff676f86),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0x29000000),
-                        offset: Offset(0, 3),
-                        blurRadius: 6,
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.error_outline_rounded,
-                          color: Color(0xffe10054),
-                          size: 80,
-                        ),
-                        Text(
-                          'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
-                        ),
-                        CheckBoxIconGreen(enabled: true),
-                        CheckBoxIconGreen(enabled: false)
-                      ],
-                    ),
-                  ),
-                ),
+                child: PasswordCheckboxes(),
               ),
 
               ///
@@ -248,7 +216,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 hint: 'Passwort wiederholen',
                                 validators: passwordValidators,
                                 keyboardType: TextInputType.emailAddress,
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -282,23 +250,103 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   }
 }
 
+class PasswordCheckboxes extends StatelessWidget {
+  PasswordCheckboxes({
+    Key? key,
+  }) : super(key: key);
+
+  final boxDecoration = BoxDecoration(
+    color: Colors.white,
+    boxShadow: [
+      BoxShadow(
+        color: Color(0x29000000),
+        offset: Offset(0, 3),
+        blurRadius: 6,
+      ),
+    ],
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 450,
+      decoration: boxDecoration,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.error_outline_rounded,
+                  color: Color(0xffe10054),
+                  size: 80,
+                ),
+              ],
+            ),
+            Container(height: 20),
+            Text(
+              'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
+            ),
+            Container(height: 20),
+            CheckBoxIconGreen(
+              text: '10 Zeichen lang',
+              enabled: true,
+            ),
+            CheckBoxIconGreen(
+              text: '1 Kleinbuchstabe',
+              enabled: false,
+            ),
+            CheckBoxIconGreen(
+              text: '1 Großbuchstabe',
+              enabled: false,
+            ),
+            CheckBoxIconGreen(
+              text: '1 Zahl',
+              enabled: false,
+            ),
+            CheckBoxIconGreen(
+              text: '1 Sonderzeichen',
+              enabled: false,
+            ),
+            Container(height: 34),
+            Text('Hinweis schließen',
+              style: TextStyle(
+                color: Color(0xffe10054),
+                fontFamily: 'Inter',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class CheckBoxIconGreen extends StatelessWidget {
   const CheckBoxIconGreen({
+    required this.text,
     required this.enabled,
     Key? key,
   }) : super(key: key);
 
   final bool enabled;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          Icons.check_circle_rounded,
-          color: enabled ? Color(0xff549d4c) : Color(0xfff3f6f8),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        children: [
+          Icon(
+            Icons.check_circle_rounded,
+            color: enabled ? Color(0xff549d4c) : Color(0xfff3f6f8),
+          ),
+          Container(width: 8),
+          Text('10 Zeichen lang')
+        ],
+      ),
     );
   }
 }
