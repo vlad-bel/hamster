@@ -32,25 +32,34 @@ class RegistrationView extends StatelessWidget {
   }
 }
 
-class RegistrationBodyView extends StatelessWidget {
+class RegistrationBodyView extends StatefulWidget {
   RegistrationBodyView({Key? key}) : super(key: key);
 
+  @override
+  State<RegistrationBodyView> createState() => _RegistrationBodyViewState();
+}
+
+class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   final _formKey = GlobalKey<FormBuilderState>();
-  final shouldEnable = true;
+
+  final isEnabledButtonNextStep = false;
 
   final nameValidators = FormBuilderValidators.compose<String>([
     FormBuilderValidators.required(),
     FormBuilderValidators.max(70),
   ]);
+
   final surnameValidators = FormBuilderValidators.compose<String>([
     FormBuilderValidators.required(),
     FormBuilderValidators.max(70),
   ]);
+
   final emailValidators = FormBuilderValidators.compose<String>([
     FormBuilderValidators.email(),
     FormBuilderValidators.required(),
     FormBuilderValidators.max(70),
   ]);
+
   final passwordValidators = FormBuilderValidators.compose<String>([
     FormBuilderValidators.required(),
     FormBuilderValidators.max(70),
@@ -80,9 +89,12 @@ class RegistrationBodyView extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           elevation: 0,
           primary: Colors.white,
+          onPrimary: Colors.grey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18.5),
-            side: BorderSide(width: 1)
+            side: BorderSide(
+              color: Color(0x4d707070),
+            ),
           ),
         ),
         onPressed: () {},
@@ -99,13 +111,22 @@ class RegistrationBodyView extends StatelessWidget {
       width: 145,
       height: 37,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.5),
+        style: ButtonStyle(
+          elevation: MaterialStateProperty.all(0),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.5),
+            ),
           ),
+          textStyle: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.disabled)) {
+              return TextStyle(color: Color(0x66676f86));
+            }
+            return TextStyle(color: Colors.white);
+          }),
         ),
-        onPressed: shouldEnable ? () => onPressedRegister(context) : null,
+        onPressed:
+            isEnabledButtonNextStep ? () => onPressedRegister(context) : null,
         child: Text(
           'WEITER',
         ),
@@ -131,81 +152,123 @@ class RegistrationBodyView extends StatelessWidget {
           ),
         ),
         Center(
-          child: SizedBox(
-            width: 390,
-            child: Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(35),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    titleText,
-                    Container(height: 18),
-                    horizontalLine,
-                    Container(height: 18),
-                    subtitleText,
-                    Container(height: 25),
-
-                    // Form:
-                    FormBuilder(
-                      key: _formKey,
-                      autovalidateMode: AutovalidateMode.disabled,
-                      child: Column(
-                        children: [
-                          FormTextField(
-                            name: 'name',
-                            hint: 'Vor- und Nachname',
-                            validators: nameValidators,
-                            keyboardType: TextInputType.name,
-                          ),
-                          Container(height: 18),
-                          FormTextField(
-                            name: 'surname',
-                            hint: 'Nachnamen eingeben',
-                            validators: surnameValidators,
-                            keyboardType: TextInputType.name,
-                          ),
-                          Container(height: 18),
-                          FormTextField(
-                            name: 'email',
-                            hint: 'E-Mail',
-                            validators: emailValidators,
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                          Container(height: 18),
-                          FormTextField(
-                            name: 'password',
-                            hint: 'Passwort wählen',
-                            validators: passwordValidators,
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                          Container(height: 18),
-                          FormTextField(
-                            name: 'password_repeat',
-                            hint: 'Passwort wiederholen',
-                            validators: passwordValidators,
-                            keyboardType: TextInputType.emailAddress,
-                          )
-                        ],
-                      ),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(25),
+                child: Container(
+                  height: 450,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Color(0xff676f86),
                     ),
-
-                    Container(height: 28),
-
-                    /// Buttons:
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0x29000000),
+                        offset: Offset(0, 3),
+                        blurRadius: 6,
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
                       children: [
-                        buttonBack,
-                        buttonNextStep,
+                        Icon(
+                          Icons.error_outline_rounded,
+                          color: Color(0xffe10054),
+                          size: 80,
+                        ),
+                        Text(
+                          'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
+                        ),
+                        CheckBoxIconGreen(enabled: true),
+                        CheckBoxIconGreen(enabled: false)
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+
+              ///
+              SizedBox(
+                width: 390,
+                child: Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(35),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        titleText,
+                        Container(height: 18),
+                        horizontalLine,
+                        Container(height: 18),
+                        subtitleText,
+                        Container(height: 25),
+
+                        // Form:
+                        FormBuilder(
+                          key: _formKey,
+                          autovalidateMode: AutovalidateMode.disabled,
+                          child: Column(
+                            children: [
+                              FormTextField(
+                                name: 'name',
+                                hint: 'Vor- und Nachname',
+                                validators: nameValidators,
+                                keyboardType: TextInputType.name,
+                              ),
+                              Container(height: 18),
+                              FormTextField(
+                                name: 'surname',
+                                hint: 'Nachnamen eingeben',
+                                validators: surnameValidators,
+                                keyboardType: TextInputType.name,
+                              ),
+                              Container(height: 18),
+                              FormTextField(
+                                name: 'email',
+                                hint: 'E-Mail',
+                                validators: emailValidators,
+                                keyboardType: TextInputType.emailAddress,
+                              ),
+                              Container(height: 18),
+                              FormTextField(
+                                name: 'password',
+                                hint: 'Passwort wählen',
+                                validators: passwordValidators,
+                                keyboardType: TextInputType.emailAddress,
+                              ),
+                              Container(height: 18),
+                              FormTextField(
+                                name: 'password_repeat',
+                                hint: 'Passwort wiederholen',
+                                validators: passwordValidators,
+                                keyboardType: TextInputType.emailAddress,
+                              )
+                            ],
+                          ),
+                        ),
+
+                        Container(height: 28),
+
+                        /// Buttons:
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            buttonBack,
+                            buttonNextStep,
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         )
       ],
@@ -215,6 +278,27 @@ class RegistrationBodyView extends StatelessWidget {
   void onPressedRegister(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Processing Data')),
+    );
+  }
+}
+
+class CheckBoxIconGreen extends StatelessWidget {
+  const CheckBoxIconGreen({
+    required this.enabled,
+    Key? key,
+  }) : super(key: key);
+
+  final bool enabled;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(
+          Icons.check_circle_rounded,
+          color: enabled ? Color(0xff549d4c) : Color(0xfff3f6f8),
+        )
+      ],
     );
   }
 }
@@ -246,7 +330,7 @@ class FormTextField extends StatelessWidget {
         focusedBorder: outlineInputBorder,
         enabledBorder: outlineInputBorder,
         hintText: hint,
-        hintStyle: TextStyle(color: Color(0x4d676f86)),
+        hintStyle: TextStyle(color: Color(0x73676f86)),
       ),
       validator: validators,
       keyboardType: keyboardType,
