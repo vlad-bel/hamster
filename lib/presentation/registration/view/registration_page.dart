@@ -86,8 +86,6 @@ class RegistrationBodyView extends StatefulWidget {
 class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   final _formKey = GlobalKey<FormBuilderState>();
 
-  final isEnabledButtonNextStep = false;
-
   final nameValidators = FormBuilderValidators.compose<String>([
     FormBuilderValidators.required(),
     FormBuilderValidators.max(70),
@@ -151,31 +149,30 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
       ),
     );
 
-    final buttonNextStep = SizedBox(
-      width: 145,
-      height: 37,
-      child: ElevatedButton(
-        style: ButtonStyle(
-          elevation: MaterialStateProperty.all(0),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18.5),
+    SizedBox buttonNextStep({bool isEnabled = false}) => SizedBox(
+          width: 145,
+          height: 37,
+          child: ElevatedButton(
+            style: ButtonStyle(
+              elevation: MaterialStateProperty.all(0),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.5),
+                ),
+              ),
+              textStyle: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return TextStyle(color: Color(0x66676f86));
+                }
+                return TextStyle(color: Colors.white);
+              }),
+            ),
+            onPressed: isEnabled ? () => onPressedRegister(context) : null,
+            child: Text(
+              'WEITER',
             ),
           ),
-          textStyle: MaterialStateProperty.resolveWith((states) {
-            if (states.contains(MaterialState.disabled)) {
-              return TextStyle(color: Color(0x66676f86));
-            }
-            return TextStyle(color: Colors.white);
-          }),
-        ),
-        onPressed:
-            isEnabledButtonNextStep ? () => onPressedRegister(context) : null,
-        child: Text(
-          'WEITER',
-        ),
-      ),
-    );
+        );
 
     return Stack(
       children: [
@@ -224,81 +221,76 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                         Container(height: 18),
                         subtitleText,
                         Container(height: 25),
-
                         ReactiveFormBuilder(
                           form: FormGroupRegistrationUserInfo().buildForm,
                           builder: (context, form, child) {
                             return Column(
                               children: [
-                                ReactiveTextField<String>(
-                                  formControlName: 'email',
+                                ReactiveFormTextField(
+                                  name: 'name',
+                                  hint: 'Vor- und Nachname',
+                                  validationMessages: (control) => {
+                                    ValidationMessage.required:
+                                        'The name must not be empty'
+                                  },
+                                  keyboardType: TextInputType.name,
+                                ),
+                                Container(height: 18),
+                                ReactiveFormTextField(
+                                  name: 'surname',
+                                  hint: 'Nachnamen eingeben',
+                                  validationMessages: (control) => {
+                                    ValidationMessage.required:
+                                        'The surname must not be empty'
+                                  },
+                                  keyboardType: TextInputType.name,
+                                ),
+                                Container(height: 18),
+                                ReactiveFormTextField(
+                                  name: 'email',
+                                  hint: 'E-Mail',
                                   validationMessages: (control) => {
                                     ValidationMessage.required:
                                         'The email must not be empty',
                                     ValidationMessage.email:
                                         'The email value must be a valid email',
-                                    'unique': 'This email is already in use',
                                   },
-                                  textInputAction: TextInputAction.next,
-                                )
+                                  keyboardType: TextInputType.name,
+                                ),
+                                Container(height: 18),
+                                ReactiveFormTextField(
+                                  name: 'password',
+                                  hint: 'Passwort wählen',
+                                  validationMessages: (control) => {
+                                    ValidationMessage.required:
+                                        'The password must not be empty',
+                                  },
+                                  keyboardType: TextInputType.text,
+                                ),
+                                Container(height: 18),
+                                ReactiveFormTextField(
+                                  name: 'passwordConfirmation',
+                                  hint: 'Passwort wählen',
+                                  validationMessages: (control) => {
+                                    ValidationMessage.required:
+                                        'The password must not be empty',
+                                  },
+                                  keyboardType: TextInputType.text,
+                                ),
+                                Container(height: 28),
+
+                                /// Buttons:
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    buttonBack,
+                                    buttonNextStep(isEnabled: form.valid)
+                                  ],
+                                ),
                               ],
                             );
                           },
-                        ),
-
-                        // Form:
-                        FormBuilder(
-                          key: _formKey,
-                          autovalidateMode: AutovalidateMode.disabled,
-                          child: Column(
-                            children: [
-                              FormTextField(
-                                name: 'name',
-                                hint: 'Vor- und Nachname',
-                                validators: nameValidators,
-                                keyboardType: TextInputType.name,
-                              ),
-                              Container(height: 18),
-                              FormTextField(
-                                name: 'surname',
-                                hint: 'Nachnamen eingeben',
-                                validators: surnameValidators,
-                                keyboardType: TextInputType.name,
-                              ),
-                              Container(height: 18),
-                              FormTextField(
-                                name: 'email',
-                                hint: 'E-Mail',
-                                validators: emailValidators,
-                                keyboardType: TextInputType.emailAddress,
-                              ),
-                              Container(height: 18),
-                              FormTextField(
-                                name: 'password',
-                                hint: 'Passwort wählen',
-                                validators: passwordValidators,
-                                keyboardType: TextInputType.emailAddress,
-                              ),
-                              Container(height: 18),
-                              FormTextField(
-                                name: 'password_repeat',
-                                hint: 'Passwort wiederholen',
-                                validators: passwordValidators,
-                                keyboardType: TextInputType.emailAddress,
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Container(height: 28),
-
-                        /// Buttons:
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            buttonBack,
-                            buttonNextStep,
-                          ],
                         ),
                       ],
                     ),
@@ -453,16 +445,58 @@ class FormTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderTextField(
-      name: name,
-      decoration: InputDecoration(
-        border: outlineInputBorder,
-        focusedBorder: outlineInputBorder,
-        enabledBorder: outlineInputBorder,
-        hintText: hint,
-        hintStyle: TextStyle(color: Color(0x73676f86)),
-      ),
-      validator: validators,
+    return Column(
+      children: [
+        FormBuilderTextField(
+          name: name,
+          decoration: InputDecoration(
+            border: outlineInputBorder,
+            focusedBorder: outlineInputBorder,
+            enabledBorder: outlineInputBorder,
+            hintText: hint,
+            hintStyle: TextStyle(color: Color(0x73676f86)),
+          ),
+          validator: validators,
+          keyboardType: keyboardType,
+        ),
+      ],
+    );
+  }
+}
+
+class ReactiveFormTextField extends StatelessWidget {
+  ReactiveFormTextField({
+    required this.name,
+    required this.hint,
+    required this.validationMessages,
+    required this.keyboardType,
+    Key? key,
+  }) : super(key: key);
+
+  final String name;
+  final String hint;
+  final ValidationMessagesFunction validationMessages;
+  final TextInputType keyboardType;
+
+  final outlineInputBorder = OutlineInputBorder(
+    borderSide: BorderSide(color: Color(0x4d676f86)),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    final inputDecoration = InputDecoration(
+      border: outlineInputBorder,
+      focusedBorder: outlineInputBorder,
+      enabledBorder: outlineInputBorder,
+      hintText: hint,
+      hintStyle: TextStyle(color: Color(0x73676f86)),
+    );
+
+    return ReactiveTextField<String>(
+      formControlName: name,
+      validationMessages: validationMessages,
+      textInputAction: TextInputAction.next,
+      decoration: inputDecoration,
       keyboardType: keyboardType,
     );
   }
