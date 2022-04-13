@@ -34,7 +34,7 @@ class RegistrationView extends StatelessWidget {
 }
 
 class FormGroupRegistrationUserInfo {
-  FormGroup buildForm2() => FormGroup(
+  FormGroup buildForm() => FormGroup(
         {
           'name': FormControl<String>(
             validators: [Validators.required, Validators.minLength(2)],
@@ -224,6 +224,27 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                         Container(height: 18),
                         subtitleText,
                         Container(height: 25),
+
+                        ReactiveFormBuilder(
+                          form: FormGroupRegistrationUserInfo().buildForm,
+                          builder: (context, form, child) {
+                            return Column(
+                              children: [
+                                ReactiveTextField<String>(
+                                  formControlName: 'email',
+                                  validationMessages: (control) => {
+                                    ValidationMessage.required:
+                                        'The email must not be empty',
+                                    ValidationMessage.email:
+                                        'The email value must be a valid email',
+                                    'unique': 'This email is already in use',
+                                  },
+                                  textInputAction: TextInputAction.next,
+                                )
+                              ],
+                            );
+                          },
+                        ),
 
                         // Form:
                         FormBuilder(
