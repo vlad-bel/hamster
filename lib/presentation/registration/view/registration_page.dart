@@ -104,107 +104,109 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
           ),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Spacer(),
-            Center(
-              child: SizedBox(
-                width: 390,
-                child: Container(
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(35),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        titleText,
-                        Container(height: 18),
-                        horizontalLine,
-                        Container(height: 18),
-                        subtitleText,
-                        Container(height: 25),
-                        ReactiveFormBuilder(
-                          form: FormGroupRegistrationUserInfo().buildForm,
-                          builder: (context, form, child) {
-                            return Column(
-                              children: [
-                                ReactiveFormTextField(
-                                  name: 'name',
-                                  hint: 'Vor- und Nachname',
-                                  validationMessages: (control) => {
-                                    ValidationMessage.required:
-                                        'The name must not be empty'
-                                  },
-                                  keyboardType: TextInputType.name,
-                                ),
-                                Container(height: 18),
-                                ReactiveFormTextField(
-                                  name: 'surname',
-                                  hint: 'Nachnamen eingeben',
-                                  validationMessages: (control) => {
-                                    ValidationMessage.required:
-                                        'The surname must not be empty'
-                                  },
-                                  keyboardType: TextInputType.name,
-                                ),
-                                Container(height: 18),
-                                ReactiveFormTextField(
-                                  name: 'email',
-                                  hint: 'E-Mail',
-                                  validationMessages: (control) => {
-                                    ValidationMessage.required:
-                                        'The email must not be empty',
-                                    ValidationMessage.email:
-                                        'The email value must be a valid email',
-                                  },
-                                  keyboardType: TextInputType.name,
-                                ),
-                                Container(height: 18),
-                                ReactiveFormTextField(
-                                  name: 'password',
-                                  hint: 'Passwort wählen',
-                                  validationMessages: (control) => {
-                                    ValidationMessage.required:
-                                        'The password must not be empty',
-                                  },
-                                  keyboardType: TextInputType.text,
-                                  obscureText: true,
-                                ),
-                                Container(height: 18),
-                                ReactiveFormTextField(
-                                  name: 'passwordConfirmation',
-                                  hint: 'Passwort wählen',
-                                  validationMessages: (control) => {
-                                    ValidationMessage.required:
-                                        'The password must not be empty',
-                                  },
-                                  keyboardType: TextInputType.text,
-                                  obscureText: true,
-                                  textInputAction: TextInputAction.done,
-                                ),
-                                Container(height: 28),
+            Expanded(
+              child: Center(
+                child: SizedBox(
+                  width: 390,
+                  child: Container(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(35),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          titleText,
+                          Container(height: 18),
+                          horizontalLine,
+                          Container(height: 18),
+                          subtitleText,
+                          Container(height: 25),
+                          ReactiveFormBuilder(
+                            form: FormGroupRegistrationUserInfo().buildForm,
+                            builder: (context, form, child) {
+                              return Column(
+                                children: [
+                                  ReactiveFormTextField(
+                                    name: 'name',
+                                    hint: 'Vor- und Nachname',
+                                    validationMessages: (control) => {
+                                      ValidationMessage.required:
+                                          'The name must not be empty'
+                                    },
+                                    keyboardType: TextInputType.name,
+                                  ),
+                                  Container(height: 18),
+                                  ReactiveFormTextField(
+                                    name: 'surname',
+                                    hint: 'Nachnamen eingeben',
+                                    validationMessages: (control) => {
+                                      ValidationMessage.required:
+                                          'The surname must not be empty'
+                                    },
+                                    keyboardType: TextInputType.name,
+                                  ),
+                                  Container(height: 18),
+                                  ReactiveFormTextField(
+                                    name: 'email',
+                                    hint: 'E-Mail',
+                                    validationMessages: (control) => {
+                                      ValidationMessage.required:
+                                          'The email must not be empty',
+                                      ValidationMessage.email:
+                                          'The email value must be a valid email',
+                                    },
+                                    keyboardType: TextInputType.name,
+                                  ),
+                                  Container(height: 18),
+                                  ReactiveFormTextField(
+                                    name: 'password',
+                                    hint: 'Passwort wählen',
+                                    validationMessages: (control) => {
+                                      ValidationMessage.required:
+                                          'The password must not be empty',
+                                    },
+                                    keyboardType: TextInputType.text,
+                                    obscureText: true,
+                                  ),
+                                  Container(height: 18),
+                                  ReactiveFormTextField(
+                                    name: 'passwordConfirmation',
+                                    hint: 'Passwort wählen',
+                                    validationMessages: (control) => {
+                                      ValidationMessage.required:
+                                          'The password must not be empty',
+                                    },
+                                    keyboardType: TextInputType.text,
+                                    obscureText: true,
+                                    textInputAction: TextInputAction.done,
+                                  ),
+                                  Container(height: 28),
 
-                                /// Buttons:
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    WhiteButton(),
-                                    ReactiveFormConsumer(
-                                      builder: (context, formGroup, child) {
-                                        return buttonNextStep(
-                                          isEnabled: formGroup.valid,
-                                        );
-                                      },
-                                    )
-                                  ],
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ],
+                                  /// Buttons:
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      WhiteButton(),
+                                      ReactiveFormConsumer(
+                                        builder: (context, formGroup, child) {
+                                          return buttonNextStep(
+                                            isEnabled: formGroup.valid,
+                                          );
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -213,7 +215,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
             Visibility(
               visible: true,
               child: Padding(
-                padding: const EdgeInsets.all(25),
+                padding: const EdgeInsets.only(right:20),
                 child: PasswordCheckboxes(),
               ),
             ),
