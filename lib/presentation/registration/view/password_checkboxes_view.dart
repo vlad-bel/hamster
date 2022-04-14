@@ -1,11 +1,19 @@
 import 'package:business_terminal/presentation/registration/widgets/check_box_icon.dart';
 import 'package:flutter/material.dart';
 
-class PasswordCheckboxes extends StatelessWidget {
+class PasswordCheckboxes extends StatefulWidget {
   const PasswordCheckboxes({
+    this.controllerPassword,
     Key? key,
   }) : super(key: key);
 
+  final TextEditingController? controllerPassword;
+
+  @override
+  State<PasswordCheckboxes> createState() => _PasswordCheckboxesState();
+}
+
+class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
   BoxDecoration get boxDecoration => const BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -16,6 +24,16 @@ class PasswordCheckboxes extends StatelessWidget {
           ),
         ],
       );
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controllerPassword?.addListener(passValidation);
+  }
+
+  void passValidation() {
+    print(widget.controllerPassword?.text);
+  }
 
   @override
   Widget build(BuildContext context) {

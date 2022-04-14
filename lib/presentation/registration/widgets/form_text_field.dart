@@ -9,6 +9,7 @@ class ReactiveFormTextField extends StatelessWidget {
     required this.keyboardType,
     this.obscureText = false,
     this.textInputAction = TextInputAction.next,
+    this.controller,
     Key? key,
   }) : super(key: key);
 
@@ -18,10 +19,13 @@ class ReactiveFormTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final bool obscureText;
   final TextInputAction textInputAction;
+  final TextEditingController? controller;
 
-  final outlineInputBorder = const OutlineInputBorder(
-    borderSide: BorderSide(color: Color(0x4d676f86)),
-  );
+  OutlineInputBorder get outlineInputBorder => const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Color(0x4d676f86),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +44,7 @@ class ReactiveFormTextField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText,
       decoration: inputDecoration,
+      controller: controller,
     );
   }
 }

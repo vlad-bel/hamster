@@ -43,6 +43,14 @@ class RegistrationBodyView extends StatefulWidget {
 }
 
 class _RegistrationBodyViewState extends State<RegistrationBodyView> {
+  TextEditingController? controllerPassword;
+
+  @override
+  void initState() {
+    super.initState();
+    controllerPassword = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     final horizontalLine = Container(
@@ -103,9 +111,11 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
             ),
           ),
         ),
-        Stack(alignment: Alignment.center,
+        Stack(
+          alignment: Alignment.center,
           children: [
-            Align(child: SizedBox(
+            Align(
+              child: SizedBox(
                 width: 390,
                 child: Container(
                   color: Colors.white,
@@ -167,6 +177,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   },
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
+                                  controller: controllerPassword,
                                 ),
                                 Container(height: 18),
                                 ReactiveFormTextField(
@@ -209,11 +220,14 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 800),
-              child: Align(child: Visibility(
+              child: Align(
+                child: Visibility(
                   visible: true,
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20),
-                    child: PasswordCheckboxes(),
+                    child: PasswordCheckboxes(
+                      controllerPassword: controllerPassword,
+                    ),
                   ),
                 ),
               ),
