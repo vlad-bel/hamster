@@ -3,7 +3,6 @@
 
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/registration/cubit/registration_cubit.dart';
-import 'package:business_terminal/presentation/registration/forms/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
@@ -11,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+
+import '../form_validation_rules/user_info_form_group.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);

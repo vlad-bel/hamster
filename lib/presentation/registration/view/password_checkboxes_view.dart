@@ -6,7 +6,7 @@ extension StringValidators on String {
 
   bool get containsLowercase => contains(RegExp(r'[a-z]'));
 
-  bool get containsNumbers => contains(RegExp(r'^-?[0-9]+$'));
+  bool get containsNumbers => contains(RegExp(r'[0-9]'));
 
   bool get containsSpecialCharacters =>
       contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
@@ -23,6 +23,8 @@ class PasswordCheckboxes extends StatefulWidget {
   @override
   State<PasswordCheckboxes> createState() => _PasswordCheckboxesState();
 }
+
+const int minimalPasswordLength = 10;
 
 class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
   BoxDecoration get boxDecoration => const BoxDecoration(
@@ -52,7 +54,7 @@ class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
     final password = widget.controllerPassword?.text ?? '';
 
     setState(() {
-      has10Characters = password.length >= 10;
+      has10Characters = password.length >= minimalPasswordLength;
       has1LowerCaseLetter = password.containsLowercase;
       has1UpperCaseLetter = password.containsUppercase;
       has1SpecialCharacter = password.containsSpecialCharacters;

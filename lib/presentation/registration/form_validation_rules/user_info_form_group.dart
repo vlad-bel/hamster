@@ -1,3 +1,4 @@
+import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class FormGroupRegistrationUserInfo {
@@ -40,5 +41,19 @@ class FormGroupRegistrationUserInfo {
 
       return null;
     };
+  }
+
+  bool isPasswordValid(String password) {
+    final has10Characters = password.length >= minimalPasswordLength;
+    final has1LowerCaseLetter = password.containsLowercase;
+    final has1UpperCaseLetter = password.containsUppercase;
+    final has1SpecialCharacter = password.containsSpecialCharacters;
+    final has1Number = password.containsNumbers;
+
+    return has10Characters &
+        has1LowerCaseLetter &
+        has1UpperCaseLetter &
+        has1SpecialCharacter &
+        has1Number;
   }
 }
