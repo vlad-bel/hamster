@@ -3,11 +3,12 @@
 
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/registration/cubit/registration_cubit.dart';
+import 'package:business_terminal/presentation/registration/view/white_button.dart';
+import 'package:business_terminal/presentation/registration/widgets/check_box_icon.dart';
+import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class RegistrationPage extends StatelessWidget {
@@ -33,49 +34,6 @@ class RegistrationView extends StatelessWidget {
   }
 }
 
-class FormGroupRegistrationUserInfo {
-  FormGroup buildForm() => FormGroup(
-        {
-          'name': FormControl<String>(
-            validators: [Validators.required, Validators.minLength(2)],
-          ),
-          'surname': FormControl<String>(
-            validators: [Validators.required, Validators.minLength(2)],
-          ),
-          'email': FormControl<String>(
-            validators: [Validators.required, Validators.email],
-          ),
-          'password': FormControl<String>(
-            validators: [Validators.required, Validators.minLength(10)],
-          ),
-          'passwordConfirmation': FormControl<String>()
-        },
-        validators: [_mustMatch('password', 'passwordConfirmation')],
-      );
-
-  // Both fields in form must be the same
-  ValidatorFunction _mustMatch(String controlName, String matchingControlName) {
-    return (AbstractControl<dynamic> control) {
-      final form = control as FormGroup;
-
-      final formControl = form.control(controlName);
-      final matchingFormControl = form.control(matchingControlName);
-
-      if (formControl.value != matchingFormControl.value) {
-        final errors = {'mustMatch': true};
-        matchingFormControl
-          ..setErrors(errors)
-          ..markAsTouched();
-        // force messages to show up as soon as possible
-      } else {
-        matchingFormControl.removeError('mustMatch');
-      }
-
-      return null;
-    };
-  }
-}
-
 class RegistrationBodyView extends StatefulWidget {
   const RegistrationBodyView({Key? key}) : super(key: key);
 
@@ -84,29 +42,6 @@ class RegistrationBodyView extends StatefulWidget {
 }
 
 class _RegistrationBodyViewState extends State<RegistrationBodyView> {
-  final _formKey = GlobalKey<FormBuilderState>();
-
-  final nameValidators = FormBuilderValidators.compose<String>([
-    FormBuilderValidators.required(),
-    FormBuilderValidators.max(70),
-  ]);
-
-  final surnameValidators = FormBuilderValidators.compose<String>([
-    FormBuilderValidators.required(),
-    FormBuilderValidators.max(70),
-  ]);
-
-  final emailValidators = FormBuilderValidators.compose<String>([
-    FormBuilderValidators.email(),
-    FormBuilderValidators.required(),
-    FormBuilderValidators.max(70),
-  ]);
-
-  final passwordValidators = FormBuilderValidators.compose<String>([
-    FormBuilderValidators.required(),
-    FormBuilderValidators.max(70),
-  ]);
-
   @override
   Widget build(BuildContext context) {
     final horizontalLine = Container(
@@ -124,30 +59,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
       'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
     );
 
-    final buttonBack = SizedBox(
-      width: 145,
-      height: 37,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          elevation: 0,
-          primary: Colors.white,
-          onPrimary: Colors.grey,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.5),
-            side: BorderSide(
-              color: Color(0x4d707070),
-            ),
-          ),
-        ),
-        onPressed: () {},
-        child: Text(
-          'ZURÜCK',
-          style: TextStyle(
-            color: Color(0xff147bd9),
-          ),
-        ),
-      ),
-    );
+    final buttonBack = WhiteButton();
 
     SizedBox buttonNextStep({bool isEnabled = false}) => SizedBox(
           width: 145,
@@ -402,116 +314,6 @@ class PasswordCheckboxes extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class CheckBoxIconGreen extends StatelessWidget {
-  const CheckBoxIconGreen({
-    required this.text,
-    required this.enabled,
-    Key? key,
-  }) : super(key: key);
-
-  final bool enabled;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10, left: 14),
-      child: Row(
-        children: [
-          Icon(
-            Icons.check_circle_rounded,
-            color: enabled ? Color(0xff549d4c) : Color(0xfff3f6f8),
-          ),
-          Container(width: 8),
-          Text(text)
-        ],
-      ),
-    );
-  }
-}
-
-class FormTextField extends StatelessWidget {
-  FormTextField({
-    required this.name,
-    required this.hint,
-    required this.validators,
-    required this.keyboardType,
-    Key? key,
-  }) : super(key: key);
-
-  final String name;
-  final String hint;
-  final FormFieldValidator<String> validators;
-  final TextInputType keyboardType;
-
-  final outlineInputBorder = OutlineInputBorder(
-    borderSide: BorderSide(color: Color(0x4d676f86)),
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        FormBuilderTextField(
-          name: name,
-          decoration: InputDecoration(
-            border: outlineInputBorder,
-            focusedBorder: outlineInputBorder,
-            enabledBorder: outlineInputBorder,
-            hintText: hint,
-            hintStyle: TextStyle(color: Color(0x73676f86)),
-          ),
-          validator: validators,
-          keyboardType: keyboardType,
-        ),
-      ],
-    );
-  }
-}
-
-class ReactiveFormTextField extends StatelessWidget {
-  ReactiveFormTextField({
-    required this.name,
-    required this.hint,
-    required this.validationMessages,
-    required this.keyboardType,
-    this.obscureText = false,
-    this.textInputAction = TextInputAction.next,
-    Key? key,
-  }) : super(key: key);
-
-  final String name;
-  final String hint;
-  final ValidationMessagesFunction validationMessages;
-  final TextInputType keyboardType;
-  final bool obscureText;
-  final TextInputAction textInputAction;
-
-  final outlineInputBorder = OutlineInputBorder(
-    borderSide: BorderSide(color: Color(0x4d676f86)),
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    final inputDecoration = InputDecoration(
-      border: outlineInputBorder,
-      focusedBorder: outlineInputBorder,
-      enabledBorder: outlineInputBorder,
-      hintText: hint,
-      hintStyle: TextStyle(color: Color(0x73676f86)),
-    );
-
-    return ReactiveTextField<String>(
-      formControlName: name,
-      validationMessages: validationMessages,
-      textInputAction: textInputAction,
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      decoration: inputDecoration,
     );
   }
 }
