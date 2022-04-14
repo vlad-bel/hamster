@@ -25,6 +25,11 @@ class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
         ],
       );
 
+  bool has10Characters = false;
+  bool has1LowerCaseLetter = false;
+  bool has1UpperCaseLetter = false;
+  bool has1SpecialCharacter = false;
+
   @override
   void initState() {
     super.initState();
@@ -32,7 +37,12 @@ class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
   }
 
   void passValidation() {
-    print(widget.controllerPassword?.text);
+    final password = widget.controllerPassword?.text ?? '';
+    print(password);
+
+    setState(() {
+      has10Characters = password.length >= 10;
+    });
   }
 
   @override
@@ -62,9 +72,9 @@ class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
                   'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
                 ),
                 Container(height: 20),
-                const CheckBoxIconGreen(
+                CheckBoxIconGreen(
                   text: '10 Zeichen lang',
-                  enabled: true,
+                  enabled: has10Characters,
                 ),
                 const CheckBoxIconGreen(
                   text: '1 Kleinbuchstabe',
