@@ -266,6 +266,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                         'The password must not be empty',
                                   },
                                   keyboardType: TextInputType.text,
+                                  obscureText: true,
                                 ),
                                 Container(height: 18),
                                 ReactiveFormTextField(
@@ -276,6 +277,8 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                         'The password must not be empty',
                                   },
                                   keyboardType: TextInputType.text,
+                                  obscureText: true,
+                                  textInputAction: TextInputAction.done,
                                 ),
                                 Container(height: 28),
 
@@ -285,7 +288,13 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     buttonBack,
-                                    buttonNextStep(isEnabled: form.valid)
+                                    ReactiveFormConsumer(
+                                      builder: (context, formGroup, child) {
+                                        return buttonNextStep(
+                                          isEnabled: formGroup.valid,
+                                        );
+                                      },
+                                    )
                                   ],
                                 ),
                               ],
@@ -470,6 +479,8 @@ class ReactiveFormTextField extends StatelessWidget {
     required this.hint,
     required this.validationMessages,
     required this.keyboardType,
+    this.obscureText = false,
+    this.textInputAction = TextInputAction.next,
     Key? key,
   }) : super(key: key);
 
@@ -477,6 +488,8 @@ class ReactiveFormTextField extends StatelessWidget {
   final String hint;
   final ValidationMessagesFunction validationMessages;
   final TextInputType keyboardType;
+  final bool obscureText;
+  final TextInputAction textInputAction;
 
   final outlineInputBorder = OutlineInputBorder(
     borderSide: BorderSide(color: Color(0x4d676f86)),
@@ -495,9 +508,10 @@ class ReactiveFormTextField extends StatelessWidget {
     return ReactiveTextField<String>(
       formControlName: name,
       validationMessages: validationMessages,
-      textInputAction: TextInputAction.next,
-      decoration: inputDecoration,
+      textInputAction: textInputAction,
       keyboardType: keyboardType,
+      obscureText: obscureText,
+      decoration: inputDecoration,
     );
   }
 }
