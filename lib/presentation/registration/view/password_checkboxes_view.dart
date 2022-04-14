@@ -70,60 +70,62 @@ class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
       decoration: boxDecoration,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Align(
-              child: Icon(
-                Icons.error_outline_rounded,
-                color: Color(0xffe10054),
-                size: 80,
+        child: Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Align(
+                child: Icon(
+                  Icons.error_outline_rounded,
+                  color: Color(0xffe10054),
+                  size: 80,
+                ),
               ),
-            ),
-            Container(height: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
-                ),
-                Container(height: 20),
-                CheckBoxIconGreen(
-                  text: '10 Zeichen lang',
-                  enabled: has10Characters,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Kleinbuchstabe',
-                  enabled: has1LowerCaseLetter,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Großbuchstabe',
-                  enabled: has1UpperCaseLetter,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Zahl',
-                  enabled: has1Number,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Sonderzeichen',
-                  enabled: has1SpecialCharacter,
-                ),
-                Container(height: 24),
-              ],
-            ),
-            Column(
-              children: const [
-                Padding(
-                  padding: EdgeInsets.only(right: 28),
-                  child: Text(
-                    'Hinweis schließen',
-                    style: TextStyle(color: Color(0xffe10054)),
+              Container(height: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
                   ),
-                ),
-              ],
-            ),
-          ],
+                  Container(height: 20),
+                  CheckBoxIconGreen(
+                    text: '10 Zeichen lang',
+                    enabled: has10Characters,
+                  ),
+                  CheckBoxIconGreen(
+                    text: '1 Kleinbuchstabe',
+                    enabled: has1LowerCaseLetter,
+                  ),
+                  CheckBoxIconGreen(
+                    text: '1 Großbuchstabe',
+                    enabled: has1UpperCaseLetter,
+                  ),
+                  CheckBoxIconGreen(
+                    text: '1 Zahl',
+                    enabled: has1Number,
+                  ),
+                  CheckBoxIconGreen(
+                    text: '1 Sonderzeichen',
+                    enabled: has1SpecialCharacter,
+                  ),
+                  Container(height: 24),
+                ],
+              ),
+              Column(
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.only(right: 28),
+                    child: Text(
+                      'Hinweis schließen',
+                      style: TextStyle(color: Color(0xffe10054)),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

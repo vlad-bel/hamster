@@ -6,7 +6,6 @@ import 'package:business_terminal/presentation/registration/cubit/registration_c
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
-import 'package:business_terminal/presentation/registration/widgets/triangle_custom_painter.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -203,7 +202,6 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   textInputAction: TextInputAction.done,
                                 ),
                                 Container(height: 28),
-                                Triangle(color: Colors.red),
 
                                 /// Bottom action buttons:
                                 Row(
@@ -234,11 +232,21 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
               padding: const EdgeInsets.only(left: 800),
               child: Align(
                 child: Visibility(
-                  visible: shouldShowPasswordValidationWidget,
+                  // visible: shouldShowPasswordValidationWidget,
+                  visible: true,
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20, top: 150),
-                    child: PasswordCheckboxes(
-                      controllerPassword: controllerPassword,
+                    child: Stack(
+                      children: [
+                        Positioned(top: 450, left:90,
+                            child:
+                                Icon(Icons.arrow_left, color: Colors.red, size:50,),),
+                        Align(alignment: Alignment.center,
+                          child: PasswordCheckboxes(
+                            controllerPassword: controllerPassword,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
