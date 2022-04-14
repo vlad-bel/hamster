@@ -1,6 +1,17 @@
 import 'package:business_terminal/presentation/registration/widgets/check_box_icon.dart';
 import 'package:flutter/material.dart';
 
+extension StringValidators on String {
+  bool get containsUppercase => contains(RegExp(r'[A-Z]'));
+
+  bool get containsLowercase => contains(RegExp(r'[a-z]'));
+
+  bool get containsNumbers => contains(RegExp(r'^-?[0-9]+$'));
+
+  bool get containsSpecialCharacters =>
+      contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+}
+
 class PasswordCheckboxes extends StatefulWidget {
   const PasswordCheckboxes({
     this.controllerPassword,
@@ -29,6 +40,7 @@ class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
   bool has1LowerCaseLetter = false;
   bool has1UpperCaseLetter = false;
   bool has1SpecialCharacter = false;
+  bool has1Number = false;
 
   @override
   void initState() {
@@ -38,10 +50,13 @@ class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
 
   void passValidation() {
     final password = widget.controllerPassword?.text ?? '';
-    print(password);
 
     setState(() {
       has10Characters = password.length >= 10;
+      has1LowerCaseLetter = password.containsLowercase;
+      has1UpperCaseLetter = password.containsUppercase;
+      has1SpecialCharacter = password.containsSpecialCharacters;
+      has1Number = password.containsNumbers;
     });
   }
 
@@ -76,21 +91,21 @@ class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
                   text: '10 Zeichen lang',
                   enabled: has10Characters,
                 ),
-                const CheckBoxIconGreen(
+                CheckBoxIconGreen(
                   text: '1 Kleinbuchstabe',
-                  enabled: false,
+                  enabled: has1LowerCaseLetter,
                 ),
-                const CheckBoxIconGreen(
+                CheckBoxIconGreen(
                   text: '1 Großbuchstabe',
-                  enabled: false,
+                  enabled: has1UpperCaseLetter,
                 ),
-                const CheckBoxIconGreen(
+                CheckBoxIconGreen(
                   text: '1 Zahl',
-                  enabled: false,
+                  enabled: has1Number,
                 ),
-                const CheckBoxIconGreen(
+                CheckBoxIconGreen(
                   text: '1 Sonderzeichen',
-                  enabled: false,
+                  enabled: has1SpecialCharacter,
                 ),
                 Container(height: 24),
               ],
