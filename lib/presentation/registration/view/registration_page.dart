@@ -3,9 +3,10 @@
 
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/registration/cubit/registration_cubit.dart';
-import 'package:business_terminal/presentation/registration/view/white_button.dart';
-import 'package:business_terminal/presentation/registration/widgets/check_box_icon.dart';
+import 'package:business_terminal/presentation/registration/forms/user_info_form_group.dart';
+import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
+import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -59,8 +60,6 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
       'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
     );
 
-    final buttonBack = WhiteButton();
-
     SizedBox buttonNextStep({bool isEnabled = false}) => SizedBox(
           width: 145,
           height: 37,
@@ -107,15 +106,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Visibility(
-              visible: false,
-              child: Padding(
-                padding: const EdgeInsets.all(25),
-                child: PasswordCheckboxes(),
-              ),
-            ),
-
-            ///
+            Spacer(),
             Center(
               child: SizedBox(
                 width: 390,
@@ -199,7 +190,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    buttonBack,
+                                    WhiteButton(),
                                     ReactiveFormConsumer(
                                       builder: (context, formGroup, child) {
                                         return buttonNextStep(
@@ -219,6 +210,13 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                 ),
               ),
             ),
+            Visibility(
+              visible: true,
+              child: Padding(
+                padding: const EdgeInsets.all(25),
+                child: PasswordCheckboxes(),
+              ),
+            ),
           ],
         )
       ],
@@ -228,92 +226,6 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   void onPressedRegister(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Processing Data')),
-    );
-  }
-}
-
-class PasswordCheckboxes extends StatelessWidget {
-  PasswordCheckboxes({
-    Key? key,
-  }) : super(key: key);
-
-  final boxDecoration = BoxDecoration(
-    color: Colors.white,
-    boxShadow: [
-      BoxShadow(
-        color: Color(0x29000000),
-        offset: Offset(0, 3),
-        blurRadius: 6,
-      ),
-    ],
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 450,
-      decoration: boxDecoration,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.error_outline_rounded,
-                  color: Color(0xffe10054),
-                  size: 80,
-                ),
-              ],
-            ),
-            Container(height: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
-                ),
-                Container(height: 20),
-                CheckBoxIconGreen(
-                  text: '10 Zeichen lang',
-                  enabled: true,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Kleinbuchstabe',
-                  enabled: false,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Großbuchstabe',
-                  enabled: false,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Zahl',
-                  enabled: false,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Sonderzeichen',
-                  enabled: false,
-                ),
-                Container(height: 24),
-              ],
-            ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 28),
-                  child: Text(
-                    'Hinweis schließen',
-                    style: TextStyle(
-                      color: Color(0xffe10054),
-                      fontFamily: 'Inter',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
