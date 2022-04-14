@@ -21,20 +21,20 @@ class PasswordCheckboxes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 450,
-      width: 350,
+      width: 310,
       decoration: boxDecoration,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              children: const [
-                Icon(
-                  Icons.error_outline_rounded,
-                  color: Color(0xffe10054),
-                  size: 80,
-                ),
-              ],
+            const Align(
+              child: Icon(
+                Icons.error_outline_rounded,
+                color: Color(0xffe10054),
+                size: 80,
+              ),
             ),
             Container(height: 20),
             Column(
@@ -73,10 +73,7 @@ class PasswordCheckboxes extends StatelessWidget {
                   padding: EdgeInsets.only(right: 28),
                   child: Text(
                     'Hinweis schließen',
-                    style: TextStyle(
-                      color: Color(0xffe10054),
-                      fontFamily: 'Inter',
-                    ),
+                    style: TextStyle(color: Color(0xffe10054)),
                   ),
                 ),
               ],
