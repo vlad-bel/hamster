@@ -5,6 +5,7 @@ import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/registration/cubit/registration_cubit.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
+import 'package:business_terminal/presentation/registration/widgets/triangle_custom_painter.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -193,8 +194,8 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   textInputAction: TextInputAction.done,
                                 ),
                                 Container(height: 28),
-
-                                /// Buttons:
+                                Triangle(color: Colors.red),
+                                /// Bottom action buttons:
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -225,7 +226,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                 child: Visibility(
                   visible: true,
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 20),
+                    padding: const EdgeInsets.only(right: 20, top: 150),
                     child: PasswordCheckboxes(
                       controllerPassword: controllerPassword,
                     ),
