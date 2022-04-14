@@ -3,6 +3,7 @@
 
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/registration/cubit/registration_cubit.dart';
+import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/triangle_custom_painter.dart';
@@ -11,8 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-
-import '../form_validation_rules/user_info_form_group.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -47,10 +46,19 @@ class RegistrationBodyView extends StatefulWidget {
 class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   TextEditingController? controllerPassword;
 
+  final FocusNode focusListenerPassword = FocusNode();
+  bool shouldShowPasswordValidationWidget = false;
+
   @override
   void initState() {
-    super.initState();
     controllerPassword = TextEditingController();
+
+    focusListenerPassword.addListener(() {
+      setState(() {
+        shouldShowPasswordValidationWidget = focusListenerPassword.hasFocus;
+      });
+    });
+    super.initState();
   }
 
   @override
@@ -180,6 +188,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
                                   controller: controllerPassword,
+                                  focusListener: focusListenerPassword,
                                 ),
                                 Container(height: 18),
                                 ReactiveFormTextField(
@@ -195,6 +204,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 ),
                                 Container(height: 28),
                                 Triangle(color: Colors.red),
+
                                 /// Bottom action buttons:
                                 Row(
                                   mainAxisAlignment:
@@ -224,7 +234,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
               padding: const EdgeInsets.only(left: 800),
               child: Align(
                 child: Visibility(
-                  visible: true,
+                  visible: shouldShowPasswordValidationWidget,
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20, top: 150),
                     child: PasswordCheckboxes(

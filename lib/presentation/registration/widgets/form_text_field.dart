@@ -3,6 +3,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class ReactiveFormTextField extends StatelessWidget {
   const ReactiveFormTextField({
+    Key? key,
     required this.name,
     required this.hint,
     required this.validationMessages,
@@ -10,8 +11,9 @@ class ReactiveFormTextField extends StatelessWidget {
     this.obscureText = false,
     this.textInputAction = TextInputAction.next,
     this.controller,
-    Key? key,
+    this.focusListener,
   }) : super(key: key);
+
 
   final String name;
   final String hint;
@@ -20,6 +22,7 @@ class ReactiveFormTextField extends StatelessWidget {
   final bool obscureText;
   final TextInputAction textInputAction;
   final TextEditingController? controller;
+  final FocusNode? focusListener;
 
   OutlineInputBorder get outlineInputBorder => const OutlineInputBorder(
         borderSide: BorderSide(
@@ -45,6 +48,7 @@ class ReactiveFormTextField extends StatelessWidget {
       obscureText: obscureText,
       decoration: inputDecoration,
       controller: controller,
+      focusNode: focusListener,
     );
   }
 }
