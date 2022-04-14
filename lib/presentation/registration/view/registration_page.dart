@@ -238,10 +238,16 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                     padding: const EdgeInsets.only(right: 20, top: 150),
                     child: Stack(
                       children: [
-                        Positioned(top: 450, left:90,
-                            child:
-                                Icon(Icons.arrow_left, color: Colors.red, size:50,),),
-                        Align(alignment: Alignment.center,
+                        Positioned(
+                          top: 400,
+                          left: 90,
+                          child: Icon(
+                            Icons.arrow_left,
+                            color: Colors.white,
+                            size: 50,
+                          ),
+                        ),
+                        Align(
                           child: PasswordCheckboxes(
                             controllerPassword: controllerPassword,
                           ),
