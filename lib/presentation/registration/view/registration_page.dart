@@ -5,6 +5,7 @@ import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/registration/cubit/registration_cubit.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
+import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
@@ -43,18 +44,19 @@ class RegistrationBodyView extends StatefulWidget {
 }
 
 class _RegistrationBodyViewState extends State<RegistrationBodyView> {
-  TextEditingController? controllerPassword;
+  TextEditingController? _controllerPassword;
+  final FocusNode _focusListenerPassword = FocusNode();
+  bool _shouldShowPasswordValidationWidget = false;
 
-  final FocusNode focusListenerPassword = FocusNode();
-  bool shouldShowPasswordValidationWidget = false;
+  final formGroup = FormGroupRegistrationUserInfo();
 
   @override
   void initState() {
-    controllerPassword = TextEditingController();
+    _controllerPassword = TextEditingController();
 
-    focusListenerPassword.addListener(() {
+    _focusListenerPassword.addListener(() {
       setState(() {
-        shouldShowPasswordValidationWidget = focusListenerPassword.hasFocus;
+        _shouldShowPasswordValidationWidget = _focusListenerPassword.hasFocus;
       });
     });
     super.initState();
@@ -76,31 +78,6 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
     final subtitleText = Text(
       'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
     );
-
-    SizedBox buttonNextStep({bool isEnabled = false}) => SizedBox(
-          width: 145,
-          height: 37,
-          child: ElevatedButton(
-            style: ButtonStyle(
-              elevation: MaterialStateProperty.all(0),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.5),
-                ),
-              ),
-              textStyle: MaterialStateProperty.resolveWith((states) {
-                if (states.contains(MaterialState.disabled)) {
-                  return TextStyle(color: Color(0x66676f86));
-                }
-                return TextStyle(color: Colors.white);
-              }),
-            ),
-            onPressed: isEnabled ? () => onPressedRegister(context) : null,
-            child: Text(
-              'WEITER',
-            ),
-          ),
-        );
 
     return Stack(
       children: [
@@ -141,62 +118,50 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                         subtitleText,
                         Container(height: 25),
                         ReactiveFormBuilder(
-                          form: FormGroupRegistrationUserInfo().buildForm,
+                          form: formGroup.buildForm,
                           builder: (context, form, child) {
                             return Column(
                               children: [
-                                ReactiveFormTextField(
+                                FormTextField(
                                   name: 'name',
                                   hint: 'Vor- und Nachname',
-                                  validationMessages: (control) => {
-                                    ValidationMessage.required:
-                                        'The name must not be empty'
-                                  },
+                                  validationMessages: (control) =>
+                                      formGroup.validationMessageNameSurname,
                                   keyboardType: TextInputType.name,
                                 ),
                                 Container(height: 18),
-                                ReactiveFormTextField(
+                                FormTextField(
                                   name: 'surname',
                                   hint: 'Nachnamen eingeben',
-                                  validationMessages: (control) => {
-                                    ValidationMessage.required:
-                                        'The surname must not be empty'
-                                  },
+                                  validationMessages: (control) =>
+                                      formGroup.validationMessageNameSurname,
                                   keyboardType: TextInputType.name,
                                 ),
                                 Container(height: 18),
-                                ReactiveFormTextField(
+                                FormTextField(
                                   name: 'email',
                                   hint: 'E-Mail',
-                                  validationMessages: (control) => {
-                                    ValidationMessage.required:
-                                        'The email must not be empty',
-                                    ValidationMessage.email:
-                                        'The email value must be a valid email',
-                                  },
-                                  keyboardType: TextInputType.name,
+                                  validationMessages: (control) =>
+                                      formGroup.validationMessageEmail,
+                                  keyboardType: TextInputType.emailAddress,
                                 ),
                                 Container(height: 18),
-                                ReactiveFormTextField(
+                                FormTextField(
                                   name: 'password',
                                   hint: 'Passwort wählen',
-                                  validationMessages: (control) => {
-                                    ValidationMessage.required:
-                                        'The password must not be empty',
-                                  },
+                                  validationMessages: (control) =>
+                                      formGroup.validationMessagePassword,
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
-                                  controller: controllerPassword,
-                                  focusListener: focusListenerPassword,
+                                  controller: _controllerPassword,
+                                  focusListener: _focusListenerPassword,
                                 ),
                                 Container(height: 18),
-                                ReactiveFormTextField(
+                                FormTextField(
                                   name: 'passwordConfirmation',
                                   hint: 'Passwort wählen',
-                                  validationMessages: (control) => {
-                                    ValidationMessage.required:
-                                        'The password must not be empty',
-                                  },
+                                  validationMessages: (control) =>
+                                      formGroup.validationMessagePassword,
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
                                   textInputAction: TextInputAction.done,
@@ -211,8 +176,10 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                     WhiteButton(),
                                     ReactiveFormConsumer(
                                       builder: (context, formGroup, child) {
-                                        return buttonNextStep(
+                                        return ActionButtonBlue(
                                           isEnabled: formGroup.valid,
+                                          onPressed: () =>
+                                              onPressedRegister(context),
                                         );
                                       },
                                     )
@@ -232,27 +199,29 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
               padding: const EdgeInsets.only(left: 800),
               child: Align(
                 child: Visibility(
-                  // visible: shouldShowPasswordValidationWidget,
-                  visible: true,
+                  visible: _shouldShowPasswordValidationWidget,
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 20, top: 150),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 400,
-                          left: 90,
-                          child: Icon(
-                            Icons.arrow_left,
-                            color: Colors.white,
-                            size: 50,
+                    padding: const EdgeInsets.only(right: 20, top: 156),
+                    child: SizedBox(
+                      width: 400,
+                      child: Stack(
+                        children: [
+                          Center(
+                            child: PasswordValidationView(
+                              onPressed: onPressedClosePassword,
+                              controllerPassword: _controllerPassword,
+                            ),
                           ),
-                        ),
-                        Align(
-                          child: PasswordCheckboxes(
-                            controllerPassword: controllerPassword,
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Icon(
+                              Icons.arrow_left,
+                              color: Colors.white,
+                              size: 80,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -268,5 +237,11 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Processing Data')),
     );
+  }
+
+  void onPressedClosePassword() {
+    setState(() {
+      _shouldShowPasswordValidationWidget = false;
+    });
   }
 }

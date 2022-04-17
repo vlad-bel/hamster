@@ -12,21 +12,23 @@ extension StringValidators on String {
       contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
 }
 
-class PasswordCheckboxes extends StatefulWidget {
-  const PasswordCheckboxes({
+class PasswordValidationView extends StatefulWidget {
+  const PasswordValidationView({
     this.controllerPassword,
+    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
   final TextEditingController? controllerPassword;
+  final VoidCallback onPressed;
 
   @override
-  State<PasswordCheckboxes> createState() => _PasswordCheckboxesState();
+  State<PasswordValidationView> createState() => _PasswordValidationViewState();
 }
 
 const int minimalPasswordLength = 10;
 
-class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
+class _PasswordValidationViewState extends State<PasswordValidationView> {
   BoxDecoration get boxDecoration => const BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -64,66 +66,73 @@ class _PasswordCheckboxesState extends State<PasswordCheckboxes> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 450,
       width: 310,
-      decoration: boxDecoration,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Align(
-              child: Icon(
-                Icons.error_outline_rounded,
-                color: Color(0xffe10054),
-                size: 80,
+      child: Container(
+        decoration: boxDecoration,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Align(
+                child: Icon(
+                  Icons.error_outline_rounded,
+                  color: Color(0xffe10054),
+                  size: 80,
+                ),
               ),
-            ),
-            Container(height: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
-                ),
-                Container(height: 20),
-                CheckBoxIconGreen(
-                  text: '10 Zeichen lang',
-                  enabled: has10Characters,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Kleinbuchstabe',
-                  enabled: has1LowerCaseLetter,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Großbuchstabe',
-                  enabled: has1UpperCaseLetter,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Zahl',
-                  enabled: has1Number,
-                ),
-                CheckBoxIconGreen(
-                  text: '1 Sonderzeichen',
-                  enabled: has1SpecialCharacter,
-                ),
-                Container(height: 24),
-              ],
-            ),
-            Column(
-              children: const [
-                Padding(
-                  padding: EdgeInsets.only(right: 28),
-                  child: Text(
-                    'Hinweis schließen',
-                    style: TextStyle(color: Color(0xffe10054)),
+              Container(height: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
                   ),
-                ),
-              ],
-            ),
-          ],
+                  Container(height: 20),
+                  CheckBoxIconGreen(
+                    text: '10 Zeichen lang',
+                    enabled: has10Characters,
+                  ),
+                  CheckBoxIconGreen(
+                    text: '1 Kleinbuchstabe',
+                    enabled: has1LowerCaseLetter,
+                  ),
+                  CheckBoxIconGreen(
+                    text: '1 Großbuchstabe',
+                    enabled: has1UpperCaseLetter,
+                  ),
+                  CheckBoxIconGreen(
+                    text: '1 Zahl',
+                    enabled: has1Number,
+                  ),
+                  CheckBoxIconGreen(
+                    text: '1 Sonderzeichen',
+                    enabled: has1SpecialCharacter,
+                  ),
+                  Container(height: 24),
+                ],
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 28),
+                    child: TextButton(
+                      onPressed: () {
+                        print('close pass validation window');
+                      },
+                      child: const Text(
+                        'Hinweis schließen',
+                        style: TextStyle(color: Color(0xffe10054)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

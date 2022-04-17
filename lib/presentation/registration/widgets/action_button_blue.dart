@@ -8,7 +8,7 @@ class ActionButtonBlue extends StatelessWidget {
   }) : super(key: key);
 
   final bool isEnabled;
-  final VoidCallback onPressed; // Notice the variable type
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {

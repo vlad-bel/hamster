@@ -24,6 +24,7 @@ dependencies:
   flutter_svg: ^1.0.3
   google_fonts: ^2.3.1
   black_hole_flutter: ^0.3.5
+  widgetbook: ^2.0.9
 
 
 dev_dependencies:
