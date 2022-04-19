@@ -12,19 +12,31 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-    # State management:
+  # State management:
   bloc: ^8.0.3
   flutter_bloc: ^8.0.1
+  freezed_annotation: ^0.14.2
 
-    # Tools:
+  # Tools:
   intl: ^0.17.0
   reactive_forms: ^12.0.0
 
-    # UI:
+  # Network:
+  dio: 4.0.6
+  retrofit:
+  pretty_dio_logger: ^1.1.1
+
+  # Tools:
+  get_it: ^7.2.0
+  logger: ^1.1.0
+  dart_extensions: ^2.2.0
+  dartz: ^0.10.1
+
+  # UI:
   flutter_svg: ^1.0.3
   google_fonts: ^2.3.1
   black_hole_flutter: ^0.3.5
-  widgetbook: ^2.0.9
+  cached_network_image:
 
 
 dev_dependencies:
@@ -33,6 +45,11 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^0.3.0
   very_good_analysis: ^2.4.0
+
+  retrofit_generator:
+  build_runner: ^2.0.1
+  json_serializable: ^6.1.5
+  freezed: ^0.14.2
 
 flutter:
   uses-material-design: true

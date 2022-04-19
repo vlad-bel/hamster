@@ -6,6 +6,13 @@ class FormGroupRegistrationUserInfo {
   static const kMaxLength = 256;
   static const kPasswordValidationRuleMustMatch = 'mustMatch';
 
+  // Form fields:
+  final kFieldName = 'name';
+  final kFieldSurname = 'surname';
+  final kFieldEmail = 'email';
+  final kFieldPassword = 'password';
+  final kFieldPasswordConfirmation = 'passwordConfirmation';
+
   final Map<String, String> validationMessageNameSurname = {
     ValidationMessage.required: 'Should not be empty',
     ValidationMessage.minLength: 'Minimal length is $kNameSurnameMin',
@@ -26,35 +33,35 @@ class FormGroupRegistrationUserInfo {
   FormGroup buildForm() {
     return FormGroup(
       {
-        'name': FormControl<String>(
+        kFieldName: FormControl<String>(
           validators: [
             Validators.required,
             Validators.minLength(kNameSurnameMin),
             Validators.maxLength(kMaxLength)
           ],
         ),
-        'surname': FormControl<String>(
+        kFieldSurname: FormControl<String>(
           validators: [
             Validators.required,
             Validators.minLength(kNameSurnameMin),
             Validators.maxLength(kMaxLength)
           ],
         ),
-        'email': FormControl<String>(
+        kFieldEmail: FormControl<String>(
           validators: [
             Validators.required,
             Validators.email,
             Validators.maxLength(kMaxLength)
           ],
         ),
-        'password': FormControl<String>(
+        kFieldPassword: FormControl<String>(
           validators: [Validators.required],
         ),
-        'passwordConfirmation': FormControl<String>(
+        kFieldPasswordConfirmation: FormControl<String>(
           validators: [Validators.required],
         )
       },
-      validators: [_mustMatch('password', 'passwordConfirmation')],
+      validators: [_mustMatch(kFieldPassword, kFieldPasswordConfirmation)],
     );
   }
 

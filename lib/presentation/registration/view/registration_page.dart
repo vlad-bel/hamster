@@ -1,8 +1,10 @@
 // TODO: remove when code is finalized
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:business_terminal/domain/dependency_injection/di.dart';
+import 'package:business_terminal/domain/service/api_service.dart';
 import 'package:business_terminal/generated/assets.dart';
-import 'package:business_terminal/presentation/registration/cubit/registration_cubit.dart';
+import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
@@ -19,7 +21,7 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => RegistrationCubit(),
+      create: (_) => UserInfoInitCubit(get<ApiService>()),
       child: const RegistrationView(),
     );
   }
@@ -123,7 +125,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                             return Column(
                               children: [
                                 FormTextField(
-                                  name: 'name',
+                                  name: formGroup.kFieldName,
                                   hint: 'Vor- und Nachname',
                                   validationMessages: (control) =>
                                       formGroup.validationMessageNameSurname,
@@ -131,7 +133,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 ),
                                 Container(height: 18),
                                 FormTextField(
-                                  name: 'surname',
+                                  name: formGroup.kFieldSurname,
                                   hint: 'Nachnamen eingeben',
                                   validationMessages: (control) =>
                                       formGroup.validationMessageNameSurname,
@@ -139,7 +141,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 ),
                                 Container(height: 18),
                                 FormTextField(
-                                  name: 'email',
+                                  name: formGroup.kFieldEmail,
                                   hint: 'E-Mail',
                                   validationMessages: (control) =>
                                       formGroup.validationMessageEmail,
@@ -147,7 +149,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 ),
                                 Container(height: 18),
                                 FormTextField(
-                                  name: 'password',
+                                  name: formGroup.kFieldPassword,
                                   hint: 'Passwort wählen',
                                   validationMessages: (control) =>
                                       formGroup.validationMessagePassword,
@@ -158,7 +160,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 ),
                                 Container(height: 18),
                                 FormTextField(
-                                  name: 'passwordConfirmation',
+                                  name: formGroup.kFieldPasswordConfirmation,
                                   hint: 'Passwort wählen',
                                   validationMessages: (control) =>
                                       formGroup.validationMessagePassword,
