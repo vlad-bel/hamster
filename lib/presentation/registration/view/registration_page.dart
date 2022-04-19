@@ -2,7 +2,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:business_terminal/domain/dependency_injection/di.dart';
-import 'package:business_terminal/domain/service/api_service.dart';
+import 'package:business_terminal/domain/use_cases/user_info_init_use_case.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
@@ -21,7 +21,7 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => UserInfoInitCubit(get<ApiService>()),
+      create: (_) => UserInfoInitCubit(get<UserInfoInitUseCase>()),
       child: const RegistrationView(),
     );
   }

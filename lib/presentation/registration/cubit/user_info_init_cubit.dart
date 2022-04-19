@@ -1,15 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:business_terminal/data/model/registration/user_info_request.dart';
 import 'package:business_terminal/domain/core/errors/failures.dart';
-import 'package:business_terminal/domain/service/api_service.dart';
+import 'package:business_terminal/domain/use_cases/user_info_init_use_case.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_info_init_cubit.freezed.dart';
 
 class UserInfoInitCubit extends Cubit<UserInfoInitState> {
-  UserInfoInitCubit(this.apiService) : super(const UserInfoInitState.initial());
+  UserInfoInitCubit(this.useCase) : super(const UserInfoInitState.initial());
 
-  final ApiService apiService;
+  final UserInfoInitUseCase useCase;
 
   Future<void> iniUserInfoCreation(
     String name,
@@ -25,7 +25,7 @@ class UserInfoInitCubit extends Cubit<UserInfoInitState> {
       name: name,
       surname: surname,
     );
-    final response = await apiService.initUserInfoCreation(request);
+    final response = await useCase.initUserInfoCreation(request);
 
     emit(UserInfoInitState.success(response));
   }
