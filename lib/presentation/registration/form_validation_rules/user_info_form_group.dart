@@ -1,7 +1,7 @@
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-class FormGroupRegistrationUserInfo {
+class FormSettingsRegistrationUserInfo {
   static const kNameSurnameMin = 2;
   static const kMaxLength = 256;
   static const kPasswordValidationRuleMustMatch = 'mustMatch';

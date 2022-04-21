@@ -1,12 +1,12 @@
 // TODO: remove when code is finalized
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:business_terminal/domain/dependency_injection/di.dart';
-import 'package:business_terminal/domain/service/api_service.dart';
+import 'package:business_terminal/domain/use_cases/registration/user_info_init/user_info_init.dart';
 import 'package:business_terminal/generated/assets.dart';
-import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
-import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/common/widgets/onboarding_wrapper_with_background_image.dart';
+import 'package:business_terminal/presentation/common/widgets/horizontal_line_short_grey.dart';
+import 'package:business_terminal/presentation/common/widgets/text_title.dart';
 import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
@@ -16,6 +16,7 @@ import 'package:business_terminal/presentation/registration/widgets/white_button
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class RegistrationPage extends StatelessWidget {
@@ -24,7 +25,7 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => UserInfoInitCubit(get<ApiService>()),
+      create: (_) => UserInfoInitCubit(get<UserInfoInitUseCase>()),
       child: const RegistrationView(),
     );
   }
@@ -51,35 +52,24 @@ class RegistrationBodyView extends StatefulWidget {
 class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   TextEditingController? _controllerPassword;
   final FocusNode _focusListenerPassword = FocusNode();
-  bool _shouldShowPasswordValidationWidget = false;
 
-  final formGroup = FormGroupRegistrationUserInfo();
+  final formSettings = FormSettingsRegistrationUserInfo();
 
   @override
   void initState() {
     _controllerPassword = TextEditingController();
 
     _focusListenerPassword.addListener(() {
-      setState(() {
-        _shouldShowPasswordValidationWidget = _focusListenerPassword.hasFocus;
-      });
+      context.read<UserInfoInitCubit>().setVisibilityPasswordValidation(
+            isVisible: _focusListenerPassword.hasFocus,
+          );
     });
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final horizontalLine = Container(
-      height: 3,
-      width: 44,
-      decoration: BoxDecoration(
-        color: Color(0xff676f86).withOpacity(0.1),
-      ),
-    );
-    final titleText = Text(
-      'Nutzen Sie Hamster für Ihr \nUnternehmen.',
-      style: TextStyle(fontSize: 20),
-    );
     final subtitleText = Text(
       'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
     );
@@ -117,46 +107,48 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        titleText,
+                        TextTitle(
+                          title: 'Nutzen Sie Hamster für Ihr \nUnternehmen.',
+                        ),
                         Container(height: 18),
-                        horizontalLine,
+                        HorizontalLineShortGrey(),
                         Container(height: 18),
                         subtitleText,
                         Container(height: 25),
                         ReactiveFormBuilder(
-                          form: formGroup.buildForm,
+                          form: formSettings.buildForm,
                           builder: (context, form, child) {
                             return Column(
                               children: [
                                 FormTextField(
-                                  name: formGroup.kFieldName,
+                                  name: formSettings.kFieldName,
                                   hint: 'Vor- und Nachname',
                                   validationMessages: (control) =>
-                                      formGroup.validationMessageNameSurname,
+                                      formSettings.validationMessageNameSurname,
                                   keyboardType: TextInputType.name,
                                 ),
                                 Container(height: 18),
                                 FormTextField(
-                                  name: formGroup.kFieldSurname,
+                                  name: formSettings.kFieldSurname,
                                   hint: 'Nachnamen eingeben',
                                   validationMessages: (control) =>
-                                      formGroup.validationMessageNameSurname,
+                                      formSettings.validationMessageNameSurname,
                                   keyboardType: TextInputType.name,
                                 ),
                                 Container(height: 18),
                                 FormTextField(
-                                  name: formGroup.kFieldEmail,
+                                  name: formSettings.kFieldEmail,
                                   hint: 'E-Mail',
                                   validationMessages: (control) =>
-                                      formGroup.validationMessageEmail,
+                                      formSettings.validationMessageEmail,
                                   keyboardType: TextInputType.emailAddress,
                                 ),
                                 Container(height: 18),
                                 FormTextField(
-                                  name: formGroup.kFieldPassword,
+                                  name: formSettings.kFieldPassword,
                                   hint: 'Passwort wählen',
                                   validationMessages: (control) =>
-                                      formGroup.validationMessagePassword,
+                                      formSettings.validationMessagePassword,
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
                                   controller: _controllerPassword,
@@ -164,10 +156,10 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 ),
                                 Container(height: 18),
                                 FormTextField(
-                                  name: formGroup.kFieldPasswordConfirmation,
+                                  name: formSettings.kFieldPasswordConfirmation,
                                   hint: 'Passwort wählen',
                                   validationMessages: (control) =>
-                                      formGroup.validationMessagePassword,
+                                      formSettings.validationMessagePassword,
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
                                   textInputAction: TextInputAction.done,
@@ -179,17 +171,34 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    WhiteButton(
-                                      onPressed: () {},
-                                    ),
-                                    ReactiveFormConsumer(
-                                      builder: (context, formGroup, child) {
-                                        return ActionButtonBlue(
-                                          isEnabled: formGroup.valid,
-                                          onPressed: () =>
-                                              onPressedRegister(context),
-                                        );
+                                    WhiteButton(),
+                                    BlocListener<UserInfoInitCubit,
+                                        UserInfoInitState>(
+                                      listener:
+                                          (context, UserInfoInitState state) {
+                                        if (state is LoadingUserInfoInit) {
+                                          context.loaderOverlay.show();
+                                        } else {
+                                          context.loaderOverlay.hide();
+                                        }
+
+                                        if (state is ErrorUserInfoInit) {
+                                          showErrorSnackbar();
+                                        }
                                       },
+                                      child: ReactiveFormConsumer(
+                                        builder: (context, formGroup, child) {
+                                          return ActionButtonBlue(
+                                            isEnabled: formGroup.valid,
+                                            onPressed: () {
+                                              onPressedRegister(
+                                                context,
+                                                formGroup,
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
                                     )
                                   ],
                                 ),
@@ -206,32 +215,40 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
             Padding(
               padding: const EdgeInsets.only(left: 800),
               child: Align(
-                child: Visibility(
-                  visible: _shouldShowPasswordValidationWidget,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 20, top: 156),
-                    child: SizedBox(
-                      width: 400,
-                      child: Stack(
-                        children: [
-                          Center(
-                            child: PasswordValidationView(
-                              onPressed: onPressedClosePassword,
-                              controllerPassword: _controllerPassword,
+                child: BlocBuilder<UserInfoInitCubit, UserInfoInitState>(
+                  builder: (context, state) {
+                    if (state is InitialUserInfoInit) {
+                      return Visibility(
+                        visible: state.shouldShowPasswordValidationWidget,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 20, top: 156),
+                          child: SizedBox(
+                            width: 400,
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: PasswordValidationView(
+                                    onPressed: onPressedClosePasswordValidation,
+                                    controllerPassword: _controllerPassword,
+                                  ),
+                                ),
+                                const Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Icon(
+                                    Icons.arrow_left,
+                                    color: Colors.white,
+                                    size: 80,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Icon(
-                              Icons.arrow_left,
-                              color: Colors.white,
-                              size: 80,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
                 ),
               ),
             ),
@@ -241,15 +258,53 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
     );
   }
 
-  void onPressedRegister(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Processing Data')),
+  void onPressedRegister(BuildContext context, FormGroup form) {
+    final name = form.value[formSettings.kFieldName] as String?;
+    final surname = form.value[formSettings.kFieldSurname] as String?;
+    final email = form.value[formSettings.kFieldEmail] as String?;
+    final password = form.value[formSettings.kFieldPassword] as String?;
+
+    context.read<UserInfoInitCubit>().iniUserInfoCreation(
+          name,
+          surname,
+          email,
+          password,
+        );
+
+    showProcessingDataSnackbar(context);
+  }
+
+  void onPressedClosePasswordValidation() {
+    context
+        .read<UserInfoInitCubit>()
+        .setVisibilityPasswordValidation(isVisible: false);
+  }
+
+  void showProcessingDataSnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+    context.showSnackBar(
+      const SnackBar(content: Text('Processing Data...')),
     );
   }
 
-  void onPressedClosePassword() {
-    setState(() {
-      _shouldShowPasswordValidationWidget = false;
-    });
+  void showErrorSnackbar() {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+    context.showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.red[300],
+        content: Row(
+          children: [
+            Icon(
+              Icons.error,
+              color: Colors.white,
+            ),
+            SizedBox(width: 6),
+            Text('An error has occurred')
+          ],
+        ),
+      ),
+    );
   }
 }

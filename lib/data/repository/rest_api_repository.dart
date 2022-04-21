@@ -1,10 +1,9 @@
 import 'package:business_terminal/data/gateway/rest_client.dart';
 import 'package:business_terminal/data/model/registration/user_info_request.dart';
-import 'package:business_terminal/domain/service/api_service.dart';
+import 'package:business_terminal/domain/repository/api_repository.dart';
 
-
-class RestApiService extends ApiService {
-  RestApiService(this._client);
+class RestApiRepository extends ApiRepository {
+  RestApiRepository(this._client);
 
   final RestClient _client;
 

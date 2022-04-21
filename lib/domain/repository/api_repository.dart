@@ -2,7 +2,7 @@
 
 import 'package:business_terminal/data/model/registration/user_info_request.dart';
 
-abstract class ApiService {
+abstract class ApiRepository {
   Future<String> initUserInfoCreation(
     UserInfoRequest request,
   );

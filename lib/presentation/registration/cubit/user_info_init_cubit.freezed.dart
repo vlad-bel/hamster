@@ -17,8 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$UserInfoInitStateTearOff {
   const _$UserInfoInitStateTearOff();
 
-  InitialUserInfoInit initial() {
-    return const InitialUserInfoInit();
+  InitialUserInfoInit initial(
+      {bool shouldShowPasswordValidationWidget = false}) {
+    return InitialUserInfoInit(
+      shouldShowPasswordValidationWidget: shouldShowPasswordValidationWidget,
+    );
   }
 
   LoadingUserInfoInit loading() {
@@ -45,7 +48,7 @@ const $UserInfoInitState = _$UserInfoInitStateTearOff();
 mixin _$UserInfoInitState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool shouldShowPasswordValidationWidget) initial,
     required TResult Function() loading,
     required TResult Function(String response) success,
     required TResult Function(Failure failure) error,
@@ -53,7 +56,7 @@ mixin _$UserInfoInitState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool shouldShowPasswordValidationWidget)? initial,
     TResult Function()? loading,
     TResult Function(String response)? success,
     TResult Function(Failure failure)? error,
@@ -61,7 +64,7 @@ mixin _$UserInfoInitState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool shouldShowPasswordValidationWidget)? initial,
     TResult Function()? loading,
     TResult Function(String response)? success,
     TResult Function(Failure failure)? error,
@@ -117,6 +120,7 @@ abstract class $InitialUserInfoInitCopyWith<$Res> {
   factory $InitialUserInfoInitCopyWith(
           InitialUserInfoInit value, $Res Function(InitialUserInfoInit) then) =
       _$InitialUserInfoInitCopyWithImpl<$Res>;
+  $Res call({bool shouldShowPasswordValidationWidget});
 }
 
 /// @nodoc
@@ -129,59 +133,90 @@ class _$InitialUserInfoInitCopyWithImpl<$Res>
 
   @override
   InitialUserInfoInit get _value => super._value as InitialUserInfoInit;
+
+  @override
+  $Res call({
+    Object? shouldShowPasswordValidationWidget = freezed,
+  }) {
+    return _then(InitialUserInfoInit(
+      shouldShowPasswordValidationWidget: shouldShowPasswordValidationWidget ==
+              freezed
+          ? _value.shouldShowPasswordValidationWidget
+          : shouldShowPasswordValidationWidget // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitialUserInfoInit implements InitialUserInfoInit {
-  const _$InitialUserInfoInit();
+  const _$InitialUserInfoInit(
+      {this.shouldShowPasswordValidationWidget = false});
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool shouldShowPasswordValidationWidget;
 
   @override
   String toString() {
-    return 'UserInfoInitState.initial()';
+    return 'UserInfoInitState.initial(shouldShowPasswordValidationWidget: $shouldShowPasswordValidationWidget)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InitialUserInfoInit);
+    return identical(this, other) ||
+        (other is InitialUserInfoInit &&
+            (identical(other.shouldShowPasswordValidationWidget,
+                    shouldShowPasswordValidationWidget) ||
+                const DeepCollectionEquality().equals(
+                    other.shouldShowPasswordValidationWidget,
+                    shouldShowPasswordValidationWidget)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(shouldShowPasswordValidationWidget);
+
+  @JsonKey(ignore: true)
+  @override
+  $InitialUserInfoInitCopyWith<InitialUserInfoInit> get copyWith =>
+      _$InitialUserInfoInitCopyWithImpl<InitialUserInfoInit>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool shouldShowPasswordValidationWidget) initial,
     required TResult Function() loading,
     required TResult Function(String response) success,
     required TResult Function(Failure failure) error,
   }) {
-    return initial();
+    return initial(shouldShowPasswordValidationWidget);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool shouldShowPasswordValidationWidget)? initial,
     TResult Function()? loading,
     TResult Function(String response)? success,
     TResult Function(Failure failure)? error,
   }) {
-    return initial?.call();
+    return initial?.call(shouldShowPasswordValidationWidget);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool shouldShowPasswordValidationWidget)? initial,
     TResult Function()? loading,
     TResult Function(String response)? success,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(shouldShowPasswordValidationWidget);
     }
     return orElse();
   }
@@ -225,7 +260,14 @@ class _$InitialUserInfoInit implements InitialUserInfoInit {
 }
 
 abstract class InitialUserInfoInit implements UserInfoInitState {
-  const factory InitialUserInfoInit() = _$InitialUserInfoInit;
+  const factory InitialUserInfoInit({bool shouldShowPasswordValidationWidget}) =
+      _$InitialUserInfoInit;
+
+  bool get shouldShowPasswordValidationWidget =>
+      throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InitialUserInfoInitCopyWith<InitialUserInfoInit> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -268,7 +310,7 @@ class _$LoadingUserInfoInit implements LoadingUserInfoInit {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool shouldShowPasswordValidationWidget) initial,
     required TResult Function() loading,
     required TResult Function(String response) success,
     required TResult Function(Failure failure) error,
@@ -279,7 +321,7 @@ class _$LoadingUserInfoInit implements LoadingUserInfoInit {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool shouldShowPasswordValidationWidget)? initial,
     TResult Function()? loading,
     TResult Function(String response)? success,
     TResult Function(Failure failure)? error,
@@ -290,7 +332,7 @@ class _$LoadingUserInfoInit implements LoadingUserInfoInit {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool shouldShowPasswordValidationWidget)? initial,
     TResult Function()? loading,
     TResult Function(String response)? success,
     TResult Function(Failure failure)? error,
@@ -410,7 +452,7 @@ class _$SuccessUserInfoInit implements SuccessUserInfoInit {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool shouldShowPasswordValidationWidget) initial,
     required TResult Function() loading,
     required TResult Function(String response) success,
     required TResult Function(Failure failure) error,
@@ -421,7 +463,7 @@ class _$SuccessUserInfoInit implements SuccessUserInfoInit {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool shouldShowPasswordValidationWidget)? initial,
     TResult Function()? loading,
     TResult Function(String response)? success,
     TResult Function(Failure failure)? error,
@@ -432,7 +474,7 @@ class _$SuccessUserInfoInit implements SuccessUserInfoInit {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool shouldShowPasswordValidationWidget)? initial,
     TResult Function()? loading,
     TResult Function(String response)? success,
     TResult Function(Failure failure)? error,
@@ -556,7 +598,7 @@ class _$ErrorUserInfoInit implements ErrorUserInfoInit {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool shouldShowPasswordValidationWidget) initial,
     required TResult Function() loading,
     required TResult Function(String response) success,
     required TResult Function(Failure failure) error,
@@ -567,7 +609,7 @@ class _$ErrorUserInfoInit implements ErrorUserInfoInit {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool shouldShowPasswordValidationWidget)? initial,
     TResult Function()? loading,
     TResult Function(String response)? success,
     TResult Function(Failure failure)? error,
@@ -578,7 +620,7 @@ class _$ErrorUserInfoInit implements ErrorUserInfoInit {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool shouldShowPasswordValidationWidget)? initial,
     TResult Function()? loading,
     TResult Function(String response)? success,
     TResult Function(Failure failure)? error,

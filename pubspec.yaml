@@ -42,6 +42,8 @@ dependencies:
       url: https://bitbucket.org/raikjakschis/hamster_widgets
       ref: develop
   cached_network_image:
+  loader_overlay: ^2.0.6
+  pinput: ^2.2.7
 
 
 dev_dependencies:
