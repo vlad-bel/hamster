@@ -35,49 +35,46 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
     const emailWasSentColor = Color(0xff549d4c);
 
     return OnboardingBackground(
-      children: SizedBox(
-        width: 450,
-        child: OnboardingWhiteContainer(
-          child: Column(
-            children: [
-              OnboardingWhiteContainerHeader(
-                header: title,
-                subHeader: Text(
-                  subtitle,
-                  style: inter14,
-                ),
-              ),
-              const SizedBox(
-                height: 70,
-                child: Pinput(length: 5),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    print('close pass validation window');
-                  },
-                  child: const Text(
-                    'E-Mail erneut versenden',
-                    style: TextStyle(color: Color(0xff147bd9)),
-                  ),
-                ),
-              ),
-              const EmailWasSentTextIcon(
-                textEmailWasSent: textEmailWasSent,
-                emailWasSentColor: emailWasSentColor,
-                icon: Icons.send,
-              ),
-              Row(
-                children: [
-                  WhiteButton(
-                    width: 320,
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-            ],
+      children: OnboardingWhiteContainer(
+        header: OnboardingWhiteContainerHeader(
+          header: title,
+          subHeader: Text(
+            subtitle,
+            style: inter14,
           ),
+        ),
+        body: Column(
+          children: [
+            const SizedBox(
+              height: 70,
+              child: Pinput(length: 5),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  print('close pass validation window');
+                },
+                child: const Text(
+                  'E-Mail erneut versenden',
+                  style: TextStyle(color: Color(0xff147bd9)),
+                ),
+              ),
+            ),
+            const EmailWasSentTextIcon(
+              textEmailWasSent: textEmailWasSent,
+              emailWasSentColor: emailWasSentColor,
+              icon: Icons.send,
+            ),
+            Row(
+              children: [
+                WhiteButton(
+                  width: 320,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
