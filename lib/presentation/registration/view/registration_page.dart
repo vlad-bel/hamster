@@ -5,6 +5,8 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:business_terminal/domain/dependency_injection/di.dart';
 import 'package:business_terminal/domain/use_cases/registration/user_info_init/user_info_init.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/common/widgets/horizontal_line_short_grey.dart';
+import 'package:business_terminal/presentation/common/widgets/text_title.dart';
 import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
@@ -68,17 +70,6 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
 
   @override
   Widget build(BuildContext context) {
-    final horizontalLine = Container(
-      height: 3,
-      width: 44,
-      decoration: BoxDecoration(
-        color: Color(0xff676f86).withOpacity(0.1),
-      ),
-    );
-    final titleText = Text(
-      'Nutzen Sie Hamster für Ihr \nUnternehmen.',
-      style: TextStyle(fontSize: 20),
-    );
     final subtitleText = Text(
       'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
     );
@@ -115,9 +106,11 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        titleText,
+                        TextTitle(
+                          title: 'Nutzen Sie Hamster für Ihr \nUnternehmen.',
+                        ),
                         Container(height: 18),
-                        horizontalLine,
+                        HorizontalLineShortGrey(),
                         Container(height: 18),
                         subtitleText,
                         Container(height: 25),

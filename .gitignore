@@ -128,3 +128,5 @@ app.*.map.json
 !.idea/runConfigurations/
 
 .idea/dictionaries/
+
+pubspec.lock

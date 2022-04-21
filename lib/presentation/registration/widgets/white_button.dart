@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 class WhiteButton extends StatelessWidget {
   const WhiteButton({
     Key? key,
+    this.width = 145,
   }) : super(key: key);
+
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 145,
+      width: width,
       height: 37,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

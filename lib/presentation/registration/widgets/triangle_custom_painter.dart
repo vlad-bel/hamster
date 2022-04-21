@@ -18,7 +18,7 @@ class Triangle extends StatelessWidget {
         width: 50,
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20.0, bottom: 16),
+            padding: const EdgeInsets.only(left: 20, bottom: 16),
             child: Transform.rotate(
               angle: math.pi / 4,
               child: const Text(
