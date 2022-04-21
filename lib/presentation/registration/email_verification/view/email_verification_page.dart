@@ -1,5 +1,7 @@
-import 'package:business_terminal/presentation/common/widgets/onboarding_container_title_subtitle.dart';
-import 'package:business_terminal/presentation/common/widgets/onboarding_wrapper_with_background_image.dart';
+import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/registration/email_verification/view/email_was_sent_text_icon.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
@@ -32,16 +34,21 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
         'Sie erhalten in Kürze erneut eine E-Mail von uns.';
     const emailWasSentColor = Color(0xff549d4c);
 
-    return OnboardingWrapperView(
-      children: [
-        Center(
-          child: OnboardingContainerTitleSubtitle(
-            title: title,
-            subtitle: subtitle,
+    return OnboardingBackground(
+      children: SizedBox(
+        width: 450,
+        child: OnboardingWhiteContainer(
+          child: Column(
             children: [
+              OnboardingWhiteContainerHeader(
+                header: title,
+                subHeader: Text(
+                  subtitle,
+                  style: inter14,
+                ),
+              ),
               const SizedBox(
                 height: 70,
-                width: double.infinity,
                 child: Pinput(length: 5),
               ),
               Align(
@@ -62,14 +69,17 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
                 icon: Icons.send,
               ),
               Row(
-                children: const [
-                  WhiteButton(width: 320),
+                children: [
+                  WhiteButton(
+                    width: 320,
+                    onPressed: () {},
+                  ),
                 ],
               ),
             ],
           ),
         ),
-      ],
+      ),
     );
   }
 }

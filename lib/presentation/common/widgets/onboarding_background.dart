@@ -3,8 +3,8 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/
 import 'package:flutter/material.dart';
 
 ///View that uses on registration screens
-class OnboardingWrapperView extends StatelessWidget {
-  const OnboardingWrapperView({
+class OnboardingBackground extends StatelessWidget {
+  const OnboardingBackground({
     Key? key,
     required this.children,
   }) : super(key: key);

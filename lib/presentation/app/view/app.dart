@@ -1,5 +1,6 @@
 import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/registration/email_verification/view/email_verification_page.dart';
+import 'package:business_terminal/presentation/registration/view/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +34,8 @@ class App extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        home: const RegistrationPage(),
+        // home: const RegistrationPage(),
+        home: const EmailVerificationPage(),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:business_terminal/l10n/l10n.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WhiteButton extends StatelessWidget {
   const WhiteButton({

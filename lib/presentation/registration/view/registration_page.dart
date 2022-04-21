@@ -74,7 +74,6 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
       'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
     );
 
-
     return Stack(
       children: [
         Image.asset(
@@ -171,7 +170,9 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    WhiteButton(),
+                                    WhiteButton(
+                                      onPressed: () {},
+                                    ),
                                     BlocListener<UserInfoInitCubit,
                                         UserInfoInitState>(
                                       listener:

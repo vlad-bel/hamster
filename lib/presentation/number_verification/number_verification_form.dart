@@ -1,9 +1,8 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/common/widgets/onboarding_wrapper_with_background_image.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class NumberVerificationForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OnboardingWrapperView(
+    return OnboardingBackground(
       children: SizedBox(
         width: 450,
         child: OnboardingWhiteContainer(
@@ -27,8 +26,7 @@ class NumberVerificationForm extends StatelessWidget {
                 header: AppLocalizations.of(context).confirm_number_title,
                 subHeader: RichText(
                   text: TextSpan(
-                    text:
-                        AppLocalizations.of(context).confirm_number_subtitle1,
+                    text: AppLocalizations.of(context).confirm_number_subtitle1,
                     style: inter14.copyWith(height: 1.6),
                     children: [
                       TextSpan(
