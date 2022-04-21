@@ -13,9 +13,9 @@ dependencies:
     sdk: flutter
 
   # State management:
-  bloc: ^8.0.3
   flutter_bloc: ^8.0.1
   freezed_annotation: ^0.14.2
+  equatable: ^2.0.3
 
   # Tools:
   intl: ^0.17.0
@@ -36,6 +36,11 @@ dependencies:
   flutter_svg: ^1.0.3
   google_fonts: ^2.3.1
   black_hole_flutter: ^0.3.5
+  dropdown_button2: ^1.4.0
+  hamster_widgets:
+    git:
+      url: https://bitbucket.org/raikjakschis/hamster_widgets
+      ref: develop
   cached_network_image:
 
 
@@ -46,7 +51,6 @@ dev_dependencies:
   mocktail: ^0.3.0
   very_good_analysis: ^2.4.0
 
-  retrofit_generator:
   build_runner: ^2.0.1
   json_serializable: ^6.1.5
   freezed: ^0.14.2
@@ -56,3 +60,4 @@ flutter:
   generate: true
   assets:
     - assets/images/
+    - assets/images/flags/

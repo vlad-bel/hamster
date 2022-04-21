@@ -4,5 +4,4 @@ class Assets {
 
   static const String imagesBackgroundImageSignUp = 'assets/images/background_image_sign_up.png';
   static const String imagesHamsterLogo = 'assets/images/hamster_logo.svg';
-
 }

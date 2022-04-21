@@ -4,6 +4,9 @@
 import 'package:business_terminal/domain/dependency_injection/di.dart';
 import 'package:business_terminal/domain/service/api_service.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_wrapper_with_background_image.dart';
 import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
@@ -80,6 +83,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
     final subtitleText = Text(
       'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
     );
+
 
     return Stack(
       children: [
@@ -175,7 +179,9 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    WhiteButton(),
+                                    WhiteButton(
+                                      onPressed: () {},
+                                    ),
                                     ReactiveFormConsumer(
                                       builder: (context, formGroup, child) {
                                         return ActionButtonBlue(

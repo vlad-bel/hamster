@@ -1,7 +1,9 @@
 {
   "@@locale": "en",
-  "counterAppBarTitle": "Counter",
-  "@counterAppBarTitle": {
-    "description": "Text shown in the AppBar of the Counter Page"
-  }
+  "confirm_number_title": "Confirm your phone \u000Bnumber.",
+  "confirm_number_subtitle1": "You will immediately receive an SMS to the number you have given ",
+  "confirm_number_subtitle2": " Please enter the popular 5-digit code to create your user account.",
+  "sms_resend": "Send SMS again",
+  "sms_invalid": "The entered code was invalid.",
+  "return_button": "RETURN"
 }

@@ -1,8 +1,8 @@
-import 'package:business_terminal/l10n/l10n.dart';
-import 'package:business_terminal/presentation/registration/view/registration_page.dart';
+import 'package:business_terminal/presentation/phone_verification/number_verification/number_verification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -22,13 +22,17 @@ class App extends StatelessWidget {
               ),
         ),
       ),
-      supportedLocales: AppLocalizations.supportedLocales,
+      // supportedLocales: AppLocalizations.supportedLocales,
+      supportedLocales: const [
+        Locale('de'),
+      ],
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home: const RegistrationPage(),
+      // home: const RegistrationPage(),
+      home: const NumberVerificationForm(),
     );
   }
 }
