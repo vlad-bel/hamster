@@ -7,7 +7,7 @@ part 'rest_client.g.dart';
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
-  @GET('/rep/init-creation')
+  @POST('/rep/init-creation')
   Future<String> initUserInfoCreation(
     @Body() Map<String, dynamic> userInfoMap,
   );

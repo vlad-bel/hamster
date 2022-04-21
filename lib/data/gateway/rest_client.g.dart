@@ -23,7 +23,7 @@ class _RestClient implements RestClient {
     final _data = <String, dynamic>{};
     _data.addAll(userInfoMap);
     final _result = await _dio.fetch<String>(_setStreamType<String>(
-        Options(method: 'GET', headers: _headers, extra: _extra)
+        Options(method: 'POST', headers: _headers, extra: _extra)
             .compose(_dio.options, '/rep/init-creation',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
