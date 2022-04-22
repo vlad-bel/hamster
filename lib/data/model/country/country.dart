@@ -4,8 +4,10 @@ class Country {
   Country({
     required this.countryImage,
     required this.countryName,
+    required this.countryCode,
   });
 
   final String countryImage;
   final String countryName;
+  final String countryCode;
 }
