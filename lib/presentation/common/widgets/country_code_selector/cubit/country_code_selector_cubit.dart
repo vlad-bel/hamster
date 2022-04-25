@@ -1,53 +1,36 @@
 import 'package:business_terminal/data/model/country/country.dart';
-import 'package:equatable/equatable.dart';
+import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../../../generated/assets.dart';
-
-class CountrySelectorState extends Equatable {
-  CountrySelectorState({this.selectedCountry});
-
-  final Country? selectedCountry;
-
-  @override
-  List<Object?> get props => [selectedCountry];
-}
-
-class CountrySelectorOpenedState extends CountrySelectorState {
-  CountrySelectorOpenedState({
-    Country? selectedCountry,
-    required this.countryList,
-  }) : super(
-          selectedCountry: selectedCountry,
-        );
-
-  final List<Country> countryList;
-
-  @override
-  List<Object?> get props => [
-        selectedCountry,
-        countryList,
-      ];
-}
-
-class CountrySelectorCubit extends Cubit<CountrySelectorState> {
-  CountrySelectorCubit() : super(CountrySelectorState()) {
+class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
+  CountryCodeSelectorCubit({
+    required Function(String) onChange,
+  }) : super(CountryCodeSelectorState()) {
     numberForm.valueChanges.listen((event) {
-      // print('event: ${event![filterTextfield]}');
-      filterCountryList(event![filterTextfield] as String);
+      if (state.selectedCountry != null) {
+        final numberValue = (event![numberTextfield])! as String;
+        final contryCode = state.selectedCountry!.countryCode;
+        onChange(
+          '${state.selectedCountry!.countryCode.substring(1, contryCode.length)}$numberValue',
+        );
+      }
+      final filterValue = (event![filterTextfield])! as String;
+      filterCountryList(filterValue);
     });
   }
 
   static const numberTextfield = 'number';
   static const filterTextfield = 'filter';
 
-   final numberForm = fb.group({
+  final numberForm = fb.group({
     numberTextfield: FormControl<String>(value: ''),
     filterTextfield: FormControl<String>(),
   });
 
-
+  ///mock data
+  ///TODO add fetching country list from server
   final countryList = [
     Country(
       countryImage: Assets.imagesFlagsGer,
@@ -77,7 +60,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   ];
 
   void showCountryList({Country? selectedCountry}) {
-    emit(CountrySelectorOpenedState(
+    emit(CountryCodeSelectorOpenedState(
       countryList: countryList,
       selectedCountry: selectedCountry,
     ));
@@ -85,7 +68,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
 
   void filterCountryList(String value) {
     emit(
-      CountrySelectorOpenedState(
+      CountryCodeSelectorOpenedState(
         selectedCountry: state.selectedCountry,
         countryList: countryList
             .where((element) => element.countryName.startsWith(value))
@@ -95,6 +78,6 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   }
 
   void selectCountry(Country country) {
-    emit(CountrySelectorState(selectedCountry: country));
+    emit(CountryCodeSelectorState(selectedCountry: country));
   }
 }

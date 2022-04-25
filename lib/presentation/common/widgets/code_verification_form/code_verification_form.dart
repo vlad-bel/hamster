@@ -7,36 +7,43 @@ import 'package:business_terminal/presentation/registration/widgets/white_button
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-///Verifiate number screen
+///code confirmation form
+///can be useful for some cases in registration flow
 ///https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/5c2778fb-3e73-4557-9a88-cc4da0d55aa4/
-class NumberVerificationForm extends StatelessWidget {
-  const NumberVerificationForm({Key? key}) : super(key: key);
+class CodeVerificationForm extends StatelessWidget {
+  const CodeVerificationForm({
+    Key? key,
+    required this.header,
+    required this.subheader,
+    required this.resendButtonTitle,
+    required this.resendButtonCallback,
+    required this.backButtonCallback,
+    this.onCompleted,
+    this.onChanged,
+    this.hasError,
+    this.verificationError,
+    this.verificationDescription,
+  }) : super(key: key);
+
+  final String header;
+  final Widget subheader;
+  final String resendButtonTitle;
+  final Widget? verificationError;
+  final Widget? verificationDescription;
+  final VoidCallback resendButtonCallback;
+  final VoidCallback backButtonCallback;
+  final Function(String code)? onCompleted;
+  final Function(String code)? onChanged;
+  final bool? hasError;
 
   @override
   Widget build(BuildContext context) {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocalizations.of(context).confirm_number_title,
-          subHeader: RichText(
-            text: TextSpan(
-              text: AppLocalizations.of(context).confirm_number_subtitle1,
-              style: inter14.copyWith(height: 1.6),
-              children: [
-                TextSpan(
-                  ///add real number
-                  text: '+4912345678910',
-                  style: inter14.copyWith(color: denim),
-                ),
-                TextSpan(
-                  text: AppLocalizations.of(context).confirm_number_subtitle2,
-                  style: inter14,
-                ),
-              ],
-            ),
-          ),
+          header: header,
+          subHeader: subheader,
         ),
         body: Column(
           mainAxisSize: MainAxisSize.min,
@@ -47,45 +54,33 @@ class NumberVerificationForm extends StatelessWidget {
               width: 62,
               height: 87,
               textStyle: HamsterStyles.pincodeWeb,
+              hasError: hasError,
+              onChanged: onChanged,
+              onCompleted: onCompleted,
             ),
             Align(
               alignment: Alignment.centerRight,
               child: Transform.translate(
                 offset: const Offset(14, 0),
                 child: CupertinoButton(
+                  onPressed: resendButtonCallback,
                   child: Text(
-                    AppLocalizations.of(context).sms_resend,
+                    resendButtonTitle,
                     style: inter14.copyWith(
                       color: denim,
                     ),
                   ),
-                  onPressed: () {},
                 ),
               ),
             ),
             const SizedBox(height: 28),
-            Align(
-              alignment: Alignment.center,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.error_outline_rounded,
-                    color: razzmatazz,
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    AppLocalizations.of(context).sms_invalid,
-                    style: inter14.copyWith(
-                      color: razzmatazz,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            if (hasError ?? false)
+              verificationError ?? const SizedBox()
+            else
+              verificationDescription ?? const SizedBox(),
             const SizedBox(height: 43),
             WhiteButton(
-              onPressed: () {},
+              onPressed: backButtonCallback,
             ),
           ],
         ),
