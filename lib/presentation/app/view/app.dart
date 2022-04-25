@@ -1,9 +1,4 @@
-import 'package:business_terminal/l10n/l10n.dart';
-import 'package:business_terminal/presentation/call_method_selector/call_method_selector_page.dart';
-import 'package:business_terminal/presentation/countries_list/countries_list_page.dart';
-import 'package:business_terminal/presentation/number_verification/number_verification_form.dart';
-import 'package:business_terminal/presentation/registration/email_verification/view/email_verification_page.dart';
-import 'package:business_terminal/presentation/registration/view/registration_page.dart';
+import 'package:business_terminal/presentation/number_verification/pages/country_code/country_code_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,7 +35,8 @@ class App extends StatelessWidget {
         // home: const RegistrationPage(),
         // home: const EmailVerificationPage(),
         // home: const NumberVerificationForm(),
-        // home: const CountriesListPage(),
+        // home: const CountriesCodePage(),
+        // home: const NumberCodeConfirmationPage(),
         home: const CallMethodSelectorPage(),
       ),
     );
