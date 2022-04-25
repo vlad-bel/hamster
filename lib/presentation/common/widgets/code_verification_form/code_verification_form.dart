@@ -10,7 +10,9 @@ import 'package:hamster_widgets/hamster_widgets.dart';
 
 ///code confirmation form
 ///can be useful for some cases in registration flow
-///https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/5c2778fb-3e73-4557-9a88-cc4da0d55aa4/
+///examples:
+///https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/fd9d4f43-e140-4c78-b1bd-cd1036fff4e6/
+///https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/7f57707c-9d22-4df4-a744-706757ad016d/
 class CodeVerificationForm extends StatelessWidget {
   const CodeVerificationForm({
     Key? key,
@@ -26,15 +28,38 @@ class CodeVerificationForm extends StatelessWidget {
     this.verificationDescription,
   }) : super(key: key);
 
+  /// Header text
   final String header;
+
+  /// Subheader widget. Can be usual text or rich text
+  /// It depends from concrete screen
   final Widget subheader;
+
+  ///Title for resend button. It can be different depend from screens
   final String resendButtonTitle;
+
+  /// When code confirmation is wrong need to show this widget
+  /// by default we had [CodeVerificationError]
   final Widget? verificationError;
+
+  ///In case of verification email need to show this description under rects
   final Widget? verificationDescription;
+
+  ///Callback for resend button
   final VoidCallback resendButtonCallback;
+
+  /// Callback for back button
   final VoidCallback backButtonCallback;
+
+  ///Fires when code typing ends
   final Function(String code)? onCompleted;
+
+  ///Fires when code typing
   final Function(String code)? onChanged;
+
+  ///External flag for showing error status
+  ///Need switch to true for showing red border for pincode and showing
+  ///error verificationError widget
   final bool? hasError;
 
   @override
