@@ -9,5 +9,8 @@
   "return_button": "ZURÜCK",
   "select_country_code": "Ländervorwahl wählen",
   "call_method1": "Wählen Sie Ihre favorisierte Methode, um die von Ihnen angegebenen Nummer ",
-  "call_method2": " zu verifizieren."
+  "call_method2": " zu verifizieren.",
+  "sms": "SMS",
+  "phone_call": "Anruf"
+
 }
