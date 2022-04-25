@@ -1,5 +1,7 @@
-import 'package:business_terminal/presentation/common/widgets/onboarding_container_title_subtitle.dart';
-import 'package:business_terminal/presentation/common/widgets/onboarding_wrapper_with_background_image.dart';
+import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/registration/email_verification/view/email_was_sent_text_icon.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
@@ -32,44 +34,49 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
         'Sie erhalten in Kürze erneut eine E-Mail von uns.';
     const emailWasSentColor = Color(0xff549d4c);
 
-    return OnboardingWrapperView(
-      children: [
-        Center(
-          child: OnboardingContainerTitleSubtitle(
-            title: title,
-            subtitle: subtitle,
-            children: [
-              const SizedBox(
-                height: 70,
-                width: double.infinity,
-                child: Pinput(length: 5),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    print('close pass validation window');
-                  },
-                  child: const Text(
-                    'E-Mail erneut versenden',
-                    style: TextStyle(color: Color(0xff147bd9)),
-                  ),
-                ),
-              ),
-              const EmailWasSentTextIcon(
-                textEmailWasSent: textEmailWasSent,
-                emailWasSentColor: emailWasSentColor,
-                icon: Icons.send,
-              ),
-              Row(
-                children: const [
-                  WhiteButton(width: 320),
-                ],
-              ),
-            ],
+    return OnboardingBackground(
+      children: OnboardingWhiteContainer(
+        header: OnboardingWhiteContainerHeader(
+          header: title,
+          subHeader: Text(
+            subtitle,
+            style: inter14,
           ),
         ),
-      ],
+        body: Column(
+          children: [
+            const SizedBox(
+              height: 70,
+              child: Pinput(length: 5),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  print('close pass validation window');
+                },
+                child: const Text(
+                  'E-Mail erneut versenden',
+                  style: TextStyle(color: Color(0xff147bd9)),
+                ),
+              ),
+            ),
+            const EmailWasSentTextIcon(
+              textEmailWasSent: textEmailWasSent,
+              emailWasSentColor: emailWasSentColor,
+              icon: Icons.send,
+            ),
+            Row(
+              children: [
+                WhiteButton(
+                  width: 320,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

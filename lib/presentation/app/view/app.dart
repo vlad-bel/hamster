@@ -1,9 +1,9 @@
-import 'package:business_terminal/l10n/l10n.dart';
-import 'package:business_terminal/presentation/registration/email_verification/view/email_verification_page.dart';
+import 'package:business_terminal/presentation/number_verification/pages/country_code/country_code_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -24,13 +24,19 @@ class App extends StatelessWidget {
                 ),
           ),
         ),
-        supportedLocales: AppLocalizations.supportedLocales,
+        supportedLocales: const [
+          Locale('de'),
+        ],
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        home: const RegistrationPage(),
+        // home: const RegistrationPage(),
+        // home: const EmailVerificationPage(),
+        // home: const NumberVerificationForm(),
+        home: const CountriesCodePage(),
+        // home: const NumberCodeConfirmationPage(),
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/config/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -6,22 +8,36 @@ class FormTextField extends StatefulWidget {
     Key? key,
     required this.name,
     required this.hint,
-    required this.validationMessages,
-    required this.keyboardType,
+    this.label,
+    this.validationMessages,
+    this.keyboardType,
     this.obscureText = false,
+    this.readOnly = false,
     this.textInputAction = TextInputAction.next,
     this.controller,
     this.focusListener,
+    this.onTap,
+    this.customSuffix,
+    this.customPrefix,
+    this.prefixIcon,
+    this.customBorder,
   }) : super(key: key);
 
   final String name;
   final String hint;
-  final ValidationMessagesFunction validationMessages;
-  final TextInputType keyboardType;
+  final String? label;
+  final ValidationMessagesFunction? validationMessages;
+  final TextInputType? keyboardType;
   final bool obscureText;
+  final bool readOnly;
   final TextInputAction textInputAction;
   final TextEditingController? controller;
   final FocusNode? focusListener;
+  final VoidCallback? onTap;
+  final Widget? customSuffix;
+  final Widget? customPrefix;
+  final Widget? prefixIcon;
+  final InputBorder? customBorder;
 
   @override
   State<FormTextField> createState() => _FormTextFieldState();
@@ -53,12 +69,21 @@ class _FormTextFieldState extends State<FormTextField> {
     );
 
     final inputDecoration = InputDecoration(
-      border: outlineInputBorder,
-      focusedBorder: outlineInputBorder,
-      enabledBorder: outlineInputBorder,
+      border: widget.customBorder ?? outlineInputBorder,
+      // focusedBorder: widget.customBorder ?? outlineInputBorder,
+      // enabledBorder: widget.customBorder ?? outlineInputBorder,
+      // disabledBorder: widget.customBorder ?? outlineInputBorder,
       hintText: widget.hint,
-      hintStyle: const TextStyle(color: Color(0x73676f86)),
-      suffixIcon: !widget.obscureText ? null : showHidePasswordIcon,
+      labelText: widget.label,
+      floatingLabelAlignment: FloatingLabelAlignment.start,
+      floatingLabelStyle: inter12,
+      labelStyle: inter14.copyWith(color: lynch.withOpacity(0.3)),
+      alignLabelWithHint: true,
+      hintStyle: inter14.copyWith(color: lynch.withOpacity(0.3)),
+      suffixIcon:
+          !widget.obscureText ? widget.customSuffix : showHidePasswordIcon,
+      prefix: widget.customPrefix,
+      prefixIcon: widget.prefixIcon,
     );
 
     return ReactiveTextField<String>(
@@ -70,6 +95,8 @@ class _FormTextFieldState extends State<FormTextField> {
       decoration: inputDecoration,
       controller: widget.controller,
       focusNode: widget.focusListener,
+      onTap: widget.onTap,
+      readOnly: widget.readOnly,
     );
   }
 }

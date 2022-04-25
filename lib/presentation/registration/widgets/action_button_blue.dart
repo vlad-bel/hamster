@@ -4,16 +4,18 @@ class ActionButtonBlue extends StatelessWidget {
   const ActionButtonBlue({
     Key? key,
     this.isEnabled = false,
+    this.width,
     required this.onPressed,
   }) : super(key: key);
 
   final bool isEnabled;
   final VoidCallback onPressed;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 145,
+      width: width ?? 145,
       height: 37,
       child: ElevatedButton(
         style: ButtonStyle(
