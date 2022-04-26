@@ -43,7 +43,6 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                 TextSpan(
                   style: inter14,
                   text: context.l10n.call_method2,
-                  // text: context.l10n.confirm_number_subtitle1,
                 ),
               ],
             ),
@@ -64,7 +63,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                     SelectorRect(
                       size: 160,
                       title: context.l10n.sms,
-                      image: Icons.sms,
+                      icon: Icons.sms,
                       choosed: state.smsSelected,
                       onTap: () {
                         cubit.switchSelector(true);
@@ -74,7 +73,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                     SelectorRect(
                       size: 160,
                       title: context.l10n.phone_call,
-                      image: Icons.call_outlined,
+                      icon: Icons.call_outlined,
                       choosed: !state.smsSelected,
                       onTap: () {
                         cubit.switchSelector(false);
@@ -107,14 +106,14 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
 class SelectorRect extends StatelessWidget {
   const SelectorRect({
     Key? key,
-    required this.image,
+    required this.icon,
     required this.title,
     required this.onTap,
     required this.choosed,
     required this.size,
   }) : super(key: key);
 
-  final IconData image;
+  final IconData icon;
   final String title;
   final VoidCallback onTap;
 
@@ -145,7 +144,7 @@ class SelectorRect extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              image,
+              icon,
               size: 50,
               color: denim.withOpacity(.5),
             ),
