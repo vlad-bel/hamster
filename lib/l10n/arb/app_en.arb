@@ -7,5 +7,9 @@
   "sms_resend": "Send SMS again",
   "sms_invalid": "The entered code was invalid.",
   "return_button": "RETURN",
-  "select_country_code": "Select country code"
+  "select_country_code": "Select country code",
+  "call_method1": "Wählen Sie Ihre favorisierte Methode, um die von Ihnen angegebenen Nummer ",
+  "call_method2": " zu verifizieren.",
+  "sms": "SMS",
+  "phone_call": "Anruf"
 }
