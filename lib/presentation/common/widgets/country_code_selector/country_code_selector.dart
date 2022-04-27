@@ -81,7 +81,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
                         color: lynch,
                       )
                     : null,
-                label:  context.l10n.select_country_code,
+                // label:  context.l10n.select_country_code,
                 hint: context.l10n.select_country_code,
                 readOnly: selectedCountry == null,
                 maxLength: 15,
