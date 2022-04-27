@@ -6,8 +6,8 @@ definitions:
         - linux
       name: Build Flutter App
       image: cirrusci/flutter:stable
-      caches:
-       - flutter
+#      caches:
+#       - flutter
       script:
         - flutter build web -t lib/main_development.dart --release --web-renderer html
       artifacts:
