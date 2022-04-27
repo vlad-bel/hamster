@@ -21,10 +21,7 @@ class NumberPrefix extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(width: 16),
-          Image.asset(
-            country.countryImage,
-            width: 20,
-          ),
+          Text(country.emoji),
           const SizedBox(width: 8),
           const Icon(
             Icons.keyboard_arrow_down_rounded,
@@ -39,7 +36,7 @@ class NumberPrefix extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            country.countryCode,
+            '+${country.phone}',
             style: inter14,
           ),
           const SizedBox(width: 8),

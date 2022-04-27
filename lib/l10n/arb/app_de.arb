@@ -11,6 +11,7 @@
   "call_method1": "Wählen Sie Ihre favorisierte Methode, um die von Ihnen angegebenen Nummer ",
   "call_method2": " zu verifizieren.",
   "sms": "SMS",
-  "phone_call": "Anruf"
-
+  "phone_call": "Anruf",
+  "country_name": "Country name",
+  "required_field": "Pflichtfeld"
 }

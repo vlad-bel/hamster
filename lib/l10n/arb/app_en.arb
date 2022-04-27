@@ -8,8 +8,10 @@
   "sms_invalid": "The entered code was invalid.",
   "return_button": "RETURN",
   "select_country_code": "Select country code",
-  "call_method1": "Wählen Sie Ihre favorisierte Methode, um die von Ihnen angegebenen Nummer ",
-  "call_method2": " zu verifizieren.",
+  "call_method1": "Choose your favorite method to the number you provided ",
+  "call_method2": " to verify.",
   "sms": "SMS",
-  "phone_call": "Anruf"
+  "phone_call": "Phone",
+  "country_name": "Country name",
+  "required_field": "Required field"
 }

@@ -1,6 +1,6 @@
 import 'package:business_terminal/domain/dependency_injection/di.dart';
 
-abstract class Failure {
+abstract class Failure implements Exception {
   Failure(this.exception, this.methodName) {
     logger.e('Caught in $methodName. Error: ${exception?.toString()}');
   }

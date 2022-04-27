@@ -53,6 +53,7 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^0.3.0
   very_good_analysis: ^2.4.0
+  retrofit_generator:
 
   build_runner: ^2.0.1
   json_serializable: ^6.1.5

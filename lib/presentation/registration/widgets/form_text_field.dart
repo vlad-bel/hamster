@@ -1,6 +1,7 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class FormTextField extends StatefulWidget {
@@ -21,6 +22,9 @@ class FormTextField extends StatefulWidget {
     this.customPrefix,
     this.prefixIcon,
     this.customBorder,
+    this.maxLength,
+    this.counter,
+    this.inputFormatters,
   }) : super(key: key);
 
   final String name;
@@ -38,6 +42,9 @@ class FormTextField extends StatefulWidget {
   final Widget? customPrefix;
   final Widget? prefixIcon;
   final InputBorder? customBorder;
+  final int? maxLength;
+  final Widget? counter;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   State<FormTextField> createState() => _FormTextFieldState();
@@ -70,9 +77,6 @@ class _FormTextFieldState extends State<FormTextField> {
 
     final inputDecoration = InputDecoration(
       border: widget.customBorder ?? outlineInputBorder,
-      // focusedBorder: widget.customBorder ?? outlineInputBorder,
-      // enabledBorder: widget.customBorder ?? outlineInputBorder,
-      // disabledBorder: widget.customBorder ?? outlineInputBorder,
       hintText: widget.hint,
       labelText: widget.label,
       floatingLabelAlignment: FloatingLabelAlignment.start,
@@ -84,6 +88,7 @@ class _FormTextFieldState extends State<FormTextField> {
           !widget.obscureText ? widget.customSuffix : showHidePasswordIcon,
       prefix: widget.customPrefix,
       prefixIcon: widget.prefixIcon,
+      counter: widget.counter,
     );
 
     return ReactiveTextField<String>(
@@ -97,6 +102,8 @@ class _FormTextFieldState extends State<FormTextField> {
       focusNode: widget.focusListener,
       onTap: widget.onTap,
       readOnly: widget.readOnly,
+      maxLength: widget.maxLength,
+      inputFormatters: widget.inputFormatters,
     );
   }
 }
