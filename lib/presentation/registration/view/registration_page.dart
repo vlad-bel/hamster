@@ -8,6 +8,7 @@ import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/horizontal_line_short_grey.dart';
 import 'package:business_terminal/presentation/common/widgets/text_title.dart';
 import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
+import 'package:business_terminal/presentation/registration/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
@@ -121,7 +122,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                               children: [
                                 FormTextField(
                                   name: formSettings.kFieldName,
-                                  hint: 'Vor- und Nachname',
+                                  hint: 'Vorname eingeben',
                                   validationMessages: (control) =>
                                       formSettings.validationMessageNameSurname,
                                   keyboardType: TextInputType.name,
@@ -156,7 +157,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 Container(height: 18),
                                 FormTextField(
                                   name: formSettings.kFieldPasswordConfirmation,
-                                  hint: 'Passwort wählen',
+                                  hint: 'Passwort wiederholen',
                                   validationMessages: (control) =>
                                       formSettings.validationMessagePassword,
                                   keyboardType: TextInputType.text,
@@ -273,12 +274,14 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
         );
 
     showProcessingDataSnackbar(context);
-  }
 
-  void onPressedClosePasswordValidation() {
-    context
-        .read<UserInfoInitCubit>()
-        .setVisibilityPasswordValidation(isVisible: false);
+    // TODO routemaster in next tasks
+    Navigator.push(
+      context,
+      MaterialPageRoute<EmailVerificationPage>(
+        builder: (context) => EmailVerificationPage(userEmail: email),
+      ),
+    );
   }
 
   void showProcessingDataSnackbar(BuildContext context) {
@@ -287,6 +290,12 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
     context.showSnackBar(
       const SnackBar(content: Text('Processing Data...')),
     );
+  }
+
+  void onPressedClosePasswordValidation() {
+    context
+        .read<UserInfoInitCubit>()
+        .setVisibilityPasswordValidation(isVisible: false);
   }
 
   void showErrorSnackbar() {

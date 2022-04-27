@@ -1,4 +1,5 @@
 import 'package:business_terminal/domain/dependency_injection/di.dart';
+import 'package:dio/dio.dart';
 
 abstract class Failure {
   Failure(this.exception, this.methodName) {
@@ -13,7 +14,7 @@ abstract class Failure {
 ///ApiFailure represents error caused by API (endpoints). Those failures are
 ///mainly server based and they are not ours fault.
 class ApiFailure extends Failure {
-  ApiFailure(dynamic exception, String methodName)
+  ApiFailure(DioError exception, String methodName)
       : super(exception, methodName);
 }
 
@@ -21,6 +22,12 @@ class ApiFailure extends Failure {
 ///to connect to the internet.
 class ConnectionFailure extends Failure {
   ConnectionFailure(dynamic exception, String methodName)
+      : super(exception, methodName);
+}
+
+//Presentation layer errors
+class UIFailure extends Failure {
+  UIFailure(dynamic exception, String methodName)
       : super(exception, methodName);
 }
 

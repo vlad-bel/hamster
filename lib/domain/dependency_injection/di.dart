@@ -1,8 +1,11 @@
 import 'package:business_terminal/data/gateway/rest_client.dart';
 import 'package:business_terminal/data/repository/rest_api_repository.dart';
 import 'package:business_terminal/domain/repository/api_repository.dart';
+import 'package:business_terminal/domain/use_cases/registration/email_verification/default_email_verification.dart';
+import 'package:business_terminal/domain/use_cases/registration/email_verification/email_verification.dart';
 import 'package:business_terminal/domain/use_cases/registration/user_info_init/default_user_info_init.dart';
 import 'package:business_terminal/domain/use_cases/registration/user_info_init/user_info_init.dart';
+import 'package:business_terminal/presentation/common/widgets/snackbar_manager.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
@@ -27,7 +30,11 @@ abstract class DI {
       )
       ..registerSingleton<UserInfoInitUseCase>(
         DefaultUserInfoInitUseCase(get<ApiRepository>()),
-      );
+      )
+      ..registerSingleton<EmailVerificationUseCase>(
+        DefaultEmailVerificationUseCase(get<ApiRepository>()),
+      )
+      ..registerSingleton<SnackBarManager>(SnackBarManager());
   }
 
   static Dio httpClientInit() {

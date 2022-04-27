@@ -8,7 +8,7 @@ part of 'rest_client.dart';
 
 class _RestClient implements RestClient {
   _RestClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'http://localhost:3003/api/';
+    baseUrl ??= 'http://localhost:3003/api';
   }
 
   final Dio _dio;
@@ -25,6 +25,38 @@ class _RestClient implements RestClient {
     final _result = await _dio.fetch<String>(_setStreamType<String>(
         Options(method: 'POST', headers: _headers, extra: _extra)
             .compose(_dio.options, '/rep/init-creation',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> verifyEmailCode(emailCodeMap) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(emailCodeMap);
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options, '/rep/verify-email-code',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> resendEmailCode(resendEmailCodeMap) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(resendEmailCodeMap);
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options, '/rep/resend-code-to-email',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!;

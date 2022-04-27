@@ -1,80 +1,326 @@
+import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/domain/core/errors/failures.dart';
+import 'package:business_terminal/domain/dependency_injection/di.dart';
+import 'package:business_terminal/domain/use_cases/registration/email_verification/email_verification.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
+import 'package:business_terminal/presentation/common/widgets/snackbar_manager.dart';
+import 'package:business_terminal/presentation/registration/email_verification/cubit/email_verification_cubit.dart';
 import 'package:business_terminal/presentation/registration/email_verification/view/email_was_sent_text_icon.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:pinput/pinput.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hamster_widgets/hamster_widgets.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class EmailVerificationPage extends StatelessWidget {
-  const EmailVerificationPage({Key? key}) : super(key: key);
+  const EmailVerificationPage({
+    Key? key,
+    required this.userEmail,
+  }) : super(key: key);
+
+  final String? userEmail;
 
   @override
   Widget build(BuildContext context) {
-    return const EmailVerificationView();
+    return BlocProvider(
+      // TODO extract to DI in next tasks after Demo
+      create: (context) => EmailVerificationCubit(
+        get<EmailVerificationUseCase>(),
+      ),
+      child: EmailVerificationView(userEmail: userEmail),
+    );
   }
 }
 
 class EmailVerificationView extends StatefulWidget {
-  const EmailVerificationView({Key? key}) : super(key: key);
+  const EmailVerificationView({Key? key, this.userEmail}) : super(key: key);
+
+  final String? userEmail;
 
   @override
   State<EmailVerificationView> createState() => _EmailVerificationViewState();
 }
 
 class _EmailVerificationViewState extends State<EmailVerificationView> {
+  final title = 'Bestätigen Sie Ihre \nE-Mail-Adresse.';
+  final textWrongOtp = 'Der eingegebene Code war ungültig.';
+  final textEmailWasSent = 'Sie erhalten in Kürze erneut eine E-Mail von uns.';
+  final emailWasSentColor = fruitSalad;
+
+  final pinController = TextEditingController();
+  final snackBarManager = get<SnackBarManager>();
+
   @override
   Widget build(BuildContext context) {
-    const title = 'Bestätigen Sie Ihre \nE-Mail-Adresse.';
-    const subtitle =
-        'Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse beispiel@unternehmen.de. Bitte geben Sie den 5-stelligen Code ein, um IhreE-Mail-Adresse zu verifizieren. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner.';
-
-    const textEmailWasSent =
-        'Sie erhalten in Kürze erneut eine E-Mail von uns.';
-    const emailWasSentColor = Color(0xff549d4c);
+    final cubit = context.read<EmailVerificationCubit>();
 
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
           header: title,
-          subHeader: Text(
-            subtitle,
-            style: inter14,
-          ),
+          subHeader: SubHeaderRichText(widget: widget),
         ),
         body: Column(
           children: [
-            const SizedBox(
-              height: 70,
-              child: Pinput(length: 5),
+            EmailVerificationPinWrapper(
+              pinController: pinController,
+              widget: widget,
+              cubit: cubit,
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  print('close pass validation window');
-                },
-                child: const Text(
-                  'E-Mail erneut versenden',
-                  style: TextStyle(color: Color(0xff147bd9)),
-                ),
-              ),
+            ResendEmailCodeButton(
+              widget: widget,
+              cubit: cubit,
             ),
-            const EmailWasSentTextIcon(
+            EmailSentNotSentInfoBuilder(
               textEmailWasSent: textEmailWasSent,
               emailWasSentColor: emailWasSentColor,
-              icon: Icons.send,
+              textWrongOtp: textWrongOtp,
+              pinController: pinController,
             ),
-            Row(
-              children: [
-                WhiteButton(
-                  width: 320,
-                  onPressed: () {},
-                ),
-              ],
+            WhiteButton(width: 320, onPressed: () {}),
+            EmailVerificationBlocListener(
+              pinController: pinController,
+              snackBarManager: snackBarManager,
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class SubHeaderRichText extends StatelessWidget {
+  const SubHeaderRichText({
+    Key? key,
+    required this.widget,
+  }) : super(key: key);
+
+  final EmailVerificationView widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        text:
+            'Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse '
+                'beispiel ',
+        style: inter14.copyWith(height: 1.6),
+        children: [
+          TextSpan(
+            text: widget.userEmail,
+            style: inter14.copyWith(color: denim),
+          ),
+          TextSpan(
+            text:
+                ' Bitte geben Sie den 5-stelligen Code ein, um IhreE-Mail-Adresse zu verifizieren. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner.',
+            style: inter14,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class EmailSentNotSentInfoBuilder extends StatelessWidget {
+  const EmailSentNotSentInfoBuilder({
+    Key? key,
+    required this.textEmailWasSent,
+    required this.emailWasSentColor,
+    required this.textWrongOtp,
+    required this.pinController,
+  }) : super(key: key);
+
+  final String textEmailWasSent;
+  final Color emailWasSentColor;
+  final String textWrongOtp;
+  final TextEditingController pinController;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<EmailVerificationCubit, EmailVerificationState>(
+      builder: (context, state) {
+        final emailSent = EmailResultInfoTextIcon(
+          text: textEmailWasSent,
+          textColor: emailWasSentColor,
+          icon: Icons.send,
+        );
+
+        final wrongOtp = EmailResultInfoTextIcon(
+          text: textWrongOtp,
+          textColor: razzmatazz,
+          icon: Icons.error_outline_rounded,
+        );
+
+        const empty = SizedBox(height: 120);
+
+        return state.whenOrNull(
+              mailSent: () {
+                pinController.clear();
+                return emailSent;
+              },
+              wrongOTPcode: () {
+                pinController.clear();
+                return wrongOtp;
+              },
+            ) ??
+            empty;
+      },
+    );
+  }
+}
+
+class EmailVerificationBlocListener extends StatelessWidget {
+  const EmailVerificationBlocListener({
+    Key? key,
+    required this.pinController,
+    required this.snackBarManager,
+  }) : super(key: key);
+
+  final TextEditingController pinController;
+  final SnackBarManager snackBarManager;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<EmailVerificationCubit, EmailVerificationState>(
+      listener: (context, state) {
+        if (state is LoadingEmailVerification) {
+          context.loaderOverlay.show();
+        } else {
+          context.loaderOverlay.hide();
+        }
+
+        if (state is ErrorEmailVerification) {
+          pinController.clear();
+
+          final error = state.failure.exception as DioError;
+          final errorMessage = error.response?.statusMessage ?? '';
+
+          snackBarManager.showError(context, errorMessage);
+        }
+
+        if (state is SuccessEmailVerification) {
+          snackBarManager.showSuccess(context, 'OTP Code is correct');
+        }
+      },
+      child: Container(),
+    );
+  }
+}
+
+class ResendEmailCodeButton extends StatelessWidget {
+  const ResendEmailCodeButton({
+    Key? key,
+    required this.widget,
+    required this.cubit,
+  }) : super(key: key);
+
+  final EmailVerificationView widget;
+  final EmailVerificationCubit cubit;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        onPressed: () {
+          final email = widget.userEmail;
+          if (email != null) {
+            cubit.resendEmailCode(email);
+          } else {
+            cubit.errorOccurred(
+              UIFailure(
+                'email is null',
+                'ResendEmailCodeButton',
+              ),
+            );
+          }
+        },
+        child: const Text(
+          'E-Mail erneut versenden',
+          style: TextStyle(color: denim),
+        ),
+      ),
+    );
+  }
+}
+
+class EmailVerificationPinWrapper extends StatefulWidget {
+  const EmailVerificationPinWrapper({
+    Key? key,
+    required this.pinController,
+    required this.widget,
+    required this.cubit,
+  }) : super(key: key);
+
+  final TextEditingController pinController;
+  final EmailVerificationView widget;
+  final EmailVerificationCubit cubit;
+
+  @override
+  State<EmailVerificationPinWrapper> createState() =>
+      _EmailVerificationPinWrapperState();
+}
+
+class _EmailVerificationPinWrapperState
+    extends State<EmailVerificationPinWrapper> {
+  bool hasPinError = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<EmailVerificationCubit, EmailVerificationState>(
+      builder: (context, state) {
+        hasPinError = state is WrongOTPEmailVerification;
+
+        final pin = EmailVerificationPinInput(
+          pinController: widget.pinController,
+          hasPinError: hasPinError,
+          widget: widget.widget,
+          cubit: widget.cubit,
+        );
+
+        return pin;
+      },
+    );
+  }
+}
+
+class EmailVerificationPinInput extends StatelessWidget {
+  const EmailVerificationPinInput({
+    Key? key,
+    required this.pinController,
+    required this.hasPinError,
+    required this.widget,
+    required this.cubit,
+  }) : super(key: key);
+
+  final TextEditingController pinController;
+  final bool hasPinError;
+  final EmailVerificationView widget;
+  final EmailVerificationCubit cubit;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 25, bottom: 8),
+      child: SizedBox(
+        height: 70,
+        width: double.infinity,
+        child: Pincode(
+          fieldCount: 5,
+          controller: pinController,
+          hasError: hasPinError,
+          onCompleted: (String value) {
+            final email = widget.userEmail;
+            if (email != null) {
+              cubit.verifyEmailByOTPCode(email, value);
+            } else {
+              throw Exception('userEmail is null');
+            }
+          },
         ),
       ),
     );
