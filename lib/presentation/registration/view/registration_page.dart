@@ -130,7 +130,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 Container(height: 18),
                                 FormTextField(
                                   name: formSettings.kFieldSurname,
-                                  hint: 'Nachnamen eingeben',
+                                  hint: 'Nachname eingeben',
                                   validationMessages: (control) =>
                                       formSettings.validationMessageNameSurname,
                                   keyboardType: TextInputType.name,
