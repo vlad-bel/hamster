@@ -4,22 +4,22 @@ import 'package:business_terminal/use_cases/number_verification/number_verificat
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'country_code_cubit.freezed.dart';
 
+@injectable
 class CountryCodeCubit extends Cubit<CountryCodeState> {
   CountryCodeCubit({
     required this.useCase,
     required this.codeSelectorCubit,
-  }) : super(
-          const CountryCodeState.success(),
-        );
+  }) : super(const CountryCodeState.success());
 
+  late final String email;
   final NumberVerificationUseCase useCase;
   final CountryCodeSelectorCubit codeSelectorCubit;
 
-  Future createPhone(// required Function(String, String) emailCreated,
-      ) async {
+  Future createPhone() async {
     await codeSelectorCubit.state.whenOrNull(
       success: (selectedCountry, countries) async {
         final phoneNumber = codeSelectorCubit
@@ -29,16 +29,15 @@ class CountryCodeCubit extends Cubit<CountryCodeState> {
 
         final phoneNumberWithCode = '${selectedCountry!.phone}$phoneNumber';
 
-        const testEmail = 'john.doe@test6.com';
         try {
           emit(const CountryCodeState.loading());
           await useCase.createPhone(
-            email: testEmail,
+            email: email,
             phone: phoneNumberWithCode,
           );
           emit(
             CountryCodeState.next(
-              email: testEmail,
+              email: email,
               phone: phoneNumberWithCode,
             ),
           );

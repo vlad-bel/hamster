@@ -10,7 +10,9 @@ import 'package:business_terminal/domain/request_model/number_verification/verif
 import 'package:business_terminal/domain/request_model/number_verification/verify_sms_number_request.dart';
 import 'package:business_terminal/use_cases/number_verification/number_verification_use_case.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: NumberVerificationUseCase)
 class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
   NumberVerificationUseCaseImpl({
     required this.repository,

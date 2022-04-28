@@ -1,47 +1,34 @@
-import 'package:business_terminal/dependency_injection/di.dart';
-import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/country_code_form.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/cubit/country_code_cubit.dart';
-import 'package:business_terminal/use_cases/number_verification/number_verification_use_case_impl.dart';
-import 'package:dio/dio.dart';
+import 'package:business_terminal/presentation/registration/email_verification/view/email_verification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 ///Page for selecting country via dropdown list
 class CountriesCodePage extends StatelessWidget {
-  const CountriesCodePage({Key? key}) : super(key: key);
+  const CountriesCodePage({
+    Key? key,
+    required this.email,
+  }) : super(key: key);
 
-  static const path = '/';
+  final String email;
 
-  ///TODO make dependencies via injectable
-  static final usecase = NumberVerificationUseCaseImpl(
-    repository: RestClient(
-      get<Dio>(),
-    ),
-  );
+  static const path = '${EmailVerificationPage.path}/countries_code';
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        ///TODO make dependencies via injectable
         BlocProvider<CountryCodeSelectorCubit>(
           create: (context) {
-            return CountryCodeSelectorCubit(
-              useCase: usecase,
-            );
+            return GetIt.instance.get<CountryCodeSelectorCubit>();
           },
         ),
         BlocProvider<CountryCodeCubit>(
           create: (context) {
-            ///TODO make dependencies via injectable
-            return CountryCodeCubit(
-              useCase: usecase,
-              codeSelectorCubit: BlocProvider.of<CountryCodeSelectorCubit>(
-                context,
-              ),
-            );
+            return GetIt.instance.get<CountryCodeCubit>()..email = email;
           },
         ),
       ],

@@ -6,17 +6,18 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_backgro
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/common/widgets/snackbar_manager.dart';
+import 'package:business_terminal/presentation/number_verification/country_code/country_code_page.dart';
 import 'package:business_terminal/presentation/registration/email_verification/cubit/email_verification_cubit.dart';
 import 'package:business_terminal/presentation/registration/email_verification/view/email_was_sent_text_icon.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
-import 'package:business_terminal/use_cases/registration/email_verification/email_verification.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:hamster_widgets/pincode/pincode.dart';
-
+import 'package:routemaster/routemaster.dart';
 
 class EmailVerificationPage extends StatelessWidget {
   const EmailVerificationPage({
@@ -26,13 +27,12 @@ class EmailVerificationPage extends StatelessWidget {
 
   final String? userEmail;
 
+  static const path = '/email_verification';
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      // TODO extract to DI in next tasks after Demo
-      create: (context) => EmailVerificationCubit(
-        get<EmailVerificationUseCase>(),
-      ),
+    return BlocProvider<EmailVerificationCubit>(
+      create: (context) => GetIt.instance.get<EmailVerificationCubit>(),
       child: EmailVerificationView(userEmail: userEmail),
     );
   }
@@ -83,7 +83,12 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
               textWrongOtp: textWrongOtp,
               pinController: pinController,
             ),
-            WhiteButton(width: 320, onPressed: () {}),
+            WhiteButton(
+              width: 320,
+              onPressed: () {
+                Routemaster.of(context).pop();
+              },
+            ),
             EmailVerificationBlocListener(
               pinController: pinController,
               snackBarManager: snackBarManager,
@@ -205,6 +210,14 @@ class EmailVerificationBlocListener extends StatelessWidget {
 
         if (state is SuccessEmailVerification) {
           snackBarManager.showSuccess(context, 'OTP Code is correct');
+          if (state.response == 'response') {
+            Routemaster.of(context).push(
+              CountriesCodePage.path,
+              queryParameters: {
+                'email': state.email,
+              },
+            );
+          }
         }
       },
       child: Container(),
@@ -307,22 +320,21 @@ class EmailVerificationPinInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 25, bottom: 8),
-      child: SizedBox(
-        height: 70,
-        width: double.infinity,
-        child: Pincode(
-          fieldCount: 5,
-          controller: pinController,
-          hasError: hasPinError,
-          onCompleted: (String value) {
-            final email = widget.userEmail;
-            if (email != null) {
-              cubit.verifyEmailByOTPCode(email, value);
-            } else {
-              throw Exception('userEmail is null');
-            }
-          },
-        ),
+      child: Pincode(
+        fieldCount: 5,
+        width: 62,
+        height: 87,
+        controller: pinController,
+        textStyle: HamsterStyles.pincodeWeb,
+        hasError: hasPinError,
+        onCompleted: (String value) {
+          final email = widget.userEmail;
+          if (email != null) {
+            cubit.verifyEmailByOTPCode(email, value);
+          } else {
+            throw Exception('userEmail is null');
+          }
+        },
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:business_terminal/domain/repository/api_repository.dart';
 import 'package:business_terminal/domain/request_model/registration/email_verification/resend_email_code_request.dart';
 import 'package:business_terminal/use_cases/registration/email_verification/resend_email_code.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: ResendEmailCodeUseCase)
 class DefaultResendEmailCodeUseCase implements ResendEmailCodeUseCase {
   DefaultResendEmailCodeUseCase(this.apiService);
 

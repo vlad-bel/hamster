@@ -3,7 +3,9 @@ import 'package:business_terminal/domain/repository/api_repository.dart';
 import 'package:business_terminal/domain/request_model/registration/email_verification/email_verification_request.dart';
 import 'package:business_terminal/domain/request_model/registration/email_verification/resend_email_code_request.dart';
 import 'package:business_terminal/domain/request_model/registration/user_info_request.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: ApiRepository)
 class RestApiRepository extends ApiRepository {
   RestApiRepository(this._client);
 

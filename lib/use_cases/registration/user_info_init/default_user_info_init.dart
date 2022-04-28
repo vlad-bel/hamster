@@ -4,7 +4,9 @@ import 'package:business_terminal/domain/repository/api_repository.dart';
 import 'package:business_terminal/domain/request_model/registration/user_info_request.dart';
 import 'package:business_terminal/use_cases/registration/user_info_init/user_info_init.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: UserInfoInitUseCase)
 class DefaultUserInfoInitUseCase implements UserInfoInitUseCase {
   DefaultUserInfoInitUseCase(this.apiService);
 

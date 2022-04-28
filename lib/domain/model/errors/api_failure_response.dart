@@ -15,7 +15,7 @@ class ApiFailureResponse {
   @JsonKey(name: 'message')
   final dynamic message;
   @JsonKey(name: 'error')
-  final String error;
+  final String? error;
 
   factory ApiFailureResponse.fromJson(Map<String, dynamic> json) =>
       _$ApiFailureResponseFromJson(json);

@@ -33,9 +33,10 @@ class _$EmailVerificationStateTearOff {
     return const MailSent_EmailVerification();
   }
 
-  SuccessEmailVerification success(String response) {
+  SuccessEmailVerification success(String response, String email) {
     return SuccessEmailVerification(
       response,
+      email,
     );
   }
 
@@ -57,7 +58,7 @@ mixin _$EmailVerificationState {
     required TResult Function() loading,
     required TResult Function() wrongOTPcode,
     required TResult Function() mailSent,
-    required TResult Function(String response) success,
+    required TResult Function(String response, String email) success,
     required TResult Function(Failure failure) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +68,7 @@ mixin _$EmailVerificationState {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -77,7 +78,7 @@ mixin _$EmailVerificationState {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) =>
@@ -177,7 +178,7 @@ class _$InitialEmailVerification implements InitialEmailVerification {
     required TResult Function() loading,
     required TResult Function() wrongOTPcode,
     required TResult Function() mailSent,
-    required TResult Function(String response) success,
+    required TResult Function(String response, String email) success,
     required TResult Function(Failure failure) error,
   }) {
     return initial();
@@ -190,7 +191,7 @@ class _$InitialEmailVerification implements InitialEmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
   }) {
     return initial?.call();
@@ -203,7 +204,7 @@ class _$InitialEmailVerification implements InitialEmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
@@ -306,7 +307,7 @@ class _$LoadingEmailVerification implements LoadingEmailVerification {
     required TResult Function() loading,
     required TResult Function() wrongOTPcode,
     required TResult Function() mailSent,
-    required TResult Function(String response) success,
+    required TResult Function(String response, String email) success,
     required TResult Function(Failure failure) error,
   }) {
     return loading();
@@ -319,7 +320,7 @@ class _$LoadingEmailVerification implements LoadingEmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
   }) {
     return loading?.call();
@@ -332,7 +333,7 @@ class _$LoadingEmailVerification implements LoadingEmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
@@ -435,7 +436,7 @@ class _$WrongOTPEmailVerification implements WrongOTPEmailVerification {
     required TResult Function() loading,
     required TResult Function() wrongOTPcode,
     required TResult Function() mailSent,
-    required TResult Function(String response) success,
+    required TResult Function(String response, String email) success,
     required TResult Function(Failure failure) error,
   }) {
     return wrongOTPcode();
@@ -448,7 +449,7 @@ class _$WrongOTPEmailVerification implements WrongOTPEmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
   }) {
     return wrongOTPcode?.call();
@@ -461,7 +462,7 @@ class _$WrongOTPEmailVerification implements WrongOTPEmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
@@ -564,7 +565,7 @@ class _$MailSent_EmailVerification implements MailSent_EmailVerification {
     required TResult Function() loading,
     required TResult Function() wrongOTPcode,
     required TResult Function() mailSent,
-    required TResult Function(String response) success,
+    required TResult Function(String response, String email) success,
     required TResult Function(Failure failure) error,
   }) {
     return mailSent();
@@ -577,7 +578,7 @@ class _$MailSent_EmailVerification implements MailSent_EmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
   }) {
     return mailSent?.call();
@@ -590,7 +591,7 @@ class _$MailSent_EmailVerification implements MailSent_EmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
@@ -653,7 +654,7 @@ abstract class $SuccessEmailVerificationCopyWith<$Res> {
   factory $SuccessEmailVerificationCopyWith(SuccessEmailVerification value,
           $Res Function(SuccessEmailVerification) then) =
       _$SuccessEmailVerificationCopyWithImpl<$Res>;
-  $Res call({String response});
+  $Res call({String response, String email});
 }
 
 /// @nodoc
@@ -671,11 +672,16 @@ class _$SuccessEmailVerificationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? response = freezed,
+    Object? email = freezed,
   }) {
     return _then(SuccessEmailVerification(
       response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
+              as String,
+      email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -684,14 +690,16 @@ class _$SuccessEmailVerificationCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessEmailVerification implements SuccessEmailVerification {
-  const _$SuccessEmailVerification(this.response);
+  const _$SuccessEmailVerification(this.response, this.email);
 
   @override
   final String response;
+  @override
+  final String email;
 
   @override
   String toString() {
-    return 'EmailVerificationState.success(response: $response)';
+    return 'EmailVerificationState.success(response: $response, email: $email)';
   }
 
   @override
@@ -700,12 +708,16 @@ class _$SuccessEmailVerification implements SuccessEmailVerification {
         (other is SuccessEmailVerification &&
             (identical(other.response, response) ||
                 const DeepCollectionEquality()
-                    .equals(other.response, response)));
+                    .equals(other.response, response)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(response);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(response) ^
+      const DeepCollectionEquality().hash(email);
 
   @JsonKey(ignore: true)
   @override
@@ -720,10 +732,10 @@ class _$SuccessEmailVerification implements SuccessEmailVerification {
     required TResult Function() loading,
     required TResult Function() wrongOTPcode,
     required TResult Function() mailSent,
-    required TResult Function(String response) success,
+    required TResult Function(String response, String email) success,
     required TResult Function(Failure failure) error,
   }) {
-    return success(response);
+    return success(response, email);
   }
 
   @override
@@ -733,10 +745,10 @@ class _$SuccessEmailVerification implements SuccessEmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
   }) {
-    return success?.call(response);
+    return success?.call(response, email);
   }
 
   @override
@@ -746,12 +758,12 @@ class _$SuccessEmailVerification implements SuccessEmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(response);
+      return success(response, email);
     }
     return orElse();
   }
@@ -801,10 +813,11 @@ class _$SuccessEmailVerification implements SuccessEmailVerification {
 }
 
 abstract class SuccessEmailVerification implements EmailVerificationState {
-  const factory SuccessEmailVerification(String response) =
+  const factory SuccessEmailVerification(String response, String email) =
       _$SuccessEmailVerification;
 
   String get response => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SuccessEmailVerificationCopyWith<SuccessEmailVerification> get copyWith =>
       throw _privateConstructorUsedError;
@@ -880,7 +893,7 @@ class _$ErrorEmailVerification implements ErrorEmailVerification {
     required TResult Function() loading,
     required TResult Function() wrongOTPcode,
     required TResult Function() mailSent,
-    required TResult Function(String response) success,
+    required TResult Function(String response, String email) success,
     required TResult Function(Failure failure) error,
   }) {
     return error(failure);
@@ -893,7 +906,7 @@ class _$ErrorEmailVerification implements ErrorEmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
   }) {
     return error?.call(failure);
@@ -906,7 +919,7 @@ class _$ErrorEmailVerification implements ErrorEmailVerification {
     TResult Function()? loading,
     TResult Function()? wrongOTPcode,
     TResult Function()? mailSent,
-    TResult Function(String response)? success,
+    TResult Function(String response, String email)? success,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {

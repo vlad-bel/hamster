@@ -1,6 +1,7 @@
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/repository/rest_api_repository.dart';
 import 'package:business_terminal/domain/repository/api_repository.dart';
+import 'package:business_terminal/network/api_manager.dart';
 import 'package:business_terminal/use_cases/registration/email_verification/default_email_verification.dart';
 import 'package:business_terminal/use_cases/registration/email_verification/email_verification.dart';
 import 'package:business_terminal/use_cases/registration/user_info_init/default_user_info_init.dart';
@@ -9,11 +10,9 @@ import 'package:business_terminal/presentation/common/widgets/snackbar_manager.d
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 late Logger _logger;
 
-Logger get logger => _logger;
 
 GetIt get = GetIt.instance;
 
@@ -37,13 +36,5 @@ abstract class DI {
       ..registerSingleton<SnackBarManager>(SnackBarManager());
   }
 
-  static Dio httpClientInit() {
-    final prettyDioLogger = PrettyDioLogger(
-      requestHeader: true,
-      requestBody: true,
-      compact: false,
-    );
-    final dio = Dio()..interceptors.add(prettyDioLogger);
-    return dio;
-  }
+
 }

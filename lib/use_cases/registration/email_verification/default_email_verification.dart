@@ -5,7 +5,9 @@ import 'package:business_terminal/domain/request_model/registration/email_verifi
 import 'package:business_terminal/domain/request_model/registration/email_verification/resend_email_code_request.dart';
 import 'package:business_terminal/use_cases/registration/email_verification/email_verification.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: EmailVerificationUseCase)
 class DefaultEmailVerificationUseCase implements EmailVerificationUseCase {
   DefaultEmailVerificationUseCase(this.apiService);
 

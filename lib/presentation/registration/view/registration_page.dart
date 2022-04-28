@@ -13,20 +13,23 @@ import 'package:business_terminal/presentation/registration/view/password_checkb
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
-import 'package:business_terminal/use_cases/registration/user_info_init/user_info_init.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:routemaster/routemaster.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
 
+  static const path = '/';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => UserInfoInitCubit(get<UserInfoInitUseCase>()),
+      create: (_) => GetIt.instance.get<UserInfoInitCubit>(),
       child: const RegistrationView(),
     );
   }
@@ -275,12 +278,11 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
 
     showProcessingDataSnackbar(context);
 
-    // TODO routemaster in next tasks
-    Navigator.push(
-      context,
-      MaterialPageRoute<EmailVerificationPage>(
-        builder: (context) => EmailVerificationPage(userEmail: email),
-      ),
+    Routemaster.of(context).push(
+      EmailVerificationPage.path,
+      queryParameters: {
+        'email': email!,
+      },
     );
   }
 

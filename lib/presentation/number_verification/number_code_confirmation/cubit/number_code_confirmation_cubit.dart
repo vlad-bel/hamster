@@ -3,7 +3,9 @@ import 'package:business_terminal/domain/request_model/number_verification/verif
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/cubit/number_code_confirmation_state.dart';
 import 'package:business_terminal/use_cases/number_verification/number_verification_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class NumberCodeConfirmationCubit extends Cubit<NumberCodeConfirmationState> {
   NumberCodeConfirmationCubit({
     required this.useCase,
