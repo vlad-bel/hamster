@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CallMethodSelectorPageState extends Equatable {
-  CallMethodSelectorPageState({
+  const CallMethodSelectorPageState({
     required this.smsSelected,
   });
 

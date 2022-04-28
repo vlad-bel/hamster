@@ -1,5 +1,5 @@
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/data/model/country/country.dart';
+import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_state.dart';

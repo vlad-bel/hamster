@@ -1,4 +1,5 @@
-import 'package:business_terminal/domain/dependency_injection/di.dart';
+import 'package:business_terminal/dependency_injection/di.dart';
+import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 
 abstract class Failure implements Exception {
   Failure(this.exception, this.methodName) {
@@ -13,8 +14,12 @@ abstract class Failure implements Exception {
 ///ApiFailure represents error caused by API (endpoints). Those failures are
 ///mainly server based and they are not ours fault.
 class ApiFailure extends Failure {
-  ApiFailure(dynamic exception, String methodName)
-      : super(exception, methodName);
+  final ApiFailureResponse response;
+
+  ApiFailure(
+    this.response,
+    String methodName,
+  ) : super(response, methodName);
 }
 
 ///ConnectionFailure represents error caused by unsuccessful attempts

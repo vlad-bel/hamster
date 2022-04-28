@@ -1,5 +1,5 @@
-import 'package:business_terminal/data/model/country/country.dart';
-import 'package:business_terminal/domain/core/errors/failures.dart';
+import 'package:business_terminal/domain/model/country/country.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'country_code_selector_state.freezed.dart';

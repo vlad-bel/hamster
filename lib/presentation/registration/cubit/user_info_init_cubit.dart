@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:business_terminal/data/model/registration/user_info_request.dart';
-import 'package:business_terminal/domain/core/errors/failures.dart';
 import 'package:business_terminal/domain/dependency_injection/di.dart';
-import 'package:business_terminal/domain/use_cases/registration/user_info_init/user_info_init.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/request_model/registration/user_info_request.dart';
+import 'package:business_terminal/use_cases/registration/user_info_init/user_info_init.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_info_init_cubit.freezed.dart';

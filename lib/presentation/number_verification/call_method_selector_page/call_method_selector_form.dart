@@ -6,19 +6,23 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_white_c
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/bloc/call_method_selector_page_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/bloc/call_method_selector_page_state.dart';
+import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmation_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:routemaster/routemaster.dart';
 
 class CallMethodSelectorForm extends StatefulWidget {
   const CallMethodSelectorForm({
     Key? key,
     required this.number,
+    required this.email,
   }) : super(key: key);
 
   final String number;
+  final String email;
 
   @override
   State<CallMethodSelectorForm> createState() => _CallMethodSelectorFormState();
@@ -48,17 +52,16 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
             ),
           ),
         ),
-        body: Column(
-          children: [
-            const SizedBox(
-              height: 28,
-            ),
-            BlocBuilder<CallMethodSelectorPageCubit,
-                CallMethodSelectorPageState>(
-              builder: (BuildContext context, state) {
-                final cubit =
-                    BlocProvider.of<CallMethodSelectorPageCubit>(context);
-                return Row(
+        body: BlocBuilder<CallMethodSelectorPageCubit,
+            CallMethodSelectorPageState>(
+          builder: (BuildContext context, state) {
+            final cubit = BlocProvider.of<CallMethodSelectorPageCubit>(context);
+            return Column(
+              children: [
+                const SizedBox(
+                  height: 28,
+                ),
+                Row(
                   children: [
                     SelectorRect(
                       size: 160,
@@ -80,23 +83,41 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                       },
                     ),
                   ],
-                );
-              },
-            ),
-            const SizedBox(height: 48),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                WhiteButton(width: 162, onPressed: () {}),
-                const SizedBox(width: 24),
-                ActionButtonBlue(
-                  width: 162,
-                  isEnabled: true,
-                  onPressed: () {},
+                ),
+                const SizedBox(height: 48),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    WhiteButton(
+                      width: 162,
+                      onPressed: () {
+                        Routemaster.of(context).pop();
+                      },
+                    ),
+                    const SizedBox(width: 24),
+                    ActionButtonBlue(
+                      width: 162,
+                      isEnabled: true,
+                      onPressed: () {
+                        cubit.sendCallMethod(
+                          email: widget.email,
+                          goNext: () {
+                            Routemaster.of(context).push(
+                              NumberCodeConfirmationPage.path,
+                              queryParameters: {
+                                'phone': widget.number,
+                                'email': widget.email,
+                              },
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ],
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

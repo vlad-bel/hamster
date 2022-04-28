@@ -1,6 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/data/model/country/country.dart';
+import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:flutter/material.dart';
 
 class NumberPrefix extends StatelessWidget {

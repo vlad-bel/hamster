@@ -1,13 +1,19 @@
+import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/l10n/l10n.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/country_code_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
+import 'package:business_terminal/presentation/number_verification/call_method_selector_page/call_method_selector_page.dart';
+import 'package:business_terminal/presentation/number_verification/country_code/cubit/country_code_cubit.dart';
+import 'package:business_terminal/presentation/number_verification/country_code/cubit/widget/country_code_active_button.dart';
+import 'package:business_terminal/presentation/number_verification/country_code/cubit/widget/country_code_loading_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:routemaster/routemaster.dart';
 
 ///form for [CountriesListPage]
 class ContryCodeForm extends StatelessWidget {
@@ -15,7 +21,8 @@ class ContryCodeForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<CountryCodeSelectorCubit>(context);
+    final countrySelectorCubit =
+        BlocProvider.of<CountryCodeSelectorCubit>(context);
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
@@ -26,7 +33,7 @@ class ContryCodeForm extends StatelessWidget {
         ),
         body: ReactiveFormBuilder(
           form: () {
-            return cubit.numberForm;
+            return countrySelectorCubit.numberForm;
           },
           builder: (
             BuildContext context,
@@ -37,7 +44,7 @@ class ContryCodeForm extends StatelessWidget {
               children: [
                 const SizedBox(height: 28),
                 CountryCodeSelector(
-                  cubit: cubit,
+                  cubit: countrySelectorCubit,
                 ),
                 const SizedBox(height: 150),
                 ReactiveFormConsumer(
@@ -46,10 +53,41 @@ class ContryCodeForm extends StatelessWidget {
                     FormGroup formGroup,
                     Widget? child,
                   ) {
-                    return ActionButtonBlue(
-                      width: double.infinity,
-                      onPressed: () {},
-                      isEnabled: formGroup.valid,
+                    return BlocConsumer<CountryCodeCubit, CountryCodeState>(
+                      listener: (context, state) {
+                        state.whenOrNull(error: (e) {
+                          SnackBarManager.showError(
+                            e.response.message,
+                          );
+                        }, next: (email, phone) {
+                          Routemaster.of(context).push(
+                            CallMethodSelectorPage.path,
+                            queryParameters: {
+                              'phone_number': phone,
+                              'email': email,
+                            },
+                          );
+                        });
+                      },
+                      builder: (context, state) {
+                        final contryCodeCubit =
+                            BlocProvider.of<CountryCodeCubit>(context);
+                        return state.when(
+                          loading: () => const CountryCodeLoadingButton(),
+                          success: () => CountryCodeActiveButton(
+                            cubit: contryCodeCubit,
+                            formGroup: formGroup,
+                          ),
+                          error: (e) => CountryCodeActiveButton(
+                            cubit: contryCodeCubit,
+                            formGroup: formGroup,
+                          ),
+                          next: (email, phone) => CountryCodeActiveButton(
+                            cubit: contryCodeCubit,
+                            formGroup: formGroup,
+                          ),
+                        );
+                      },
                     );
                   },
                 ),

@@ -2,10 +2,20 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/common/widgets/code_verification_form/code_verification_form.dart';
+import 'package:business_terminal/presentation/number_verification/call_method_selector_page/call_method_selector_page.dart';
 import 'package:flutter/material.dart';
 
 class NumberCodeConfirmationPage extends StatelessWidget {
-  const NumberCodeConfirmationPage({Key? key}) : super(key: key);
+  const NumberCodeConfirmationPage({
+    Key? key,
+    required this.phone,
+    required this.email,
+  }) : super(key: key);
+
+  static const path = '${CallMethodSelectorPage.path}/number_confirm';
+
+  final String phone;
+  final String email;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +27,7 @@ class NumberCodeConfirmationPage extends StatelessWidget {
           style: inter14.copyWith(height: 1.6),
           children: [
             TextSpan(
-              ///add real number
-              text: '+4912345678910',
+              text: phone,
               style: inter14.copyWith(color: denim),
             ),
             TextSpan(
