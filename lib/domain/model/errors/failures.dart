@@ -1,7 +1,5 @@
 import 'package:business_terminal/dependency_injection/di.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
-import 'package:business_terminal/domain/dependency_injection/di.dart';
-import 'package:dio/dio.dart';
 
 abstract class Failure implements Exception {
   Failure(this.exception, this.methodName) {

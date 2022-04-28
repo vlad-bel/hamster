@@ -1,6 +1,9 @@
+import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/repository/api_repository.dart';
 import 'package:business_terminal/domain/request_model/registration/user_info_request.dart';
 import 'package:business_terminal/use_cases/registration/user_info_init/user_info_init.dart';
+import 'package:dio/dio.dart';
 
 class DefaultUserInfoInitUseCase implements UserInfoInitUseCase {
   DefaultUserInfoInitUseCase(this.apiService);
@@ -9,8 +12,15 @@ class DefaultUserInfoInitUseCase implements UserInfoInitUseCase {
 
   @override
   Future<String> initUserInfoCreation(UserInfoRequest request) async {
-    final response = await apiService.initUserInfoCreation(request);
+    try {
+      final response = await apiService.initUserInfoCreation(request);
 
-    return response;
+      return response;
+    } on DioError catch (e) {
+      throw ApiFailure(
+        ApiFailureResponse.fromJson(e.response!.data as Map<String, dynamic>),
+        'initUserInfoCreation',
+      );
+    }
   }
 }

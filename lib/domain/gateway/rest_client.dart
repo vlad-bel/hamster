@@ -32,4 +32,16 @@ abstract class RestClient {
   Future<VerifyNumberResponse> verifyNumber(
     @Body() Map<String, dynamic> body,
   );
+
+  // verify email:
+  //region verify email:
+  @POST('/rep/verify-email-code')
+  Future<String> verifyEmailCode(
+    @Body() Map<String, dynamic> emailCodeMap,
+  );
+
+  @POST('/rep/resend-code-to-email')
+  Future<String> resendEmailCode(
+    @Body() Map<String, dynamic> resendEmailCodeMap,
+  );
 }

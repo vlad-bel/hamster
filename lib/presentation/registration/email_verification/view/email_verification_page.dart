@@ -1,7 +1,7 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/domain/core/errors/failures.dart';
-import 'package:business_terminal/domain/dependency_injection/di.dart';
+import 'package:business_terminal/dependency_injection/di.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/use_cases/registration/email_verification/email_verification.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:hamster_widgets/pincode/pincode.dart';
 
 class EmailVerificationPage extends StatelessWidget {
   const EmailVerificationPage({
@@ -105,9 +106,8 @@ class SubHeaderRichText extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text:
-            'Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse '
-                'beispiel ',
+        text: 'Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse '
+            'beispiel ',
         style: inter14.copyWith(height: 1.6),
         children: [
           TextSpan(

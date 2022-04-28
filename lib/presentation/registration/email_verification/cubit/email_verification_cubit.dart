@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:business_terminal/data/model/registration/email_verification/email_verification_request.dart';
-import 'package:business_terminal/data/model/registration/email_verification/resend_email_code_request.dart';
-import 'package:business_terminal/domain/core/errors/failures.dart';
-import 'package:business_terminal/domain/dependency_injection/di.dart';
+import 'package:business_terminal/dependency_injection/di.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/request_model/registration/email_verification/email_verification_request.dart';
+import 'package:business_terminal/domain/request_model/registration/email_verification/resend_email_code_request.dart';
 import 'package:business_terminal/domain/use_cases/registration/email_verification/email_verification.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -26,9 +26,13 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
     try {
       final response = await _useCase.resendCode(request);
       emit(const EmailVerificationState.mailSent());
-    } on DioError catch (e) {
+    } on ApiFailure catch (e) {
       logger.e(e);
-      emit(EmailVerificationState.error(ApiFailure(e, 'resendEmailCode')));
+      emit(
+        EmailVerificationState.error(
+          ApiFailure(e.response, 'resendEmailCode'),
+        ),
+      );
     }
   }
 
@@ -55,12 +59,16 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
       if (response == 'OK') {
         emit(const EmailVerificationState.success('response'));
       }
-    } on DioError catch (e) {
+    } on ApiFailure catch (e) {
       if (e.response?.statusCode == 400) {
         wrongOTPCode();
       } else {
         logger.e(e);
-        emit(EmailVerificationState.error(ApiFailure(e, 'resendEmailCode')));
+        emit(
+          EmailVerificationState.error(
+            ApiFailure(e.response, 'resendEmailCode'),
+          ),
+        );
       }
     }
   }

@@ -1,9 +1,7 @@
 import 'package:business_terminal/domain/gateway/rest_client.dart';
-import 'package:business_terminal/data/gateway/rest_client.dart';
-import 'package:business_terminal/data/model/registration/email_verification/email_verification_request.dart';
-import 'package:business_terminal/data/model/registration/email_verification/resend_email_code_request.dart';
-import 'package:business_terminal/data/model/registration/user_info_request.dart';
 import 'package:business_terminal/domain/repository/api_repository.dart';
+import 'package:business_terminal/domain/request_model/registration/email_verification/email_verification_request.dart';
+import 'package:business_terminal/domain/request_model/registration/email_verification/resend_email_code_request.dart';
 import 'package:business_terminal/domain/request_model/registration/user_info_request.dart';
 
 class RestApiRepository extends ApiRepository {

@@ -2,7 +2,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:business_terminal/domain/dependency_injection/di.dart';
+import 'package:business_terminal/dependency_injection/di.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/horizontal_line_short_grey.dart';
 import 'package:business_terminal/presentation/common/widgets/text_title.dart';
