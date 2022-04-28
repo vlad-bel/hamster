@@ -1,5 +1,7 @@
 import 'package:business_terminal/dependency_injection/di.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
+import 'package:business_terminal/domain/dependency_injection/di.dart';
+import 'package:dio/dio.dart';
 
 abstract class Failure implements Exception {
   Failure(this.exception, this.methodName) {
@@ -26,6 +28,12 @@ class ApiFailure extends Failure {
 ///to connect to the internet.
 class ConnectionFailure extends Failure {
   ConnectionFailure(dynamic exception, String methodName)
+      : super(exception, methodName);
+}
+
+//Presentation layer errors
+class UIFailure extends Failure {
+  UIFailure(dynamic exception, String methodName)
       : super(exception, methodName);
 }
 

@@ -3,6 +3,7 @@ import 'package:business_terminal/domain/dependency_injection/di.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/request_model/registration/user_info_request.dart';
 import 'package:business_terminal/use_cases/registration/user_info_init/user_info_init.dart';
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_info_init_cubit.freezed.dart';
@@ -34,8 +35,8 @@ class UserInfoInitCubit extends Cubit<UserInfoInitState> {
       logger.d(response);
 
       emit(UserInfoInitState.success(response));
-    } catch (e) {
-      logger.d(e);
+    } on DioError catch (e) {
+      logger.e(e);
       emit(UserInfoInitState.error(ApiFailure(e, 'iniUserInfoCreation')));
     }
   }
