@@ -13,7 +13,7 @@ class ApiFailureResponse {
   @JsonKey(name: 'statusCode')
   final int statusCode;
   @JsonKey(name: 'message')
-  final String message;
+  final dynamic message;
   @JsonKey(name: 'error')
   final String error;
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
@@ -42,7 +44,10 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
   }
 
   @override
-  Future createPhone({required String email, required String phone}) async {
+  Future createPhone({
+    required String email,
+    required String phone,
+  }) async {
     try {
       final response = await repository.createPhone(
         CreatePhoneRequest(
@@ -76,6 +81,30 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e.response!.data as Map<String, dynamic>),
         'verifyNumber',
+      );
+    }
+  }
+
+  @override
+  Future<void> resendSMSCode({
+    required String email,
+    required VerifyMethod method,
+  }) async {
+    try {
+      await repository.resendSMSCode(
+        VerifyPhoneRequest(
+          verifyMethod: method.string,
+          email: email,
+        ).toJson(),
+      );
+    } on DioError catch (e) {
+      final dynamic error = e.response?.data;
+      print("error:$error errorType: ${error.runtimeType}");
+      throw ApiFailure(
+        ApiFailureResponse.fromJson(
+          jsonDecode(e.response!.data as String) as Map<String, dynamic>,
+        ),
+        'resendSMSCode',
       );
     }
   }

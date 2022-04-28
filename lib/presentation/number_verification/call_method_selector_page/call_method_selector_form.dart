@@ -1,12 +1,13 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/bloc/call_method_selector_page_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/bloc/call_method_selector_page_state.dart';
-import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmation_page.dart';
+import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmaion_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +53,21 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
             ),
           ),
         ),
-        body: BlocBuilder<CallMethodSelectorPageCubit,
+        body: BlocConsumer<CallMethodSelectorPageCubit,
             CallMethodSelectorPageState>(
+          listener: (context, state) {
+            if (state.runtimeType == GoNextState) {
+              print("push");
+              // Routemaster.of(context).push(
+              //   NumberCodeConfirmationPage.path,
+              //   queryParameters: {
+              //     'phone': widget.number,
+              //     'email': widget.email,
+              //     'verify_method': (state as GoNextState).method.string,
+              //   },
+              // );
+            }
+          },
           builder: (BuildContext context, state) {
             final cubit = BlocProvider.of<CallMethodSelectorPageCubit>(context);
             return Column(
@@ -101,14 +115,16 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                       onPressed: () {
                         cubit.sendCallMethod(
                           email: widget.email,
-                          goNext: () {
-                            Routemaster.of(context).push(
-                              NumberCodeConfirmationPage.path,
-                              queryParameters: {
-                                'phone': widget.number,
-                                'email': widget.email,
-                              },
-                            );
+                        );
+                        final verifyMethod = state.smsSelected
+                            ? VerifyMethod.sms
+                            : VerifyMethod.phoneCall;
+                        Routemaster.of(context).push(
+                          NumberCodeConfirmationPage.path,
+                          queryParameters: {
+                            'phone': widget.number,
+                            'email': widget.email,
+                            'verify_method': verifyMethod.string,
                           },
                         );
                       },

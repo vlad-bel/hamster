@@ -15,6 +15,11 @@ abstract class NumberVerificationUseCase {
     required String code,
   });
 
+  Future<void> resendSMSCode({
+    required String email,
+    required VerifyMethod method,
+  });
+
   Future createPhone({
     required String email,
     required String phone,

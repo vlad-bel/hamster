@@ -29,10 +29,9 @@ class CountryCodeCubit extends Cubit<CountryCodeState> {
 
         final phoneNumberWithCode = '${selectedCountry!.phone}$phoneNumber';
 
-        const testEmail = 'john.doe@test.com';
+        const testEmail = 'john.doe@test6.com';
         try {
           emit(const CountryCodeState.loading());
-          // await Future<void>.delayed(Duration(seconds: 2));
           await useCase.createPhone(
             email: testEmail,
             phone: phoneNumberWithCode,

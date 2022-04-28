@@ -9,9 +9,9 @@ class VerifySmsNumberRequest {
     required this.code,
   });
 
-  @JsonKey(name: "phone")
+  @JsonKey(name: 'email')
   final String email;
-  @JsonKey(name: "code")
+  @JsonKey(name: 'code')
   final String code;
 
   factory VerifySmsNumberRequest.fromJson(Map<String, dynamic> json) =>

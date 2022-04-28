@@ -44,4 +44,9 @@ abstract class RestClient {
   Future<String> resendEmailCode(
     @Body() Map<String, dynamic> resendEmailCodeMap,
   );
+
+  @POST('/rep/resend-code-to-phone')
+  Future<String> resendSMSCode(
+    @Body() Map<String, dynamic> resendEmailCodeMap,
+  );
 }

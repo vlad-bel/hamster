@@ -1,7 +1,8 @@
+import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/navigation/hamster_page.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/call_method_selector_page.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/country_code_page.dart';
-import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmation_page.dart';
+import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmaion_page.dart';
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 
@@ -30,13 +31,16 @@ class AuthRouteMap extends RouteMap {
       );
     },
     NumberCodeConfirmationPage.path: (data) {
-      final phoneNumber = data.queryParameters['phone_number']!;
+      final phoneNumber = data.queryParameters['phone']!;
       final email = data.queryParameters['email']!;
-
+      final method = VerifyMethodExtension.fromString(
+        data.queryParameters['verify_method']!,
+      );
       return HamsterPage<void>(
         child: NumberCodeConfirmationPage(
           email: email,
           phone: phoneNumber,
+          verifyMethod: VerifyMethod.sms,
         ),
       );
     },

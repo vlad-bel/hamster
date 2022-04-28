@@ -7,13 +7,22 @@ enum VerifyMethod {
   sms,
 }
 
-extension Ext on VerifyMethod {
+extension VerifyMethodExtension on VerifyMethod {
   String get string {
     switch (this) {
       case VerifyMethod.phoneCall:
         return 'PHONE_CALL';
       case VerifyMethod.sms:
         return 'SMS';
+    }
+  }
+
+  static VerifyMethod fromString(String method) {
+    switch (method) {
+      case 'PHONE_CALL':
+        return VerifyMethod.phoneCall;
+      default:
+        return VerifyMethod.sms;
     }
   }
 }

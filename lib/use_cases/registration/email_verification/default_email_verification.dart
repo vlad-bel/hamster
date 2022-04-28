@@ -3,7 +3,7 @@ import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/repository/api_repository.dart';
 import 'package:business_terminal/domain/request_model/registration/email_verification/email_verification_request.dart';
 import 'package:business_terminal/domain/request_model/registration/email_verification/resend_email_code_request.dart';
-import 'package:business_terminal/domain/use_cases/registration/email_verification/email_verification.dart';
+import 'package:business_terminal/use_cases/registration/email_verification/email_verification.dart';
 import 'package:dio/dio.dart';
 
 class DefaultEmailVerificationUseCase implements EmailVerificationUseCase {

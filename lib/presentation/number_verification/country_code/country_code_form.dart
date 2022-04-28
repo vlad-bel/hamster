@@ -1,4 +1,3 @@
-import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/country_code_selector.dart';
@@ -57,7 +56,7 @@ class ContryCodeForm extends StatelessWidget {
                       listener: (context, state) {
                         state.whenOrNull(error: (e) {
                           SnackBarManager.showError(
-                            e.response.message,
+                            e.response.message.toString(),
                           );
                         }, next: (email, phone) {
                           Routemaster.of(context).push(
