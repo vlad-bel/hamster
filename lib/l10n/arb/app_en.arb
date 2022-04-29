@@ -13,5 +13,7 @@
   "sms": "SMS",
   "phone_call": "Phone",
   "country_name": "Country name",
-  "required_field": "Required field"
+  "required_field": "Required field",
+  "user_account_created": "User account created",
+  "user_account_created_description": "You have successfully created your user account and therefore only have one more step to gain access to Hamster's BusinessTerminal."
 }

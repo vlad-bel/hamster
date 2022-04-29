@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 final GlobalKey<ScaffoldMessengerState> snackbarKey =
     GlobalKey<ScaffoldMessengerState>();
 
+@singleton
 class SnackBarManager {
   static void showError(String message) {
     final backgroundColor = Colors.red[300]!;
