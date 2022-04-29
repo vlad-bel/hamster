@@ -58,13 +58,15 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
       logger.d('response: $response');
 
       if (response == 'OK') {
-        emit(EmailVerificationState.success(
-          'response',
-          email,
-        ));
+        emit(
+          EmailVerificationState.success(
+            'response',
+            email,
+          ),
+        );
       }
     } on ApiFailure catch (e) {
-      if (e.response?.statusCode == 400) {
+      if (e.response.statusCode == 400) {
         wrongOTPCode();
       } else {
         logger.e(e);

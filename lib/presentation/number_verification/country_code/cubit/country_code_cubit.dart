@@ -41,7 +41,6 @@ class CountryCodeCubit extends Cubit<CountryCodeState> {
               phone: phoneNumberWithCode,
             ),
           );
-          // emailCreated(testEmail, phoneNumberWithCode);
         } on ApiFailure catch (e) {
           emit(CountryCodeState.error(e));
         }
