@@ -54,19 +54,22 @@ class ContryCodeForm extends StatelessWidget {
                   ) {
                     return BlocConsumer<CountryCodeCubit, CountryCodeState>(
                       listener: (context, state) {
-                        state.whenOrNull(error: (e) {
-                          SnackBarManager.showError(
-                            e.response.message.toString(),
-                          );
-                        }, next: (email, phone) {
-                          Routemaster.of(context).push(
-                            CallMethodSelectorPage.path,
-                            queryParameters: {
-                              'phone_number': phone,
-                              'email': email,
-                            },
-                          );
-                        });
+                        state.whenOrNull(
+                          error: (e) {
+                            SnackBarManager.showError(
+                              e.response.message.toString(),
+                            );
+                          },
+                          next: (email, phone) {
+                            Routemaster.of(context).push(
+                              CallMethodSelectorPage.path,
+                              queryParameters: {
+                                'phone_number': phone,
+                                'email': email,
+                              },
+                            );
+                          },
+                        );
                       },
                       builder: (context, state) {
                         final contryCodeCubit =

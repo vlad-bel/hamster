@@ -1,5 +1,3 @@
-import 'package:business_terminal/dependency_injection/di.dart';
-import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/call_method_selector_page.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/cubit/number_code_confirmation_cubit.dart';

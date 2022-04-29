@@ -53,21 +53,8 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
             ),
           ),
         ),
-        body: BlocConsumer<CallMethodSelectorPageCubit,
+        body: BlocBuilder<CallMethodSelectorPageCubit,
             CallMethodSelectorPageState>(
-          listener: (context, state) {
-            if (state.runtimeType == GoNextState) {
-              print("push");
-              // Routemaster.of(context).push(
-              //   NumberCodeConfirmationPage.path,
-              //   queryParameters: {
-              //     'phone': widget.number,
-              //     'email': widget.email,
-              //     'verify_method': (state as GoNextState).method.string,
-              //   },
-              // );
-            }
-          },
           builder: (BuildContext context, state) {
             final cubit = BlocProvider.of<CallMethodSelectorPageCubit>(context);
             return Column(

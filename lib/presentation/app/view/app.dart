@@ -54,12 +54,6 @@ class _AppState extends State<App> {
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
-            // // home: const RegistrationPage(),
-            // // home: const EmailVerificationPage(),
-            // // home: const NumberVerificationForm(),
-            // home: const CountriesCodePage(),
-            // // home: const NumberCodeConfirmationPage(),
-            // // home: const CallMethodSelectorPage(),
           );
         },
       ),
