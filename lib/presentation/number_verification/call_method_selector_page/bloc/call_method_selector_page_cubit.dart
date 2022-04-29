@@ -6,7 +6,7 @@ import 'package:business_terminal/use_cases/number_verification/number_verificat
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@singleton
 class CallMethodSelectorPageCubit extends Cubit<CallMethodSelectorPageState> {
   CallMethodSelectorPageCubit({
     required this.useCase,

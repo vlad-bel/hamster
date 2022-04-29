@@ -9,7 +9,7 @@ class CallMethodSelectorPageState extends Equatable {
   final bool smsSelected;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [smsSelected];
 }
 
 class GoNextState extends CallMethodSelectorPageState {

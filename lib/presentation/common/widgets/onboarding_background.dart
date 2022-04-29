@@ -26,7 +26,6 @@ class OnboardingBackground extends StatelessWidget {
             child: Column(
               children: [
                 const OnboardingAppbar(),
-                const SizedBox(height: 60),
                 Center(
                   child: children,
                 ),

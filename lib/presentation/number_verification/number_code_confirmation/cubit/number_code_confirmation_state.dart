@@ -8,8 +8,9 @@ class NumberCodeConfirmationState with _$NumberCodeConfirmationState {
   const factory NumberCodeConfirmationState.loading() =
       LoadingNumberCodeConfirmationState;
 
-  const factory NumberCodeConfirmationState.success() =
-      SucessNumberCodeConfirmationState;
+  const factory NumberCodeConfirmationState.success({
+    String? response,
+  }) = SucessNumberCodeConfirmationState;
 
   const factory NumberCodeConfirmationState.codeError({required ApiFailure e}) =
       CodeErrorCodeConfirmationState;

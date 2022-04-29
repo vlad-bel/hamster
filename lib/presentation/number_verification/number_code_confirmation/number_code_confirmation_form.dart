@@ -6,6 +6,7 @@ import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/code_verification_form/code_verification_form.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/cubit/number_code_confirmation_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/cubit/number_code_confirmation_state.dart';
+import 'package:business_terminal/presentation/number_verification/result_page/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:routemaster/routemaster.dart';
@@ -28,6 +29,13 @@ class NumberCodeConfirmationForm extends StatelessWidget {
         NumberCodeConfirmationState>(
       listener: (context, state) {
         state.whenOrNull(
+          success: (response) {
+            if (response == 'ok') {
+              Routemaster.of(context).push(
+                ResultPage.path,
+              );
+            }
+          },
           resendError: (e) {
             SnackBarManager.showError(e.response.message.toString());
           },

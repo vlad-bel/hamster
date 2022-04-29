@@ -23,7 +23,11 @@ class NumberCodeConfirmationCubit extends Cubit<NumberCodeConfirmationState> {
         email: email,
         code: code,
       );
-      emit(const NumberCodeConfirmationState.success());
+      emit(
+        const NumberCodeConfirmationState.success(
+          response: 'ok',
+        ),
+      );
     } on ApiFailure catch (e) {
       emit(NumberCodeConfirmationState.codeError(e: e));
     }

@@ -1,6 +1,8 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class SnackBarManager {
   void showError(BuildContext context, String message) {
     final backgroundColor = Colors.red[300]!;

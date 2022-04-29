@@ -1,6 +1,5 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/dependency_injection/di.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
@@ -54,7 +53,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
   final emailWasSentColor = fruitSalad;
 
   final pinController = TextEditingController();
-  final snackBarManager = get<SnackBarManager>();
+  final snackBarManager = GetIt.instance.get<SnackBarManager>();
 
   @override
   Widget build(BuildContext context) {
