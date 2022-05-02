@@ -38,6 +38,8 @@ dependencies:
   logger: ^1.1.0
   dart_extensions: ^2.2.0
   dartz: ^0.10.1
+  flutter_google_places: ^0.3.0
+  google_place: ^0.4.7
 
   # UI:
   flutter_svg: ^1.0.3

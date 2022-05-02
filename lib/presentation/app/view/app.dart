@@ -1,4 +1,5 @@
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:business_terminal/presentation/navigation/title_observer.dart';
 import 'package:flutter/material.dart';
@@ -25,15 +26,16 @@ class _AppState extends State<App> {
       child: BlocBuilder<AppStateCubit, AppState>(
         bloc: appStateCubit,
         builder: (BuildContext context, state) {
-          return MaterialApp.router(
+          return MaterialApp(
             scaffoldMessengerKey: snackbarKey,
-            routeInformationParser: const RoutemasterParser(),
-            routerDelegate: RoutemasterDelegate(
-              observers: [
-                TitleObserver(),
-              ],
-              routesBuilder: (context) => state.routeMap,
-            ),
+            // routeInformationParser: const RoutemasterParser(),
+            // routerDelegate: RoutemasterDelegate(
+            //   observers: [
+            //     TitleObserver(),
+            //   ],
+            //   routesBuilder: (context) => state.routeMap,
+            // ),
+            home: const CompanyCreationPage(),
             theme: ThemeData(
               appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
               colorScheme: ColorScheme.fromSwatch(

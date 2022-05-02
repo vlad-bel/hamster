@@ -15,5 +15,7 @@
   "country_name": "Country name",
   "required_field": "Required field",
   "user_account_created": "User account created",
-  "user_account_created_description": "You have successfully created your user account and therefore only have one more step to gain access to Hamster's BusinessTerminal."
+  "user_account_created_description": "You have successfully created your user account and therefore only have one more step to gain access to Hamster's BusinessTerminal.",
+  "create_company_profile": "Create your company profile.",
+  "create_company_profile_descr": "Let us know how your company can be reached by post."
 }
