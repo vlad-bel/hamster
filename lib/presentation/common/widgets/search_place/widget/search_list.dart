@@ -42,8 +42,8 @@ class SearchList extends StatelessWidget {
                         final prediction = predictions[index];
                         return ListTile(
                           onTap: () {
-                            cubit.selectPrediction(prediction);
                             overlayEntry.remove();
+                            cubit.selectPrediction(prediction);
                           },
                           title: SizedBox(
                             width: size.width,

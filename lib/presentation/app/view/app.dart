@@ -1,7 +1,4 @@
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
-import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
-import 'package:business_terminal/presentation/navigation/title_observer.dart';
-import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:business_terminal/presentation/navigation/title_observer.dart';
@@ -29,15 +26,8 @@ class _AppState extends State<App> {
       child: BlocBuilder<AppStateCubit, AppState>(
         bloc: appStateCubit,
         builder: (BuildContext context, state) {
-          return MaterialApp.router(
-            scaffoldMessengerKey: snackbarKey,
-            routeInformationParser: const RoutemasterParser(),
-            routerDelegate: RoutemasterDelegate(
-              observers: [
-                TitleObserver(),
-              ],
-              routesBuilder: (context) => state.routeMap,
-            ),
+          return MaterialApp(
+          // return MaterialApp.router(
             scaffoldMessengerKey: snackbarKey,
             // routeInformationParser: const RoutemasterParser(),
             // routerDelegate: RoutemasterDelegate(

@@ -50,7 +50,7 @@ class _CountrySelectorState extends State<CountrySelector> {
       bloc: widget.cubit,
       builder: (BuildContext context, CountrySelectorState state) {
         return ReactiveForm(
-          formGroup: widget.cubit.numberForm,
+          formGroup: widget.cubit.countryForm,
           child: state.when(
             loading: () {
               return FormTextField(

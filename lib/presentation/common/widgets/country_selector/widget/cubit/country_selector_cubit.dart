@@ -6,13 +6,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:google_maps_webservice/places.dart';
+import 'package:google_place/google_place.dart';
 
 @singleton
 class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   CountrySelectorCubit({
     required this.useCase,
   }) : super(const CountrySelectorState.loading()) {
-    numberForm.valueChanges.listen((event) {
+
+    countryForm.valueChanges.listen((event) {
       final filterValue = (event![filterTextfield])! as String;
       filterCountryList(filterValue);
     });
@@ -23,7 +25,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   static const countryField = 'country';
   static const filterTextfield = 'filter';
 
-  final numberForm = fb.group({
+  final countryForm = fb.group({
     countryField: FormControl<String>(
       value: '',
       validators: [
@@ -82,7 +84,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   void selectCountry(Country country) {
     state.whenOrNull(
       success: (_, countries) {
-        numberForm.control(countryField).value =
+        countryForm.control(countryField).value =
             ' ${country.emoji}  ${country.name}';
         emit(
           CountrySelectorState.success(
@@ -98,6 +100,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
     state.whenOrNull(
       success: (_, countries) {
         final predictionContry = prediction.description!.split(',').last.trim();
+
         ///TODO WARNING
         /// Here we can face with bug of finding needed country
         /// because some countries have different names into Google Api and  into our backend
@@ -114,8 +117,10 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
           (element) => element.name.startsWith(predictionContry),
         );
 
-        numberForm.control(countryField).value =
-            ' ${country?.emoji}  ${country?.name}';
+        if (country != null) {
+          countryForm.control(countryField).value =
+              ' ${country.emoji}  ${country.name}';
+        }
 
         emit(
           CountrySelectorState.success(

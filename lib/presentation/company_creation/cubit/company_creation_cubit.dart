@@ -6,31 +6,35 @@ import 'package:google_maps_webservice/places.dart';
 
 @injectable
 class CompanyCreationCubit extends Cubit<CompanyCreationState> {
-  CompanyCreationCubit() : super(const CompanyCreationState.loading()) {
-    // formGroup.valueChanges.listen((event) async {
-    //   if (event != null) {
-    //     final addressValue = event[addressField]! as String;
-    //    final response =  await places.autocomplete(
-    //       addressValue,
-    //     );
-    //     response.predictions.forEach((element) {
-    //       print("prediction:${element.description}");
-    //     });
-    //   }
-    // });
-  }
+  CompanyCreationCubit() : super(const CompanyCreationState.loading());
 
   static const companyField = 'company';
   static const addressField = 'address';
   static const postcodeField = 'postcode';
 
   final formGroup = fb.group({
-    companyField: FormControl<String>(),
-    addressField: FormControl<String>(),
-    postcodeField: FormControl<String>(),
+    companyField: FormControl<String>(
+      validators: [
+        Validators.required,
+      ],
+    ),
+    addressField: FormControl<String>(
+      validators: [
+        Validators.required,
+      ],
+    ),
+    postcodeField: FormControl<String>(
+      validators: [
+        Validators.required,
+      ],
+    ),
   });
 
   final places = GoogleMapsPlaces(
     apiKey: 'AIzaSyBkUrWkOYuIXxLHNLrqrZpGzk3aYP7vX7A',
   );
+
+  Future createCompany({
+    required Prediction selectedAddress,
+  }) async {}
 }

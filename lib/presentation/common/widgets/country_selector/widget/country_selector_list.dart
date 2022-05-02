@@ -47,7 +47,7 @@ class CountrySelectorList extends StatelessWidget {
                         child: Container(
                           color: white,
                           child: ReactiveForm(
-                            formGroup: cubit.numberForm,
+                            formGroup: cubit.countryForm,
                             child: FormTextField(
                               name: CountrySelectorCubit.filterTextfield,
                               hint: context.l10n.country_name,
@@ -58,7 +58,7 @@ class CountrySelectorList extends StatelessWidget {
                                   color: lynch,
                                 ),
                                 onPressed: () {
-                                  cubit.numberForm
+                                  cubit.countryForm
                                       .control(
                                     CountrySelectorCubit
                                         .filterTextfield,
@@ -88,7 +88,7 @@ class CountrySelectorList extends StatelessWidget {
                             final country = countries[index];
                             return ListTile(
                               onTap: () {
-                                cubit.numberForm
+                                cubit.countryForm
                                     .control(
                                   CountrySelectorCubit.countryField,
                                 )

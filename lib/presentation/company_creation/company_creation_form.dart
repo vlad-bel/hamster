@@ -36,13 +36,11 @@ class CompanyCreationForm extends StatelessWidget {
             builder: (context, state) {
               final companyCreationCubit =
                   BlocProvider.of<CompanyCreationCubit>(context);
-              final companySelectorCubit =
+              final countrySelectorCubit =
                   BlocProvider.of<CountrySelectorCubit>(context);
 
               return ReactiveFormBuilder(
-                form: () {
-                  return companyCreationCubit.formGroup;
-                },
+                form: () => companyCreationCubit.formGroup,
                 builder: (
                   BuildContext context,
                   FormGroup formGroup,
@@ -63,7 +61,7 @@ class CompanyCreationForm extends StatelessWidget {
                         label: 'address',
                         hint: 'address',
                         onPredictionSelect: (prediction) {
-                          companySelectorCubit.selectCountryFromPrediction(
+                          countrySelectorCubit.selectCountryFromPrediction(
                             prediction,
                           );
                         },
@@ -76,7 +74,7 @@ class CompanyCreationForm extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       CountrySelector(
-                        cubit: BlocProvider.of<CountrySelectorCubit>(context),
+                        cubit: countrySelectorCubit,
                       ),
                       const SizedBox(height: 36),
                       Row(
@@ -88,12 +86,24 @@ class CompanyCreationForm extends StatelessWidget {
                             },
                           ),
                           const Spacer(),
-                          ActionButtonBlue(
-                            width: 160,
-                            isEnabled: companySelectorCubit.numberForm.valid &&
-                                companyCreationCubit.formGroup.valid,
-                            onPressed: () {
-                              ///go next
+                          ReactiveFormConsumer(
+                            builder: (context, group, child) {
+                              final selectedCountry =
+                                  countrySelectorCubit.state.whenOrNull(
+                                success: (country, _) => country,
+                              );
+                              return ActionButtonBlue(
+                                width: 160,
+                                isEnabled:
+                                    // countrySelectorCubit.countryForm.valid &&
+                                    selectedCountry != null && group.valid,
+                                onPressed: () {
+                                  ///go next
+                                  // companyCreationCubit.createCompany(
+                                  //   selectedAddress: countrySelectorCubit.state.whenOrNull(success: (country, _) => country),
+                                  // );
+                                },
+                              );
                             },
                           ),
                         ],

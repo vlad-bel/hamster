@@ -61,13 +61,6 @@ class AuthRouteMap extends RouteMap {
         child: NumberCodeConfirmationPage(
           email: email,
           phone: phoneNumber,
-          verifyMethod: method,
-        ),
-      );
-    },
-    ResultPage.path: (data) {
-      return const HamsterPage<void>(
-        child: ResultPage(),
           verificationMethod: method,
         ),
       );
