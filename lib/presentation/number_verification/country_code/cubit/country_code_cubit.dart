@@ -13,7 +13,7 @@ class CountryCodeCubit extends Cubit<CountryCodeState> {
   CountryCodeCubit({
     required this.useCase,
     required this.codeSelectorCubit,
-  }) : super(const CountryCodeState.success());
+  }) : super(const CountryCodeState.init());
 
   late final String email;
   final NumberVerificationUseCase useCase;
@@ -21,7 +21,7 @@ class CountryCodeCubit extends Cubit<CountryCodeState> {
 
   Future createPhone() async {
     await codeSelectorCubit.state.whenOrNull(
-      success: (selectedCountry, countries) async {
+      init: (selectedCountry, countries) async {
         final phoneNumber = codeSelectorCubit
             .numberForm
             .controls[CountryCodeSelectorCubit.numberTextfield]!
@@ -53,7 +53,7 @@ class CountryCodeCubit extends Cubit<CountryCodeState> {
 class CountryCodeState with _$CountryCodeState {
   const factory CountryCodeState.loading() = LoadingCountryCodeState;
 
-  const factory CountryCodeState.success() = SucessCountryCodeState;
+  const factory CountryCodeState.init() = InitCountryCodeState;
 
   const factory CountryCodeState.next({
     required String email,

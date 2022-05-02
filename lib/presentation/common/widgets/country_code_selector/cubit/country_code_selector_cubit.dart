@@ -41,7 +41,7 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
       final countries = await useCase.getCountries();
       cachedCountries = countries.values.toList();
       emit(
-        CountryCodeSelectorState.success(
+        CountryCodeSelectorState.init(
           countries: countries.values.toList(),
         ),
       );
@@ -52,9 +52,9 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
 
   void showCountryList({Country? selectedCountry}) {
     state.whenOrNull(
-      success: (_, countries) {
+      init: (_, countries) {
         emit(
-          CountryCodeSelectorState.success(
+          CountryCodeSelectorState.init(
             countries: countries,
             selectedCountry: selectedCountry,
           ),
@@ -65,9 +65,9 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
 
   void filterCountryList(String value) {
     state.whenOrNull(
-      success: (selectedCountry, countries) {
+      init: (selectedCountry, countries) {
         emit(
-          CountryCodeSelectorState.success(
+          CountryCodeSelectorState.init(
             countries: cachedCountries
                 .where((element) => element.name.startsWith(value))
                 .toList(),
@@ -80,9 +80,9 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
 
   void selectCountry(Country country) {
     state.whenOrNull(
-      success: (_, countries) {
+      init: (_, countries) {
         emit(
-          CountryCodeSelectorState.success(
+          CountryCodeSelectorState.init(
             selectedCountry: country,
             countries: countries,
           ),

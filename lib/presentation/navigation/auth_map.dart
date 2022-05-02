@@ -68,6 +68,13 @@ class AuthRouteMap extends RouteMap {
     ResultPage.path: (data) {
       return const HamsterPage<void>(
         child: ResultPage(),
+          verificationMethod: method,
+        ),
+      );
+    },
+    PhoneVerificationResultPage.path: (data) {
+      return const HamsterPage<void>(
+        child: PhoneVerificationResultPage(),
       );
     }
   };

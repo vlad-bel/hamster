@@ -30,7 +30,7 @@ class CountryCodeSelectorList extends StatelessWidget {
       builder: (context, CountryCodeSelectorState state) {
         return state.when(
           loading: SizedBox.new,
-          success: (selectedCountry, countries) {
+          init: (selectedCountry, countries) {
             return Positioned(
               width: size.width,
               child: CompositedTransformFollower(

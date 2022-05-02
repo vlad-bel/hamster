@@ -9,10 +9,10 @@ abstract class CountryCodeSelectorState with _$CountryCodeSelectorState {
   const factory CountryCodeSelectorState.loading() =
       LoadingCountryCodeSelectorState;
 
-  const factory CountryCodeSelectorState.success({
+  const factory CountryCodeSelectorState.init({
     Country? selectedCountry,
     List<Country>? countries,
-  }) = SucessCountryCodeSelectorState;
+  }) = InitCountryCodeSelectorState;
 
   const factory CountryCodeSelectorState.error(ApiFailure e) =
       ErrorCountryCodeSelectorState;

@@ -17,9 +17,7 @@ class CountryCodeActiveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ActionButtonBlue(
       width: double.infinity,
-      onPressed: () async {
-        await cubit.createPhone();
-      },
+      onPressed: cubit.createPhone,
       isEnabled: formGroup.valid,
     );
   }

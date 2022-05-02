@@ -103,7 +103,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                         cubit.sendCallMethod(
                           email: widget.email,
                         );
-                        final verifyMethod = state.smsSelected
+                        final verificationMethod = state.smsSelected
                             ? VerifyMethod.sms
                             : VerifyMethod.phoneCall;
                         Routemaster.of(context).push(
@@ -111,7 +111,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                           queryParameters: {
                             'phone': widget.number,
                             'email': widget.email,
-                            'verify_method': verifyMethod.string,
+                            'verify_method': verificationMethod.string,
                           },
                         );
                       },

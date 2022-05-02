@@ -7,8 +7,8 @@ import 'package:business_terminal/presentation/number_verification/number_code_c
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
 
-class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+class PhoneVerificationResultPage extends StatelessWidget {
+  const PhoneVerificationResultPage({Key? key}) : super(key: key);
 
   static const path = '${NumberCodeConfirmationPage.path}/result_page';
 

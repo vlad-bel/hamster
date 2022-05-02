@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 class NumberCodeConfirmationCubit extends Cubit<NumberCodeConfirmationState> {
   NumberCodeConfirmationCubit({
     required this.useCase,
-  }) : super(const NumberCodeConfirmationState.success());
+  }) : super(const NumberCodeConfirmationState.init());
 
   final NumberVerificationUseCase useCase;
 
@@ -24,9 +24,7 @@ class NumberCodeConfirmationCubit extends Cubit<NumberCodeConfirmationState> {
         code: code,
       );
       emit(
-        const NumberCodeConfirmationState.success(
-          response: 'ok',
-        ),
+        const NumberCodeConfirmationState.success(),
       );
     } on ApiFailure catch (e) {
       emit(NumberCodeConfirmationState.codeError(e: e));
@@ -42,6 +40,9 @@ class NumberCodeConfirmationCubit extends Cubit<NumberCodeConfirmationState> {
       final response = await useCase.resendSMSCode(
         email: email,
         method: method,
+      );
+      emit(
+        const NumberCodeConfirmationState.init(),
       );
     } on ApiFailure catch (e) {
       emit(NumberCodeConfirmationState.resendError(e: e));

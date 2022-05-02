@@ -29,12 +29,10 @@ class NumberCodeConfirmationForm extends StatelessWidget {
         NumberCodeConfirmationState>(
       listener: (context, state) {
         state.whenOrNull(
-          success: (response) {
-            if (response == 'ok') {
-              Routemaster.of(context).push(
-                ResultPage.path,
-              );
-            }
+          success: () {
+            Routemaster.of(context).push(
+              PhoneVerificationResultPage.path,
+            );
           },
           resendError: (e) {
             SnackBarManager.showError(e.response.message.toString());

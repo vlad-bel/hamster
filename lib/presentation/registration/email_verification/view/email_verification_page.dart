@@ -1,5 +1,7 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
@@ -31,7 +33,7 @@ class EmailVerificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<EmailVerificationCubit>(
-      create: (context) => GetIt.instance.get<EmailVerificationCubit>(),
+      create: (context) => getIt.get<EmailVerificationCubit>(),
       child: EmailVerificationView(userEmail: userEmail),
     );
   }
@@ -53,7 +55,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
   final emailWasSentColor = fruitSalad;
 
   final pinController = TextEditingController();
-  final snackBarManager = GetIt.instance.get<SnackBarManager>();
+  final snackBarManager = getIt.get<SnackBarManager>();
 
   @override
   Widget build(BuildContext context) {

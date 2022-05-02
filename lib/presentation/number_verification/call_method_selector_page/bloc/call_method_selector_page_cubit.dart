@@ -26,18 +26,18 @@ class CallMethodSelectorPageCubit extends Cubit<CallMethodSelectorPageState> {
     required String email,
   }) async {
     try {
-      final verifyMethod =
+      final verificationMethod =
           state.smsSelected ? VerifyMethod.sms : VerifyMethod.phoneCall;
 
       useCase.verifyPhoneBy(
-        method: verifyMethod,
+        method: verificationMethod,
         email: email,
       );
 
       emit(
         GoNextState(
           smsSelected: state.smsSelected,
-          method: verifyMethod,
+          method: verificationMethod,
         ),
       );
     } on ApiFailure catch (e) {

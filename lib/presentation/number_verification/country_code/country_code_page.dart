@@ -1,3 +1,4 @@
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/country_code_form.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/cubit/country_code_cubit.dart';
@@ -23,12 +24,12 @@ class CountriesCodePage extends StatelessWidget {
       providers: [
         BlocProvider<CountryCodeSelectorCubit>(
           create: (context) {
-            return GetIt.instance.get<CountryCodeSelectorCubit>();
+            return getIt.get<CountryCodeSelectorCubit>();
           },
         ),
         BlocProvider<CountryCodeCubit>(
           create: (context) {
-            return GetIt.instance.get<CountryCodeCubit>()..email = email;
+            return getIt.get<CountryCodeCubit>()..email = email;
           },
         ),
       ],

@@ -59,7 +59,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
               readOnly: true,
             );
           },
-          success: (selectedCountry, countries) {
+          init: (selectedCountry, countries) {
             return CompositedTransformTarget(
               link: layerLink,
               child: FormTextField(

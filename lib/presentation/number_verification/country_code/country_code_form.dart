@@ -31,9 +31,7 @@ class ContryCodeForm extends StatelessWidget {
           ),
         ),
         body: ReactiveFormBuilder(
-          form: () {
-            return countrySelectorCubit.numberForm;
-          },
+          form: () => countrySelectorCubit.numberForm,
           builder: (
             BuildContext context,
             FormGroup formGroup,
@@ -76,7 +74,7 @@ class ContryCodeForm extends StatelessWidget {
                             BlocProvider.of<CountryCodeCubit>(context);
                         return state.when(
                           loading: () => const CountryCodeLoadingButton(),
-                          success: () => CountryCodeActiveButton(
+                          init: () => CountryCodeActiveButton(
                             cubit: contryCodeCubit,
                             formGroup: formGroup,
                           ),
