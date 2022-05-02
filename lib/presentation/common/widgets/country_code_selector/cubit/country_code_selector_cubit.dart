@@ -1,83 +1,93 @@
-import 'package:business_terminal/data/model/country/country.dart';
-import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/domain/model/country/country.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_state.dart';
+import 'package:business_terminal/use_cases/number_verification/number_verification_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+@singleton
 class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
   CountryCodeSelectorCubit({
-    required Function(String) onChange,
-  }) : super(CountryCodeSelectorState()) {
+    required this.useCase,
+  }) : super(const CountryCodeSelectorState.loading()) {
     numberForm.valueChanges.listen((event) {
-      if (state.selectedCountry != null) {
-        final numberValue = (event![numberTextfield])! as String;
-        final contryCode = state.selectedCountry!.countryCode;
-        onChange(
-          '${state.selectedCountry!.countryCode.substring(1, contryCode.length)}$numberValue',
-        );
-      }
       final filterValue = (event![filterTextfield])! as String;
       filterCountryList(filterValue);
     });
+
+    getCountryList();
   }
 
   static const numberTextfield = 'number';
   static const filterTextfield = 'filter';
 
   final numberForm = fb.group({
-    numberTextfield: FormControl<String>(value: ''),
+    numberTextfield: FormControl<String>(
+      value: '',
+      validators: [
+        Validators.required,
+      ],
+    ),
     filterTextfield: FormControl<String>(),
   });
 
-  ///mock data
-  ///TODO add fetching country list from server
-  final countryList = [
-    Country(
-      countryImage: Assets.imagesFlagsGer,
-      countryName: 'Germany',
-      countryCode: "+49",
-    ),
-    Country(
-        countryImage: Assets.imagesFlagsGer,
-        countryName: 'USA',
-        countryCode: '+100'),
-    Country(
-        countryImage: Assets.imagesFlagsGer,
-        countryName: 'GE',
-        countryCode: '+599'),
-    Country(
-        countryImage: Assets.imagesFlagsGer,
-        countryName: 'GE',
-        countryCode: '+599'),
-    Country(
-        countryImage: Assets.imagesFlagsGer,
-        countryName: 'GE',
-        countryCode: '+599'),
-    Country(
-        countryImage: Assets.imagesFlagsGer,
-        countryName: 'GE',
-        countryCode: '+599'),
-  ];
+  final NumberVerificationUseCase useCase;
+
+  late final List<Country> cachedCountries;
+
+  Future getCountryList() async {
+    try {
+      final countries = await useCase.getCountries();
+      cachedCountries = countries.values.toList();
+      emit(
+        CountryCodeSelectorState.init(
+          countries: countries.values.toList(),
+        ),
+      );
+    } on ApiFailure catch (e) {
+      emit(CountryCodeSelectorState.error(e));
+    }
+  }
 
   void showCountryList({Country? selectedCountry}) {
-    emit(CountryCodeSelectorOpenedState(
-      countryList: countryList,
-      selectedCountry: selectedCountry,
-    ));
+    state.whenOrNull(
+      init: (_, countries) {
+        emit(
+          CountryCodeSelectorState.init(
+            countries: countries,
+            selectedCountry: selectedCountry,
+          ),
+        );
+      },
+    );
   }
 
   void filterCountryList(String value) {
-    emit(
-      CountryCodeSelectorOpenedState(
-        selectedCountry: state.selectedCountry,
-        countryList: countryList
-            .where((element) => element.countryName.startsWith(value))
-            .toList(),
-      ),
+    state.whenOrNull(
+      init: (selectedCountry, countries) {
+        emit(
+          CountryCodeSelectorState.init(
+            countries: cachedCountries
+                .where((element) => element.name.startsWith(value))
+                .toList(),
+            selectedCountry: selectedCountry,
+          ),
+        );
+      },
     );
   }
 
   void selectCountry(Country country) {
-    emit(CountryCodeSelectorState(selectedCountry: country));
+    state.whenOrNull(
+      init: (_, countries) {
+        emit(
+          CountryCodeSelectorState.init(
+            selectedCountry: country,
+            countries: countries,
+          ),
+        );
+      },
+    );
   }
 }

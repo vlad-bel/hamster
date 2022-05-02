@@ -1,28 +1,19 @@
-import 'package:business_terminal/data/model/country/country.dart';
-import 'package:equatable/equatable.dart';
+import 'package:business_terminal/domain/model/country/country.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class CountryCodeSelectorState extends Equatable {
-  CountryCodeSelectorState({this.selectedCountry});
+part 'country_code_selector_state.freezed.dart';
 
-  final Country? selectedCountry;
+@freezed
+abstract class CountryCodeSelectorState with _$CountryCodeSelectorState {
+  const factory CountryCodeSelectorState.loading() =
+      LoadingCountryCodeSelectorState;
 
-  @override
-  List<Object?> get props => [selectedCountry];
-}
-
-class CountryCodeSelectorOpenedState extends CountryCodeSelectorState {
-  CountryCodeSelectorOpenedState({
+  const factory CountryCodeSelectorState.init({
     Country? selectedCountry,
-    required this.countryList,
-  }) : super(
-          selectedCountry: selectedCountry,
-        );
+    List<Country>? countries,
+  }) = InitCountryCodeSelectorState;
 
-  final List<Country> countryList;
-
-  @override
-  List<Object?> get props => [
-        selectedCountry,
-        countryList,
-      ];
+  const factory CountryCodeSelectorState.error(ApiFailure e) =
+      ErrorCountryCodeSelectorState;
 }

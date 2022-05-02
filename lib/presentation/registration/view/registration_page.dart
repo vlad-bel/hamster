@@ -2,8 +2,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:business_terminal/domain/dependency_injection/di.dart';
-import 'package:business_terminal/domain/use_cases/registration/user_info_init/user_info_init.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/horizontal_line_short_grey.dart';
 import 'package:business_terminal/presentation/common/widgets/text_title.dart';
@@ -17,16 +16,20 @@ import 'package:business_terminal/presentation/registration/widgets/white_button
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:routemaster/routemaster.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
 
+  static const path = '/';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => UserInfoInitCubit(get<UserInfoInitUseCase>()),
+      create: (_) => getIt<UserInfoInitCubit>(),
       child: const RegistrationView(),
     );
   }
@@ -275,12 +278,11 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
 
     showProcessingDataSnackbar(context);
 
-    // TODO routemaster in next tasks
-    Navigator.push(
-      context,
-      MaterialPageRoute<EmailVerificationPage>(
-        builder: (context) => EmailVerificationPage(userEmail: email),
-      ),
+    Routemaster.of(context).push(
+      EmailVerificationPage.path,
+      queryParameters: {
+        'email': email!,
+      },
     );
   }
 

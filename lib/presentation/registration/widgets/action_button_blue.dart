@@ -6,11 +6,13 @@ class ActionButtonBlue extends StatelessWidget {
     this.isEnabled = false,
     this.width,
     required this.onPressed,
+    this.child,
   }) : super(key: key);
 
   final bool isEnabled;
   final VoidCallback onPressed;
   final double? width;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class ActionButtonBlue extends StatelessWidget {
           }),
         ),
         onPressed: isEnabled ? onPressed : null,
-        child: const Text('WEITER'),
+        child: child ?? const Text('WEITER'),
       ),
     );
   }

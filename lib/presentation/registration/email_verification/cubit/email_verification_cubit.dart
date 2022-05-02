@@ -1,14 +1,15 @@
 import 'package:bloc/bloc.dart';
-import 'package:business_terminal/data/model/registration/email_verification/email_verification_request.dart';
-import 'package:business_terminal/data/model/registration/email_verification/resend_email_code_request.dart';
-import 'package:business_terminal/domain/core/errors/failures.dart';
-import 'package:business_terminal/domain/dependency_injection/di.dart';
-import 'package:business_terminal/domain/use_cases/registration/email_verification/email_verification.dart';
-import 'package:dio/dio.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/request_model/registration/email_verification/email_verification_request.dart';
+import 'package:business_terminal/domain/request_model/registration/email_verification/resend_email_code_request.dart';
+import 'package:business_terminal/use_cases/registration/email_verification/email_verification.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'email_verification_cubit.freezed.dart';
 
+@injectable
 class EmailVerificationCubit extends Cubit<EmailVerificationState> {
   EmailVerificationCubit(this._useCase)
       : super(
@@ -26,9 +27,13 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
     try {
       final response = await _useCase.resendCode(request);
       emit(const EmailVerificationState.mailSent());
-    } on DioError catch (e) {
+    } on ApiFailure catch (e) {
       logger.e(e);
-      emit(EmailVerificationState.error(ApiFailure(e, 'resendEmailCode')));
+      emit(
+        EmailVerificationState.error(
+          ApiFailure(e.response, 'resendEmailCode'),
+        ),
+      );
     }
   }
 
@@ -53,14 +58,23 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
       logger.d('response: $response');
 
       if (response == 'OK') {
-        emit(const EmailVerificationState.success('response'));
+        emit(
+          EmailVerificationState.success(
+            'response',
+            email,
+          ),
+        );
       }
-    } on DioError catch (e) {
-      if (e.response?.statusCode == 400) {
+    } on ApiFailure catch (e) {
+      if (e.response.statusCode == 400) {
         wrongOTPCode();
       } else {
         logger.e(e);
-        emit(EmailVerificationState.error(ApiFailure(e, 'resendEmailCode')));
+        emit(
+          EmailVerificationState.error(
+            ApiFailure(e.response, 'resendEmailCode'),
+          ),
+        );
       }
     }
   }
@@ -77,8 +91,10 @@ class EmailVerificationState with _$EmailVerificationState {
 
   const factory EmailVerificationState.mailSent() = MailSent_EmailVerification;
 
-  const factory EmailVerificationState.success(String response) =
-      SuccessEmailVerification;
+  const factory EmailVerificationState.success(
+    String response,
+    String email,
+  ) = SuccessEmailVerification;
 
   const factory EmailVerificationState.error(Failure failure) =
       ErrorEmailVerification;
