@@ -26,17 +26,20 @@ class _AppState extends State<App> {
       child: BlocBuilder<AppStateCubit, AppState>(
         bloc: appStateCubit,
         builder: (BuildContext context, state) {
-          return MaterialApp(
-          // return MaterialApp.router(
+          // return MaterialApp(
+          return MaterialApp.router(
             scaffoldMessengerKey: snackbarKey,
-            // routeInformationParser: const RoutemasterParser(),
-            // routerDelegate: RoutemasterDelegate(
-            //   observers: [
-            //     TitleObserver(),
-            //   ],
-            //   routesBuilder: (context) => state.routeMap,
+            routeInformationParser: const RoutemasterParser(),
+            // routeInformationProvider: PlatformRouteInformationProvider(
+            //   initialRouteInformation: const RouteInformation(),
             // ),
-            home: const CompanyCreationPage(),
+            routerDelegate: RoutemasterDelegate(
+              observers: [
+                TitleObserver(),
+              ],
+              routesBuilder: (context) => state.routeMap,
+            ),
+            // home: const CompanyCreationPage(),
             theme: ThemeData(
               appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
               colorScheme: ColorScheme.fromSwatch(

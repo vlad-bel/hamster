@@ -34,12 +34,14 @@ class SearchPlaceCubit extends Cubit<SearchPlaceState> {
     apiKey: apiKey,
   );
 
+  final place = GooglePlace(apiKey);
+
   static const apiKey = 'AIzaSyBkUrWkOYuIXxLHNLrqrZpGzk3aYP7vX7A';
 
   Future selectPrediction(Prediction prediction) async {
     formGroup.control(formName).value = prediction.description;
 
-
+    final details = await place.details.get(prediction.placeId!);
     onPredictionSelect(prediction);
     emit(SearchPlaceState.idle(
       selectedPrediction: prediction,
