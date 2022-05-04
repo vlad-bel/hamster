@@ -1,4 +1,5 @@
 import 'package:business_terminal/domain/model/country/country.dart';
+import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_number_response.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -14,6 +15,11 @@ abstract class RestClient {
     Dio dio, {
     String baseUrl,
   }) = _RestClient;
+
+  @POST('/rep/login')
+  Future<LoginResponse> login(
+    @Body() Map<String, dynamic> loginMap,
+  );
 
   @POST('/rep/init-creation')
   Future<String> initUserInfoCreation(

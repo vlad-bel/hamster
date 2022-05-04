@@ -1,4 +1,5 @@
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/language_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -19,9 +20,11 @@ class OnboardingAppbar extends StatelessWidget {
             ),
           ),
         ),
-        // const Spacer(),
-
-        ///implement language selector
+        const Spacer(),
+        const Padding(
+          padding: EdgeInsets.all(30),
+          child: LanguageDropdown(),
+        ),
       ],
     );
   }

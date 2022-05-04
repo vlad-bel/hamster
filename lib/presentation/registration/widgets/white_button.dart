@@ -1,6 +1,5 @@
 import 'package:business_terminal/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WhiteButton extends StatelessWidget {
   const WhiteButton({
@@ -29,7 +28,7 @@ class WhiteButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child:  Text(
+        child: Text(
           context.l10n.return_button,
           style: TextStyle(color: Color(0xff147bd9)),
         ),

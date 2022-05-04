@@ -51,6 +51,7 @@ class _AppState extends State<App> {
             ],
             localizationsDelegates: const [
               AppLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],

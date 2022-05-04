@@ -3,7 +3,6 @@ import 'package:business_terminal/presentation/number_verification/call_method_s
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/call_method_selector_form.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/country_code_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CallMethodSelectorPage extends StatelessWidget {

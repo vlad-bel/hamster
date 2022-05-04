@@ -29,7 +29,7 @@ class ActionButtonBlue extends StatelessWidget {
           ),
           textStyle: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.disabled)) {
-              return const TextStyle(color: Color(0x66676f86));
+              return const TextStyle(color: Color(0xff676f86));
             }
             return const TextStyle(color: Colors.white);
           }),

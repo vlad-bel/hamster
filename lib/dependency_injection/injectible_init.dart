@@ -25,5 +25,3 @@ GetIt configureDependencies() {
     );
   return $initGetIt(getIt);
 }
-
-
