@@ -1,11 +1,11 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
-import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_state.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/widget/country_code_selector_list.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/widget/number_prefix.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,7 +55,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
           loading: () {
             return FormTextField(
               name: CountryCodeSelectorCubit.numberTextfield,
-              hint: context.l10n.select_country_code,
+              hint: tr('select_country_code'),
               readOnly: true,
             );
           },
@@ -81,8 +81,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
                         color: lynch,
                       )
                     : null,
-                // label:  context.l10n.select_country_code,
-                hint: context.l10n.select_country_code,
+                hint: tr('select_country_code'),
                 readOnly: selectedCountry == null,
                 maxLength: 15,
                 keyboardType: TextInputType.phone,
@@ -90,7 +89,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
                   FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                 ],
                 validationMessages: (control) => {
-                  ValidationMessage.required: context.l10n.required_field,
+                  ValidationMessage.required: tr('required_field'),
                 },
                 onTap: () {
                   if (selectedCountry == null) {
@@ -103,7 +102,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
           error: (e) {
             return FormTextField(
               name: CountryCodeSelectorCubit.numberTextfield,
-              hint: context.l10n.select_country_code,
+              hint: tr('select_country_code'),
               readOnly: true,
             );
           },

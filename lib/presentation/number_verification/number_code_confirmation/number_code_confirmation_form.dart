@@ -1,12 +1,12 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
-import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/code_verification_form/code_verification_form.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/cubit/number_code_confirmation_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/cubit/number_code_confirmation_state.dart';
 import 'package:business_terminal/presentation/number_verification/result_page/result_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:routemaster/routemaster.dart';
@@ -45,10 +45,10 @@ class NumberCodeConfirmationForm extends StatelessWidget {
       builder: (context, state) {
         final cubit = BlocProvider.of<NumberCodeConfirmationCubit>(context);
         return CodeVerificationForm(
-          header: context.l10n.confirm_number_title,
+          header: tr('confirm_number_title'),
           subheader: RichText(
             text: TextSpan(
-              text: context.l10n.confirm_number_subtitle1,
+              text: tr('confirm_number_subtitle1'),
               style: inter14.copyWith(height: 1.6),
               children: [
                 TextSpan(
@@ -56,7 +56,7 @@ class NumberCodeConfirmationForm extends StatelessWidget {
                   style: inter14.copyWith(color: denim),
                 ),
                 TextSpan(
-                  text: context.l10n.confirm_number_subtitle2,
+                  text: tr('confirm_number_subtitle2'),
                   style: inter14,
                 ),
               ],
@@ -78,7 +78,7 @@ class NumberCodeConfirmationForm extends StatelessWidget {
               method: verifyMethod,
             );
           },
-          resendButtonTitle: context.l10n.sms_resend,
+          resendButtonTitle: tr('sms_resend'),
         );
       },
     );

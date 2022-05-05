@@ -1,7 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
-import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
@@ -10,9 +9,9 @@ import 'package:business_terminal/presentation/number_verification/call_method_s
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmaion_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:routemaster/routemaster.dart';
 
 class CallMethodSelectorForm extends StatefulWidget {
@@ -35,11 +34,11 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocalizations.of(context).confirm_number_title,
+          header: tr('confirm_number_title'),
           subHeader: RichText(
             text: TextSpan(
               style: inter14,
-              text: context.l10n.call_method1,
+              text: tr('call_method1'),
               children: [
                 TextSpan(
                   style: inter14Medium.copyWith(color: denim),
@@ -47,7 +46,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                 ),
                 TextSpan(
                   style: inter14,
-                  text: context.l10n.call_method2,
+                  text: tr('call_method2'),
                 ),
               ],
             ),
@@ -66,7 +65,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                   children: [
                     SelectorRect(
                       size: 160,
-                      title: context.l10n.sms,
+                      title: tr('sms'),
                       icon: Icons.sms,
                       choosed: state.smsSelected,
                       onTap: () {
@@ -76,7 +75,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                     const SizedBox(width: 28),
                     SelectorRect(
                       size: 160,
-                      title: context.l10n.phone_call,
+                      title: tr('phone_call'),
                       icon: Icons.call_outlined,
                       choosed: !state.smsSelected,
                       onTap: () {

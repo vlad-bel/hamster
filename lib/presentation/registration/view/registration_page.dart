@@ -14,6 +14,7 @@ import 'package:business_terminal/presentation/registration/view/password_checkb
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';

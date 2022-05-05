@@ -1,5 +1,4 @@
 {
-  "@@locale": "de",
   "confirm_number_title": "Bestätigen Sie Ihre \u000BTelefonnummer.",
   "select_number_title": "Bitte teilen Sie uns mit, welche Telefonnummer per SMS oder Anruf mit automatischer Sprachansage verifiziert werden soll.",
   "confirm_number_subtitle1": "Sie erhalten gleich eine SMS an die von Ihnen angegebenen Nummer ",
@@ -15,5 +14,16 @@
   "country_name": "Country name",
   "required_field": "Pflichtfeld",
   "user_account_created": "Nutzeraccount angelegt",
-  "user_account_created_description": "Sie haben erfolgreich Ihren Nutzeraccount angelegt und haben somit nur noch einen weiteren Schritt vor sich, um Ihren Zugang zum BusinessTerminal von Hamster zu erhalten."
+  "user_account_created_description": "Sie haben erfolgreich Ihren Nutzeraccount angelegt und haben somit nur noch einen weiteren Schritt vor sich, um Ihren Zugang zum BusinessTerminal von Hamster zu erhalten.",
+  "administration": "Administration",
+  "account-verification": "Account Verifikation",
+  "my-company": "Mein Unternehmen",
+  "user-management": "Nutzerverwaltung",
+  "finance": "Finanzen",
+  "finance1": "Finanzen1",
+  "user_account": "Nutzeraccount",
+  "change_password": "Passwort ändern",
+  "settings": "Einstellungen",
+  "help_center": "Hilfe-Center",
+  "cancel_register": "Abmelden"
 }

@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -26,10 +27,21 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   configureDependencies();
 
+  await EasyLocalization.ensureInitialized();
+
   await runZonedGuarded(
     () async {
       await BlocOverrides.runZoned(
-        () async => runApp(await builder()),
+        () async => runApp(
+          EasyLocalization(
+            path: 'assets/translations',
+            supportedLocales: const [
+              // Locale('en'),
+              Locale('de'),
+            ],
+            child: await builder(),
+          ),
+        ),
         blocObserver: AppBlocObserver(),
       );
     },

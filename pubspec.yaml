@@ -26,6 +26,7 @@ dependencies:
 
   # Tools:
   intl: ^0.17.0
+  easy_localization: ^3.0.0
   reactive_forms: ^12.0.0
 
   # Network:
@@ -52,8 +53,8 @@ dependencies:
   cached_network_image:
   loader_overlay: ^2.0.6
   pinput: ^2.2.7
+  expandable: ^5.0.1
   flutter_portal: ^1.0.0
-
 
 dev_dependencies:
   bloc_test: ^9.0.3
@@ -73,4 +74,5 @@ flutter:
   generate: true
   assets:
     - assets/images/
+    - assets/translations/
     - assets/images/flags/

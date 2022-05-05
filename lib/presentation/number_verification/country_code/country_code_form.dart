@@ -1,4 +1,3 @@
-import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/country_code_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
@@ -9,6 +8,7 @@ import 'package:business_terminal/presentation/number_verification/call_method_s
 import 'package:business_terminal/presentation/number_verification/country_code/cubit/country_code_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/cubit/widget/country_code_active_button.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/cubit/widget/country_code_loading_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -25,9 +25,9 @@ class ContryCodeForm extends StatelessWidget {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: context.l10n.confirm_number_title,
+          header: tr('confirm_number_title'),
           subHeader: Text(
-            context.l10n.select_number_title,
+            tr('select_number_title'),
           ),
         ),
         body: ReactiveFormBuilder(
