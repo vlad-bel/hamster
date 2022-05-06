@@ -2,7 +2,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class LoginFormSettings {
   static const kMaxLength = 256;
-  static const kMinLengthPassword = 10;
+  static const kMinLengthPassword = 9;
 
   final kFieldEmail = 'email';
   final kFieldPassword = 'password';
@@ -32,7 +32,7 @@ class LoginFormSettings {
         validators: [
           Validators.required,
           Validators.maxLength(kMaxLength),
-          Validators.minLength(10)
+          Validators.minLength(kMinLengthPassword)
         ],
       ),
     });

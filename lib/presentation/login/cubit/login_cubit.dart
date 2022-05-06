@@ -27,7 +27,11 @@ class LoginCubit extends Cubit<LoginState> {
       );
       final response = await _useCase.login(request);
 
-      emit(LoginState.success(response));
+      final tempFixResponse = LoginResponse(
+        accessToken: 'accessToken',
+        refreshToken: 'refreshToken',
+      );
+      emit(LoginState.success(tempFixResponse));
     } on ApiFailure catch (e) {
       onErrorLogin(e);
     }

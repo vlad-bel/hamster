@@ -17,7 +17,7 @@ abstract class RestClient {
   }) = _RestClient;
 
   @POST('/rep/login')
-  Future<LoginResponse> login(
+  Future<String> login(
     @Body() Map<String, dynamic> loginMap,
   );
 

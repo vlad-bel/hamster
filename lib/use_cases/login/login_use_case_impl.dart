@@ -14,7 +14,7 @@ class LoginUseCaseImpl extends LoginUseCase {
   final RestClient repository;
 
   @override
-  Future<LoginResponse> login(LoginRequest request) {
+  Future<String> login(LoginRequest request) {
     try {
       return repository.login(request.toJson());
     } on DioError catch (e) {
