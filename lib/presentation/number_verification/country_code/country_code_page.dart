@@ -23,7 +23,7 @@ class CountriesCodePage extends StatelessWidget {
       providers: [
         BlocProvider<CountryCodeSelectorCubit>(
           create: (context) {
-            return getIt.get<CountryCodeSelectorCubit>();
+            return getIt.get<CountryCodeSelectorCubit>()..getCountryList();
           },
         ),
         BlocProvider<CountryCodeCubit>(

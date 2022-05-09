@@ -95,19 +95,18 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<VerifyNumberResponse> verifyNumber(body) async {
+  Future<String> verifyNumber(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<VerifyNumberResponse>(
-            Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/rep/verify-sms-code',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VerifyNumberResponse.fromJson(_result.data!);
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options, '/rep/verify-otp-and-create',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
     return value;
   }
 

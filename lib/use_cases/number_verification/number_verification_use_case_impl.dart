@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/request_model/number_verification/create_phone_request.dart';
-import 'package:business_terminal/domain/request_model/number_verification/verify_number_response.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_sms_number_request.dart';
 import 'package:business_terminal/use_cases/number_verification/number_verification_use_case.dart';
@@ -39,7 +36,7 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
       );
     } on DioError catch (e) {
       throw ApiFailure(
-        ApiFailureResponse.fromJson(e.response!.data as Map<String, dynamic>),
+        ApiFailureResponse.fromJson(e),
         'createPhone',
       );
     }
@@ -59,14 +56,14 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
       );
     } on DioError catch (e) {
       throw ApiFailure(
-        ApiFailureResponse.fromJson(e.response!.data as Map<String, dynamic>),
+        ApiFailureResponse.fromJson(e),
         'createPhone',
       );
     }
   }
 
   @override
-  Future<VerifyNumberResponse> verifyNumber({
+  Future<String> verifyNumber({
     required String email,
     required String code,
   }) async {
@@ -81,7 +78,7 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
       return response;
     } on DioError catch (e) {
       throw ApiFailure(
-        ApiFailureResponse.fromJson(e.response!.data as Map<String, dynamic>),
+        ApiFailureResponse.fromJson(e),
         'verifyNumber',
       );
     }
@@ -100,12 +97,8 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
         ).toJson(),
       );
     } on DioError catch (e) {
-      final dynamic error = e.response?.data;
-      print("error:$error errorType: ${error.runtimeType}");
       throw ApiFailure(
-        ApiFailureResponse.fromJson(
-          jsonDecode(e.response!.data as String) as Map<String, dynamic>,
-        ),
+        ApiFailureResponse.fromJson(e),
         'resendSMSCode',
       );
     }

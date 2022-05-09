@@ -24,10 +24,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
   configureDependencies();
-
-  await EasyLocalization.ensureInitialized();
 
   await runZonedGuarded(
     () async {

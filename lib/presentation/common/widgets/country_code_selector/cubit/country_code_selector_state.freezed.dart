@@ -29,6 +29,14 @@ class _$CountryCodeSelectorStateTearOff {
     );
   }
 
+  OpenCountryCodeSelectorState open(
+      {Country? selectedCountry, List<Country>? countries}) {
+    return OpenCountryCodeSelectorState(
+      selectedCountry: selectedCountry,
+      countries: countries,
+    );
+  }
+
   ErrorCountryCodeSelectorState error(ApiFailure e) {
     return ErrorCountryCodeSelectorState(
       e,
@@ -47,6 +55,9 @@ mixin _$CountryCodeSelectorState {
     required TResult Function(
             Country? selectedCountry, List<Country>? countries)
         init,
+    required TResult Function(
+            Country? selectedCountry, List<Country>? countries)
+        open,
     required TResult Function(ApiFailure e) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +65,7 @@ mixin _$CountryCodeSelectorState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Country? selectedCountry, List<Country>? countries)? init,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? open,
     TResult Function(ApiFailure e)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +73,7 @@ mixin _$CountryCodeSelectorState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Country? selectedCountry, List<Country>? countries)? init,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? open,
     TResult Function(ApiFailure e)? error,
     required TResult orElse(),
   }) =>
@@ -69,6 +82,7 @@ mixin _$CountryCodeSelectorState {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadingCountryCodeSelectorState value) loading,
     required TResult Function(InitCountryCodeSelectorState value) init,
+    required TResult Function(OpenCountryCodeSelectorState value) open,
     required TResult Function(ErrorCountryCodeSelectorState value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -76,6 +90,7 @@ mixin _$CountryCodeSelectorState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoadingCountryCodeSelectorState value)? loading,
     TResult Function(InitCountryCodeSelectorState value)? init,
+    TResult Function(OpenCountryCodeSelectorState value)? open,
     TResult Function(ErrorCountryCodeSelectorState value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -83,6 +98,7 @@ mixin _$CountryCodeSelectorState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadingCountryCodeSelectorState value)? loading,
     TResult Function(InitCountryCodeSelectorState value)? init,
+    TResult Function(OpenCountryCodeSelectorState value)? open,
     TResult Function(ErrorCountryCodeSelectorState value)? error,
     required TResult orElse(),
   }) =>
@@ -154,6 +170,9 @@ class _$LoadingCountryCodeSelectorState
     required TResult Function(
             Country? selectedCountry, List<Country>? countries)
         init,
+    required TResult Function(
+            Country? selectedCountry, List<Country>? countries)
+        open,
     required TResult Function(ApiFailure e) error,
   }) {
     return loading();
@@ -164,6 +183,7 @@ class _$LoadingCountryCodeSelectorState
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Country? selectedCountry, List<Country>? countries)? init,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? open,
     TResult Function(ApiFailure e)? error,
   }) {
     return loading?.call();
@@ -174,6 +194,7 @@ class _$LoadingCountryCodeSelectorState
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Country? selectedCountry, List<Country>? countries)? init,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? open,
     TResult Function(ApiFailure e)? error,
     required TResult orElse(),
   }) {
@@ -188,6 +209,7 @@ class _$LoadingCountryCodeSelectorState
   TResult map<TResult extends Object?>({
     required TResult Function(LoadingCountryCodeSelectorState value) loading,
     required TResult Function(InitCountryCodeSelectorState value) init,
+    required TResult Function(OpenCountryCodeSelectorState value) open,
     required TResult Function(ErrorCountryCodeSelectorState value) error,
   }) {
     return loading(this);
@@ -198,6 +220,7 @@ class _$LoadingCountryCodeSelectorState
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoadingCountryCodeSelectorState value)? loading,
     TResult Function(InitCountryCodeSelectorState value)? init,
+    TResult Function(OpenCountryCodeSelectorState value)? open,
     TResult Function(ErrorCountryCodeSelectorState value)? error,
   }) {
     return loading?.call(this);
@@ -208,6 +231,7 @@ class _$LoadingCountryCodeSelectorState
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadingCountryCodeSelectorState value)? loading,
     TResult Function(InitCountryCodeSelectorState value)? init,
+    TResult Function(OpenCountryCodeSelectorState value)? open,
     TResult Function(ErrorCountryCodeSelectorState value)? error,
     required TResult orElse(),
   }) {
@@ -310,6 +334,9 @@ class _$InitCountryCodeSelectorState implements InitCountryCodeSelectorState {
     required TResult Function(
             Country? selectedCountry, List<Country>? countries)
         init,
+    required TResult Function(
+            Country? selectedCountry, List<Country>? countries)
+        open,
     required TResult Function(ApiFailure e) error,
   }) {
     return init(selectedCountry, countries);
@@ -320,6 +347,7 @@ class _$InitCountryCodeSelectorState implements InitCountryCodeSelectorState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Country? selectedCountry, List<Country>? countries)? init,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? open,
     TResult Function(ApiFailure e)? error,
   }) {
     return init?.call(selectedCountry, countries);
@@ -330,6 +358,7 @@ class _$InitCountryCodeSelectorState implements InitCountryCodeSelectorState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Country? selectedCountry, List<Country>? countries)? init,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? open,
     TResult Function(ApiFailure e)? error,
     required TResult orElse(),
   }) {
@@ -344,6 +373,7 @@ class _$InitCountryCodeSelectorState implements InitCountryCodeSelectorState {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadingCountryCodeSelectorState value) loading,
     required TResult Function(InitCountryCodeSelectorState value) init,
+    required TResult Function(OpenCountryCodeSelectorState value) open,
     required TResult Function(ErrorCountryCodeSelectorState value) error,
   }) {
     return init(this);
@@ -354,6 +384,7 @@ class _$InitCountryCodeSelectorState implements InitCountryCodeSelectorState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoadingCountryCodeSelectorState value)? loading,
     TResult Function(InitCountryCodeSelectorState value)? init,
+    TResult Function(OpenCountryCodeSelectorState value)? open,
     TResult Function(ErrorCountryCodeSelectorState value)? error,
   }) {
     return init?.call(this);
@@ -364,6 +395,7 @@ class _$InitCountryCodeSelectorState implements InitCountryCodeSelectorState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadingCountryCodeSelectorState value)? loading,
     TResult Function(InitCountryCodeSelectorState value)? init,
+    TResult Function(OpenCountryCodeSelectorState value)? open,
     TResult Function(ErrorCountryCodeSelectorState value)? error,
     required TResult orElse(),
   }) {
@@ -384,6 +416,177 @@ abstract class InitCountryCodeSelectorState
   List<Country>? get countries => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $InitCountryCodeSelectorStateCopyWith<InitCountryCodeSelectorState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OpenCountryCodeSelectorStateCopyWith<$Res> {
+  factory $OpenCountryCodeSelectorStateCopyWith(
+          OpenCountryCodeSelectorState value,
+          $Res Function(OpenCountryCodeSelectorState) then) =
+      _$OpenCountryCodeSelectorStateCopyWithImpl<$Res>;
+  $Res call({Country? selectedCountry, List<Country>? countries});
+}
+
+/// @nodoc
+class _$OpenCountryCodeSelectorStateCopyWithImpl<$Res>
+    extends _$CountryCodeSelectorStateCopyWithImpl<$Res>
+    implements $OpenCountryCodeSelectorStateCopyWith<$Res> {
+  _$OpenCountryCodeSelectorStateCopyWithImpl(
+      OpenCountryCodeSelectorState _value,
+      $Res Function(OpenCountryCodeSelectorState) _then)
+      : super(_value, (v) => _then(v as OpenCountryCodeSelectorState));
+
+  @override
+  OpenCountryCodeSelectorState get _value =>
+      super._value as OpenCountryCodeSelectorState;
+
+  @override
+  $Res call({
+    Object? selectedCountry = freezed,
+    Object? countries = freezed,
+  }) {
+    return _then(OpenCountryCodeSelectorState(
+      selectedCountry: selectedCountry == freezed
+          ? _value.selectedCountry
+          : selectedCountry // ignore: cast_nullable_to_non_nullable
+              as Country?,
+      countries: countries == freezed
+          ? _value.countries
+          : countries // ignore: cast_nullable_to_non_nullable
+              as List<Country>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OpenCountryCodeSelectorState implements OpenCountryCodeSelectorState {
+  const _$OpenCountryCodeSelectorState({this.selectedCountry, this.countries});
+
+  @override
+  final Country? selectedCountry;
+  @override
+  final List<Country>? countries;
+
+  @override
+  String toString() {
+    return 'CountryCodeSelectorState.open(selectedCountry: $selectedCountry, countries: $countries)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is OpenCountryCodeSelectorState &&
+            (identical(other.selectedCountry, selectedCountry) ||
+                const DeepCollectionEquality()
+                    .equals(other.selectedCountry, selectedCountry)) &&
+            (identical(other.countries, countries) ||
+                const DeepCollectionEquality()
+                    .equals(other.countries, countries)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(selectedCountry) ^
+      const DeepCollectionEquality().hash(countries);
+
+  @JsonKey(ignore: true)
+  @override
+  $OpenCountryCodeSelectorStateCopyWith<OpenCountryCodeSelectorState>
+      get copyWith => _$OpenCountryCodeSelectorStateCopyWithImpl<
+          OpenCountryCodeSelectorState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(
+            Country? selectedCountry, List<Country>? countries)
+        init,
+    required TResult Function(
+            Country? selectedCountry, List<Country>? countries)
+        open,
+    required TResult Function(ApiFailure e) error,
+  }) {
+    return open(selectedCountry, countries);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? init,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? open,
+    TResult Function(ApiFailure e)? error,
+  }) {
+    return open?.call(selectedCountry, countries);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? init,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? open,
+    TResult Function(ApiFailure e)? error,
+    required TResult orElse(),
+  }) {
+    if (open != null) {
+      return open(selectedCountry, countries);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadingCountryCodeSelectorState value) loading,
+    required TResult Function(InitCountryCodeSelectorState value) init,
+    required TResult Function(OpenCountryCodeSelectorState value) open,
+    required TResult Function(ErrorCountryCodeSelectorState value) error,
+  }) {
+    return open(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(LoadingCountryCodeSelectorState value)? loading,
+    TResult Function(InitCountryCodeSelectorState value)? init,
+    TResult Function(OpenCountryCodeSelectorState value)? open,
+    TResult Function(ErrorCountryCodeSelectorState value)? error,
+  }) {
+    return open?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadingCountryCodeSelectorState value)? loading,
+    TResult Function(InitCountryCodeSelectorState value)? init,
+    TResult Function(OpenCountryCodeSelectorState value)? open,
+    TResult Function(ErrorCountryCodeSelectorState value)? error,
+    required TResult orElse(),
+  }) {
+    if (open != null) {
+      return open(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OpenCountryCodeSelectorState
+    implements CountryCodeSelectorState {
+  const factory OpenCountryCodeSelectorState(
+      {Country? selectedCountry,
+      List<Country>? countries}) = _$OpenCountryCodeSelectorState;
+
+  Country? get selectedCountry => throw _privateConstructorUsedError;
+  List<Country>? get countries => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OpenCountryCodeSelectorStateCopyWith<OpenCountryCodeSelectorState>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -460,6 +663,9 @@ class _$ErrorCountryCodeSelectorState implements ErrorCountryCodeSelectorState {
     required TResult Function(
             Country? selectedCountry, List<Country>? countries)
         init,
+    required TResult Function(
+            Country? selectedCountry, List<Country>? countries)
+        open,
     required TResult Function(ApiFailure e) error,
   }) {
     return error(e);
@@ -470,6 +676,7 @@ class _$ErrorCountryCodeSelectorState implements ErrorCountryCodeSelectorState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Country? selectedCountry, List<Country>? countries)? init,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? open,
     TResult Function(ApiFailure e)? error,
   }) {
     return error?.call(e);
@@ -480,6 +687,7 @@ class _$ErrorCountryCodeSelectorState implements ErrorCountryCodeSelectorState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Country? selectedCountry, List<Country>? countries)? init,
+    TResult Function(Country? selectedCountry, List<Country>? countries)? open,
     TResult Function(ApiFailure e)? error,
     required TResult orElse(),
   }) {
@@ -494,6 +702,7 @@ class _$ErrorCountryCodeSelectorState implements ErrorCountryCodeSelectorState {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadingCountryCodeSelectorState value) loading,
     required TResult Function(InitCountryCodeSelectorState value) init,
+    required TResult Function(OpenCountryCodeSelectorState value) open,
     required TResult Function(ErrorCountryCodeSelectorState value) error,
   }) {
     return error(this);
@@ -504,6 +713,7 @@ class _$ErrorCountryCodeSelectorState implements ErrorCountryCodeSelectorState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoadingCountryCodeSelectorState value)? loading,
     TResult Function(InitCountryCodeSelectorState value)? init,
+    TResult Function(OpenCountryCodeSelectorState value)? open,
     TResult Function(ErrorCountryCodeSelectorState value)? error,
   }) {
     return error?.call(this);
@@ -514,6 +724,7 @@ class _$ErrorCountryCodeSelectorState implements ErrorCountryCodeSelectorState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadingCountryCodeSelectorState value)? loading,
     TResult Function(InitCountryCodeSelectorState value)? init,
+    TResult Function(OpenCountryCodeSelectorState value)? open,
     TResult Function(ErrorCountryCodeSelectorState value)? error,
     required TResult orElse(),
   }) {

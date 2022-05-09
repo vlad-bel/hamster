@@ -29,7 +29,7 @@ class CallMethodSelectorPageCubit extends Cubit<CallMethodSelectorPageState> {
       final verificationMethod =
           state.smsSelected ? VerifyMethod.sms : VerifyMethod.phoneCall;
 
-      useCase.verifyPhoneBy(
+      await useCase.verifyPhoneBy(
         method: verificationMethod,
         email: email,
       );

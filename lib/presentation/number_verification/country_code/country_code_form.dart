@@ -37,42 +37,43 @@ class ContryCodeForm extends StatelessWidget {
             FormGroup formGroup,
             Widget? child,
           ) {
-            return Column(
-              children: [
-                const SizedBox(height: 28),
-                CountryCodeSelector(
-                  cubit: countrySelectorCubit,
-                ),
-                const SizedBox(height: 150),
-                ReactiveFormConsumer(
-                  builder: (
-                    BuildContext context,
-                    FormGroup formGroup,
-                    Widget? child,
-                  ) {
-                    return BlocConsumer<CountryCodeCubit, CountryCodeState>(
-                      listener: (context, state) {
-                        state.whenOrNull(
-                          error: (e) {
-                            SnackBarManager.showError(
-                              e.response.message.toString(),
-                            );
-                          },
-                          next: (email, phone) {
-                            Routemaster.of(context).push(
-                              CallMethodSelectorPage.path,
-                              queryParameters: {
-                                'phone_number': phone,
-                                'email': email,
-                              },
-                            );
+            return ReactiveFormConsumer(
+              builder: (
+                BuildContext context,
+                FormGroup formGroup,
+                Widget? child,
+              ) {
+                return BlocConsumer<CountryCodeCubit, CountryCodeState>(
+                  listener: (context, state) {
+                    state.whenOrNull(
+                      error: (e) {
+                        SnackBarManager.showError(
+                          e.response.message.toString(),
+                        );
+                      },
+                      next: (email, phone) {
+                        Routemaster.of(context).push(
+                          CallMethodSelectorPage.path,
+                          queryParameters: {
+                            'phone_number': phone,
+                            'email': email,
                           },
                         );
                       },
-                      builder: (context, state) {
-                        final contryCodeCubit =
-                            BlocProvider.of<CountryCodeCubit>(context);
-                        return state.when(
+                    );
+                  },
+                  builder: (context, state) {
+                    final contryCodeCubit =
+                        BlocProvider.of<CountryCodeCubit>(context);
+                    return Column(
+                      children: [
+                        const SizedBox(height: 28),
+                        CountryCodeSelector(
+                          cubit: countrySelectorCubit,
+                          loading: state is LoadingCountryCodeState,
+                        ),
+                        const SizedBox(height: 150),
+                        state.when(
                           loading: () => const CountryCodeLoadingButton(),
                           init: () => CountryCodeActiveButton(
                             cubit: contryCodeCubit,
@@ -86,12 +87,12 @@ class ContryCodeForm extends StatelessWidget {
                             cubit: contryCodeCubit,
                             formGroup: formGroup,
                           ),
-                        );
-                      },
+                        ),
+                      ],
                     );
                   },
-                ),
-              ],
+                );
+              },
             );
           },
         ),

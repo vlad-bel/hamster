@@ -14,6 +14,11 @@ abstract class CountryCodeSelectorState with _$CountryCodeSelectorState {
     List<Country>? countries,
   }) = InitCountryCodeSelectorState;
 
+  const factory CountryCodeSelectorState.open({
+    Country? selectedCountry,
+    List<Country>? countries,
+  }) = OpenCountryCodeSelectorState;
+
   const factory CountryCodeSelectorState.error(ApiFailure e) =
       ErrorCountryCodeSelectorState;
 }

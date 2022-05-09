@@ -11,7 +11,7 @@ class NumberPrefix extends StatelessWidget {
   }) : super(key: key);
 
   final Country country;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

@@ -19,7 +19,7 @@ class LoginUseCaseImpl extends LoginUseCase {
       return repository.login(request.toJson());
     } on DioError catch (e) {
       throw ApiFailure(
-        ApiFailureResponse.fromJson(e.response!.data as Map<String, dynamic>),
+        ApiFailureResponse.fromJson(e),
         'login',
       );
     }

@@ -30,6 +30,7 @@ Dio httpClientInit() {
           return handler.next(response);
         },
         onError: (error, handler) async {
+          return handler.next(error);
           ///TODO refresh token interceptor
         },
       ),

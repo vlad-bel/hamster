@@ -21,9 +21,7 @@ class DefaultEmailVerificationUseCase implements EmailVerificationUseCase {
       return response;
     } on DioError catch (e) {
       throw ApiFailure(
-        ApiFailureResponse.fromJson(
-          e.response!.data as Map<String, dynamic>,
-        ),
+        ApiFailureResponse.fromJson(e),
         'verifyEmail',
       );
     }
@@ -37,9 +35,7 @@ class DefaultEmailVerificationUseCase implements EmailVerificationUseCase {
       return response;
     } on DioError catch (e) {
       throw ApiFailure(
-        ApiFailureResponse.fromJson(
-          e.response!.data as Map<String, dynamic>,
-        ),
+        ApiFailureResponse.fromJson(e),
         'resendCode',
       );
     }
