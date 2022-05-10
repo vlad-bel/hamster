@@ -68,7 +68,9 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
           CountryCodeSelectorState.open(
             countries: cachedCountries
                 .where(
-                  (element) => element.name.toLowerCase().startsWith(value),
+                  (element) => element.name.toLowerCase().startsWith(
+                        value.toLowerCase(),
+                      ),
                 )
                 .toList(),
             selectedCountry: selectedCountry,
