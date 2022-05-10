@@ -15,7 +15,6 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
       final filterValue = (event![filterTextfield])! as String;
       filterCountryList(filterValue);
     });
-
   }
 
   static const numberTextfield = 'number';
@@ -64,11 +63,13 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
 
   void filterCountryList(String value) {
     state.whenOrNull(
-      init: (selectedCountry, countries) {
+      open: (selectedCountry, countries) {
         emit(
-          CountryCodeSelectorState.init(
+          CountryCodeSelectorState.open(
             countries: cachedCountries
-                .where((element) => element.name.startsWith(value))
+                .where(
+                  (element) => element.name.toLowerCase().startsWith(value),
+                )
                 .toList(),
             selectedCountry: selectedCountry,
           ),
