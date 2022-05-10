@@ -71,7 +71,11 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
         emit(
           CountrySelectorState.open(
             countries: cachedCountries
-                .where((element) => element.name.startsWith(value))
+                .where(
+                  (element) => element.name.toLowerCase().startsWith(
+                        value.toLowerCase(),
+                      ),
+                )
                 .toList(),
             selectedCountry: selectedCountry,
           ),
