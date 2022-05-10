@@ -42,7 +42,7 @@ class NumberCodeConfirmationCubit extends Cubit<NumberCodeConfirmationState> {
         method: method,
       );
       emit(
-        const NumberCodeConfirmationState.init(),
+        const NumberCodeConfirmationState.resend(),
       );
     } on ApiFailure catch (e) {
       emit(NumberCodeConfirmationState.resendError(e: e));

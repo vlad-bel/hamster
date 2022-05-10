@@ -31,6 +31,10 @@ class _$NumberCodeConfirmationStateTearOff {
     return const SucessNumberCodeConfirmationState();
   }
 
+  ResendNumberCodeConfirmationState resend() {
+    return const ResendNumberCodeConfirmationState();
+  }
+
   CodeErrorCodeConfirmationState codeError({required ApiFailure e}) {
     return CodeErrorCodeConfirmationState(
       e: e,
@@ -54,6 +58,7 @@ mixin _$NumberCodeConfirmationState {
     required TResult Function(String? response) init,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() resend,
     required TResult Function(ApiFailure e) codeError,
     required TResult Function(ApiFailure e) resendError,
   }) =>
@@ -63,6 +68,7 @@ mixin _$NumberCodeConfirmationState {
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
   }) =>
@@ -72,6 +78,7 @@ mixin _$NumberCodeConfirmationState {
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
     required TResult orElse(),
@@ -82,6 +89,7 @@ mixin _$NumberCodeConfirmationState {
     required TResult Function(InitNumberCodeConfirmationState value) init,
     required TResult Function(LoadingNumberCodeConfirmationState value) loading,
     required TResult Function(SucessNumberCodeConfirmationState value) success,
+    required TResult Function(ResendNumberCodeConfirmationState value) resend,
     required TResult Function(CodeErrorCodeConfirmationState value) codeError,
     required TResult Function(ResendErrorCodeConfirmationState value)
         resendError,
@@ -92,6 +100,7 @@ mixin _$NumberCodeConfirmationState {
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
   }) =>
@@ -101,6 +110,7 @@ mixin _$NumberCodeConfirmationState {
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
     required TResult orElse(),
@@ -200,6 +210,7 @@ class _$InitNumberCodeConfirmationState
     required TResult Function(String? response) init,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() resend,
     required TResult Function(ApiFailure e) codeError,
     required TResult Function(ApiFailure e) resendError,
   }) {
@@ -212,6 +223,7 @@ class _$InitNumberCodeConfirmationState
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
   }) {
@@ -224,6 +236,7 @@ class _$InitNumberCodeConfirmationState
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
     required TResult orElse(),
@@ -240,6 +253,7 @@ class _$InitNumberCodeConfirmationState
     required TResult Function(InitNumberCodeConfirmationState value) init,
     required TResult Function(LoadingNumberCodeConfirmationState value) loading,
     required TResult Function(SucessNumberCodeConfirmationState value) success,
+    required TResult Function(ResendNumberCodeConfirmationState value) resend,
     required TResult Function(CodeErrorCodeConfirmationState value) codeError,
     required TResult Function(ResendErrorCodeConfirmationState value)
         resendError,
@@ -253,6 +267,7 @@ class _$InitNumberCodeConfirmationState
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
   }) {
@@ -265,6 +280,7 @@ class _$InitNumberCodeConfirmationState
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
     required TResult orElse(),
@@ -335,6 +351,7 @@ class _$LoadingNumberCodeConfirmationState
     required TResult Function(String? response) init,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() resend,
     required TResult Function(ApiFailure e) codeError,
     required TResult Function(ApiFailure e) resendError,
   }) {
@@ -347,6 +364,7 @@ class _$LoadingNumberCodeConfirmationState
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
   }) {
@@ -359,6 +377,7 @@ class _$LoadingNumberCodeConfirmationState
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
     required TResult orElse(),
@@ -375,6 +394,7 @@ class _$LoadingNumberCodeConfirmationState
     required TResult Function(InitNumberCodeConfirmationState value) init,
     required TResult Function(LoadingNumberCodeConfirmationState value) loading,
     required TResult Function(SucessNumberCodeConfirmationState value) success,
+    required TResult Function(ResendNumberCodeConfirmationState value) resend,
     required TResult Function(CodeErrorCodeConfirmationState value) codeError,
     required TResult Function(ResendErrorCodeConfirmationState value)
         resendError,
@@ -388,6 +408,7 @@ class _$LoadingNumberCodeConfirmationState
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
   }) {
@@ -400,6 +421,7 @@ class _$LoadingNumberCodeConfirmationState
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
     required TResult orElse(),
@@ -465,6 +487,7 @@ class _$SucessNumberCodeConfirmationState
     required TResult Function(String? response) init,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() resend,
     required TResult Function(ApiFailure e) codeError,
     required TResult Function(ApiFailure e) resendError,
   }) {
@@ -477,6 +500,7 @@ class _$SucessNumberCodeConfirmationState
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
   }) {
@@ -489,6 +513,7 @@ class _$SucessNumberCodeConfirmationState
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
     required TResult orElse(),
@@ -505,6 +530,7 @@ class _$SucessNumberCodeConfirmationState
     required TResult Function(InitNumberCodeConfirmationState value) init,
     required TResult Function(LoadingNumberCodeConfirmationState value) loading,
     required TResult Function(SucessNumberCodeConfirmationState value) success,
+    required TResult Function(ResendNumberCodeConfirmationState value) resend,
     required TResult Function(CodeErrorCodeConfirmationState value) codeError,
     required TResult Function(ResendErrorCodeConfirmationState value)
         resendError,
@@ -518,6 +544,7 @@ class _$SucessNumberCodeConfirmationState
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
   }) {
@@ -530,6 +557,7 @@ class _$SucessNumberCodeConfirmationState
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
     required TResult orElse(),
@@ -545,6 +573,142 @@ abstract class SucessNumberCodeConfirmationState
     implements NumberCodeConfirmationState {
   const factory SucessNumberCodeConfirmationState() =
       _$SucessNumberCodeConfirmationState;
+}
+
+/// @nodoc
+abstract class $ResendNumberCodeConfirmationStateCopyWith<$Res> {
+  factory $ResendNumberCodeConfirmationStateCopyWith(
+          ResendNumberCodeConfirmationState value,
+          $Res Function(ResendNumberCodeConfirmationState) then) =
+      _$ResendNumberCodeConfirmationStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ResendNumberCodeConfirmationStateCopyWithImpl<$Res>
+    extends _$NumberCodeConfirmationStateCopyWithImpl<$Res>
+    implements $ResendNumberCodeConfirmationStateCopyWith<$Res> {
+  _$ResendNumberCodeConfirmationStateCopyWithImpl(
+      ResendNumberCodeConfirmationState _value,
+      $Res Function(ResendNumberCodeConfirmationState) _then)
+      : super(_value, (v) => _then(v as ResendNumberCodeConfirmationState));
+
+  @override
+  ResendNumberCodeConfirmationState get _value =>
+      super._value as ResendNumberCodeConfirmationState;
+}
+
+/// @nodoc
+
+class _$ResendNumberCodeConfirmationState
+    implements ResendNumberCodeConfirmationState {
+  const _$ResendNumberCodeConfirmationState();
+
+  @override
+  String toString() {
+    return 'NumberCodeConfirmationState.resend()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ResendNumberCodeConfirmationState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? response) init,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() resend,
+    required TResult Function(ApiFailure e) codeError,
+    required TResult Function(ApiFailure e) resendError,
+  }) {
+    return resend();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? response)? init,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? resend,
+    TResult Function(ApiFailure e)? codeError,
+    TResult Function(ApiFailure e)? resendError,
+  }) {
+    return resend?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? response)? init,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? resend,
+    TResult Function(ApiFailure e)? codeError,
+    TResult Function(ApiFailure e)? resendError,
+    required TResult orElse(),
+  }) {
+    if (resend != null) {
+      return resend();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitNumberCodeConfirmationState value) init,
+    required TResult Function(LoadingNumberCodeConfirmationState value) loading,
+    required TResult Function(SucessNumberCodeConfirmationState value) success,
+    required TResult Function(ResendNumberCodeConfirmationState value) resend,
+    required TResult Function(CodeErrorCodeConfirmationState value) codeError,
+    required TResult Function(ResendErrorCodeConfirmationState value)
+        resendError,
+  }) {
+    return resend(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InitNumberCodeConfirmationState value)? init,
+    TResult Function(LoadingNumberCodeConfirmationState value)? loading,
+    TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
+    TResult Function(CodeErrorCodeConfirmationState value)? codeError,
+    TResult Function(ResendErrorCodeConfirmationState value)? resendError,
+  }) {
+    return resend?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitNumberCodeConfirmationState value)? init,
+    TResult Function(LoadingNumberCodeConfirmationState value)? loading,
+    TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
+    TResult Function(CodeErrorCodeConfirmationState value)? codeError,
+    TResult Function(ResendErrorCodeConfirmationState value)? resendError,
+    required TResult orElse(),
+  }) {
+    if (resend != null) {
+      return resend(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResendNumberCodeConfirmationState
+    implements NumberCodeConfirmationState {
+  const factory ResendNumberCodeConfirmationState() =
+      _$ResendNumberCodeConfirmationState;
 }
 
 /// @nodoc
@@ -620,6 +784,7 @@ class _$CodeErrorCodeConfirmationState
     required TResult Function(String? response) init,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() resend,
     required TResult Function(ApiFailure e) codeError,
     required TResult Function(ApiFailure e) resendError,
   }) {
@@ -632,6 +797,7 @@ class _$CodeErrorCodeConfirmationState
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
   }) {
@@ -644,6 +810,7 @@ class _$CodeErrorCodeConfirmationState
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
     required TResult orElse(),
@@ -660,6 +827,7 @@ class _$CodeErrorCodeConfirmationState
     required TResult Function(InitNumberCodeConfirmationState value) init,
     required TResult Function(LoadingNumberCodeConfirmationState value) loading,
     required TResult Function(SucessNumberCodeConfirmationState value) success,
+    required TResult Function(ResendNumberCodeConfirmationState value) resend,
     required TResult Function(CodeErrorCodeConfirmationState value) codeError,
     required TResult Function(ResendErrorCodeConfirmationState value)
         resendError,
@@ -673,6 +841,7 @@ class _$CodeErrorCodeConfirmationState
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
   }) {
@@ -685,6 +854,7 @@ class _$CodeErrorCodeConfirmationState
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
     required TResult orElse(),
@@ -780,6 +950,7 @@ class _$ResendErrorCodeConfirmationState
     required TResult Function(String? response) init,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() resend,
     required TResult Function(ApiFailure e) codeError,
     required TResult Function(ApiFailure e) resendError,
   }) {
@@ -792,6 +963,7 @@ class _$ResendErrorCodeConfirmationState
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
   }) {
@@ -804,6 +976,7 @@ class _$ResendErrorCodeConfirmationState
     TResult Function(String? response)? init,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? resend,
     TResult Function(ApiFailure e)? codeError,
     TResult Function(ApiFailure e)? resendError,
     required TResult orElse(),
@@ -820,6 +993,7 @@ class _$ResendErrorCodeConfirmationState
     required TResult Function(InitNumberCodeConfirmationState value) init,
     required TResult Function(LoadingNumberCodeConfirmationState value) loading,
     required TResult Function(SucessNumberCodeConfirmationState value) success,
+    required TResult Function(ResendNumberCodeConfirmationState value) resend,
     required TResult Function(CodeErrorCodeConfirmationState value) codeError,
     required TResult Function(ResendErrorCodeConfirmationState value)
         resendError,
@@ -833,6 +1007,7 @@ class _$ResendErrorCodeConfirmationState
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
   }) {
@@ -845,6 +1020,7 @@ class _$ResendErrorCodeConfirmationState
     TResult Function(InitNumberCodeConfirmationState value)? init,
     TResult Function(LoadingNumberCodeConfirmationState value)? loading,
     TResult Function(SucessNumberCodeConfirmationState value)? success,
+    TResult Function(ResendNumberCodeConfirmationState value)? resend,
     TResult Function(CodeErrorCodeConfirmationState value)? codeError,
     TResult Function(ResendErrorCodeConfirmationState value)? resendError,
     required TResult orElse(),

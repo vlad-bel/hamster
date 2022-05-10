@@ -41,7 +41,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
               children: [
                 TextSpan(
                   style: inter14Medium.copyWith(color: denim),
-                  text: widget.number,
+                  text: '+${widget.number}',
                 ),
                 TextSpan(
                   style: inter14,
