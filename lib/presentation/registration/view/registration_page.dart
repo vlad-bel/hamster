@@ -67,12 +67,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
 
     _focusListenerPassword.addListener(() {
       context.read<UserInfoInitCubit>().setVisibilityPasswordValidation(
-            isVisible: _focusListenerPassword.hasFocus,
-          );
-    });
-    _focusListenerPasswordConfirmation.addListener(() {
-      context.read<UserInfoInitCubit>().setVisibilityPasswordValidation(
-            isVisible: _focusListenerPasswordConfirmation.hasFocus,
+            isVisible: true,
           );
     });
 
@@ -253,6 +248,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   child: PasswordValidationView(
                                     onPressed: onPressedClosePasswordValidation,
                                     controllerPassword: _controllerPassword,
+                                    focusNodePassword: _focusListenerPassword,
                                   ),
                                 ),
                                 const Align(

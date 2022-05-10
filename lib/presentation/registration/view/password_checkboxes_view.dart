@@ -16,11 +16,13 @@ class PasswordValidationView extends StatefulWidget {
   const PasswordValidationView({
     this.controllerPassword,
     required this.onPressed,
+    required this.focusNodePassword,
     Key? key,
   }) : super(key: key);
 
   final TextEditingController? controllerPassword;
   final VoidCallback onPressed;
+  final FocusNode focusNodePassword;
 
   @override
   State<PasswordValidationView> createState() => _PasswordValidationViewState();
@@ -50,6 +52,7 @@ class _PasswordValidationViewState extends State<PasswordValidationView> {
   void initState() {
     super.initState();
     widget.controllerPassword?.addListener(passValidation);
+    widget.focusNodePassword.addListener(passValidation);
   }
 
   void passValidation() {
