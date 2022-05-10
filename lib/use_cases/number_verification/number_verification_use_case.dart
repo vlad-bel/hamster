@@ -1,5 +1,4 @@
 import 'package:business_terminal/domain/model/country/country.dart';
-import 'package:business_terminal/domain/request_model/number_verification/verify_number_response.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 
 abstract class NumberVerificationUseCase {
@@ -10,7 +9,7 @@ abstract class NumberVerificationUseCase {
     required String email,
   });
 
-  Future<VerifyNumberResponse> verifyNumber({
+  Future<String> verifyNumber({
     required String email,
     required String code,
   });

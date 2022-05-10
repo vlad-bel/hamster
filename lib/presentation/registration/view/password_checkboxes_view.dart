@@ -72,8 +72,7 @@ class _PasswordValidationViewState extends State<PasswordValidationView> {
       child: Container(
         decoration: boxDecoration,
         child: Padding(
-          padding:
-              const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
+          padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,

@@ -11,6 +11,8 @@ class RestApiRepository extends ApiRepository {
 
   final RestClient _client;
 
+  // TODO: remove all methods and move to use-case in next task
+  // as it takes too much time now + out of scope of login task
   @override
   Future<String> initUserInfoCreation(UserInfoRequest request) async {
     final requestJson = request.toJson();

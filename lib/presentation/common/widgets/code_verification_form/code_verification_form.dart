@@ -1,8 +1,8 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +24,8 @@ class CodeVerificationForm extends StatelessWidget {
     this.onCompleted,
     this.onChanged,
     this.hasError,
-    this.verificationError,
-    this.verificationDescription,
+    required this.verificationResult,
+    this.controller,
   }) : super(key: key);
 
   /// Header text
@@ -35,15 +35,10 @@ class CodeVerificationForm extends StatelessWidget {
   /// It depends from concrete screen
   final Widget subheader;
 
+  final Widget verificationResult;
+
   ///Title for resend button. It can be different depend from screens
   final String resendButtonTitle;
-
-  /// When code confirmation is wrong need to show this widget
-  /// by default we had [CodeVerificationError]
-  final Widget? verificationError;
-
-  ///In case of verification email need to show this description under rects
-  final Widget? verificationDescription;
 
   ///Callback for resend button
   final VoidCallback resendButtonCallback;
@@ -62,6 +57,8 @@ class CodeVerificationForm extends StatelessWidget {
   ///error verificationError widget
   final bool? hasError;
 
+  final TextEditingController? controller;
+
   @override
   Widget build(BuildContext context) {
     return OnboardingBackground(
@@ -75,6 +72,7 @@ class CodeVerificationForm extends StatelessWidget {
           children: [
             const SizedBox(height: 46),
             Pincode(
+              controller: controller,
               fieldCount: 5,
               width: 62,
               height: 87,
@@ -99,10 +97,7 @@ class CodeVerificationForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 28),
-            if (hasError ?? false)
-              verificationError ?? const SizedBox()
-            else
-              verificationDescription ?? const SizedBox(),
+            verificationResult,
             const SizedBox(height: 43),
             WhiteButton(
               onPressed: backButtonCallback,

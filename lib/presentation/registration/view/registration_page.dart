@@ -5,18 +5,19 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/horizontal_line_short_grey.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/language_dropdown.dart';
 import 'package:business_terminal/presentation/common/widgets/text_title.dart';
+import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
-import 'package:business_terminal/presentation/registration/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get_it/get_it.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:routemaster/routemaster.dart';
@@ -24,7 +25,7 @@ import 'package:routemaster/routemaster.dart';
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
 
-  static const path = '/';
+  static const path = '/registration';
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +57,7 @@ class RegistrationBodyView extends StatefulWidget {
 class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   TextEditingController? _controllerPassword;
   final FocusNode _focusListenerPassword = FocusNode();
+  final FocusNode _focusListenerPasswordConfirmation = FocusNode();
 
   final formSettings = FormSettingsRegistrationUserInfo();
 
@@ -66,6 +68,11 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
     _focusListenerPassword.addListener(() {
       context.read<UserInfoInitCubit>().setVisibilityPasswordValidation(
             isVisible: _focusListenerPassword.hasFocus,
+          );
+    });
+    _focusListenerPasswordConfirmation.addListener(() {
+      context.read<UserInfoInitCubit>().setVisibilityPasswordValidation(
+            isVisible: _focusListenerPasswordConfirmation.hasFocus,
           );
     });
 
@@ -94,6 +101,13 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
             child: SvgPicture.asset(
               Assets.imagesHamsterLogo,
             ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.topRight,
+          child: Padding(
+            padding: const EdgeInsets.all(33),
+            child: LanguageDropdown(),
           ),
         ),
         Stack(
@@ -125,7 +139,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                               children: [
                                 FormTextField(
                                   name: formSettings.kFieldName,
-                                  hint: 'Vorname eingeben',
+                                  label: 'Vorname eingeben',
                                   validationMessages: (control) =>
                                       formSettings.validationMessageNameSurname,
                                   keyboardType: TextInputType.name,
@@ -133,7 +147,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 Container(height: 18),
                                 FormTextField(
                                   name: formSettings.kFieldSurname,
-                                  hint: 'Nachname eingeben',
+                                  label: 'Nachname eingeben',
                                   validationMessages: (control) =>
                                       formSettings.validationMessageNameSurname,
                                   keyboardType: TextInputType.name,
@@ -141,7 +155,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 Container(height: 18),
                                 FormTextField(
                                   name: formSettings.kFieldEmail,
-                                  hint: 'E-Mail',
+                                  label: 'E-Mail',
                                   validationMessages: (control) =>
                                       formSettings.validationMessageEmail,
                                   keyboardType: TextInputType.emailAddress,
@@ -149,7 +163,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 Container(height: 18),
                                 FormTextField(
                                   name: formSettings.kFieldPassword,
-                                  hint: 'Passwort wählen',
+                                  label: 'Passwort wählen',
                                   validationMessages: (control) =>
                                       formSettings.validationMessagePassword,
                                   keyboardType: TextInputType.text,
@@ -160,12 +174,14 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 Container(height: 18),
                                 FormTextField(
                                   name: formSettings.kFieldPasswordConfirmation,
-                                  hint: 'Passwort wiederholen',
+                                  label: 'Passwort wiederholen',
                                   validationMessages: (control) =>
                                       formSettings.validationMessagePassword,
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
                                   textInputAction: TextInputAction.done,
+                                  focusListener:
+                                      _focusListenerPasswordConfirmation,
                                 ),
                                 Container(height: 28),
 
@@ -175,7 +191,9 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     WhiteButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
                                     ),
                                     BlocListener<UserInfoInitCubit,
                                         UserInfoInitState>(
@@ -278,9 +296,9 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
 
     showProcessingDataSnackbar(context);
 
-    Routemaster.of(context).push(
+    Navigator.of(context).pushNamed(
       EmailVerificationPage.path,
-      queryParameters: {
+      arguments: {
         'email': email!,
       },
     );
@@ -318,5 +336,11 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controllerPassword?.dispose();
+    super.dispose();
   }
 }

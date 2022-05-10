@@ -130,3 +130,5 @@ app.*.map.json
 .idea/dictionaries/
 
 pubspec.lock
+
+.firebase/hosting.YnVpbGQvd2Vi.cache

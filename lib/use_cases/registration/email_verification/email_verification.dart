@@ -3,5 +3,6 @@ import 'package:business_terminal/domain/request_model/registration/email_verifi
 
 abstract class EmailVerificationUseCase {
   Future<String> verifyEmail(EmailVerificationRequest request);
+
   Future<String> resendCode(ResendEmailCodeRequest request);
 }

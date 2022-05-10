@@ -16,7 +16,6 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
       filterCountryList(filterValue);
     });
 
-    getCountryList();
   }
 
   static const numberTextfield = 'number';
@@ -54,7 +53,7 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
     state.whenOrNull(
       init: (_, countries) {
         emit(
-          CountryCodeSelectorState.init(
+          CountryCodeSelectorState.open(
             countries: countries,
             selectedCountry: selectedCountry,
           ),
@@ -80,7 +79,7 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
 
   void selectCountry(Country country) {
     state.whenOrNull(
-      init: (_, countries) {
+      open: (_, countries) {
         emit(
           CountryCodeSelectorState.init(
             selectedCountry: country,

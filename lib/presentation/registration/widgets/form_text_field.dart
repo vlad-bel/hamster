@@ -8,7 +8,7 @@ class FormTextField extends StatefulWidget {
   const FormTextField({
     Key? key,
     required this.name,
-    required this.hint,
+    this.hint,
     this.label,
     this.validationMessages,
     this.keyboardType,
@@ -28,7 +28,7 @@ class FormTextField extends StatefulWidget {
   }) : super(key: key);
 
   final String name;
-  final String hint;
+  final String? hint;
   final String? label;
   final ValidationMessagesFunction? validationMessages;
   final TextInputType? keyboardType;

@@ -26,6 +26,7 @@ dependencies:
 
   # Tools:
   intl: ^0.17.0
+  easy_localization: ^3.0.0
   reactive_forms: ^12.0.0
 
   # Network:
@@ -43,7 +44,7 @@ dependencies:
 
   # UI:
   flutter_svg: ^1.0.3
-  google_fonts: ^2.3.1
+  google_fonts: ^2.3.2
   black_hole_flutter: ^0.3.5
   dropdown_button2: ^1.4.0
   animated_custom_dropdown: ^1.2.0
@@ -54,7 +55,8 @@ dependencies:
   cached_network_image:
   loader_overlay: ^2.0.6
   pinput: ^2.2.7
-
+  expandable: ^5.0.1
+  flutter_portal: ^1.0.0
 
 dev_dependencies:
   bloc_test: ^9.0.3
@@ -71,7 +73,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  generate: true
+  generate: false
   assets:
     - assets/images/
+    - assets/translations/
     - assets/images/flags/

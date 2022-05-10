@@ -1,5 +1,4 @@
 {
-  "@@locale": "en",
   "confirm_number_title": "Confirm your phone \u000Bnumber.",
   "select_number_title": "Please let us know which phone number to verify via SMS or voice call.",
   "confirm_number_subtitle1": "You will immediately receive an SMS to the number you have given ",
@@ -18,4 +17,16 @@
   "user_account_created_description": "You have successfully created your user account and therefore only have one more step to gain access to Hamster's BusinessTerminal.",
   "create_company_profile": "Create your company profile.",
   "create_company_profile_descr": "Let us know how your company can be reached by post."
+  "user_account_created_description": "You have successfully created your user account and therefore only have one more step to gain access to Hamster's BusinessTerminal.",
+  "administration": "Administration",
+  "account-verification": "Account Verification",
+  "my-company": "My Company",
+  "user-management": "User Management",
+  "finance": "Finance",
+  "finance1": "Finance1",
+  "user_account": "User account",
+  "change_password": "Change password",
+  "settings": "Settings",
+  "help_center": "Help center",
+  "cancel_register": "Cancel registration"
 }

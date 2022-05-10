@@ -7,18 +7,17 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_backgro
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/common/widgets/snackbar_manager.dart';
+import 'package:business_terminal/presentation/email_verification/cubit/email_verification_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/country_code_page.dart';
-import 'package:business_terminal/presentation/registration/email_verification/cubit/email_verification_cubit.dart';
-import 'package:business_terminal/presentation/registration/email_verification/view/email_was_sent_text_icon.dart';
+import 'package:business_terminal/presentation/registration/view/registration_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:hamster_widgets/pincode/pincode.dart';
-import 'package:routemaster/routemaster.dart';
+
+import 'email_was_sent_text_icon.dart';
 
 class EmailVerificationPage extends StatelessWidget {
   const EmailVerificationPage({
@@ -28,7 +27,7 @@ class EmailVerificationPage extends StatelessWidget {
 
   final String? userEmail;
 
-  static const path = '/email_verification';
+  static const path = '${RegistrationPage.path}/email_verification';
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +74,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
               cubit: cubit,
             ),
             ResendEmailCodeButton(
-              widget: widget,
+              userEmail: widget.userEmail,
               cubit: cubit,
             ),
             EmailSentNotSentInfoBuilder(
@@ -87,7 +86,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
             WhiteButton(
               width: 320,
               onPressed: () {
-                Routemaster.of(context).pop();
+                Navigator.of(context).pop();
               },
             ),
             EmailVerificationBlocListener(
@@ -113,8 +112,7 @@ class SubHeaderRichText extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text: 'Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse '
-            'beispiel ',
+        text: 'Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse ',
         style: inter14.copyWith(height: 1.6),
         children: [
           TextSpan(
@@ -212,9 +210,9 @@ class EmailVerificationBlocListener extends StatelessWidget {
         if (state is SuccessEmailVerification) {
           snackBarManager.showSuccess(context, 'OTP Code is correct');
           if (state.response == 'response') {
-            Routemaster.of(context).push(
+            Navigator.of(context).pushNamed(
               CountriesCodePage.path,
-              queryParameters: {
+              arguments: {
                 'email': state.email,
               },
             );
@@ -229,11 +227,11 @@ class EmailVerificationBlocListener extends StatelessWidget {
 class ResendEmailCodeButton extends StatelessWidget {
   const ResendEmailCodeButton({
     Key? key,
-    required this.widget,
+    required this.userEmail,
     required this.cubit,
   }) : super(key: key);
 
-  final EmailVerificationView widget;
+  final String? userEmail;
   final EmailVerificationCubit cubit;
 
   @override
@@ -242,9 +240,8 @@ class ResendEmailCodeButton extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          final email = widget.userEmail;
-          if (email != null) {
-            cubit.resendEmailCode(email);
+          if (userEmail != null) {
+            cubit.resendEmailCode(userEmail!);
           } else {
             cubit.errorOccurred(
               UIFailure(

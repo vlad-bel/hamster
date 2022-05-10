@@ -2,7 +2,19 @@
 class Assets {
   Assets._();
 
+  static const String flagsGer = 'assets/images/flags/ger.png';
+  static const String imagesAdministration = 'assets/images/administration.svg';
+  static const String imagesAdvertising = 'assets/images/advertising.svg';
   static const String imagesBackgroundImageSignUp = 'assets/images/background_image_sign_up.png';
+  static const String imagesBranchProfile = 'assets/images/branch_profile.svg';
+  static const String imagesCompanyProfile = 'assets/images/company_profile.svg';
+  static const String imagesFinanzen = 'assets/images/finanzen.svg';
   static const String imagesHamsterLogo = 'assets/images/hamster_logo.svg';
-  static const String imagesFlagsGer = 'assets/images/flags/ger.png';
+  static const String imagesHome = 'assets/images/home.svg';
+  static const String imagesProfileIcon = 'assets/images/profile_icon.png';
+  static const String imagesProfileIconGrey = 'assets/images/profile_icon_grey.png';
+  static const String imagesUserAccount = 'assets/images/user_account.svg';
+  static const String translationsDe = 'assets/translations/de.json';
+  static const String translationsEn = 'assets/translations/en.json';
+
 }

@@ -6,16 +6,18 @@ class EmailResultInfoTextIcon extends StatelessWidget {
     required this.text,
     required this.textColor,
     required this.icon,
+    this.height,
   }) : super(key: key);
 
   final String text;
   final Color textColor;
   final IconData icon;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120,
+      height: height ?? 120,
       child: Row(
         children: [
           Icon(
