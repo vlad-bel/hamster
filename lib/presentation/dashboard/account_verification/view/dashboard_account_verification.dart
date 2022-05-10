@@ -31,17 +31,19 @@ class _AccountVerificationView extends StatelessWidget {
         child: BlocBuilder<AccountVerificationCubit, VerifyAccountState>(
           builder: (context, state) {
             return state.when(
-              initial: (isAcceptedDataIsCorrect,
-                  progressUserAccount,
-                  progressCompanyProfile,
-                  progressBranchProfile,) =>
+              initial: (
+                isAcceptedDataIsCorrect,
+                progressUserAccount,
+                progressCompanyProfile,
+                progressBranchProfile,
+              ) =>
                   _AccountVerificationContent(
-                    isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
-                    progressUserAccount: progressUserAccount,
-                    progressCompanyProfile: progressCompanyProfile,
-                    progressBranchProfile: progressBranchProfile,
-                  ),
-            )
+                isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
+                progressUserAccount: progressUserAccount,
+                progressCompanyProfile: progressCompanyProfile,
+                progressBranchProfile: progressBranchProfile,
+              ),
+            );
           },
         ),
       ),
@@ -75,7 +77,7 @@ class _AccountVerificationContent extends StatelessWidget {
         const SizedBox(height: 30),
         Text(
           'Die drei nachfolgenden Bedingungen müssen erfüllt sein bevor Sie die Verifikation Ihres Unternehmens mit den'
-              '\ndazugehörigen Filialen beantragen können, um in der HamsterApp aufgeführt zu werden.',
+          '\ndazugehörigen Filialen beantragen können, um in der HamsterApp aufgeführt zu werden.',
           style: inter14,
           textAlign: TextAlign.center,
         ),
@@ -88,7 +90,7 @@ class _AccountVerificationContent extends StatelessWidget {
               imagePath: Assets.imagesUserAccount,
               title: 'Nutzeraccount',
               subTitle:
-              'Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen.',
+                  'Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen.',
               onPressed: () {},
             ),
             const SizedBox(width: 24),
@@ -97,7 +99,7 @@ class _AccountVerificationContent extends StatelessWidget {
               imagePath: Assets.imagesCompanyProfile,
               title: 'Unternehmensprofil',
               subTitle:
-              'Vervollständigen Sie Ihr Unternehmensprofil, damit wir Sie verifizieren können.',
+                  'Vervollständigen Sie Ihr Unternehmensprofil, damit wir Sie verifizieren können.',
               onPressed: () {},
             ),
             const SizedBox(width: 24),
@@ -106,7 +108,7 @@ class _AccountVerificationContent extends StatelessWidget {
               imagePath: Assets.imagesBranchProfile,
               title: 'Filialprofil',
               subTitle:
-              'Vervollständigen Sie mindestens ein Filialprofil, welches Ihren Kunden in der HamsterApp angezeigt wird.',
+                  'Vervollständigen Sie mindestens ein Filialprofil, welches Ihren Kunden in der HamsterApp angezeigt wird.',
               onPressed: () {},
             ),
           ],
@@ -126,8 +128,8 @@ class _AccountVerificationContent extends StatelessWidget {
               context
                   .read<AccountVerificationCubit>()
                   .changeCheckBoxDataIsCorrect(
-                isAcceptedDataIsCorrect: value ?? false,
-              );
+                    isAcceptedDataIsCorrect: value ?? false,
+                  );
             },
           ),
         ),

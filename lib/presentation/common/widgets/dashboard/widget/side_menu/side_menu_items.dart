@@ -4,75 +4,101 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:routemaster/routemaster.dart';
 
-class SideMenuItems extends StatelessWidget {
+class SideMenuItems extends StatefulWidget {
   const SideMenuItems({
     Key? key,
-    required this.controller,
+    required this.navigateTo,
+    required this.selectedIndex,
+    required this.selectedPage,
   }) : super(key: key);
-  final TabController controller;
 
+  final Function(int, String routeName) navigateTo;
+  final int selectedIndex;
+  final String selectedPage;
+
+  @override
+  State<SideMenuItems> createState() => _SideMenuItemsState();
+}
+
+class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(left: 12.0),
+          padding: const EdgeInsets.only(left: 12),
           child: Column(
             children: [
               MenuItem(
                 image: '/images/finanzen.svg',
                 name: 'Finanzen',
-                routeName: 'finanzen',
+                initialRouteName: 'finance',
+                selectedRoute: widget.selectedPage,
                 subItems: [
                   MenuSubItem(
                     index: 0,
-                    controllerIndex: controller.index,
                     name: 'Finanzen1',
-                    onTap: (index) {
-                      navigateTo(index);
+                    onTap: (index, routeName) {
+                      widget.navigateTo(index, routeName);
                     },
+                    selectedRoute: widget.selectedPage,
+                    routeName: '/finance/finance1',
+                  ),
+                  MenuSubItem(
+                    index: 0,
+                    name: 'Finanzen2',
+                    onTap: (index, routeName) {
+                      widget.navigateTo(index, routeName);
+                    },
+                    selectedRoute: widget.selectedPage,
+                    routeName: '/finance/finance2',
                   ),
                 ],
               ),
               BlocBuilder<DashboardCubit, DashboardState>(
                 builder: (context, state) {
-                  final count = state.when(init: (count) => count);
+                  final count = state.when(init: (count, _, __) => count);
                   return MenuItem(
                     image: '/images/administration.svg',
                     name: 'Administration',
-                    routeName: 'administration',
+                    initialRouteName: 'administration',
+                    selectedRoute: widget.selectedPage,
                     subItems: [
                       MenuSubItem(
                         index: 1,
-                        controllerIndex: controller.index,
                         name: 'Account-Verifikation',
-                        onTap: (index) {
-                          navigateTo(index);
+                        onTap: (index, routeName) {
+                          widget.navigateTo(index, routeName);
                         },
                         badgeCountValue: 1,
+                        selectedRoute: widget.selectedPage,
+                        routeName: '/administration/account-verification',
                       ),
                       MenuSubItem(
-                        index: 2,
-                        controllerIndex: controller.index,
+                        index: 1,
                         name: 'Mein Unternehmen',
-                        onTap: (index) {
-                          navigateTo(index);
+                        onTap: (index, routeName) {
+                          widget.navigateTo(index, routeName);
                         },
                         badgeCountValue: count,
+                        selectedRoute: widget.selectedPage,
+                        routeName: '/administration/my-company',
                       ),
                       MenuSubItem(
-                        index: 3,
-                        controllerIndex: controller.index,
+                        index: 1,
                         name: 'Nutzerverwaltung',
-                        onTap: (index) {
-                          navigateTo(index);
+                        onTap: (index, routeName) {
+                          widget.navigateTo(index, routeName);
                         },
+                        selectedRoute: widget.selectedPage,
+                        routeName: '/administration/user-management',
                       ),
                     ],
                   );
@@ -84,22 +110,20 @@ class SideMenuItems extends StatelessWidget {
       ),
     );
   }
-
-  void navigateTo(int index){
-    controller.animateTo(index);
-  }
 }
 
 class MenuItem extends StatefulWidget {
-  MenuItem({
+  const MenuItem({
     required this.name,
     required this.image,
     required this.subItems,
-    required this.routeName,
+    required this.initialRouteName,
+    required this.selectedRoute,
   });
 
   final String name;
-  final String routeName;
+  final String initialRouteName;
+  final String selectedRoute;
   final String image;
   final List<MenuSubItem> subItems;
 
@@ -112,22 +136,19 @@ class _MenuItemState extends State<MenuItem> {
 
   @override
   Widget build(BuildContext context) {
-    final tabPage = TabPage.of(context);
-    final initialRouteName = tabPage.page.paths[tabPage.controller.index].split(
-      '/',
-    )[1];
-
-    if (initialRouteName == widget.routeName) {
+    if (widget.selectedRoute.split('/')[1] == widget.initialRouteName) {
       controller.expanded = true;
     }
+
     return ExpandablePanel(
       controller: controller,
       theme: const ExpandableThemeData(
         headerAlignment: ExpandablePanelHeaderAlignment.center,
         hasIcon: false,
+        // tapHeaderToExpand: false,
       ),
       header: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         child: Row(
           children: [
             SvgPicture.asset(
@@ -171,23 +192,31 @@ class MenuSubItem extends StatelessWidget {
     required this.index,
     required this.onTap,
     this.badgeCountValue,
-    required this.controllerIndex,
-  })  : isSelected = index == controllerIndex,
+    required this.routeName,
+    required this.selectedRoute,
+  })  : isSelected = selectedRoute == routeName,
         super(key: key);
 
   final String name;
   final int? badgeCountValue;
   final bool isSelected;
-  final Function(int index) onTap;
+  final Function(int index, String routeName) onTap;
+
   final int index;
-  final int controllerIndex;
+  final String routeName;
+  final String selectedRoute;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: GestureDetector(
-        onTap: () => onTap(index),
+        onTap: () {
+          onTap(index, routeName);
+          Navigator.of(navigatorKeys[index]!.currentState!.context).pushNamed(
+            routeName,
+          );
+        },
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: 12,

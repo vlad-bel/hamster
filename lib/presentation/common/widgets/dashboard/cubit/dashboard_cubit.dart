@@ -9,12 +9,17 @@ class DashboardCubit extends Cubit<DashboardState> {
   ///test function for demo from other place
   void increaseCount() {
     state.when(
-      init: (testCount) {
+      init: (testCount, _, __) {
         testCount ??= 0;
 
         testCount++;
-        emit(DashboardState.init(testCount: testCount));
+        emit(DashboardState.init(
+          testCount: testCount,
+          administrationOpen: true,
+          finansenOpen: true,
+        ));
       },
     );
   }
+
 }

@@ -1,21 +1,26 @@
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_header.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_items.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class SideMenu extends StatelessWidget {
+class SideMenu extends StatefulWidget {
   const SideMenu({
     Key? key,
-    required this.controller,
+    required this.navigateTo,
+    required this.selectedIndex,
+    required this.selectedPage,
   }) : super(key: key);
 
-  final TabController controller;
+  final Function(int, String routename) navigateTo;
+  final int selectedIndex;
+  final String selectedPage;
 
+  @override
+  State<SideMenu> createState() => _SideMenuState();
+}
+
+class _SideMenuState extends State<SideMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +37,9 @@ class SideMenu extends StatelessWidget {
           const SideMenuHeader(),
           const SizedBox(height: 30),
           SideMenuItems(
-            controller: controller,
+            navigateTo: widget.navigateTo,
+            selectedIndex: widget.selectedIndex,
+            selectedPage : widget.selectedPage,
           ),
         ],
       ),

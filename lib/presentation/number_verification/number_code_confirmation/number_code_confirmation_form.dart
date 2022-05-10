@@ -30,7 +30,7 @@ class NumberCodeConfirmationForm extends StatelessWidget {
       listener: (context, state) {
         state.whenOrNull(
           success: () {
-            Routemaster.of(context).push(
+            Navigator.of(context).pushNamed(
               PhoneVerificationResultPage.path,
             );
           },
@@ -70,7 +70,7 @@ class NumberCodeConfirmationForm extends StatelessWidget {
           },
           hasError: cubit.state is CodeErrorCodeConfirmationState,
           backButtonCallback: () {
-            Routemaster.of(context).pop();
+            Navigator.of(context).pop();
           },
           resendButtonCallback: () {
             cubit.resendVerificationCode(

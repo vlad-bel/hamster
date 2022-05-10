@@ -12,7 +12,6 @@ import 'package:business_terminal/presentation/registration/widgets/white_button
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:routemaster/routemaster.dart';
 
 class CallMethodSelectorForm extends StatefulWidget {
   const CallMethodSelectorForm({
@@ -91,7 +90,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                     WhiteButton(
                       width: 162,
                       onPressed: () {
-                        Routemaster.of(context).pop();
+                        Navigator.of(context).pop();
                       },
                     ),
                     const SizedBox(width: 24),
@@ -105,9 +104,9 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                         final verificationMethod = state.smsSelected
                             ? VerifyMethod.sms
                             : VerifyMethod.phoneCall;
-                        Routemaster.of(context).push(
+                        Navigator.of(context).pushNamed(
                           NumberCodeConfirmationPage.path,
-                          queryParameters: {
+                          arguments: {
                             'phone': widget.number,
                             'email': widget.email,
                             'verify_method': verificationMethod.string,

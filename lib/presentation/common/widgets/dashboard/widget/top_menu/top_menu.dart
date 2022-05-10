@@ -6,7 +6,12 @@ import 'package:business_terminal/presentation/common/widgets/dashboard/widget/t
 import 'package:flutter/material.dart';
 
 class TopMenu extends StatelessWidget {
-  const TopMenu({Key? key}) : super(key: key);
+  const TopMenu({
+    Key? key,
+    required this.selectedPage,
+  }) : super(key: key);
+
+  final String selectedPage;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +25,9 @@ class TopMenu extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const BreadCrumbs(
+          BreadCrumbs(
             basePathName: 'Business Terminal',
+            selectedPage: selectedPage,
           ),
           const Spacer(),
           MenuButton(

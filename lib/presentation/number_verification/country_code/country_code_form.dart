@@ -12,7 +12,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:routemaster/routemaster.dart';
 
 ///form for [CountriesListPage]
 class ContryCodeForm extends StatelessWidget {
@@ -52,9 +51,9 @@ class ContryCodeForm extends StatelessWidget {
                         );
                       },
                       next: (email, phone) {
-                        Routemaster.of(context).push(
+                        Navigator.of(context).pushNamed(
                           CallMethodSelectorPage.path,
-                          queryParameters: {
+                          arguments: {
                             'phone_number': phone,
                             'email': email,
                           },

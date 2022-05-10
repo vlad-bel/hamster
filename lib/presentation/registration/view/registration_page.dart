@@ -192,7 +192,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   children: [
                                     WhiteButton(
                                       onPressed: () {
-                                        Routemaster.of(context).pop();
+                                        Navigator.of(context).pop();
                                       },
                                     ),
                                     BlocListener<UserInfoInitCubit,
@@ -296,9 +296,9 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
 
     showProcessingDataSnackbar(context);
 
-    Routemaster.of(context).push(
+    Navigator.of(context).pushNamed(
       EmailVerificationPage.path,
-      queryParameters: {
+      arguments: {
         'email': email!,
       },
     );

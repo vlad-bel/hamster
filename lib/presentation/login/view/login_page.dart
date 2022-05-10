@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:routemaster/routemaster.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -137,7 +136,7 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void onPressNavigateToRegistration(BuildContext context) {
-    Routemaster.of(context).push(RegistrationPage.path);
+    Navigator.of(context).pushNamed(RegistrationPage.path);
   }
 
   @override
@@ -177,7 +176,7 @@ class LoginBlocListener extends StatelessWidget {
   void onSuccess(BuildContext context) {
     snackBarManager.showSuccess(context, 'Correct user credentials');
 
-    Routemaster.of(context).push(RegistrationPage.path);
+    Navigator.of(context).pushNamed(RegistrationPage.path);
   }
 
   void onError(Failure e, BuildContext context) {

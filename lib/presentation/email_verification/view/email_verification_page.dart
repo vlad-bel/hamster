@@ -15,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:routemaster/routemaster.dart';
 
 import 'email_was_sent_text_icon.dart';
 
@@ -86,7 +85,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
             WhiteButton(
               width: 320,
               onPressed: () {
-                Routemaster.of(context).pop();
+                Navigator.of(context).pop();
               },
             ),
             EmailVerificationBlocListener(
@@ -210,9 +209,9 @@ class EmailVerificationBlocListener extends StatelessWidget {
         if (state is SuccessEmailVerification) {
           snackBarManager.showSuccess(context, 'OTP Code is correct');
           if (state.response == 'response') {
-            Routemaster.of(context).push(
+            Navigator.of(context).pushNamed(
               CountriesCodePage.path,
-              queryParameters: {
+              arguments: {
                 'email': state.email,
               },
             );

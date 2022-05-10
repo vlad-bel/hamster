@@ -17,9 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$DashboardStateTearOff {
   const _$DashboardStateTearOff();
 
-  InitDashboardState init({int? testCount}) {
+  InitDashboardState init(
+      {int? testCount, bool? finansenOpen, bool? administrationOpen}) {
     return InitDashboardState(
       testCount: testCount,
+      finansenOpen: finansenOpen,
+      administrationOpen: administrationOpen,
     );
   }
 }
@@ -30,20 +33,28 @@ const $DashboardState = _$DashboardStateTearOff();
 /// @nodoc
 mixin _$DashboardState {
   int? get testCount => throw _privateConstructorUsedError;
+  bool? get finansenOpen => throw _privateConstructorUsedError;
+  bool? get administrationOpen => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? testCount) init,
+    required TResult Function(
+            int? testCount, bool? finansenOpen, bool? administrationOpen)
+        init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? testCount)? init,
+    TResult Function(
+            int? testCount, bool? finansenOpen, bool? administrationOpen)?
+        init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? testCount)? init,
+    TResult Function(
+            int? testCount, bool? finansenOpen, bool? administrationOpen)?
+        init,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,7 +85,7 @@ abstract class $DashboardStateCopyWith<$Res> {
   factory $DashboardStateCopyWith(
           DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res>;
-  $Res call({int? testCount});
+  $Res call({int? testCount, bool? finansenOpen, bool? administrationOpen});
 }
 
 /// @nodoc
@@ -89,12 +100,22 @@ class _$DashboardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? testCount = freezed,
+    Object? finansenOpen = freezed,
+    Object? administrationOpen = freezed,
   }) {
     return _then(_value.copyWith(
       testCount: testCount == freezed
           ? _value.testCount
           : testCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      finansenOpen: finansenOpen == freezed
+          ? _value.finansenOpen
+          : finansenOpen // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      administrationOpen: administrationOpen == freezed
+          ? _value.administrationOpen
+          : administrationOpen // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -106,7 +127,7 @@ abstract class $InitDashboardStateCopyWith<$Res>
           InitDashboardState value, $Res Function(InitDashboardState) then) =
       _$InitDashboardStateCopyWithImpl<$Res>;
   @override
-  $Res call({int? testCount});
+  $Res call({int? testCount, bool? finansenOpen, bool? administrationOpen});
 }
 
 /// @nodoc
@@ -123,12 +144,22 @@ class _$InitDashboardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? testCount = freezed,
+    Object? finansenOpen = freezed,
+    Object? administrationOpen = freezed,
   }) {
     return _then(InitDashboardState(
       testCount: testCount == freezed
           ? _value.testCount
           : testCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      finansenOpen: finansenOpen == freezed
+          ? _value.finansenOpen
+          : finansenOpen // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      administrationOpen: administrationOpen == freezed
+          ? _value.administrationOpen
+          : administrationOpen // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -136,14 +167,19 @@ class _$InitDashboardStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitDashboardState implements InitDashboardState {
-  const _$InitDashboardState({this.testCount});
+  const _$InitDashboardState(
+      {this.testCount, this.finansenOpen, this.administrationOpen});
 
   @override
   final int? testCount;
+  @override
+  final bool? finansenOpen;
+  @override
+  final bool? administrationOpen;
 
   @override
   String toString() {
-    return 'DashboardState.init(testCount: $testCount)';
+    return 'DashboardState.init(testCount: $testCount, finansenOpen: $finansenOpen, administrationOpen: $administrationOpen)';
   }
 
   @override
@@ -152,12 +188,21 @@ class _$InitDashboardState implements InitDashboardState {
         (other is InitDashboardState &&
             (identical(other.testCount, testCount) ||
                 const DeepCollectionEquality()
-                    .equals(other.testCount, testCount)));
+                    .equals(other.testCount, testCount)) &&
+            (identical(other.finansenOpen, finansenOpen) ||
+                const DeepCollectionEquality()
+                    .equals(other.finansenOpen, finansenOpen)) &&
+            (identical(other.administrationOpen, administrationOpen) ||
+                const DeepCollectionEquality()
+                    .equals(other.administrationOpen, administrationOpen)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(testCount);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(testCount) ^
+      const DeepCollectionEquality().hash(finansenOpen) ^
+      const DeepCollectionEquality().hash(administrationOpen);
 
   @JsonKey(ignore: true)
   @override
@@ -167,27 +212,33 @@ class _$InitDashboardState implements InitDashboardState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? testCount) init,
+    required TResult Function(
+            int? testCount, bool? finansenOpen, bool? administrationOpen)
+        init,
   }) {
-    return init(testCount);
+    return init(testCount, finansenOpen, administrationOpen);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? testCount)? init,
+    TResult Function(
+            int? testCount, bool? finansenOpen, bool? administrationOpen)?
+        init,
   }) {
-    return init?.call(testCount);
+    return init?.call(testCount, finansenOpen, administrationOpen);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? testCount)? init,
+    TResult Function(
+            int? testCount, bool? finansenOpen, bool? administrationOpen)?
+        init,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(testCount);
+      return init(testCount, finansenOpen, administrationOpen);
     }
     return orElse();
   }
@@ -222,10 +273,17 @@ class _$InitDashboardState implements InitDashboardState {
 }
 
 abstract class InitDashboardState implements DashboardState {
-  const factory InitDashboardState({int? testCount}) = _$InitDashboardState;
+  const factory InitDashboardState(
+      {int? testCount,
+      bool? finansenOpen,
+      bool? administrationOpen}) = _$InitDashboardState;
 
   @override
   int? get testCount => throw _privateConstructorUsedError;
+  @override
+  bool? get finansenOpen => throw _privateConstructorUsedError;
+  @override
+  bool? get administrationOpen => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $InitDashboardStateCopyWith<InitDashboardState> get copyWith =>

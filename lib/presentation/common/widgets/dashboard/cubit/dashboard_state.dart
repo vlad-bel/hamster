@@ -6,5 +6,7 @@ part 'dashboard_state.freezed.dart';
 class DashboardState with _$DashboardState {
   const factory DashboardState.init({
     int? testCount,
+    bool? finansenOpen,
+    bool? administrationOpen,
   }) = InitDashboardState;
 }

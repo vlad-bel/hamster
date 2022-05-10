@@ -1,19 +1,19 @@
 import 'package:business_terminal/config/styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:routemaster/routemaster.dart';
 
 class BreadCrumbs extends StatelessWidget {
   const BreadCrumbs({
     Key? key,
     required this.basePathName,
+    required this.selectedPage,
   }) : super(key: key);
   final String basePathName;
+  final String selectedPage;
 
   @override
   Widget build(BuildContext context) {
-    final tabPage = TabPage.of(context);
-    final currentPath = tabPage.page.paths[tabPage.index].split('/');
+    final currentPath = selectedPage.split('/');
     final currentLastPath = currentPath.last;
 
     final crumbs = <Widget>[
@@ -50,7 +50,7 @@ class BreadCrumbs extends StatelessWidget {
           tr(currentLastPath),
           style: inter24SemiBold,
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Row(
           children: crumbs,
         ),
