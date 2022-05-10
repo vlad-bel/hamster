@@ -7,3 +7,4 @@ const solitude1 = Color(0xffF3F6F8);
 const denim = Color(0xff1F7DD6);
 const razzmatazz = Color(0xffE10054);
 const fruitSalad = Color(0xff549d4c);
+const darkGreen = Color(0x26549d4c);

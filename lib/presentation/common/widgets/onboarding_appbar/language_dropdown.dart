@@ -10,7 +10,7 @@ class AppLanguage {
   final String iconPath;
 
   static List<AppLanguage> getLanguages() {
-    return [AppLanguage('German', Assets.imagesFlagsGer)];
+    return [AppLanguage('German', Assets.flagsGer)];
   }
 }
 

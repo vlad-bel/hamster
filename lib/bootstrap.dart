@@ -29,6 +29,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   configureDependencies();
 
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
   await runZonedGuarded(
     () async {
       await BlocOverrides.runZoned(
