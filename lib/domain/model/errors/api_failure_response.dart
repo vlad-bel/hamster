@@ -22,7 +22,7 @@ class ApiFailureResponse {
 
   factory ApiFailureResponse.fromJson(DioError error) {
     if (error.response != null) {
-      var data = error.response!.data;
+      dynamic data = error.response!.data;
       if(data is String){
         data = jsonDecode(data);
       }

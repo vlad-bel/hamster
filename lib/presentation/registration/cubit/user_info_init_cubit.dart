@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/request_model/registration/user_info_request.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/use_cases/registration/user_info_init/user_info_init.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -38,11 +39,8 @@ class UserInfoInitCubit extends Cubit<UserInfoInitState> {
       emit(UserInfoInitState.success(response));
     } on ApiFailure catch (e) {
       logger.e(e);
-      emit(
-        UserInfoInitState.error(
-          ApiFailure(e.response, 'iniUserInfoCreation'),
-        ),
-      );
+      SnackBarManager.showError(e.response.message.toString());
+      emit(const UserInfoInitState.initial());
     }
   }
 

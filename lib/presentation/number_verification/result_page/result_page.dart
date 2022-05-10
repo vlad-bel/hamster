@@ -1,11 +1,14 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmaion_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import '../../common/widgets/dashboard/cubit/dashboard_state.dart';
 
 class PhoneVerificationResultPage extends StatelessWidget {
   const PhoneVerificationResultPage({Key? key}) : super(key: key);
@@ -37,12 +40,16 @@ class PhoneVerificationResultPage extends StatelessWidget {
             ActionButtonBlue(
               width: double.infinity,
               isEnabled: true,
-              onPressed: () {},
+              onPressed: () => goToNextPage(context),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void goToNextPage(BuildContext context) {
+    Navigator.of(context).pushNamed(DashboardPage.path);
   }
 }
 

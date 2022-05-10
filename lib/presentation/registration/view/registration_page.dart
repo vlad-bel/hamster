@@ -20,7 +20,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:routemaster/routemaster.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -190,23 +189,28 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                         Navigator.of(context).pop();
                                       },
                                     ),
-                                    BlocListener<UserInfoInitCubit,
-                                        UserInfoInitState>(
-                                      listener:
-                                          (context, UserInfoInitState state) {
-                                        if (state is LoadingUserInfoInit) {
-                                          context.loaderOverlay.show();
-                                        } else {
-                                          context.loaderOverlay.hide();
-                                        }
+                                    ReactiveFormConsumer(
+                                      builder: (context, formGroup, child) {
+                                        return BlocListener<UserInfoInitCubit,
+                                            UserInfoInitState>(
+                                          listener: (
+                                            context,
+                                            UserInfoInitState state,
+                                          ) {
+                                            if (state is LoadingUserInfoInit) {
+                                              context.loaderOverlay.show();
+                                            } else {
+                                              context.loaderOverlay.hide();
+                                            }
 
-                                        if (state is ErrorUserInfoInit) {
-                                          showErrorSnackbar();
-                                        }
-                                      },
-                                      child: ReactiveFormConsumer(
-                                        builder: (context, formGroup, child) {
-                                          return ActionButtonBlue(
+                                            if (state is ErrorUserInfoInit) {
+                                              showErrorSnackbar();
+                                            }
+                                            if(state is SuccessUserInfoInit) {
+                                              goToNextPage(context, form);
+                                            }
+                                          },
+                                          child: ActionButtonBlue(
                                             isEnabled: formGroup.valid,
                                             onPressed: () {
                                               onPressedRegister(
@@ -214,9 +218,9 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                                 formGroup,
                                               );
                                             },
-                                          );
-                                        },
-                                      ),
+                                          ),
+                                        );
+                                      },
                                     )
                                   ],
                                 ),
@@ -289,22 +293,16 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
           email,
           password,
         );
+  }
 
-    showProcessingDataSnackbar(context);
+  void goToNextPage(BuildContext context, FormGroup form) {
+    final email = form.value[formSettings.kFieldEmail] as String?;
 
     Navigator.of(context).pushNamed(
       EmailVerificationPage.path,
       arguments: {
         'email': email!,
       },
-    );
-  }
-
-  void showProcessingDataSnackbar(BuildContext context) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-    context.showSnackBar(
-      const SnackBar(content: Text('Processing Data...')),
     );
   }
 
@@ -332,11 +330,5 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controllerPassword?.dispose();
-    super.dispose();
   }
 }

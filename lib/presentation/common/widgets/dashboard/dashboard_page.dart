@@ -12,6 +12,8 @@ class DashboardPage extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
+  static const String path = '/dashboard';
+
   @override
   State<DashboardPage> createState() => _DashboardPageState();
 }

@@ -64,7 +64,7 @@ class UnauthorizedState extends AppState {
               case PhoneVerificationResultPage.path:
                 page = const PhoneVerificationResultPage();
                 break;
-              case '/dashboard':
+              case DashboardPage.path:
                 page = const DashboardPage();
                 break;
             }

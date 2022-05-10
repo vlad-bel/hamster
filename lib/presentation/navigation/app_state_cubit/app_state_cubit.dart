@@ -18,7 +18,7 @@ class AppStateCubit extends Cubit<AppState> {
   AppStateCubit()
       : super(
           UnauthorizedState(
-            initialRoute:'/dashboard',
+            initialRoute:'/',
           ),
         );
 }

@@ -3,6 +3,7 @@ import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/request_model/registration/email_verification/email_verification_request.dart';
 import 'package:business_terminal/domain/request_model/registration/email_verification/resend_email_code_request.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/use_cases/registration/email_verification/email_verification.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -28,12 +29,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
       final response = await _useCase.resendCode(request);
       emit(const EmailVerificationState.mailSent());
     } on ApiFailure catch (e) {
-      logger.e(e);
-      emit(
-        EmailVerificationState.error(
-          ApiFailure(e.response, 'resendEmailCode'),
-        ),
-      );
+      displayErrorSnackbar(e);
     }
   }
 
@@ -58,25 +54,43 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
       logger.d('response: $response');
 
       if (response == 'OK') {
-        emit(
-          EmailVerificationState.success(
-            'response',
-            email,
-          ),
-        );
+        emit(EmailVerificationState.success('response', email));
       }
     } on ApiFailure catch (e) {
-      if (e.response.statusCode == 400) {
-        wrongOTPCode();
-      } else {
-        logger.e(e);
-        emit(
-          EmailVerificationState.error(
-            ApiFailure(e.response, 'resendEmailCode'),
-          ),
-        );
-      }
+      onErrorVerifyMail(e);
     }
+  }
+
+  void onErrorVerifyMail(ApiFailure e) {
+    if (e.response.statusCode == 400) {
+      if (e.response.message is String) {
+        final messageString = e.response.message as String;
+
+        // TODO: ask backend to return different statusCodes - so we don't have to parse messages
+
+        // Check too many attempts error:
+        if (messageString.contains('attempts')) {
+          // React to too many attempts error:
+          displayErrorSnackbar(e);
+          wrongOTPCode();
+        }
+        // Check wrong OTP code
+        else if (messageString.contains('verification code is invalid')) {
+          // React to wrong OTP Code:
+          wrongOTPCode();
+        } else {
+          displayErrorSnackbar(e);
+        }
+      }
+    } else {
+      displayErrorSnackbar(e);
+    }
+  }
+
+  void displayErrorSnackbar(ApiFailure e) {
+    logger.e(e);
+    SnackBarManager.showError(e.response.message.toString());
+    emit(const EmailVerificationState.initial());
   }
 }
 
