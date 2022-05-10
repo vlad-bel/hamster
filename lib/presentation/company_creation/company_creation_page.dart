@@ -8,6 +8,8 @@ import 'package:get_it/get_it.dart';
 class CompanyCreationPage extends StatelessWidget {
   const CompanyCreationPage({Key? key}) : super(key: key);
 
+  static const path = '/company_creation';
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

@@ -1,20 +1,20 @@
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/l10n/l10n.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
+import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/common/widgets/search_place/search_place.dart';
 import 'package:business_terminal/presentation/company_creation/cubit/company_creation_cubit.dart';
 import 'package:business_terminal/presentation/company_creation/cubit/company_creation_state.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:routemaster/routemaster.dart';
 
 class CompanyCreationForm extends StatelessWidget {
   const CompanyCreationForm({Key? key}) : super(key: key);
@@ -26,17 +26,29 @@ class CompanyCreationForm extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 120),
         child: OnboardingWhiteContainer(
           header: OnboardingWhiteContainerHeader(
-            header: context.l10n.create_company_profile,
+            header: tr('create_company_profile'),
             subHeader: Text(
-              context.l10n.create_company_profile_descr,
+              tr('create_company_profile_descr'),
               style: inter14,
             ),
           ),
-          body: BlocBuilder<CompanyCreationCubit, CompanyCreationState>(
-            builder: (context, state) {
+          body: BlocConsumer<CompanyCreationCubit, CompanyCreationState>(
+            listener: (context, state) {
+              state.whenOrNull(
+                success: () {
+                  Navigator.of(context).pushNamed('/dashboard');
+                },
+                error: (e) {
+                  SnackBarManager.showError(
+                    e.response.error ?? e.response.message as String,
+                  );
+                },
+              );
+            },
+            builder: (context, companyCreationState) {
               final companyCreationCubit =
                   BlocProvider.of<CompanyCreationCubit>(context);
-              final countrySelectorCubit =
+              var countrySelectorCubit =
                   BlocProvider.of<CountrySelectorCubit>(context);
 
               return ReactiveFormBuilder(
@@ -47,30 +59,65 @@ class CompanyCreationForm extends StatelessWidget {
                   Widget? child,
                 ) {
                   return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 26),
-                      const FormTextField(
+                      SizedBox(height: 26),
+                      FormTextField(
                         name: CompanyCreationCubit.companyField,
-                        hint: 'company',
-                        label: 'company',
+                        hint: tr('company_hint'),
+                        label: tr('company_hint'),
                       ),
                       const SizedBox(height: 16),
-                      SearchPlace(
-                        group: formGroup,
-                        name: CompanyCreationCubit.addressField,
-                        label: 'address',
-                        hint: 'address',
-                        onPredictionSelect: (prediction) {
-                          countrySelectorCubit.selectCountryFromPrediction(
-                            prediction,
-                          );
-                        },
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            flex: 3,
+                            child: FormTextField(
+                              name: CompanyCreationCubit.streetField,
+                              hint: tr('street_hint'),
+                              // hint: 'street_hint',
+                              label: tr('street_hint'),
+                              // label: 'street_hint',
+                            ),
+                          ),
+                          SizedBox(width: 16),
+                          Flexible(
+                            child: FormTextField(
+                              name: CompanyCreationCubit.streetNumberField,
+                              hint: tr('num_hint'),
+                              // hint: 'num_hint',
+                              label: tr('num_hint'),
+                              // label: 'num_hint',
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 16),
-                      const FormTextField(
-                        name: CompanyCreationCubit.postcodeField,
-                        hint: 'postcode',
-                        label: 'postcode',
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:  [
+                          Flexible(
+                            child: FormTextField(
+                              name: CompanyCreationCubit.postcodeField,
+                              hint: tr('post_hint'),
+                              // hint: 'post_hint',
+                              label: tr('post_hint'),
+                              // label: 'post_hint',
+                            ),
+                          ),
+                          SizedBox(width: 16),
+                          Flexible(
+                            flex: 3,
+                            child: FormTextField(
+                              name: CompanyCreationCubit.cityField,
+                              hint: tr('location_hint'),
+                              // hint: 'location_hint',
+                              label: tr('location_hint'),
+                              // label: 'location_hint',
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 16),
                       CountrySelector(
@@ -82,26 +129,59 @@ class CompanyCreationForm extends StatelessWidget {
                           WhiteButton(
                             width: 160,
                             onPressed: () {
-                              Routemaster.of(context).pop();
+                              Navigator.of(context).pop();
                             },
                           ),
                           const Spacer(),
-                          ReactiveFormConsumer(
-                            builder: (context, group, child) {
-                              final selectedCountry =
-                                  countrySelectorCubit.state.whenOrNull(
-                                success: (country, _) => country,
+                          BlocBuilder<CountrySelectorCubit,
+                              CountrySelectorState>(
+                            builder: (context, state) {
+                              countrySelectorCubit =
+                                  BlocProvider.of<CountrySelectorCubit>(
+                                context,
                               );
-                              return ActionButtonBlue(
-                                width: 160,
-                                isEnabled:
-                                    // countrySelectorCubit.countryForm.valid &&
-                                    selectedCountry != null && group.valid,
-                                onPressed: () {
-                                  ///go next
-                                  // companyCreationCubit.createCompany(
-                                  //   selectedAddress: countrySelectorCubit.state.whenOrNull(success: (country, _) => country),
-                                  // );
+                              return ReactiveFormConsumer(
+                                builder: (context, group, child) {
+                                  final selectedCountry =
+                                      countrySelectorCubit.state.whenOrNull(
+                                    close: (country, _) => country,
+                                  );
+
+                                  return ActionButtonBlue(
+                                    width: 160,
+                                    isEnabled: companyCreationState.when(
+                                      init: () {
+                                        return selectedCountry != null &&
+                                            group.valid;
+                                      },
+                                      loading: () {
+                                        return false;
+                                      },
+                                      success: () {
+                                        return selectedCountry != null &&
+                                            group.valid;
+                                      },
+                                      error: (e) {
+                                        return selectedCountry != null &&
+                                            group.valid;
+                                      },
+                                    ),
+                                    onPressed: () async {
+                                      await companyCreationCubit.createCompany(
+                                        selectedCountry!,
+                                      );
+                                    },
+                                    child: companyCreationState.whenOrNull(
+                                      loading: () =>
+                                      const SizedBox(
+                                        width: 16,
+                                        height: 16,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                        ),
+                                      ),
+                                    ),
+                                  );
                                 },
                               );
                             },

@@ -13,7 +13,6 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   CountrySelectorCubit({
     required this.useCase,
   }) : super(const CountrySelectorState.loading()) {
-
     countryForm.valueChanges.listen((event) {
       final filterValue = (event![filterTextfield])! as String;
       filterCountryList(filterValue);
@@ -44,7 +43,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
       final countries = await useCase.getCountries();
       cachedCountries = countries.values.toList();
       emit(
-        CountrySelectorState.success(
+        CountrySelectorState.close(
           countries: countries.values.toList(),
         ),
       );
@@ -55,11 +54,11 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
 
   void showCountryList({Country? selectedCountry}) {
     state.whenOrNull(
-      success: (_, countries) {
+      close: (country, countries) {
         emit(
-          CountrySelectorState.success(
+          CountrySelectorState.open(
             countries: countries,
-            selectedCountry: selectedCountry,
+            selectedCountry: selectedCountry ?? country,
           ),
         );
       },
@@ -68,9 +67,9 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
 
   void filterCountryList(String value) {
     state.whenOrNull(
-      success: (selectedCountry, countries) {
+      open: (selectedCountry, countries) {
         emit(
-          CountrySelectorState.success(
+          CountrySelectorState.open(
             countries: cachedCountries
                 .where((element) => element.name.startsWith(value))
                 .toList(),
@@ -81,49 +80,17 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
     );
   }
 
-  void selectCountry(Country country) {
+  void selectCountry(Country? country) {
     state.whenOrNull(
-      success: (_, countries) {
-        countryForm.control(countryField).value =
-            ' ${country.emoji}  ${country.name}';
-        emit(
-          CountrySelectorState.success(
-            selectedCountry: country,
-            countries: countries,
-          ),
-        );
-      },
-    );
-  }
-
-  void selectCountryFromPrediction(Prediction prediction) {
-    state.whenOrNull(
-      success: (_, countries) {
-        final predictionContry = prediction.description!.split(',').last.trim();
-
-        ///TODO WARNING
-        /// Here we can face with bug of finding needed country
-        /// because some countries have different names into Google Api and  into our backend
-        /// ----example-----
-        /// Need to find USA country
-        /// Google Api -> USA
-        /// Our backend -> United states
-        /// USA != United states
-        /// ----solving-----
-        /// Need of some unification with google api and our backend
-        /// for example need to add placeId or something like that
-        /// and make check by this parameter, not by name
-        final country = countries?.firstWhere(
-          (element) => element.name.startsWith(predictionContry),
-        );
-
+      open: (_, countries) {
         if (country != null) {
           countryForm.control(countryField).value =
               ' ${country.emoji}  ${country.name}';
+        } else {
+          countryForm.control(countryField).value = '';
         }
-
         emit(
-          CountrySelectorState.success(
+          CountrySelectorState.close(
             selectedCountry: country,
             countries: countries,
           ),

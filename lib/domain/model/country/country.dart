@@ -14,6 +14,7 @@ class Country {
     required this.languages,
     required this.emoji,
     required this.emojiU,
+    this.code,
   });
 
   @JsonKey(name: 'name')
@@ -35,8 +36,35 @@ class Country {
   @JsonKey(name: 'emojiU')
   final String emojiU;
 
+  final String? code;
+
   factory Country.fromJson(Map<String, dynamic> json) =>
       _$CountryFromJson(json);
 
   Map<String, dynamic> toJson() => _$CountryToJson(this);
+
+  Country copyWith({
+    String? name,
+    String? native,
+    String? phone,
+    String? continent,
+    String? capital,
+    String? currency,
+    List<String>? languages,
+    String? emoji,
+    String? emojiU,
+    String? code,
+  }) =>
+      Country(
+        name: name ?? this.name,
+        native: native ?? this.native,
+        phone: phone ?? this.phone,
+        continent: continent ?? this.continent,
+        capital: capital ?? this.capital,
+        currency: currency ?? this.currency,
+        languages: languages ?? this.languages,
+        emoji: emoji ?? this.emoji,
+        emojiU: emojiU ?? this.emojiU,
+        code: code ?? this.code,
+      );
 }

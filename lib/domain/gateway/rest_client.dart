@@ -1,3 +1,4 @@
+import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -58,5 +59,9 @@ abstract class RestClient {
   Future<String> resendSMSCode(
     @Body() Map<String, dynamic> resendEmailCodeMap,
   );
-  
+
+  @POST('/company')
+  Future<Company> createCompany(
+    @Body() Map<String, dynamic> body,
+  );
 }

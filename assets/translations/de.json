@@ -16,8 +16,7 @@
   "user_account_created": "Nutzeraccount angelegt",
   "user_account_created_description":"Sie haben erfolgreich Ihren Nutzeraccount angelegt und haben somit nur noch einen weiteren Schritt vor sich, um Ihren Zugang zum BusinessTerminal von Hamster zu erhalten.",
   "create_company_profile": "Legen Sie Ihr Unternehmensprofil an.",
-  "create_company_profile_descr": "Teilen Sie uns mit, wie Ihr Unternehmen postalisch erreicht werden kann."
-  "user_account_created_description": "Sie haben erfolgreich Ihren Nutzeraccount angelegt und haben somit nur noch einen weiteren Schritt vor sich, um Ihren Zugang zum BusinessTerminal von Hamster zu erhalten.",
+  "create_company_profile_descr": "Teilen Sie uns mit, wie Ihr Unternehmen postalisch erreicht werden kann.",
   "administration": "Administration",
   "account-verification": "Account Verifikation",
   "my-company": "Mein Unternehmen",
@@ -28,5 +27,11 @@
   "change_password": "Passwort ändern",
   "settings": "Einstellungen",
   "help_center": "Hilfe-Center",
-  "cancel_register": "Abmelden"
+  "cancel_register": "Abmelden",
+  "company_hint": "Unternehmensname",
+  "street_hint": "Straße",
+  "post_hint": "PLZ",
+  "num_hint": "Nr.",
+  "location_hint": "Ort",
+  "country_hint": "Land"
 }

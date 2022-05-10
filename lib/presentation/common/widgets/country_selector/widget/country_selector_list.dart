@@ -1,9 +1,9 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/l10n/l10n.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,12 +16,14 @@ class CountrySelectorList extends StatelessWidget {
     required this.cubit,
     required this.overlayEntry,
     required this.size,
+    required this.filterFocusNode,
   }) : super(key: key);
 
   final LayerLink layerLink;
   final CountrySelectorCubit cubit;
   final OverlayEntry overlayEntry;
   final Size size;
+  final FocusNode filterFocusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,10 @@ class CountrySelectorList extends StatelessWidget {
       builder: (context, CountrySelectorState state) {
         return state.when(
           loading: SizedBox.new,
-          success: (selectedCountry, countries) {
+          close: (selectedCountry, countries) {
+            return const SizedBox();
+          },
+          open: (selectedCountry, countries) {
             return Positioned(
               width: size.width,
               child: CompositedTransformFollower(
@@ -49,8 +54,9 @@ class CountrySelectorList extends StatelessWidget {
                           child: ReactiveForm(
                             formGroup: cubit.countryForm,
                             child: FormTextField(
+                              focusListener: filterFocusNode,
                               name: CountrySelectorCubit.filterTextfield,
-                              hint: context.l10n.country_name,
+                              hint: tr('country_name'),
                               customSuffix: CupertinoButton(
                                 child: const Icon(
                                   Icons.close,
@@ -60,9 +66,8 @@ class CountrySelectorList extends StatelessWidget {
                                 onPressed: () {
                                   cubit.countryForm
                                       .control(
-                                    CountrySelectorCubit
-                                        .filterTextfield,
-                                  )
+                                        CountrySelectorCubit.filterTextfield,
+                                      )
                                       .value = '';
                                 },
                               ),
@@ -88,12 +93,8 @@ class CountrySelectorList extends StatelessWidget {
                             final country = countries[index];
                             return ListTile(
                               onTap: () {
-                                cubit.countryForm
-                                    .control(
-                                  CountrySelectorCubit.countryField,
-                                )
-                                    .value = '';
                                 cubit.selectCountry(country);
+                                filterFocusNode.unfocus();
                                 overlayEntry.remove();
                               },
                               title: SizedBox(

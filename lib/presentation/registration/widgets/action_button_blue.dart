@@ -10,7 +10,7 @@ class ActionButtonBlue extends StatelessWidget {
   }) : super(key: key);
 
   final bool isEnabled;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final double? width;
   final Widget? child;
 
