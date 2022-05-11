@@ -18,8 +18,25 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
   final RestClient repository;
 
   @override
-  Future<Map<String, Country>> getCountries() {
-    return repository.getCountries();
+  Future<Map<String, Country>> getCountries() async {
+    try {
+      final response = await repository.getCountries();
+      final countriesWithCodes = response.map(
+        (key, value) => MapEntry(
+          key,
+          value.copyWith(
+            code: key,
+          ),
+        ),
+      );
+
+      return countriesWithCodes;
+    } on DioError catch (e) {
+      throw ApiFailure(
+        ApiFailureResponse.fromJson(e),
+        'createPhone',
+      );
+    }
   }
 
   @override

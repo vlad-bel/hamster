@@ -12,6 +12,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../company_creation/company_creation_page.dart';
+
 part '../app_state_cubit/app_state.dart';
 
 class AppStateCubit extends Cubit<AppState> {

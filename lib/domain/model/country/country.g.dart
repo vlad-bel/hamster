@@ -17,6 +17,7 @@ Country _$CountryFromJson(Map<String, dynamic> json) => Country(
           (json['languages'] as List<dynamic>).map((e) => e as String).toList(),
       emoji: json['emoji'] as String,
       emojiU: json['emojiU'] as String,
+      code: json['code'] as String?,
     );
 
 Map<String, dynamic> _$CountryToJson(Country instance) => <String, dynamic>{
@@ -29,4 +30,5 @@ Map<String, dynamic> _$CountryToJson(Country instance) => <String, dynamic>{
       'languages': instance.languages,
       'emoji': instance.emoji,
       'emojiU': instance.emojiU,
+      'code': instance.code,
     };

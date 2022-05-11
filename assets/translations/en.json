@@ -14,6 +14,8 @@
   "country_name": "Country name",
   "required_field": "Required field",
   "user_account_created": "User account created",
+  "create_company_profile": "Create your company profile.",
+  "create_company_profile_descr": "Let us know how your company can be reached by post.",
   "user_account_created_description": "You have successfully created your user account and therefore only have one more step to gain access to Hamster's BusinessTerminal.",
   "administration": "Administration",
   "account-verification": "Account Verification",
@@ -25,5 +27,11 @@
   "change_password": "Change password",
   "settings": "Settings",
   "help_center": "Help center",
-  "cancel_register": "Cancel registration"
+  "cancel_register": "Cancel registration",
+  "company_hint": "Company name",
+  "street_hint": "Street",
+  "post_hint": "Postcode",
+  "num_hint": "No.",
+  "location_hint": "Location",
+  "country_hint": "Country"
 }
