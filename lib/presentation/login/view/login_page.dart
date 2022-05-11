@@ -1,4 +1,5 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
@@ -80,6 +81,7 @@ class _LoginViewState extends State<LoginView> {
                       keyboardType: TextInputType.emailAddress,
                     ),
                     const FloatingWrongCredentialsView(),
+                    const SizedBox(height: 18),
                     FormTextField(
                       name: formSettings.kFieldPassword,
                       label: 'Passwort',
@@ -160,7 +162,7 @@ class LoginBlocListener extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         state.whenOrNull(
-          error: (e) => onError(e, context),
+          error: (ApiFailure e) => onError(e, context),
           success: (response) => onSuccess(context),
         );
 
@@ -180,10 +182,11 @@ class LoginBlocListener extends StatelessWidget {
     Navigator.of(context).pushNamed(DashboardPage.path);
   }
 
-  void onError(Failure e, BuildContext context) {
-    final error = e.exception as DioError;
-    final errorMessage = error.response?.statusMessage ?? '';
+  void onError(ApiFailure e, BuildContext context) {
+    final error = e.exception as ApiFailureResponse;
+    final dynamic errorMessage = error.message;
+    final message = errorMessage.toString();
 
-    snackBarManager.showError(context, errorMessage);
+    snackBarManager.showError(context, message);
   }
 }

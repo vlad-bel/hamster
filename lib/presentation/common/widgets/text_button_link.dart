@@ -1,5 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class TextButtonBlueLink extends StatelessWidget {
   const TextButtonBlueLink({
@@ -13,7 +14,7 @@ class TextButtonBlueLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoButton(
+    return FlatButton(
       onPressed: onPressed,
       child: Text(
         text,

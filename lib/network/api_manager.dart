@@ -1,3 +1,4 @@
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -29,19 +30,21 @@ Dio httpClientInit() {
         ) async {
           return handler.next(response);
         },
-        onError: (error, handler) async {
+        onError: (DioError error, handler) async {
+          // _refreshToken(error);
           return handler.next(error);
+
           ///TODO refresh token interceptor
         },
       ),
     )
-    ..interceptors.add(
-      PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        compact: false,
-      ),
-    );
+    ..interceptors.add(prettyDioLogger);
 
   return dio;
+}
+
+void _refreshToken(DioError error) {
+  if (error.response?.statusCode == 401) {
+    logger.d('Token error: $error');
+  }
 }

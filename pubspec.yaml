@@ -39,6 +39,7 @@ dependencies:
   logger: ^1.1.0
   dart_extensions: ^2.2.0
   dartz: ^0.10.1
+  flutter_secure_storage: ^5.0.2
 
   # UI:
   flutter_svg: ^1.0.3

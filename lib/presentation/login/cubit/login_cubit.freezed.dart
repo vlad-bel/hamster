@@ -37,7 +37,7 @@ class _$LoginStateTearOff {
     return const WrongEmailPasswordLogin();
   }
 
-  ErrorLogin error(Failure failure) {
+  ErrorLogin error(ApiFailure failure) {
     return ErrorLogin(
       failure,
     );
@@ -55,7 +55,7 @@ mixin _$LoginState {
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
     required TResult Function() wrongEmailPassword,
-    required TResult Function(Failure failure) error,
+    required TResult Function(ApiFailure failure) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,7 +64,7 @@ mixin _$LoginState {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,7 +73,7 @@ mixin _$LoginState {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,7 +193,7 @@ class _$InitialLogin implements InitialLogin {
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
     required TResult Function() wrongEmailPassword,
-    required TResult Function(Failure failure) error,
+    required TResult Function(ApiFailure failure) error,
   }) {
     return initial(isWrongPasswordEmail);
   }
@@ -205,7 +205,7 @@ class _$InitialLogin implements InitialLogin {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
   }) {
     return initial?.call(isWrongPasswordEmail);
   }
@@ -217,7 +217,7 @@ class _$InitialLogin implements InitialLogin {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -320,7 +320,7 @@ class _$LoadingLogin implements LoadingLogin {
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
     required TResult Function() wrongEmailPassword,
-    required TResult Function(Failure failure) error,
+    required TResult Function(ApiFailure failure) error,
   }) {
     return loading();
   }
@@ -332,7 +332,7 @@ class _$LoadingLogin implements LoadingLogin {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
   }) {
     return loading?.call();
   }
@@ -344,7 +344,7 @@ class _$LoadingLogin implements LoadingLogin {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -467,7 +467,7 @@ class _$SuccessLogin implements SuccessLogin {
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
     required TResult Function() wrongEmailPassword,
-    required TResult Function(Failure failure) error,
+    required TResult Function(ApiFailure failure) error,
   }) {
     return success(response);
   }
@@ -479,7 +479,7 @@ class _$SuccessLogin implements SuccessLogin {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
   }) {
     return success?.call(response);
   }
@@ -491,7 +491,7 @@ class _$SuccessLogin implements SuccessLogin {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -594,7 +594,7 @@ class _$WrongEmailPasswordLogin implements WrongEmailPasswordLogin {
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
     required TResult Function() wrongEmailPassword,
-    required TResult Function(Failure failure) error,
+    required TResult Function(ApiFailure failure) error,
   }) {
     return wrongEmailPassword();
   }
@@ -606,7 +606,7 @@ class _$WrongEmailPasswordLogin implements WrongEmailPasswordLogin {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
   }) {
     return wrongEmailPassword?.call();
   }
@@ -618,7 +618,7 @@ class _$WrongEmailPasswordLogin implements WrongEmailPasswordLogin {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) {
     if (wrongEmailPassword != null) {
@@ -677,7 +677,7 @@ abstract class $ErrorLoginCopyWith<$Res> {
   factory $ErrorLoginCopyWith(
           ErrorLogin value, $Res Function(ErrorLogin) then) =
       _$ErrorLoginCopyWithImpl<$Res>;
-  $Res call({Failure failure});
+  $Res call({ApiFailure failure});
 }
 
 /// @nodoc
@@ -697,7 +697,7 @@ class _$ErrorLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
       failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as Failure,
+              as ApiFailure,
     ));
   }
 }
@@ -708,7 +708,7 @@ class _$ErrorLogin implements ErrorLogin {
   const _$ErrorLogin(this.failure);
 
   @override
-  final Failure failure;
+  final ApiFailure failure;
 
   @override
   String toString() {
@@ -739,7 +739,7 @@ class _$ErrorLogin implements ErrorLogin {
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
     required TResult Function() wrongEmailPassword,
-    required TResult Function(Failure failure) error,
+    required TResult Function(ApiFailure failure) error,
   }) {
     return error(failure);
   }
@@ -751,7 +751,7 @@ class _$ErrorLogin implements ErrorLogin {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
   }) {
     return error?.call(failure);
   }
@@ -763,7 +763,7 @@ class _$ErrorLogin implements ErrorLogin {
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
     TResult Function()? wrongEmailPassword,
-    TResult Function(Failure failure)? error,
+    TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -814,9 +814,9 @@ class _$ErrorLogin implements ErrorLogin {
 }
 
 abstract class ErrorLogin implements LoginState {
-  const factory ErrorLogin(Failure failure) = _$ErrorLogin;
+  const factory ErrorLogin(ApiFailure failure) = _$ErrorLogin;
 
-  Failure get failure => throw _privateConstructorUsedError;
+  ApiFailure get failure => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ErrorLoginCopyWith<ErrorLogin> get copyWith =>
       throw _privateConstructorUsedError;

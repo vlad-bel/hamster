@@ -1,4 +1,5 @@
 import 'package:business_terminal/domain/model/country/country.dart';
+import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
@@ -15,7 +16,7 @@ abstract class RestClient {
   }) = _RestClient;
 
   @POST('/rep/login')
-  Future<String> login(
+  Future<LoginResponse> login(
     @Body() Map<String, dynamic> loginMap,
   );
 
@@ -42,8 +43,6 @@ abstract class RestClient {
     @Body() Map<String, dynamic> body,
   );
 
-  // verify email:
-  //region verify email:
   @POST('/rep/verify-email-code')
   Future<String> verifyEmailCode(
     @Body() Map<String, dynamic> emailCodeMap,

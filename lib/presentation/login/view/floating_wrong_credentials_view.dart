@@ -90,7 +90,7 @@ class FloatingWrongCredentialsView extends StatelessWidget {
                 ),
               ),
               anchor: Aligned.center,
-              child: const SizedBox(height: 18),
+              child: const SizedBox(height: 0),
             );
           }
         },

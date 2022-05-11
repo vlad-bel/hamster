@@ -9,14 +9,14 @@ import 'package:injectable/injectable.dart';
 
 @Singleton(as: LoginUseCase)
 class LoginUseCaseImpl extends LoginUseCase {
-  LoginUseCaseImpl(this.repository);
+  LoginUseCaseImpl(this.restClient);
 
-  final RestClient repository;
+  final RestClient restClient;
 
   @override
-  Future<String> login(LoginRequest request) {
+  Future<LoginResponse> login(LoginRequest request) async {
     try {
-      return repository.login(request.toJson());
+      return await restClient.login(request.toJson());
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),
