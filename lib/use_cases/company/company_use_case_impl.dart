@@ -34,6 +34,9 @@ class CompanyUseCaseImpl extends CompanyUsecase {
           country: country,
           countryCode: countryCode,
         ).toJson(),
+
+        ///TODO PUT TEMPORARY TOKEN HERE
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQHRlc3QuY29tIiwicm9sZXMiOlsicmVwcmVzZW50YXRpdmUiXSwiaWF0IjoxNjUyMjcwMTk1LCJleHAiOjE2NTIyNzM3OTV9.HsQH0w5FY2S2M7g1PStEyShdClVMnc5qHx1cla-kbDk",
       );
     } on DioError catch (e) {
       throw ApiFailure(

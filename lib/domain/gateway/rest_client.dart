@@ -63,5 +63,6 @@ abstract class RestClient {
   @POST('/company')
   Future<Company> createCompany(
     @Body() Map<String, dynamic> body,
+    @Header("Authorization") String contentType,
   );
 }

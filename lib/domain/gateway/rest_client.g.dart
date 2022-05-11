@@ -159,10 +159,11 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<Company> createCompany(body) async {
+  Future<Company> createCompany(body, contentType) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': contentType};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body);
     final _result = await _dio.fetch<Map<String, dynamic>>(
