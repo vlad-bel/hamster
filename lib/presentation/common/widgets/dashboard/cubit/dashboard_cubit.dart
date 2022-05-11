@@ -12,7 +12,7 @@ class DashboardCubit extends Cubit<DashboardState> {
       init: (testCount, _, __) {
         testCount ??= 0;
 
-        testCount++;
+        testCount = 3;
         emit(DashboardState.init(
           testCount: testCount,
           administrationOpen: true,

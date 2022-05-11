@@ -1,11 +1,11 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/common/widgets/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/text_button_link.dart';
 import 'package:business_terminal/presentation/login/cubit/login_cubit.dart';
 import 'package:business_terminal/presentation/login/form_validation/login_form_validation.dart';
@@ -13,7 +13,6 @@ import 'package:business_terminal/presentation/login/view/floating_wrong_credent
 import 'package:business_terminal/presentation/registration/view/registration_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -48,7 +47,6 @@ class _LoginViewState extends State<LoginView> {
   final subtitle =
       'Sollten Sie bereits einen BusinessAccount haben, dann melden Sie sich direkt an. Ansonsten müssten Sie sich zuerst noch registrieren.';
   final forgotPasswordText = 'Passwort vergessen';
-  final snackBarManager = getIt<SnackBarManager>();
 
   @override
   void initState() {
@@ -120,7 +118,7 @@ class _LoginViewState extends State<LoginView> {
                       text: 'Jetzt registrieren',
                       onPressed: () => onPressNavigateToRegistration(context),
                     ),
-                    LoginBlocListener(snackBarManager: snackBarManager)
+                    const LoginBlocListener(),
                   ],
                 );
               },
@@ -152,17 +150,14 @@ class _LoginViewState extends State<LoginView> {
 class LoginBlocListener extends StatelessWidget {
   const LoginBlocListener({
     Key? key,
-    required this.snackBarManager,
   }) : super(key: key);
-
-  final SnackBarManager snackBarManager;
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         state.whenOrNull(
-          error: (ApiFailure e) => onError(e, context),
+          error: onError,
           success: (response) => onSuccess(context),
         );
 
@@ -177,16 +172,16 @@ class LoginBlocListener extends StatelessWidget {
   }
 
   void onSuccess(BuildContext context) {
-    snackBarManager.showSuccess(context, 'Correct user credentials');
+    SnackBarManager.showSuccess('Correct user credentials');
 
     Navigator.of(context).pushNamed(DashboardPage.path);
   }
 
-  void onError(ApiFailure e, BuildContext context) {
+  void onError(ApiFailure e) {
     final error = e.exception as ApiFailureResponse;
     final dynamic errorMessage = error.message;
     final message = errorMessage.toString();
 
-    snackBarManager.showError(context, message);
+    SnackBarManager.showError(message);
   }
 }

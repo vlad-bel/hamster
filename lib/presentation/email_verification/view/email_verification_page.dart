@@ -2,10 +2,10 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/common/widgets/snackbar_manager.dart';
 import 'package:business_terminal/presentation/email_verification/cubit/email_verification_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/country_code_page.dart';
 import 'package:business_terminal/presentation/registration/view/registration_page.dart';
@@ -53,7 +53,6 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
   final emailWasSentColor = fruitSalad;
 
   final pinController = TextEditingController();
-  final snackBarManager = getIt.get<SnackBarManager>();
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +89,6 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
             ),
             EmailVerificationBlocListener(
               pinController: pinController,
-              snackBarManager: snackBarManager,
             ),
           ],
         ),
@@ -181,11 +179,9 @@ class EmailVerificationBlocListener extends StatelessWidget {
   const EmailVerificationBlocListener({
     Key? key,
     required this.pinController,
-    required this.snackBarManager,
   }) : super(key: key);
 
   final TextEditingController pinController;
-  final SnackBarManager snackBarManager;
 
   @override
   Widget build(BuildContext context) {
@@ -203,11 +199,11 @@ class EmailVerificationBlocListener extends StatelessWidget {
           final error = state.failure.exception as DioError;
           final errorMessage = error.response?.statusMessage ?? '';
 
-          snackBarManager.showError(context, errorMessage);
+          SnackBarManager.showError(errorMessage);
         }
 
         if (state is SuccessEmailVerification) {
-          snackBarManager.showSuccess(context, 'OTP Code is correct');
+          SnackBarManager.showSuccess('OTP Code is correct');
           if (state.response == 'response') {
             Navigator.of(context).pushNamed(
               CountriesCodePage.path,

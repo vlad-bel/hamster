@@ -1,15 +1,16 @@
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
+import 'package:business_terminal/presentation/dashboard/account_verification/widgets/account_verification_checkbox_with_button.dart';
+import 'package:business_terminal/presentation/dashboard/account_verification/widgets/account_verification_title_subtitle.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/widgets/dashboard_profile_feelup_percents_box.dart';
-import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AccountVerificationPage extends StatelessWidget {
-  const AccountVerificationPage({Key? key}) : super(key: key);
+class DashboardAccountVerificationPage extends StatelessWidget {
+  const DashboardAccountVerificationPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,17 +71,7 @@ class _AccountVerificationContent extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          'Ein paar Informationen fehlen uns noch',
-          style: inter20,
-        ),
-        const SizedBox(height: 30),
-        Text(
-          'Die drei nachfolgenden Bedingungen müssen erfüllt sein bevor Sie die Verifikation Ihres Unternehmens mit den'
-          '\ndazugehörigen Filialen beantragen können, um in der HamsterApp aufgeführt zu werden.',
-          style: inter14,
-          textAlign: TextAlign.center,
-        ),
+        const AccountVerificationTitleSubtitle(),
         const SizedBox(height: 50),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -91,7 +82,10 @@ class _AccountVerificationContent extends StatelessWidget {
               title: 'Nutzeraccount',
               subTitle:
                   'Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen.',
-              onPressed: () {},
+              onPressed: () {
+                SnackBarManager.showSuccess(
+                    'Nutzeraccount feature is work in progress');
+              },
             ),
             const SizedBox(width: 24),
             DashboardProfileFeelUpPercentsBox(
@@ -100,7 +94,10 @@ class _AccountVerificationContent extends StatelessWidget {
               title: 'Unternehmensprofil',
               subTitle:
                   'Vervollständigen Sie Ihr Unternehmensprofil, damit wir Sie verifizieren können.',
-              onPressed: () {},
+              onPressed: () {
+                SnackBarManager.showSuccess(
+                    'Unternehmensprofil feature is work in progress');
+              },
             ),
             const SizedBox(width: 24),
             DashboardProfileFeelUpPercentsBox(
@@ -109,36 +106,16 @@ class _AccountVerificationContent extends StatelessWidget {
               title: 'Filialprofil',
               subTitle:
                   'Vervollständigen Sie mindestens ein Filialprofil, welches Ihren Kunden in der HamsterApp angezeigt wird.',
-              onPressed: () {},
+              onPressed: () {
+                SnackBarManager.showSuccess(
+                    'Filialprofil feature is work in progress');
+              },
             ),
           ],
         ),
         const SizedBox(height: 45),
-        SizedBox(
-          width: 588,
-          child: CheckboxListTile(
-            value: isAcceptedDataIsCorrect,
-            title: Text(
-              'Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind. ',
-              style: inter12,
-              textAlign: TextAlign.center,
-            ),
-            controlAffinity: ListTileControlAffinity.leading,
-            onChanged: (value) {
-              context
-                  .read<AccountVerificationCubit>()
-                  .changeCheckBoxDataIsCorrect(
-                    isAcceptedDataIsCorrect: value ?? false,
-                  );
-            },
-          ),
-        ),
-        const SizedBox(height: 25),
-        ActionButtonBlue(
-          onPressed: () {},
-          isEnabled: isAcceptedDataIsCorrect,
-          width: 580,
-          child: const Text('VERIFIKATION BEANTRAGEN'),
+        AccountVerificationCheckboxWithButton(
+          isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
         ),
       ],
     );
