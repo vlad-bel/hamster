@@ -131,6 +131,7 @@ class _Selector extends StatelessWidget {
       link: layerLink,
       child: FormTextField(
         name: CountryCodeSelectorCubit.numberTextfield,
+        counter: const SizedBox(),
         prefixIcon: selectedCountry != null
             ? NumberPrefix(
                 country: selectedCountry!,

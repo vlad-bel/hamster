@@ -79,7 +79,7 @@ class _CountryList extends StatelessWidget {
       child: CompositedTransformFollower(
         // showWhenUnlinked: false,
         link: layerLink,
-        offset: Offset(0, size.height - 20),
+        offset: Offset(0, size.height - 6),
         child: Material(
           elevation: 4,
           child: Column(
