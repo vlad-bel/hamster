@@ -10,6 +10,7 @@ import 'package:business_terminal/presentation/common/widgets/text_button_link.d
 import 'package:business_terminal/presentation/login/cubit/login_cubit.dart';
 import 'package:business_terminal/presentation/login/form_validation/login_form_validation.dart';
 import 'package:business_terminal/presentation/login/view/floating_wrong_credentials_view.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:business_terminal/presentation/registration/view/registration_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
@@ -172,9 +173,7 @@ class LoginBlocListener extends StatelessWidget {
   }
 
   void onSuccess(BuildContext context) {
-    SnackBarManager.showSuccess('Correct user credentials');
-
-    Navigator.of(context).pushNamed(DashboardPage.path);
+    RegistrationFlowManager.navigateToNextScreenFromLogin(context);
   }
 
   void onError(ApiFailure e) {
