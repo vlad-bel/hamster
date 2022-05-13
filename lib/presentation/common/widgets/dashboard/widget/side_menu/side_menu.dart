@@ -1,4 +1,5 @@
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_header.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_items.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,11 +11,15 @@ class SideMenu extends StatefulWidget {
     required this.navigateTo,
     required this.selectedIndex,
     required this.selectedPage,
+    required this.repCompany,
+    this.isBlockFinance,
   }) : super(key: key);
 
   final Function(int, String routename) navigateTo;
   final int selectedIndex;
   final String selectedPage;
+  final RepCompany? repCompany;
+  final bool? isBlockFinance;
 
   @override
   State<SideMenu> createState() => _SideMenuState();
@@ -34,12 +39,15 @@ class _SideMenuState extends State<SideMenu> {
       ),
       child: Column(
         children: [
-          const SideMenuHeader(),
+          SideMenuHeader(
+            repCompany: widget.repCompany,
+          ),
           const SizedBox(height: 30),
           SideMenuItems(
             navigateTo: widget.navigateTo,
             selectedIndex: widget.selectedIndex,
-            selectedPage : widget.selectedPage,
+            selectedPage: widget.selectedPage,
+            isBlockFinance: widget.isBlockFinance,
           ),
         ],
       ),

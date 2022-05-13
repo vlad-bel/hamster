@@ -17,11 +17,13 @@ class SideMenuItems extends StatefulWidget {
     required this.navigateTo,
     required this.selectedIndex,
     required this.selectedPage,
+    this.isBlockFinance,
   }) : super(key: key);
 
   final Function(int, String routeName) navigateTo;
   final int selectedIndex;
   final String selectedPage;
+  final bool? isBlockFinance;
 
   @override
   State<SideMenuItems> createState() => _SideMenuItemsState();
@@ -41,6 +43,7 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
                 name: 'Finanzen',
                 initialRouteName: 'finance',
                 selectedRoute: widget.selectedPage,
+                isBlocked: widget.isBlockFinance,
                 subItems: [
                   MenuSubItem(
                     index: 0,
@@ -64,7 +67,7 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
               ),
               BlocBuilder<DashboardCubit, DashboardState>(
                 builder: (context, state) {
-                  final count = state.when(init: (count, _, __) => count);
+                  final count = state.when(init: (count, _, __, ___) => count);
                   return MenuItem(
                     image: '/images/administration.svg',
                     name: 'Administration',
@@ -119,6 +122,7 @@ class MenuItem extends StatefulWidget {
     required this.subItems,
     required this.initialRouteName,
     required this.selectedRoute,
+    this.isBlocked,
   });
 
   final String name;
@@ -126,6 +130,7 @@ class MenuItem extends StatefulWidget {
   final String selectedRoute;
   final String image;
   final List<MenuSubItem> subItems;
+  final bool? isBlocked;
 
   @override
   State<MenuItem> createState() => _MenuItemState();
@@ -142,9 +147,10 @@ class _MenuItemState extends State<MenuItem> {
 
     return ExpandablePanel(
       controller: controller,
-      theme: const ExpandableThemeData(
+      theme: ExpandableThemeData(
         headerAlignment: ExpandablePanelHeaderAlignment.center,
         hasIcon: false,
+        tapHeaderToExpand: (widget.isBlocked ?? true) ? false : true,
         // tapHeaderToExpand: false,
       ),
       header: Padding(

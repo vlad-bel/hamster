@@ -1,5 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
@@ -15,7 +16,7 @@ class DashboardAccountVerificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt.get<AccountVerificationCubit>(),
+      create: (_) => getIt.get<AccountVerificationCubit>()..getRepCompanyData(),
       child: const _AccountVerificationView(),
     );
   }
@@ -34,16 +35,21 @@ class _AccountVerificationView extends StatelessWidget {
             return state.when(
               initial: (
                 isAcceptedDataIsCorrect,
+                isFullyCompleted,
                 progressUserAccount,
                 progressCompanyProfile,
                 progressBranchProfile,
               ) =>
                   _AccountVerificationContent(
                 isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
+                isFullyCompleted: isFullyCompleted,
                 progressUserAccount: progressUserAccount,
                 progressCompanyProfile: progressCompanyProfile,
                 progressBranchProfile: progressBranchProfile,
               ),
+              error: (ApiFailure error) {
+                return const _AccountVerificationContent();
+              },
             );
           },
         ),
@@ -55,16 +61,18 @@ class _AccountVerificationView extends StatelessWidget {
 class _AccountVerificationContent extends StatelessWidget {
   const _AccountVerificationContent({
     Key? key,
-    required this.isAcceptedDataIsCorrect,
-    required this.progressUserAccount,
-    required this.progressCompanyProfile,
-    required this.progressBranchProfile,
+    this.isAcceptedDataIsCorrect,
+    this.isFullyCompleted,
+    this.progressUserAccount,
+    this.progressCompanyProfile,
+    this.progressBranchProfile,
   }) : super(key: key);
 
-  final bool isAcceptedDataIsCorrect;
-  final int progressUserAccount;
-  final int progressCompanyProfile;
-  final int progressBranchProfile;
+  final bool? isAcceptedDataIsCorrect;
+  final bool? isFullyCompleted;
+  final int? progressUserAccount;
+  final int? progressCompanyProfile;
+  final int? progressBranchProfile;
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +123,8 @@ class _AccountVerificationContent extends StatelessWidget {
         ),
         const SizedBox(height: 45),
         AccountVerificationCheckboxWithButton(
-          isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
+          isFullyCompleted: isFullyCompleted ?? false,
+          isAcceptedDataIsCorrect: isAcceptedDataIsCorrect ?? false,
         ),
       ],
     );

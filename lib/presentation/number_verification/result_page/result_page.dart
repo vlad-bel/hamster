@@ -49,7 +49,7 @@ class PhoneVerificationResultPage extends StatelessWidget {
   }
 
   void goToNextPage(BuildContext context) {
-    Navigator.of(context).pushNamed(DashboardPage.path);
+    Navigator.of(context).pushReplacementNamed(DashboardPage.path);
   }
 }
 

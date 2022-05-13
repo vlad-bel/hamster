@@ -9,9 +9,11 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
   const AccountVerificationCheckboxWithButton({
     Key? key,
     required this.isAcceptedDataIsCorrect,
+    required this.isFullyCompleted,
   }) : super(key: key);
 
   final bool isAcceptedDataIsCorrect;
+  final bool isFullyCompleted;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,9 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             controlAffinity: ListTileControlAffinity.leading,
-            onChanged: (value) => onChangeCheckBox(context, value: value),
+            onChanged: isFullyCompleted
+                ? (value) => onChangeCheckBox(context, value: value)
+                : null,
           ),
         ),
         const SizedBox(height: 25),

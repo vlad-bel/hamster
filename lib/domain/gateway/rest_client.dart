@@ -1,3 +1,5 @@
+import 'package:business_terminal/domain/model/company/company.dart';
+import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:dio/dio.dart';
@@ -56,5 +58,16 @@ abstract class RestClient {
   @POST('/rep/resend-code-to-phone')
   Future<String> resendSMSCode(
     @Body() Map<String, dynamic> resendEmailCodeMap,
+  );
+
+  @POST('/company')
+  Future<Company> createCompany(
+    @Body() Map<String, dynamic> body,
+    @Header("Authorization") String contentType,
+  );
+
+  @GET('/rep/company')
+  Future<RepCompany> repCompany(
+    @Header("Authorization") String authToken,
   );
 }

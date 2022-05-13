@@ -36,6 +36,7 @@ class VerifyPhoneRequest {
 
   @JsonKey(name: 'verificationMethod')
   final String verifyMethod;
+
   @JsonKey(name: 'email')
   final String email;
 

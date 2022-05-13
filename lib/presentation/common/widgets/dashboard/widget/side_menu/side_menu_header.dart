@@ -1,5 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,11 @@ class SideMenuHeader extends StatelessWidget {
   const SideMenuHeader({
     Key? key,
     this.imageUrl,
+    this.repCompany,
   }) : super(key: key);
 
   final String? imageUrl;
+  final RepCompany? repCompany;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class SideMenuHeader extends StatelessWidget {
         Row(
           children: [
             Avatar(
-              image: imageUrl,
+              image: repCompany?.company.companyLogo,
               width: 50,
               height: 50,
             ),
@@ -47,10 +50,14 @@ class SideMenuHeader extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        const CompanyInfo(
-          companyAddress: 'Hauptstraße 1, 36037 Fulda',
-          companyNumber: '0000',
-          companyName: 'Beispielunternehmen',
+        CompanyInfo(
+          companyAddress: '${repCompany?.company.streetName ?? ""} '
+              '${repCompany?.company.streetNumber ?? ""}'
+              '${repCompany != null ? "," : ""}'
+              ' ${repCompany?.company.postalCode ?? ""} '
+              '${repCompany?.company.country ?? ""}',
+          companyNumber: repCompany?.company.branchNumber ?? '',
+          companyName: repCompany?.company.companyName ?? '',
         ),
       ],
     );
@@ -75,6 +82,21 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: image ?? '',
+      placeholder: (context, image) {
+        return Container(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: solitude,
+            image: placeholderImage != null
+                ? DecorationImage(
+                    image: AssetImage(placeholderImage!),
+                  )
+                : null,
+          ),
+        );
+      },
       imageBuilder: (context, image) {
         return Container(
           width: width,

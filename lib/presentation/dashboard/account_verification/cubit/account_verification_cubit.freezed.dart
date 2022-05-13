@@ -18,15 +18,23 @@ class _$VerifyAccountStateTearOff {
   const _$VerifyAccountStateTearOff();
 
   InitialAccountVerificationState initial(
-      {required bool isAcceptedDataIsCorrect,
-      required int progressUserAccount,
-      required int progressCompanyProfile,
-      required int progressBranchProfile}) {
+      {bool? isAcceptedDataIsCorrect,
+      bool? isFullyCompleted,
+      int? progressUserAccount,
+      int? progressCompanyProfile,
+      int? progressBranchProfile}) {
     return InitialAccountVerificationState(
       isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
+      isFullyCompleted: isFullyCompleted,
       progressUserAccount: progressUserAccount,
       progressCompanyProfile: progressCompanyProfile,
       progressBranchProfile: progressBranchProfile,
+    );
+  }
+
+  ErrorAccountVerificationState error({required ApiFailure error}) {
+    return ErrorAccountVerificationState(
+      error: error,
     );
   }
 }
@@ -36,55 +44,61 @@ const $VerifyAccountState = _$VerifyAccountStateTearOff();
 
 /// @nodoc
 mixin _$VerifyAccountState {
-  bool get isAcceptedDataIsCorrect => throw _privateConstructorUsedError;
-  int get progressUserAccount => throw _privateConstructorUsedError;
-  int get progressCompanyProfile => throw _privateConstructorUsedError;
-  int get progressBranchProfile => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            bool isAcceptedDataIsCorrect,
-            int progressUserAccount,
-            int progressCompanyProfile,
-            int progressBranchProfile)
+            bool? isAcceptedDataIsCorrect,
+            bool? isFullyCompleted,
+            int? progressUserAccount,
+            int? progressCompanyProfile,
+            int? progressBranchProfile)
         initial,
+    required TResult Function(ApiFailure error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool isAcceptedDataIsCorrect, int progressUserAccount,
-            int progressCompanyProfile, int progressBranchProfile)?
+    TResult Function(
+            bool? isAcceptedDataIsCorrect,
+            bool? isFullyCompleted,
+            int? progressUserAccount,
+            int? progressCompanyProfile,
+            int? progressBranchProfile)?
         initial,
+    TResult Function(ApiFailure error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isAcceptedDataIsCorrect, int progressUserAccount,
-            int progressCompanyProfile, int progressBranchProfile)?
+    TResult Function(
+            bool? isAcceptedDataIsCorrect,
+            bool? isFullyCompleted,
+            int? progressUserAccount,
+            int? progressCompanyProfile,
+            int? progressBranchProfile)?
         initial,
+    TResult Function(ApiFailure error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialAccountVerificationState value) initial,
+    required TResult Function(ErrorAccountVerificationState value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitialAccountVerificationState value)? initial,
+    TResult Function(ErrorAccountVerificationState value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialAccountVerificationState value)? initial,
+    TResult Function(ErrorAccountVerificationState value)? error,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $VerifyAccountStateCopyWith<VerifyAccountState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -93,11 +107,6 @@ abstract class $VerifyAccountStateCopyWith<$Res> {
   factory $VerifyAccountStateCopyWith(
           VerifyAccountState value, $Res Function(VerifyAccountState) then) =
       _$VerifyAccountStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool isAcceptedDataIsCorrect,
-      int progressUserAccount,
-      int progressCompanyProfile,
-      int progressBranchProfile});
 }
 
 /// @nodoc
@@ -108,48 +117,20 @@ class _$VerifyAccountStateCopyWithImpl<$Res>
   final VerifyAccountState _value;
   // ignore: unused_field
   final $Res Function(VerifyAccountState) _then;
-
-  @override
-  $Res call({
-    Object? isAcceptedDataIsCorrect = freezed,
-    Object? progressUserAccount = freezed,
-    Object? progressCompanyProfile = freezed,
-    Object? progressBranchProfile = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isAcceptedDataIsCorrect: isAcceptedDataIsCorrect == freezed
-          ? _value.isAcceptedDataIsCorrect
-          : isAcceptedDataIsCorrect // ignore: cast_nullable_to_non_nullable
-              as bool,
-      progressUserAccount: progressUserAccount == freezed
-          ? _value.progressUserAccount
-          : progressUserAccount // ignore: cast_nullable_to_non_nullable
-              as int,
-      progressCompanyProfile: progressCompanyProfile == freezed
-          ? _value.progressCompanyProfile
-          : progressCompanyProfile // ignore: cast_nullable_to_non_nullable
-              as int,
-      progressBranchProfile: progressBranchProfile == freezed
-          ? _value.progressBranchProfile
-          : progressBranchProfile // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $InitialAccountVerificationStateCopyWith<$Res>
-    implements $VerifyAccountStateCopyWith<$Res> {
+abstract class $InitialAccountVerificationStateCopyWith<$Res> {
   factory $InitialAccountVerificationStateCopyWith(
           InitialAccountVerificationState value,
           $Res Function(InitialAccountVerificationState) then) =
       _$InitialAccountVerificationStateCopyWithImpl<$Res>;
-  @override
   $Res call(
-      {bool isAcceptedDataIsCorrect,
-      int progressUserAccount,
-      int progressCompanyProfile,
-      int progressBranchProfile});
+      {bool? isAcceptedDataIsCorrect,
+      bool? isFullyCompleted,
+      int? progressUserAccount,
+      int? progressCompanyProfile,
+      int? progressBranchProfile});
 }
 
 /// @nodoc
@@ -168,6 +149,7 @@ class _$InitialAccountVerificationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isAcceptedDataIsCorrect = freezed,
+    Object? isFullyCompleted = freezed,
     Object? progressUserAccount = freezed,
     Object? progressCompanyProfile = freezed,
     Object? progressBranchProfile = freezed,
@@ -176,19 +158,23 @@ class _$InitialAccountVerificationStateCopyWithImpl<$Res>
       isAcceptedDataIsCorrect: isAcceptedDataIsCorrect == freezed
           ? _value.isAcceptedDataIsCorrect
           : isAcceptedDataIsCorrect // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
+      isFullyCompleted: isFullyCompleted == freezed
+          ? _value.isFullyCompleted
+          : isFullyCompleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
       progressUserAccount: progressUserAccount == freezed
           ? _value.progressUserAccount
           : progressUserAccount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       progressCompanyProfile: progressCompanyProfile == freezed
           ? _value.progressCompanyProfile
           : progressCompanyProfile // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       progressBranchProfile: progressBranchProfile == freezed
           ? _value.progressBranchProfile
           : progressBranchProfile // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -198,23 +184,26 @@ class _$InitialAccountVerificationStateCopyWithImpl<$Res>
 class _$InitialAccountVerificationState
     implements InitialAccountVerificationState {
   const _$InitialAccountVerificationState(
-      {required this.isAcceptedDataIsCorrect,
-      required this.progressUserAccount,
-      required this.progressCompanyProfile,
-      required this.progressBranchProfile});
+      {this.isAcceptedDataIsCorrect,
+      this.isFullyCompleted,
+      this.progressUserAccount,
+      this.progressCompanyProfile,
+      this.progressBranchProfile});
 
   @override
-  final bool isAcceptedDataIsCorrect;
+  final bool? isAcceptedDataIsCorrect;
   @override
-  final int progressUserAccount;
+  final bool? isFullyCompleted;
   @override
-  final int progressCompanyProfile;
+  final int? progressUserAccount;
   @override
-  final int progressBranchProfile;
+  final int? progressCompanyProfile;
+  @override
+  final int? progressBranchProfile;
 
   @override
   String toString() {
-    return 'VerifyAccountState.initial(isAcceptedDataIsCorrect: $isAcceptedDataIsCorrect, progressUserAccount: $progressUserAccount, progressCompanyProfile: $progressCompanyProfile, progressBranchProfile: $progressBranchProfile)';
+    return 'VerifyAccountState.initial(isAcceptedDataIsCorrect: $isAcceptedDataIsCorrect, isFullyCompleted: $isFullyCompleted, progressUserAccount: $progressUserAccount, progressCompanyProfile: $progressCompanyProfile, progressBranchProfile: $progressBranchProfile)';
   }
 
   @override
@@ -225,6 +214,9 @@ class _$InitialAccountVerificationState
                     other.isAcceptedDataIsCorrect, isAcceptedDataIsCorrect) ||
                 const DeepCollectionEquality().equals(
                     other.isAcceptedDataIsCorrect, isAcceptedDataIsCorrect)) &&
+            (identical(other.isFullyCompleted, isFullyCompleted) ||
+                const DeepCollectionEquality()
+                    .equals(other.isFullyCompleted, isFullyCompleted)) &&
             (identical(other.progressUserAccount, progressUserAccount) ||
                 const DeepCollectionEquality()
                     .equals(other.progressUserAccount, progressUserAccount)) &&
@@ -240,6 +232,7 @@ class _$InitialAccountVerificationState
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(isAcceptedDataIsCorrect) ^
+      const DeepCollectionEquality().hash(isFullyCompleted) ^
       const DeepCollectionEquality().hash(progressUserAccount) ^
       const DeepCollectionEquality().hash(progressCompanyProfile) ^
       const DeepCollectionEquality().hash(progressBranchProfile);
@@ -254,38 +247,50 @@ class _$InitialAccountVerificationState
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            bool isAcceptedDataIsCorrect,
-            int progressUserAccount,
-            int progressCompanyProfile,
-            int progressBranchProfile)
+            bool? isAcceptedDataIsCorrect,
+            bool? isFullyCompleted,
+            int? progressUserAccount,
+            int? progressCompanyProfile,
+            int? progressBranchProfile)
         initial,
+    required TResult Function(ApiFailure error) error,
   }) {
-    return initial(isAcceptedDataIsCorrect, progressUserAccount,
-        progressCompanyProfile, progressBranchProfile);
+    return initial(isAcceptedDataIsCorrect, isFullyCompleted,
+        progressUserAccount, progressCompanyProfile, progressBranchProfile);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool isAcceptedDataIsCorrect, int progressUserAccount,
-            int progressCompanyProfile, int progressBranchProfile)?
+    TResult Function(
+            bool? isAcceptedDataIsCorrect,
+            bool? isFullyCompleted,
+            int? progressUserAccount,
+            int? progressCompanyProfile,
+            int? progressBranchProfile)?
         initial,
+    TResult Function(ApiFailure error)? error,
   }) {
-    return initial?.call(isAcceptedDataIsCorrect, progressUserAccount,
-        progressCompanyProfile, progressBranchProfile);
+    return initial?.call(isAcceptedDataIsCorrect, isFullyCompleted,
+        progressUserAccount, progressCompanyProfile, progressBranchProfile);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isAcceptedDataIsCorrect, int progressUserAccount,
-            int progressCompanyProfile, int progressBranchProfile)?
+    TResult Function(
+            bool? isAcceptedDataIsCorrect,
+            bool? isFullyCompleted,
+            int? progressUserAccount,
+            int? progressCompanyProfile,
+            int? progressBranchProfile)?
         initial,
+    TResult Function(ApiFailure error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(isAcceptedDataIsCorrect, progressUserAccount,
-          progressCompanyProfile, progressBranchProfile);
+      return initial(isAcceptedDataIsCorrect, isFullyCompleted,
+          progressUserAccount, progressCompanyProfile, progressBranchProfile);
     }
     return orElse();
   }
@@ -294,6 +299,7 @@ class _$InitialAccountVerificationState
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialAccountVerificationState value) initial,
+    required TResult Function(ErrorAccountVerificationState value) error,
   }) {
     return initial(this);
   }
@@ -302,6 +308,7 @@ class _$InitialAccountVerificationState
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitialAccountVerificationState value)? initial,
+    TResult Function(ErrorAccountVerificationState value)? error,
   }) {
     return initial?.call(this);
   }
@@ -310,6 +317,7 @@ class _$InitialAccountVerificationState
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialAccountVerificationState value)? initial,
+    TResult Function(ErrorAccountVerificationState value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -321,21 +329,175 @@ class _$InitialAccountVerificationState
 
 abstract class InitialAccountVerificationState implements VerifyAccountState {
   const factory InitialAccountVerificationState(
-      {required bool isAcceptedDataIsCorrect,
-      required int progressUserAccount,
-      required int progressCompanyProfile,
-      required int progressBranchProfile}) = _$InitialAccountVerificationState;
+      {bool? isAcceptedDataIsCorrect,
+      bool? isFullyCompleted,
+      int? progressUserAccount,
+      int? progressCompanyProfile,
+      int? progressBranchProfile}) = _$InitialAccountVerificationState;
 
-  @override
-  bool get isAcceptedDataIsCorrect => throw _privateConstructorUsedError;
-  @override
-  int get progressUserAccount => throw _privateConstructorUsedError;
-  @override
-  int get progressCompanyProfile => throw _privateConstructorUsedError;
-  @override
-  int get progressBranchProfile => throw _privateConstructorUsedError;
-  @override
+  bool? get isAcceptedDataIsCorrect => throw _privateConstructorUsedError;
+  bool? get isFullyCompleted => throw _privateConstructorUsedError;
+  int? get progressUserAccount => throw _privateConstructorUsedError;
+  int? get progressCompanyProfile => throw _privateConstructorUsedError;
+  int? get progressBranchProfile => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $InitialAccountVerificationStateCopyWith<InitialAccountVerificationState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ErrorAccountVerificationStateCopyWith<$Res> {
+  factory $ErrorAccountVerificationStateCopyWith(
+          ErrorAccountVerificationState value,
+          $Res Function(ErrorAccountVerificationState) then) =
+      _$ErrorAccountVerificationStateCopyWithImpl<$Res>;
+  $Res call({ApiFailure error});
+}
+
+/// @nodoc
+class _$ErrorAccountVerificationStateCopyWithImpl<$Res>
+    extends _$VerifyAccountStateCopyWithImpl<$Res>
+    implements $ErrorAccountVerificationStateCopyWith<$Res> {
+  _$ErrorAccountVerificationStateCopyWithImpl(
+      ErrorAccountVerificationState _value,
+      $Res Function(ErrorAccountVerificationState) _then)
+      : super(_value, (v) => _then(v as ErrorAccountVerificationState));
+
+  @override
+  ErrorAccountVerificationState get _value =>
+      super._value as ErrorAccountVerificationState;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(ErrorAccountVerificationState(
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ApiFailure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ErrorAccountVerificationState implements ErrorAccountVerificationState {
+  const _$ErrorAccountVerificationState({required this.error});
+
+  @override
+  final ApiFailure error;
+
+  @override
+  String toString() {
+    return 'VerifyAccountState.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ErrorAccountVerificationState &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @JsonKey(ignore: true)
+  @override
+  $ErrorAccountVerificationStateCopyWith<ErrorAccountVerificationState>
+      get copyWith => _$ErrorAccountVerificationStateCopyWithImpl<
+          ErrorAccountVerificationState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            bool? isAcceptedDataIsCorrect,
+            bool? isFullyCompleted,
+            int? progressUserAccount,
+            int? progressCompanyProfile,
+            int? progressBranchProfile)
+        initial,
+    required TResult Function(ApiFailure error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            bool? isAcceptedDataIsCorrect,
+            bool? isFullyCompleted,
+            int? progressUserAccount,
+            int? progressCompanyProfile,
+            int? progressBranchProfile)?
+        initial,
+    TResult Function(ApiFailure error)? error,
+  }) {
+    return error?.call(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            bool? isAcceptedDataIsCorrect,
+            bool? isFullyCompleted,
+            int? progressUserAccount,
+            int? progressCompanyProfile,
+            int? progressBranchProfile)?
+        initial,
+    TResult Function(ApiFailure error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialAccountVerificationState value) initial,
+    required TResult Function(ErrorAccountVerificationState value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InitialAccountVerificationState value)? initial,
+    TResult Function(ErrorAccountVerificationState value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialAccountVerificationState value)? initial,
+    TResult Function(ErrorAccountVerificationState value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ErrorAccountVerificationState implements VerifyAccountState {
+  const factory ErrorAccountVerificationState({required ApiFailure error}) =
+      _$ErrorAccountVerificationState;
+
+  ApiFailure get error => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ErrorAccountVerificationStateCopyWith<ErrorAccountVerificationState>
       get copyWith => throw _privateConstructorUsedError;
 }

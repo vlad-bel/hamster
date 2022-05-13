@@ -15,7 +15,7 @@ class DashboardProfileFeelUpPercentsBox extends StatelessWidget {
     required this.onPressed,
   }) : super(key: key);
 
-  final int percentsProgress;
+  final int? percentsProgress;
   final String imagePath;
   final String title;
   final String subTitle;
@@ -40,7 +40,7 @@ class DashboardProfileFeelUpPercentsBox extends StatelessWidget {
                   label: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: Text(
-                      '${percentsProgress.toString()}%',
+                      '${percentsProgress?.toString() ?? ""} ${percentsProgress == null ? " " : "%"}',
                       style: inter10.copyWith(
                         color: fruitSalad,
                         fontWeight: FontWeight.w400,

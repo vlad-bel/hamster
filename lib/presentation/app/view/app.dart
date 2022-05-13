@@ -1,6 +1,7 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
+import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -16,6 +17,8 @@ class App extends StatefulWidget {
   State<App> createState() => _AppState();
 }
 
+final mainNavigatorKey = GlobalKey<NavigatorState>();
+
 class _AppState extends State<App> {
   final appStateCubit = AppStateCubit();
   final navigatorKey = GlobalKey<NavigatorState>();
@@ -27,6 +30,9 @@ class _AppState extends State<App> {
         providers: [
           BlocProvider<DashboardCubit>(
             create: (_) => getIt.get<DashboardCubit>(),
+          ),
+          BlocProvider<AccountVerificationCubit>(
+            create: (_) => getIt.get<AccountVerificationCubit>(),
           ),
         ],
         child: BlocBuilder<AppStateCubit, AppState>(

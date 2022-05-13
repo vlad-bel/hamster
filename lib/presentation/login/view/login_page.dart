@@ -174,7 +174,7 @@ class LoginBlocListener extends StatelessWidget {
   void onSuccess(BuildContext context) {
     SnackBarManager.showSuccess('Correct user credentials');
 
-    Navigator.of(context).pushNamed(DashboardPage.path);
+    Navigator.of(context).pushReplacementNamed(DashboardPage.path);
   }
 
   void onError(ApiFailure e) {
