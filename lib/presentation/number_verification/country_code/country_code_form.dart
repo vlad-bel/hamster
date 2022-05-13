@@ -4,6 +4,7 @@ import 'package:business_terminal/presentation/common/widgets/country_code_selec
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/call_method_selector_page.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/cubit/country_code_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/cubit/widget/country_code_active_button.dart';
@@ -54,8 +55,8 @@ class ContryCodeForm extends StatelessWidget {
                         Navigator.of(context).pushNamed(
                           CallMethodSelectorPage.path,
                           arguments: {
-                            'phone_number': phone,
-                            'email': email,
+                            phoneNumberParam: phone,
+                            emailParam: email,
                           },
                         );
                       },

@@ -4,6 +4,7 @@ import 'package:business_terminal/domain/request_model/number_verification/verif
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/bloc/call_method_selector_page_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/bloc/call_method_selector_page_state.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmaion_page.dart';
@@ -107,9 +108,9 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                         Navigator.of(context).pushNamed(
                           NumberCodeConfirmationPage.path,
                           arguments: {
-                            'phone': widget.number,
-                            'email': widget.email,
-                            'verify_method': verificationMethod.string,
+                            phoneNumberParam: widget.number,
+                            emailParam: widget.email,
+                            verifyMethodParam: verificationMethod.string,
                           },
                         );
                       },

@@ -7,6 +7,7 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_backgro
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/email_verification/cubit/email_verification_cubit.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/country_code_page.dart';
 import 'package:business_terminal/presentation/registration/view/registration_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
@@ -208,7 +209,7 @@ class EmailVerificationBlocListener extends StatelessWidget {
             Navigator.of(context).pushNamed(
               CountriesCodePage.path,
               arguments: {
-                'email': state.email,
+                emailParam: state.email,
               },
             );
           }

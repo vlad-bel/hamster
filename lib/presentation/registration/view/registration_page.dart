@@ -8,6 +8,7 @@ import 'package:business_terminal/presentation/common/widgets/horizontal_line_sh
 import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/language_dropdown.dart';
 import 'package:business_terminal/presentation/common/widgets/text_title.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
@@ -206,7 +207,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                             if (state is ErrorUserInfoInit) {
                                               showErrorSnackbar();
                                             }
-                                            if(state is SuccessUserInfoInit) {
+                                            if (state is SuccessUserInfoInit) {
                                               goToNextPage(context, form);
                                             }
                                           },
@@ -301,7 +302,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
     Navigator.of(context).pushNamed(
       EmailVerificationPage.path,
       arguments: {
-        'email': email!,
+        emailParam: email!,
       },
     );
   }
