@@ -1,7 +1,6 @@
 import 'dart:html';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
-import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
@@ -39,7 +38,7 @@ class UnauthorizedState extends AppState {
       case EmailVerificationPage.path:
         if (params?[emailParam] != null) {
           final email = params![emailParam]! as String;
-          window.sessionStorage.putIfAbsent(emailParam, () => email);
+          window.sessionStorage[emailParam] = email;
         }
 
         page = buildPage(
@@ -60,7 +59,7 @@ class UnauthorizedState extends AppState {
       case CallMethodSelectorPage.path:
         if (params?[phoneNumberParam] != null) {
           final phone = params![phoneNumberParam]! as String;
-          window.sessionStorage.putIfAbsent(phoneNumberParam, () => phone);
+          window.sessionStorage[phoneNumberParam] = phone;
         }
 
         page = buildPage(
@@ -80,10 +79,7 @@ class UnauthorizedState extends AppState {
             params![verifyMethodParam]! as String,
           );
 
-          window.sessionStorage.putIfAbsent(
-            verifyMethodParam,
-            () => verifyMethod.string,
-          );
+          window.sessionStorage[verifyMethodParam] = verifyMethod.string;
         }
 
         page = buildPage(
@@ -104,13 +100,10 @@ class UnauthorizedState extends AppState {
       case PhoneVerificationResultPage.path:
         page = const PhoneVerificationResultPage();
         break;
-      case CompanyCreationPage.path:
-        page = const CompanyCreationPage();
-        break;
       case DashboardPage.path:
         page = const DashboardPage(
-          initialPageIndex: 1,
           initialPagePath: accountVerificationPath,
+          initialPageIndex: 1,
         );
         break;
 
