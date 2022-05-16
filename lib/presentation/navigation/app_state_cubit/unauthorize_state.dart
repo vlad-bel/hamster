@@ -2,6 +2,7 @@ import 'dart:html';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
+import 'package:business_terminal/presentation/forgetpassword.dart/view/forgetpassword_email.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/nav_utils.dart';
@@ -31,6 +32,10 @@ class UnauthorizedState extends AppState {
     switch (routeSettings.name) {
       case LoginPage.path:
         page = const LoginPage();
+        break;
+
+      case ForgetPasswordEmailPage.path:
+        page = const ForgetPasswordEmailPage();
         break;
       case RegistrationPage.path:
         page = const RegistrationPage();
