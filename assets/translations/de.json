@@ -44,5 +44,8 @@
   "verified": "Verifiziert",
   "visible": "Sichtbar",
   "not_visible": "Nicht sichtbar",
-  "data_incomplete": "Daten unvollständig"
+  "data_incomplete": "Daten unvollständig",
+  "company_profile": "Unternehmensprofil",
+  "branch_profile": "Filialprofile",
+  "add_branch": "Filiale hinzufügen"
 }

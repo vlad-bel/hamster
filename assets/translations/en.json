@@ -44,5 +44,8 @@
   "verified": "Verified",
   "visible": "Visible",
   "not_visible": "Not visible",
-  "data_incomplete": "Data incomplete"
+  "data_incomplete": "Data incomplete",
+  "company_profile": "Company profile",
+  "branch_profile": "Branch profile",
+  "add_branch": "Add branch"
 }

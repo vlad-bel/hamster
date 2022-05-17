@@ -2,6 +2,7 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BaseStatusCell extends StatelessWidget {
   const BaseStatusCell({
@@ -35,8 +36,10 @@ class VerifiedStatusCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseStatusCell(
-      icon: Image.asset(
-        'images/verified.png',
+      icon: SvgPicture.asset(
+        'images/verified.svg',
+        width: 22,
+        height: 22,
       ),
       name: tr('verified'),
       padding: 8,
@@ -55,8 +58,10 @@ class VisibleStatusCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseStatusCell(
-      icon: Image.asset(
-        visible ? 'images/visible.png' : 'images/invisible.png',
+      icon: SvgPicture.asset(
+        visible ? 'images/visible.svg' : 'images/invisible.svg',
+        width: 22,
+        height: 22,
       ),
       name: visible ? tr('visible') : tr('not_visible'),
       padding: 8,

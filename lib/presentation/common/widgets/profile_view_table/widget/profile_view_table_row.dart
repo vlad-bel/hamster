@@ -7,8 +7,8 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class ProfileViewTableSource extends DataTableSource {
-  ProfileViewTableSource({
+class ProfileViewTableRow extends DataTableSource {
+  ProfileViewTableRow({
     required this.companies,
   });
 
