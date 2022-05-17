@@ -1,6 +1,7 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/code_verification_form/code_verification_form.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_was_sent_text_icon.dart';
@@ -58,10 +59,10 @@ class _NumberCodeConfirmationFormState
             : "Bestätigungscode per SMS erneut gesendet";
         return CodeVerificationForm(
           controller: pinController,
-          header: tr('confirm_number_title'),
+          header: tr(LocaleKeys.confirm_number_title),
           subheader: RichText(
             text: TextSpan(
-              text: tr('confirm_number_subtitle1'),
+              text: tr(LocaleKeys.confirm_number_subtitle1),
               style: inter14.copyWith(height: 1.6),
               children: [
                 TextSpan(
@@ -69,7 +70,7 @@ class _NumberCodeConfirmationFormState
                   style: inter14.copyWith(color: denim),
                 ),
                 TextSpan(
-                  text: tr('confirm_number_subtitle2'),
+                  text: tr(LocaleKeys.confirm_number_subtitle2),
                   style: inter14,
                 ),
               ],
@@ -91,7 +92,7 @@ class _NumberCodeConfirmationFormState
               method: widget.verifyMethod,
             );
           },
-          resendButtonTitle: tr('sms_resend'),
+          resendButtonTitle: tr(LocaleKeys.sms_resend),
           verificationResult: NumberVerificationResult(
             pinController: pinController,
             emailWasSentColor: fruitSalad,
@@ -137,7 +138,9 @@ class NumberVerificationResult extends StatelessWidget {
           height: 20,
         );
 
-        const empty = SizedBox(height: 20,);
+        const empty = SizedBox(
+          height: 20,
+        );
 
         return state.whenOrNull(
               resend: () {
