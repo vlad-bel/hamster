@@ -106,6 +106,7 @@ class CompanyCreationForm extends StatelessWidget {
                             child: FormTextField(
                               name: CompanyCreationCubit.cityField,
                               hint: tr('location_hint'),
+                              // hint: 'location_hint',
                               label: tr('location_hint'),
                             ),
                           ),
