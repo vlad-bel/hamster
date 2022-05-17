@@ -1,4 +1,5 @@
 import 'dart:html';
+
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
@@ -12,6 +13,8 @@ import 'package:business_terminal/presentation/number_verification/number_code_c
 import 'package:business_terminal/presentation/number_verification/result_page/result_page.dart';
 import 'package:business_terminal/presentation/registration/view/registration_page.dart';
 import 'package:flutter/material.dart';
+
+import '../../company_creation/company_creation_page.dart';
 
 String emailParam = 'email';
 String phoneNumberParam = 'phone_number';
@@ -99,6 +102,9 @@ class UnauthorizedState extends AppState {
         break;
       case PhoneVerificationResultPage.path:
         page = const PhoneVerificationResultPage();
+        break;
+      case CompanyCreationPage.path:
+        page = const CompanyCreationPage();
         break;
       case DashboardPage.path:
         page = const DashboardPage(
