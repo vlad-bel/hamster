@@ -33,5 +33,7 @@
   "post_hint": "Postcode",
   "num_hint": "No.",
   "location_hint": "Location",
-  "country_hint": "Country"
+  "country_hint": "Country",
+  "min_number": "Maximum number length {length} characters",
+  "max_number": "Minimum number length {length} characters"
 }

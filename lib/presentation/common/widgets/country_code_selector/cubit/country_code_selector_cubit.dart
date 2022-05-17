@@ -20,7 +20,7 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
   static const numberTextfield = 'number';
   static const filterTextfield = 'filter';
 
-  final numberForm = fb.group({
+  var numberForm = fb.group({
     numberTextfield: FormControl<String>(
       value: '',
       validators: [
@@ -83,6 +83,10 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
   void selectCountry(Country country) {
     state.whenOrNull(
       open: (_, countries) {
+        numberForm.control(numberTextfield).setValidators([
+          Validators.maxLength(15 - country.phone.length),
+          Validators.minLength(10 - country.phone.length),
+        ]);
         emit(
           CountryCodeSelectorState.init(
             selectedCountry: country,

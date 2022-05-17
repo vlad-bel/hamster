@@ -135,9 +135,11 @@ class _Selector extends StatelessWidget {
         prefixIcon: selectedCountry != null
             ? NumberPrefix(
                 country: selectedCountry!,
-                onTap: loading ? null: () {
-                  showOverlay(selectedCountry: selectedCountry!);
-                },
+                onTap: loading
+                    ? null
+                    : () {
+                        showOverlay(selectedCountry: selectedCountry!);
+                      },
               )
             : null,
         customSuffix: selectedCountry == null
@@ -151,13 +153,24 @@ class _Selector extends StatelessWidget {
             : null,
         hint: tr('select_country_code'),
         readOnly: selectedCountry == null,
-        maxLength: 15,
         keyboardType: TextInputType.phone,
         inputFormatters: <TextInputFormatter>[
           FilteringTextInputFormatter.allow(RegExp('[0-9]')),
         ],
         validationMessages: (control) => {
           ValidationMessage.required: tr('required_field'),
+          ValidationMessage.minLength: tr(
+            'min_number',
+            namedArgs: {
+              'length': '${10 - (selectedCountry?.phone.length ?? 0)}'
+            },
+          ),
+          ValidationMessage.maxLength: tr(
+            'max_number',
+            namedArgs: {
+              'length': '${15 - (selectedCountry?.phone.length ?? 0)}'
+            },
+          ),
         },
         onTap: loading
             ? null
