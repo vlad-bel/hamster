@@ -33,5 +33,16 @@
   "post_hint": "Postcode",
   "num_hint": "No.",
   "location_hint": "Location",
-  "country_hint": "Country"
+  "country_hint": "Country",
+  "user": "USER",
+  "number": "NUMBER",
+  "connection": "CONNECTION",
+  "status": "STATUS",
+  "companies": "COMPANIES",
+  "tills": "Tills",
+  "branches": "Branches",
+  "verified": "Verified",
+  "visible": "Visible",
+  "not_visible": "Not visible",
+  "data_incomplete": "Data incomplete"
 }

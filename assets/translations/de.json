@@ -33,5 +33,16 @@
   "post_hint": "PLZ",
   "num_hint": "Nr.",
   "location_hint": "Ort",
-  "country_hint": "Land"
+  "country_hint": "Land",
+  "user": "NUTZER",
+  "number": "NUMMER",
+  "connection": "ANBINDUNG",
+  "status": "STATUS",
+  "companies": "UNTERNEHMEN",
+  "tills": "Kassen",
+  "branches": "Filialien",
+  "verified": "Verifiziert",
+  "visible": "Sichtbar",
+  "not_visible": "Nicht sichtbar",
+  "data_incomplete": "Daten unvollständig"
 }

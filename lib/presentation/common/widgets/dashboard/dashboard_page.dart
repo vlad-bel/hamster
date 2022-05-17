@@ -1,10 +1,10 @@
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/top_menu.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/view/dashboard_account_verification.dart';
+import 'package:business_terminal/presentation/dashboard/profive_viewing/view/profile_viewing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -133,12 +133,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       const DashboardAccountVerificationPage();
                                   break;
                                 case myCompanyPath:
-                                  page = Container(
-                                    color: solitude1,
-                                    child: Center(
-                                      child: Text(settings.name!),
-                                    ),
-                                  );
+                                  page = const ProfileViewing();
                                   break;
                                 case userManagementPath:
                                   page = Container(
