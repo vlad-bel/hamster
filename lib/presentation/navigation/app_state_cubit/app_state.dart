@@ -1,6 +1,10 @@
+import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
+import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 enum RegistrationNavigationFlow {
   shouldGoFromLoginToDashboard,
@@ -29,11 +33,17 @@ abstract class RegistrationFlowManager {
   }
 
   static void _goToDashboard(BuildContext context) {
-    Navigator.of(context).pushNamed(DashboardPage.path);
+    BlocProvider.of<AppStateCubit>(context).goToAuthZone(DashboardPage.path);
+    // Navigator.of(context).pushNamed("/dashboard");
+    print(
+        "currentState: ${BlocProvider.of<AppStateCubit>(context).state.runtimeType}");
   }
 
   static void _goToCompanyCreation(BuildContext context) {
-    Navigator.of(context).pushNamed(CompanyCreationPage.path);
+    BlocProvider.of<AppStateCubit>(context).goToAuthZone(
+      CompanyCreationPage.path,
+    );
+    // Navigator.of(context).pushNamed(CompanyCreationPage.path);
   }
 }
 
@@ -42,17 +52,19 @@ abstract class AppState extends Equatable {
   static RegistrationNavigationFlow flowType =
       RegistrationNavigationFlow.shouldGoFromLoginToDashboard;
 
-  final RouteFactory onGenerateRoute;
   final String initialRoute;
+  final RouteFactory? onGenerateRoute;
 
   const AppState({
     required this.initialRoute,
+    required this.onGenerateRoute,
   });
 
-  Route generateRoute(RouteSettings settings);
+  // Route generateRoute(RouteSettings settings);
 
   @override
   List<Object?> get props => [
         initialRoute,
+        onGenerateRoute,
       ];
 }

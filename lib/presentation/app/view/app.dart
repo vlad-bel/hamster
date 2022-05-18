@@ -10,24 +10,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-class App extends StatefulWidget {
-  const App({Key? key}) : super(key: key);
-
-  @override
-  State<App> createState() => _AppState();
-}
+// class App extends StatefulWidget {
+//   const App({Key? key}) : super(key: key);
+//
+//   @override
+//   State<App> createState() => _AppState();
+// }
 
 final mainNavigatorKey = GlobalKey<NavigatorState>();
 
-class _AppState extends State<App> {
-  final appStateCubit = AppStateCubit();
-  final navigatorKey = GlobalKey<NavigatorState>();
+class App extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
     return GlobalLoaderOverlay(
       child: MultiBlocProvider(
         providers: [
+          BlocProvider<AppStateCubit>(
+            create: (_) => AppStateCubit(),
+          ),
           BlocProvider<DashboardCubit>(
             create: (_) => getIt.get<DashboardCubit>(),
           ),
@@ -36,13 +37,13 @@ class _AppState extends State<App> {
           ),
         ],
         child: BlocBuilder<AppStateCubit, AppState>(
-          bloc: appStateCubit,
           builder: (BuildContext context, state) {
+            print("current route map:${state.initialRoute}");
             return MaterialApp(
-              navigatorKey: navigatorKey,
+              // navigatorKey: navigatorKey,
               debugShowCheckedModeBanner: false,
               scaffoldMessengerKey: snackbarKey,
-              onGenerateRoute: state.generateRoute,
+              onGenerateRoute: state.onGenerateRoute,
               initialRoute: state.initialRoute,
               theme: ThemeData(
                 appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
