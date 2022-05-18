@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+///cells for showing status of the concrete company or branch
 class BaseStatusCell extends StatelessWidget {
   const BaseStatusCell({
     Key? key,
@@ -30,6 +31,7 @@ class BaseStatusCell extends StatelessWidget {
   }
 }
 
+///show verifiend status
 class VerifiedStatusCell extends StatelessWidget {
   const VerifiedStatusCell({Key? key}) : super(key: key);
 
@@ -47,6 +49,7 @@ class VerifiedStatusCell extends StatelessWidget {
   }
 }
 
+///shows visible/invisible status
 class VisibleStatusCell extends StatelessWidget {
   const VisibleStatusCell({
     Key? key,
@@ -69,6 +72,7 @@ class VisibleStatusCell extends StatelessWidget {
   }
 }
 
+///shows company fill completion status
 class DataCompleteStatusCell extends StatelessWidget {
   const DataCompleteStatusCell({
     Key? key,

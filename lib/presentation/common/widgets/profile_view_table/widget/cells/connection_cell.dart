@@ -5,20 +5,20 @@ import 'package:flutter/material.dart';
 class ConnectionCell extends StatelessWidget {
   const ConnectionCell({
     Key? key,
-    required this.currentValue,
-    required this.maxValue,
+    required this.currentConnectionValue,
+    required this.maxConnectionValue,
     required this.title,
   }) : super(key: key);
 
-  final int currentValue;
-  final int maxValue;
+  final int currentConnectionValue;
+  final int maxConnectionValue;
   final String title;
 
   Color get color {
-    if (currentValue == 0) {
+    if (currentConnectionValue == 0) {
       return lynch;
     }
-    if (currentValue < maxValue) {
+    if (currentConnectionValue < maxConnectionValue) {
       return denim;
     }
 
@@ -41,7 +41,7 @@ class ConnectionCell extends StatelessWidget {
         bottom: 5,
       ),
       child: Text(
-        '$currentValue/$maxValue $title',
+        '$currentConnectionValue/$maxConnectionValue $title',
         style: inter14.copyWith(
           color: color,
         ),

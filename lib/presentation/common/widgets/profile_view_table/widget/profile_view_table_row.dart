@@ -58,14 +58,14 @@ class ProfileViewTableRow extends DataTableSource {
           Row(
             children: [
               ConnectionCell(
-                currentValue: 5,
-                maxValue: 5,
+                currentConnectionValue: 5,
+                maxConnectionValue: 5,
                 title: tr('tills'),
               ),
               const SizedBox(width: 8),
               ConnectionCell(
-                currentValue: 2,
-                maxValue: 5,
+                currentConnectionValue: 2,
+                maxConnectionValue: 5,
                 title: tr('branches'),
               ),
             ],

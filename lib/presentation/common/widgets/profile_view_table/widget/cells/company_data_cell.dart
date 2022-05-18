@@ -35,10 +35,7 @@ class CompanyCell extends StatelessWidget {
                 style: inter14Medium,
               ),
               Text(
-                '${repCompany.company.streetName}'
-                ' ${repCompany.company.streetNumber},'
-                ' ${repCompany.company.postalCode}'
-                ' ${repCompany.company.city}',
+                repCompany.getFullAddress(),
                 style: inter14,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -80,15 +77,17 @@ class CompanyCellAvatar extends StatelessWidget {
 
   List<Widget> generateAvatars() {
     final avatars = <Widget>[];
+    const horizontalOffset = 32.0;
     for (var i = 0; i < imagePath.length; i++) {
       if (i == 2) break;
       avatars.add(
         Positioned(
-          left: i * 32,
+          left: i * horizontalOffset,
           child: Avatar(
             width: 50,
             height: 50,
             image: imagePath[i],
+
             ///TODO remove mock data
             ///get data from backend
             placeholderImage: 'images/profile_icon.png',
