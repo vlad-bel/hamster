@@ -4,6 +4,7 @@ linter:
     public_member_api_docs: false
     prefer_const_constructors: false
     sort_constructors_first: false
+    prefer_const_literals_to_create_immutables: false
 
 analyzer:
   exclude:
