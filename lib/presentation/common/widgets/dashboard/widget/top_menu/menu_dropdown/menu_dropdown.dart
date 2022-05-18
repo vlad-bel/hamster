@@ -1,6 +1,7 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_dropdown/cubit/menu_dropdown_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,7 +39,7 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  tr('user_account'),
+                  tr(LocaleKeys.user_account),
                   style: inter14Medium,
                 ),
                 onPressed: () {
@@ -48,7 +49,7 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  tr('change_password'),
+                  tr(LocaleKeys.change_password),
                   style: inter14Medium,
                 ),
                 onPressed: () {
@@ -58,7 +59,7 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  tr('settings'),
+                  tr(LocaleKeys.settings),
                   style: inter14Medium,
                 ),
                 onPressed: () {
@@ -68,7 +69,7 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  tr('help_center'),
+                  tr(LocaleKeys.help_center),
                   style: inter14Medium,
                 ),
                 onPressed: () {
@@ -79,7 +80,7 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  tr('cancel_register'),
+                  tr(LocaleKeys.cancel_register),
                   style: inter14Medium.copyWith(color: razzmatazz),
                 ),
                 onPressed: () {
