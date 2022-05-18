@@ -33,5 +33,21 @@
   "post_hint": "Postcode",
   "num_hint": "No.",
   "location_hint": "Location",
-  "country_hint": "Country"
+  "country_hint": "Country",
+  "company_profile" : "Company profile",
+  "add_logo" : "Add logo",
+  "save" : "Save",
+  "company_name" : "Company name",
+  "street_house_number" : "Street, house number",
+  "zip_code_and_location" : "ZIP code and location",
+  "base_data" : "Base data",
+  "commercial_register_number" : "Commercial Register No. (if available)",
+  "tax_number" : "Tax number",
+  "vat_id" : "VAT ID (if available)",
+  "payment_information" : "Payment Information",
+  "add_bank_details" : "Add bank details",
+  "account_owner" : "Account owner",
+  "iban" : "IBAN",
+  "max_length_reached" : "The maximum number of characters has been reached",
+  "min_length_field" : "The minimum number of characters was not reached"
 }
