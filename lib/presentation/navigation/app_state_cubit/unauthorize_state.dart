@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
@@ -111,6 +112,9 @@ class UnauthorizedState extends AppState {
           initialPagePath: accountVerificationPath,
           initialPageIndex: 1,
         );
+        break;
+      case BranchProfilePage.path:
+        page = const BranchProfilePage();
         break;
 
       default:

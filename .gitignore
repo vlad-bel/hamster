@@ -132,3 +132,5 @@ app.*.map.json
 pubspec.lock
 
 .firebase/hosting.YnVpbGQvd2Vi.cache
+
+*.g.dart

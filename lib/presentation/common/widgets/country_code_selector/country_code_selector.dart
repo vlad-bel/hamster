@@ -1,5 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
+import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_state.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/widget/country_code_selector_list.dart';
@@ -57,7 +58,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
           loading: () {
             return FormTextField(
               name: CountryCodeSelectorCubit.numberTextfield,
-              hint: tr('select_country_code'),
+              hint: tr(LocaleKeys.select_country_code),
               readOnly: true,
             );
           },
@@ -84,7 +85,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
           error: (e) {
             return FormTextField(
               name: CountryCodeSelectorCubit.numberTextfield,
-              hint: tr('select_country_code'),
+              hint: tr(LocaleKeys.select_country_code),
               readOnly: true,
             );
           },
@@ -135,9 +136,11 @@ class _Selector extends StatelessWidget {
         prefixIcon: selectedCountry != null
             ? NumberPrefix(
                 country: selectedCountry!,
-                onTap: loading ? null: () {
-                  showOverlay(selectedCountry: selectedCountry!);
-                },
+                onTap: loading
+                    ? null
+                    : () {
+                        showOverlay(selectedCountry: selectedCountry!);
+                      },
               )
             : null,
         customSuffix: selectedCountry == null
@@ -149,7 +152,7 @@ class _Selector extends StatelessWidget {
                 color: lynch,
               )
             : null,
-        hint: tr('select_country_code'),
+        hint: tr(LocaleKeys.select_country_code),
         readOnly: selectedCountry == null,
         maxLength: 15,
         keyboardType: TextInputType.phone,
@@ -157,7 +160,7 @@ class _Selector extends StatelessWidget {
           FilteringTextInputFormatter.allow(RegExp('[0-9]')),
         ],
         validationMessages: (control) => {
-          ValidationMessage.required: tr('required_field'),
+          ValidationMessage.required: tr(LocaleKeys.required_field),
         },
         onTap: loading
             ? null
