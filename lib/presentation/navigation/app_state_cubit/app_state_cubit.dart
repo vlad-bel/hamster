@@ -11,3 +11,4 @@ class AppStateCubit extends Cubit<AppState> {
           ),
         );
 }
+
