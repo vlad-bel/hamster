@@ -1,3 +1,4 @@
+import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
@@ -51,8 +52,8 @@ class _AppState extends State<App> {
                 ),
                 textTheme: GoogleFonts.interTextTheme(
                   Theme.of(context).textTheme.apply(
-                        bodyColor: const Color(0xff676f86),
-                        displayColor: const Color(0xff676f86),
+                        bodyColor: lynch,
+                        displayColor: lynch,
                       ),
                 ),
               ),

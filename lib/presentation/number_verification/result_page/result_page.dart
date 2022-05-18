@@ -4,12 +4,12 @@ import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
+import 'package:business_terminal/presentation/login/view/login_page.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmaion_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
-import '../../common/widgets/dashboard/cubit/dashboard_state.dart';
 
 class PhoneVerificationResultPage extends StatelessWidget {
   const PhoneVerificationResultPage({Key? key}) : super(key: key);
@@ -50,10 +50,12 @@ class PhoneVerificationResultPage extends StatelessWidget {
   }
 
   void goToNextPage(BuildContext context) {
-    Navigator.of(context).pushReplacementNamed(DashboardPage.path);
+    RegistrationFlowManager.shouldGoFromLoginToCompanyCreation();
+    Navigator.of(context).pushNamed(LoginPage.path);
   }
 }
 
+// TODO: unify that widget with one on DashboardAccountVerificationPage later
 class PercentsRect extends StatelessWidget {
   const PercentsRect({Key? key}) : super(key: key);
 

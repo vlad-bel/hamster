@@ -36,5 +36,37 @@ abstract class  LocaleKeys {
   static const num_hint = 'num_hint';
   static const location_hint = 'location_hint';
   static const country_hint = 'country_hint';
+  static const user = 'user';
+  static const number = 'number';
+  static const connection = 'connection';
+  static const status = 'status';
+  static const companies = 'companies';
+  static const tills = 'tills';
+  static const branches = 'branches';
+  static const verified = 'verified';
+  static const visible = 'visible';
+  static const not_visible = 'not_visible';
+  static const data_incomplete = 'data_incomplete';
+  static const company_profile = 'company_profile';
+  static const add_branch = 'add_branch';
+  static const branch_profile = 'branch_profile';
+  static const branch_category = 'branch_category';
+  static const branch_equipment = 'branch_equipment';
+  static const branch_name = 'branch_name';
+  static const street_house_number = 'street_house_number';
+  static const zip_code_and_location = 'zip_code_and_location';
+  static const website_if_available = 'website_if_available';
+  static const telephone_number_if_available = 'telephone_number_if_available';
+  static const number_of_branch_entrances = 'number_of_branch_entrances';
+  static const monday = 'monday';
+  static const tuesday = 'tuesday';
+  static const wednesday = 'wednesday';
+  static const thursday = 'thursday';
+  static const friday = 'friday';
+  static const saturday = 'saturday';
+  static const sunday = 'sunday';
+  static const opening_hours = 'opening_hours';
+  static const closed = 'closed';
+  static const branch_id = 'branch_id';
 
 }
