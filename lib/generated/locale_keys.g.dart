@@ -85,6 +85,9 @@ abstract class  LocaleKeys {
   static const add_business_account = 'add_business_account';
   static const for_credits_and_regular_billing = 'for_credits_and_regular_billing';
   static const i_authorize_collect_payment = 'i_authorize_collect_payment';
+  static const max_length_reached = 'max_length_reached';
+  static const max_length_error = 'max_length_error';
+  static const iban_format_error = 'iban_format_error';
   static const branch_id = 'branch_id';
 
 }
