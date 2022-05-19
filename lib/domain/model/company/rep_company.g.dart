@@ -7,9 +7,15 @@ part of 'rep_company.dart';
 // **************************************************************************
 
 RepCompany _$RepCompanyFromJson(Map<String, dynamic> json) => RepCompany(
-      rep: Rep.fromJson(json['rep'] as Map<String, dynamic>),
-      company: Company.fromJson(json['company'] as Map<String, dynamic>),
-      branch: Branch.fromJson(json['branch'] as Map<String, dynamic>),
+      rep: json['rep'] == null
+          ? null
+          : Rep.fromJson(json['rep'] as Map<String, dynamic>),
+      company: json['company'] == null
+          ? null
+          : Company.fromJson(json['company'] as Map<String, dynamic>),
+      branch: json['branch'] == null
+          ? null
+          : Branch.fromJson(json['branch'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RepCompanyToJson(RepCompany instance) =>

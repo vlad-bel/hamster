@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'login_cubit.dart';
@@ -11,41 +12,7 @@ part of 'login_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$LoginStateTearOff {
-  const _$LoginStateTearOff();
-
-  InitialLogin initial({required bool isWrongPasswordEmail}) {
-    return InitialLogin(
-      isWrongPasswordEmail: isWrongPasswordEmail,
-    );
-  }
-
-  LoadingLogin loading() {
-    return const LoadingLogin();
-  }
-
-  SuccessLogin success(String path) {
-    return SuccessLogin(
-      path,
-    );
-  }
-
-  WrongEmailPasswordLogin wrongEmailPassword() {
-    return const WrongEmailPasswordLogin();
-  }
-
-  ErrorLogin error(ApiFailure failure) {
-    return ErrorLogin(
-      failure,
-    );
-  }
-}
-
-/// @nodoc
-const $LoginState = _$LoginStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$LoginState {
@@ -124,28 +91,28 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $InitialLoginCopyWith<$Res> {
-  factory $InitialLoginCopyWith(
-          InitialLogin value, $Res Function(InitialLogin) then) =
-      _$InitialLoginCopyWithImpl<$Res>;
+abstract class _$$InitialLoginCopyWith<$Res> {
+  factory _$$InitialLoginCopyWith(
+          _$InitialLogin value, $Res Function(_$InitialLogin) then) =
+      __$$InitialLoginCopyWithImpl<$Res>;
   $Res call({bool isWrongPasswordEmail});
 }
 
 /// @nodoc
-class _$InitialLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements $InitialLoginCopyWith<$Res> {
-  _$InitialLoginCopyWithImpl(
-      InitialLogin _value, $Res Function(InitialLogin) _then)
-      : super(_value, (v) => _then(v as InitialLogin));
+class __$$InitialLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$InitialLoginCopyWith<$Res> {
+  __$$InitialLoginCopyWithImpl(
+      _$InitialLogin _value, $Res Function(_$InitialLogin) _then)
+      : super(_value, (v) => _then(v as _$InitialLogin));
 
   @override
-  InitialLogin get _value => super._value as InitialLogin;
+  _$InitialLogin get _value => super._value as _$InitialLogin;
 
   @override
   $Res call({
     Object? isWrongPasswordEmail = freezed,
   }) {
-    return _then(InitialLogin(
+    return _then(_$InitialLogin(
       isWrongPasswordEmail: isWrongPasswordEmail == freezed
           ? _value.isWrongPasswordEmail
           : isWrongPasswordEmail // ignore: cast_nullable_to_non_nullable
@@ -170,21 +137,20 @@ class _$InitialLogin implements InitialLogin {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InitialLogin &&
-            (identical(other.isWrongPasswordEmail, isWrongPasswordEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.isWrongPasswordEmail, isWrongPasswordEmail)));
+        (other.runtimeType == runtimeType &&
+            other is _$InitialLogin &&
+            const DeepCollectionEquality()
+                .equals(other.isWrongPasswordEmail, isWrongPasswordEmail));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(isWrongPasswordEmail);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(isWrongPasswordEmail));
 
   @JsonKey(ignore: true)
   @override
-  $InitialLoginCopyWith<InitialLogin> get copyWith =>
-      _$InitialLoginCopyWithImpl<InitialLogin>(this, _$identity);
+  _$$InitialLoginCopyWith<_$InitialLogin> get copyWith =>
+      __$$InitialLoginCopyWithImpl<_$InitialLogin>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -268,31 +234,31 @@ class _$InitialLogin implements InitialLogin {
 }
 
 abstract class InitialLogin implements LoginState {
-  const factory InitialLogin({required bool isWrongPasswordEmail}) =
+  const factory InitialLogin({required final bool isWrongPasswordEmail}) =
       _$InitialLogin;
 
   bool get isWrongPasswordEmail => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $InitialLoginCopyWith<InitialLogin> get copyWith =>
+  _$$InitialLoginCopyWith<_$InitialLogin> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoadingLoginCopyWith<$Res> {
-  factory $LoadingLoginCopyWith(
-          LoadingLogin value, $Res Function(LoadingLogin) then) =
-      _$LoadingLoginCopyWithImpl<$Res>;
+abstract class _$$LoadingLoginCopyWith<$Res> {
+  factory _$$LoadingLoginCopyWith(
+          _$LoadingLogin value, $Res Function(_$LoadingLogin) then) =
+      __$$LoadingLoginCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements $LoadingLoginCopyWith<$Res> {
-  _$LoadingLoginCopyWithImpl(
-      LoadingLogin _value, $Res Function(LoadingLogin) _then)
-      : super(_value, (v) => _then(v as LoadingLogin));
+class __$$LoadingLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$LoadingLoginCopyWith<$Res> {
+  __$$LoadingLoginCopyWithImpl(
+      _$LoadingLogin _value, $Res Function(_$LoadingLogin) _then)
+      : super(_value, (v) => _then(v as _$LoadingLogin));
 
   @override
-  LoadingLogin get _value => super._value as LoadingLogin;
+  _$LoadingLogin get _value => super._value as _$LoadingLogin;
 }
 
 /// @nodoc
@@ -307,7 +273,8 @@ class _$LoadingLogin implements LoadingLogin {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoadingLogin);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadingLogin);
   }
 
   @override
@@ -399,28 +366,28 @@ abstract class LoadingLogin implements LoginState {
 }
 
 /// @nodoc
-abstract class $SuccessLoginCopyWith<$Res> {
-  factory $SuccessLoginCopyWith(
-          SuccessLogin value, $Res Function(SuccessLogin) then) =
-      _$SuccessLoginCopyWithImpl<$Res>;
+abstract class _$$SuccessLoginCopyWith<$Res> {
+  factory _$$SuccessLoginCopyWith(
+          _$SuccessLogin value, $Res Function(_$SuccessLogin) then) =
+      __$$SuccessLoginCopyWithImpl<$Res>;
   $Res call({String path});
 }
 
 /// @nodoc
-class _$SuccessLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements $SuccessLoginCopyWith<$Res> {
-  _$SuccessLoginCopyWithImpl(
-      SuccessLogin _value, $Res Function(SuccessLogin) _then)
-      : super(_value, (v) => _then(v as SuccessLogin));
+class __$$SuccessLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$SuccessLoginCopyWith<$Res> {
+  __$$SuccessLoginCopyWithImpl(
+      _$SuccessLogin _value, $Res Function(_$SuccessLogin) _then)
+      : super(_value, (v) => _then(v as _$SuccessLogin));
 
   @override
-  SuccessLogin get _value => super._value as SuccessLogin;
+  _$SuccessLogin get _value => super._value as _$SuccessLogin;
 
   @override
   $Res call({
     Object? path = freezed,
   }) {
-    return _then(SuccessLogin(
+    return _then(_$SuccessLogin(
       path == freezed
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
@@ -445,19 +412,19 @@ class _$SuccessLogin implements SuccessLogin {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SuccessLogin &&
-            (identical(other.path, path) ||
-                const DeepCollectionEquality().equals(other.path, path)));
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessLogin &&
+            const DeepCollectionEquality().equals(other.path, path));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(path);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(path));
 
   @JsonKey(ignore: true)
   @override
-  $SuccessLoginCopyWith<SuccessLogin> get copyWith =>
-      _$SuccessLoginCopyWithImpl<SuccessLogin>(this, _$identity);
+  _$$SuccessLoginCopyWith<_$SuccessLogin> get copyWith =>
+      __$$SuccessLoginCopyWithImpl<_$SuccessLogin>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -541,31 +508,32 @@ class _$SuccessLogin implements SuccessLogin {
 }
 
 abstract class SuccessLogin implements LoginState {
-  const factory SuccessLogin(String path) = _$SuccessLogin;
+  const factory SuccessLogin(final String path) = _$SuccessLogin;
 
   String get path => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SuccessLoginCopyWith<SuccessLogin> get copyWith =>
+  _$$SuccessLoginCopyWith<_$SuccessLogin> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WrongEmailPasswordLoginCopyWith<$Res> {
-  factory $WrongEmailPasswordLoginCopyWith(WrongEmailPasswordLogin value,
-          $Res Function(WrongEmailPasswordLogin) then) =
-      _$WrongEmailPasswordLoginCopyWithImpl<$Res>;
+abstract class _$$WrongEmailPasswordLoginCopyWith<$Res> {
+  factory _$$WrongEmailPasswordLoginCopyWith(_$WrongEmailPasswordLogin value,
+          $Res Function(_$WrongEmailPasswordLogin) then) =
+      __$$WrongEmailPasswordLoginCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WrongEmailPasswordLoginCopyWithImpl<$Res>
+class __$$WrongEmailPasswordLoginCopyWithImpl<$Res>
     extends _$LoginStateCopyWithImpl<$Res>
-    implements $WrongEmailPasswordLoginCopyWith<$Res> {
-  _$WrongEmailPasswordLoginCopyWithImpl(WrongEmailPasswordLogin _value,
-      $Res Function(WrongEmailPasswordLogin) _then)
-      : super(_value, (v) => _then(v as WrongEmailPasswordLogin));
+    implements _$$WrongEmailPasswordLoginCopyWith<$Res> {
+  __$$WrongEmailPasswordLoginCopyWithImpl(_$WrongEmailPasswordLogin _value,
+      $Res Function(_$WrongEmailPasswordLogin) _then)
+      : super(_value, (v) => _then(v as _$WrongEmailPasswordLogin));
 
   @override
-  WrongEmailPasswordLogin get _value => super._value as WrongEmailPasswordLogin;
+  _$WrongEmailPasswordLogin get _value =>
+      super._value as _$WrongEmailPasswordLogin;
 }
 
 /// @nodoc
@@ -580,7 +548,9 @@ class _$WrongEmailPasswordLogin implements WrongEmailPasswordLogin {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is WrongEmailPasswordLogin);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WrongEmailPasswordLogin);
   }
 
   @override
@@ -672,27 +642,28 @@ abstract class WrongEmailPasswordLogin implements LoginState {
 }
 
 /// @nodoc
-abstract class $ErrorLoginCopyWith<$Res> {
-  factory $ErrorLoginCopyWith(
-          ErrorLogin value, $Res Function(ErrorLogin) then) =
-      _$ErrorLoginCopyWithImpl<$Res>;
+abstract class _$$ErrorLoginCopyWith<$Res> {
+  factory _$$ErrorLoginCopyWith(
+          _$ErrorLogin value, $Res Function(_$ErrorLogin) then) =
+      __$$ErrorLoginCopyWithImpl<$Res>;
   $Res call({ApiFailure failure});
 }
 
 /// @nodoc
-class _$ErrorLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements $ErrorLoginCopyWith<$Res> {
-  _$ErrorLoginCopyWithImpl(ErrorLogin _value, $Res Function(ErrorLogin) _then)
-      : super(_value, (v) => _then(v as ErrorLogin));
+class __$$ErrorLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$ErrorLoginCopyWith<$Res> {
+  __$$ErrorLoginCopyWithImpl(
+      _$ErrorLogin _value, $Res Function(_$ErrorLogin) _then)
+      : super(_value, (v) => _then(v as _$ErrorLogin));
 
   @override
-  ErrorLogin get _value => super._value as ErrorLogin;
+  _$ErrorLogin get _value => super._value as _$ErrorLogin;
 
   @override
   $Res call({
     Object? failure = freezed,
   }) {
-    return _then(ErrorLogin(
+    return _then(_$ErrorLogin(
       failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -717,19 +688,19 @@ class _$ErrorLogin implements ErrorLogin {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ErrorLogin &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorLogin &&
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
-  $ErrorLoginCopyWith<ErrorLogin> get copyWith =>
-      _$ErrorLoginCopyWithImpl<ErrorLogin>(this, _$identity);
+  _$$ErrorLoginCopyWith<_$ErrorLogin> get copyWith =>
+      __$$ErrorLoginCopyWithImpl<_$ErrorLogin>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -813,10 +784,10 @@ class _$ErrorLogin implements ErrorLogin {
 }
 
 abstract class ErrorLogin implements LoginState {
-  const factory ErrorLogin(ApiFailure failure) = _$ErrorLogin;
+  const factory ErrorLogin(final ApiFailure failure) = _$ErrorLogin;
 
   ApiFailure get failure => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ErrorLoginCopyWith<ErrorLogin> get copyWith =>
+  _$$ErrorLoginCopyWith<_$ErrorLogin> get copyWith =>
       throw _privateConstructorUsedError;
 }

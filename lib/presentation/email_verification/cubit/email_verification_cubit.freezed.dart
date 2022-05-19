@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'email_verification_cubit.dart';
@@ -11,44 +12,7 @@ part of 'email_verification_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$EmailVerificationStateTearOff {
-  const _$EmailVerificationStateTearOff();
-
-  InitialEmailVerification initial() {
-    return const InitialEmailVerification();
-  }
-
-  LoadingEmailVerification loading() {
-    return const LoadingEmailVerification();
-  }
-
-  WrongOTPEmailVerification wrongOTPcode() {
-    return const WrongOTPEmailVerification();
-  }
-
-  MailSent_EmailVerification mailSent() {
-    return const MailSent_EmailVerification();
-  }
-
-  SuccessEmailVerification success(String response, String email) {
-    return SuccessEmailVerification(
-      response,
-      email,
-    );
-  }
-
-  ErrorEmailVerification error(Failure failure) {
-    return ErrorEmailVerification(
-      failure,
-    );
-  }
-}
-
-/// @nodoc
-const $EmailVerificationState = _$EmailVerificationStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$EmailVerificationState {
@@ -134,23 +98,23 @@ class _$EmailVerificationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $InitialEmailVerificationCopyWith<$Res> {
-  factory $InitialEmailVerificationCopyWith(InitialEmailVerification value,
-          $Res Function(InitialEmailVerification) then) =
-      _$InitialEmailVerificationCopyWithImpl<$Res>;
+abstract class _$$InitialEmailVerificationCopyWith<$Res> {
+  factory _$$InitialEmailVerificationCopyWith(_$InitialEmailVerification value,
+          $Res Function(_$InitialEmailVerification) then) =
+      __$$InitialEmailVerificationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialEmailVerificationCopyWithImpl<$Res>
+class __$$InitialEmailVerificationCopyWithImpl<$Res>
     extends _$EmailVerificationStateCopyWithImpl<$Res>
-    implements $InitialEmailVerificationCopyWith<$Res> {
-  _$InitialEmailVerificationCopyWithImpl(InitialEmailVerification _value,
-      $Res Function(InitialEmailVerification) _then)
-      : super(_value, (v) => _then(v as InitialEmailVerification));
+    implements _$$InitialEmailVerificationCopyWith<$Res> {
+  __$$InitialEmailVerificationCopyWithImpl(_$InitialEmailVerification _value,
+      $Res Function(_$InitialEmailVerification) _then)
+      : super(_value, (v) => _then(v as _$InitialEmailVerification));
 
   @override
-  InitialEmailVerification get _value =>
-      super._value as InitialEmailVerification;
+  _$InitialEmailVerification get _value =>
+      super._value as _$InitialEmailVerification;
 }
 
 /// @nodoc
@@ -165,7 +129,9 @@ class _$InitialEmailVerification implements InitialEmailVerification {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InitialEmailVerification);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitialEmailVerification);
   }
 
   @override
@@ -263,23 +229,23 @@ abstract class InitialEmailVerification implements EmailVerificationState {
 }
 
 /// @nodoc
-abstract class $LoadingEmailVerificationCopyWith<$Res> {
-  factory $LoadingEmailVerificationCopyWith(LoadingEmailVerification value,
-          $Res Function(LoadingEmailVerification) then) =
-      _$LoadingEmailVerificationCopyWithImpl<$Res>;
+abstract class _$$LoadingEmailVerificationCopyWith<$Res> {
+  factory _$$LoadingEmailVerificationCopyWith(_$LoadingEmailVerification value,
+          $Res Function(_$LoadingEmailVerification) then) =
+      __$$LoadingEmailVerificationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingEmailVerificationCopyWithImpl<$Res>
+class __$$LoadingEmailVerificationCopyWithImpl<$Res>
     extends _$EmailVerificationStateCopyWithImpl<$Res>
-    implements $LoadingEmailVerificationCopyWith<$Res> {
-  _$LoadingEmailVerificationCopyWithImpl(LoadingEmailVerification _value,
-      $Res Function(LoadingEmailVerification) _then)
-      : super(_value, (v) => _then(v as LoadingEmailVerification));
+    implements _$$LoadingEmailVerificationCopyWith<$Res> {
+  __$$LoadingEmailVerificationCopyWithImpl(_$LoadingEmailVerification _value,
+      $Res Function(_$LoadingEmailVerification) _then)
+      : super(_value, (v) => _then(v as _$LoadingEmailVerification));
 
   @override
-  LoadingEmailVerification get _value =>
-      super._value as LoadingEmailVerification;
+  _$LoadingEmailVerification get _value =>
+      super._value as _$LoadingEmailVerification;
 }
 
 /// @nodoc
@@ -294,7 +260,9 @@ class _$LoadingEmailVerification implements LoadingEmailVerification {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoadingEmailVerification);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingEmailVerification);
   }
 
   @override
@@ -392,23 +360,24 @@ abstract class LoadingEmailVerification implements EmailVerificationState {
 }
 
 /// @nodoc
-abstract class $WrongOTPEmailVerificationCopyWith<$Res> {
-  factory $WrongOTPEmailVerificationCopyWith(WrongOTPEmailVerification value,
-          $Res Function(WrongOTPEmailVerification) then) =
-      _$WrongOTPEmailVerificationCopyWithImpl<$Res>;
+abstract class _$$WrongOTPEmailVerificationCopyWith<$Res> {
+  factory _$$WrongOTPEmailVerificationCopyWith(
+          _$WrongOTPEmailVerification value,
+          $Res Function(_$WrongOTPEmailVerification) then) =
+      __$$WrongOTPEmailVerificationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WrongOTPEmailVerificationCopyWithImpl<$Res>
+class __$$WrongOTPEmailVerificationCopyWithImpl<$Res>
     extends _$EmailVerificationStateCopyWithImpl<$Res>
-    implements $WrongOTPEmailVerificationCopyWith<$Res> {
-  _$WrongOTPEmailVerificationCopyWithImpl(WrongOTPEmailVerification _value,
-      $Res Function(WrongOTPEmailVerification) _then)
-      : super(_value, (v) => _then(v as WrongOTPEmailVerification));
+    implements _$$WrongOTPEmailVerificationCopyWith<$Res> {
+  __$$WrongOTPEmailVerificationCopyWithImpl(_$WrongOTPEmailVerification _value,
+      $Res Function(_$WrongOTPEmailVerification) _then)
+      : super(_value, (v) => _then(v as _$WrongOTPEmailVerification));
 
   @override
-  WrongOTPEmailVerification get _value =>
-      super._value as WrongOTPEmailVerification;
+  _$WrongOTPEmailVerification get _value =>
+      super._value as _$WrongOTPEmailVerification;
 }
 
 /// @nodoc
@@ -423,7 +392,9 @@ class _$WrongOTPEmailVerification implements WrongOTPEmailVerification {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is WrongOTPEmailVerification);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WrongOTPEmailVerification);
   }
 
   @override
@@ -521,23 +492,25 @@ abstract class WrongOTPEmailVerification implements EmailVerificationState {
 }
 
 /// @nodoc
-abstract class $MailSent_EmailVerificationCopyWith<$Res> {
-  factory $MailSent_EmailVerificationCopyWith(MailSent_EmailVerification value,
-          $Res Function(MailSent_EmailVerification) then) =
-      _$MailSent_EmailVerificationCopyWithImpl<$Res>;
+abstract class _$$MailSent_EmailVerificationCopyWith<$Res> {
+  factory _$$MailSent_EmailVerificationCopyWith(
+          _$MailSent_EmailVerification value,
+          $Res Function(_$MailSent_EmailVerification) then) =
+      __$$MailSent_EmailVerificationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MailSent_EmailVerificationCopyWithImpl<$Res>
+class __$$MailSent_EmailVerificationCopyWithImpl<$Res>
     extends _$EmailVerificationStateCopyWithImpl<$Res>
-    implements $MailSent_EmailVerificationCopyWith<$Res> {
-  _$MailSent_EmailVerificationCopyWithImpl(MailSent_EmailVerification _value,
-      $Res Function(MailSent_EmailVerification) _then)
-      : super(_value, (v) => _then(v as MailSent_EmailVerification));
+    implements _$$MailSent_EmailVerificationCopyWith<$Res> {
+  __$$MailSent_EmailVerificationCopyWithImpl(
+      _$MailSent_EmailVerification _value,
+      $Res Function(_$MailSent_EmailVerification) _then)
+      : super(_value, (v) => _then(v as _$MailSent_EmailVerification));
 
   @override
-  MailSent_EmailVerification get _value =>
-      super._value as MailSent_EmailVerification;
+  _$MailSent_EmailVerification get _value =>
+      super._value as _$MailSent_EmailVerification;
 }
 
 /// @nodoc
@@ -552,7 +525,9 @@ class _$MailSent_EmailVerification implements MailSent_EmailVerification {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MailSent_EmailVerification);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MailSent_EmailVerification);
   }
 
   @override
@@ -650,31 +625,31 @@ abstract class MailSent_EmailVerification implements EmailVerificationState {
 }
 
 /// @nodoc
-abstract class $SuccessEmailVerificationCopyWith<$Res> {
-  factory $SuccessEmailVerificationCopyWith(SuccessEmailVerification value,
-          $Res Function(SuccessEmailVerification) then) =
-      _$SuccessEmailVerificationCopyWithImpl<$Res>;
+abstract class _$$SuccessEmailVerificationCopyWith<$Res> {
+  factory _$$SuccessEmailVerificationCopyWith(_$SuccessEmailVerification value,
+          $Res Function(_$SuccessEmailVerification) then) =
+      __$$SuccessEmailVerificationCopyWithImpl<$Res>;
   $Res call({String response, String email});
 }
 
 /// @nodoc
-class _$SuccessEmailVerificationCopyWithImpl<$Res>
+class __$$SuccessEmailVerificationCopyWithImpl<$Res>
     extends _$EmailVerificationStateCopyWithImpl<$Res>
-    implements $SuccessEmailVerificationCopyWith<$Res> {
-  _$SuccessEmailVerificationCopyWithImpl(SuccessEmailVerification _value,
-      $Res Function(SuccessEmailVerification) _then)
-      : super(_value, (v) => _then(v as SuccessEmailVerification));
+    implements _$$SuccessEmailVerificationCopyWith<$Res> {
+  __$$SuccessEmailVerificationCopyWithImpl(_$SuccessEmailVerification _value,
+      $Res Function(_$SuccessEmailVerification) _then)
+      : super(_value, (v) => _then(v as _$SuccessEmailVerification));
 
   @override
-  SuccessEmailVerification get _value =>
-      super._value as SuccessEmailVerification;
+  _$SuccessEmailVerification get _value =>
+      super._value as _$SuccessEmailVerification;
 
   @override
   $Res call({
     Object? response = freezed,
     Object? email = freezed,
   }) {
-    return _then(SuccessEmailVerification(
+    return _then(_$SuccessEmailVerification(
       response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
@@ -705,25 +680,24 @@ class _$SuccessEmailVerification implements SuccessEmailVerification {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SuccessEmailVerification &&
-            (identical(other.response, response) ||
-                const DeepCollectionEquality()
-                    .equals(other.response, response)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)));
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessEmailVerification &&
+            const DeepCollectionEquality().equals(other.response, response) &&
+            const DeepCollectionEquality().equals(other.email, email));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(response) ^
-      const DeepCollectionEquality().hash(email);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(response),
+      const DeepCollectionEquality().hash(email));
 
   @JsonKey(ignore: true)
   @override
-  $SuccessEmailVerificationCopyWith<SuccessEmailVerification> get copyWith =>
-      _$SuccessEmailVerificationCopyWithImpl<SuccessEmailVerification>(
-          this, _$identity);
+  _$$SuccessEmailVerificationCopyWith<_$SuccessEmailVerification>
+      get copyWith =>
+          __$$SuccessEmailVerificationCopyWithImpl<_$SuccessEmailVerification>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -813,40 +787,41 @@ class _$SuccessEmailVerification implements SuccessEmailVerification {
 }
 
 abstract class SuccessEmailVerification implements EmailVerificationState {
-  const factory SuccessEmailVerification(String response, String email) =
-      _$SuccessEmailVerification;
+  const factory SuccessEmailVerification(
+      final String response, final String email) = _$SuccessEmailVerification;
 
   String get response => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SuccessEmailVerificationCopyWith<SuccessEmailVerification> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SuccessEmailVerificationCopyWith<_$SuccessEmailVerification>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ErrorEmailVerificationCopyWith<$Res> {
-  factory $ErrorEmailVerificationCopyWith(ErrorEmailVerification value,
-          $Res Function(ErrorEmailVerification) then) =
-      _$ErrorEmailVerificationCopyWithImpl<$Res>;
+abstract class _$$ErrorEmailVerificationCopyWith<$Res> {
+  factory _$$ErrorEmailVerificationCopyWith(_$ErrorEmailVerification value,
+          $Res Function(_$ErrorEmailVerification) then) =
+      __$$ErrorEmailVerificationCopyWithImpl<$Res>;
   $Res call({Failure failure});
 }
 
 /// @nodoc
-class _$ErrorEmailVerificationCopyWithImpl<$Res>
+class __$$ErrorEmailVerificationCopyWithImpl<$Res>
     extends _$EmailVerificationStateCopyWithImpl<$Res>
-    implements $ErrorEmailVerificationCopyWith<$Res> {
-  _$ErrorEmailVerificationCopyWithImpl(ErrorEmailVerification _value,
-      $Res Function(ErrorEmailVerification) _then)
-      : super(_value, (v) => _then(v as ErrorEmailVerification));
+    implements _$$ErrorEmailVerificationCopyWith<$Res> {
+  __$$ErrorEmailVerificationCopyWithImpl(_$ErrorEmailVerification _value,
+      $Res Function(_$ErrorEmailVerification) _then)
+      : super(_value, (v) => _then(v as _$ErrorEmailVerification));
 
   @override
-  ErrorEmailVerification get _value => super._value as ErrorEmailVerification;
+  _$ErrorEmailVerification get _value =>
+      super._value as _$ErrorEmailVerification;
 
   @override
   $Res call({
     Object? failure = freezed,
   }) {
-    return _then(ErrorEmailVerification(
+    return _then(_$ErrorEmailVerification(
       failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -871,19 +846,19 @@ class _$ErrorEmailVerification implements ErrorEmailVerification {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ErrorEmailVerification &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorEmailVerification &&
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
-  $ErrorEmailVerificationCopyWith<ErrorEmailVerification> get copyWith =>
-      _$ErrorEmailVerificationCopyWithImpl<ErrorEmailVerification>(
+  _$$ErrorEmailVerificationCopyWith<_$ErrorEmailVerification> get copyWith =>
+      __$$ErrorEmailVerificationCopyWithImpl<_$ErrorEmailVerification>(
           this, _$identity);
 
   @override
@@ -974,11 +949,11 @@ class _$ErrorEmailVerification implements ErrorEmailVerification {
 }
 
 abstract class ErrorEmailVerification implements EmailVerificationState {
-  const factory ErrorEmailVerification(Failure failure) =
+  const factory ErrorEmailVerification(final Failure failure) =
       _$ErrorEmailVerification;
 
   Failure get failure => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ErrorEmailVerificationCopyWith<ErrorEmailVerification> get copyWith =>
+  _$$ErrorEmailVerificationCopyWith<_$ErrorEmailVerification> get copyWith =>
       throw _privateConstructorUsedError;
 }

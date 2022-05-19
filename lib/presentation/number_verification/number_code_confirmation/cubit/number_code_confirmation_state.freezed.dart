@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'number_code_confirmation_state.dart';
@@ -11,45 +12,7 @@ part of 'number_code_confirmation_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$NumberCodeConfirmationStateTearOff {
-  const _$NumberCodeConfirmationStateTearOff();
-
-  InitNumberCodeConfirmationState init({String? response}) {
-    return InitNumberCodeConfirmationState(
-      response: response,
-    );
-  }
-
-  LoadingNumberCodeConfirmationState loading() {
-    return const LoadingNumberCodeConfirmationState();
-  }
-
-  SucessNumberCodeConfirmationState success() {
-    return const SucessNumberCodeConfirmationState();
-  }
-
-  ResendNumberCodeConfirmationState resend() {
-    return const ResendNumberCodeConfirmationState();
-  }
-
-  CodeErrorCodeConfirmationState codeError({required ApiFailure e}) {
-    return CodeErrorCodeConfirmationState(
-      e: e,
-    );
-  }
-
-  ResendErrorCodeConfirmationState resendError({required ApiFailure e}) {
-    return ResendErrorCodeConfirmationState(
-      e: e,
-    );
-  }
-}
-
-/// @nodoc
-const $NumberCodeConfirmationState = _$NumberCodeConfirmationStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$NumberCodeConfirmationState {
@@ -137,32 +100,32 @@ class _$NumberCodeConfirmationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $InitNumberCodeConfirmationStateCopyWith<$Res> {
-  factory $InitNumberCodeConfirmationStateCopyWith(
-          InitNumberCodeConfirmationState value,
-          $Res Function(InitNumberCodeConfirmationState) then) =
-      _$InitNumberCodeConfirmationStateCopyWithImpl<$Res>;
+abstract class _$$InitNumberCodeConfirmationStateCopyWith<$Res> {
+  factory _$$InitNumberCodeConfirmationStateCopyWith(
+          _$InitNumberCodeConfirmationState value,
+          $Res Function(_$InitNumberCodeConfirmationState) then) =
+      __$$InitNumberCodeConfirmationStateCopyWithImpl<$Res>;
   $Res call({String? response});
 }
 
 /// @nodoc
-class _$InitNumberCodeConfirmationStateCopyWithImpl<$Res>
+class __$$InitNumberCodeConfirmationStateCopyWithImpl<$Res>
     extends _$NumberCodeConfirmationStateCopyWithImpl<$Res>
-    implements $InitNumberCodeConfirmationStateCopyWith<$Res> {
-  _$InitNumberCodeConfirmationStateCopyWithImpl(
-      InitNumberCodeConfirmationState _value,
-      $Res Function(InitNumberCodeConfirmationState) _then)
-      : super(_value, (v) => _then(v as InitNumberCodeConfirmationState));
+    implements _$$InitNumberCodeConfirmationStateCopyWith<$Res> {
+  __$$InitNumberCodeConfirmationStateCopyWithImpl(
+      _$InitNumberCodeConfirmationState _value,
+      $Res Function(_$InitNumberCodeConfirmationState) _then)
+      : super(_value, (v) => _then(v as _$InitNumberCodeConfirmationState));
 
   @override
-  InitNumberCodeConfirmationState get _value =>
-      super._value as InitNumberCodeConfirmationState;
+  _$InitNumberCodeConfirmationState get _value =>
+      super._value as _$InitNumberCodeConfirmationState;
 
   @override
   $Res call({
     Object? response = freezed,
   }) {
-    return _then(InitNumberCodeConfirmationState(
+    return _then(_$InitNumberCodeConfirmationState(
       response: response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
@@ -188,21 +151,20 @@ class _$InitNumberCodeConfirmationState
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InitNumberCodeConfirmationState &&
-            (identical(other.response, response) ||
-                const DeepCollectionEquality()
-                    .equals(other.response, response)));
+        (other.runtimeType == runtimeType &&
+            other is _$InitNumberCodeConfirmationState &&
+            const DeepCollectionEquality().equals(other.response, response));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(response);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(response));
 
   @JsonKey(ignore: true)
   @override
-  $InitNumberCodeConfirmationStateCopyWith<InitNumberCodeConfirmationState>
-      get copyWith => _$InitNumberCodeConfirmationStateCopyWithImpl<
-          InitNumberCodeConfirmationState>(this, _$identity);
+  _$$InitNumberCodeConfirmationStateCopyWith<_$InitNumberCodeConfirmationState>
+      get copyWith => __$$InitNumberCodeConfirmationStateCopyWithImpl<
+          _$InitNumberCodeConfirmationState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -294,35 +256,35 @@ class _$InitNumberCodeConfirmationState
 
 abstract class InitNumberCodeConfirmationState
     implements NumberCodeConfirmationState {
-  const factory InitNumberCodeConfirmationState({String? response}) =
+  const factory InitNumberCodeConfirmationState({final String? response}) =
       _$InitNumberCodeConfirmationState;
 
   String? get response => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $InitNumberCodeConfirmationStateCopyWith<InitNumberCodeConfirmationState>
+  _$$InitNumberCodeConfirmationStateCopyWith<_$InitNumberCodeConfirmationState>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoadingNumberCodeConfirmationStateCopyWith<$Res> {
-  factory $LoadingNumberCodeConfirmationStateCopyWith(
-          LoadingNumberCodeConfirmationState value,
-          $Res Function(LoadingNumberCodeConfirmationState) then) =
-      _$LoadingNumberCodeConfirmationStateCopyWithImpl<$Res>;
+abstract class _$$LoadingNumberCodeConfirmationStateCopyWith<$Res> {
+  factory _$$LoadingNumberCodeConfirmationStateCopyWith(
+          _$LoadingNumberCodeConfirmationState value,
+          $Res Function(_$LoadingNumberCodeConfirmationState) then) =
+      __$$LoadingNumberCodeConfirmationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingNumberCodeConfirmationStateCopyWithImpl<$Res>
+class __$$LoadingNumberCodeConfirmationStateCopyWithImpl<$Res>
     extends _$NumberCodeConfirmationStateCopyWithImpl<$Res>
-    implements $LoadingNumberCodeConfirmationStateCopyWith<$Res> {
-  _$LoadingNumberCodeConfirmationStateCopyWithImpl(
-      LoadingNumberCodeConfirmationState _value,
-      $Res Function(LoadingNumberCodeConfirmationState) _then)
-      : super(_value, (v) => _then(v as LoadingNumberCodeConfirmationState));
+    implements _$$LoadingNumberCodeConfirmationStateCopyWith<$Res> {
+  __$$LoadingNumberCodeConfirmationStateCopyWithImpl(
+      _$LoadingNumberCodeConfirmationState _value,
+      $Res Function(_$LoadingNumberCodeConfirmationState) _then)
+      : super(_value, (v) => _then(v as _$LoadingNumberCodeConfirmationState));
 
   @override
-  LoadingNumberCodeConfirmationState get _value =>
-      super._value as LoadingNumberCodeConfirmationState;
+  _$LoadingNumberCodeConfirmationState get _value =>
+      super._value as _$LoadingNumberCodeConfirmationState;
 }
 
 /// @nodoc
@@ -339,7 +301,8 @@ class _$LoadingNumberCodeConfirmationState
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is LoadingNumberCodeConfirmationState);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingNumberCodeConfirmationState);
   }
 
   @override
@@ -440,25 +403,25 @@ abstract class LoadingNumberCodeConfirmationState
 }
 
 /// @nodoc
-abstract class $SucessNumberCodeConfirmationStateCopyWith<$Res> {
-  factory $SucessNumberCodeConfirmationStateCopyWith(
-          SucessNumberCodeConfirmationState value,
-          $Res Function(SucessNumberCodeConfirmationState) then) =
-      _$SucessNumberCodeConfirmationStateCopyWithImpl<$Res>;
+abstract class _$$SucessNumberCodeConfirmationStateCopyWith<$Res> {
+  factory _$$SucessNumberCodeConfirmationStateCopyWith(
+          _$SucessNumberCodeConfirmationState value,
+          $Res Function(_$SucessNumberCodeConfirmationState) then) =
+      __$$SucessNumberCodeConfirmationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SucessNumberCodeConfirmationStateCopyWithImpl<$Res>
+class __$$SucessNumberCodeConfirmationStateCopyWithImpl<$Res>
     extends _$NumberCodeConfirmationStateCopyWithImpl<$Res>
-    implements $SucessNumberCodeConfirmationStateCopyWith<$Res> {
-  _$SucessNumberCodeConfirmationStateCopyWithImpl(
-      SucessNumberCodeConfirmationState _value,
-      $Res Function(SucessNumberCodeConfirmationState) _then)
-      : super(_value, (v) => _then(v as SucessNumberCodeConfirmationState));
+    implements _$$SucessNumberCodeConfirmationStateCopyWith<$Res> {
+  __$$SucessNumberCodeConfirmationStateCopyWithImpl(
+      _$SucessNumberCodeConfirmationState _value,
+      $Res Function(_$SucessNumberCodeConfirmationState) _then)
+      : super(_value, (v) => _then(v as _$SucessNumberCodeConfirmationState));
 
   @override
-  SucessNumberCodeConfirmationState get _value =>
-      super._value as SucessNumberCodeConfirmationState;
+  _$SucessNumberCodeConfirmationState get _value =>
+      super._value as _$SucessNumberCodeConfirmationState;
 }
 
 /// @nodoc
@@ -475,7 +438,8 @@ class _$SucessNumberCodeConfirmationState
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SucessNumberCodeConfirmationState);
+        (other.runtimeType == runtimeType &&
+            other is _$SucessNumberCodeConfirmationState);
   }
 
   @override
@@ -576,25 +540,25 @@ abstract class SucessNumberCodeConfirmationState
 }
 
 /// @nodoc
-abstract class $ResendNumberCodeConfirmationStateCopyWith<$Res> {
-  factory $ResendNumberCodeConfirmationStateCopyWith(
-          ResendNumberCodeConfirmationState value,
-          $Res Function(ResendNumberCodeConfirmationState) then) =
-      _$ResendNumberCodeConfirmationStateCopyWithImpl<$Res>;
+abstract class _$$ResendNumberCodeConfirmationStateCopyWith<$Res> {
+  factory _$$ResendNumberCodeConfirmationStateCopyWith(
+          _$ResendNumberCodeConfirmationState value,
+          $Res Function(_$ResendNumberCodeConfirmationState) then) =
+      __$$ResendNumberCodeConfirmationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ResendNumberCodeConfirmationStateCopyWithImpl<$Res>
+class __$$ResendNumberCodeConfirmationStateCopyWithImpl<$Res>
     extends _$NumberCodeConfirmationStateCopyWithImpl<$Res>
-    implements $ResendNumberCodeConfirmationStateCopyWith<$Res> {
-  _$ResendNumberCodeConfirmationStateCopyWithImpl(
-      ResendNumberCodeConfirmationState _value,
-      $Res Function(ResendNumberCodeConfirmationState) _then)
-      : super(_value, (v) => _then(v as ResendNumberCodeConfirmationState));
+    implements _$$ResendNumberCodeConfirmationStateCopyWith<$Res> {
+  __$$ResendNumberCodeConfirmationStateCopyWithImpl(
+      _$ResendNumberCodeConfirmationState _value,
+      $Res Function(_$ResendNumberCodeConfirmationState) _then)
+      : super(_value, (v) => _then(v as _$ResendNumberCodeConfirmationState));
 
   @override
-  ResendNumberCodeConfirmationState get _value =>
-      super._value as ResendNumberCodeConfirmationState;
+  _$ResendNumberCodeConfirmationState get _value =>
+      super._value as _$ResendNumberCodeConfirmationState;
 }
 
 /// @nodoc
@@ -611,7 +575,8 @@ class _$ResendNumberCodeConfirmationState
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ResendNumberCodeConfirmationState);
+        (other.runtimeType == runtimeType &&
+            other is _$ResendNumberCodeConfirmationState);
   }
 
   @override
@@ -712,32 +677,32 @@ abstract class ResendNumberCodeConfirmationState
 }
 
 /// @nodoc
-abstract class $CodeErrorCodeConfirmationStateCopyWith<$Res> {
-  factory $CodeErrorCodeConfirmationStateCopyWith(
-          CodeErrorCodeConfirmationState value,
-          $Res Function(CodeErrorCodeConfirmationState) then) =
-      _$CodeErrorCodeConfirmationStateCopyWithImpl<$Res>;
+abstract class _$$CodeErrorCodeConfirmationStateCopyWith<$Res> {
+  factory _$$CodeErrorCodeConfirmationStateCopyWith(
+          _$CodeErrorCodeConfirmationState value,
+          $Res Function(_$CodeErrorCodeConfirmationState) then) =
+      __$$CodeErrorCodeConfirmationStateCopyWithImpl<$Res>;
   $Res call({ApiFailure e});
 }
 
 /// @nodoc
-class _$CodeErrorCodeConfirmationStateCopyWithImpl<$Res>
+class __$$CodeErrorCodeConfirmationStateCopyWithImpl<$Res>
     extends _$NumberCodeConfirmationStateCopyWithImpl<$Res>
-    implements $CodeErrorCodeConfirmationStateCopyWith<$Res> {
-  _$CodeErrorCodeConfirmationStateCopyWithImpl(
-      CodeErrorCodeConfirmationState _value,
-      $Res Function(CodeErrorCodeConfirmationState) _then)
-      : super(_value, (v) => _then(v as CodeErrorCodeConfirmationState));
+    implements _$$CodeErrorCodeConfirmationStateCopyWith<$Res> {
+  __$$CodeErrorCodeConfirmationStateCopyWithImpl(
+      _$CodeErrorCodeConfirmationState _value,
+      $Res Function(_$CodeErrorCodeConfirmationState) _then)
+      : super(_value, (v) => _then(v as _$CodeErrorCodeConfirmationState));
 
   @override
-  CodeErrorCodeConfirmationState get _value =>
-      super._value as CodeErrorCodeConfirmationState;
+  _$CodeErrorCodeConfirmationState get _value =>
+      super._value as _$CodeErrorCodeConfirmationState;
 
   @override
   $Res call({
     Object? e = freezed,
   }) {
-    return _then(CodeErrorCodeConfirmationState(
+    return _then(_$CodeErrorCodeConfirmationState(
       e: e == freezed
           ? _value.e
           : e // ignore: cast_nullable_to_non_nullable
@@ -763,20 +728,20 @@ class _$CodeErrorCodeConfirmationState
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CodeErrorCodeConfirmationState &&
-            (identical(other.e, e) ||
-                const DeepCollectionEquality().equals(other.e, e)));
+        (other.runtimeType == runtimeType &&
+            other is _$CodeErrorCodeConfirmationState &&
+            const DeepCollectionEquality().equals(other.e, e));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(e);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(e));
 
   @JsonKey(ignore: true)
   @override
-  $CodeErrorCodeConfirmationStateCopyWith<CodeErrorCodeConfirmationState>
-      get copyWith => _$CodeErrorCodeConfirmationStateCopyWithImpl<
-          CodeErrorCodeConfirmationState>(this, _$identity);
+  _$$CodeErrorCodeConfirmationStateCopyWith<_$CodeErrorCodeConfirmationState>
+      get copyWith => __$$CodeErrorCodeConfirmationStateCopyWithImpl<
+          _$CodeErrorCodeConfirmationState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -868,42 +833,42 @@ class _$CodeErrorCodeConfirmationState
 
 abstract class CodeErrorCodeConfirmationState
     implements NumberCodeConfirmationState {
-  const factory CodeErrorCodeConfirmationState({required ApiFailure e}) =
+  const factory CodeErrorCodeConfirmationState({required final ApiFailure e}) =
       _$CodeErrorCodeConfirmationState;
 
   ApiFailure get e => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CodeErrorCodeConfirmationStateCopyWith<CodeErrorCodeConfirmationState>
+  _$$CodeErrorCodeConfirmationStateCopyWith<_$CodeErrorCodeConfirmationState>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ResendErrorCodeConfirmationStateCopyWith<$Res> {
-  factory $ResendErrorCodeConfirmationStateCopyWith(
-          ResendErrorCodeConfirmationState value,
-          $Res Function(ResendErrorCodeConfirmationState) then) =
-      _$ResendErrorCodeConfirmationStateCopyWithImpl<$Res>;
+abstract class _$$ResendErrorCodeConfirmationStateCopyWith<$Res> {
+  factory _$$ResendErrorCodeConfirmationStateCopyWith(
+          _$ResendErrorCodeConfirmationState value,
+          $Res Function(_$ResendErrorCodeConfirmationState) then) =
+      __$$ResendErrorCodeConfirmationStateCopyWithImpl<$Res>;
   $Res call({ApiFailure e});
 }
 
 /// @nodoc
-class _$ResendErrorCodeConfirmationStateCopyWithImpl<$Res>
+class __$$ResendErrorCodeConfirmationStateCopyWithImpl<$Res>
     extends _$NumberCodeConfirmationStateCopyWithImpl<$Res>
-    implements $ResendErrorCodeConfirmationStateCopyWith<$Res> {
-  _$ResendErrorCodeConfirmationStateCopyWithImpl(
-      ResendErrorCodeConfirmationState _value,
-      $Res Function(ResendErrorCodeConfirmationState) _then)
-      : super(_value, (v) => _then(v as ResendErrorCodeConfirmationState));
+    implements _$$ResendErrorCodeConfirmationStateCopyWith<$Res> {
+  __$$ResendErrorCodeConfirmationStateCopyWithImpl(
+      _$ResendErrorCodeConfirmationState _value,
+      $Res Function(_$ResendErrorCodeConfirmationState) _then)
+      : super(_value, (v) => _then(v as _$ResendErrorCodeConfirmationState));
 
   @override
-  ResendErrorCodeConfirmationState get _value =>
-      super._value as ResendErrorCodeConfirmationState;
+  _$ResendErrorCodeConfirmationState get _value =>
+      super._value as _$ResendErrorCodeConfirmationState;
 
   @override
   $Res call({
     Object? e = freezed,
   }) {
-    return _then(ResendErrorCodeConfirmationState(
+    return _then(_$ResendErrorCodeConfirmationState(
       e: e == freezed
           ? _value.e
           : e // ignore: cast_nullable_to_non_nullable
@@ -929,20 +894,21 @@ class _$ResendErrorCodeConfirmationState
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ResendErrorCodeConfirmationState &&
-            (identical(other.e, e) ||
-                const DeepCollectionEquality().equals(other.e, e)));
+        (other.runtimeType == runtimeType &&
+            other is _$ResendErrorCodeConfirmationState &&
+            const DeepCollectionEquality().equals(other.e, e));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(e);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(e));
 
   @JsonKey(ignore: true)
   @override
-  $ResendErrorCodeConfirmationStateCopyWith<ResendErrorCodeConfirmationState>
-      get copyWith => _$ResendErrorCodeConfirmationStateCopyWithImpl<
-          ResendErrorCodeConfirmationState>(this, _$identity);
+  _$$ResendErrorCodeConfirmationStateCopyWith<
+          _$ResendErrorCodeConfirmationState>
+      get copyWith => __$$ResendErrorCodeConfirmationStateCopyWithImpl<
+          _$ResendErrorCodeConfirmationState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1034,11 +1000,12 @@ class _$ResendErrorCodeConfirmationState
 
 abstract class ResendErrorCodeConfirmationState
     implements NumberCodeConfirmationState {
-  const factory ResendErrorCodeConfirmationState({required ApiFailure e}) =
-      _$ResendErrorCodeConfirmationState;
+  const factory ResendErrorCodeConfirmationState(
+      {required final ApiFailure e}) = _$ResendErrorCodeConfirmationState;
 
   ApiFailure get e => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ResendErrorCodeConfirmationStateCopyWith<ResendErrorCodeConfirmationState>
+  _$$ResendErrorCodeConfirmationStateCopyWith<
+          _$ResendErrorCodeConfirmationState>
       get copyWith => throw _privateConstructorUsedError;
 }

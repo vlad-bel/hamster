@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'user_info_init_cubit.dart';
@@ -11,38 +12,7 @@ part of 'user_info_init_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$UserInfoInitStateTearOff {
-  const _$UserInfoInitStateTearOff();
-
-  InitialUserInfoInit initial(
-      {bool shouldShowPasswordValidationWidget = false}) {
-    return InitialUserInfoInit(
-      shouldShowPasswordValidationWidget: shouldShowPasswordValidationWidget,
-    );
-  }
-
-  LoadingUserInfoInit loading() {
-    return const LoadingUserInfoInit();
-  }
-
-  SuccessUserInfoInit success(String response) {
-    return SuccessUserInfoInit(
-      response,
-    );
-  }
-
-  ErrorUserInfoInit error(Failure failure) {
-    return ErrorUserInfoInit(
-      failure,
-    );
-  }
-}
-
-/// @nodoc
-const $UserInfoInitState = _$UserInfoInitStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$UserInfoInitState {
@@ -116,29 +86,29 @@ class _$UserInfoInitStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $InitialUserInfoInitCopyWith<$Res> {
-  factory $InitialUserInfoInitCopyWith(
-          InitialUserInfoInit value, $Res Function(InitialUserInfoInit) then) =
-      _$InitialUserInfoInitCopyWithImpl<$Res>;
+abstract class _$$InitialUserInfoInitCopyWith<$Res> {
+  factory _$$InitialUserInfoInitCopyWith(_$InitialUserInfoInit value,
+          $Res Function(_$InitialUserInfoInit) then) =
+      __$$InitialUserInfoInitCopyWithImpl<$Res>;
   $Res call({bool shouldShowPasswordValidationWidget});
 }
 
 /// @nodoc
-class _$InitialUserInfoInitCopyWithImpl<$Res>
+class __$$InitialUserInfoInitCopyWithImpl<$Res>
     extends _$UserInfoInitStateCopyWithImpl<$Res>
-    implements $InitialUserInfoInitCopyWith<$Res> {
-  _$InitialUserInfoInitCopyWithImpl(
-      InitialUserInfoInit _value, $Res Function(InitialUserInfoInit) _then)
-      : super(_value, (v) => _then(v as InitialUserInfoInit));
+    implements _$$InitialUserInfoInitCopyWith<$Res> {
+  __$$InitialUserInfoInitCopyWithImpl(
+      _$InitialUserInfoInit _value, $Res Function(_$InitialUserInfoInit) _then)
+      : super(_value, (v) => _then(v as _$InitialUserInfoInit));
 
   @override
-  InitialUserInfoInit get _value => super._value as InitialUserInfoInit;
+  _$InitialUserInfoInit get _value => super._value as _$InitialUserInfoInit;
 
   @override
   $Res call({
     Object? shouldShowPasswordValidationWidget = freezed,
   }) {
-    return _then(InitialUserInfoInit(
+    return _then(_$InitialUserInfoInit(
       shouldShowPasswordValidationWidget: shouldShowPasswordValidationWidget ==
               freezed
           ? _value.shouldShowPasswordValidationWidget
@@ -154,8 +124,8 @@ class _$InitialUserInfoInit implements InitialUserInfoInit {
   const _$InitialUserInfoInit(
       {this.shouldShowPasswordValidationWidget = false});
 
-  @JsonKey(defaultValue: false)
   @override
+  @JsonKey()
   final bool shouldShowPasswordValidationWidget;
 
   @override
@@ -166,23 +136,22 @@ class _$InitialUserInfoInit implements InitialUserInfoInit {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InitialUserInfoInit &&
-            (identical(other.shouldShowPasswordValidationWidget,
-                    shouldShowPasswordValidationWidget) ||
-                const DeepCollectionEquality().equals(
-                    other.shouldShowPasswordValidationWidget,
-                    shouldShowPasswordValidationWidget)));
+        (other.runtimeType == runtimeType &&
+            other is _$InitialUserInfoInit &&
+            const DeepCollectionEquality().equals(
+                other.shouldShowPasswordValidationWidget,
+                shouldShowPasswordValidationWidget));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(shouldShowPasswordValidationWidget);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(shouldShowPasswordValidationWidget));
 
   @JsonKey(ignore: true)
   @override
-  $InitialUserInfoInitCopyWith<InitialUserInfoInit> get copyWith =>
-      _$InitialUserInfoInitCopyWithImpl<InitialUserInfoInit>(this, _$identity);
+  _$$InitialUserInfoInitCopyWith<_$InitialUserInfoInit> get copyWith =>
+      __$$InitialUserInfoInitCopyWithImpl<_$InitialUserInfoInit>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -260,33 +229,33 @@ class _$InitialUserInfoInit implements InitialUserInfoInit {
 }
 
 abstract class InitialUserInfoInit implements UserInfoInitState {
-  const factory InitialUserInfoInit({bool shouldShowPasswordValidationWidget}) =
-      _$InitialUserInfoInit;
+  const factory InitialUserInfoInit(
+      {final bool shouldShowPasswordValidationWidget}) = _$InitialUserInfoInit;
 
   bool get shouldShowPasswordValidationWidget =>
       throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $InitialUserInfoInitCopyWith<InitialUserInfoInit> get copyWith =>
+  _$$InitialUserInfoInitCopyWith<_$InitialUserInfoInit> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoadingUserInfoInitCopyWith<$Res> {
-  factory $LoadingUserInfoInitCopyWith(
-          LoadingUserInfoInit value, $Res Function(LoadingUserInfoInit) then) =
-      _$LoadingUserInfoInitCopyWithImpl<$Res>;
+abstract class _$$LoadingUserInfoInitCopyWith<$Res> {
+  factory _$$LoadingUserInfoInitCopyWith(_$LoadingUserInfoInit value,
+          $Res Function(_$LoadingUserInfoInit) then) =
+      __$$LoadingUserInfoInitCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingUserInfoInitCopyWithImpl<$Res>
+class __$$LoadingUserInfoInitCopyWithImpl<$Res>
     extends _$UserInfoInitStateCopyWithImpl<$Res>
-    implements $LoadingUserInfoInitCopyWith<$Res> {
-  _$LoadingUserInfoInitCopyWithImpl(
-      LoadingUserInfoInit _value, $Res Function(LoadingUserInfoInit) _then)
-      : super(_value, (v) => _then(v as LoadingUserInfoInit));
+    implements _$$LoadingUserInfoInitCopyWith<$Res> {
+  __$$LoadingUserInfoInitCopyWithImpl(
+      _$LoadingUserInfoInit _value, $Res Function(_$LoadingUserInfoInit) _then)
+      : super(_value, (v) => _then(v as _$LoadingUserInfoInit));
 
   @override
-  LoadingUserInfoInit get _value => super._value as LoadingUserInfoInit;
+  _$LoadingUserInfoInit get _value => super._value as _$LoadingUserInfoInit;
 }
 
 /// @nodoc
@@ -301,7 +270,8 @@ class _$LoadingUserInfoInit implements LoadingUserInfoInit {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoadingUserInfoInit);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadingUserInfoInit);
   }
 
   @override
@@ -387,29 +357,29 @@ abstract class LoadingUserInfoInit implements UserInfoInitState {
 }
 
 /// @nodoc
-abstract class $SuccessUserInfoInitCopyWith<$Res> {
-  factory $SuccessUserInfoInitCopyWith(
-          SuccessUserInfoInit value, $Res Function(SuccessUserInfoInit) then) =
-      _$SuccessUserInfoInitCopyWithImpl<$Res>;
+abstract class _$$SuccessUserInfoInitCopyWith<$Res> {
+  factory _$$SuccessUserInfoInitCopyWith(_$SuccessUserInfoInit value,
+          $Res Function(_$SuccessUserInfoInit) then) =
+      __$$SuccessUserInfoInitCopyWithImpl<$Res>;
   $Res call({String response});
 }
 
 /// @nodoc
-class _$SuccessUserInfoInitCopyWithImpl<$Res>
+class __$$SuccessUserInfoInitCopyWithImpl<$Res>
     extends _$UserInfoInitStateCopyWithImpl<$Res>
-    implements $SuccessUserInfoInitCopyWith<$Res> {
-  _$SuccessUserInfoInitCopyWithImpl(
-      SuccessUserInfoInit _value, $Res Function(SuccessUserInfoInit) _then)
-      : super(_value, (v) => _then(v as SuccessUserInfoInit));
+    implements _$$SuccessUserInfoInitCopyWith<$Res> {
+  __$$SuccessUserInfoInitCopyWithImpl(
+      _$SuccessUserInfoInit _value, $Res Function(_$SuccessUserInfoInit) _then)
+      : super(_value, (v) => _then(v as _$SuccessUserInfoInit));
 
   @override
-  SuccessUserInfoInit get _value => super._value as SuccessUserInfoInit;
+  _$SuccessUserInfoInit get _value => super._value as _$SuccessUserInfoInit;
 
   @override
   $Res call({
     Object? response = freezed,
   }) {
-    return _then(SuccessUserInfoInit(
+    return _then(_$SuccessUserInfoInit(
       response == freezed
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
@@ -434,20 +404,20 @@ class _$SuccessUserInfoInit implements SuccessUserInfoInit {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SuccessUserInfoInit &&
-            (identical(other.response, response) ||
-                const DeepCollectionEquality()
-                    .equals(other.response, response)));
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessUserInfoInit &&
+            const DeepCollectionEquality().equals(other.response, response));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(response);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(response));
 
   @JsonKey(ignore: true)
   @override
-  $SuccessUserInfoInitCopyWith<SuccessUserInfoInit> get copyWith =>
-      _$SuccessUserInfoInitCopyWithImpl<SuccessUserInfoInit>(this, _$identity);
+  _$$SuccessUserInfoInitCopyWith<_$SuccessUserInfoInit> get copyWith =>
+      __$$SuccessUserInfoInitCopyWithImpl<_$SuccessUserInfoInit>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -525,38 +495,39 @@ class _$SuccessUserInfoInit implements SuccessUserInfoInit {
 }
 
 abstract class SuccessUserInfoInit implements UserInfoInitState {
-  const factory SuccessUserInfoInit(String response) = _$SuccessUserInfoInit;
+  const factory SuccessUserInfoInit(final String response) =
+      _$SuccessUserInfoInit;
 
   String get response => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SuccessUserInfoInitCopyWith<SuccessUserInfoInit> get copyWith =>
+  _$$SuccessUserInfoInitCopyWith<_$SuccessUserInfoInit> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ErrorUserInfoInitCopyWith<$Res> {
-  factory $ErrorUserInfoInitCopyWith(
-          ErrorUserInfoInit value, $Res Function(ErrorUserInfoInit) then) =
-      _$ErrorUserInfoInitCopyWithImpl<$Res>;
+abstract class _$$ErrorUserInfoInitCopyWith<$Res> {
+  factory _$$ErrorUserInfoInitCopyWith(
+          _$ErrorUserInfoInit value, $Res Function(_$ErrorUserInfoInit) then) =
+      __$$ErrorUserInfoInitCopyWithImpl<$Res>;
   $Res call({Failure failure});
 }
 
 /// @nodoc
-class _$ErrorUserInfoInitCopyWithImpl<$Res>
+class __$$ErrorUserInfoInitCopyWithImpl<$Res>
     extends _$UserInfoInitStateCopyWithImpl<$Res>
-    implements $ErrorUserInfoInitCopyWith<$Res> {
-  _$ErrorUserInfoInitCopyWithImpl(
-      ErrorUserInfoInit _value, $Res Function(ErrorUserInfoInit) _then)
-      : super(_value, (v) => _then(v as ErrorUserInfoInit));
+    implements _$$ErrorUserInfoInitCopyWith<$Res> {
+  __$$ErrorUserInfoInitCopyWithImpl(
+      _$ErrorUserInfoInit _value, $Res Function(_$ErrorUserInfoInit) _then)
+      : super(_value, (v) => _then(v as _$ErrorUserInfoInit));
 
   @override
-  ErrorUserInfoInit get _value => super._value as ErrorUserInfoInit;
+  _$ErrorUserInfoInit get _value => super._value as _$ErrorUserInfoInit;
 
   @override
   $Res call({
     Object? failure = freezed,
   }) {
-    return _then(ErrorUserInfoInit(
+    return _then(_$ErrorUserInfoInit(
       failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -581,19 +552,19 @@ class _$ErrorUserInfoInit implements ErrorUserInfoInit {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ErrorUserInfoInit &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorUserInfoInit &&
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
-  $ErrorUserInfoInitCopyWith<ErrorUserInfoInit> get copyWith =>
-      _$ErrorUserInfoInitCopyWithImpl<ErrorUserInfoInit>(this, _$identity);
+  _$$ErrorUserInfoInitCopyWith<_$ErrorUserInfoInit> get copyWith =>
+      __$$ErrorUserInfoInitCopyWithImpl<_$ErrorUserInfoInit>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -671,10 +642,10 @@ class _$ErrorUserInfoInit implements ErrorUserInfoInit {
 }
 
 abstract class ErrorUserInfoInit implements UserInfoInitState {
-  const factory ErrorUserInfoInit(Failure failure) = _$ErrorUserInfoInit;
+  const factory ErrorUserInfoInit(final Failure failure) = _$ErrorUserInfoInit;
 
   Failure get failure => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ErrorUserInfoInitCopyWith<ErrorUserInfoInit> get copyWith =>
+  _$$ErrorUserInfoInitCopyWith<_$ErrorUserInfoInit> get copyWith =>
       throw _privateConstructorUsedError;
 }
