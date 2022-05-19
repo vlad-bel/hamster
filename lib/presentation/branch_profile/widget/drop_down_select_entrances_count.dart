@@ -1,7 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/generated/locale_keys.g.dart';
-import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -41,12 +40,14 @@ class EntrancesCountGenerator {
 class DropDown extends StatelessWidget {
   const DropDown({
     Key? key,
-    required this.formSettings,
     required this.itemsList,
+    required this.onChanged,
+    required this.formControlName,
   }) : super(key: key);
 
-  final BranchProfileFormValidation formSettings;
+  final Function(DropDownDataItem?) onChanged;
   final List<DropDownDataItem> itemsList;
+  final String formControlName;
 
   OutlineInputBorder get outlineInputBorder => const OutlineInputBorder(
         borderSide: BorderSide(
@@ -67,7 +68,8 @@ class DropDown extends StatelessWidget {
       hintStyle: inter14.copyWith(color: lynch.withOpacity(0.3)),
     );
     return ReactiveDropdownField<DropDownDataItem>(
-      formControlName: formSettings.kFieldEntrancesCount,
+      formControlName: formControlName,
+      onChanged: onChanged,
       decoration: inputDecoration,
       focusColor: Colors.white,
       items: generateDropDownItems(),

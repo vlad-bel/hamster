@@ -65,13 +65,13 @@ class BranchDataForm extends StatelessWidget {
                 FormTextField(
                   name: formSettings.kFieldPhone,
                   label: LocaleKeys.telephone_number_if_available.tr(),
-
                   validationMessages: (control) =>
                       formSettings.validationMessagesGeneric,
                 ),
                 paddingBetweenTextInputs,
                 DropDown(
-                  formSettings: formSettings,
+                  onChanged: (value) {},
+                  formControlName: formSettings.kFieldEntrancesCount,
                   itemsList: EntrancesCountGenerator.getEntrancesCountList(),
                 ),
               ],

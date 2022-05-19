@@ -90,5 +90,10 @@
   "forget_password_subtitle" : "Enter your email address associated with\nyour account to continue\nresetting your password.",
   "forgetpassword_email_subtitle" : "Choose your favorite method to recover the account password",
   "forgetpassword_email_subtitle2": "\nto reset." ,
-  "email" : "E-mail"
+  "email" : "E-mail",
+  "cash_register_system_used": "Cash register system used in your branch",
+  "help_us_connect_branch": "Help us connect your branch by specifying you POS systems",
+  "cash_register_manufacturer": "Cash register manufacturer",
+  "model_if_known": "Model (if known)",
+  "number_of_registers": "Number of registers"
 }
