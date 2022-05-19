@@ -1,5 +1,6 @@
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/presentation/common/widgets/checkbox/ui_checkbox.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
@@ -21,17 +22,15 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
       children: [
         SizedBox(
           width: 588,
-          child: CheckboxListTile(
+          child: UiCheckbox(
             value: isAcceptedDataIsCorrect,
+            active: isFullyCompleted,
+            onChanged: (value) => onChangeCheckBox(context, value: value),
             title: Text(
               'Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind. ',
               style: inter12,
               textAlign: TextAlign.center,
             ),
-            controlAffinity: ListTileControlAffinity.leading,
-            onChanged: isFullyCompleted
-                ? (value) => onChangeCheckBox(context, value: value)
-                : null,
           ),
         ),
         const SizedBox(height: 25),

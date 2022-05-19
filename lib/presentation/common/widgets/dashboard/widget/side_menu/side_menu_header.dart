@@ -30,7 +30,7 @@ class SideMenuHeader extends StatelessWidget {
         Row(
           children: [
             Avatar(
-              image: repCompany?.company.companyLogo,
+              image: repCompany?.company?.companyLogo,
               width: 50,
               height: 50,
             ),
@@ -51,13 +51,9 @@ class SideMenuHeader extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CompanyInfo(
-          companyAddress: '${repCompany?.company.streetName ?? ""} '
-              '${repCompany?.company.streetNumber ?? ""}'
-              '${repCompany != null ? "," : ""}'
-              ' ${repCompany?.company.postalCode ?? ""} '
-              '${repCompany?.company.country ?? ""}',
-          companyNumber: repCompany?.company.branchNumber ?? '',
-          companyName: repCompany?.company.companyName ?? '',
+          companyAddress: repCompany?.company?.getFullAddress() ?? '',
+          companyNumber: repCompany?.company?.branchNumber ?? '',
+          companyName: repCompany?.company?.companyName ?? '',
         ),
       ],
     );
