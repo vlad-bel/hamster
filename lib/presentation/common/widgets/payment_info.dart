@@ -39,7 +39,7 @@ class PaymentInfo extends StatelessWidget {
           children: [
             if (formConsumer == null)
               Text(
-                tr(LocaleKeys.payment_info),
+                tr(LocaleKeys.payment_information),
                 style: inter16SemiBold,
               ),
             const SizedBox(height: 24),
