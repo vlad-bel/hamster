@@ -3,6 +3,7 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_dropdown/cubit/menu_dropdown_cubit.dart';
+import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,11 @@ class MenuDropDown extends StatelessWidget {
                   style: inter14Medium,
                 ),
                 onPressed: () {
+                  // TODO change to ProfilePage instead of ProfileEditPage
+                  Navigator.pushNamed(
+                    context,
+                    ProfileEditPage.path,
+                  );
                   close();
                 },
               ),
