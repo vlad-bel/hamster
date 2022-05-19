@@ -42,6 +42,7 @@ dependencies:
   flutter_google_places: ^0.3.0
   google_place: ^0.4.7
   flutter_secure_storage: ^5.0.2
+  iban: ^1.0.1
 
   # UI:
   flutter_svg: ^1.0.3

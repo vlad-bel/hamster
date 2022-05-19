@@ -10,7 +10,7 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_white_c
 import 'package:business_terminal/presentation/company_creation/cubit/company_creation_cubit.dart';
 import 'package:business_terminal/presentation/company_creation/cubit/company_creation_state.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
-import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
+import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

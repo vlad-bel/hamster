@@ -5,7 +5,7 @@ import 'package:business_terminal/presentation/common/widgets/country_code_selec
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_state.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/widget/country_code_selector_list.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/widget/number_prefix.dart';
-import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
+import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
