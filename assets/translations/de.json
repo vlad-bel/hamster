@@ -35,5 +35,11 @@
   "location_hint": "Ort",
   "country_hint": "Land",
   "forget_password": "Sie haben Ihr Passwort\nvergessen?",
-  "forget_password_subtitle" : "Geben Sie Ihre E-Mail-Adresse ein, welche mit Ihrem\nKonto verbunden ist, um mit dem Zurücksetzen Ihres\nPassworts fortzufahren."
+  "forget_password_subtitle" : "Geben Sie Ihre E-Mail-Adresse ein, welche mit Ihrem\nKonto verbunden ist, um mit dem Zurücksetzen Ihres\nPassworts fortzufahren.",
+  "forgetpassword_email_subtitle" : "Wählen Sie Ihre favorisierte Methode, um das Passwort des Accounts ",
+  "forgetpassword_email_subtitle2": "\nde zurückzusetzen." ,
+  "email" : "E-mail",
+  "forget_password_email_inside_subtitle" : "Eine E-Mail ist unterwegs an die von Ihnen angegebenen ",
+  "forget_password_email_inside_subtitle2" : "\nBitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner.",
+  "forget_pasword_header": "Sie haben Ihr Passwort vergessen?"
 }

@@ -3,7 +3,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 class ForgetPasswordFormSettings {
   final kfieldEmail = 'email';
 
-  static const kMaxLength = 255;
+  static const kMaxLength = 256;
 
   final validationMessageEmail = {
     ValidationMessage.required: 'Should not be empty',

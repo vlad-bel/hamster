@@ -60,6 +60,16 @@ abstract class RestClient {
     @Body() Map<String, dynamic> resendEmailCodeMap,
   );
 
+  @POST('/rep/send-verification-code')
+  Future<String> sendVerificationCode(
+    @Body() Map<String, dynamic> sendVerificationCodeMap,
+  );
+
+  @POST('/rep/verify-phone-code')
+  Future<String> verifyPhoneCode(
+    @Body() Map<String, dynamic> sendVerifyPhoneCodeMap,
+  );
+
   @POST('/company')
   Future<Company> createCompany(
     @Body() Map<String, dynamic> body,
