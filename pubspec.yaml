@@ -21,9 +21,6 @@ dependencies:
   injectable: ^1.5.0
   flutter_dotenv: ^5.0.2
 
-  # Navigation
-  routemaster: ^1.0.0
-
   # Tools:
   intl: ^0.17.0
   easy_localization: ^3.0.0
@@ -39,8 +36,6 @@ dependencies:
   logger: ^1.1.0
   dart_extensions: ^2.2.0
   dartz: ^0.10.1
-  flutter_google_places: ^0.3.0
-  google_place: ^0.4.7
   flutter_secure_storage: ^5.0.2
   iban: ^1.0.1
 

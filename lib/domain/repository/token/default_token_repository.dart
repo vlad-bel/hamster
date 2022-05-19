@@ -8,12 +8,11 @@ class DefaultTokenRepository extends TokenRepository {
 
   final String _accessTokenKey = 'access_token';
   final String _refreshTokenKey = 'refresh_token';
-  final String _bearer = 'Bearer ';
 
   @override
   Future<String?> getAccessToken() async {
     final token = await storage.read(key: _accessTokenKey);
-    return '$_bearer $token';
+    return token;
   }
 
   @override
@@ -27,7 +26,7 @@ class DefaultTokenRepository extends TokenRepository {
   @override
   Future<String?> getRefreshToken() async {
     final token = await storage.read(key: _refreshTokenKey);
-    return '$_bearer $token';
+    return token;
   }
 
   @override

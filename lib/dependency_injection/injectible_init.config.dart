@@ -61,17 +61,19 @@ import '../use_cases/registration/user_info_init/user_info_init.dart'
 _i1.GetIt $initGetIt(_i1.GetIt get,
     {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
+  gh.singleton<_i16.TokenRepository>(_i17.DefaultTokenRepository());
+  gh.singleton<_i8.LoginUseCase>(_i9.LoginUseCaseImpl(get<_i7.RestClient>()));
   gh.factory<_i3.AddPaymentCubit>(() => _i3.AddPaymentCubit());
   gh.singleton<_i4.DashboardCubit>(_i4.DashboardCubit());
   gh.singleton<_i5.EmailVerificationUseCase>(
       _i6.DefaultEmailVerificationUseCase(get<_i7.RestClient>()));
-  gh.singleton<_i8.LoginUseCase>(_i9.LoginUseCaseImpl(get<_i7.RestClient>()));
+
   gh.singleton<_i10.MenuDropdownCubit>(_i10.MenuDropdownCubit());
   gh.singleton<_i11.NumberVerificationUseCase>(
       _i12.NumberVerificationUseCaseImpl(repository: get<_i7.RestClient>()));
   gh.singleton<_i13.ProfileEditUsecase>(_i14.ProfileEditUsecaseImpl());
   gh.singleton<_i15.SnackBarManager>(_i15.SnackBarManager());
-  gh.singleton<_i16.TokenRepository>(_i17.DefaultTokenRepository());
+
   gh.singleton<_i18.UserInfoInitUseCase>(
       _i19.DefaultUserInfoInitUseCase(get<_i7.RestClient>()));
   gh.singleton<_i20.CallMethodSelectorPageCubit>(
@@ -86,7 +88,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i25.EmailVerificationCubit>(
       () => _i25.EmailVerificationCubit(get<_i5.EmailVerificationUseCase>()));
   gh.factory<_i26.LoginCubit>(() =>
-      _i26.LoginCubit(get<_i8.LoginUseCase>(), get<_i16.TokenRepository>()));
+      _i26.LoginCubit(get<_i8.LoginUseCase>(), get<_i21.CompanyUsecase>()));
   gh.factory<_i27.NumberCodeConfirmationCubit>(() =>
       _i27.NumberCodeConfirmationCubit(
           useCase: get<_i11.NumberVerificationUseCase>()));
@@ -99,7 +101,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       dashboardCubit: get<_i4.DashboardCubit>()));
   gh.factory<_i31.CompanyCreationCubit>(() => _i31.CompanyCreationCubit(
       usecase: get<_i21.CompanyUsecase>(),
-      accountVerificationCubit: get<_i30.AccountVerificationCubit>()));
+      accountVerificationCubit: get<_i30.AccountVerificationCubit>(),
+      loginUseCase: get<_i8.LoginUseCase>()));
   gh.factory<_i32.CountryCodeCubit>(() => _i32.CountryCodeCubit(
       useCase: get<_i11.NumberVerificationUseCase>(),
       codeSelectorCubit: get<_i23.CountryCodeSelectorCubit>()));

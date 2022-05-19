@@ -11,4 +11,11 @@ class DashboardState with _$DashboardState {
     bool? administrationOpen,
     RepCompany? repCompany,
   }) = InitDashboardState;
+
+  const factory DashboardState.error({
+    int? testCount,
+    bool? finansenOpen,
+    bool? administrationOpen,
+    RepCompany? repCompany,
+  }) = ErrorDashboardState;
 }

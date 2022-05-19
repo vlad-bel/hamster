@@ -31,7 +31,7 @@ class CompanyCell extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                repCompany.company.companyName ?? '',
+                repCompany.company?.companyName ?? '',
                 style: inter14Medium,
               ),
               Text(
