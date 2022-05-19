@@ -1,4 +1,3 @@
-import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
 import 'package:business_terminal/use_cases/login/login_use_case.dart';
@@ -7,9 +6,9 @@ import 'package:injectable/injectable.dart';
 
 @singleton
 class DashboardCubit extends Cubit<DashboardState> {
-  DashboardCubit() : super(const DashboardState.init());
+  DashboardCubit(this.loginUseCase) : super(const DashboardState.init());
 
-  final loginUseCase = getIt.get<LoginUseCase>();
+  final LoginUseCase loginUseCase;
 
   void logout() {
     try {
