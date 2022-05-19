@@ -8,6 +8,7 @@ class Assets {
   static const String imagesBackgroundImageSignUp = 'assets/images/background_image_sign_up.png';
   static const String imagesBranchProfile = 'assets/images/branch_profile.svg';
   static const String imagesCompanyProfile = 'assets/images/company_profile.svg';
+  static const String imagesEditPencile = 'assets/images/edit_pencil.svg';
   static const String imagesFinanzen = 'assets/images/finanzen.svg';
   static const String imagesHamsterLogo = 'assets/images/hamster_logo.svg';
   static const String imagesHome = 'assets/images/home.svg';
