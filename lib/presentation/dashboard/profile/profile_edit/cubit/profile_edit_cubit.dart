@@ -1,13 +1,9 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
-import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
-import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
-import 'package:business_terminal/use_cases/company/company_use_case.dart';
+import 'package:business_terminal/use_cases/profile/profile_edit/profile_edit_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../../use_cases/profile/profile_edit/profile_edit_use_case.dart';
 
 part 'profile_edit_cubit.freezed.dart';
 

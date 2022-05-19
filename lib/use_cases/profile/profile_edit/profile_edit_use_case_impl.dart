@@ -1,10 +1,8 @@
-import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/use_cases/profile/profile_edit/profile_edit_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-
-import 'profile_edit_use_case.dart';
 
 @Singleton(as: ProfileEditUsecase)
 class ProfileEditUsecaseImpl extends ProfileEditUsecase {
