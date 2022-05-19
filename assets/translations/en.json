@@ -62,7 +62,6 @@
   "opening_hours": "Opening hours",
   "closed": "closed",
   "branch_id": "Number: {}",
-<<<<<<< HEAD
   "country_hint": "Country",
   "company_profile" : "Company profile",
   "add_logo" : "Add logo",
@@ -75,13 +74,8 @@
   "tax_number" : "Tax number",
   "vat_id" : "VAT ID (if available)",
   "payment_information" : "Payment Information",
-  "add_bank_details" : "Add bank details",
-  "account_owner" : "Account owner",
-  "iban" : "IBAN",
   "max_length_reached" : "The maximum number of characters has been reached",
-  "min_length_field" : "The minimum number of characters was not reached"
-=======
-  "payment_info": "Payment info",
+  "min_length_field" : "The minimum number of characters was not reached",
   "account_owner": "Account owner",
   "iban": "IBAN",
   "add_bank_details": "Add bank details",
@@ -89,5 +83,4 @@
   "for_credits_and_regular_billing": "For credits and regular billing, we still need your bank details and consent to the direct debit procedure",
   "i_authorize_collect_payment": "I authorize Hamster Systems AG to collect payments from my account by direct debit. At the same time, I instruct my bank to redeem the direct debits drawn by Hamster Systems AG on my account. By accepting this agreement, Hamster Systems AG undertakes to im to the same extent on the payment of credit to the above account"
 
->>>>>>> 066d13bdaae38cf07b272633ad9964d73406724f
 }
