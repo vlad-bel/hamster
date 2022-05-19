@@ -1,8 +1,9 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
-import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
+import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +57,7 @@ class CountrySelectorList extends StatelessWidget {
                             child: FormTextField(
                               focusListener: filterFocusNode,
                               name: CountrySelectorCubit.filterTextfield,
-                              hint: tr('country_name'),
+                              hint: tr(LocaleKeys.country_name),
                               customSuffix: CupertinoButton(
                                 child: const Icon(
                                   Icons.close,

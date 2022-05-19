@@ -17,7 +17,7 @@ final getIt = GetIt.instance;
 GetIt configureDependencies() {
   _logger = Logger();
   getIt
-    ..registerSingleton<Dio>(httpClientInit())
+    ..registerSingleton<Dio>(dio)
     ..registerSingleton(
       RestClient(
         getIt.get<Dio>(),

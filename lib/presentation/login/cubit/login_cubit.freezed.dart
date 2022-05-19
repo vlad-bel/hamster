@@ -27,9 +27,9 @@ class _$LoginStateTearOff {
     return const LoadingLogin();
   }
 
-  SuccessLogin success(LoginResponse response) {
+  SuccessLogin success(String path) {
     return SuccessLogin(
-      response,
+      path,
     );
   }
 
@@ -53,7 +53,7 @@ mixin _$LoginState {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isWrongPasswordEmail) initial,
     required TResult Function() loading,
-    required TResult Function(LoginResponse response) success,
+    required TResult Function(String path) success,
     required TResult Function() wrongEmailPassword,
     required TResult Function(ApiFailure failure) error,
   }) =>
@@ -62,7 +62,7 @@ mixin _$LoginState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
   }) =>
@@ -71,7 +71,7 @@ mixin _$LoginState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
@@ -191,7 +191,7 @@ class _$InitialLogin implements InitialLogin {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isWrongPasswordEmail) initial,
     required TResult Function() loading,
-    required TResult Function(LoginResponse response) success,
+    required TResult Function(String path) success,
     required TResult Function() wrongEmailPassword,
     required TResult Function(ApiFailure failure) error,
   }) {
@@ -203,7 +203,7 @@ class _$InitialLogin implements InitialLogin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
   }) {
@@ -215,7 +215,7 @@ class _$InitialLogin implements InitialLogin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
@@ -318,7 +318,7 @@ class _$LoadingLogin implements LoadingLogin {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isWrongPasswordEmail) initial,
     required TResult Function() loading,
-    required TResult Function(LoginResponse response) success,
+    required TResult Function(String path) success,
     required TResult Function() wrongEmailPassword,
     required TResult Function(ApiFailure failure) error,
   }) {
@@ -330,7 +330,7 @@ class _$LoadingLogin implements LoadingLogin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
   }) {
@@ -342,7 +342,7 @@ class _$LoadingLogin implements LoadingLogin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
@@ -403,7 +403,7 @@ abstract class $SuccessLoginCopyWith<$Res> {
   factory $SuccessLoginCopyWith(
           SuccessLogin value, $Res Function(SuccessLogin) then) =
       _$SuccessLoginCopyWithImpl<$Res>;
-  $Res call({LoginResponse response});
+  $Res call({String path});
 }
 
 /// @nodoc
@@ -418,13 +418,13 @@ class _$SuccessLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? response = freezed,
+    Object? path = freezed,
   }) {
     return _then(SuccessLogin(
-      response == freezed
-          ? _value.response
-          : response // ignore: cast_nullable_to_non_nullable
-              as LoginResponse,
+      path == freezed
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -432,28 +432,27 @@ class _$SuccessLoginCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessLogin implements SuccessLogin {
-  const _$SuccessLogin(this.response);
+  const _$SuccessLogin(this.path);
 
   @override
-  final LoginResponse response;
+  final String path;
 
   @override
   String toString() {
-    return 'LoginState.success(response: $response)';
+    return 'LoginState.success(path: $path)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SuccessLogin &&
-            (identical(other.response, response) ||
-                const DeepCollectionEquality()
-                    .equals(other.response, response)));
+            (identical(other.path, path) ||
+                const DeepCollectionEquality().equals(other.path, path)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(response);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(path);
 
   @JsonKey(ignore: true)
   @override
@@ -465,11 +464,11 @@ class _$SuccessLogin implements SuccessLogin {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isWrongPasswordEmail) initial,
     required TResult Function() loading,
-    required TResult Function(LoginResponse response) success,
+    required TResult Function(String path) success,
     required TResult Function() wrongEmailPassword,
     required TResult Function(ApiFailure failure) error,
   }) {
-    return success(response);
+    return success(path);
   }
 
   @override
@@ -477,11 +476,11 @@ class _$SuccessLogin implements SuccessLogin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
   }) {
-    return success?.call(response);
+    return success?.call(path);
   }
 
   @override
@@ -489,13 +488,13 @@ class _$SuccessLogin implements SuccessLogin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(response);
+      return success(path);
     }
     return orElse();
   }
@@ -542,9 +541,9 @@ class _$SuccessLogin implements SuccessLogin {
 }
 
 abstract class SuccessLogin implements LoginState {
-  const factory SuccessLogin(LoginResponse response) = _$SuccessLogin;
+  const factory SuccessLogin(String path) = _$SuccessLogin;
 
-  LoginResponse get response => throw _privateConstructorUsedError;
+  String get path => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SuccessLoginCopyWith<SuccessLogin> get copyWith =>
       throw _privateConstructorUsedError;
@@ -592,7 +591,7 @@ class _$WrongEmailPasswordLogin implements WrongEmailPasswordLogin {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isWrongPasswordEmail) initial,
     required TResult Function() loading,
-    required TResult Function(LoginResponse response) success,
+    required TResult Function(String path) success,
     required TResult Function() wrongEmailPassword,
     required TResult Function(ApiFailure failure) error,
   }) {
@@ -604,7 +603,7 @@ class _$WrongEmailPasswordLogin implements WrongEmailPasswordLogin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
   }) {
@@ -616,7 +615,7 @@ class _$WrongEmailPasswordLogin implements WrongEmailPasswordLogin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
@@ -737,7 +736,7 @@ class _$ErrorLogin implements ErrorLogin {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isWrongPasswordEmail) initial,
     required TResult Function() loading,
-    required TResult Function(LoginResponse response) success,
+    required TResult Function(String path) success,
     required TResult Function() wrongEmailPassword,
     required TResult Function(ApiFailure failure) error,
   }) {
@@ -749,7 +748,7 @@ class _$ErrorLogin implements ErrorLogin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
   }) {
@@ -761,7 +760,7 @@ class _$ErrorLogin implements ErrorLogin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isWrongPasswordEmail)? initial,
     TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
+    TResult Function(String path)? success,
     TResult Function()? wrongEmailPassword,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
