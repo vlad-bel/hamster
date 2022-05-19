@@ -41,5 +41,6 @@
   "email" : "E-mail",
   "forget_password_email_inside_subtitle" : "Eine E-Mail ist unterwegs an die von Ihnen angegebenen ",
   "forget_password_email_inside_subtitle2" : "\nBitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner.",
-  "forget_pasword_header": "Sie haben Ihr Passwort vergessen?"
+  "forget_pasword_header": "Sie haben Ihr Passwort vergessen?",
+  "resetemail": "E-Mail erneut versenden"
 }

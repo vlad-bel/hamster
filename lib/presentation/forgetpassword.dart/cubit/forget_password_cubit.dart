@@ -50,7 +50,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   Future<void> resendSmsCode(String email, String type) async {
     try {
-      print(type);
       await _forgetPasswordUseCase
           .resendSmsCode(VerifyPhoneRequest(verifyMethod: type, email: email));
     } on ApiFailure catch (e) {

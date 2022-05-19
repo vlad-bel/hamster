@@ -37,96 +37,98 @@ class ChooseVerifyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
-        listener: (context, state) {
-      state.whenOrNull(
-        sended: (type) => onPressNavigateToPinCodePage(
-          context,
-          email,
-          type,
-        ),
-      );
-      // TODO: implement listener
-    }, builder: (context, state) {
-      return OnboardingBackground(
+      listener: (context, state) {
+        state.whenOrNull(
+          sended: (type) => onPressNavigateToPinCodePage(
+            context,
+            email,
+            type,
+          ),
+        );
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return OnboardingBackground(
           children: OnboardingWhiteContainer(
-              header: OnboardingWhiteContainerHeader(
-                header: tr('forget_password'),
-                subHeader: SubHeaderEmailRichText(
-                  email: email,
-                ),
+            header: OnboardingWhiteContainerHeader(
+              header: tr('forget_password'),
+              subHeader: SubHeaderEmailRichText(
+                email: email,
               ),
-              body: Column(
-                children: [
-                  const SizedBox(
-                    height: 28,
-                  ),
-                  Row(
-                    children: [
-                      SelectorRect(
-                        size: 110,
-                        title: tr('email'),
-                        icon: Icons.email,
-                        onTap: () {
-                          context
-                              .read<ForgetPasswordCubit>()
-                              .chooseTypeOfVerification('EMAIL');
-                        },
-                        choosed:
-                            state is Choosen ? state.type == 'EMAIL' : false,
-                      ),
-                      const SizedBox(width: 10),
-                      SelectorRect(
-                        size: 110,
-                        title: tr('sms'),
-                        icon: Icons.sms,
-                        onTap: () {
-                          context
-                              .read<ForgetPasswordCubit>()
-                              .chooseTypeOfVerification('SMS');
-                        },
-                        choosed: state is Choosen ? state.type == 'SMS' : false,
-                      ),
-                      const SizedBox(width: 10),
-                      SelectorRect(
-                        size: 110,
-                        title: tr('phone_call'),
-                        icon: Icons.call_outlined,
-                        onTap: () {
-                          context
-                              .read<ForgetPasswordCubit>()
-                              .chooseTypeOfVerification('PHONE_CALL');
-                        },
-                        choosed: state is Choosen
-                            ? state.type == 'PHONE_CALL'
-                            : false,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 48),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      WhiteButton(
-                        width: 162,
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      const SizedBox(width: 24),
-                      ActionButtonBlue(
-                        width: 162,
-                        isEnabled: state is Choosen,
-                        onPressed: () {
-                          context
-                              .read<ForgetPasswordCubit>()
-                              .sendVerificationCode(email);
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              )));
-    });
+            ),
+            body: Column(
+              children: [
+                const SizedBox(
+                  height: 28,
+                ),
+                Row(
+                  children: [
+                    SelectorRect(
+                      size: 110,
+                      title: tr('email'),
+                      icon: Icons.email,
+                      onTap: () {
+                        context
+                            .read<ForgetPasswordCubit>()
+                            .chooseTypeOfVerification('EMAIL');
+                      },
+                      choosed: state is Choosen ? state.type == 'EMAIL' : false,
+                    ),
+                    const SizedBox(width: 10),
+                    SelectorRect(
+                      size: 110,
+                      title: tr('sms'),
+                      icon: Icons.sms,
+                      onTap: () {
+                        context
+                            .read<ForgetPasswordCubit>()
+                            .chooseTypeOfVerification('SMS');
+                      },
+                      choosed: state is Choosen ? state.type == 'SMS' : false,
+                    ),
+                    const SizedBox(width: 10),
+                    SelectorRect(
+                      size: 110,
+                      title: tr('phone_call'),
+                      icon: Icons.call_outlined,
+                      onTap: () {
+                        context
+                            .read<ForgetPasswordCubit>()
+                            .chooseTypeOfVerification('PHONE_CALL');
+                      },
+                      choosed:
+                          state is Choosen ? state.type == 'PHONE_CALL' : false,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 48),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    WhiteButton(
+                      width: 162,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    const SizedBox(width: 24),
+                    ActionButtonBlue(
+                      width: 162,
+                      isEnabled: state is Choosen,
+                      onPressed: () {
+                        context
+                            .read<ForgetPasswordCubit>()
+                            .sendVerificationCode(email);
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 

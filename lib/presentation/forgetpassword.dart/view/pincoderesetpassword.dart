@@ -138,8 +138,8 @@ class ResetCodeButton extends StatelessWidget {
         onPressed: () {
           context.read<ForgetPasswordCubit>().resendSmsCode(email, type);
         },
-        child: const Text(
-          'E-Mail erneut versenden',
+        child: Text(
+          tr('resetemail'),
           style: TextStyle(color: denim),
         ),
       ),
