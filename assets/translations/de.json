@@ -33,6 +33,8 @@
   "post_hint": "PLZ",
   "num_hint": "Nr.",
   "location_hint": "Ort",
+  "min_number": "Minimale Nummernlänge {length} Zeichen",
+  "max_number": "Maximale Nummernlänge {length} Zeichen",
   "country_hint": "Land",
   "add_logo" : "Logo hinzufügen",
   "save" : "Speichern",

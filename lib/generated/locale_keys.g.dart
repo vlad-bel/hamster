@@ -35,7 +35,24 @@ abstract class  LocaleKeys {
   static const post_hint = 'post_hint';
   static const num_hint = 'num_hint';
   static const location_hint = 'location_hint';
+  static const min_number = 'min_number';
+  static const max_number = 'max_number';
   static const country_hint = 'country_hint';
+  static const add_logo = 'add_logo';
+  static const save = 'save';
+  static const company_name = 'company_name';
+  static const street_house_number = 'street_house_number';
+  static const zip_code_and_location = 'zip_code_and_location';
+  static const base_data = 'base_data';
+  static const commercial_register_number = 'commercial_register_number';
+  static const tax_number = 'tax_number';
+  static const vat_id = 'vat_id';
+  static const payment_information = 'payment_information';
+  static const add_bank_details = 'add_bank_details';
+  static const account_owner = 'account_owner';
+  static const iban = 'iban';
+  static const max_length_field = 'max_length_field';
+  static const min_length_field = 'min_length_field';
   static const user = 'user';
   static const number = 'number';
   static const connection = 'connection';
@@ -47,14 +64,11 @@ abstract class  LocaleKeys {
   static const visible = 'visible';
   static const not_visible = 'not_visible';
   static const data_incomplete = 'data_incomplete';
-  static const company_profile = 'company_profile';
   static const add_branch = 'add_branch';
   static const branch_profile = 'branch_profile';
   static const branch_category = 'branch_category';
   static const branch_equipment = 'branch_equipment';
   static const branch_name = 'branch_name';
-  static const street_house_number = 'street_house_number';
-  static const zip_code_and_location = 'zip_code_and_location';
   static const website_if_available = 'website_if_available';
   static const telephone_number_if_available = 'telephone_number_if_available';
   static const number_of_branch_entrances = 'number_of_branch_entrances';
@@ -67,13 +81,10 @@ abstract class  LocaleKeys {
   static const sunday = 'sunday';
   static const opening_hours = 'opening_hours';
   static const closed = 'closed';
-  static const branch_id = 'branch_id';
-  static const payment_info = 'payment_info';
-  static const account_owner = 'account_owner';
-  static const iban = 'iban';
-  static const add_bank_details = 'add_bank_details';
+  static const company_profile = 'company_profile';
   static const add_business_account = 'add_business_account';
   static const for_credits_and_regular_billing = 'for_credits_and_regular_billing';
   static const i_authorize_collect_payment = 'i_authorize_collect_payment';
+  static const branch_id = 'branch_id';
 
 }
