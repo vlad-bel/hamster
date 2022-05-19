@@ -33,5 +33,7 @@
   "post_hint": "PLZ",
   "num_hint": "Nr.",
   "location_hint": "Ort",
-  "country_hint": "Land"
+  "country_hint": "Land",
+  "forget_password": "Sie haben Ihr Passwort\nvergessen?",
+  "forget_password_subtitle" : "Geben Sie Ihre E-Mail-Adresse ein, welche mit Ihrem\nKonto verbunden ist, um mit dem Zurücksetzen Ihres\nPassworts fortzufahren."
 }

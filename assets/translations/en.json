@@ -33,5 +33,7 @@
   "post_hint": "Postcode",
   "num_hint": "No.",
   "location_hint": "Location",
-  "country_hint": "Country"
+  "country_hint": "Country",
+  "forget_password": "Have you forgotten\nyour password?",
+  "forget_password_subtitle" : "Enter your email address associated with\nyour account to continue\nresetting your password."
 }
