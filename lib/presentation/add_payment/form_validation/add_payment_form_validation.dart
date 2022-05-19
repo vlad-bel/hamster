@@ -34,21 +34,27 @@ class AddPaymentFormSettings {
     return FormGroup(
       {
         accountOwnerField: FormControl<String>(
-          validators: [
-            Validators.required,
-            Validators.minLength(kMinLengthAccountOwner),
-            Validators.maxLength(kMaxLengthAccountOwner),
-          ],
+          // Disable validators when in read only mode
+          validators: accountOwner?.isEmpty ?? false
+              ? []
+              : [
+                  Validators.required,
+                  Validators.minLength(kMinLengthAccountOwner),
+                  Validators.maxLength(kMaxLengthAccountOwner),
+                ],
           value: accountOwner,
         ),
         ibanField: FormControl<String>(
           touched: true,
-          validators: [
-            Validators.required,
-            _ibanValidator,
-            Validators.minLength(kMinLengthIban),
-            Validators.maxLength(kMaxLengthIban),
-          ],
+          // Disable validators when in read only mode
+          validators: iban?.isEmpty ?? false
+              ? []
+              : [
+                  Validators.required,
+                  _ibanValidator,
+                  Validators.minLength(kMinLengthIban),
+                  Validators.maxLength(kMaxLengthIban),
+                ],
           value: iban,
         ),
       },

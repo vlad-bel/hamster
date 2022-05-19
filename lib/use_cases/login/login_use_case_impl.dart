@@ -15,7 +15,6 @@ class LoginUseCaseImpl extends LoginUseCase {
   );
 
   final RestClient restClient;
-
   final TokenRepository tokenRepository;
 
   @override
