@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'country_selector_state.dart';
@@ -11,41 +12,7 @@ part of 'country_selector_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CountrySelectorStateTearOff {
-  const _$CountrySelectorStateTearOff();
-
-  LoadingCountrySelectorState loading() {
-    return const LoadingCountrySelectorState();
-  }
-
-  SucessCountrySelectorState open(
-      {Country? selectedCountry, List<Country>? countries}) {
-    return SucessCountrySelectorState(
-      selectedCountry: selectedCountry,
-      countries: countries,
-    );
-  }
-
-  CloseCountrySelectorState close(
-      {Country? selectedCountry, List<Country>? countries}) {
-    return CloseCountrySelectorState(
-      selectedCountry: selectedCountry,
-      countries: countries,
-    );
-  }
-
-  ErrorCountrySelectorState error(ApiFailure e) {
-    return ErrorCountrySelectorState(
-      e,
-    );
-  }
-}
-
-/// @nodoc
-const $CountrySelectorState = _$CountrySelectorStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$CountrySelectorState {
@@ -123,24 +90,25 @@ class _$CountrySelectorStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $LoadingCountrySelectorStateCopyWith<$Res> {
-  factory $LoadingCountrySelectorStateCopyWith(
-          LoadingCountrySelectorState value,
-          $Res Function(LoadingCountrySelectorState) then) =
-      _$LoadingCountrySelectorStateCopyWithImpl<$Res>;
+abstract class _$$LoadingCountrySelectorStateCopyWith<$Res> {
+  factory _$$LoadingCountrySelectorStateCopyWith(
+          _$LoadingCountrySelectorState value,
+          $Res Function(_$LoadingCountrySelectorState) then) =
+      __$$LoadingCountrySelectorStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingCountrySelectorStateCopyWithImpl<$Res>
+class __$$LoadingCountrySelectorStateCopyWithImpl<$Res>
     extends _$CountrySelectorStateCopyWithImpl<$Res>
-    implements $LoadingCountrySelectorStateCopyWith<$Res> {
-  _$LoadingCountrySelectorStateCopyWithImpl(LoadingCountrySelectorState _value,
-      $Res Function(LoadingCountrySelectorState) _then)
-      : super(_value, (v) => _then(v as LoadingCountrySelectorState));
+    implements _$$LoadingCountrySelectorStateCopyWith<$Res> {
+  __$$LoadingCountrySelectorStateCopyWithImpl(
+      _$LoadingCountrySelectorState _value,
+      $Res Function(_$LoadingCountrySelectorState) _then)
+      : super(_value, (v) => _then(v as _$LoadingCountrySelectorState));
 
   @override
-  LoadingCountrySelectorState get _value =>
-      super._value as LoadingCountrySelectorState;
+  _$LoadingCountrySelectorState get _value =>
+      super._value as _$LoadingCountrySelectorState;
 }
 
 /// @nodoc
@@ -155,7 +123,9 @@ class _$LoadingCountrySelectorState implements LoadingCountrySelectorState {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoadingCountrySelectorState);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingCountrySelectorState);
   }
 
   @override
@@ -245,37 +215,39 @@ abstract class LoadingCountrySelectorState implements CountrySelectorState {
 }
 
 /// @nodoc
-abstract class $SucessCountrySelectorStateCopyWith<$Res> {
-  factory $SucessCountrySelectorStateCopyWith(SucessCountrySelectorState value,
-          $Res Function(SucessCountrySelectorState) then) =
-      _$SucessCountrySelectorStateCopyWithImpl<$Res>;
+abstract class _$$SucessCountrySelectorStateCopyWith<$Res> {
+  factory _$$SucessCountrySelectorStateCopyWith(
+          _$SucessCountrySelectorState value,
+          $Res Function(_$SucessCountrySelectorState) then) =
+      __$$SucessCountrySelectorStateCopyWithImpl<$Res>;
   $Res call({Country? selectedCountry, List<Country>? countries});
 }
 
 /// @nodoc
-class _$SucessCountrySelectorStateCopyWithImpl<$Res>
+class __$$SucessCountrySelectorStateCopyWithImpl<$Res>
     extends _$CountrySelectorStateCopyWithImpl<$Res>
-    implements $SucessCountrySelectorStateCopyWith<$Res> {
-  _$SucessCountrySelectorStateCopyWithImpl(SucessCountrySelectorState _value,
-      $Res Function(SucessCountrySelectorState) _then)
-      : super(_value, (v) => _then(v as SucessCountrySelectorState));
+    implements _$$SucessCountrySelectorStateCopyWith<$Res> {
+  __$$SucessCountrySelectorStateCopyWithImpl(
+      _$SucessCountrySelectorState _value,
+      $Res Function(_$SucessCountrySelectorState) _then)
+      : super(_value, (v) => _then(v as _$SucessCountrySelectorState));
 
   @override
-  SucessCountrySelectorState get _value =>
-      super._value as SucessCountrySelectorState;
+  _$SucessCountrySelectorState get _value =>
+      super._value as _$SucessCountrySelectorState;
 
   @override
   $Res call({
     Object? selectedCountry = freezed,
     Object? countries = freezed,
   }) {
-    return _then(SucessCountrySelectorState(
+    return _then(_$SucessCountrySelectorState(
       selectedCountry: selectedCountry == freezed
           ? _value.selectedCountry
           : selectedCountry // ignore: cast_nullable_to_non_nullable
               as Country?,
       countries: countries == freezed
-          ? _value.countries
+          ? _value._countries
           : countries // ignore: cast_nullable_to_non_nullable
               as List<Country>?,
     ));
@@ -285,12 +257,20 @@ class _$SucessCountrySelectorStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SucessCountrySelectorState implements SucessCountrySelectorState {
-  const _$SucessCountrySelectorState({this.selectedCountry, this.countries});
+  const _$SucessCountrySelectorState(
+      {this.selectedCountry, final List<Country>? countries})
+      : _countries = countries;
 
   @override
   final Country? selectedCountry;
+  final List<Country>? _countries;
   @override
-  final List<Country>? countries;
+  List<Country>? get countries {
+    final value = _countries;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -300,27 +280,25 @@ class _$SucessCountrySelectorState implements SucessCountrySelectorState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SucessCountrySelectorState &&
-            (identical(other.selectedCountry, selectedCountry) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedCountry, selectedCountry)) &&
-            (identical(other.countries, countries) ||
-                const DeepCollectionEquality()
-                    .equals(other.countries, countries)));
+        (other.runtimeType == runtimeType &&
+            other is _$SucessCountrySelectorState &&
+            const DeepCollectionEquality()
+                .equals(other.selectedCountry, selectedCountry) &&
+            const DeepCollectionEquality()
+                .equals(other._countries, _countries));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(selectedCountry) ^
-      const DeepCollectionEquality().hash(countries);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(selectedCountry),
+      const DeepCollectionEquality().hash(_countries));
 
   @JsonKey(ignore: true)
   @override
-  $SucessCountrySelectorStateCopyWith<SucessCountrySelectorState>
-      get copyWith =>
-          _$SucessCountrySelectorStateCopyWithImpl<SucessCountrySelectorState>(
-              this, _$identity);
+  _$$SucessCountrySelectorStateCopyWith<_$SucessCountrySelectorState>
+      get copyWith => __$$SucessCountrySelectorStateCopyWithImpl<
+          _$SucessCountrySelectorState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -403,48 +381,49 @@ class _$SucessCountrySelectorState implements SucessCountrySelectorState {
 
 abstract class SucessCountrySelectorState implements CountrySelectorState {
   const factory SucessCountrySelectorState(
-      {Country? selectedCountry,
-      List<Country>? countries}) = _$SucessCountrySelectorState;
+      {final Country? selectedCountry,
+      final List<Country>? countries}) = _$SucessCountrySelectorState;
 
   Country? get selectedCountry => throw _privateConstructorUsedError;
   List<Country>? get countries => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SucessCountrySelectorStateCopyWith<SucessCountrySelectorState>
+  _$$SucessCountrySelectorStateCopyWith<_$SucessCountrySelectorState>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CloseCountrySelectorStateCopyWith<$Res> {
-  factory $CloseCountrySelectorStateCopyWith(CloseCountrySelectorState value,
-          $Res Function(CloseCountrySelectorState) then) =
-      _$CloseCountrySelectorStateCopyWithImpl<$Res>;
+abstract class _$$CloseCountrySelectorStateCopyWith<$Res> {
+  factory _$$CloseCountrySelectorStateCopyWith(
+          _$CloseCountrySelectorState value,
+          $Res Function(_$CloseCountrySelectorState) then) =
+      __$$CloseCountrySelectorStateCopyWithImpl<$Res>;
   $Res call({Country? selectedCountry, List<Country>? countries});
 }
 
 /// @nodoc
-class _$CloseCountrySelectorStateCopyWithImpl<$Res>
+class __$$CloseCountrySelectorStateCopyWithImpl<$Res>
     extends _$CountrySelectorStateCopyWithImpl<$Res>
-    implements $CloseCountrySelectorStateCopyWith<$Res> {
-  _$CloseCountrySelectorStateCopyWithImpl(CloseCountrySelectorState _value,
-      $Res Function(CloseCountrySelectorState) _then)
-      : super(_value, (v) => _then(v as CloseCountrySelectorState));
+    implements _$$CloseCountrySelectorStateCopyWith<$Res> {
+  __$$CloseCountrySelectorStateCopyWithImpl(_$CloseCountrySelectorState _value,
+      $Res Function(_$CloseCountrySelectorState) _then)
+      : super(_value, (v) => _then(v as _$CloseCountrySelectorState));
 
   @override
-  CloseCountrySelectorState get _value =>
-      super._value as CloseCountrySelectorState;
+  _$CloseCountrySelectorState get _value =>
+      super._value as _$CloseCountrySelectorState;
 
   @override
   $Res call({
     Object? selectedCountry = freezed,
     Object? countries = freezed,
   }) {
-    return _then(CloseCountrySelectorState(
+    return _then(_$CloseCountrySelectorState(
       selectedCountry: selectedCountry == freezed
           ? _value.selectedCountry
           : selectedCountry // ignore: cast_nullable_to_non_nullable
               as Country?,
       countries: countries == freezed
-          ? _value.countries
+          ? _value._countries
           : countries // ignore: cast_nullable_to_non_nullable
               as List<Country>?,
     ));
@@ -454,12 +433,20 @@ class _$CloseCountrySelectorStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CloseCountrySelectorState implements CloseCountrySelectorState {
-  const _$CloseCountrySelectorState({this.selectedCountry, this.countries});
+  const _$CloseCountrySelectorState(
+      {this.selectedCountry, final List<Country>? countries})
+      : _countries = countries;
 
   @override
   final Country? selectedCountry;
+  final List<Country>? _countries;
   @override
-  final List<Country>? countries;
+  List<Country>? get countries {
+    final value = _countries;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -469,26 +456,25 @@ class _$CloseCountrySelectorState implements CloseCountrySelectorState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CloseCountrySelectorState &&
-            (identical(other.selectedCountry, selectedCountry) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedCountry, selectedCountry)) &&
-            (identical(other.countries, countries) ||
-                const DeepCollectionEquality()
-                    .equals(other.countries, countries)));
+        (other.runtimeType == runtimeType &&
+            other is _$CloseCountrySelectorState &&
+            const DeepCollectionEquality()
+                .equals(other.selectedCountry, selectedCountry) &&
+            const DeepCollectionEquality()
+                .equals(other._countries, _countries));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(selectedCountry) ^
-      const DeepCollectionEquality().hash(countries);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(selectedCountry),
+      const DeepCollectionEquality().hash(_countries));
 
   @JsonKey(ignore: true)
   @override
-  $CloseCountrySelectorStateCopyWith<CloseCountrySelectorState> get copyWith =>
-      _$CloseCountrySelectorStateCopyWithImpl<CloseCountrySelectorState>(
-          this, _$identity);
+  _$$CloseCountrySelectorStateCopyWith<_$CloseCountrySelectorState>
+      get copyWith => __$$CloseCountrySelectorStateCopyWithImpl<
+          _$CloseCountrySelectorState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -571,41 +557,42 @@ class _$CloseCountrySelectorState implements CloseCountrySelectorState {
 
 abstract class CloseCountrySelectorState implements CountrySelectorState {
   const factory CloseCountrySelectorState(
-      {Country? selectedCountry,
-      List<Country>? countries}) = _$CloseCountrySelectorState;
+      {final Country? selectedCountry,
+      final List<Country>? countries}) = _$CloseCountrySelectorState;
 
   Country? get selectedCountry => throw _privateConstructorUsedError;
   List<Country>? get countries => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CloseCountrySelectorStateCopyWith<CloseCountrySelectorState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CloseCountrySelectorStateCopyWith<_$CloseCountrySelectorState>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ErrorCountrySelectorStateCopyWith<$Res> {
-  factory $ErrorCountrySelectorStateCopyWith(ErrorCountrySelectorState value,
-          $Res Function(ErrorCountrySelectorState) then) =
-      _$ErrorCountrySelectorStateCopyWithImpl<$Res>;
+abstract class _$$ErrorCountrySelectorStateCopyWith<$Res> {
+  factory _$$ErrorCountrySelectorStateCopyWith(
+          _$ErrorCountrySelectorState value,
+          $Res Function(_$ErrorCountrySelectorState) then) =
+      __$$ErrorCountrySelectorStateCopyWithImpl<$Res>;
   $Res call({ApiFailure e});
 }
 
 /// @nodoc
-class _$ErrorCountrySelectorStateCopyWithImpl<$Res>
+class __$$ErrorCountrySelectorStateCopyWithImpl<$Res>
     extends _$CountrySelectorStateCopyWithImpl<$Res>
-    implements $ErrorCountrySelectorStateCopyWith<$Res> {
-  _$ErrorCountrySelectorStateCopyWithImpl(ErrorCountrySelectorState _value,
-      $Res Function(ErrorCountrySelectorState) _then)
-      : super(_value, (v) => _then(v as ErrorCountrySelectorState));
+    implements _$$ErrorCountrySelectorStateCopyWith<$Res> {
+  __$$ErrorCountrySelectorStateCopyWithImpl(_$ErrorCountrySelectorState _value,
+      $Res Function(_$ErrorCountrySelectorState) _then)
+      : super(_value, (v) => _then(v as _$ErrorCountrySelectorState));
 
   @override
-  ErrorCountrySelectorState get _value =>
-      super._value as ErrorCountrySelectorState;
+  _$ErrorCountrySelectorState get _value =>
+      super._value as _$ErrorCountrySelectorState;
 
   @override
   $Res call({
     Object? e = freezed,
   }) {
-    return _then(ErrorCountrySelectorState(
+    return _then(_$ErrorCountrySelectorState(
       e == freezed
           ? _value.e
           : e // ignore: cast_nullable_to_non_nullable
@@ -630,20 +617,20 @@ class _$ErrorCountrySelectorState implements ErrorCountrySelectorState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ErrorCountrySelectorState &&
-            (identical(other.e, e) ||
-                const DeepCollectionEquality().equals(other.e, e)));
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorCountrySelectorState &&
+            const DeepCollectionEquality().equals(other.e, e));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(e);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(e));
 
   @JsonKey(ignore: true)
   @override
-  $ErrorCountrySelectorStateCopyWith<ErrorCountrySelectorState> get copyWith =>
-      _$ErrorCountrySelectorStateCopyWithImpl<ErrorCountrySelectorState>(
-          this, _$identity);
+  _$$ErrorCountrySelectorStateCopyWith<_$ErrorCountrySelectorState>
+      get copyWith => __$$ErrorCountrySelectorStateCopyWithImpl<
+          _$ErrorCountrySelectorState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -725,11 +712,11 @@ class _$ErrorCountrySelectorState implements ErrorCountrySelectorState {
 }
 
 abstract class ErrorCountrySelectorState implements CountrySelectorState {
-  const factory ErrorCountrySelectorState(ApiFailure e) =
+  const factory ErrorCountrySelectorState(final ApiFailure e) =
       _$ErrorCountrySelectorState;
 
   ApiFailure get e => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ErrorCountrySelectorStateCopyWith<ErrorCountrySelectorState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ErrorCountrySelectorStateCopyWith<_$ErrorCountrySelectorState>
+      get copyWith => throw _privateConstructorUsedError;
 }

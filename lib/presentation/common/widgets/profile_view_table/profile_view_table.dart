@@ -78,7 +78,7 @@ class _ProfileViewTableState extends State<ProfileViewTable> {
           ),
           size: ColumnSize.S,
         ),
-        const DataColumn2(
+        DataColumn2(
           label: Text(''),
           size: ColumnSize.S,
         ),

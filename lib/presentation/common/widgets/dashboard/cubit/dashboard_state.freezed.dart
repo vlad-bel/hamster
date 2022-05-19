@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'dashboard_state.dart';
@@ -11,41 +12,7 @@ part of 'dashboard_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$DashboardStateTearOff {
-  const _$DashboardStateTearOff();
-
-  InitDashboardState init(
-      {int? testCount,
-      bool? finansenOpen,
-      bool? administrationOpen,
-      RepCompany? repCompany}) {
-    return InitDashboardState(
-      testCount: testCount,
-      finansenOpen: finansenOpen,
-      administrationOpen: administrationOpen,
-      repCompany: repCompany,
-    );
-  }
-
-  ErrorDashboardState error(
-      {int? testCount,
-      bool? finansenOpen,
-      bool? administrationOpen,
-      RepCompany? repCompany}) {
-    return ErrorDashboardState(
-      testCount: testCount,
-      finansenOpen: finansenOpen,
-      administrationOpen: administrationOpen,
-      repCompany: repCompany,
-    );
-  }
-}
-
-/// @nodoc
-const $DashboardState = _$DashboardStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$DashboardState {
@@ -53,7 +20,6 @@ mixin _$DashboardState {
   bool? get finansenOpen => throw _privateConstructorUsedError;
   bool? get administrationOpen => throw _privateConstructorUsedError;
   RepCompany? get repCompany => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int? testCount, bool? finansenOpen,
@@ -160,11 +126,11 @@ class _$DashboardStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $InitDashboardStateCopyWith<$Res>
+abstract class _$$InitDashboardStateCopyWith<$Res>
     implements $DashboardStateCopyWith<$Res> {
-  factory $InitDashboardStateCopyWith(
-          InitDashboardState value, $Res Function(InitDashboardState) then) =
-      _$InitDashboardStateCopyWithImpl<$Res>;
+  factory _$$InitDashboardStateCopyWith(_$InitDashboardState value,
+          $Res Function(_$InitDashboardState) then) =
+      __$$InitDashboardStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {int? testCount,
@@ -174,15 +140,15 @@ abstract class $InitDashboardStateCopyWith<$Res>
 }
 
 /// @nodoc
-class _$InitDashboardStateCopyWithImpl<$Res>
+class __$$InitDashboardStateCopyWithImpl<$Res>
     extends _$DashboardStateCopyWithImpl<$Res>
-    implements $InitDashboardStateCopyWith<$Res> {
-  _$InitDashboardStateCopyWithImpl(
-      InitDashboardState _value, $Res Function(InitDashboardState) _then)
-      : super(_value, (v) => _then(v as InitDashboardState));
+    implements _$$InitDashboardStateCopyWith<$Res> {
+  __$$InitDashboardStateCopyWithImpl(
+      _$InitDashboardState _value, $Res Function(_$InitDashboardState) _then)
+      : super(_value, (v) => _then(v as _$InitDashboardState));
 
   @override
-  InitDashboardState get _value => super._value as InitDashboardState;
+  _$InitDashboardState get _value => super._value as _$InitDashboardState;
 
   @override
   $Res call({
@@ -191,7 +157,7 @@ class _$InitDashboardStateCopyWithImpl<$Res>
     Object? administrationOpen = freezed,
     Object? repCompany = freezed,
   }) {
-    return _then(InitDashboardState(
+    return _then(_$InitDashboardState(
       testCount: testCount == freezed
           ? _value.testCount
           : testCount // ignore: cast_nullable_to_non_nullable
@@ -238,33 +204,30 @@ class _$InitDashboardState implements InitDashboardState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InitDashboardState &&
-            (identical(other.testCount, testCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.testCount, testCount)) &&
-            (identical(other.finansenOpen, finansenOpen) ||
-                const DeepCollectionEquality()
-                    .equals(other.finansenOpen, finansenOpen)) &&
-            (identical(other.administrationOpen, administrationOpen) ||
-                const DeepCollectionEquality()
-                    .equals(other.administrationOpen, administrationOpen)) &&
-            (identical(other.repCompany, repCompany) ||
-                const DeepCollectionEquality()
-                    .equals(other.repCompany, repCompany)));
+        (other.runtimeType == runtimeType &&
+            other is _$InitDashboardState &&
+            const DeepCollectionEquality().equals(other.testCount, testCount) &&
+            const DeepCollectionEquality()
+                .equals(other.finansenOpen, finansenOpen) &&
+            const DeepCollectionEquality()
+                .equals(other.administrationOpen, administrationOpen) &&
+            const DeepCollectionEquality()
+                .equals(other.repCompany, repCompany));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(testCount) ^
-      const DeepCollectionEquality().hash(finansenOpen) ^
-      const DeepCollectionEquality().hash(administrationOpen) ^
-      const DeepCollectionEquality().hash(repCompany);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(testCount),
+      const DeepCollectionEquality().hash(finansenOpen),
+      const DeepCollectionEquality().hash(administrationOpen),
+      const DeepCollectionEquality().hash(repCompany));
 
   @JsonKey(ignore: true)
   @override
-  $InitDashboardStateCopyWith<InitDashboardState> get copyWith =>
-      _$InitDashboardStateCopyWithImpl<InitDashboardState>(this, _$identity);
+  _$$InitDashboardStateCopyWith<_$InitDashboardState> get copyWith =>
+      __$$InitDashboardStateCopyWithImpl<_$InitDashboardState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -343,10 +306,10 @@ class _$InitDashboardState implements InitDashboardState {
 
 abstract class InitDashboardState implements DashboardState {
   const factory InitDashboardState(
-      {int? testCount,
-      bool? finansenOpen,
-      bool? administrationOpen,
-      RepCompany? repCompany}) = _$InitDashboardState;
+      {final int? testCount,
+      final bool? finansenOpen,
+      final bool? administrationOpen,
+      final RepCompany? repCompany}) = _$InitDashboardState;
 
   @override
   int? get testCount => throw _privateConstructorUsedError;
@@ -358,16 +321,16 @@ abstract class InitDashboardState implements DashboardState {
   RepCompany? get repCompany => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $InitDashboardStateCopyWith<InitDashboardState> get copyWith =>
+  _$$InitDashboardStateCopyWith<_$InitDashboardState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ErrorDashboardStateCopyWith<$Res>
+abstract class _$$ErrorDashboardStateCopyWith<$Res>
     implements $DashboardStateCopyWith<$Res> {
-  factory $ErrorDashboardStateCopyWith(
-          ErrorDashboardState value, $Res Function(ErrorDashboardState) then) =
-      _$ErrorDashboardStateCopyWithImpl<$Res>;
+  factory _$$ErrorDashboardStateCopyWith(_$ErrorDashboardState value,
+          $Res Function(_$ErrorDashboardState) then) =
+      __$$ErrorDashboardStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {int? testCount,
@@ -377,15 +340,15 @@ abstract class $ErrorDashboardStateCopyWith<$Res>
 }
 
 /// @nodoc
-class _$ErrorDashboardStateCopyWithImpl<$Res>
+class __$$ErrorDashboardStateCopyWithImpl<$Res>
     extends _$DashboardStateCopyWithImpl<$Res>
-    implements $ErrorDashboardStateCopyWith<$Res> {
-  _$ErrorDashboardStateCopyWithImpl(
-      ErrorDashboardState _value, $Res Function(ErrorDashboardState) _then)
-      : super(_value, (v) => _then(v as ErrorDashboardState));
+    implements _$$ErrorDashboardStateCopyWith<$Res> {
+  __$$ErrorDashboardStateCopyWithImpl(
+      _$ErrorDashboardState _value, $Res Function(_$ErrorDashboardState) _then)
+      : super(_value, (v) => _then(v as _$ErrorDashboardState));
 
   @override
-  ErrorDashboardState get _value => super._value as ErrorDashboardState;
+  _$ErrorDashboardState get _value => super._value as _$ErrorDashboardState;
 
   @override
   $Res call({
@@ -394,7 +357,7 @@ class _$ErrorDashboardStateCopyWithImpl<$Res>
     Object? administrationOpen = freezed,
     Object? repCompany = freezed,
   }) {
-    return _then(ErrorDashboardState(
+    return _then(_$ErrorDashboardState(
       testCount: testCount == freezed
           ? _value.testCount
           : testCount // ignore: cast_nullable_to_non_nullable
@@ -441,33 +404,30 @@ class _$ErrorDashboardState implements ErrorDashboardState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ErrorDashboardState &&
-            (identical(other.testCount, testCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.testCount, testCount)) &&
-            (identical(other.finansenOpen, finansenOpen) ||
-                const DeepCollectionEquality()
-                    .equals(other.finansenOpen, finansenOpen)) &&
-            (identical(other.administrationOpen, administrationOpen) ||
-                const DeepCollectionEquality()
-                    .equals(other.administrationOpen, administrationOpen)) &&
-            (identical(other.repCompany, repCompany) ||
-                const DeepCollectionEquality()
-                    .equals(other.repCompany, repCompany)));
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorDashboardState &&
+            const DeepCollectionEquality().equals(other.testCount, testCount) &&
+            const DeepCollectionEquality()
+                .equals(other.finansenOpen, finansenOpen) &&
+            const DeepCollectionEquality()
+                .equals(other.administrationOpen, administrationOpen) &&
+            const DeepCollectionEquality()
+                .equals(other.repCompany, repCompany));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(testCount) ^
-      const DeepCollectionEquality().hash(finansenOpen) ^
-      const DeepCollectionEquality().hash(administrationOpen) ^
-      const DeepCollectionEquality().hash(repCompany);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(testCount),
+      const DeepCollectionEquality().hash(finansenOpen),
+      const DeepCollectionEquality().hash(administrationOpen),
+      const DeepCollectionEquality().hash(repCompany));
 
   @JsonKey(ignore: true)
   @override
-  $ErrorDashboardStateCopyWith<ErrorDashboardState> get copyWith =>
-      _$ErrorDashboardStateCopyWithImpl<ErrorDashboardState>(this, _$identity);
+  _$$ErrorDashboardStateCopyWith<_$ErrorDashboardState> get copyWith =>
+      __$$ErrorDashboardStateCopyWithImpl<_$ErrorDashboardState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -546,10 +506,10 @@ class _$ErrorDashboardState implements ErrorDashboardState {
 
 abstract class ErrorDashboardState implements DashboardState {
   const factory ErrorDashboardState(
-      {int? testCount,
-      bool? finansenOpen,
-      bool? administrationOpen,
-      RepCompany? repCompany}) = _$ErrorDashboardState;
+      {final int? testCount,
+      final bool? finansenOpen,
+      final bool? administrationOpen,
+      final RepCompany? repCompany}) = _$ErrorDashboardState;
 
   @override
   int? get testCount => throw _privateConstructorUsedError;
@@ -561,6 +521,6 @@ abstract class ErrorDashboardState implements DashboardState {
   RepCompany? get repCompany => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $ErrorDashboardStateCopyWith<ErrorDashboardState> get copyWith =>
+  _$$ErrorDashboardStateCopyWith<_$ErrorDashboardState> get copyWith =>
       throw _privateConstructorUsedError;
 }

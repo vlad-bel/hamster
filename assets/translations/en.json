@@ -85,5 +85,10 @@
   "max_length_reached": "Maximum length reached",
   "max_length_error": "The maximum length is $0 characters",
   "iban_format_error": "The IBAN number should only contain Latin letters and numbers",
-  "branch_id": "Number: {}"
+  "branch_id": "Number: {}", 
+  "forget_password": "Have you forgotten\nyour password?",
+  "forget_password_subtitle" : "Enter your email address associated with\nyour account to continue\nresetting your password.",
+  "forgetpassword_email_subtitle" : "Choose your favorite method to recover the account password",
+  "forgetpassword_email_subtitle2": "\nto reset." ,
+  "email" : "E-mail"
 }

@@ -7,6 +7,7 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_backgro
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/common/widgets/text_button_link.dart';
+import 'package:business_terminal/presentation/forgetpassword.dart/view/forgetpassword_email.dart';
 import 'package:business_terminal/presentation/login/cubit/login_cubit.dart';
 import 'package:business_terminal/presentation/login/form_validation/login_form_validation.dart';
 import 'package:business_terminal/presentation/login/view/floating_wrong_credentials_view.dart';
@@ -96,7 +97,7 @@ class _LoginViewState extends State<LoginView> {
                       alignment: Alignment.centerRight,
                       child: TextButtonBlueLink(
                         text: forgotPasswordText,
-                        onPressed: () {},
+                        onPressed: () => onPressForgetPassword(context),
                       ),
                     ),
                     Container(height: 28),
@@ -135,6 +136,10 @@ class _LoginViewState extends State<LoginView> {
     final password = formGroup.value[formSettings.kFieldPassword] as String?;
 
     context.read<LoginCubit>().login(email, password);
+  }
+
+  void onPressForgetPassword(BuildContext context) {
+    Navigator.of(context).pushNamed(ForgetPasswordEmailPage.path);
   }
 
   void onPressNavigateToRegistration(BuildContext context) {

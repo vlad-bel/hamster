@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'menu_dropdown_cubit.dart';
@@ -11,23 +12,7 @@ part of 'menu_dropdown_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MenuDropdownStateTearOff {
-  const _$MenuDropdownStateTearOff();
-
-  CloseMenuDropdownState close() {
-    return const CloseMenuDropdownState();
-  }
-
-  OpenMenuDropdownState open() {
-    return const OpenMenuDropdownState();
-  }
-}
-
-/// @nodoc
-const $MenuDropdownState = _$MenuDropdownStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MenuDropdownState {
@@ -89,22 +74,23 @@ class _$MenuDropdownStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $CloseMenuDropdownStateCopyWith<$Res> {
-  factory $CloseMenuDropdownStateCopyWith(CloseMenuDropdownState value,
-          $Res Function(CloseMenuDropdownState) then) =
-      _$CloseMenuDropdownStateCopyWithImpl<$Res>;
+abstract class _$$CloseMenuDropdownStateCopyWith<$Res> {
+  factory _$$CloseMenuDropdownStateCopyWith(_$CloseMenuDropdownState value,
+          $Res Function(_$CloseMenuDropdownState) then) =
+      __$$CloseMenuDropdownStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$CloseMenuDropdownStateCopyWithImpl<$Res>
+class __$$CloseMenuDropdownStateCopyWithImpl<$Res>
     extends _$MenuDropdownStateCopyWithImpl<$Res>
-    implements $CloseMenuDropdownStateCopyWith<$Res> {
-  _$CloseMenuDropdownStateCopyWithImpl(CloseMenuDropdownState _value,
-      $Res Function(CloseMenuDropdownState) _then)
-      : super(_value, (v) => _then(v as CloseMenuDropdownState));
+    implements _$$CloseMenuDropdownStateCopyWith<$Res> {
+  __$$CloseMenuDropdownStateCopyWithImpl(_$CloseMenuDropdownState _value,
+      $Res Function(_$CloseMenuDropdownState) _then)
+      : super(_value, (v) => _then(v as _$CloseMenuDropdownState));
 
   @override
-  CloseMenuDropdownState get _value => super._value as CloseMenuDropdownState;
+  _$CloseMenuDropdownState get _value =>
+      super._value as _$CloseMenuDropdownState;
 }
 
 /// @nodoc
@@ -119,7 +105,8 @@ class _$CloseMenuDropdownState implements CloseMenuDropdownState {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CloseMenuDropdownState);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CloseMenuDropdownState);
   }
 
   @override
@@ -193,22 +180,22 @@ abstract class CloseMenuDropdownState implements MenuDropdownState {
 }
 
 /// @nodoc
-abstract class $OpenMenuDropdownStateCopyWith<$Res> {
-  factory $OpenMenuDropdownStateCopyWith(OpenMenuDropdownState value,
-          $Res Function(OpenMenuDropdownState) then) =
-      _$OpenMenuDropdownStateCopyWithImpl<$Res>;
+abstract class _$$OpenMenuDropdownStateCopyWith<$Res> {
+  factory _$$OpenMenuDropdownStateCopyWith(_$OpenMenuDropdownState value,
+          $Res Function(_$OpenMenuDropdownState) then) =
+      __$$OpenMenuDropdownStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$OpenMenuDropdownStateCopyWithImpl<$Res>
+class __$$OpenMenuDropdownStateCopyWithImpl<$Res>
     extends _$MenuDropdownStateCopyWithImpl<$Res>
-    implements $OpenMenuDropdownStateCopyWith<$Res> {
-  _$OpenMenuDropdownStateCopyWithImpl(
-      OpenMenuDropdownState _value, $Res Function(OpenMenuDropdownState) _then)
-      : super(_value, (v) => _then(v as OpenMenuDropdownState));
+    implements _$$OpenMenuDropdownStateCopyWith<$Res> {
+  __$$OpenMenuDropdownStateCopyWithImpl(_$OpenMenuDropdownState _value,
+      $Res Function(_$OpenMenuDropdownState) _then)
+      : super(_value, (v) => _then(v as _$OpenMenuDropdownState));
 
   @override
-  OpenMenuDropdownState get _value => super._value as OpenMenuDropdownState;
+  _$OpenMenuDropdownState get _value => super._value as _$OpenMenuDropdownState;
 }
 
 /// @nodoc
@@ -223,7 +210,8 @@ class _$OpenMenuDropdownState implements OpenMenuDropdownState {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is OpenMenuDropdownState);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OpenMenuDropdownState);
   }
 
   @override

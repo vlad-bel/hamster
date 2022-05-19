@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'company_creation_state.dart';
@@ -11,33 +12,7 @@ part of 'company_creation_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CompanyCreationStateTearOff {
-  const _$CompanyCreationStateTearOff();
-
-  InitCompanyCreationState init() {
-    return const InitCompanyCreationState();
-  }
-
-  LoadingCompanyCreationState loading() {
-    return const LoadingCompanyCreationState();
-  }
-
-  SuccessCompanyCreationState success() {
-    return const SuccessCompanyCreationState();
-  }
-
-  ErrorCompanyCreationState error(ApiFailure e) {
-    return ErrorCompanyCreationState(
-      e,
-    );
-  }
-}
-
-/// @nodoc
-const $CompanyCreationState = _$CompanyCreationStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$CompanyCreationState {
@@ -111,23 +86,23 @@ class _$CompanyCreationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $InitCompanyCreationStateCopyWith<$Res> {
-  factory $InitCompanyCreationStateCopyWith(InitCompanyCreationState value,
-          $Res Function(InitCompanyCreationState) then) =
-      _$InitCompanyCreationStateCopyWithImpl<$Res>;
+abstract class _$$InitCompanyCreationStateCopyWith<$Res> {
+  factory _$$InitCompanyCreationStateCopyWith(_$InitCompanyCreationState value,
+          $Res Function(_$InitCompanyCreationState) then) =
+      __$$InitCompanyCreationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitCompanyCreationStateCopyWithImpl<$Res>
+class __$$InitCompanyCreationStateCopyWithImpl<$Res>
     extends _$CompanyCreationStateCopyWithImpl<$Res>
-    implements $InitCompanyCreationStateCopyWith<$Res> {
-  _$InitCompanyCreationStateCopyWithImpl(InitCompanyCreationState _value,
-      $Res Function(InitCompanyCreationState) _then)
-      : super(_value, (v) => _then(v as InitCompanyCreationState));
+    implements _$$InitCompanyCreationStateCopyWith<$Res> {
+  __$$InitCompanyCreationStateCopyWithImpl(_$InitCompanyCreationState _value,
+      $Res Function(_$InitCompanyCreationState) _then)
+      : super(_value, (v) => _then(v as _$InitCompanyCreationState));
 
   @override
-  InitCompanyCreationState get _value =>
-      super._value as InitCompanyCreationState;
+  _$InitCompanyCreationState get _value =>
+      super._value as _$InitCompanyCreationState;
 }
 
 /// @nodoc
@@ -142,7 +117,9 @@ class _$InitCompanyCreationState implements InitCompanyCreationState {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InitCompanyCreationState);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitCompanyCreationState);
   }
 
   @override
@@ -228,24 +205,25 @@ abstract class InitCompanyCreationState implements CompanyCreationState {
 }
 
 /// @nodoc
-abstract class $LoadingCompanyCreationStateCopyWith<$Res> {
-  factory $LoadingCompanyCreationStateCopyWith(
-          LoadingCompanyCreationState value,
-          $Res Function(LoadingCompanyCreationState) then) =
-      _$LoadingCompanyCreationStateCopyWithImpl<$Res>;
+abstract class _$$LoadingCompanyCreationStateCopyWith<$Res> {
+  factory _$$LoadingCompanyCreationStateCopyWith(
+          _$LoadingCompanyCreationState value,
+          $Res Function(_$LoadingCompanyCreationState) then) =
+      __$$LoadingCompanyCreationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingCompanyCreationStateCopyWithImpl<$Res>
+class __$$LoadingCompanyCreationStateCopyWithImpl<$Res>
     extends _$CompanyCreationStateCopyWithImpl<$Res>
-    implements $LoadingCompanyCreationStateCopyWith<$Res> {
-  _$LoadingCompanyCreationStateCopyWithImpl(LoadingCompanyCreationState _value,
-      $Res Function(LoadingCompanyCreationState) _then)
-      : super(_value, (v) => _then(v as LoadingCompanyCreationState));
+    implements _$$LoadingCompanyCreationStateCopyWith<$Res> {
+  __$$LoadingCompanyCreationStateCopyWithImpl(
+      _$LoadingCompanyCreationState _value,
+      $Res Function(_$LoadingCompanyCreationState) _then)
+      : super(_value, (v) => _then(v as _$LoadingCompanyCreationState));
 
   @override
-  LoadingCompanyCreationState get _value =>
-      super._value as LoadingCompanyCreationState;
+  _$LoadingCompanyCreationState get _value =>
+      super._value as _$LoadingCompanyCreationState;
 }
 
 /// @nodoc
@@ -260,7 +238,9 @@ class _$LoadingCompanyCreationState implements LoadingCompanyCreationState {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoadingCompanyCreationState);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingCompanyCreationState);
   }
 
   @override
@@ -346,24 +326,25 @@ abstract class LoadingCompanyCreationState implements CompanyCreationState {
 }
 
 /// @nodoc
-abstract class $SuccessCompanyCreationStateCopyWith<$Res> {
-  factory $SuccessCompanyCreationStateCopyWith(
-          SuccessCompanyCreationState value,
-          $Res Function(SuccessCompanyCreationState) then) =
-      _$SuccessCompanyCreationStateCopyWithImpl<$Res>;
+abstract class _$$SuccessCompanyCreationStateCopyWith<$Res> {
+  factory _$$SuccessCompanyCreationStateCopyWith(
+          _$SuccessCompanyCreationState value,
+          $Res Function(_$SuccessCompanyCreationState) then) =
+      __$$SuccessCompanyCreationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SuccessCompanyCreationStateCopyWithImpl<$Res>
+class __$$SuccessCompanyCreationStateCopyWithImpl<$Res>
     extends _$CompanyCreationStateCopyWithImpl<$Res>
-    implements $SuccessCompanyCreationStateCopyWith<$Res> {
-  _$SuccessCompanyCreationStateCopyWithImpl(SuccessCompanyCreationState _value,
-      $Res Function(SuccessCompanyCreationState) _then)
-      : super(_value, (v) => _then(v as SuccessCompanyCreationState));
+    implements _$$SuccessCompanyCreationStateCopyWith<$Res> {
+  __$$SuccessCompanyCreationStateCopyWithImpl(
+      _$SuccessCompanyCreationState _value,
+      $Res Function(_$SuccessCompanyCreationState) _then)
+      : super(_value, (v) => _then(v as _$SuccessCompanyCreationState));
 
   @override
-  SuccessCompanyCreationState get _value =>
-      super._value as SuccessCompanyCreationState;
+  _$SuccessCompanyCreationState get _value =>
+      super._value as _$SuccessCompanyCreationState;
 }
 
 /// @nodoc
@@ -378,7 +359,9 @@ class _$SuccessCompanyCreationState implements SuccessCompanyCreationState {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SuccessCompanyCreationState);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessCompanyCreationState);
   }
 
   @override
@@ -464,30 +447,31 @@ abstract class SuccessCompanyCreationState implements CompanyCreationState {
 }
 
 /// @nodoc
-abstract class $ErrorCompanyCreationStateCopyWith<$Res> {
-  factory $ErrorCompanyCreationStateCopyWith(ErrorCompanyCreationState value,
-          $Res Function(ErrorCompanyCreationState) then) =
-      _$ErrorCompanyCreationStateCopyWithImpl<$Res>;
+abstract class _$$ErrorCompanyCreationStateCopyWith<$Res> {
+  factory _$$ErrorCompanyCreationStateCopyWith(
+          _$ErrorCompanyCreationState value,
+          $Res Function(_$ErrorCompanyCreationState) then) =
+      __$$ErrorCompanyCreationStateCopyWithImpl<$Res>;
   $Res call({ApiFailure e});
 }
 
 /// @nodoc
-class _$ErrorCompanyCreationStateCopyWithImpl<$Res>
+class __$$ErrorCompanyCreationStateCopyWithImpl<$Res>
     extends _$CompanyCreationStateCopyWithImpl<$Res>
-    implements $ErrorCompanyCreationStateCopyWith<$Res> {
-  _$ErrorCompanyCreationStateCopyWithImpl(ErrorCompanyCreationState _value,
-      $Res Function(ErrorCompanyCreationState) _then)
-      : super(_value, (v) => _then(v as ErrorCompanyCreationState));
+    implements _$$ErrorCompanyCreationStateCopyWith<$Res> {
+  __$$ErrorCompanyCreationStateCopyWithImpl(_$ErrorCompanyCreationState _value,
+      $Res Function(_$ErrorCompanyCreationState) _then)
+      : super(_value, (v) => _then(v as _$ErrorCompanyCreationState));
 
   @override
-  ErrorCompanyCreationState get _value =>
-      super._value as ErrorCompanyCreationState;
+  _$ErrorCompanyCreationState get _value =>
+      super._value as _$ErrorCompanyCreationState;
 
   @override
   $Res call({
     Object? e = freezed,
   }) {
-    return _then(ErrorCompanyCreationState(
+    return _then(_$ErrorCompanyCreationState(
       e == freezed
           ? _value.e
           : e // ignore: cast_nullable_to_non_nullable
@@ -512,20 +496,20 @@ class _$ErrorCompanyCreationState implements ErrorCompanyCreationState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ErrorCompanyCreationState &&
-            (identical(other.e, e) ||
-                const DeepCollectionEquality().equals(other.e, e)));
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorCompanyCreationState &&
+            const DeepCollectionEquality().equals(other.e, e));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(e);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(e));
 
   @JsonKey(ignore: true)
   @override
-  $ErrorCompanyCreationStateCopyWith<ErrorCompanyCreationState> get copyWith =>
-      _$ErrorCompanyCreationStateCopyWithImpl<ErrorCompanyCreationState>(
-          this, _$identity);
+  _$$ErrorCompanyCreationStateCopyWith<_$ErrorCompanyCreationState>
+      get copyWith => __$$ErrorCompanyCreationStateCopyWithImpl<
+          _$ErrorCompanyCreationState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -603,11 +587,11 @@ class _$ErrorCompanyCreationState implements ErrorCompanyCreationState {
 }
 
 abstract class ErrorCompanyCreationState implements CompanyCreationState {
-  const factory ErrorCompanyCreationState(ApiFailure e) =
+  const factory ErrorCompanyCreationState(final ApiFailure e) =
       _$ErrorCompanyCreationState;
 
   ApiFailure get e => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ErrorCompanyCreationStateCopyWith<ErrorCompanyCreationState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ErrorCompanyCreationStateCopyWith<_$ErrorCompanyCreationState>
+      get copyWith => throw _privateConstructorUsedError;
 }

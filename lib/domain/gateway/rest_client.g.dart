@@ -6,6 +6,8 @@ part of 'rest_client.dart';
 // RetrofitGenerator
 // **************************************************************************
 
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 class _RestClient implements RestClient {
   _RestClient(this._dio, {this.baseUrl}) {
     baseUrl ??= 'http://localhost:3003/api/';
@@ -167,6 +169,38 @@ class _RestClient implements RestClient {
     final _result = await _dio.fetch<String>(_setStreamType<String>(
         Options(method: 'POST', headers: _headers, extra: _extra)
             .compose(_dio.options, '/rep/resend-code-to-phone',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> sendVerificationCode(sendVerificationCodeMap) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(sendVerificationCodeMap);
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options, '/rep/send-verification-code',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> verifyPhoneCode(sendVerifyPhoneCodeMap) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(sendVerifyPhoneCodeMap);
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options, '/rep/verify-phone-code',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!;
