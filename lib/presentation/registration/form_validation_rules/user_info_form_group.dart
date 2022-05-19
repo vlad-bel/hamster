@@ -3,6 +3,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class FormSettingsRegistrationUserInfo {
   static const kNameSurnameMin = 2;
+  static const nameEmailMaxLength = 70;
   static const kMaxLength = 256;
   static const kPasswordValidationRuleMustMatch = 'mustMatch';
   static const kPasswordValidationRuleValidPass = 'passwordValid';
@@ -20,14 +21,14 @@ class FormSettingsRegistrationUserInfo {
   final Map<String, String> validationMessageNameSurname = {
     ValidationMessage.required: 'Should not be empty',
     ValidationMessage.minLength: 'Minimal length is $kNameSurnameMin',
-    ValidationMessage.maxLength: 'Maximal length is $kMaxLength',
+    ValidationMessage.maxLength: 'Maximal length is $nameEmailMaxLength',
     ValidationMessage.pattern: 'Should not contain special characters'
   };
 
   final validationMessageEmail = {
     ValidationMessage.required: 'Should not be empty',
     ValidationMessage.email: 'Should be a valid email',
-    ValidationMessage.maxLength: 'Maximal length is $kMaxLength',
+    ValidationMessage.maxLength: 'Maximal length is $nameEmailMaxLength',
     kPasswordValidationRuleValidPass: 'Password should be valid'
   };
 
@@ -42,7 +43,7 @@ class FormSettingsRegistrationUserInfo {
     final nameSurnameValidators = [
       Validators.required,
       Validators.minLength(kNameSurnameMin),
-      Validators.maxLength(kMaxLength),
+      Validators.maxLength(nameEmailMaxLength),
       Validators.pattern(nameSurnameRegexp)
     ];
 
@@ -58,7 +59,7 @@ class FormSettingsRegistrationUserInfo {
           validators: [
             Validators.required,
             Validators.email,
-            Validators.maxLength(kMaxLength)
+            Validators.maxLength(nameEmailMaxLength)
           ],
         ),
         kFieldPassword: FormControl<String>(

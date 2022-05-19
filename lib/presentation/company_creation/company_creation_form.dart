@@ -93,7 +93,7 @@ class CompanyCreationForm extends StatelessWidget {
                       const SizedBox(height: 16),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children:  [
+                        children: [
                           Flexible(
                             child: FormTextField(
                               name: CompanyCreationCubit.postcodeField,
@@ -165,8 +165,7 @@ class CompanyCreationForm extends StatelessWidget {
                                       );
                                     },
                                     child: companyCreationState.whenOrNull(
-                                      loading: () =>
-                                      const SizedBox(
+                                      loading: () => const SizedBox(
                                         width: 16,
                                         height: 16,
                                         child: CircularProgressIndicator(

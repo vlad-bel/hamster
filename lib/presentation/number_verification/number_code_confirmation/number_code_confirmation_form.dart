@@ -138,7 +138,9 @@ class NumberVerificationResult extends StatelessWidget {
           height: 20,
         );
 
-        const empty = SizedBox(height: 20,);
+        const empty = SizedBox(
+          height: 20,
+        );
 
         return state.whenOrNull(
               resend: () {

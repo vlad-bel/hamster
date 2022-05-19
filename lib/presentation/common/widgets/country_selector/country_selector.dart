@@ -83,7 +83,7 @@ class _CountrySelectorState extends State<CountrySelector> {
           formGroup: widget.cubit.countryForm,
           child: state.when(
             loading: () {
-              return  FormTextField(
+              return FormTextField(
                 name: CountrySelectorCubit.countryField,
                 hint: tr(LocaleKeys.country_hint),
                 readOnly: true,

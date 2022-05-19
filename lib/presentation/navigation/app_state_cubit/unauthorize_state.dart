@@ -1,6 +1,11 @@
 import 'dart:html';
+
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
+import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
+import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
+import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
@@ -18,17 +23,17 @@ String phoneNumberParam = 'phone_number';
 String verifyMethodParam = 'verify_method';
 
 class UnauthorizedState extends AppState {
-  UnauthorizedState({
+  const UnauthorizedState({
     required String initialRoute,
   }) : super(
           initialRoute: initialRoute,
         );
 
   @override
-  Route generateRoute(RouteSettings routeSettings) {
+  Route generateRoute(RouteSettings settings) {
     late Widget page;
-    final params = routeSettings.arguments as Map<String, dynamic>?;
-    switch (routeSettings.name) {
+    final params = settings.arguments as Map<String, dynamic>?;
+    switch (settings.name) {
       case LoginPage.path:
         page = const LoginPage();
         break;
@@ -100,16 +105,27 @@ class UnauthorizedState extends AppState {
       case PhoneVerificationResultPage.path:
         page = const PhoneVerificationResultPage();
         break;
+      case CompanyCreationPage.path:
+        page = const CompanyCreationPage();
+        break;
       case DashboardPage.path:
         page = const DashboardPage(
           initialPagePath: accountVerificationPath,
           initialPageIndex: 1,
         );
         break;
-
+      case BranchProfilePage.path:
+        page = const BranchProfilePage();
+        break;
+      case ProfileEditPage.path:
+        page = const ProfileEditPage();
+        break;
+      case AddPaymentPage.path:
+        page = const AddPaymentPage();
+        break;
       default:
         page = UnknownPage(
-          path: routeSettings.name ?? 'unknown path',
+          path: settings.name ?? 'unknown path',
         );
     }
 
@@ -119,7 +135,7 @@ class UnauthorizedState extends AppState {
       pageBuilder: (context, anim1, anim2) {
         return page;
       },
-      settings: routeSettings,
+      settings: settings,
     );
   }
 }
