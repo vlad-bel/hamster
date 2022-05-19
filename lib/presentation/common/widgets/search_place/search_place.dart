@@ -1,7 +1,7 @@
 import 'package:business_terminal/presentation/common/widgets/search_place/cubit/search_place_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/search_place/cubit/search_place_state.dart';
 import 'package:business_terminal/presentation/common/widgets/search_place/widget/search_list.dart';
-import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
+import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
