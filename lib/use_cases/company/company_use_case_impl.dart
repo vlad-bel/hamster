@@ -35,9 +35,6 @@ class CompanyUseCaseImpl extends CompanyUsecase {
           country: country,
           countryCode: countryCode,
         ).toJson(),
-
-        ///TODO PUT TEMPORARY TOKEN HERE
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQHRlc3QxMC5jb20iLCJyb2xlcyI6WyJyZXByZXNlbnRhdGl2ZSJdLCJpYXQiOjE2NTIzNjMxMTgsImV4cCI6MTY1MjM2ODUxOH0.XeTcWOCSbtYPsP5jZX0ym31gNa-nfB-MflT2Pp9-5t8",
       );
     } on DioError catch (e) {
       throw ApiFailure(
@@ -48,12 +45,9 @@ class CompanyUseCaseImpl extends CompanyUsecase {
   }
 
   @override
-  Future<RepCompany> getRepCompany() async {
+  Future<RepCompany?> getRepCompany() async {
     try {
-      return await repository.repCompany(
-
-          ///TODO PUT TEMPORARY TOKEN HERE
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQHRlc3QxMC5jb20iLCJyb2xlcyI6WyJyZXByZXNlbnRhdGl2ZSJdLCJpYXQiOjE2NTIzNjMxMTgsImV4cCI6MTY1MjM2ODUxOH0.XeTcWOCSbtYPsP5jZX0ym31gNa-nfB-MflT2Pp9-5t8');
+      return await repository.repCompany();
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),

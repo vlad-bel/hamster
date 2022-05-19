@@ -12,11 +12,11 @@ class RepCompany {
   });
 
   @JsonKey(name: 'rep')
-  final Rep rep;
+  final Rep? rep;
   @JsonKey(name: 'company')
-  final Company company;
+  final Company? company;
   @JsonKey(name: 'branch')
-  final Branch branch;
+  final Branch? branch;
 
   factory RepCompany.fromJson(Map<String, dynamic> json) =>
       _$RepCompanyFromJson(json);

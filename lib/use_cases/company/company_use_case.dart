@@ -12,5 +12,5 @@ abstract class CompanyUsecase {
     required String countryCode,
   });
 
-  Future<RepCompany> getRepCompany();
+  Future<RepCompany?> getRepCompany();
 }

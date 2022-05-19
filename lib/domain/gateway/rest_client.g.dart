@@ -33,6 +33,20 @@ class _RestClient implements RestClient {
   }
 
   @override
+  Future<void> logout() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    await _dio.fetch<void>(_setStreamType<void>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options, '/rep/logout',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    return null;
+  }
+
+  @override
   Future<String> initUserInfoCreation(userInfoMap) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -160,11 +174,10 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<Company> createCompany(body, contentType) async {
+  Future<Company> createCompany(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': contentType};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -178,11 +191,10 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<RepCompany> repCompany(authToken) async {
+  Future<RepCompany> repCompany() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': authToken};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<RepCompany>(

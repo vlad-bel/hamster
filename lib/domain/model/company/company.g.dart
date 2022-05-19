@@ -19,7 +19,7 @@ Company _$CompanyFromJson(Map<String, dynamic> json) => Company(
       branchNumber: json['branchNumber'] as String?,
       user: json['user'],
       connectionsStatistics: json['connectionsStatistics'],
-      fillingProgress: json['fillingProgress'],
+      fillingProgress: json['fillingProgress'] as int?,
       taxNumber: json['taxNumber'],
       accountOwner: json['accountOwner'],
       iban: json['IBAN'] as String?,

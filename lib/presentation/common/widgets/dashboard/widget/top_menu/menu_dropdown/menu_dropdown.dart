@@ -1,10 +1,15 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/presentation/app/view/app.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_dropdown/cubit/menu_dropdown_cubit.dart';
+import 'package:business_terminal/presentation/login/view/login_page.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MenuDropDown extends StatelessWidget {
   MenuDropDown({
@@ -84,12 +89,23 @@ class MenuDropDown extends StatelessWidget {
                 ),
                 onPressed: () {
                   close();
+                  logout(context);
                 },
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void logout(BuildContext context) {
+    context.read<DashboardCubit>().logout();
+    context.read<AppStateCubit>().goToUnauthZone(LoginPage.path);
+
+    unauthNavigatorKey.currentState!.pushNamedAndRemoveUntil(
+      LoginPage.path,
+      (predicate) => predicate.isFirst,
     );
   }
 

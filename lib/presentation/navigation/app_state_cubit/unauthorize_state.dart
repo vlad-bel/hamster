@@ -24,7 +24,7 @@ class UnauthorizedState extends AppState {
   }) : super(
           initialRoute: initialRoute,
           onGenerateRoute: (routeSettings) {
-            late Widget page;
+            Widget page;
             final params = routeSettings.arguments as Map<String, dynamic>?;
             switch (routeSettings.name) {
               case LoginPage.path:
