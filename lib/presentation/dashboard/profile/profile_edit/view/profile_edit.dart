@@ -9,6 +9,7 @@ import 'package:business_terminal/presentation/common/widgets/country_selector/c
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/header_app_bar/header_app_bar_widget.dart';
+import 'package:business_terminal/presentation/common/widgets/payment_info.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/cubit/profile_edit_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
@@ -116,6 +117,7 @@ class _ProfileEditContent extends StatefulWidget {
 
 class _ProfileEditContentState extends State<_ProfileEditContent> {
   bool needToShowPaymentInfo = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -341,96 +343,18 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                     decoration: const BoxDecoration(
                       color: white,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          // TODO add l18n key
-                          tr('payment_information'),
-                          style: inter16SemiBold.copyWith(
-                            color: lynch,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        GestureDetector(
-                          // TODO!
-                          onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              AddPaymentPage.path,
-                            );
-                            setState(() {
-                              needToShowPaymentInfo = !needToShowPaymentInfo;
-                            });
-                          },
-                          child: needToShowPaymentInfo
-                              ? Column(
-                                  children: [
-                                    // TODO add l18n key
-                                    FormTextField(
-                                      validationMessages: (control) => widget
-                                          .formSettings.validationMessages,
-                                      name: widget.formSettings.kAccountOwner,
-                                      label: tr(
-                                        widget.formSettings.kAccountOwner,
-                                      ),
-                                      hint: tr(
-                                        widget.formSettings.kAccountOwner,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 25,
-                                    ),
-                                    // TODO add l18n key
-                                    FormTextField(
-                                      validationMessages: (control) => widget
-                                          .formSettings.validationMessages,
-                                      name: widget.formSettings.kIban,
-                                      label: tr(
-                                        widget.formSettings.kIban,
-                                      ),
-                                      hint: tr(
-                                        widget.formSettings.kIban,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              : Center(
-                                  child: AppDashBorderedContainer(
-                                    borderType: BorderType.rect,
-                                    child: Container(
-                                      height: 125,
-                                      decoration:
-                                          const BoxDecoration(color: white),
-                                      child: Center(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            const Icon(
-                                              Icons.add_circle,
-                                              color: denim1,
-                                            ),
-                                            const SizedBox(
-                                              width: 4,
-                                            ),
-                                            Text(
-                                              // TODO add l18n key
-                                              tr('add_bank_details'),
-                                              style: inter14.copyWith(
-                                                color: denim1,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                        ),
-                      ],
+                    child: GestureDetector(
+                      // TODO!
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          AddPaymentPage.path,
+                        );
+                        setState(() {
+                          needToShowPaymentInfo = !needToShowPaymentInfo;
+                        });
+                      },
+                      child: PaymentInfo(),
                     ),
                   ),
                 ],

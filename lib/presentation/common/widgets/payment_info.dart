@@ -1,8 +1,10 @@
+import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/add_payment/form_validation/add_payment_form_validation.dart';
 import 'package:business_terminal/presentation/common/widgets/checkbox/other/position.dart';
 import 'package:business_terminal/presentation/common/widgets/checkbox/ui_checkbox.dart';
+import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/dashed_button.dart';
 import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -39,16 +41,35 @@ class PaymentInfo extends StatelessWidget {
           children: [
             if (formConsumer == null)
               Text(
-                tr(LocaleKeys.payment_info),
+                tr(LocaleKeys.payment_information),
                 style: inter16SemiBold,
               ),
             const SizedBox(height: 24),
             if ((accountOwner.isEmpty || iban.isEmpty) && formConsumer == null)
-              SizedBox(
-                height: 125,
-                child: DashedButton(
-                  onTap: () {},
-                  label: tr(LocaleKeys.add_bank_details),
+              AppDashBorderedContainer(
+                borderType: BorderType.rect,
+                child: Container(
+                  height: 125,
+                  decoration: const BoxDecoration(color: white),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.add_circle,
+                          color: denim1,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          // TODO add l18n key
+                          tr('add_bank_details'),
+                          style: inter14.copyWith(
+                            color: denim1,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               )
             else
