@@ -60,6 +60,7 @@ class AppStateCubit extends Cubit<AppState> {
           initialRoute: CompanyCreationPage.path,
         ));
       }
+
       emit(UnauthorizedState(
         initialRoute: LoginPage.path,
       ));

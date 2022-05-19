@@ -79,18 +79,8 @@ Future _refreshToken(
     await tokenRepository.setAccessToken(loginResponse.accessToken);
     await tokenRepository.setRefreshToken(loginResponse.refreshToken);
 
-    response = await dio.request<dynamic>(
-      opts.path,
-      data: opts.data,
-      queryParameters: opts.queryParameters,
-      options: Options(
-        method: opts.method,
-        contentType: opts.contentType,
-        headers: <String, String>{
-          'Authorization': 'Bearer ${loginResponse.accessToken}',
-        },
-      ),
-    );
+    error.response?.requestOptions.headers['Authorization'] =
+        'Bearer ${loginResponse.accessToken}';
 
     return handler.resolve(response);
   }
