@@ -56,6 +56,11 @@ class _AppState extends State<App> {
                         displayColor: lynch,
                       ),
                 ),
+                checkboxTheme: CheckboxThemeData(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
               ),
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,

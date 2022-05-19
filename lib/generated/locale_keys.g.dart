@@ -68,5 +68,12 @@ abstract class  LocaleKeys {
   static const opening_hours = 'opening_hours';
   static const closed = 'closed';
   static const branch_id = 'branch_id';
+  static const payment_info = 'payment_info';
+  static const account_owner = 'account_owner';
+  static const iban = 'iban';
+  static const add_bank_details = 'add_bank_details';
+  static const add_business_account = 'add_business_account';
+  static const for_credits_and_regular_billing = 'for_credits_and_regular_billing';
+  static const i_authorize_collect_payment = 'i_authorize_collect_payment';
 
 }

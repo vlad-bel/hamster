@@ -65,5 +65,12 @@
   "sunday": "Sonntag",
   "opening_hours": "Öffnungszeiten",
   "closed": "geschlossen",
-  "branch_id": "Nummer: {}"
+  "branch_id": "Nummer: {}",
+  "payment_info": "Zahlungsinformationen",
+  "account_owner": "Kontoinhaber",
+  "iban": "IBAN",
+  "add_bank_details": "Bankverbindung hinzufügen",
+  "add_business_account": "Fügen Sie ihr Unternehmenskonto hinzu",
+  "for_credits_and_regular_billing": "Für Gutschriften und regelmäßige Abrechnungen benötigen wir noch Ihre Bankverbindung und die Einwilligung zum Bankeinzugsverfahren",
+  "i_authorize_collect_payment": "Ich ermächtige die Hamster Systems AG Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von der Hamster Systems AG auf mein Konto gezogenen Lastschriften einzulösen. Mit Akzeptanz dieser Vereinbarung verpflichtet sich die Hamster Systems AG im gleichen Maße auf die Auszahlung von Guthaben auf das o.g. Konto"
 }
