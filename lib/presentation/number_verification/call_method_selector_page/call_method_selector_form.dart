@@ -1,6 +1,7 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
@@ -34,11 +35,11 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: tr('confirm_number_title'),
+          header: tr(LocaleKeys.confirm_number_title),
           subHeader: RichText(
             text: TextSpan(
               style: inter14,
-              text: tr('call_method1'),
+              text: tr(LocaleKeys.call_method1),
               children: [
                 TextSpan(
                   style: inter14Medium.copyWith(color: denim),
@@ -46,7 +47,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                 ),
                 TextSpan(
                   style: inter14,
-                  text: tr('call_method2'),
+                  text: tr(LocaleKeys.call_method2),
                 ),
               ],
             ),
@@ -65,7 +66,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                   children: [
                     SelectorRect(
                       size: 160,
-                      title: tr('sms'),
+                      title: tr(LocaleKeys.sms),
                       icon: Icons.sms,
                       choosed: state.smsSelected,
                       onTap: () {
@@ -75,7 +76,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                     const SizedBox(width: 28),
                     SelectorRect(
                       size: 160,
-                      title: tr('phone_call'),
+                      title: tr(LocaleKeys.phone_call),
                       icon: Icons.call_outlined,
                       choosed: !state.smsSelected,
                       onTap: () {

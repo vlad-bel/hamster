@@ -39,6 +39,8 @@ dependencies:
   logger: ^1.1.0
   dart_extensions: ^2.2.0
   dartz: ^0.10.1
+  flutter_google_places: ^0.3.0
+  google_place: ^0.4.7
   flutter_secure_storage: ^5.0.2
 
   # UI:
@@ -56,6 +58,8 @@ dependencies:
   pinput: ^2.2.7
   expandable: ^5.0.1
   flutter_portal: ^1.0.0
+  data_table_2: ^2.2.2
+  dotted_border: ^2.0.0+2
 
 dev_dependencies:
   bloc_test: ^9.0.3

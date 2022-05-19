@@ -1,3 +1,4 @@
+import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class WhiteButton extends StatelessWidget {
         ),
         onPressed: onPressed,
         child: Text(
-          tr('return_button'),
+          tr(LocaleKeys.return_button),
           style: const TextStyle(color: Color(0xff147bd9)),
         ),
       ),
