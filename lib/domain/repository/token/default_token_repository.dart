@@ -8,6 +8,7 @@ class DefaultTokenRepository extends TokenRepository {
   final String _refreshTokenKey = 'refresh_token';
 
   final storage = const FlutterSecureStorage();
+
   // TODO: add apiRepository and implement refreshToken() later
 
   @override
@@ -43,6 +44,4 @@ class DefaultTokenRepository extends TokenRepository {
     // TODO: add apiRepository and implement refreshToken() later
     throw UnimplementedError();
   }
-
-
 }
