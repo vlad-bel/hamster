@@ -34,6 +34,24 @@
   "num_hint": "Nr.",
   "location_hint": "Ort",
   "country_hint": "Land",
+<<<<<<< HEAD
+=======
+  "add_logo" : "Logo hinzufügen",
+  "save" : "Speichern",
+  "company_name" : "Unternehmensname",
+  "street_house_number" : "Straße, Hausnummer",
+  "zip_code_and_location" : "Postleitzahl und Ort",
+  "base_data" : "Stammdaten",
+  "commercial_register_number" : "Handelsregister Nr. (falls vorhanden)",
+  "tax_number" : "Steuernummer",
+  "vat_id" : "Umsatzsteuer ID (falls vorhanden)",
+  "payment_information" : "Zahlungsinformationen",
+  "add_bank_details" : "Bankverbindung hinzufügen",
+  "account_owner" : "Kontoinhaber",
+  "iban" : "IBAN",
+  "max_length_field" : "Die maximale Zeichenangabe ist erreicht",
+  "min_length_field" : "Die mindestanzahl an Zeichen wurde nicht erreicht",
+>>>>>>> 82e6310add20a3e55cf7e4219b84572175aaa5af
   "user": "NUTZER",
   "number": "NUMMER",
   "connection": "ANBINDUNG",
@@ -62,6 +80,7 @@
   "sunday": "Sonntag",
   "opening_hours": "Öffnungszeiten",
   "closed": "geschlossen",
+<<<<<<< HEAD
   "branch_id": "Nummer: {}",
   "company_profile" : "Unternehmensprofil",
   "add_logo" : "Logo hinzufügen",
@@ -82,4 +101,7 @@
   "add_business_account": "Fügen Sie ihr Unternehmenskonto hinzu",
   "for_credits_and_regular_billing": "Für Gutschriften und regelmäßige Abrechnungen benötigen wir noch Ihre Bankverbindung und die Einwilligung zum Bankeinzugsverfahren",
   "i_authorize_collect_payment": "Ich ermächtige die Hamster Systems AG Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von der Hamster Systems AG auf mein Konto gezogenen Lastschriften einzulösen. Mit Akzeptanz dieser Vereinbarung verpflichtet sich die Hamster Systems AG im gleichen Maße auf die Auszahlung von Guthaben auf das o.g. Konto"
+=======
+  "branch_id": "Nummer: {}"
+>>>>>>> 82e6310add20a3e55cf7e4219b84572175aaa5af
 }
