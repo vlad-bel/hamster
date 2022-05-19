@@ -4,6 +4,7 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
@@ -23,7 +24,7 @@ class ProfileEditPage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  static const String routeName = RouteNames.profileEdit;
+  static const String path = RouteNames.profileEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -356,6 +357,10 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                         GestureDetector(
                           // TODO!
                           onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              AddPaymentPage.path,
+                            );
                             setState(() {
                               needToShowPaymentInfo = !needToShowPaymentInfo;
                             });

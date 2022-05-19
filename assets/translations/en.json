@@ -33,8 +33,6 @@
   "post_hint": "Postcode",
   "num_hint": "No.",
   "location_hint": "Location",
-<<<<<<< HEAD
-=======
   "country_hint": "Country",
   "company_profile" : "Company profile",
   "add_logo" : "Add logo",
@@ -52,7 +50,6 @@
   "iban" : "IBAN",
   "max_length_reached" : "The maximum number of characters has been reached",
   "min_length_field" : "The minimum number of characters was not reached",
->>>>>>> 82e6310add20a3e55cf7e4219b84572175aaa5af
   "user": "USER",
   "number": "NUMBER",
   "connection": "CONNECTION",
@@ -81,30 +78,8 @@
   "sunday": "Sunday",
   "opening_hours": "Opening hours",
   "closed": "closed",
-<<<<<<< HEAD
-  "branch_id": "Number: {}",
-  "country_hint": "Country",
-  "company_profile" : "Company profile",
-  "add_logo" : "Add logo",
-  "save" : "Save",
-  "company_name" : "Company name",
-  "street_house_number" : "Street, house number",
-  "zip_code_and_location" : "ZIP code and location",
-  "base_data" : "Base data",
-  "commercial_register_number" : "Commercial Register No. (if available)",
-  "tax_number" : "Tax number",
-  "vat_id" : "VAT ID (if available)",
-  "payment_information" : "Payment Information",
-  "max_length_reached" : "The maximum number of characters has been reached",
-  "min_length_field" : "The minimum number of characters was not reached",
-  "account_owner": "Account owner",
-  "iban": "IBAN",
-  "add_bank_details": "Add bank details",
   "add_business_account": "Add your business account",
   "for_credits_and_regular_billing": "For credits and regular billing, we still need your bank details and consent to the direct debit procedure",
-  "i_authorize_collect_payment": "I authorize Hamster Systems AG to collect payments from my account by direct debit. At the same time, I instruct my bank to redeem the direct debits drawn by Hamster Systems AG on my account. By accepting this agreement, Hamster Systems AG undertakes to im to the same extent on the payment of credit to the above account"
-
-=======
+  "i_authorize_collect_payment": "I authorize Hamster Systems AG to collect payments from my account by direct debit. At the same time, I instruct my bank to redeem the direct debits drawn by Hamster Systems AG on my account. By accepting this agreement, Hamster Systems AG undertakes to im to the same extent on the payment of credit to the above account",
   "branch_id": "Number: {}"
->>>>>>> 82e6310add20a3e55cf7e4219b84572175aaa5af
 }

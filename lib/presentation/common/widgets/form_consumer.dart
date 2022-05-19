@@ -17,7 +17,7 @@ class FormConsumer extends StatelessWidget {
       children: [
         WhiteButton(
           onPressed: () {
-            // TODO(dvakhnin): navigate back
+            Navigator.pop(context);
           },
         ),
         const Spacer(),
