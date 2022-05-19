@@ -33,11 +33,6 @@
   "post_hint": "Postcode",
   "num_hint": "No.",
   "location_hint": "Location",
-<<<<<<< HEAD
-  "country_hint": "Country",
-  "forget_password": "Have you forgotten\nyour password?",
-  "forget_password_subtitle" : "Enter your email address associated with\nyour account to continue\nresetting your password."
-=======
   "min_number": "Maximum number length {length} characters",
   "max_number": "Minimum number length {length} characters",
   "country_hint": "Country",
@@ -91,5 +86,4 @@
   "max_length_error": "The maximum length is $0 characters",
   "iban_format_error": "The IBAN number should only contain Latin letters and numbers",
   "branch_id": "Number: {}"
->>>>>>> 4121e1bb9a27b2f5f4feb66849768a2c798652c2
 }
