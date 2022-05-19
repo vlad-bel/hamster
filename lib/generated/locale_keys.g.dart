@@ -35,6 +35,8 @@ abstract class  LocaleKeys {
   static const post_hint = 'post_hint';
   static const num_hint = 'num_hint';
   static const location_hint = 'location_hint';
+  static const min_number = 'min_number';
+  static const max_number = 'max_number';
   static const country_hint = 'country_hint';
   static const add_logo = 'add_logo';
   static const save = 'save';
@@ -83,6 +85,9 @@ abstract class  LocaleKeys {
   static const add_business_account = 'add_business_account';
   static const for_credits_and_regular_billing = 'for_credits_and_regular_billing';
   static const i_authorize_collect_payment = 'i_authorize_collect_payment';
+  static const max_length_reached = 'max_length_reached';
+  static const max_length_error = 'max_length_error';
+  static const iban_format_error = 'iban_format_error';
   static const branch_id = 'branch_id';
 
 }

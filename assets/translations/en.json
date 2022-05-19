@@ -33,6 +33,8 @@
   "post_hint": "Postcode",
   "num_hint": "No.",
   "location_hint": "Location",
+  "min_number": "Maximum number length {length} characters",
+  "max_number": "Minimum number length {length} characters",
   "country_hint": "Country",
   "company_profile" : "Company profile",
   "add_logo" : "Add logo",
@@ -48,7 +50,6 @@
   "add_bank_details" : "Add bank details",
   "account_owner" : "Account owner",
   "iban" : "IBAN",
-  "max_length_reached" : "The maximum number of characters has been reached",
   "min_length_field" : "The minimum number of characters was not reached",
   "user": "USER",
   "number": "NUMBER",
@@ -81,5 +82,8 @@
   "add_business_account": "Add your business account",
   "for_credits_and_regular_billing": "For credits and regular billing, we still need your bank details and consent to the direct debit procedure",
   "i_authorize_collect_payment": "I authorize Hamster Systems AG to collect payments from my account by direct debit. At the same time, I instruct my bank to redeem the direct debits drawn by Hamster Systems AG on my account. By accepting this agreement, Hamster Systems AG undertakes to im to the same extent on the payment of credit to the above account",
+  "max_length_reached": "Maximum length reached",
+  "max_length_error": "The maximum length is $0 characters",
+  "iban_format_error": "The IBAN number should only contain Latin letters and numbers",
   "branch_id": "Number: {}"
 }
