@@ -1,9 +1,7 @@
-import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/model/login/login_request.dart';
-import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:business_terminal/domain/repository/token/token_repository.dart';
 import 'package:business_terminal/use_cases/login/login_use_case.dart';
 import 'package:dio/dio.dart';
@@ -11,11 +9,10 @@ import 'package:injectable/injectable.dart';
 
 @Singleton(as: LoginUseCase)
 class LoginUseCaseImpl extends LoginUseCase {
-  LoginUseCaseImpl(this.restClient);
+  LoginUseCaseImpl(this.restClient, this.tokenRepository);
 
   final RestClient restClient;
-
-  final tokenRepository = getIt.get<TokenRepository>();
+  final TokenRepository tokenRepository;
 
   @override
   Future<void> login(LoginRequest request) async {
