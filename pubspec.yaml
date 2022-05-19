@@ -14,7 +14,7 @@ dependencies:
 
   # State management:
   flutter_bloc: ^8.0.1
-  freezed_annotation: ^0.14.2
+  freezed_annotation: ^2.0.3
   equatable: ^2.0.3
 
   # DI
@@ -56,18 +56,19 @@ dependencies:
   flutter_portal: ^1.0.0
   data_table_2: ^2.2.2
   dotted_border: ^2.0.0+2
+  json_annotation: ^4.5.0
 
 dev_dependencies:
   bloc_test: ^9.0.3
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
-  very_good_analysis: ^2.4.0
+  very_good_analysis: ^3.0.0
   retrofit_generator:
 
   build_runner: ^2.0.1
   json_serializable: ^6.1.5
-  freezed: ^0.14.2
+  freezed: ^2.0.3+1
   injectable_generator: ^1.4.1
 
 flutter:
