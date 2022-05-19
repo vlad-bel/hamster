@@ -180,7 +180,7 @@ class LoginBlocListener extends StatelessWidget {
     context.read<AppStateCubit>().goToAuthZone(path);
     authNavigatorKey.currentState!.pushNamedAndRemoveUntil(
       path,
-      (predicate) => predicate.isFirst,
+      (predicate) => false,
     );
   }
 

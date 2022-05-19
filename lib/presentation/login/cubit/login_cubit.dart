@@ -43,7 +43,7 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       final company = await _companyUsecase.getRepCompany();
 
-      if (company != null) {
+      if (company.company != null) {
         return emit(LoginState.success(DashboardPage.path));
       }
 
@@ -54,9 +54,10 @@ class LoginCubit extends Cubit<LoginState> {
       ///it's returns to front 500 error
       ///need to more specify error for that case
       if (e.response.statusCode == 500) {
-        emit(LoginState.success(CompanyCreationPage.path));
+        return emit(LoginState.success(CompanyCreationPage.path));
       }
-      emit(LoginState.error(e));
+
+      return emit(LoginState.error(e));
     }
   }
 

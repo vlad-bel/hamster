@@ -9,7 +9,6 @@ import 'package:business_terminal/presentation/navigation/app_state_cubit/author
 import 'package:business_terminal/presentation/navigation/app_state_cubit/splash_state.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppStateCubit extends Cubit<AppState> {
@@ -41,7 +40,7 @@ class AppStateCubit extends Cubit<AppState> {
     try {
       final company = await companyUseCase.getRepCompany();
 
-      if (company != null) {
+      if (company.company != null) {
         return emit(AuthorizedState(
           initialRoute: DashboardPage.path,
         ));
@@ -61,9 +60,11 @@ class AppStateCubit extends Cubit<AppState> {
         ));
       }
 
-      emit(UnauthorizedState(
-        initialRoute: LoginPage.path,
-      ));
+      return emit(
+        UnauthorizedState(
+          initialRoute: LoginPage.path,
+        ),
+      );
     }
   }
 

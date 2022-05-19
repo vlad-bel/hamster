@@ -10,7 +10,7 @@ class AuthorizedState extends AppState {
   }) : super(
           initialRoute: initialRoute,
           onGenerateRoute: (RouteSettings settings) {
-            late Widget page;
+            Widget? page;
             final params = settings.arguments as Map<String, dynamic>?;
             switch (settings.name) {
               case CompanyCreationPage.path:
@@ -29,7 +29,7 @@ class AuthorizedState extends AppState {
               transitionDuration: Duration.zero,
               reverseTransitionDuration: Duration.zero,
               pageBuilder: (context, anim1, anim2) {
-                return page;
+                return page!;
               },
               settings: settings,
             );
