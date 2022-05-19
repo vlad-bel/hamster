@@ -1,4 +1,6 @@
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/generated/locale_keys.g.dart';
+import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
@@ -195,7 +197,7 @@ class CompanyCreationForm extends StatelessWidget {
   Future<void> goBack(BuildContext context) async {
     final cubit = context.read<CompanyCreationCubit>();
     cubit.logout();
-    BlocProvider.of<AppStateCubit>(context).goToUnauthZone(LoginPage.path);
+    context.read<AppStateCubit>().goToUnauthZone(LoginPage.path);
     unauthNavigatorKey.currentState!.pushNamedAndRemoveUntil(
       LoginPage.path,
       (predicate) => predicate.isFirst,

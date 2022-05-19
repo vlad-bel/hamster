@@ -1,4 +1,3 @@
-import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:business_terminal/domain/repository/token/default_token_repository.dart';
 import 'package:dio/dio.dart';
@@ -70,7 +69,7 @@ Future _refreshToken(
         method: 'POST',
         contentType: 'application/json',
         headers: <String, String>{
-          'Authorization': 'Bearer $oldRefreshToken',
+          'Authorization': 'Bearer ${oldRefreshToken ?? ''}',
         },
       ),
     );

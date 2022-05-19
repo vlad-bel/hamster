@@ -24,10 +24,10 @@ class RepCompany {
   Map<String, dynamic> toJson() => _$RepCompanyToJson(this);
 
   String getFullAddress() {
-    return '${company.streetName}'
-        ' ${company.streetNumber},'
-        ' ${company.postalCode}'
-        ' ${company.city}';
+    return '${company?.streetName}'
+        ' ${company?.streetNumber},'
+        ' ${company?.postalCode}'
+        ' ${company?.city}';
   }
 }
 

@@ -177,7 +177,7 @@ class LoginBlocListener extends StatelessWidget {
     String path,
   ) {
     context.loaderOverlay.hide();
-    BlocProvider.of<AppStateCubit>(context).goToAuthZone(path);
+    context.read<AppStateCubit>().goToAuthZone(path);
     authNavigatorKey.currentState!.pushNamedAndRemoveUntil(
       path,
       (predicate) => predicate.isFirst,

@@ -49,9 +49,11 @@ class CompanyUseCaseImpl extends CompanyUsecase {
   }
 
   @override
-  Future<RepCompany?> getRepCompany() async {
+  Future<RepCompany> getRepCompany() async {
     try {
-      return await repository.repCompany();
+      final repCopany = await _repository.repCompany();
+
+      return repCopany;
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),

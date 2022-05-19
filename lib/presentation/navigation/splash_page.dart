@@ -7,8 +7,10 @@ class SlashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(
-          'Splash page',
+        child: SizedBox(
+          width: 64,
+          height: 64,
+          child: CircularProgressIndicator(),
         ),
       ),
     );
