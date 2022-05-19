@@ -29,6 +29,19 @@ class _$DashboardStateTearOff {
       repCompany: repCompany,
     );
   }
+
+  ErrorDashboardState error(
+      {int? testCount,
+      bool? finansenOpen,
+      bool? administrationOpen,
+      RepCompany? repCompany}) {
+    return ErrorDashboardState(
+      testCount: testCount,
+      finansenOpen: finansenOpen,
+      administrationOpen: administrationOpen,
+      repCompany: repCompany,
+    );
+  }
 }
 
 /// @nodoc
@@ -46,6 +59,9 @@ mixin _$DashboardState {
     required TResult Function(int? testCount, bool? finansenOpen,
             bool? administrationOpen, RepCompany? repCompany)
         init,
+    required TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +69,9 @@ mixin _$DashboardState {
     TResult Function(int? testCount, bool? finansenOpen,
             bool? administrationOpen, RepCompany? repCompany)?
         init,
+    TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)?
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,22 +79,28 @@ mixin _$DashboardState {
     TResult Function(int? testCount, bool? finansenOpen,
             bool? administrationOpen, RepCompany? repCompany)?
         init,
+    TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)?
+        error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitDashboardState value) init,
+    required TResult Function(ErrorDashboardState value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitDashboardState value)? init,
+    TResult Function(ErrorDashboardState value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitDashboardState value)? init,
+    TResult Function(ErrorDashboardState value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -247,6 +272,9 @@ class _$InitDashboardState implements InitDashboardState {
     required TResult Function(int? testCount, bool? finansenOpen,
             bool? administrationOpen, RepCompany? repCompany)
         init,
+    required TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)
+        error,
   }) {
     return init(testCount, finansenOpen, administrationOpen, repCompany);
   }
@@ -257,6 +285,9 @@ class _$InitDashboardState implements InitDashboardState {
     TResult Function(int? testCount, bool? finansenOpen,
             bool? administrationOpen, RepCompany? repCompany)?
         init,
+    TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)?
+        error,
   }) {
     return init?.call(testCount, finansenOpen, administrationOpen, repCompany);
   }
@@ -267,6 +298,9 @@ class _$InitDashboardState implements InitDashboardState {
     TResult Function(int? testCount, bool? finansenOpen,
             bool? administrationOpen, RepCompany? repCompany)?
         init,
+    TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)?
+        error,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -279,6 +313,7 @@ class _$InitDashboardState implements InitDashboardState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitDashboardState value) init,
+    required TResult Function(ErrorDashboardState value) error,
   }) {
     return init(this);
   }
@@ -287,6 +322,7 @@ class _$InitDashboardState implements InitDashboardState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitDashboardState value)? init,
+    TResult Function(ErrorDashboardState value)? error,
   }) {
     return init?.call(this);
   }
@@ -295,6 +331,7 @@ class _$InitDashboardState implements InitDashboardState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitDashboardState value)? init,
+    TResult Function(ErrorDashboardState value)? error,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -322,5 +359,208 @@ abstract class InitDashboardState implements DashboardState {
   @override
   @JsonKey(ignore: true)
   $InitDashboardStateCopyWith<InitDashboardState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ErrorDashboardStateCopyWith<$Res>
+    implements $DashboardStateCopyWith<$Res> {
+  factory $ErrorDashboardStateCopyWith(
+          ErrorDashboardState value, $Res Function(ErrorDashboardState) then) =
+      _$ErrorDashboardStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {int? testCount,
+      bool? finansenOpen,
+      bool? administrationOpen,
+      RepCompany? repCompany});
+}
+
+/// @nodoc
+class _$ErrorDashboardStateCopyWithImpl<$Res>
+    extends _$DashboardStateCopyWithImpl<$Res>
+    implements $ErrorDashboardStateCopyWith<$Res> {
+  _$ErrorDashboardStateCopyWithImpl(
+      ErrorDashboardState _value, $Res Function(ErrorDashboardState) _then)
+      : super(_value, (v) => _then(v as ErrorDashboardState));
+
+  @override
+  ErrorDashboardState get _value => super._value as ErrorDashboardState;
+
+  @override
+  $Res call({
+    Object? testCount = freezed,
+    Object? finansenOpen = freezed,
+    Object? administrationOpen = freezed,
+    Object? repCompany = freezed,
+  }) {
+    return _then(ErrorDashboardState(
+      testCount: testCount == freezed
+          ? _value.testCount
+          : testCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      finansenOpen: finansenOpen == freezed
+          ? _value.finansenOpen
+          : finansenOpen // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      administrationOpen: administrationOpen == freezed
+          ? _value.administrationOpen
+          : administrationOpen // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      repCompany: repCompany == freezed
+          ? _value.repCompany
+          : repCompany // ignore: cast_nullable_to_non_nullable
+              as RepCompany?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ErrorDashboardState implements ErrorDashboardState {
+  const _$ErrorDashboardState(
+      {this.testCount,
+      this.finansenOpen,
+      this.administrationOpen,
+      this.repCompany});
+
+  @override
+  final int? testCount;
+  @override
+  final bool? finansenOpen;
+  @override
+  final bool? administrationOpen;
+  @override
+  final RepCompany? repCompany;
+
+  @override
+  String toString() {
+    return 'DashboardState.error(testCount: $testCount, finansenOpen: $finansenOpen, administrationOpen: $administrationOpen, repCompany: $repCompany)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ErrorDashboardState &&
+            (identical(other.testCount, testCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.testCount, testCount)) &&
+            (identical(other.finansenOpen, finansenOpen) ||
+                const DeepCollectionEquality()
+                    .equals(other.finansenOpen, finansenOpen)) &&
+            (identical(other.administrationOpen, administrationOpen) ||
+                const DeepCollectionEquality()
+                    .equals(other.administrationOpen, administrationOpen)) &&
+            (identical(other.repCompany, repCompany) ||
+                const DeepCollectionEquality()
+                    .equals(other.repCompany, repCompany)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(testCount) ^
+      const DeepCollectionEquality().hash(finansenOpen) ^
+      const DeepCollectionEquality().hash(administrationOpen) ^
+      const DeepCollectionEquality().hash(repCompany);
+
+  @JsonKey(ignore: true)
+  @override
+  $ErrorDashboardStateCopyWith<ErrorDashboardState> get copyWith =>
+      _$ErrorDashboardStateCopyWithImpl<ErrorDashboardState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)
+        init,
+    required TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)
+        error,
+  }) {
+    return error(testCount, finansenOpen, administrationOpen, repCompany);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)?
+        init,
+    TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)?
+        error,
+  }) {
+    return error?.call(testCount, finansenOpen, administrationOpen, repCompany);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)?
+        init,
+    TResult Function(int? testCount, bool? finansenOpen,
+            bool? administrationOpen, RepCompany? repCompany)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(testCount, finansenOpen, administrationOpen, repCompany);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitDashboardState value) init,
+    required TResult Function(ErrorDashboardState value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InitDashboardState value)? init,
+    TResult Function(ErrorDashboardState value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitDashboardState value)? init,
+    TResult Function(ErrorDashboardState value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ErrorDashboardState implements DashboardState {
+  const factory ErrorDashboardState(
+      {int? testCount,
+      bool? finansenOpen,
+      bool? administrationOpen,
+      RepCompany? repCompany}) = _$ErrorDashboardState;
+
+  @override
+  int? get testCount => throw _privateConstructorUsedError;
+  @override
+  bool? get finansenOpen => throw _privateConstructorUsedError;
+  @override
+  bool? get administrationOpen => throw _privateConstructorUsedError;
+  @override
+  RepCompany? get repCompany => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $ErrorDashboardStateCopyWith<ErrorDashboardState> get copyWith =>
       throw _privateConstructorUsedError;
 }

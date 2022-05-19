@@ -22,6 +22,9 @@ abstract class RestClient {
     @Body() Map<String, dynamic> loginMap,
   );
 
+  @POST('/rep/logout')
+  Future<void> logout();
+
   @POST('/rep/init-creation')
   Future<String> initUserInfoCreation(
     @Body() Map<String, dynamic> userInfoMap,
@@ -63,11 +66,8 @@ abstract class RestClient {
   @POST('/company')
   Future<Company> createCompany(
     @Body() Map<String, dynamic> body,
-    @Header("Authorization") String contentType,
   );
 
   @GET('/rep/company')
-  Future<RepCompany> repCompany(
-    @Header("Authorization") String authToken,
-  );
+  Future<RepCompany> repCompany();
 }

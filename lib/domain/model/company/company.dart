@@ -66,4 +66,12 @@ class Company {
       _$CompanyFromJson(json);
 
   Map<String, dynamic> toJson() => _$CompanyToJson(this);
+
+  String getFullAddress() {
+    return '${streetName ?? ""} '
+        '${streetNumber ?? ""}'
+        ','
+        ' ${postalCode ?? ""} '
+        '${country ?? ""}';
+  }
 }

@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'country_code_selector_state.freezed.dart';
 
 @freezed
-abstract class CountryCodeSelectorState with _$CountryCodeSelectorState {
+class CountryCodeSelectorState with _$CountryCodeSelectorState {
   const factory CountryCodeSelectorState.loading() =
       LoadingCountryCodeSelectorState;
 

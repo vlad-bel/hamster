@@ -39,7 +39,6 @@ class CompanyUseCaseImpl extends CompanyUsecase {
           country: country,
           countryCode: countryCode,
         ).toJson(),
-        accessToken,
       );
     } on DioError catch (e) {
       throw ApiFailure(
@@ -52,9 +51,9 @@ class CompanyUseCaseImpl extends CompanyUsecase {
   @override
   Future<RepCompany> getRepCompany() async {
     try {
-      final accessToken = await _tokenRepository.getAccessToken() ?? '';
+      final repCopany = await _repository.repCompany();
 
-      return await _repository.repCompany(accessToken);
+      return repCopany;
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),

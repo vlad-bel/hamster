@@ -9,7 +9,6 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:routemaster/routemaster.dart';
 
 class SideMenuItems extends StatefulWidget {
   const SideMenuItems({
@@ -67,7 +66,8 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
               ),
               BlocBuilder<DashboardCubit, DashboardState>(
                 builder: (context, state) {
-                  final count = state.when(init: (count, _, __, ___) => count);
+                  final count =
+                      state.whenOrNull(init: (count, _, __, ___) => count);
                   return MenuItem(
                     image: '/images/administration.svg',
                     name: 'Administration',
@@ -151,7 +151,6 @@ class _MenuItemState extends State<MenuItem> {
         headerAlignment: ExpandablePanelHeaderAlignment.center,
         hasIcon: false,
         tapHeaderToExpand: (widget.isBlocked ?? true) ? false : true,
-        // tapHeaderToExpand: false,
       ),
       header: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),

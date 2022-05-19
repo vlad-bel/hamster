@@ -6,15 +6,16 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_backgro
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
+import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmaion_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PhoneVerificationResultPage extends StatelessWidget {
-  const PhoneVerificationResultPage({Key? key}) : super(key: key);
-
   static const path = '${NumberCodeConfirmationPage.path}/result_page';
+
+  const PhoneVerificationResultPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +51,7 @@ class PhoneVerificationResultPage extends StatelessWidget {
   }
 
   void goToNextPage(BuildContext context) {
-    RegistrationFlowManager.shouldGoFromLoginToCompanyCreation();
-    Navigator.of(context).pushNamed(LoginPage.path);
+    Navigator.of(context).pushReplacementNamed(LoginPage.path);
   }
 }
 
