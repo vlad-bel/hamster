@@ -5,7 +5,6 @@ import 'package:business_terminal/presentation/add_payment/form_validation/add_p
 import 'package:business_terminal/presentation/common/widgets/checkbox/other/position.dart';
 import 'package:business_terminal/presentation/common/widgets/checkbox/ui_checkbox.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
-import 'package:business_terminal/presentation/common/widgets/dashed_button.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/other/iban_input_formatter.dart';
 import 'package:easy_localization/easy_localization.dart';

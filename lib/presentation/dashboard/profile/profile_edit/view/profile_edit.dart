@@ -116,7 +116,9 @@ class _ProfileEditContent extends StatefulWidget {
 }
 
 class _ProfileEditContentState extends State<_ProfileEditContent> {
-  bool needToShowPaymentInfo = false;
+  // TODO: Temporary - remove
+  var _accountOwner = '';
+  var _iban = '';
 
   @override
   Widget build(BuildContext context) {
@@ -147,9 +149,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                         color: lynch,
                       ),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    const SizedBox(height: 30),
                     Center(
                       child: AppDashBorderedContainer(
                         boxShape: BoxShape.circle,
@@ -167,9 +167,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                   Icons.add_circle,
                                   color: denim1,
                                 ),
-                                const SizedBox(
-                                  width: 4,
-                                ),
+                                const SizedBox(width: 4),
                                 Text(
                                   // TODO add l18n key
                                   tr('add_logo'),
@@ -199,9 +197,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                 label: tr(widget.formSettings.kCompanyName),
                                 hint: tr(widget.formSettings.kCompanyName),
                               ),
-                              const SizedBox(
-                                height: 25,
-                              ),
+                              const SizedBox(height: 25),
                               // TODO add l18n key
                               FormTextField(
                                 validationMessages: (control) =>
@@ -215,9 +211,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                   widget.formSettings.kStreetHouseNumber,
                                 ),
                               ),
-                              const SizedBox(
-                                height: 25,
-                              ),
+                              const SizedBox(height: 25),
                               // TODO add l18n key
                               FormTextField(
                                 validationMessages: (control) =>
@@ -230,9 +224,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                   widget.formSettings.kZipCodeAndLocation,
                                 ),
                               ),
-                              const SizedBox(
-                                height: 25,
-                              ),
+                              const SizedBox(height: 25),
                               BlocProvider(
                                 create: (_) =>
                                     GetIt.instance.get<CountrySelectorCubit>(),
@@ -250,9 +242,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                 ),
               ),
             ),
-            const SizedBox(
-              width: 32,
-            ),
+            const SizedBox(width: 32),
             SizedBox(
               height: 750,
               child: Column(
@@ -308,9 +298,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                               widget.formSettings.kTaxNumber,
                             ),
                           ),
-                          const SizedBox(
-                            height: 25,
-                          ),
+                          const SizedBox(height: 25),
                           // TODO add l18n key
                           FormTextField(
                             validationMessages: (control) =>
@@ -323,16 +311,12 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                               widget.formSettings.kVatId,
                             ),
                           ),
-                          const SizedBox(
-                            height: 25,
-                          ),
+                          const SizedBox(height: 25),
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                  const SizedBox(height: 24),
                   Container(
                     width: 450,
                     height: 280,
@@ -345,16 +329,22 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                     ),
                     child: GestureDetector(
                       // TODO!
-                      onTap: () {
-                        Navigator.pushNamed(
+                      onTap: () async {
+                        final result = await Navigator.pushNamed(
                           context,
                           AddPaymentPage.path,
-                        );
+                        ) as List<String>?;
+                        if (result == null) return;
+
                         setState(() {
-                          needToShowPaymentInfo = !needToShowPaymentInfo;
+                          _accountOwner = result[0];
+                          _iban = result[1];
                         });
                       },
-                      child: PaymentInfo(),
+                      child: PaymentInfo(
+                        accountOwner: _accountOwner,
+                        iban: _iban,
+                      ),
                     ),
                   ),
                 ],
