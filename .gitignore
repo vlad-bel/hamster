@@ -132,3 +132,9 @@ app.*.map.json
 pubspec.lock
 
 .firebase/hosting.YnVpbGQvd2Vi.cache
+
+# Hide all generated files
+*.g.dart
+
+# Except this one
+!lib/generated/locale_keys.g.dart

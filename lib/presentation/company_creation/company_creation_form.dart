@@ -1,5 +1,4 @@
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
@@ -29,9 +28,9 @@ class CompanyCreationForm extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 120),
         child: OnboardingWhiteContainer(
           header: OnboardingWhiteContainerHeader(
-            header: tr('create_company_profile'),
+            header: tr(LocaleKeys.create_company_profile),
             subHeader: Text(
-              tr('create_company_profile_descr'),
+              tr(LocaleKeys.create_company_profile_descr),
               style: inter14,
             ),
           ),
@@ -67,8 +66,8 @@ class CompanyCreationForm extends StatelessWidget {
                       SizedBox(height: 26),
                       FormTextField(
                         name: CompanyCreationCubit.companyField,
-                        hint: tr('company_hint'),
-                        label: tr('company_hint'),
+                        hint: tr(LocaleKeys.company_hint),
+                        label: tr(LocaleKeys.company_hint),
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -78,16 +77,16 @@ class CompanyCreationForm extends StatelessWidget {
                             flex: 3,
                             child: FormTextField(
                               name: CompanyCreationCubit.streetField,
-                              hint: tr('street_hint'),
-                              label: tr('street_hint'),
+                              hint: tr(LocaleKeys.street_hint),
+                              label: tr(LocaleKeys.street_hint),
                             ),
                           ),
                           SizedBox(width: 16),
                           Flexible(
                             child: FormTextField(
                               name: CompanyCreationCubit.streetNumberField,
-                              hint: tr('num_hint'),
-                              label: tr('num_hint'),
+                              hint: tr(LocaleKeys.num_hint),
+                              label: tr(LocaleKeys.num_hint),
                             ),
                           ),
                         ],
@@ -99,8 +98,8 @@ class CompanyCreationForm extends StatelessWidget {
                           Flexible(
                             child: FormTextField(
                               name: CompanyCreationCubit.postcodeField,
-                              hint: tr('post_hint'),
-                              label: tr('post_hint'),
+                              hint: tr(LocaleKeys.post_hint),
+                              label: tr(LocaleKeys.post_hint),
                             ),
                           ),
                           SizedBox(width: 16),
@@ -108,8 +107,8 @@ class CompanyCreationForm extends StatelessWidget {
                             flex: 3,
                             child: FormTextField(
                               name: CompanyCreationCubit.cityField,
-                              hint: tr('location_hint'),
-                              label: tr('location_hint'),
+                              hint: tr(LocaleKeys.location_hint),
+                              label: tr(LocaleKeys.location_hint),
                             ),
                           ),
                         ],

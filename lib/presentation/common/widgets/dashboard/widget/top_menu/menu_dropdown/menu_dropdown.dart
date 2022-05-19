@@ -3,9 +3,11 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
+import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_dropdown/cubit/menu_dropdown_cubit.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
+import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +45,22 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  tr('user_account'),
+                  tr(LocaleKeys.user_account),
+                  style: inter14Medium,
+                ),
+                onPressed: () {
+                  // TODO change to ProfilePage instead of ProfileEditPage
+                  Navigator.pushNamed(
+                    context,
+                    ProfileEditPage.path,
+                  );
+                  close();
+                },
+              ),
+              CupertinoButton(
+                padding: EdgeInsets.zero,
+                child: Text(
+                  tr(LocaleKeys.change_password),
                   style: inter14Medium,
                 ),
                 onPressed: () {
@@ -53,7 +70,7 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  tr('change_password'),
+                  tr(LocaleKeys.settings),
                   style: inter14Medium,
                 ),
                 onPressed: () {
@@ -63,17 +80,7 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  tr('settings'),
-                  style: inter14Medium,
-                ),
-                onPressed: () {
-                  close();
-                },
-              ),
-              CupertinoButton(
-                padding: EdgeInsets.zero,
-                child: Text(
-                  tr('help_center'),
+                  tr(LocaleKeys.help_center),
                   style: inter14Medium,
                 ),
                 onPressed: () {
@@ -84,7 +91,7 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  tr('cancel_register'),
+                  tr(LocaleKeys.cancel_register),
                   style: inter14Medium.copyWith(color: razzmatazz),
                 ),
                 onPressed: () {

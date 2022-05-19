@@ -1,5 +1,8 @@
 import 'dart:html';
+
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
+import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
@@ -19,7 +22,7 @@ String phoneNumberParam = 'phone_number';
 String verifyMethodParam = 'verify_method';
 
 class UnauthorizedState extends AppState {
-  UnauthorizedState({
+  const UnauthorizedState({
     required String initialRoute,
   }) : super(
           initialRoute: initialRoute,
@@ -112,7 +115,7 @@ class UnauthorizedState extends AppState {
               pageBuilder: (context, anim1, anim2) {
                 return page;
               },
-              settings: routeSettings,
+              settings: settings,
             );
           },
         );

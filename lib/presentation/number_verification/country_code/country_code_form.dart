@@ -1,3 +1,4 @@
+import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/country_code_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
@@ -25,9 +26,9 @@ class ContryCodeForm extends StatelessWidget {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: tr('confirm_number_title'),
+          header: tr(LocaleKeys.confirm_number_title),
           subHeader: Text(
-            tr('select_number_title'),
+            tr(LocaleKeys.select_number_title),
           ),
         ),
         body: ReactiveFormBuilder(
