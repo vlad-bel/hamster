@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'country_selector_state.freezed.dart';
 
 @freezed
-abstract class CountrySelectorState with _$CountrySelectorState {
+class CountrySelectorState with _$CountrySelectorState {
   const factory CountrySelectorState.loading() = LoadingCountrySelectorState;
 
   const factory CountrySelectorState.open({
