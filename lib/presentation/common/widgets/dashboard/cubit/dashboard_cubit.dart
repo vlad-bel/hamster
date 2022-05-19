@@ -5,7 +5,7 @@ import 'package:business_terminal/use_cases/login/login_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@Singleton()
 class DashboardCubit extends Cubit<DashboardState> {
   DashboardCubit() : super(const DashboardState.init());
 

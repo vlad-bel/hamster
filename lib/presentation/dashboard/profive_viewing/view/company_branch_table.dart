@@ -1,5 +1,6 @@
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
+import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
 import 'package:business_terminal/presentation/common/widgets/dashed_button/dashed_button.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/profile_view_table.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/control_panel/branch_table_control_table.dart';
@@ -83,7 +84,9 @@ class CompanyBranchTable extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           DashedButton(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, BranchProfilePage.path);
+            },
             label: tr('add_branch'),
           ),
         ],
