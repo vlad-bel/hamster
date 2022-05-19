@@ -131,6 +131,7 @@ class _CountryList extends StatelessWidget {
                     final country = countries![index];
                     return ListTile(
                       onTap: () {
+
                         cubit.numberForm
                             .control(
                               CountryCodeSelectorCubit.numberTextfield,

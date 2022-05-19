@@ -4,13 +4,11 @@ import 'package:injectable/injectable.dart';
 
 @Singleton(as: TokenRepository)
 class DefaultTokenRepository extends TokenRepository {
-  // TODO: add apiRepository and implement refreshToken() later
   final storage = const FlutterSecureStorage();
 
   final String _accessTokenKey = 'access_token';
   final String _refreshTokenKey = 'refresh_token';
   final String _bearer = 'Bearer ';
-
 
   @override
   Future<String?> getAccessToken() async {

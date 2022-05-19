@@ -33,6 +33,8 @@
   "post_hint": "Postcode",
   "num_hint": "No.",
   "location_hint": "Location",
+  "min_number": "Maximum number length {length} characters",
+  "max_number": "Minimum number length {length} characters",
   "country_hint": "Country",
   "company_profile" : "Company profile",
   "add_logo" : "Add logo",

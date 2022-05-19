@@ -35,6 +35,8 @@ abstract class  LocaleKeys {
   static const post_hint = 'post_hint';
   static const num_hint = 'num_hint';
   static const location_hint = 'location_hint';
+  static const min_number = 'min_number';
+  static const max_number = 'max_number';
   static const country_hint = 'country_hint';
   static const add_logo = 'add_logo';
   static const save = 'save';
