@@ -58,6 +58,7 @@ unlinked_spec.ds
 .build/
 **.freezed.dart
 **.g.dart
+**.config.dart
 **/generated_plugin_registrant.dart
 
 # Android related
