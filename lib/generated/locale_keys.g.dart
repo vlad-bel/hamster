@@ -89,5 +89,14 @@ abstract class  LocaleKeys {
   static const max_length_error = 'max_length_error';
   static const iban_format_error = 'iban_format_error';
   static const branch_id = 'branch_id';
+  static const forget_password = 'forget_password';
+  static const forget_password_subtitle = 'forget_password_subtitle';
+  static const forgetpassword_email_subtitle = 'forgetpassword_email_subtitle';
+  static const forgetpassword_email_subtitle2 = 'forgetpassword_email_subtitle2';
+  static const email = 'email';
+  static const forget_password_email_inside_subtitle = 'forget_password_email_inside_subtitle';
+  static const forget_password_email_inside_subtitle2 = 'forget_password_email_inside_subtitle2';
+  static const forget_pasword_header = 'forget_pasword_header';
+  static const resetemail = 'resetemail';
 
 }
