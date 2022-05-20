@@ -23,6 +23,7 @@ class UiCheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Transform.translate(
       offset: position?.toOffset() ?? Offset.zero,
+      // TODO(dvakhnin): Move to reactive checkbox
       child: CheckboxListTile(
         value: value,
         title: title,
