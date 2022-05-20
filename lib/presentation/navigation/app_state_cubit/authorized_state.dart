@@ -1,4 +1,5 @@
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
+import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
@@ -30,6 +31,9 @@ class AuthorizedState extends AppState {
                 break;
               case AddPaymentPage.path:
                 page = const AddPaymentPage();
+                break;
+              case BranchProfilePage.path:
+                page = BranchProfilePage();
                 break;
             }
 
