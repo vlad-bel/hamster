@@ -137,8 +137,8 @@ class _CountryList extends StatelessWidget {
                               CountryCodeSelectorCubit.numberTextfield,
                             )
                             .value = '';
-                        overlayEntry.remove();
                         cubit.selectCountry(country);
+                        overlayEntry.remove();
                       },
                       title: SizedBox(
                         width: size.width,

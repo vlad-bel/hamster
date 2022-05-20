@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-@singleton
+@injectable
 class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   CountrySelectorCubit({
     required this.useCase,

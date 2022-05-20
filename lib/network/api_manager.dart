@@ -17,7 +17,7 @@ Dio httpClientInit() {
   final option = BaseOptions()
     ..headers = <String, dynamic>{
       'Accept': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
+      'X-Requested-With': 'XMLHttpRequest',
     };
 
   final dio = Dio(option)
@@ -41,11 +41,7 @@ Dio httpClientInit() {
           return handler.next(response);
         },
         onError: (DioError error, handler) async {
-          try {
-            return await _refreshToken(error, handler);
-          } catch (e) {
-            return handler.next(error);
-          }
+          return await _refreshToken(error, handler);
         },
       ),
     )
@@ -60,10 +56,10 @@ Future _refreshToken(
 ) async {
   if (error.response?.statusCode == 401 &&
       error.requestOptions.path != '/rep/login') {
-    final opts = error.requestOptions;
     final oldRefreshToken = await tokenRepository.getRefreshToken();
 
-    var response = await dio.post<dynamic>(
+    final refreshResponse = await dio.post<dynamic>(
+      ///TODO extract it to .env file after demo
       'http://localhost:3003/api/rep/refresh',
       options: Options(
         method: 'POST',
@@ -73,16 +69,40 @@ Future _refreshToken(
         },
       ),
     );
-    final loginResponse = LoginResponse.fromJson(
-      response.data as Map<String, dynamic>,
-    );
-    await tokenRepository.setAccessToken(loginResponse.accessToken);
-    await tokenRepository.setRefreshToken(loginResponse.refreshToken);
 
-    error.response?.requestOptions.headers['Authorization'] =
-        'Bearer ${loginResponse.accessToken}';
+    if (refreshResponse.statusCode! >= 200 &&
+        refreshResponse.statusCode! <= 300) {
+      final loginResponse = LoginResponse.fromJson(
+        refreshResponse.data as Map<String, dynamic>,
+      );
 
-    return handler.resolve(response);
+      await tokenRepository.setAccessToken(loginResponse.accessToken);
+      await tokenRepository.setRefreshToken(loginResponse.refreshToken);
+
+      final options = error.requestOptions;
+
+      options.headers['Authorization'] = 'Bearer ${loginResponse.accessToken}';
+      options.headers['content-type'] = 'application/json';
+
+      try {
+        final newResponse = await dio.request<dynamic>(
+          ///TODO extract it to .env file after demo
+          'http://localhost:3003/api${options.path}',
+          options: Options(
+            headers: options.headers,
+            method: options.method,
+            contentType: options.contentType,
+            responseType: options.responseType,
+          ),
+        );
+
+        return handler.resolve(newResponse);
+      } on DioError catch (e) {
+        return handler.next(e);
+      }
+    }
+
+    return handler.next(error);
   }
 
   return handler.next(error);
