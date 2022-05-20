@@ -3,7 +3,6 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SideMenuHeader extends StatelessWidget {
@@ -36,10 +35,11 @@ class SideMenuHeader extends StatelessWidget {
             ),
             const Spacer(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 32.0),
+              padding: const EdgeInsets.only(bottom: 32),
               child: CupertinoButton(
                 child: Text(
-                  "ÄNDERN",
+                  // TODO(@v.belenkov): Add localization
+                  'ÄNDERN',
                   style: inter14.copyWith(
                     color: denim,
                   ),

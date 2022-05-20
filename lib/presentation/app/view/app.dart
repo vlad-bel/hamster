@@ -18,6 +18,8 @@ final authNavigatorKey = GlobalKey<NavigatorState>();
 final unauthNavigatorKey = GlobalKey<NavigatorState>();
 
 class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GlobalLoaderOverlay(
@@ -45,12 +47,12 @@ class App extends StatelessWidget {
               Theme.of(context).textTheme.apply(
                     bodyColor: lynch,
                     displayColor: lynch,
-                      ),
-                ),
-                checkboxTheme: CheckboxThemeData(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
                   ),
+            ),
+            checkboxTheme: CheckboxThemeData(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
             ),
           ),
           localizationsDelegates: context.localizationDelegates,

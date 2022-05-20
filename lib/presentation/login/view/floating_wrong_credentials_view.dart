@@ -60,9 +60,7 @@ class FloatingWrongCredentialsView extends StatelessWidget {
                               ),
                               const SizedBox(height: 26),
                               TextButton(
-                                onPressed: () {
-                                  print('clicked');
-                                },
+                                onPressed: () {},
                                 child: const Text(
                                   'Hinweis schließen',
                                   style: TextStyle(

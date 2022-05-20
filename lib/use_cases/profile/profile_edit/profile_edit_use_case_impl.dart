@@ -18,12 +18,10 @@ class ProfileEditUsecaseImpl extends ProfileEditUsecase {
     ProfileEditRequest profileEditRequest,
   ) async {
     try {
-      final response = await repository.updateProfile(
+      await repository.updateProfile(
         companyId,
         profileEditRequest.toJson(),
       );
-
-      print('response is $response');
 
       return await Future.delayed(
         const Duration(

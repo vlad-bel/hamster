@@ -16,7 +16,10 @@ class ProfileViewTableRow extends DataTableSource {
 
   ///todo refactor to bloc
   ///will be done on next pull request
-  void sort<T>(Comparable<T> Function(RepCompany d) getField, bool ascending) {
+  void sort<T>(
+    Comparable<T> Function(RepCompany d) getField, {
+    required bool ascending,
+  }) {
     companies.sort((a, b) {
       final aValue = getField(a);
       final bValue = getField(b);
@@ -32,7 +35,6 @@ class ProfileViewTableRow extends DataTableSource {
     final company = companies[index];
     return DataRow2.byIndex(
       index: index,
-      selected: false,
       onSelectChanged: (value) {},
       cells: [
         DataCell(
@@ -40,6 +42,7 @@ class ProfileViewTableRow extends DataTableSource {
             repCompany: company,
           ),
         ),
+
         ///TODO remove mock data
         ///get data from backend
         const DataCell(Text('0000')),
@@ -48,9 +51,9 @@ class ProfileViewTableRow extends DataTableSource {
             imagePath: [
               ///TODO remove mock data
               ///get data from backend
-              "https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg",
-              "https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg",
-              "https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg",
+              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
+              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
+              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
             ],
           ),
         ),

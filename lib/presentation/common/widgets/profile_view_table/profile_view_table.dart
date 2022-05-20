@@ -1,6 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/profile_view_table_row.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/header_cell.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/profile_view_table_row.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

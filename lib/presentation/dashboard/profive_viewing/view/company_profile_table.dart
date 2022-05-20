@@ -34,8 +34,8 @@ class CompanyProfileTable extends StatelessWidget {
                     fillingProgress: 1,
                   ),
                   company: Company(
-                    companyName: "Testcompany",
-                    streetName: "Streetname",
+                    companyName: 'Testcompany',
+                    streetName: 'Streetname',
                     streetNumber: '1',
                     postalCode: '36037',
                     city: 'Fulda',

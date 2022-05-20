@@ -29,11 +29,13 @@ class DashboardCubit extends Cubit<DashboardState> {
         testCount ??= 0;
 
         testCount = 3;
-        emit(DashboardState.init(
-          testCount: testCount,
-          administrationOpen: true,
-          finansenOpen: true,
-        ));
+        emit(
+          DashboardState.init(
+            testCount: testCount,
+            administrationOpen: true,
+            finansenOpen: true,
+          ),
+        );
       },
       error: (
         int? testCount,

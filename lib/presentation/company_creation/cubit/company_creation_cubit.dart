@@ -68,7 +68,7 @@ class CompanyCreationCubit extends Cubit<CompanyCreationState> {
   Future createCompany(Country country) async {
     try {
       emit(const CompanyCreationState.loading());
-      final response = await usecase.createCompany(
+      await usecase.createCompany(
         companyName: formGroup.control(companyField).value as String,
         city: formGroup.control(cityField).value as String,
         streetName: formGroup.control(streetField).value as String,

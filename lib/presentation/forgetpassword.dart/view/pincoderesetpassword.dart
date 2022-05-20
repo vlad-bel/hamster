@@ -14,9 +14,11 @@ import 'package:hamster_widgets/hamster_widgets.dart';
 class PinCodePasswordResetPage extends StatelessWidget {
   final String email;
   final String type;
-  const PinCodePasswordResetPage(
-      {Key? key, required this.email, required this.type})
-      : super(key: key);
+  const PinCodePasswordResetPage({
+    Key? key,
+    required this.email,
+    required this.type,
+  }) : super(key: key);
   static const path = '/pincoderesetpassword';
   @override
   Widget build(BuildContext context) {
@@ -30,9 +32,11 @@ class PinCodePasswordResetPage extends StatelessWidget {
 class PinCodePasswordResetView extends StatefulWidget {
   final String email;
   final String type;
-  const PinCodePasswordResetView(
-      {Key? key, required this.email, required this.type})
-      : super(key: key);
+  const PinCodePasswordResetView({
+    Key? key,
+    required this.email,
+    required this.type,
+  }) : super(key: key);
 
   @override
   State<PinCodePasswordResetView> createState() =>
@@ -68,9 +72,10 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
         body: Column(
           children: [
             ResetPasswordPinInput(
-                email: widget.email,
-                pinController: pinController,
-                hasPinError: false),
+              email: widget.email,
+              pinController: pinController,
+              hasPinError: false,
+            ),
             ResetCodeButton(email: widget.email, type: widget.type),
             SizedBox(height: 200),
             WhiteButton(
@@ -88,12 +93,12 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
 
 class ResetPasswordPinInput extends StatelessWidget {
   final String email;
-  const ResetPasswordPinInput(
-      {Key? key,
-      required this.pinController,
-      required this.hasPinError,
-      required this.email})
-      : super(key: key);
+  const ResetPasswordPinInput({
+    Key? key,
+    required this.pinController,
+    required this.hasPinError,
+    required this.email,
+  }) : super(key: key);
 
   final TextEditingController pinController;
   final bool hasPinError;

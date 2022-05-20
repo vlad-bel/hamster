@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-///form for [CountriesListPage]
+///form for CountriesListPage
 class ContryCodeForm extends StatelessWidget {
   const ContryCodeForm({Key? key}) : super(key: key);
 

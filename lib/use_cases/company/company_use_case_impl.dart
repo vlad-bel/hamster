@@ -27,7 +27,7 @@ class CompanyUseCaseImpl extends CompanyUsecase {
     required String countryCode,
   }) async {
     try {
-      final accessToken = await _tokenRepository.getAccessToken() ?? '';
+      await _tokenRepository.getAccessToken();
 
       return await _repository.createCompany(
         CompanyRequestBody(

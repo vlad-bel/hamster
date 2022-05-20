@@ -106,7 +106,7 @@ class CountrySelectorList extends StatelessWidget {
                                     const SizedBox(width: 16),
                                     Expanded(
                                       child: Text(
-                                        '${country.name}',
+                                        country.name,
                                         style: inter12,
                                       ),
                                     ),

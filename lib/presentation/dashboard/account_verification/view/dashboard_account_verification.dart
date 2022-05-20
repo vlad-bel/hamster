@@ -88,11 +88,13 @@ class _AccountVerificationContent extends StatelessWidget {
               percentsProgress: progressUserAccount,
               imagePath: Assets.imagesUserAccount,
               title: 'Nutzeraccount',
-              subTitle:
-                  'Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen.',
+              subTitle: 'Erstellen Sie einen Nutzeraccount, um einen'
+                  ' Zugang zum BusinessTerminal zu erhalten und damit'
+                  ' Hamster zu nutzen.',
               onPressed: () {
                 SnackBarManager.showSuccess(
-                    'Nutzeraccount feature is work in progress');
+                  'Nutzeraccount feature is work in progress',
+                );
               },
             ),
             const SizedBox(width: 24),
@@ -100,11 +102,12 @@ class _AccountVerificationContent extends StatelessWidget {
               percentsProgress: progressCompanyProfile,
               imagePath: Assets.imagesCompanyProfile,
               title: 'Unternehmensprofil',
-              subTitle:
-                  'Vervollständigen Sie Ihr Unternehmensprofil, damit wir Sie verifizieren können.',
+              subTitle: 'Vervollständigen Sie Ihr Unternehmensprofil, damit wir'
+                  ' Sie verifizieren können.',
               onPressed: () {
                 SnackBarManager.showSuccess(
-                    'Unternehmensprofil feature is work in progress');
+                  'Unternehmensprofil feature is work in progress',
+                );
               },
             ),
             const SizedBox(width: 24),
@@ -112,11 +115,12 @@ class _AccountVerificationContent extends StatelessWidget {
               percentsProgress: progressBranchProfile,
               imagePath: Assets.imagesBranchProfile,
               title: 'Filialprofil',
-              subTitle:
-                  'Vervollständigen Sie mindestens ein Filialprofil, welches Ihren Kunden in der HamsterApp angezeigt wird.',
+              subTitle: 'Vervollständigen Sie mindestens ein Filialprofil,'
+                  ' welches Ihren Kunden in der HamsterApp angezeigt wird.',
               onPressed: () {
                 SnackBarManager.showSuccess(
-                    'Filialprofil feature is work in progress');
+                  'Filialprofil feature is work in progress',
+                );
               },
             ),
           ],

@@ -5,7 +5,6 @@ import 'package:business_terminal/presentation/dashboard/profile/profile_edit/vi
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/unknown_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/navigator.dart';
 
 class AuthorizedState extends AppState {
   AuthorizedState({
@@ -14,7 +13,6 @@ class AuthorizedState extends AppState {
           initialRoute: initialRoute,
           onGenerateRoute: (RouteSettings settings) {
             Widget? page;
-            final params = settings.arguments as Map<String, dynamic>?;
             switch (settings.name) {
               case CompanyCreationPage.path:
                 page = const CompanyCreationPage();
