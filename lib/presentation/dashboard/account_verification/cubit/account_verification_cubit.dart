@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 
 part 'account_verification_cubit.freezed.dart';
 
-@singleton
+@Singleton()
 class AccountVerificationCubit extends Cubit<VerifyAccountState> {
   AccountVerificationCubit({
     required this.companyUsecase,
