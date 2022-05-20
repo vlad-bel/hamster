@@ -59,6 +59,7 @@ Future _refreshToken(
     final oldRefreshToken = await tokenRepository.getRefreshToken();
 
     final refreshResponse = await dio.post<dynamic>(
+      ///TODO extract it to .env file after demo
       'http://localhost:3003/api/rep/refresh',
       options: Options(
         method: 'POST',
@@ -85,6 +86,7 @@ Future _refreshToken(
 
       try {
         final newResponse = await dio.request<dynamic>(
+          ///TODO extract it to .env file after demo
           'http://localhost:3003/api${options.path}',
           options: Options(
             headers: options.headers,
