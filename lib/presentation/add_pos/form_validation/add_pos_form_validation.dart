@@ -6,6 +6,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 class AddPosFormSettings {
   static const kMinLengthField = 2;
   static const kMaxLengthField = 256;
+  static const kMaxPosCount = 50;
 
   static const cashRegisterField = 'cashRegister';
   static const modelField = 'model';
@@ -22,7 +23,7 @@ class AddPosFormSettings {
     ValidationMessage.minLength: 'Minimal length is $kMinLengthField',
   };
 
-  FormGroup buildForm(String? accountOwner, String? iban) {
+  FormGroup buildForm() {
     return FormGroup(
       {
         cashRegisterField: FormControl<String>(
@@ -31,14 +32,12 @@ class AddPosFormSettings {
             Validators.minLength(kMinLengthField),
             Validators.maxLength(kMaxLengthField),
           ],
-          value: accountOwner,
         ),
         modelField: FormControl<String>(
           validators: [
             Validators.minLength(kMinLengthField),
             Validators.maxLength(kMaxLengthField),
           ],
-          value: iban,
         ),
         posNumberField: FormControl<PlaceEntranceCount>(
           validators: [

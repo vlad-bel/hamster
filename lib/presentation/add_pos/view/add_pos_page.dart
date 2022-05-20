@@ -41,7 +41,7 @@ class AddPosForm extends StatelessWidget {
           subHeader: Text(tr(LocaleKeys.help_us_connect_branch)),
         ),
         body: ReactiveFormBuilder(
-          form: () => formSettings.buildForm('', ''),
+          form: formSettings.buildForm,
           builder: (
             BuildContext context,
             FormGroup formGroup,
@@ -67,9 +67,10 @@ class AddPosForm extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 DropDown(
-                  onChanged: (value) {},
                   formControlName: AddPosFormSettings.posNumberField,
-                  itemsList: EntrancesCountGenerator.getEntrancesCountList(),
+                  itemsList: EntrancesCountGenerator.getEntrancesCountList(
+                    entrancesMaxCount: AddPosFormSettings.kMaxPosCount,
+                  ),
                 ),
                 const SizedBox(height: 32),
                 FormConsumer(

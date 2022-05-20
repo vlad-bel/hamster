@@ -21,9 +21,9 @@ class PlaceEntranceCount extends DropDownDataItem {
 }
 
 class EntrancesCountGenerator {
-  static List<PlaceEntranceCount> getEntrancesCountList() {
-    const entrancesMaxCount = 20;
-
+  static List<PlaceEntranceCount> getEntrancesCountList({
+    int entrancesMaxCount = 20,
+  }) {
     // Generate from 1 to 20
     final resultList = List.generate(
       entrancesMaxCount,
@@ -41,11 +41,9 @@ class DropDown extends StatelessWidget {
   const DropDown({
     Key? key,
     required this.itemsList,
-    required this.onChanged,
     required this.formControlName,
   }) : super(key: key);
 
-  final Function(DropDownDataItem?) onChanged;
   final List<DropDownDataItem> itemsList;
   final String formControlName;
 
@@ -69,7 +67,6 @@ class DropDown extends StatelessWidget {
     );
     return ReactiveDropdownField<DropDownDataItem>(
       formControlName: formControlName,
-      onChanged: onChanged,
       decoration: inputDecoration,
       focusColor: Colors.white,
       items: generateDropDownItems(),
