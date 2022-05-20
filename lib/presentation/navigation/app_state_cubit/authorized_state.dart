@@ -1,6 +1,7 @@
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
+import 'package:business_terminal/presentation/navigation/unknown_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/navigator.dart';
 
@@ -29,7 +30,10 @@ class AuthorizedState extends AppState {
               transitionDuration: Duration.zero,
               reverseTransitionDuration: Duration.zero,
               pageBuilder: (context, anim1, anim2) {
-                return page!;
+                return page ??
+                    UnknownPage(
+                      path: settings.name ?? '',
+                    );
               },
               settings: settings,
             );

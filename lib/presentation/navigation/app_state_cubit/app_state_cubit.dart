@@ -38,9 +38,9 @@ class AppStateCubit extends Cubit<AppState> {
 
   Future<void> checkCompanyCreatedGoNext() async {
     try {
-      final company = await companyUseCase.getRepCompany();
+      final repCompany = await companyUseCase.getRepCompany();
 
-      if (company.company != null) {
+      if (repCompany.company != null) {
         return emit(AuthorizedState(
           initialRoute: DashboardPage.path,
         ));
