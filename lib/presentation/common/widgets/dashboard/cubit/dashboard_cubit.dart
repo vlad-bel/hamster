@@ -6,7 +6,9 @@ import 'package:injectable/injectable.dart';
 
 @Singleton()
 class DashboardCubit extends Cubit<DashboardState> {
-  DashboardCubit(this.loginUseCase) : super(const DashboardState.init());
+  DashboardCubit({
+    required this.loginUseCase,
+  }) : super(const DashboardState.init());
 
   final LoginUseCase loginUseCase;
 

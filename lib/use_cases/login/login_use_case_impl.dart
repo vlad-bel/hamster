@@ -9,7 +9,10 @@ import 'package:injectable/injectable.dart';
 
 @Singleton(as: LoginUseCase)
 class LoginUseCaseImpl extends LoginUseCase {
-  LoginUseCaseImpl(this.restClient, this.tokenRepository);
+  LoginUseCaseImpl(
+    this.restClient,
+    this.tokenRepository,
+  );
 
   final RestClient restClient;
   final TokenRepository tokenRepository;
