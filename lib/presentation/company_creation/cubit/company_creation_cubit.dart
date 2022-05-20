@@ -77,7 +77,7 @@ class CompanyCreationCubit extends Cubit<CompanyCreationState> {
         country: country.name,
         countryCode: country.code!,
       );
-      await accountVerificationCubit.getRepCompanyData();
+
       emit(const CompanyCreationState.success());
     } on ApiFailure catch (e) {
       emit(CompanyCreationState.error(e));

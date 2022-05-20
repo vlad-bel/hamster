@@ -103,4 +103,13 @@ abstract class LocaleKeys {
       'forget_password_email_inside_subtitle2';
   static const forget_pasword_header = 'forget_pasword_header';
   static const resetemail = 'resetemail';
+<<<<<<< HEAD
+=======
+  static const cash_register_system_used = 'cash_register_system_used';
+  static const help_us_connect_branch = 'help_us_connect_branch';
+  static const cash_register_manufacturer = 'cash_register_manufacturer';
+  static const model_if_known = 'model_if_known';
+  static const number_of_registers = 'number_of_registers';
+
+>>>>>>> d1aa6740110f1498eb1112f29b2c30ea68159f51
 }

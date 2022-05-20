@@ -53,9 +53,9 @@ class AddPaymentFormSettings {
           validators: enableValidators
               ? [
                   Validators.required,
-                  _ibanValidator,
                   Validators.minLength(kMinLengthIban),
                   Validators.maxLength(kMaxLengthIban),
+                  _ibanValidator,
                 ]
               : [],
           value: iban,

@@ -69,7 +69,7 @@ class BranchDataForm extends StatelessWidget {
                 ),
                 paddingBetweenTextInputs,
                 DropDown(
-                  formSettings: formSettings,
+                  formControlName: formSettings.kFieldEntrancesCount,
                   itemsList: EntrancesCountGenerator.getEntrancesCountList(),
                 ),
               ],
