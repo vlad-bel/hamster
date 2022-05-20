@@ -35,9 +35,9 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
             VerifyAccountState.initial(
               isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
               isFullyCompleted: isFullyCompleted,
-              progressUserAccount: repCompany?.rep?.fillingProgress,
-              progressCompanyProfile: repCompany?.company?.fillingProgress,
-              progressBranchProfile: repCompany?.branch?.fillingProgress,
+              progressUserAccount: repCompany.rep?.fillingProgress,
+              progressCompanyProfile: repCompany.company?.fillingProgress,
+              progressBranchProfile: repCompany.branch?.fillingProgress,
             ),
           );
         },

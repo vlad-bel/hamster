@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:business_terminal/domain/repository/token/default_token_repository.dart';
 import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final dio = httpClientInit();
@@ -41,7 +44,7 @@ Dio httpClientInit() {
           return handler.next(response);
         },
         onError: (DioError error, handler) async {
-          return _refreshToken(error, handler);
+          return await _refreshToken(error, handler);
         },
       ),
     )
@@ -50,7 +53,7 @@ Dio httpClientInit() {
   return dio;
 }
 
-Future _refreshToken(
+Future<void> _refreshToken(
   DioError error,
   ErrorInterceptorHandler handler,
 ) async {
@@ -58,22 +61,17 @@ Future _refreshToken(
       error.requestOptions.path != '/rep/login') {
     final oldRefreshToken = await tokenRepository.getRefreshToken();
 
-    final refreshResponse = await dio.post<dynamic>(
-      ///TODO extract it to .env file after demo
-      'http://localhost:3003/api/rep/refresh',
-      options: Options(
-        method: 'POST',
-        contentType: 'application/json',
-        headers: <String, String>{
-          'Authorization': 'Bearer ${oldRefreshToken ?? ''}',
-        },
-      ),
+    final response = await http.post(
+      Uri.parse('http://localhost:3003/api/rep/refresh'),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${oldRefreshToken ?? ''}',
+      },
     );
-
-    if (refreshResponse.statusCode! >= 200 &&
-        refreshResponse.statusCode! <= 300) {
+    if (response.statusCode >= 200 && response.statusCode <= 300) {
       final loginResponse = LoginResponse.fromJson(
-        refreshResponse.data as Map<String, dynamic>,
+        jsonDecode(response.body) as Map<String, dynamic>,
       );
 
       await tokenRepository.setAccessToken(loginResponse.accessToken);
