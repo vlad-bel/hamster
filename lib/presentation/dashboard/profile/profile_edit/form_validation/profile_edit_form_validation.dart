@@ -1,4 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -54,9 +55,9 @@ class ProfileEditFormSettings {
   };
 
   final validationMessages = {
-    ValidationMessage.required: tr('required_field'),
-    ValidationMessage.minLength: tr('min_length_field'),
-    ValidationMessage.maxLength: tr('max_length_field'),
+    ValidationMessage.required: AppLocale.current.required_field,
+    ValidationMessage.minLength: AppLocale.current.min_length_field,
+    ValidationMessage.maxLength: AppLocale.current.max_length_reached,
   };
 
   FormGroup buildForm() {

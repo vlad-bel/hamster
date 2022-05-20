@@ -1,13 +1,12 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/add_payment/form_validation/add_payment_form_validation.dart';
 import 'package:business_terminal/presentation/common/widgets/checkbox/other/position.dart';
 import 'package:business_terminal/presentation/common/widgets/checkbox/ui_checkbox.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/other/iban_input_formatter.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -52,7 +51,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
           children: [
             if (widget.formConsumer == null)
               Text(
-                tr(LocaleKeys.payment_information),
+                AppLocale.current.payment_information,
                 style: inter16SemiBold,
               ),
             const SizedBox(height: 24),
@@ -74,7 +73,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
                         const SizedBox(width: 4),
                         Text(
                           // TODO add l18n key
-                          tr('add_bank_details'),
+                          AppLocale.of(context).add_bank_details,
                           style: inter14.copyWith(
                             color: denim1,
                           ),
@@ -89,16 +88,16 @@ class _PaymentInfoState extends State<PaymentInfo> {
                 children: [
                   FormTextField(
                     name: AddPaymentFormSettings.accountOwnerField,
-                    hint: tr(LocaleKeys.account_owner),
-                    label: tr(LocaleKeys.account_owner),
+                    hint: AppLocale.current.account_owner,
+                    label: AppLocale.current.account_owner,
                     validationMessages: (control) =>
                         formSettings.validationMessageAccountOwner,
                   ),
                   const SizedBox(height: 16),
                   FormTextField(
                     name: AddPaymentFormSettings.ibanField,
-                    hint: tr(LocaleKeys.iban),
-                    label: tr(LocaleKeys.iban),
+                    hint: AppLocale.current.iban,
+                    label: AppLocale.current.iban,
                     inputFormatters: [
                       IbanInputFormatter(),
                     ],
@@ -112,7 +111,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
                         UiCheckbox(
                           value: _acceptedTerms,
                           title: Text(
-                            tr(LocaleKeys.i_authorize_collect_payment),
+                            AppLocale.current.i_authorize_collect_payment,
                             style: inter12,
                           ),
                           position: Position.left,

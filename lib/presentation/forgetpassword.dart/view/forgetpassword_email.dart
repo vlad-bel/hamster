@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
@@ -6,12 +7,11 @@ import 'package:business_terminal/presentation/forgetpassword.dart/form_validati
 import 'package:business_terminal/presentation/forgetpassword.dart/view/chooseverifypage.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ForgetPasswordEmailPage extends StatelessWidget {
-  const ForgetPasswordEmailPage({Key? key}) : super(key: key);
+  const ForgetPasswordEmailPage({super.key});
   static const path = '/forgetpasswordemail';
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ForgetPasswordEmailPage extends StatelessWidget {
 }
 
 class ForgetPasswordEmailView extends StatefulWidget {
-  const ForgetPasswordEmailView({Key? key}) : super(key: key);
+  const ForgetPasswordEmailView({super.key});
 
   @override
   State<ForgetPasswordEmailView> createState() =>
@@ -35,8 +35,8 @@ class _ForgetPasswordEmailViewState extends State<ForgetPasswordEmailView> {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: tr('forget_password'),
-          subHeader: Text(tr('forget_password_subtitle')),
+          header: AppLocale.of(context).forget_password,
+          subHeader: Text(AppLocale.of(context).forget_password_subtitle),
         ),
         body: Column(
           children: [

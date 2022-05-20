@@ -1,5 +1,4 @@
 import 'package:business_terminal/config/styles.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class BreadCrumbs extends StatelessWidget {
@@ -26,7 +25,7 @@ class BreadCrumbs extends StatelessWidget {
     for (var i = 0; i < currentPath.length; i++) {
       crumbs.add(
         Text(
-          tr(currentPath[i]),
+          currentPath[i],
           style: inter10,
         ),
       );
@@ -47,7 +46,7 @@ class BreadCrumbs extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          tr(currentLastPath),
+          currentLastPath,
           style: inter24SemiBold,
         ),
         const SizedBox(height: 8),

@@ -1,6 +1,5 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -43,7 +42,7 @@ class VerifiedStatusCell extends StatelessWidget {
         width: 22,
         height: 22,
       ),
-      name: tr('verified'),
+      name: 'verified',
       padding: 8,
     );
   }
@@ -66,7 +65,7 @@ class VisibleStatusCell extends StatelessWidget {
         width: 22,
         height: 22,
       ),
-      name: visible ? tr('visible') : tr('not_visible'),
+      name: visible ? 'visible' : 'not_visible',
       padding: 8,
     );
   }
@@ -101,7 +100,7 @@ class DataCompleteStatusCell extends StatelessWidget {
           ),
         ),
       ),
-      name: tr('data_incomplete'),
+      name: 'data_incomplete',
       padding: 12,
     );
   }

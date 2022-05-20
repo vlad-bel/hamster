@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class AccountVerificationTitleSubtitle extends StatelessWidget {
   const AccountVerificationTitleSubtitle({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

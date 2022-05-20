@@ -1,10 +1,9 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
-import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/country_selector_list.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,7 +84,7 @@ class _CountrySelectorState extends State<CountrySelector> {
             loading: () {
               return FormTextField(
                 name: CountrySelectorCubit.countryField,
-                hint: tr(LocaleKeys.country_hint),
+                hint: AppLocale.current.country_hint,
                 readOnly: true,
               );
             },
@@ -95,8 +94,8 @@ class _CountrySelectorState extends State<CountrySelector> {
                 child: FormTextField(
                   focusListener: focusNode,
                   name: CountrySelectorCubit.countryField,
-                  label: tr(LocaleKeys.country_hint),
-                  hint: tr(LocaleKeys.country_hint),
+                  label: AppLocale.current.country_hint,
+                  hint: AppLocale.current.country_hint,
                   readOnly: true,
                 ),
               );
@@ -107,8 +106,8 @@ class _CountrySelectorState extends State<CountrySelector> {
                 child: FormTextField(
                   focusListener: focusNode,
                   name: CountrySelectorCubit.countryField,
-                  label: tr(LocaleKeys.country_hint),
-                  hint: tr(LocaleKeys.country_hint),
+                  label: AppLocale.current.country_hint,
+                  hint: AppLocale.current.country_hint,
                   readOnly: true,
                   onTap: showOverlay,
                 ),
@@ -118,7 +117,7 @@ class _CountrySelectorState extends State<CountrySelector> {
               return FormTextField(
                 focusListener: focusNode,
                 name: CountrySelectorCubit.countryField,
-                hint: tr(LocaleKeys.country_hint),
+                hint: AppLocale.current.country_hint,
                 readOnly: true,
               );
             },

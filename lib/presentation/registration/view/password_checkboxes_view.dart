@@ -17,8 +17,8 @@ class PasswordValidationView extends StatefulWidget {
     this.controllerPassword,
     required this.onPressed,
     required this.focusNodePassword,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final TextEditingController? controllerPassword;
   final VoidCallback onPressed;
@@ -72,7 +72,7 @@ class _PasswordValidationViewState extends State<PasswordValidationView> {
     return SizedBox(
       height: 450,
       width: 310,
-      child: Container(
+      child: DecoratedBox(
         decoration: boxDecoration,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),

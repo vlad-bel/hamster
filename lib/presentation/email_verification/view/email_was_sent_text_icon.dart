@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class EmailResultInfoTextIcon extends StatelessWidget {
   const EmailResultInfoTextIcon({
-    Key? key,
+    super.key,
     required this.text,
     required this.textColor,
     required this.icon,
     this.height,
-  }) : super(key: key);
+  });
 
   final String text;
   final Color textColor;

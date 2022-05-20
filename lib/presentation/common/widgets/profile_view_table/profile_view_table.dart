@@ -2,7 +2,6 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/header_cell.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/profile_view_table_row.dart';
 import 'package:data_table_2/data_table_2.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfileViewTable extends StatefulWidget {
@@ -47,33 +46,33 @@ class _ProfileViewTableState extends State<ProfileViewTable> {
         DataColumn2(
           size: ColumnSize.L,
           label: HeaderCell(
-            name: tr('companies'),
+            name: 'companies',
             sortable: widget.sortable,
           ),
         ),
         DataColumn2(
           label: HeaderCell(
-            name: tr('number'),
-            sortable: widget.sortable,
-          ),
-          size: ColumnSize.S,
-        ),
-        DataColumn2(
-          label: HeaderCell(
-            name: tr('user'),
+            name: 'number',
             sortable: widget.sortable,
           ),
           size: ColumnSize.S,
         ),
         DataColumn2(
           label: HeaderCell(
-            name: tr('connection'),
+            name: 'user',
+            sortable: widget.sortable,
+          ),
+          size: ColumnSize.S,
+        ),
+        DataColumn2(
+          label: HeaderCell(
+            name: 'connection',
             sortable: widget.sortable,
           ),
         ),
         DataColumn2(
           label: HeaderCell(
-            name: tr('status'),
+            name: 'status',
             sortable: widget.sortable,
           ),
           size: ColumnSize.S,

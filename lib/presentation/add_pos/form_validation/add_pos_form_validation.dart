@@ -1,6 +1,5 @@
-import 'package:business_terminal/generated/locale_keys.g.dart';
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/drop_down_select_entrances_count.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class AddPosFormSettings {
@@ -14,12 +13,12 @@ class AddPosFormSettings {
 
   final validationMessageCashRegister = {
     ValidationMessage.required: 'Should not be empty',
-    ValidationMessage.maxLength: tr(LocaleKeys.max_length_reached),
+    ValidationMessage.maxLength: AppLocale.current.max_length_reached,
     ValidationMessage.minLength: 'Minimal length is $kMinLengthField',
   };
 
   final validationMessageModel = {
-    ValidationMessage.maxLength: tr(LocaleKeys.max_length_reached),
+    ValidationMessage.maxLength: AppLocale.current.max_length_reached,
     ValidationMessage.minLength: 'Minimal length is $kMinLengthField',
   };
 

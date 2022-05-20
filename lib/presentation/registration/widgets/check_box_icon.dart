@@ -4,8 +4,8 @@ class CheckBoxIconGreen extends StatelessWidget {
   const CheckBoxIconGreen({
     required this.text,
     required this.enabled,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final bool enabled;
   final String text;

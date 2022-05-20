@@ -6,13 +6,13 @@ import 'package:flutter_svg/svg.dart';
 
 class DashboardProfileFeelUpPercentsBox extends StatelessWidget {
   const DashboardProfileFeelUpPercentsBox({
-    Key? key,
+    super.key,
     required this.percentsProgress,
     required this.imagePath,
     required this.title,
     required this.subTitle,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   final int? percentsProgress;
   final String imagePath;
