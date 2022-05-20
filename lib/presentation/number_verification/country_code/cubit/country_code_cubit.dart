@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 
 part 'country_code_cubit.freezed.dart';
 
-@injectable
+@singleton
 class CountryCodeCubit extends Cubit<CountryCodeState> {
   CountryCodeCubit({
     required this.useCase,
