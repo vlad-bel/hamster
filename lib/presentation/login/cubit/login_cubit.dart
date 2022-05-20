@@ -47,7 +47,7 @@ class LoginCubit extends Cubit<LoginState> {
         return emit(LoginState.success(DashboardPage.path));
       }
 
-      emit(LoginState.success(CompanyCreationPage.path));
+      return emit(LoginState.success(CompanyCreationPage.path));
     } on ApiFailure catch (e) {
       ///TODO change logic from backend
       ///now when company is not created
