@@ -41,22 +41,23 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> checkCompanyCreatedGoNext() async {
     try {
-      final company = await _companyUsecase.getRepCompany();
+      final repCompany = await _companyUsecase.getRepCompany();
 
-      if (company != null) {
+      if (repCompany.company != null) {
         return emit(LoginState.success(DashboardPage.path));
       }
 
-      emit(LoginState.success(CompanyCreationPage.path));
+      return emit(LoginState.success(CompanyCreationPage.path));
     } on ApiFailure catch (e) {
       ///TODO change logic from backend
       ///now when company is not created
       ///it's returns to front 500 error
       ///need to more specify error for that case
       if (e.response.statusCode == 500) {
-        emit(LoginState.success(CompanyCreationPage.path));
+        return emit(LoginState.success(CompanyCreationPage.path));
       }
-      emit(LoginState.error(e));
+
+      return emit(LoginState.error(e));
     }
   }
 

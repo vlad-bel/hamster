@@ -68,7 +68,6 @@ class CompanyCreationCubit extends Cubit<CompanyCreationState> {
   Future createCompany(Country country) async {
     try {
       emit(const CompanyCreationState.loading());
-      await Future<void>.delayed(Duration(seconds: 2));
       final response = await usecase.createCompany(
         companyName: formGroup.control(companyField).value as String,
         city: formGroup.control(cityField).value as String,
@@ -78,7 +77,7 @@ class CompanyCreationCubit extends Cubit<CompanyCreationState> {
         country: country.name,
         countryCode: country.code!,
       );
-      await accountVerificationCubit.getRepCompanyData();
+
       emit(const CompanyCreationState.success());
     } on ApiFailure catch (e) {
       emit(CompanyCreationState.error(e));

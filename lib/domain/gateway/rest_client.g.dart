@@ -65,6 +65,23 @@ class _RestClient implements RestClient {
   }
 
   @override
+  Future<Company> updateProfile(id, body) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Company>(
+            Options(method: 'PUT', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/company/${id}',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = Company.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<Map<String, Country>> getCountries() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

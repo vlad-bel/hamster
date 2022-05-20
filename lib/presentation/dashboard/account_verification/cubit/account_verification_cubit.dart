@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 
 part 'account_verification_cubit.freezed.dart';
 
-@singleton
+@Singleton()
 class AccountVerificationCubit extends Cubit<VerifyAccountState> {
   AccountVerificationCubit({
     required this.companyUsecase,
@@ -35,9 +35,9 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
             VerifyAccountState.initial(
               isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
               isFullyCompleted: isFullyCompleted,
-              progressUserAccount: repCompany?.rep?.fillingProgress,
-              progressCompanyProfile: repCompany?.company?.fillingProgress,
-              progressBranchProfile: repCompany?.branch?.fillingProgress,
+              progressUserAccount: repCompany.rep?.fillingProgress,
+              progressCompanyProfile: repCompany.company?.fillingProgress,
+              progressBranchProfile: repCompany.branch?.fillingProgress,
             ),
           );
         },

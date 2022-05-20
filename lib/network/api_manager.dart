@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:business_terminal/domain/repository/token/default_token_repository.dart';
 import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final dio = httpClientInit();
@@ -17,7 +20,7 @@ Dio httpClientInit() {
   final option = BaseOptions()
     ..headers = <String, dynamic>{
       'Accept': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
+      'X-Requested-With': 'XMLHttpRequest',
     };
 
   final dio = Dio(option)
@@ -29,7 +32,7 @@ Dio httpClientInit() {
         ) async {
           final accessToken = await tokenRepository.getAccessToken();
           if (accessToken != null) {
-            option.headers['Authorization'] = 'Bearer $accessToken';
+            options.headers['Authorization'] = 'Bearer $accessToken';
           }
 
           return handler.next(options);
@@ -41,11 +44,7 @@ Dio httpClientInit() {
           return handler.next(response);
         },
         onError: (DioError error, handler) async {
-          try {
-            return await _refreshToken(error, handler);
-          } catch (e) {
-            return handler.next(error);
-          }
+          return await _refreshToken(error, handler);
         },
       ),
     )
@@ -54,35 +53,54 @@ Dio httpClientInit() {
   return dio;
 }
 
-Future _refreshToken(
+Future<void> _refreshToken(
   DioError error,
   ErrorInterceptorHandler handler,
 ) async {
   if (error.response?.statusCode == 401 &&
       error.requestOptions.path != '/rep/login') {
-    final opts = error.requestOptions;
     final oldRefreshToken = await tokenRepository.getRefreshToken();
 
-    var response = await dio.post<dynamic>(
-      'http://localhost:3003/api/rep/refresh',
-      options: Options(
-        method: 'POST',
-        contentType: 'application/json',
-        headers: <String, String>{
-          'Authorization': 'Bearer ${oldRefreshToken ?? ''}',
-        },
-      ),
+    final response = await http.post(
+      Uri.parse('http://localhost:3003/api/rep/refresh'),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${oldRefreshToken ?? ''}',
+      },
     );
-    final loginResponse = LoginResponse.fromJson(
-      response.data as Map<String, dynamic>,
-    );
-    await tokenRepository.setAccessToken(loginResponse.accessToken);
-    await tokenRepository.setRefreshToken(loginResponse.refreshToken);
+    if (response.statusCode >= 200 && response.statusCode <= 300) {
+      final loginResponse = LoginResponse.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>,
+      );
 
-    error.response?.requestOptions.headers['Authorization'] =
-        'Bearer ${loginResponse.accessToken}';
+      await tokenRepository.setAccessToken(loginResponse.accessToken);
+      await tokenRepository.setRefreshToken(loginResponse.refreshToken);
 
-    return handler.resolve(response);
+      final options = error.requestOptions;
+
+      options.headers['Authorization'] = 'Bearer ${loginResponse.accessToken}';
+      options.headers['content-type'] = 'application/json';
+
+      try {
+        final newResponse = await dio.request<dynamic>(
+          ///TODO extract it to .env file after demo
+          'http://localhost:3003/api${options.path}',
+          options: Options(
+            headers: options.headers,
+            method: options.method,
+            contentType: options.contentType,
+            responseType: options.responseType,
+          ),
+        );
+
+        return handler.resolve(newResponse);
+      } on DioError catch (e) {
+        return handler.next(e);
+      }
+    }
+
+    return handler.next(error);
   }
 
   return handler.next(error);

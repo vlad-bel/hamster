@@ -21,8 +21,6 @@ mixin _$AddPosState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
-    required TResult Function() wrongAccountOwner,
-    required TResult Function() wrongIbanNumber,
     required TResult Function(ApiFailure failure) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,8 +29,6 @@ mixin _$AddPosState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
     TResult Function(ApiFailure failure)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -41,8 +37,6 @@ mixin _$AddPosState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) =>
@@ -52,8 +46,6 @@ mixin _$AddPosState {
     required TResult Function(InitialAddPos value) initial,
     required TResult Function(LoadingAddPos value) loading,
     required TResult Function(SuccessAddPos value) success,
-    required TResult Function(WrongAccountOwnerAddPos value) wrongAccountOwner,
-    required TResult Function(WrongIbanNumberAddPos value) wrongIbanNumber,
     required TResult Function(ErrorAddPos value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,8 +54,6 @@ mixin _$AddPosState {
     TResult Function(InitialAddPos value)? initial,
     TResult Function(LoadingAddPos value)? loading,
     TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
     TResult Function(ErrorAddPos value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -72,8 +62,6 @@ mixin _$AddPosState {
     TResult Function(InitialAddPos value)? initial,
     TResult Function(LoadingAddPos value)? loading,
     TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
     TResult Function(ErrorAddPos value)? error,
     required TResult orElse(),
   }) =>
@@ -140,8 +128,6 @@ class _$InitialAddPos implements InitialAddPos {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
-    required TResult Function() wrongAccountOwner,
-    required TResult Function() wrongIbanNumber,
     required TResult Function(ApiFailure failure) error,
   }) {
     return initial();
@@ -153,8 +139,6 @@ class _$InitialAddPos implements InitialAddPos {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
     TResult Function(ApiFailure failure)? error,
   }) {
     return initial?.call();
@@ -166,8 +150,6 @@ class _$InitialAddPos implements InitialAddPos {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) {
@@ -183,8 +165,6 @@ class _$InitialAddPos implements InitialAddPos {
     required TResult Function(InitialAddPos value) initial,
     required TResult Function(LoadingAddPos value) loading,
     required TResult Function(SuccessAddPos value) success,
-    required TResult Function(WrongAccountOwnerAddPos value) wrongAccountOwner,
-    required TResult Function(WrongIbanNumberAddPos value) wrongIbanNumber,
     required TResult Function(ErrorAddPos value) error,
   }) {
     return initial(this);
@@ -196,8 +176,6 @@ class _$InitialAddPos implements InitialAddPos {
     TResult Function(InitialAddPos value)? initial,
     TResult Function(LoadingAddPos value)? loading,
     TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
     TResult Function(ErrorAddPos value)? error,
   }) {
     return initial?.call(this);
@@ -209,8 +187,6 @@ class _$InitialAddPos implements InitialAddPos {
     TResult Function(InitialAddPos value)? initial,
     TResult Function(LoadingAddPos value)? loading,
     TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
     TResult Function(ErrorAddPos value)? error,
     required TResult orElse(),
   }) {
@@ -269,8 +245,6 @@ class _$LoadingAddPos implements LoadingAddPos {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
-    required TResult Function() wrongAccountOwner,
-    required TResult Function() wrongIbanNumber,
     required TResult Function(ApiFailure failure) error,
   }) {
     return loading();
@@ -282,8 +256,6 @@ class _$LoadingAddPos implements LoadingAddPos {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
     TResult Function(ApiFailure failure)? error,
   }) {
     return loading?.call();
@@ -295,8 +267,6 @@ class _$LoadingAddPos implements LoadingAddPos {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) {
@@ -312,8 +282,6 @@ class _$LoadingAddPos implements LoadingAddPos {
     required TResult Function(InitialAddPos value) initial,
     required TResult Function(LoadingAddPos value) loading,
     required TResult Function(SuccessAddPos value) success,
-    required TResult Function(WrongAccountOwnerAddPos value) wrongAccountOwner,
-    required TResult Function(WrongIbanNumberAddPos value) wrongIbanNumber,
     required TResult Function(ErrorAddPos value) error,
   }) {
     return loading(this);
@@ -325,8 +293,6 @@ class _$LoadingAddPos implements LoadingAddPos {
     TResult Function(InitialAddPos value)? initial,
     TResult Function(LoadingAddPos value)? loading,
     TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
     TResult Function(ErrorAddPos value)? error,
   }) {
     return loading?.call(this);
@@ -338,8 +304,6 @@ class _$LoadingAddPos implements LoadingAddPos {
     TResult Function(InitialAddPos value)? initial,
     TResult Function(LoadingAddPos value)? loading,
     TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
     TResult Function(ErrorAddPos value)? error,
     required TResult orElse(),
   }) {
@@ -422,8 +386,6 @@ class _$SuccessAddPos implements SuccessAddPos {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
-    required TResult Function() wrongAccountOwner,
-    required TResult Function() wrongIbanNumber,
     required TResult Function(ApiFailure failure) error,
   }) {
     return success(response);
@@ -435,8 +397,6 @@ class _$SuccessAddPos implements SuccessAddPos {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
     TResult Function(ApiFailure failure)? error,
   }) {
     return success?.call(response);
@@ -448,8 +408,6 @@ class _$SuccessAddPos implements SuccessAddPos {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) {
@@ -465,8 +423,6 @@ class _$SuccessAddPos implements SuccessAddPos {
     required TResult Function(InitialAddPos value) initial,
     required TResult Function(LoadingAddPos value) loading,
     required TResult Function(SuccessAddPos value) success,
-    required TResult Function(WrongAccountOwnerAddPos value) wrongAccountOwner,
-    required TResult Function(WrongIbanNumberAddPos value) wrongIbanNumber,
     required TResult Function(ErrorAddPos value) error,
   }) {
     return success(this);
@@ -478,8 +434,6 @@ class _$SuccessAddPos implements SuccessAddPos {
     TResult Function(InitialAddPos value)? initial,
     TResult Function(LoadingAddPos value)? loading,
     TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
     TResult Function(ErrorAddPos value)? error,
   }) {
     return success?.call(this);
@@ -491,8 +445,6 @@ class _$SuccessAddPos implements SuccessAddPos {
     TResult Function(InitialAddPos value)? initial,
     TResult Function(LoadingAddPos value)? loading,
     TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
     TResult Function(ErrorAddPos value)? error,
     required TResult orElse(),
   }) {
@@ -510,266 +462,6 @@ abstract class SuccessAddPos implements AddPosState {
   @JsonKey(ignore: true)
   _$$SuccessAddPosCopyWith<_$SuccessAddPos> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$WrongAccountOwnerAddPosCopyWith<$Res> {
-  factory _$$WrongAccountOwnerAddPosCopyWith(_$WrongAccountOwnerAddPos value,
-          $Res Function(_$WrongAccountOwnerAddPos) then) =
-      __$$WrongAccountOwnerAddPosCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$WrongAccountOwnerAddPosCopyWithImpl<$Res>
-    extends _$AddPosStateCopyWithImpl<$Res>
-    implements _$$WrongAccountOwnerAddPosCopyWith<$Res> {
-  __$$WrongAccountOwnerAddPosCopyWithImpl(_$WrongAccountOwnerAddPos _value,
-      $Res Function(_$WrongAccountOwnerAddPos) _then)
-      : super(_value, (v) => _then(v as _$WrongAccountOwnerAddPos));
-
-  @override
-  _$WrongAccountOwnerAddPos get _value =>
-      super._value as _$WrongAccountOwnerAddPos;
-}
-
-/// @nodoc
-
-class _$WrongAccountOwnerAddPos implements WrongAccountOwnerAddPos {
-  const _$WrongAccountOwnerAddPos();
-
-  @override
-  String toString() {
-    return 'AddPosState.wrongAccountOwner()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$WrongAccountOwnerAddPos);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(LoginResponse response) success,
-    required TResult Function() wrongAccountOwner,
-    required TResult Function() wrongIbanNumber,
-    required TResult Function(ApiFailure failure) error,
-  }) {
-    return wrongAccountOwner();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
-    TResult Function(ApiFailure failure)? error,
-  }) {
-    return wrongAccountOwner?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
-    TResult Function(ApiFailure failure)? error,
-    required TResult orElse(),
-  }) {
-    if (wrongAccountOwner != null) {
-      return wrongAccountOwner();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialAddPos value) initial,
-    required TResult Function(LoadingAddPos value) loading,
-    required TResult Function(SuccessAddPos value) success,
-    required TResult Function(WrongAccountOwnerAddPos value) wrongAccountOwner,
-    required TResult Function(WrongIbanNumberAddPos value) wrongIbanNumber,
-    required TResult Function(ErrorAddPos value) error,
-  }) {
-    return wrongAccountOwner(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialAddPos value)? initial,
-    TResult Function(LoadingAddPos value)? loading,
-    TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
-    TResult Function(ErrorAddPos value)? error,
-  }) {
-    return wrongAccountOwner?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialAddPos value)? initial,
-    TResult Function(LoadingAddPos value)? loading,
-    TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
-    TResult Function(ErrorAddPos value)? error,
-    required TResult orElse(),
-  }) {
-    if (wrongAccountOwner != null) {
-      return wrongAccountOwner(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class WrongAccountOwnerAddPos implements AddPosState {
-  const factory WrongAccountOwnerAddPos() = _$WrongAccountOwnerAddPos;
-}
-
-/// @nodoc
-abstract class _$$WrongIbanNumberAddPosCopyWith<$Res> {
-  factory _$$WrongIbanNumberAddPosCopyWith(_$WrongIbanNumberAddPos value,
-          $Res Function(_$WrongIbanNumberAddPos) then) =
-      __$$WrongIbanNumberAddPosCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$WrongIbanNumberAddPosCopyWithImpl<$Res>
-    extends _$AddPosStateCopyWithImpl<$Res>
-    implements _$$WrongIbanNumberAddPosCopyWith<$Res> {
-  __$$WrongIbanNumberAddPosCopyWithImpl(_$WrongIbanNumberAddPos _value,
-      $Res Function(_$WrongIbanNumberAddPos) _then)
-      : super(_value, (v) => _then(v as _$WrongIbanNumberAddPos));
-
-  @override
-  _$WrongIbanNumberAddPos get _value => super._value as _$WrongIbanNumberAddPos;
-}
-
-/// @nodoc
-
-class _$WrongIbanNumberAddPos implements WrongIbanNumberAddPos {
-  const _$WrongIbanNumberAddPos();
-
-  @override
-  String toString() {
-    return 'AddPosState.wrongIbanNumber()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$WrongIbanNumberAddPos);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(LoginResponse response) success,
-    required TResult Function() wrongAccountOwner,
-    required TResult Function() wrongIbanNumber,
-    required TResult Function(ApiFailure failure) error,
-  }) {
-    return wrongIbanNumber();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
-    TResult Function(ApiFailure failure)? error,
-  }) {
-    return wrongIbanNumber?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
-    TResult Function(ApiFailure failure)? error,
-    required TResult orElse(),
-  }) {
-    if (wrongIbanNumber != null) {
-      return wrongIbanNumber();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialAddPos value) initial,
-    required TResult Function(LoadingAddPos value) loading,
-    required TResult Function(SuccessAddPos value) success,
-    required TResult Function(WrongAccountOwnerAddPos value) wrongAccountOwner,
-    required TResult Function(WrongIbanNumberAddPos value) wrongIbanNumber,
-    required TResult Function(ErrorAddPos value) error,
-  }) {
-    return wrongIbanNumber(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialAddPos value)? initial,
-    TResult Function(LoadingAddPos value)? loading,
-    TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
-    TResult Function(ErrorAddPos value)? error,
-  }) {
-    return wrongIbanNumber?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialAddPos value)? initial,
-    TResult Function(LoadingAddPos value)? loading,
-    TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
-    TResult Function(ErrorAddPos value)? error,
-    required TResult orElse(),
-  }) {
-    if (wrongIbanNumber != null) {
-      return wrongIbanNumber(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class WrongIbanNumberAddPos implements AddPosState {
-  const factory WrongIbanNumberAddPos() = _$WrongIbanNumberAddPos;
 }
 
 /// @nodoc
@@ -839,8 +531,6 @@ class _$ErrorAddPos implements ErrorAddPos {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse response) success,
-    required TResult Function() wrongAccountOwner,
-    required TResult Function() wrongIbanNumber,
     required TResult Function(ApiFailure failure) error,
   }) {
     return error(failure);
@@ -852,8 +542,6 @@ class _$ErrorAddPos implements ErrorAddPos {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
     TResult Function(ApiFailure failure)? error,
   }) {
     return error?.call(failure);
@@ -865,8 +553,6 @@ class _$ErrorAddPos implements ErrorAddPos {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse response)? success,
-    TResult Function()? wrongAccountOwner,
-    TResult Function()? wrongIbanNumber,
     TResult Function(ApiFailure failure)? error,
     required TResult orElse(),
   }) {
@@ -882,8 +568,6 @@ class _$ErrorAddPos implements ErrorAddPos {
     required TResult Function(InitialAddPos value) initial,
     required TResult Function(LoadingAddPos value) loading,
     required TResult Function(SuccessAddPos value) success,
-    required TResult Function(WrongAccountOwnerAddPos value) wrongAccountOwner,
-    required TResult Function(WrongIbanNumberAddPos value) wrongIbanNumber,
     required TResult Function(ErrorAddPos value) error,
   }) {
     return error(this);
@@ -895,8 +579,6 @@ class _$ErrorAddPos implements ErrorAddPos {
     TResult Function(InitialAddPos value)? initial,
     TResult Function(LoadingAddPos value)? loading,
     TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
     TResult Function(ErrorAddPos value)? error,
   }) {
     return error?.call(this);
@@ -908,8 +590,6 @@ class _$ErrorAddPos implements ErrorAddPos {
     TResult Function(InitialAddPos value)? initial,
     TResult Function(LoadingAddPos value)? loading,
     TResult Function(SuccessAddPos value)? success,
-    TResult Function(WrongAccountOwnerAddPos value)? wrongAccountOwner,
-    TResult Function(WrongIbanNumberAddPos value)? wrongIbanNumber,
     TResult Function(ErrorAddPos value)? error,
     required TResult orElse(),
   }) {
