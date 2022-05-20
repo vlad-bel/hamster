@@ -8,9 +8,9 @@ linter:
 
 analyzer:
   exclude:
-    - '**.freezed.dart'
-    - '**.g.dart'
-    - '**.config.dart'
+    # - '**.freezed.dart'
+    # - '**.g.dart'
+    # - '**.config.dart'
     - '**/generated_plugin_registrant.dart'
   errors:
     invalid_annotation_target: ignore

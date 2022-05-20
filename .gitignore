@@ -56,9 +56,6 @@ unlinked.ds
 unlinked_spec.ds
 .fvm/
 .build/
-**.freezed.dart
-**.g.dart
-**/generated_plugin_registrant.dart
 
 # Android related
 **/android/**/gradle-wrapper.jar
