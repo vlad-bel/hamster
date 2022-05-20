@@ -12,8 +12,10 @@ class UnknownPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Unknown location: $path\n'
-            'Please return back and try another path'),
+        child: Text(
+          'Unknown location: $path\n'
+          'Please return back and try another path',
+        ),
       ),
     );
   }

@@ -4,10 +4,9 @@ import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_request.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_send_code_request.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/use_cases/forget_password/forget_password_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-
-import 'package:business_terminal/use_cases/forget_password/forget_password_use_case.dart';
 
 @Singleton(as: ForgetPasswordUseCase)
 class ForgetPasswordUseCaseImpl extends ForgetPasswordUseCase {
@@ -17,7 +16,8 @@ class ForgetPasswordUseCaseImpl extends ForgetPasswordUseCase {
 
   @override
   Future<String> sendVerificationCode(
-      ForgetPasswordRequest forgetPasswordRequest) async {
+    ForgetPasswordRequest forgetPasswordRequest,
+  ) async {
     try {
       return await restClient
           .sendVerificationCode(forgetPasswordRequest.toJson());

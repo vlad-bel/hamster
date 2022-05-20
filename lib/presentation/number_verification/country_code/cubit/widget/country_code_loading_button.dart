@@ -10,7 +10,7 @@ class CountryCodeLoadingButton extends StatelessWidget {
       onPressed: () {},
       width: double.infinity,
       child: const Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8),
         child: SizedBox(
           width: 24,
           height: 32,

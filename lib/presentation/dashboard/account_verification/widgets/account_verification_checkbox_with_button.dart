@@ -27,7 +27,8 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
             active: isFullyCompleted,
             onChanged: (value) => onChangeCheckBox(context, value: value),
             title: Text(
-              'Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind. ',
+              'Hiermit versichere ich, dass alle von mir getätigten'
+              ' Angaben vollständig und korrekt sind. ',
               style: inter12,
               textAlign: TextAlign.center,
             ),

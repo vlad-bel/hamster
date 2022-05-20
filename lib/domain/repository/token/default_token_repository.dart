@@ -39,7 +39,7 @@ class DefaultTokenRepository extends TokenRepository {
 
   @override
   Future<void> refreshAccessToken(String? refreshToken) {
-    // TODO: add apiRepository and implement refreshToken() later
+    // TODO add apiRepository and implement refreshToken() later
     throw UnimplementedError();
   }
 }

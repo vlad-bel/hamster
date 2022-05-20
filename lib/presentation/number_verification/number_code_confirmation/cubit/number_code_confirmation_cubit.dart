@@ -19,7 +19,7 @@ class NumberCodeConfirmationCubit extends Cubit<NumberCodeConfirmationState> {
   }) async {
     try {
       emit(const NumberCodeConfirmationState.loading());
-      final response = await useCase.verifyNumber(
+      await useCase.verifyNumber(
         email: email,
         code: code,
       );
@@ -37,7 +37,7 @@ class NumberCodeConfirmationCubit extends Cubit<NumberCodeConfirmationState> {
   }) async {
     try {
       emit(const NumberCodeConfirmationState.loading());
-      final response = await useCase.resendSMSCode(
+      await useCase.resendSMSCode(
         email: email,
         method: method,
       );

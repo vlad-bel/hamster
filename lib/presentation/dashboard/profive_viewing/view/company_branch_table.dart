@@ -35,8 +35,8 @@ class CompanyBranchTable extends StatelessWidget {
                     fillingProgress: 1,
                   ),
                   company: Company(
-                    companyName: "Testcompany",
-                    streetName: "Streetname",
+                    companyName: 'Testcompany',
+                    streetName: 'Streetname',
                     streetNumber: '1',
                     postalCode: '36037',
                     city: 'Fulda',
@@ -53,8 +53,8 @@ class CompanyBranchTable extends StatelessWidget {
                     fillingProgress: 1,
                   ),
                   company: Company(
-                    companyName: "Testcompany1",
-                    streetName: "Streetname1",
+                    companyName: 'Testcompany1',
+                    streetName: 'Streetname1',
                     streetNumber: '2',
                     postalCode: '36038',
                     city: 'Berlin',
@@ -71,8 +71,8 @@ class CompanyBranchTable extends StatelessWidget {
                     fillingProgress: 1,
                   ),
                   company: Company(
-                    companyName: "Testcompany1",
-                    streetName: "Streetname1",
+                    companyName: 'Testcompany1',
+                    streetName: 'Streetname1',
                     streetNumber: '2',
                     postalCode: '36038',
                     city: 'Berlin',

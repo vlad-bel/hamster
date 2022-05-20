@@ -65,31 +65,32 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                 children: [
                   HeaderAppBarWidget(
                     trailing: ReactiveFormConsumer(
-                        builder: (context, formGroup, child) {
-                      return ActionButtonBlue(
-                        onPressed: () async {
-                          // getIt.get<ProfileEditCubit>().editProfile(
-                          //       '1',
-                          //       ProfileEditRequest(
-                          //         city: '',
-                          //         commercialRegisterNumber: '',
-                          //         companyName: '',
-                          //         country: '',
-                          //         streetName: '',
-                          //         countryCode: '',
-                          //         postalCode: '',
-                          //         streetNumber: '',
-                          //         taxNumber: '',
-                          //         vatId: '',
-                          //       ),
-                          //     );
-                        },
-                        isEnabled: form.valid,
-                        child: Text(
-                          tr('save'),
-                        ),
-                      );
-                    }),
+                      builder: (context, formGroup, child) {
+                        return ActionButtonBlue(
+                          onPressed: () async {
+                            // getIt.get<ProfileEditCubit>().editProfile(
+                            //       '1',
+                            //       ProfileEditRequest(
+                            //         city: '',
+                            //         commercialRegisterNumber: '',
+                            //         companyName: '',
+                            //         country: '',
+                            //         streetName: '',
+                            //         countryCode: '',
+                            //         postalCode: '',
+                            //         streetNumber: '',
+                            //         taxNumber: '',
+                            //         vatId: '',
+                            //       ),
+                            //     );
+                          },
+                          isEnabled: form.valid,
+                          child: Text(
+                            tr('save'),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   Expanded(
                     child: Center(

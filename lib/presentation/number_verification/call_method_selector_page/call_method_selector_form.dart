@@ -70,7 +70,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                       icon: Icons.sms,
                       choosed: state.smsSelected,
                       onTap: () {
-                        cubit.switchSelector(true);
+                        cubit.switchSelector(smsSelected: true);
                       },
                     ),
                     const SizedBox(width: 28),
@@ -80,7 +80,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                       icon: Icons.call_outlined,
                       choosed: !state.smsSelected,
                       onTap: () {
-                        cubit.switchSelector(false);
+                        cubit.switchSelector(smsSelected: false);
                       },
                     ),
                   ],

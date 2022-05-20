@@ -1,6 +1,5 @@
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/navigator.dart';
 
 class SplashState extends AppState {
   SplashState()
@@ -14,6 +13,7 @@ class SplashState extends AppState {
                 return Scaffold(
                   body: Center(
                     child: Text(
+                      // TODO add locale
                       'Splash page',
                     ),
                   ),

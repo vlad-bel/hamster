@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const confirm_number_title = 'confirm_number_title';
   static const select_number_title = 'select_number_title';
   static const confirm_number_subtitle1 = 'confirm_number_subtitle1';
@@ -16,7 +16,8 @@ abstract class  LocaleKeys {
   static const country_name = 'country_name';
   static const required_field = 'required_field';
   static const user_account_created = 'user_account_created';
-  static const user_account_created_description = 'user_account_created_description';
+  static const user_account_created_description =
+      'user_account_created_description';
   static const create_company_profile = 'create_company_profile';
   static const create_company_profile_descr = 'create_company_profile_descr';
   static const administration = 'administration';
@@ -83,7 +84,8 @@ abstract class  LocaleKeys {
   static const closed = 'closed';
   static const company_profile = 'company_profile';
   static const add_business_account = 'add_business_account';
-  static const for_credits_and_regular_billing = 'for_credits_and_regular_billing';
+  static const for_credits_and_regular_billing =
+      'for_credits_and_regular_billing';
   static const i_authorize_collect_payment = 'i_authorize_collect_payment';
   static const max_length_reached = 'max_length_reached';
   static const max_length_error = 'max_length_error';
@@ -92,16 +94,22 @@ abstract class  LocaleKeys {
   static const forget_password = 'forget_password';
   static const forget_password_subtitle = 'forget_password_subtitle';
   static const forgetpassword_email_subtitle = 'forgetpassword_email_subtitle';
-  static const forgetpassword_email_subtitle2 = 'forgetpassword_email_subtitle2';
+  static const forgetpassword_email_subtitle2 =
+      'forgetpassword_email_subtitle2';
   static const email = 'email';
-  static const forget_password_email_inside_subtitle = 'forget_password_email_inside_subtitle';
-  static const forget_password_email_inside_subtitle2 = 'forget_password_email_inside_subtitle2';
+  static const forget_password_email_inside_subtitle =
+      'forget_password_email_inside_subtitle';
+  static const forget_password_email_inside_subtitle2 =
+      'forget_password_email_inside_subtitle2';
   static const forget_pasword_header = 'forget_pasword_header';
   static const resetemail = 'resetemail';
+<<<<<<< HEAD
+=======
   static const cash_register_system_used = 'cash_register_system_used';
   static const help_us_connect_branch = 'help_us_connect_branch';
   static const cash_register_manufacturer = 'cash_register_manufacturer';
   static const model_if_known = 'model_if_known';
   static const number_of_registers = 'number_of_registers';
 
+>>>>>>> d1aa6740110f1498eb1112f29b2c30ea68159f51
 }

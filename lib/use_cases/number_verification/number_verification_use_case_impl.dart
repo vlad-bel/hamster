@@ -65,7 +65,7 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
     required String phone,
   }) async {
     try {
-      final response = await repository.createPhone(
+      await repository.createPhone(
         CreatePhoneRequest(
           phone: phone,
           email: email,

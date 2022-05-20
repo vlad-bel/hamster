@@ -5,7 +5,6 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_backgro
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/forgetpassword.dart/cubit/forget_password_cubit.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/cubit/forget_password_cubit.dart';
 import 'package:business_terminal/presentation/forgetpassword.dart/view/pincoderesetpassword.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/call_method_selector_form.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
@@ -141,15 +140,15 @@ class SubHeaderEmailRichText extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text: tr("forgetpassword_email_subtitle"),
+        text: tr('forgetpassword_email_subtitle'),
         style: inter14.copyWith(height: 1.6),
         children: [
           TextSpan(
-            text: '$email',
+            text: email,
             style: inter14.copyWith(color: denim),
           ),
           TextSpan(
-            text: tr("forgetpassword_email_subtitle2"),
+            text: tr('forgetpassword_email_subtitle2'),
             style: inter14,
           ),
         ],
@@ -163,8 +162,11 @@ void onPressNavigateToPinCodePage(
   String email,
   String type,
 ) {
-  Navigator.of(context).pushNamed(PinCodePasswordResetPage.path, arguments: {
-    'email': email,
-    'type': type,
-  });
+  Navigator.of(context).pushNamed(
+    PinCodePasswordResetPage.path,
+    arguments: {
+      'email': email,
+      'type': type,
+    },
+  );
 }

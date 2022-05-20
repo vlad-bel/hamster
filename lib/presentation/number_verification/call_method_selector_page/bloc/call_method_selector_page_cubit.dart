@@ -18,7 +18,9 @@ class CallMethodSelectorPageCubit extends Cubit<CallMethodSelectorPageState> {
 
   final NumberVerificationUseCase useCase;
 
-  void switchSelector(bool smsSelected) {
+  void switchSelector({
+    required bool smsSelected,
+  }) {
     emit(CallMethodSelectorPageState(smsSelected: smsSelected));
   }
 

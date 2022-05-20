@@ -28,7 +28,9 @@ class HeaderCell extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset('images/arrow_up.svg'),
-                SizedBox(height: 2,),
+                SizedBox(
+                  height: 2,
+                ),
                 SvgPicture.asset('images/arrow_down.svg'),
               ],
             ),
