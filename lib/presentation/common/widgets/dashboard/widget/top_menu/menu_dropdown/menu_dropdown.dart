@@ -49,11 +49,6 @@ class MenuDropDown extends StatelessWidget {
                   style: inter14Medium,
                 ),
                 onPressed: () {
-                  // TODO change to ProfilePage instead of ProfileEditPage
-                  Navigator.pushNamed(
-                    context,
-                    ProfileEditPage.path,
-                  );
                   close();
                 },
               ),

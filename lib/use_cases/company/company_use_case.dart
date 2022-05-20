@@ -2,6 +2,8 @@ import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 
 abstract class CompanyUsecase {
+  RepCompany? repCompany;
+
   Future<Company> createCompany({
     required String companyName,
     required String city,
