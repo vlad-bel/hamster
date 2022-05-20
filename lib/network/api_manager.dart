@@ -29,7 +29,7 @@ Dio httpClientInit() {
         ) async {
           final accessToken = await tokenRepository.getAccessToken();
           if (accessToken != null) {
-            option.headers['Authorization'] = 'Bearer $accessToken';
+            options.headers['Authorization'] = 'Bearer $accessToken';
           }
 
           return handler.next(options);
@@ -41,7 +41,7 @@ Dio httpClientInit() {
           return handler.next(response);
         },
         onError: (DioError error, handler) async {
-          return await _refreshToken(error, handler);
+          return _refreshToken(error, handler);
         },
       ),
     )
