@@ -36,57 +36,82 @@ class App extends StatelessWidget {
             create: (_) => getIt.get<AccountVerificationCubit>(),
           ),
         ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          scaffoldMessengerKey: snackbarKey,
-          theme: ThemeData(
-            appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-            colorScheme: ColorScheme.fromSwatch(
-              accentColor: const Color(0xFF13B9FF),
-            ),
-            textTheme: GoogleFonts.interTextTheme(
-              Theme.of(context).textTheme.apply(
-                    bodyColor: lynch,
-                    displayColor: lynch,
-                  ),
-            ),
-            checkboxTheme: CheckboxThemeData(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
+        child: BlocBuilder<AppStateCubit, AppState>(
+          builder: (context, state) {
+            if (state is UnauthorizedState) {
+              return HamsterApp(
+                navKey: unauthNavigatorKey,
+                initialRoute: state.initialRoute,
+                onGenerateRoute: state.onGenerateRoute,
+              );
+            }
+
+            if (state is AuthorizedState) {
+              return HamsterApp(
+                navKey: authNavigatorKey,
+                initialRoute: state.initialRoute,
+                onGenerateRoute: state.onGenerateRoute,
+              );
+            }
+
+            return HamsterApp(
+              home: SlashPage(),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class HamsterApp extends StatelessWidget {
+  const HamsterApp({
+    Key? key,
+    this.initialRoute,
+    this.onGenerateRoute,
+    this.home,
+    this.navKey,
+  }) : super(key: key);
+
+  final String? initialRoute;
+  final RouteFactory? onGenerateRoute;
+  final Widget? home;
+  final GlobalKey<NavigatorState>? navKey;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      navigatorKey: navKey,
+      debugShowCheckedModeBanner: false,
+      scaffoldMessengerKey: snackbarKey,
+      initialRoute: initialRoute,
+      onGenerateRoute: onGenerateRoute,
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+        colorScheme: ColorScheme.fromSwatch(
+          accentColor: const Color(0xFF13B9FF),
+        ),
+        textTheme: GoogleFonts.interTextTheme(
+          Theme.of(context).textTheme.apply(
+                bodyColor: lynch,
+                displayColor: lynch,
               ),
-            ),
+        ),
+        checkboxTheme: CheckboxThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
           ),
-          localizationsDelegates: const [
+        ),
+      ),
+      localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          supportedLocales: S.delegate.supportedLocales,
-          locale: Locale('en'),
-          home: BlocBuilder<AppStateCubit, AppState>(
-            builder: (BuildContext context, state) {
-              if (state is UnauthorizedState) {
-                return Navigator(
-                  key: unauthNavigatorKey,
-                  onGenerateRoute: state.onGenerateRoute,
-                  initialRoute: state.initialRoute,
-                );
-              }
-
-              if (state is AuthorizedState) {
-                return Navigator(
-                  key: authNavigatorKey,
-                  onGenerateRoute: state.onGenerateRoute,
-                  initialRoute: state.initialRoute,
-                );
-              }
-
-              return SlashPage();
-            },
-          ),
-        ),
-      ),
+      supportedLocales: S.delegate.supportedLocales,
+      locale: Locale('en'),
+      home: home,
     );
   }
 }
