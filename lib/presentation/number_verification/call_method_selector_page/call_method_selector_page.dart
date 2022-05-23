@@ -7,10 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CallMethodSelectorPage extends StatelessWidget {
   const CallMethodSelectorPage({
-    Key? key,
+    super.key,
     required this.phoneNumber,
     required this.email,
-  }) : super(key: key);
+  });
 
   static const path = '${CountriesCodePage.path}/call_method';
 

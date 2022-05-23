@@ -1,5 +1,4 @@
-import 'package:business_terminal/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:iban/iban.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -15,16 +14,16 @@ class AddPaymentFormSettings {
 
   final validationMessageAccountOwner = {
     ValidationMessage.required: 'Should not be empty',
-    ValidationMessage.maxLength: tr(LocaleKeys.max_length_reached),
+    ValidationMessage.maxLength: AppLocale.current.max_length_reached,
     ValidationMessage.minLength: 'Minimal length is $kMinLengthAccountOwner',
   };
 
   final validationMessageIban = {
     ValidationMessage.required: 'Should not be empty',
-    ValidationMessage.maxLength: tr(LocaleKeys.max_length_reached)
+    ValidationMessage.maxLength: AppLocale.current.max_length_reached
         .replaceFirst(r'$0', '${kMaxLengthIban - 8}'),
     ValidationMessage.minLength: 'Minimal length is ${kMinLengthIban - 2}',
-    ValidationMessage.pattern: tr(LocaleKeys.iban_format_error),
+    ValidationMessage.pattern: AppLocale.current.iban_format_error
   };
 
   static const accountOwnerField = 'accountOwner';

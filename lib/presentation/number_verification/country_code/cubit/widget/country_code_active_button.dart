@@ -5,10 +5,10 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class CountryCodeActiveButton extends StatelessWidget {
   const CountryCodeActiveButton({
-    Key? key,
+    super.key,
     required this.cubit,
     required this.formGroup,
-  }) : super(key: key);
+  });
 
   final CountryCodeCubit cubit;
   final FormGroup formGroup;

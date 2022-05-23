@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/generated/l10n.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
@@ -8,9 +9,9 @@ import 'package:business_terminal/presentation/navigation/app_state_cubit/app_st
 import 'package:business_terminal/presentation/navigation/app_state_cubit/authorized_state.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/presentation/navigation/splash_page.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -102,9 +103,14 @@ class HamsterApp extends StatelessWidget {
           ),
         ),
       ),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
+      localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+      supportedLocales: S.delegate.supportedLocales,
+      locale: Locale('en'),
       home: home,
     );
   }

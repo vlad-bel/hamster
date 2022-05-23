@@ -9,9 +9,8 @@ import 'package:flutter/material.dart';
 
 class AuthorizedState extends AppState {
   AuthorizedState({
-    required String initialRoute,
+    required super.initialRoute,
   }) : super(
-          initialRoute: initialRoute,
           onGenerateRoute: (RouteSettings settings) {
             Widget? page;
             switch (settings.name) {
