@@ -15,7 +15,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChooseVerifyPage extends StatelessWidget {
   final String email;
+
   const ChooseVerifyPage({super.key, required this.email});
+
   static const path = '/chooseverifypage';
 
   @override
@@ -31,6 +33,7 @@ class ChooseVerifyPage extends StatelessWidget {
 
 class ChooseVerifyView extends StatelessWidget {
   final String email;
+
   const ChooseVerifyView({super.key, required this.email});
 
   @override
@@ -133,6 +136,7 @@ class ChooseVerifyView extends StatelessWidget {
 
 class SubHeaderEmailRichText extends StatelessWidget {
   final String email;
+
   const SubHeaderEmailRichText({super.key, required this.email});
 
   @override

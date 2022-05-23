@@ -12,7 +12,9 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class ForgetPasswordEmailPage extends StatelessWidget {
   const ForgetPasswordEmailPage({super.key});
+
   static const path = '/forgetpasswordemail';
+
   @override
   Widget build(BuildContext context) {
     return const ForgetPasswordEmailView();

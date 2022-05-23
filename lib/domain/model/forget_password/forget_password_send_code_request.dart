@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'forget_password_send_code_request.g.dart';
 
 @JsonSerializable(ignoreUnannotated: false)

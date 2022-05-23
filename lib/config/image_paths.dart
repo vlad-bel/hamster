@@ -20,6 +20,7 @@ enum _ImageExtension {
   const _ImageExtension(this._type);
 
   final String _type;
+
   String get extensionName {
     return '.$_type';
   }
