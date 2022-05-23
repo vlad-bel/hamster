@@ -103,7 +103,7 @@ class DataCompleteStatusCell extends StatelessWidget {
           ),
         ),
       ),
-      name: 'data_incomplete',
+      name: AppLocale.of(context).data_incomplete,
       padding: 12,
     );
   }
