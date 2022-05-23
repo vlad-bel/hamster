@@ -73,20 +73,12 @@ class _PaymentInfoState extends State<PaymentInfo> {
                       const SizedBox(width: 4),
                       Text(
                         // TODO add l18n key
-                       AppLocale.current.add_bank_details,
+                        AppLocale.of(context).add_bank_details,
                         style: inter14.copyWith(
                           color: denim1,
-                        ),),
-                        const SizedBox(width: 4),
-                        Text(
-                          // TODO add l18n key
-                          AppLocale.of(context).add_bank_details,
-                          style: inter14.copyWith(
-                            color: denim1,
-                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               )

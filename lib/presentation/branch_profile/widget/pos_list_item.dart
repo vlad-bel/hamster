@@ -1,6 +1,5 @@
-import 'package:business_terminal/generated/locale_keys.g.dart';
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 
 class PosListItem extends StatelessWidget {
@@ -17,8 +16,8 @@ class PosListItem extends StatelessWidget {
           Expanded(
             flex: 250,
             child: FormTextField(
-              hint: tr(LocaleKeys.cash_register_manufacturer),
-              label: tr(LocaleKeys.cash_register_manufacturer),
+              hint: AppLocale.current.cash_register_manufacturer,
+              label: AppLocale.current.cash_register_manufacturer,
               // TODO(dvakhnin): integrate with BE
               initialText: 'Manufacturer',
               readOnly: true,
@@ -29,8 +28,8 @@ class PosListItem extends StatelessWidget {
           Expanded(
             flex: 250,
             child: FormTextField(
-              hint: tr(LocaleKeys.model_if_known),
-              label: tr(LocaleKeys.model_if_known),
+              hint: AppLocale.current.model_if_known,
+              label: AppLocale.current.model_if_known,
               // TODO(dvakhnin): integrate with BE
               initialText: 'Model',
               readOnly: true,
@@ -41,8 +40,8 @@ class PosListItem extends StatelessWidget {
           Expanded(
             flex: 150,
             child: FormTextField(
-              hint: tr(LocaleKeys.number_of_registers),
-              label: tr(LocaleKeys.number_of_registers),
+              hint: AppLocale.current.number_of_registers,
+              label: AppLocale.current.number_of_registers,
               // TODO(dvakhnin): integrate with BE
               initialText: 'Kassa $index',
               readOnly: true,

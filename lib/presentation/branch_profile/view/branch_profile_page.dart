@@ -11,7 +11,6 @@ import 'package:business_terminal/presentation/common/widgets/branch_white_conta
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -89,7 +88,7 @@ class _BranchProfileView extends StatelessWidget {
           // Branch equipment:
           const SizedBox(height: 16),
           BranchProfileContainerWhite(
-            headerLeft: Text(LocaleKeys.branch_equipment).tr(),
+            headerLeft: Text(AppLocale.current.branch_equipment),
             body: Column(
               children: [
                 ListView.builder(
@@ -117,8 +116,7 @@ class _BranchProfileView extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          // TODO add l18n key
-                          tr('add_bank_details'),
+                          AppLocale.current.add_bank_details,
                           style: inter14.copyWith(
                             color: denim1,
                           ),
