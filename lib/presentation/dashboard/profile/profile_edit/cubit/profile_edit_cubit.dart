@@ -31,7 +31,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
 
   Future<void> getInitialData() async {
     try {
-      final result = getIt.get<CompanyUsecase>().repCompany;
+      final result = getIt.get<CompanyUsecase>()._repCompany;
       final company = result!.company;
       setControlValue(
         ProfileEditFormSettings.kAccountOwner,
