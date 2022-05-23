@@ -13,8 +13,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 /// Payment info - account owner and IBAN with possibility to edit this info
 /// and submit via [formConsumer]
-class PaymentInfo extends StatelessWidget {
-  PaymentInfo({
+class PaymentInfo extends StatefulWidget {
+  const PaymentInfo({
     Key? key,
     this.accountOwner = '',
     this.iban = '',
@@ -25,12 +25,23 @@ class PaymentInfo extends StatelessWidget {
   final String iban;
   final Widget? formConsumer;
 
+  @override
+  State<PaymentInfo> createState() => _PaymentInfoState();
+}
+
+class _PaymentInfoState extends State<PaymentInfo> {
   final formSettings = AddPaymentFormSettings();
+
+  var _acceptedTerms = false;
 
   @override
   Widget build(BuildContext context) {
     return ReactiveFormBuilder(
-      form: () => formSettings.buildForm(accountOwner, iban),
+      form: () => formSettings.buildForm(
+        widget.accountOwner,
+        widget.iban,
+        enableValidators: widget.formConsumer != null,
+      ),
       builder: (
         BuildContext context,
         FormGroup formGroup,
@@ -39,13 +50,14 @@ class PaymentInfo extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (formConsumer == null)
+            if (widget.formConsumer == null)
               Text(
                 tr(LocaleKeys.payment_information),
                 style: inter16SemiBold,
               ),
             const SizedBox(height: 24),
-            if ((accountOwner.isEmpty || iban.isEmpty) && formConsumer == null)
+            if ((widget.accountOwner.isEmpty || widget.iban.isEmpty) &&
+                widget.formConsumer == null)
               AppDashBorderedContainer(
                 borderType: BorderType.rect,
                 child: Container(
@@ -93,21 +105,25 @@ class PaymentInfo extends StatelessWidget {
                     validationMessages: (control) =>
                         formSettings.validationMessageIban,
                   ),
-                  if (formConsumer != null)
+                  if (widget.formConsumer != null)
                     Column(
                       children: [
                         const SizedBox(height: 16),
                         UiCheckbox(
-                          value: true,
+                          value: _acceptedTerms,
                           title: Text(
                             tr(LocaleKeys.i_authorize_collect_payment),
                             style: inter12,
                           ),
                           position: Position.left,
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            setState(() {
+                              _acceptedTerms = !_acceptedTerms;
+                            });
+                          },
                         ),
                         const SizedBox(height: 24),
-                        formConsumer!,
+                        widget.formConsumer!,
                       ],
                     ),
                 ],

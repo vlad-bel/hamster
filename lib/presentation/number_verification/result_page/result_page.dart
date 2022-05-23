@@ -1,11 +1,8 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/generated/locale_keys.g.dart';
-import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
-import 'package:business_terminal/presentation/login/view/login_page.dart';
-import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmaion_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';

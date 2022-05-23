@@ -58,7 +58,7 @@ class CountryCodeSelectorList extends StatelessWidget {
 }
 
 class _CountryList extends StatelessWidget {
-  _CountryList({
+  const _CountryList({
     Key? key,
     required this.layerLink,
     required this.cubit,
@@ -131,7 +131,6 @@ class _CountryList extends StatelessWidget {
                     final country = countries![index];
                     return ListTile(
                       onTap: () {
-
                         cubit.numberForm
                             .control(
                               CountryCodeSelectorCubit.numberTextfield,

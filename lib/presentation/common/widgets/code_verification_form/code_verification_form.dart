@@ -5,7 +5,6 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_white_c
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
 
 ///code confirmation form

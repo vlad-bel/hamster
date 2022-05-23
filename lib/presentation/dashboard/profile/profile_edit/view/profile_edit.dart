@@ -2,6 +2,7 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/route_names.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
@@ -30,8 +31,8 @@ class ProfileEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt.get<ProfileEditCubit>(),
-      child: const _ProfileEditView(),
+      create: (_) => getIt.get<ProfileEditCubit>()..getInitialData(),
+      child: _ProfileEditView(),
     );
   }
 }
@@ -44,8 +45,6 @@ class _ProfileEditView extends StatefulWidget {
 }
 
 class _ProfileEditViewState extends State<_ProfileEditView> {
-  final formSettings = ProfileEditFormSettings();
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -58,35 +57,61 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
             fit: BoxFit.cover,
           ),
           ReactiveFormBuilder(
-            form: formSettings.buildForm,
+            form:
+                getIt.get<ProfileEditCubit>().profileEditFormSettings.buildForm,
             builder: (context, form, child) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   HeaderAppBarWidget(
                     trailing: ReactiveFormConsumer(
-                        builder: (context, formGroup, child) {
-                      return ActionButtonBlue(
-                        onPressed: () {},
-                        isEnabled: form.valid,
-                        child: Text(
-                          tr('save'),
-                        ),
-                      );
-                    }),
+                      builder: (context, formGroup, child) {
+                        return ActionButtonBlue(
+                          onPressed: () async {
+                            // getIt.get<ProfileEditCubit>().editProfile(
+                            //       '1',
+                            //       ProfileEditRequest(
+                            //         city: '',
+                            //         commercialRegisterNumber: '',
+                            //         companyName: '',
+                            //         country: '',
+                            //         streetName: '',
+                            //         countryCode: '',
+                            //         postalCode: '',
+                            //         streetNumber: '',
+                            //         taxNumber: '',
+                            //         vatId: '',
+                            //       ),
+                            //     );
+                          },
+                          isEnabled: form.valid,
+                          child: Text(
+                            tr('save'),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   Expanded(
                     child: Center(
                       child: BlocBuilder<ProfileEditCubit, ProfileEditState>(
+                        buildWhen: (previous, current) =>
+                            current is InitialProfileEditState,
                         builder: (context, state) {
                           return state.when(
-                            initial: () => _ProfileEditContent(
-                              formSettings: formSettings,
+                            initial: (company, profileEditFormSettings) =>
+                                _ProfileEditContent(
+                              formSettings: profileEditFormSettings,
+                              company: company,
                             ),
                             error: (ApiFailure error) {
-                              return _ProfileEditContent(
-                                formSettings: formSettings,
-                              );
+                              return Text('Error');
+                            },
+                            success: (company) {
+                              return Text('success ${company.toJson()}');
+                            },
+                            loading: () {
+                              return SizedBox();
                             },
                           );
                         },
@@ -107,8 +132,9 @@ class _ProfileEditContent extends StatefulWidget {
   const _ProfileEditContent({
     Key? key,
     required this.formSettings,
+    required this.company,
   }) : super(key: key);
-
+  final Company company;
   final ProfileEditFormSettings formSettings;
 
   @override
@@ -193,9 +219,9 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                               FormTextField(
                                 validationMessages: (control) =>
                                     widget.formSettings.validationMessages,
-                                name: widget.formSettings.kCompanyName,
-                                label: tr(widget.formSettings.kCompanyName),
-                                hint: tr(widget.formSettings.kCompanyName),
+                                name: ProfileEditFormSettings.kCompanyName,
+                                label: tr(ProfileEditFormSettings.kCompanyName),
+                                hint: tr(ProfileEditFormSettings.kCompanyName),
                               ),
                               const SizedBox(height: 25),
                               // TODO add l18n key
@@ -203,12 +229,13 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                 validationMessages: (control) =>
                                     widget.formSettings.validationMessages,
                                 onTap: () {},
-                                name: widget.formSettings.kStreetHouseNumber,
+                                name:
+                                    ProfileEditFormSettings.kStreetHouseNumber,
                                 label: tr(
-                                  widget.formSettings.kStreetHouseNumber,
+                                  ProfileEditFormSettings.kStreetHouseNumber,
                                 ),
                                 hint: tr(
-                                  widget.formSettings.kStreetHouseNumber,
+                                  ProfileEditFormSettings.kStreetHouseNumber,
                                 ),
                               ),
                               const SizedBox(height: 25),
@@ -216,12 +243,13 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                               FormTextField(
                                 validationMessages: (control) =>
                                     widget.formSettings.validationMessages,
-                                name: widget.formSettings.kZipCodeAndLocation,
+                                name:
+                                    ProfileEditFormSettings.kZipCodeAndLocation,
                                 label: tr(
-                                  widget.formSettings.kZipCodeAndLocation,
+                                  ProfileEditFormSettings.kZipCodeAndLocation,
                                 ),
                                 hint: tr(
-                                  widget.formSettings.kZipCodeAndLocation,
+                                  ProfileEditFormSettings.kZipCodeAndLocation,
                                 ),
                               ),
                               const SizedBox(height: 25),
@@ -275,12 +303,13 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                           FormTextField(
                             validationMessages: (control) =>
                                 widget.formSettings.validationMessages,
-                            name: widget.formSettings.kCommercialRegisterNumber,
+                            name: ProfileEditFormSettings
+                                .kCommercialRegisterNumber,
                             label: tr(
-                              widget.formSettings.kCommercialRegisterNumber,
+                              ProfileEditFormSettings.kCommercialRegisterNumber,
                             ),
                             hint: tr(
-                              widget.formSettings.kCommercialRegisterNumber,
+                              ProfileEditFormSettings.kCommercialRegisterNumber,
                             ),
                           ),
                           const SizedBox(
@@ -290,12 +319,12 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                           FormTextField(
                             validationMessages: (control) =>
                                 widget.formSettings.validationMessages,
-                            name: widget.formSettings.kTaxNumber,
+                            name: ProfileEditFormSettings.kTaxNumber,
                             label: tr(
-                              widget.formSettings.kTaxNumber,
+                              ProfileEditFormSettings.kTaxNumber,
                             ),
                             hint: tr(
-                              widget.formSettings.kTaxNumber,
+                              ProfileEditFormSettings.kTaxNumber,
                             ),
                           ),
                           const SizedBox(height: 25),
@@ -303,12 +332,12 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                           FormTextField(
                             validationMessages: (control) =>
                                 widget.formSettings.validationMessages,
-                            name: widget.formSettings.kVatId,
+                            name: ProfileEditFormSettings.kVatId,
                             label: tr(
-                              widget.formSettings.kVatId,
+                              ProfileEditFormSettings.kVatId,
                             ),
                             hint: tr(
-                              widget.formSettings.kVatId,
+                              ProfileEditFormSettings.kVatId,
                             ),
                           ),
                           const SizedBox(height: 25),

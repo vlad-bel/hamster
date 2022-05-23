@@ -33,9 +33,9 @@ class ApiFailureResponse {
     }
 
     return _$ApiFailureResponseFromJson(<String, dynamic>{
-      "statusCode": 0,
-      "message": error.error,
-      "error": "unexpected error",
+      'statusCode': 0,
+      'message': error.error,
+      'error': 'unexpected error',
     });
   }
 

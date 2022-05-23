@@ -8,7 +8,6 @@ part 'menu_dropdown_cubit.freezed.dart';
 class MenuDropdownCubit extends Cubit<MenuDropdownState> {
   MenuDropdownCubit() : super(const MenuDropdownState.close());
 
-
   void closeMenu() {
     emit(const MenuDropdownState.close());
   }

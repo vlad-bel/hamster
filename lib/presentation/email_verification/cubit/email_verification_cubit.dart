@@ -26,7 +26,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
     );
 
     try {
-      final response = await _useCase.resendCode(request);
+      await _useCase.resendCode(request);
       emit(const EmailVerificationState.mailSent());
     } on ApiFailure catch (e) {
       displayErrorSnackbar(e);
@@ -66,7 +66,8 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
       if (e.response.message is String) {
         final messageString = e.response.message as String;
 
-        // TODO: ask backend to return different statusCodes - so we don't have to parse messages
+        // TODO: ask backend to return different statusCodes
+        // - so we don't have to parse messages
 
         // Check too many attempts error:
         if (messageString.contains('attempts')) {

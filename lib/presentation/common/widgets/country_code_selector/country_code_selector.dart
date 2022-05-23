@@ -7,7 +7,6 @@ import 'package:business_terminal/presentation/common/widgets/country_code_selec
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/widget/number_prefix.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -95,16 +94,18 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
   }
 
   void showOverlay({Country? selectedCountry}) {
-    widget.cubit.state.whenOrNull(init: (country, countryList) {
-      overlayEntry ??= _createOverlayEntry();
-      Overlay.of(context)?.insert(overlayEntry!);
-      widget.cubit.showCountryList(selectedCountry: selectedCountry);
-    });
+    widget.cubit.state.whenOrNull(
+      init: (country, countryList) {
+        overlayEntry ??= _createOverlayEntry();
+        Overlay.of(context)?.insert(overlayEntry!);
+        widget.cubit.showCountryList(selectedCountry: selectedCountry);
+      },
+    );
   }
 }
 
 class _Selector extends StatelessWidget {
-  _Selector({
+  const _Selector({
     Key? key,
     required this.overlayEntry,
     required this.layerLink,

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
@@ -117,13 +115,14 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
 
 class MenuItem extends StatefulWidget {
   const MenuItem({
+    Key? key,
     required this.name,
     required this.image,
     required this.subItems,
     required this.initialRouteName,
     required this.selectedRoute,
-    this.isBlocked,
-  });
+    this.isBlocked = true,
+  }) : super(key: key);
 
   final String name;
   final String initialRouteName;
@@ -150,7 +149,7 @@ class _MenuItemState extends State<MenuItem> {
       theme: ExpandableThemeData(
         headerAlignment: ExpandablePanelHeaderAlignment.center,
         hasIcon: false,
-        tapHeaderToExpand: (widget.isBlocked ?? true) ? false : true,
+        tapHeaderToExpand: widget.isBlocked,
       ),
       header: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),

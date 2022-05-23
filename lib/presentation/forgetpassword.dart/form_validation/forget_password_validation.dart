@@ -13,11 +13,13 @@ class ForgetPasswordFormSettings {
 
   FormGroup buildForm() {
     return FormGroup({
-      kfieldEmail: FormControl<String>(validators: [
-        Validators.required,
-        Validators.email,
-        Validators.maxLength(kMaxLength)
-      ]),
+      kfieldEmail: FormControl<String>(
+        validators: [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(kMaxLength)
+        ],
+      ),
     });
   }
 }

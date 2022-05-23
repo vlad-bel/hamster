@@ -5,12 +5,10 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_white_c
 import 'package:business_terminal/presentation/forgetpassword.dart/form_validation/forget_password_validation.dart';
 import 'package:business_terminal/presentation/forgetpassword.dart/view/chooseverifypage.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
-
+import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-
-import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 
 class ForgetPasswordEmailPage extends StatelessWidget {
   const ForgetPasswordEmailPage({Key? key}) : super(key: key);

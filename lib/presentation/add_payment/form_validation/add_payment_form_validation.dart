@@ -30,31 +30,34 @@ class AddPaymentFormSettings {
   static const accountOwnerField = 'accountOwner';
   static const ibanField = 'iban';
 
-  FormGroup buildForm(String? accountOwner, String? iban) {
+  FormGroup buildForm(
+    String? accountOwner,
+    String? iban, {
+    bool enableValidators = true,
+  }) {
     return FormGroup(
       {
         accountOwnerField: FormControl<String>(
           // Disable validators when in read only mode
-          validators: accountOwner?.isEmpty ?? false
-              ? []
-              : [
+          validators: enableValidators
+              ? [
                   Validators.required,
                   Validators.minLength(kMinLengthAccountOwner),
                   Validators.maxLength(kMaxLengthAccountOwner),
-                ],
+                ]
+              : [],
           value: accountOwner,
         ),
         ibanField: FormControl<String>(
-          touched: true,
           // Disable validators when in read only mode
-          validators: iban?.isEmpty ?? false
-              ? []
-              : [
+          validators: enableValidators
+              ? [
                   Validators.required,
-                  _ibanValidator,
                   Validators.minLength(kMinLengthIban),
                   Validators.maxLength(kMaxLengthIban),
-                ],
+                  _ibanValidator,
+                ]
+              : [],
           value: iban,
         ),
       },

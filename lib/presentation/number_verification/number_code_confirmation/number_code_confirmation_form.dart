@@ -55,8 +55,8 @@ class _NumberCodeConfirmationFormState
       builder: (context, state) {
         final cubit = BlocProvider.of<NumberCodeConfirmationCubit>(context);
         final otpSent = widget.verifyMethod == VerifyMethod.phoneCall
-            ? "Bestätigungscode erneut an Telefon gesendet"
-            : "Bestätigungscode per SMS erneut gesendet";
+            ? 'Bestätigungscode erneut an Telefon gesendet'
+            : 'Bestätigungscode per SMS erneut gesendet';
         return CodeVerificationForm(
           controller: pinController,
           header: tr(LocaleKeys.confirm_number_title),

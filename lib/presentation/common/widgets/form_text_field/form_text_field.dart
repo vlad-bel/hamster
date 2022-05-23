@@ -51,7 +51,13 @@ class FormTextField extends StatefulWidget {
 }
 
 class _FormTextFieldState extends State<FormTextField> {
-  bool _passwordInvisible = true;
+  late bool _obscureText;
+  @override
+  void initState() {
+    _obscureText = widget.obscureText;
+
+    super.initState();
+  }
 
   OutlineInputBorder get outlineInputBorder => const OutlineInputBorder(
         borderSide: BorderSide(
@@ -63,14 +69,14 @@ class _FormTextFieldState extends State<FormTextField> {
   Widget build(BuildContext context) {
     final showHidePasswordIcon = IconButton(
       icon: Icon(
-        _passwordInvisible
+        _obscureText
             ? Icons.visibility_outlined
             : Icons.visibility_off_outlined,
         color: const Color(0x8c676f86),
       ),
       onPressed: () {
         setState(() {
-          _passwordInvisible = !_passwordInvisible;
+          _obscureText = !_obscureText;
         });
       },
     );
@@ -96,7 +102,7 @@ class _FormTextFieldState extends State<FormTextField> {
       validationMessages: widget.validationMessages,
       textInputAction: widget.textInputAction,
       keyboardType: widget.keyboardType,
-      obscureText: widget.obscureText ? _passwordInvisible : false,
+      obscureText: _obscureText,
       decoration: inputDecoration,
       controller: widget.controller,
       focusNode: widget.focusListener,

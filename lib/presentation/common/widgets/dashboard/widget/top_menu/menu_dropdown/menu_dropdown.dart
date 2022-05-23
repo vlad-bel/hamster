@@ -1,13 +1,12 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
-import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_dropdown/cubit/menu_dropdown_cubit.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
-import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +17,24 @@ class MenuDropDown extends StatelessWidget {
     Key? key,
     required this.overlayEntry,
   }) : super(key: key);
-  final OverlayEntry overlayEntry;
 
   final cubit = getIt.get<MenuDropdownCubit>();
+  final OverlayEntry overlayEntry;
+
+  void logout(BuildContext context) {
+    context.read<DashboardCubit>().logout();
+    context.read<AppStateCubit>().goToUnauthZone(LoginPage.path);
+
+    unauthNavigatorKey.currentState!.pushNamedAndRemoveUntil(
+      LoginPage.path,
+      (predicate) => predicate.isFirst,
+    );
+  }
+
+  void close() {
+    overlayEntry.remove();
+    cubit.closeMenu();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,55 +51,42 @@ class MenuDropDown extends StatelessWidget {
       child: CustomPaint(
         painter: DropdownCustomPainter(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 8),
               CupertinoButton(
                 padding: EdgeInsets.zero,
+                onPressed: close,
                 child: Text(
                   tr(LocaleKeys.user_account),
                   style: inter14Medium,
                 ),
-                onPressed: () {
-                  // TODO change to ProfilePage instead of ProfileEditPage
-                  Navigator.pushNamed(
-                    context,
-                    ProfileEditPage.path,
-                  );
-                  close();
-                },
               ),
               CupertinoButton(
                 padding: EdgeInsets.zero,
+                onPressed: close,
                 child: Text(
                   tr(LocaleKeys.change_password),
                   style: inter14Medium,
                 ),
-                onPressed: () {
-                  close();
-                },
               ),
               CupertinoButton(
                 padding: EdgeInsets.zero,
+                onPressed: close,
                 child: Text(
                   tr(LocaleKeys.settings),
                   style: inter14Medium,
                 ),
-                onPressed: () {
-                  close();
-                },
               ),
               CupertinoButton(
                 padding: EdgeInsets.zero,
+                onPressed: close,
                 child: Text(
                   tr(LocaleKeys.help_center),
                   style: inter14Medium,
                 ),
-                onPressed: () {
-                  close();
-                },
               ),
               const SizedBox(height: 4),
               CupertinoButton(
@@ -104,21 +105,6 @@ class MenuDropDown extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void logout(BuildContext context) {
-    context.read<DashboardCubit>().logout();
-    context.read<AppStateCubit>().goToUnauthZone(LoginPage.path);
-
-    unauthNavigatorKey.currentState!.pushNamedAndRemoveUntil(
-      LoginPage.path,
-      (predicate) => predicate.isFirst,
-    );
-  }
-
-  void close() {
-    overlayEntry.remove();
-    cubit.closeMenu();
   }
 }
 
@@ -177,15 +163,15 @@ class DropdownCustomPainter extends CustomPainter {
       );
   }
 
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
+  }
+
   Path getTrianglePath(double x, double y) {
     return Path()
       ..moveTo(0, y)
       ..lineTo(x / 2, 0)
       ..lineTo(x, y);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
   }
 }

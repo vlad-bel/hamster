@@ -44,7 +44,7 @@ Dio httpClientInit() {
           return handler.next(response);
         },
         onError: (DioError error, handler) async {
-          return await _refreshToken(error, handler);
+          return _refreshToken(error, handler);
         },
       ),
     )

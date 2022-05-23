@@ -27,7 +27,7 @@ class CompanyUseCaseImpl extends CompanyUsecase {
     required String countryCode,
   }) async {
     try {
-      final accessToken = await _tokenRepository.getAccessToken() ?? '';
+      await _tokenRepository.getAccessToken();
 
       return await _repository.createCompany(
         CompanyRequestBody(
@@ -51,8 +51,8 @@ class CompanyUseCaseImpl extends CompanyUsecase {
   @override
   Future<RepCompany> getRepCompany() async {
     try {
-      final repCopany = await _repository.repCompany();
-
+      final repCopany = await _repository.repCompany(); // TODO rename
+      repCompany = repCopany;
       return repCopany;
     } on DioError catch (e) {
       throw ApiFailure(

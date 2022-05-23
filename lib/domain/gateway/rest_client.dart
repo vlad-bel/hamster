@@ -30,6 +30,12 @@ abstract class RestClient {
     @Body() Map<String, dynamic> userInfoMap,
   );
 
+  @PUT('/company/{id}')
+  Future<Company> updateProfile(
+    @Path('id') String id,
+    @Body() Map<String, dynamic> body,
+  );
+
   @GET('/common/countries')
   Future<Map<String, Country>> getCountries();
 
