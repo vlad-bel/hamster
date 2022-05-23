@@ -1,0 +1,42 @@
+definitions:
+  services:
+    push-image: &build-app
+      runs-on:
+        - self.hosted
+        - linux
+      name: Build Flutter App
+      image: cirrusci/flutter:stable
+#      caches:
+#       - flutter
+      script:
+        - flutter build web -t lib/main_development.dart --release --web-renderer html
+      artifacts:
+        - build/web/**
+
+    deploy-to-cloudfront: &deploy-to-cloudfront
+      runs-on:
+        - self.hosted
+        - linux
+      name: Deploy to Cloudfront
+      image: atlassian/pipelines-awscli
+      script:
+        - pipe: atlassian/aws-s3-deploy:1.1.0
+          variables:
+            AWS_ACCESS_KEY_ID: $AWS_KEY
+            AWS_SECRET_ACCESS_KEY: $AWS_SECRET
+            AWS_DEFAULT_REGION: $AWS_REGION
+            S3_BUCKET: 'www.hamster.business'
+            LOCAL_PATH: 'build/web/'
+            ACL: 'public-read'
+        - pipe: atlassian/aws-cloudfront-invalidate:0.6.0
+          variables:
+            AWS_ACCESS_KEY_ID: $AWS_KEY
+            AWS_SECRET_ACCESS_KEY: $AWS_SECRET
+            AWS_DEFAULT_REGION: $AWS_REGION
+            DISTRIBUTION_ID: "E321DXQJI5QC0G"
+            PATHS: "/*"
+
+pipelines:
+  default:
+    - step: *build-app
+    - step: *deploy-to-cloudfront
