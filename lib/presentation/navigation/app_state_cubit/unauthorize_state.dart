@@ -22,9 +22,8 @@ String verifyMethodParam = 'verify_method';
 
 class UnauthorizedState extends AppState {
   UnauthorizedState({
-    required String initialRoute,
+    required super.initialRoute,
   }) : super(
-          initialRoute: initialRoute,
           onGenerateRoute: (routeSettings) {
             Widget page;
             final params = routeSettings.arguments as Map<String, dynamic>?;

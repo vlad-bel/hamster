@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
@@ -6,7 +7,6 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_white_c
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/forgetpassword.dart/cubit/forget_password_cubit.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
@@ -15,10 +15,10 @@ class PinCodePasswordResetPage extends StatelessWidget {
   final String email;
   final String type;
   const PinCodePasswordResetPage({
-    Key? key,
+    super.key,
     required this.email,
     required this.type,
-  }) : super(key: key);
+  });
   static const path = '/pincoderesetpassword';
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,10 @@ class PinCodePasswordResetView extends StatefulWidget {
   final String email;
   final String type;
   const PinCodePasswordResetView({
-    Key? key,
+    super.key,
     required this.email,
     required this.type,
-  }) : super(key: key);
+  });
 
   @override
   State<PinCodePasswordResetView> createState() =>
@@ -51,11 +51,11 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: tr('forget_pasword_header'),
+          header: AppLocale.of(context).forget_pasword_header,
           subHeader: RichText(
             text: TextSpan(
               style: inter14,
-              text: tr('forget_password_email_inside_subtitle'),
+              text: AppLocale.of(context).forgetpassword_email_subtitle,
               children: [
                 TextSpan(
                   style: inter14Medium.copyWith(color: denim),
@@ -63,7 +63,7 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
                 ),
                 TextSpan(
                   style: inter14,
-                  text: tr('forget_password_email_inside_subtitle2'),
+                  text: AppLocale.of(context).forgetpassword_email_subtitle2,
                 ),
               ],
             ),
@@ -94,11 +94,11 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
 class ResetPasswordPinInput extends StatelessWidget {
   final String email;
   const ResetPasswordPinInput({
-    Key? key,
+    super.key,
     required this.pinController,
     required this.hasPinError,
     required this.email,
-  }) : super(key: key);
+  });
 
   final TextEditingController pinController;
   final bool hasPinError;
@@ -130,10 +130,10 @@ class ResetCodeButton extends StatelessWidget {
   final String email;
   final String type;
   const ResetCodeButton({
-    Key? key,
+    super.key,
     required this.email,
     required this.type,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +144,7 @@ class ResetCodeButton extends StatelessWidget {
           context.read<ForgetPasswordCubit>().resendSmsCode(email, type);
         },
         child: Text(
-          tr('resetemail'),
+          AppLocale.of(context).resetmail,
           style: TextStyle(color: denim),
         ),
       ),

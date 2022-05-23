@@ -20,9 +20,9 @@ import 'package:loader_overlay/loader_overlay.dart';
 
 class EmailVerificationPage extends StatelessWidget {
   const EmailVerificationPage({
-    Key? key,
+    super.key,
     required this.userEmail,
-  }) : super(key: key);
+  });
 
   final String? userEmail;
 
@@ -38,7 +38,7 @@ class EmailVerificationPage extends StatelessWidget {
 }
 
 class EmailVerificationView extends StatefulWidget {
-  const EmailVerificationView({Key? key, this.userEmail}) : super(key: key);
+  const EmailVerificationView({super.key, this.userEmail});
 
   final String? userEmail;
 
@@ -99,9 +99,9 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
 
 class SubHeaderRichText extends StatelessWidget {
   const SubHeaderRichText({
-    Key? key,
+    super.key,
     required this.widget,
-  }) : super(key: key);
+  });
 
   final EmailVerificationView widget;
 
@@ -132,12 +132,12 @@ class SubHeaderRichText extends StatelessWidget {
 
 class EmailSentNotSentInfoBuilder extends StatelessWidget {
   const EmailSentNotSentInfoBuilder({
-    Key? key,
+    super.key,
     required this.textEmailWasSent,
     required this.emailWasSentColor,
     required this.textWrongOtp,
     required this.pinController,
-  }) : super(key: key);
+  });
 
   final String textEmailWasSent;
   final Color emailWasSentColor;
@@ -180,9 +180,9 @@ class EmailSentNotSentInfoBuilder extends StatelessWidget {
 
 class EmailVerificationBlocListener extends StatelessWidget {
   const EmailVerificationBlocListener({
-    Key? key,
+    super.key,
     required this.pinController,
-  }) : super(key: key);
+  });
 
   final TextEditingController pinController;
 
@@ -224,10 +224,10 @@ class EmailVerificationBlocListener extends StatelessWidget {
 
 class ResendEmailCodeButton extends StatelessWidget {
   const ResendEmailCodeButton({
-    Key? key,
+    super.key,
     required this.userEmail,
     required this.cubit,
-  }) : super(key: key);
+  });
 
   final String? userEmail;
   final EmailVerificationCubit cubit;
@@ -260,11 +260,11 @@ class ResendEmailCodeButton extends StatelessWidget {
 
 class EmailVerificationPinWrapper extends StatefulWidget {
   const EmailVerificationPinWrapper({
-    Key? key,
+    super.key,
     required this.pinController,
     required this.widget,
     required this.cubit,
-  }) : super(key: key);
+  });
 
   final TextEditingController pinController;
   final EmailVerificationView widget;
@@ -300,12 +300,12 @@ class _EmailVerificationPinWrapperState
 
 class EmailVerificationPinInput extends StatelessWidget {
   const EmailVerificationPinInput({
-    Key? key,
+    super.key,
     required this.pinController,
     required this.hasPinError,
     required this.widget,
     required this.cubit,
-  }) : super(key: key);
+  });
 
   final TextEditingController pinController;
   final bool hasPinError;

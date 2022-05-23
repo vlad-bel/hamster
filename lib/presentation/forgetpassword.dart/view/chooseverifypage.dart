@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
@@ -9,13 +10,12 @@ import 'package:business_terminal/presentation/forgetpassword.dart/view/pincoder
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/call_method_selector_form.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChooseVerifyPage extends StatelessWidget {
   final String email;
-  const ChooseVerifyPage({Key? key, required this.email}) : super(key: key);
+  const ChooseVerifyPage({super.key, required this.email});
   static const path = '/chooseverifypage';
 
   @override
@@ -31,7 +31,7 @@ class ChooseVerifyPage extends StatelessWidget {
 
 class ChooseVerifyView extends StatelessWidget {
   final String email;
-  const ChooseVerifyView({Key? key, required this.email}) : super(key: key);
+  const ChooseVerifyView({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class ChooseVerifyView extends StatelessWidget {
         return OnboardingBackground(
           children: OnboardingWhiteContainer(
             header: OnboardingWhiteContainerHeader(
-              header: tr('forget_password'),
+              header: AppLocale.of(context).forget_password,
               subHeader: SubHeaderEmailRichText(
                 email: email,
               ),
@@ -64,7 +64,7 @@ class ChooseVerifyView extends StatelessWidget {
                   children: [
                     SelectorRect(
                       size: 110,
-                      title: tr('email'),
+                      title: AppLocale.of(context).email,
                       icon: Icons.email,
                       onTap: () {
                         context
@@ -76,7 +76,7 @@ class ChooseVerifyView extends StatelessWidget {
                     const SizedBox(width: 10),
                     SelectorRect(
                       size: 110,
-                      title: tr('sms'),
+                      title: AppLocale.of(context).sms,
                       icon: Icons.sms,
                       onTap: () {
                         context
@@ -88,7 +88,7 @@ class ChooseVerifyView extends StatelessWidget {
                     const SizedBox(width: 10),
                     SelectorRect(
                       size: 110,
-                      title: tr('phone_call'),
+                      title: AppLocale.of(context).phone_call,
                       icon: Icons.call_outlined,
                       onTap: () {
                         context
@@ -133,14 +133,13 @@ class ChooseVerifyView extends StatelessWidget {
 
 class SubHeaderEmailRichText extends StatelessWidget {
   final String email;
-  const SubHeaderEmailRichText({Key? key, required this.email})
-      : super(key: key);
+  const SubHeaderEmailRichText({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text: tr('forgetpassword_email_subtitle'),
+        text: AppLocale.of(context).forgetpassword_email_subtitle,
         style: inter14.copyWith(height: 1.6),
         children: [
           TextSpan(
@@ -148,7 +147,7 @@ class SubHeaderEmailRichText extends StatelessWidget {
             style: inter14.copyWith(color: denim),
           ),
           TextSpan(
-            text: tr('forgetpassword_email_subtitle2'),
+            text: AppLocale.of(context).forgetpassword_email_subtitle2,
             style: inter14,
           ),
         ],

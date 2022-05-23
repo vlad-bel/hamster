@@ -4,7 +4,7 @@ import 'package:business_terminal/presentation/dashboard/profive_viewing/view/co
 import 'package:flutter/material.dart';
 
 class ProfileViewing extends StatelessWidget {
-  const ProfileViewing({Key? key}) : super(key: key);
+  const ProfileViewing({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ProfileViewing extends StatelessWidget {
 }
 
 class CompanyProfileView extends StatelessWidget {
-  const CompanyProfileView({Key? key}) : super(key: key);
+  const CompanyProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
