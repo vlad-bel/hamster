@@ -1,5 +1,17 @@
 definitions:
   services:
+    clone-widgets: &clone-widgets
+      runs-on:
+        - self.hosted
+        - linux
+      name: Clone repo
+      image: cirrusci/flutter:stable
+      script:
+        - git clone https://$GIT_USERNAME:$GIT_PASSWORD@bitbucket.org/raikjakschis/hamster_widgets.git
+        - cd hamster_widgets && git checkout develop
+      artifacts:
+        - hamster_widgets/**
+
     push-image: &build-app
       runs-on:
         - self.hosted
@@ -9,6 +21,7 @@ definitions:
 #      caches:
 #       - flutter
       script:
+        - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
         - flutter build web -t lib/main_development.dart --release --web-renderer html
       artifacts:
         - build/web/**
@@ -38,5 +51,6 @@ definitions:
 
 pipelines:
   default:
+    - step: *clone-widgets
     - step: *build-app
     - step: *deploy-to-cloudfront

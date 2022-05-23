@@ -3,6 +3,7 @@ import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/repository/token/token_repository.dart';
 import 'package:business_terminal/domain/request_model/company/company_request_body.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
 import 'package:dio/dio.dart';
@@ -10,9 +11,10 @@ import 'package:injectable/injectable.dart';
 
 @Singleton(as: CompanyUsecase)
 class CompanyUseCaseImpl extends CompanyUsecase {
-  CompanyUseCaseImpl(this.repository);
+  CompanyUseCaseImpl(this._repository, this._tokenRepository);
 
-  final RestClient repository;
+  final RestClient _repository;
+  final TokenRepository _tokenRepository;
 
   @override
   Future<Company> createCompany({
@@ -25,7 +27,9 @@ class CompanyUseCaseImpl extends CompanyUsecase {
     required String countryCode,
   }) async {
     try {
-      return await repository.createCompany(
+      await _tokenRepository.getAccessToken();
+
+      return await _repository.createCompany(
         CompanyRequestBody(
           companyName: companyName,
           city: city,
@@ -35,9 +39,6 @@ class CompanyUseCaseImpl extends CompanyUsecase {
           country: country,
           countryCode: countryCode,
         ).toJson(),
-
-        ///TODO PUT TEMPORARY TOKEN HERE
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQHRlc3QxMC5jb20iLCJyb2xlcyI6WyJyZXByZXNlbnRhdGl2ZSJdLCJpYXQiOjE2NTIzNjMxMTgsImV4cCI6MTY1MjM2ODUxOH0.XeTcWOCSbtYPsP5jZX0ym31gNa-nfB-MflT2Pp9-5t8",
       );
     } on DioError catch (e) {
       throw ApiFailure(
@@ -50,10 +51,9 @@ class CompanyUseCaseImpl extends CompanyUsecase {
   @override
   Future<RepCompany> getRepCompany() async {
     try {
-      return await repository.repCompany(
-
-          ///TODO PUT TEMPORARY TOKEN HERE
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQHRlc3QxMC5jb20iLCJyb2xlcyI6WyJyZXByZXNlbnRhdGl2ZSJdLCJpYXQiOjE2NTIzNjMxMTgsImV4cCI6MTY1MjM2ODUxOH0.XeTcWOCSbtYPsP5jZX0ym31gNa-nfB-MflT2Pp9-5t8');
+      final repCopany = await _repository.repCompany(); // TODO rename
+      repCompany = repCopany;
+      return repCopany;
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),

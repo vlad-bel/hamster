@@ -2,7 +2,7 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:flutter/material.dart';
 
-///header for [OnboardingWhiteContainer]
+///header for OnboardingWhiteContainer
 class OnboardingWhiteContainerHeader extends StatelessWidget {
   const OnboardingWhiteContainerHeader({
     Key? key,

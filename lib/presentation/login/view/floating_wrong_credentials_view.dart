@@ -7,8 +7,8 @@ import 'package:flutter_portal/flutter_portal.dart';
 
 class FloatingWrongCredentialsView extends StatelessWidget {
   const FloatingWrongCredentialsView({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +60,7 @@ class FloatingWrongCredentialsView extends StatelessWidget {
                               ),
                               const SizedBox(height: 26),
                               TextButton(
-                                onPressed: () {
-                                  print('clicked');
-                                },
+                                onPressed: () {},
                                 child: const Text(
                                   'Hinweis schließen',
                                   style: TextStyle(

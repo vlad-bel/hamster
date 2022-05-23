@@ -9,9 +9,9 @@ class CreatePhoneRequest {
     required this.email,
   });
 
-  @JsonKey(name: "phone")
+  @JsonKey(name: 'phone')
   final String phone;
-  @JsonKey(name: "email")
+  @JsonKey(name: 'email')
   final String email;
 
   factory CreatePhoneRequest.fromJson(Map<String, dynamic> json) =>

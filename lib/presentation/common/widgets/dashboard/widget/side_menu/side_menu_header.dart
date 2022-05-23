@@ -3,7 +3,6 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SideMenuHeader extends StatelessWidget {
@@ -30,16 +29,17 @@ class SideMenuHeader extends StatelessWidget {
         Row(
           children: [
             Avatar(
-              image: repCompany?.company.companyLogo,
+              image: repCompany?.company?.companyLogo,
               width: 50,
               height: 50,
             ),
             const Spacer(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 32.0),
+              padding: const EdgeInsets.only(bottom: 32),
               child: CupertinoButton(
                 child: Text(
-                  "ÄNDERN",
+                  // TODO(@v.belenkov): Add localization
+                  'ÄNDERN',
                   style: inter14.copyWith(
                     color: denim,
                   ),
@@ -51,13 +51,9 @@ class SideMenuHeader extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CompanyInfo(
-          companyAddress: '${repCompany?.company.streetName ?? ""} '
-              '${repCompany?.company.streetNumber ?? ""}'
-              '${repCompany != null ? "," : ""}'
-              ' ${repCompany?.company.postalCode ?? ""} '
-              '${repCompany?.company.country ?? ""}',
-          companyNumber: repCompany?.company.branchNumber ?? '',
-          companyName: repCompany?.company.companyName ?? '',
+          companyAddress: repCompany?.company?.getFullAddress() ?? '',
+          companyNumber: repCompany?.company?.branchNumber ?? '',
+          companyName: repCompany?.company?.companyName ?? '',
         ),
       ],
     );

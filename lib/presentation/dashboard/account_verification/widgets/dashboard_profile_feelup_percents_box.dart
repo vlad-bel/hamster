@@ -1,19 +1,18 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/registration/widgets/simple_button_light_blue.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class DashboardProfileFeelUpPercentsBox extends StatelessWidget {
   const DashboardProfileFeelUpPercentsBox({
-    Key? key,
+    super.key,
     required this.percentsProgress,
     required this.imagePath,
     required this.title,
     required this.subTitle,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   final int? percentsProgress;
   final String imagePath;
@@ -38,9 +37,10 @@ class DashboardProfileFeelUpPercentsBox extends StatelessWidget {
                 Chip(
                   backgroundColor: darkGreen,
                   label: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    padding: EdgeInsets.zero,
                     child: Text(
-                      '${percentsProgress?.toString() ?? ""} ${percentsProgress == null ? " " : "%"}',
+                      '${percentsProgress?.toString() ?? ""}'
+                      ' ${percentsProgress == null ? " " : "%"}',
                       style: inter10.copyWith(
                         color: fruitSalad,
                         fontWeight: FontWeight.w400,

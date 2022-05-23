@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class UnknownPage extends StatelessWidget {
   const UnknownPage({
-    Key? key,
+    super.key,
     required this.path,
-  }) : super(key: key);
+  });
 
   final String path;
 
@@ -12,8 +12,10 @@ class UnknownPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Unknown location: $path\n'
-            'Please return back and try another path'),
+        child: Text(
+          'Unknown location: $path\n'
+          'Please return back and try another path',
+        ),
       ),
     );
   }

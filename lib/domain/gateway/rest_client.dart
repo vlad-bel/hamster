@@ -22,9 +22,18 @@ abstract class RestClient {
     @Body() Map<String, dynamic> loginMap,
   );
 
+  @POST('/rep/logout')
+  Future<void> logout();
+
   @POST('/rep/init-creation')
   Future<String> initUserInfoCreation(
     @Body() Map<String, dynamic> userInfoMap,
+  );
+
+  @PUT('/company/{id}')
+  Future<Company> updateProfile(
+    @Path('id') String id,
+    @Body() Map<String, dynamic> body,
   );
 
   @GET('/common/countries')
@@ -60,14 +69,21 @@ abstract class RestClient {
     @Body() Map<String, dynamic> resendEmailCodeMap,
   );
 
+  @POST('/rep/send-verification-code')
+  Future<String> sendVerificationCode(
+    @Body() Map<String, dynamic> sendVerificationCodeMap,
+  );
+
+  @POST('/rep/verify-phone-code')
+  Future<String> verifyPhoneCode(
+    @Body() Map<String, dynamic> sendVerifyPhoneCodeMap,
+  );
+
   @POST('/company')
   Future<Company> createCompany(
     @Body() Map<String, dynamic> body,
-    @Header("Authorization") String contentType,
   );
 
   @GET('/rep/company')
-  Future<RepCompany> repCompany(
-    @Header("Authorization") String authToken,
-  );
+  Future<RepCompany> repCompany();
 }

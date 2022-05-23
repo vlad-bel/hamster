@@ -3,6 +3,7 @@ import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/company_creation/cubit/company_creation_state.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
+import 'package:business_terminal/use_cases/login/login_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -12,10 +13,12 @@ class CompanyCreationCubit extends Cubit<CompanyCreationState> {
   CompanyCreationCubit({
     required this.usecase,
     required this.accountVerificationCubit,
+    required this.loginUseCase,
   }) : super(const CompanyCreationState.init());
 
   final CompanyUsecase usecase;
   final AccountVerificationCubit accountVerificationCubit;
+  final LoginUseCase loginUseCase;
 
   static const companyField = 'company';
   static const addressField = 'address';
@@ -65,8 +68,7 @@ class CompanyCreationCubit extends Cubit<CompanyCreationState> {
   Future createCompany(Country country) async {
     try {
       emit(const CompanyCreationState.loading());
-      await Future<void>.delayed(Duration(seconds: 2));
-      final response = await usecase.createCompany(
+      await usecase.createCompany(
         companyName: formGroup.control(companyField).value as String,
         city: formGroup.control(cityField).value as String,
         streetName: formGroup.control(streetField).value as String,
@@ -75,8 +77,16 @@ class CompanyCreationCubit extends Cubit<CompanyCreationState> {
         country: country.name,
         countryCode: country.code!,
       );
-      await accountVerificationCubit.getRepCompanyData();
+
       emit(const CompanyCreationState.success());
+    } on ApiFailure catch (e) {
+      emit(CompanyCreationState.error(e));
+    }
+  }
+
+  Future logout() async {
+    try {
+      loginUseCase.logout();
     } on ApiFailure catch (e) {
       emit(CompanyCreationState.error(e));
     }

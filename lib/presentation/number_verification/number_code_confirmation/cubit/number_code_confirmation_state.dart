@@ -21,6 +21,7 @@ class NumberCodeConfirmationState with _$NumberCodeConfirmationState {
   const factory NumberCodeConfirmationState.codeError({required ApiFailure e}) =
       CodeErrorCodeConfirmationState;
 
-  const factory NumberCodeConfirmationState.resendError(
-      {required ApiFailure e}) = ResendErrorCodeConfirmationState;
+  const factory NumberCodeConfirmationState.resendError({
+    required ApiFailure e,
+  }) = ResendErrorCodeConfirmationState;
 }

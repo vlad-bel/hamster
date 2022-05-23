@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class AccountVerificationTitleSubtitle extends StatelessWidget {
   const AccountVerificationTitleSubtitle({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,10 @@ class AccountVerificationTitleSubtitle extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         Text(
-          'Die drei nachfolgenden Bedingungen müssen erfüllt sein bevor Sie die Verifikation Ihres Unternehmens mit den'
-          '\ndazugehörigen Filialen beantragen können, um in der HamsterApp aufgeführt zu werden.',
+          'Die drei nachfolgenden Bedingungen müssen erfüllt'
+          ' sein bevor Sie die Verifikation Ihres Unternehmens mit den'
+          '\ndazugehörigen Filialen beantragen können, um in'
+          ' der HamsterApp aufgeführt zu werden.',
           style: inter14,
           textAlign: TextAlign.center,
         ),

@@ -1,25 +1,27 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
-import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
+import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/common/widgets/text_button_link.dart';
+import 'package:business_terminal/presentation/forgetpassword.dart/view/forgetpassword_email.dart';
 import 'package:business_terminal/presentation/login/cubit/login_cubit.dart';
 import 'package:business_terminal/presentation/login/form_validation/login_form_validation.dart';
 import 'package:business_terminal/presentation/login/view/floating_wrong_credentials_view.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:business_terminal/presentation/registration/view/registration_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
-import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   static const path = '/';
 
@@ -33,7 +35,7 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+  const LoginView({super.key});
 
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -44,8 +46,9 @@ class _LoginViewState extends State<LoginView> {
   final formSettings = LoginFormSettings();
 
   final title = 'Willkommen bei\nHamster!';
-  final subtitle =
-      'Sollten Sie bereits einen BusinessAccount haben, dann melden Sie sich direkt an. Ansonsten müssten Sie sich zuerst noch registrieren.';
+  final subtitle = 'Sollten Sie bereits einen BusinessAccount haben,'
+      ' dann melden Sie sich direkt an. Ansonsten müssten Sie'
+      ' sich zuerst noch registrieren.';
   final forgotPasswordText = 'Passwort vergessen';
 
   @override
@@ -95,7 +98,7 @@ class _LoginViewState extends State<LoginView> {
                       alignment: Alignment.centerRight,
                       child: TextButtonBlueLink(
                         text: forgotPasswordText,
-                        onPressed: () {},
+                        onPressed: () => onPressForgetPassword(context),
                       ),
                     ),
                     Container(height: 28),
@@ -136,6 +139,10 @@ class _LoginViewState extends State<LoginView> {
     context.read<LoginCubit>().login(email, password);
   }
 
+  void onPressForgetPassword(BuildContext context) {
+    Navigator.of(context).pushNamed(ForgetPasswordEmailPage.path);
+  }
+
   void onPressNavigateToRegistration(BuildContext context) {
     Navigator.of(context).pushNamed(RegistrationPage.path);
   }
@@ -149,8 +156,8 @@ class _LoginViewState extends State<LoginView> {
 
 class LoginBlocListener extends StatelessWidget {
   const LoginBlocListener({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +165,7 @@ class LoginBlocListener extends StatelessWidget {
       listener: (context, state) {
         state.whenOrNull(
           error: onError,
-          success: (response) => onSuccess(context),
+          success: (path) => onSuccess(context, path),
         );
 
         if (state is LoadingLogin) {
@@ -171,10 +178,16 @@ class LoginBlocListener extends StatelessWidget {
     );
   }
 
-  void onSuccess(BuildContext context) {
-    SnackBarManager.showSuccess('Correct user credentials');
-
-    Navigator.of(context).pushReplacementNamed(DashboardPage.path);
+  void onSuccess(
+    BuildContext context,
+    String path,
+  ) {
+    context.loaderOverlay.hide();
+    context.read<AppStateCubit>().goToAuthZone(path);
+    authNavigatorKey.currentState!.pushNamedAndRemoveUntil(
+      path,
+      (predicate) => false,
+    );
   }
 
   void onError(ApiFailure e) {

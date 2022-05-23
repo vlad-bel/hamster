@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
@@ -10,16 +11,15 @@ import 'package:business_terminal/presentation/number_verification/call_method_s
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmaion_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CallMethodSelectorForm extends StatefulWidget {
   const CallMethodSelectorForm({
-    Key? key,
+    super.key,
     required this.number,
     required this.email,
-  }) : super(key: key);
+  });
 
   final String number;
   final String email;
@@ -34,11 +34,11 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: tr('confirm_number_title'),
+          header: AppLocale.current.confirm_number_title,
           subHeader: RichText(
             text: TextSpan(
               style: inter14,
-              text: tr('call_method1'),
+              text: AppLocale.current.call_method1,
               children: [
                 TextSpan(
                   style: inter14Medium.copyWith(color: denim),
@@ -46,7 +46,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                 ),
                 TextSpan(
                   style: inter14,
-                  text: tr('call_method2'),
+                  text: AppLocale.current.call_method2,
                 ),
               ],
             ),
@@ -65,21 +65,21 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                   children: [
                     SelectorRect(
                       size: 160,
-                      title: tr('sms'),
+                      title: AppLocale.current.sms,
                       icon: Icons.sms,
                       choosed: state.smsSelected,
                       onTap: () {
-                        cubit.switchSelector(true);
+                        cubit.switchSelector(smsSelected: true);
                       },
                     ),
                     const SizedBox(width: 28),
                     SelectorRect(
                       size: 160,
-                      title: tr('phone_call'),
+                      title: AppLocale.current.phone_call,
                       icon: Icons.call_outlined,
                       choosed: !state.smsSelected,
                       onTap: () {
-                        cubit.switchSelector(false);
+                        cubit.switchSelector(smsSelected: false);
                       },
                     ),
                   ],
@@ -128,13 +128,13 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
 
 class SelectorRect extends StatelessWidget {
   const SelectorRect({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     required this.onTap,
     required this.choosed,
     required this.size,
-  }) : super(key: key);
+  });
 
   final IconData icon;
   final String title;

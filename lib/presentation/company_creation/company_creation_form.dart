@@ -1,17 +1,22 @@
 import 'package:business_terminal/config/styles.dart';
+
+import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
+import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/company_creation/cubit/company_creation_cubit.dart';
 import 'package:business_terminal/presentation/company_creation/cubit/company_creation_state.dart';
+import 'package:business_terminal/presentation/login/view/login_page.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
-import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -26,9 +31,9 @@ class CompanyCreationForm extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 120),
         child: OnboardingWhiteContainer(
           header: OnboardingWhiteContainerHeader(
-            header: tr('create_company_profile'),
+            header: AppLocale.current.create_company_profile,
             subHeader: Text(
-              tr('create_company_profile_descr'),
+              AppLocale.current.create_company_profile_descr,
               style: inter14,
             ),
           ),
@@ -59,13 +64,12 @@ class CompanyCreationForm extends StatelessWidget {
                   Widget? child,
                 ) {
                   return Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(height: 26),
                       FormTextField(
                         name: CompanyCreationCubit.companyField,
-                        hint: tr('company_hint'),
-                        label: tr('company_hint'),
+                        hint: AppLocale.current.company_hint,
+                        label: AppLocale.current.company_hint,
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -75,16 +79,16 @@ class CompanyCreationForm extends StatelessWidget {
                             flex: 3,
                             child: FormTextField(
                               name: CompanyCreationCubit.streetField,
-                              hint: tr('street_hint'),
-                              label: tr('street_hint'),
+                              hint: AppLocale.current.street_hint,
+                              label: AppLocale.current.street_hint,
                             ),
                           ),
                           SizedBox(width: 16),
                           Flexible(
                             child: FormTextField(
                               name: CompanyCreationCubit.streetNumberField,
-                              hint: tr('num_hint'),
-                              label: tr('num_hint'),
+                              hint: AppLocale.current.num_hint,
+                              label: AppLocale.current.num_hint,
                             ),
                           ),
                         ],
@@ -92,12 +96,12 @@ class CompanyCreationForm extends StatelessWidget {
                       const SizedBox(height: 16),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children:  [
+                        children: [
                           Flexible(
                             child: FormTextField(
                               name: CompanyCreationCubit.postcodeField,
-                              hint: tr('post_hint'),
-                              label: tr('post_hint'),
+                              hint: AppLocale.current.post_hint,
+                              label: AppLocale.current.post_hint,
                             ),
                           ),
                           SizedBox(width: 16),
@@ -105,8 +109,8 @@ class CompanyCreationForm extends StatelessWidget {
                             flex: 3,
                             child: FormTextField(
                               name: CompanyCreationCubit.cityField,
-                              hint: tr('location_hint'),
-                              label: tr('location_hint'),
+                              hint: AppLocale.current.location_hint,
+                              label: AppLocale.current.location_hint,
                             ),
                           ),
                         ],
@@ -121,7 +125,7 @@ class CompanyCreationForm extends StatelessWidget {
                           WhiteButton(
                             width: 160,
                             onPressed: () {
-                              Navigator.of(context).pop();
+                              goBack(context);
                             },
                           ),
                           const Spacer(),
@@ -164,8 +168,7 @@ class CompanyCreationForm extends StatelessWidget {
                                       );
                                     },
                                     child: companyCreationState.whenOrNull(
-                                      loading: () =>
-                                      const SizedBox(
+                                      loading: () => const SizedBox(
                                         width: 16,
                                         height: 16,
                                         child: CircularProgressIndicator(
@@ -188,6 +191,16 @@ class CompanyCreationForm extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> goBack(BuildContext context) async {
+    final cubit = context.read<CompanyCreationCubit>();
+    cubit.logout();
+    context.read<AppStateCubit>().goToUnauthZone(LoginPage.path);
+    unauthNavigatorKey.currentState!.pushNamedAndRemoveUntil(
+      LoginPage.path,
+      (predicate) => predicate.isFirst,
     );
   }
 }

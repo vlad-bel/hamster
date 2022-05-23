@@ -3,11 +3,11 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
-import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/email_verification/cubit/email_verification_cubit.dart';
+import 'package:business_terminal/presentation/email_verification/view/email_was_sent_text_icon.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/presentation/number_verification/country_code/country_code_page.dart';
 import 'package:business_terminal/presentation/registration/view/registration_page.dart';
@@ -18,13 +18,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import 'email_was_sent_text_icon.dart';
-
 class EmailVerificationPage extends StatelessWidget {
   const EmailVerificationPage({
-    Key? key,
+    super.key,
     required this.userEmail,
-  }) : super(key: key);
+  });
 
   final String? userEmail;
 
@@ -40,7 +38,7 @@ class EmailVerificationPage extends StatelessWidget {
 }
 
 class EmailVerificationView extends StatefulWidget {
-  const EmailVerificationView({Key? key, this.userEmail}) : super(key: key);
+  const EmailVerificationView({super.key, this.userEmail});
 
   final String? userEmail;
 
@@ -101,9 +99,9 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
 
 class SubHeaderRichText extends StatelessWidget {
   const SubHeaderRichText({
-    Key? key,
+    super.key,
     required this.widget,
-  }) : super(key: key);
+  });
 
   final EmailVerificationView widget;
 
@@ -119,8 +117,11 @@ class SubHeaderRichText extends StatelessWidget {
             style: inter14.copyWith(color: denim),
           ),
           TextSpan(
-            text:
-                ' Bitte geben Sie den 5-stelligen Code ein, um IhreE-Mail-Adresse zu verifizieren. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner.',
+            text: ' Bitte geben Sie den 5-stelligen Code ein, um'
+                ' IhreE-Mail-Adresse zu verifizieren. Sollte'
+                ' die E-Mail in Kürze nicht in Ihrer Inbox'
+                ' auftauchen, so kontrollieren Sie bitte'
+                ' auch Ihren Spam-Ordner.',
             style: inter14,
           ),
         ],
@@ -131,12 +132,12 @@ class SubHeaderRichText extends StatelessWidget {
 
 class EmailSentNotSentInfoBuilder extends StatelessWidget {
   const EmailSentNotSentInfoBuilder({
-    Key? key,
+    super.key,
     required this.textEmailWasSent,
     required this.emailWasSentColor,
     required this.textWrongOtp,
     required this.pinController,
-  }) : super(key: key);
+  });
 
   final String textEmailWasSent;
   final Color emailWasSentColor;
@@ -179,9 +180,9 @@ class EmailSentNotSentInfoBuilder extends StatelessWidget {
 
 class EmailVerificationBlocListener extends StatelessWidget {
   const EmailVerificationBlocListener({
-    Key? key,
+    super.key,
     required this.pinController,
-  }) : super(key: key);
+  });
 
   final TextEditingController pinController;
 
@@ -223,10 +224,10 @@ class EmailVerificationBlocListener extends StatelessWidget {
 
 class ResendEmailCodeButton extends StatelessWidget {
   const ResendEmailCodeButton({
-    Key? key,
+    super.key,
     required this.userEmail,
     required this.cubit,
-  }) : super(key: key);
+  });
 
   final String? userEmail;
   final EmailVerificationCubit cubit;
@@ -259,11 +260,11 @@ class ResendEmailCodeButton extends StatelessWidget {
 
 class EmailVerificationPinWrapper extends StatefulWidget {
   const EmailVerificationPinWrapper({
-    Key? key,
+    super.key,
     required this.pinController,
     required this.widget,
     required this.cubit,
-  }) : super(key: key);
+  });
 
   final TextEditingController pinController;
   final EmailVerificationView widget;
@@ -299,12 +300,12 @@ class _EmailVerificationPinWrapperState
 
 class EmailVerificationPinInput extends StatelessWidget {
   const EmailVerificationPinInput({
-    Key? key,
+    super.key,
     required this.pinController,
     required this.hasPinError,
     required this.widget,
     required this.cubit,
-  }) : super(key: key);
+  });
 
   final TextEditingController pinController;
   final bool hasPinError;

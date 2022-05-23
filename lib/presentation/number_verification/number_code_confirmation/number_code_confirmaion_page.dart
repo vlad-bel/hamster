@@ -8,11 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NumberCodeConfirmationPage extends StatelessWidget {
   const NumberCodeConfirmationPage({
-    Key? key,
+    super.key,
     required this.phone,
     required this.email,
     required this.verificationMethod,
-  }) : super(key: key);
+  });
 
   static const path = '${CallMethodSelectorPage.path}/number_confirm';
 

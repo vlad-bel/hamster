@@ -1,9 +1,10 @@
 // TODO: remove when code is finalized
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/horizontal_line_short_grey.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/language_dropdown.dart';
 import 'package:business_terminal/presentation/common/widgets/text_title.dart';
@@ -13,9 +14,7 @@ import 'package:business_terminal/presentation/registration/cubit/user_info_init
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
-import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,7 +22,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class RegistrationPage extends StatelessWidget {
-  const RegistrationPage({Key? key}) : super(key: key);
+  const RegistrationPage({super.key});
 
   static const path = '/registration';
 
@@ -37,7 +36,7 @@ class RegistrationPage extends StatelessWidget {
 }
 
 class RegistrationView extends StatelessWidget {
-  const RegistrationView({Key? key}) : super(key: key);
+  const RegistrationView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,7 @@ class RegistrationView extends StatelessWidget {
 }
 
 class RegistrationBodyView extends StatefulWidget {
-  const RegistrationBodyView({Key? key}) : super(key: key);
+  const RegistrationBodyView({super.key});
 
   @override
   State<RegistrationBodyView> createState() => _RegistrationBodyViewState();
@@ -77,7 +76,8 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   @override
   Widget build(BuildContext context) {
     final subtitleText = Text(
-      'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
+      'Registrieren Sie sich jetzt, um'
+      ' Teil des deutschlandweiten Netzwerks zu werden.',
     );
 
     return Stack(
@@ -111,7 +111,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
             Align(
               child: SizedBox(
                 width: 390,
-                child: Container(
+                child: ColoredBox(
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(35),

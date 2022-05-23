@@ -23,7 +23,7 @@ class ApiFailureResponse {
   factory ApiFailureResponse.fromJson(DioError error) {
     if (error.response != null) {
       dynamic data = error.response!.data;
-      if(data is String){
+      if (data is String) {
         data = jsonDecode(data);
       }
 
@@ -33,9 +33,9 @@ class ApiFailureResponse {
     }
 
     return _$ApiFailureResponseFromJson(<String, dynamic>{
-      "statusCode": 0,
-      "message": error.error,
-      "error": "unexpected error",
+      'statusCode': 0,
+      'message': error.error,
+      'error': 'unexpected error',
     });
   }
 
