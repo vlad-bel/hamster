@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/route_names.dart';
 import 'package:business_terminal/config/styles.dart';
@@ -15,16 +16,16 @@ import 'package:business_terminal/presentation/common/widgets/payment_info.dart'
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/cubit/profile_edit_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ProfileEditPage extends StatelessWidget {
   const ProfileEditPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   static const String path = RouteNames.profileEdit;
 
@@ -32,13 +33,13 @@ class ProfileEditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt.get<ProfileEditCubit>()..getInitialData(),
-      child: _ProfileEditView(),
+      child: const _ProfileEditView(),
     );
   }
 }
 
 class _ProfileEditView extends StatefulWidget {
-  const _ProfileEditView({Key? key}) : super(key: key);
+  const _ProfileEditView();
 
   @override
   State<_ProfileEditView> createState() => _ProfileEditViewState();
@@ -86,7 +87,7 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                           },
                           isEnabled: form.valid,
                           child: Text(
-                            tr('save'),
+                            AppLocale.of(context).save,
                           ),
                         );
                       },
@@ -130,10 +131,10 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
 
 class _ProfileEditContent extends StatefulWidget {
   const _ProfileEditContent({
-    Key? key,
     required this.formSettings,
     required this.company,
-  }) : super(key: key);
+  });
+
   final Company company;
   final ProfileEditFormSettings formSettings;
 
@@ -144,6 +145,7 @@ class _ProfileEditContent extends StatefulWidget {
 class _ProfileEditContentState extends State<_ProfileEditContent> {
   // TODO: Temporary - remove
   var _accountOwner = '';
+
   var _iban = '';
 
   @override
@@ -169,8 +171,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      // TODO add l18n key
-                      tr('company_profile'),
+                      AppLocale.of(context).company_profile,
                       style: inter16SemiBold.copyWith(
                         color: lynch,
                       ),
@@ -195,8 +196,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                 ),
                                 const SizedBox(width: 4),
                                 Text(
-                                  // TODO add l18n key
-                                  tr('add_logo'),
+                                  AppLocale.of(context).add_logo,
                                   style: inter14.copyWith(
                                     color: denim1,
                                   ),
@@ -215,41 +215,52 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                         children: [
                           Column(
                             children: [
-                              // TODO add l18n key
                               FormTextField(
                                 validationMessages: (control) =>
                                     widget.formSettings.validationMessages,
                                 name: ProfileEditFormSettings.kCompanyName,
-                                label: tr(ProfileEditFormSettings.kCompanyName),
-                                hint: tr(ProfileEditFormSettings.kCompanyName),
+                                label: Intl.message(
+                                  'label',
+                                  name: ProfileEditFormSettings.kCompanyName,
+                                ),
+                                hint: Intl.message(
+                                  'hint',
+                                  name: ProfileEditFormSettings.kCompanyName,
+                                ),
                               ),
                               const SizedBox(height: 25),
-                              // TODO add l18n key
                               FormTextField(
                                 validationMessages: (control) =>
                                     widget.formSettings.validationMessages,
                                 onTap: () {},
                                 name:
                                     ProfileEditFormSettings.kStreetHouseNumber,
-                                label: tr(
-                                  ProfileEditFormSettings.kStreetHouseNumber,
+                                label: Intl.message(
+                                  'label',
+                                  name: ProfileEditFormSettings
+                                      .kStreetHouseNumber,
                                 ),
-                                hint: tr(
-                                  ProfileEditFormSettings.kStreetHouseNumber,
+                                hint: Intl.message(
+                                  'hint',
+                                  name: ProfileEditFormSettings
+                                      .kStreetHouseNumber,
                                 ),
                               ),
                               const SizedBox(height: 25),
-                              // TODO add l18n key
                               FormTextField(
                                 validationMessages: (control) =>
                                     widget.formSettings.validationMessages,
                                 name:
                                     ProfileEditFormSettings.kZipCodeAndLocation,
-                                label: tr(
-                                  ProfileEditFormSettings.kZipCodeAndLocation,
+                                label: Intl.message(
+                                  'label',
+                                  name: ProfileEditFormSettings
+                                      .kZipCodeAndLocation,
                                 ),
-                                hint: tr(
-                                  ProfileEditFormSettings.kZipCodeAndLocation,
+                                hint: Intl.message(
+                                  'hint',
+                                  name: ProfileEditFormSettings
+                                      .kZipCodeAndLocation,
                                 ),
                               ),
                               const SizedBox(height: 25),
@@ -290,8 +301,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            // TODO add l18n key
-                            tr('base_data'),
+                            AppLocale.of(context).base_data,
                             style: inter16SemiBold.copyWith(
                               color: lynch,
                             ),
@@ -299,45 +309,47 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                           const SizedBox(
                             height: 32,
                           ),
-                          // TODO add l18n key
                           FormTextField(
                             validationMessages: (control) =>
                                 widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings
                                 .kCommercialRegisterNumber,
-                            label: tr(
-                              ProfileEditFormSettings.kCommercialRegisterNumber,
+                            label: Intl.message(
+                              'label',
+                              name: ProfileEditFormSettings
+                                  .kCommercialRegisterNumber,
                             ),
-                            hint: tr(
-                              ProfileEditFormSettings.kCommercialRegisterNumber,
-                            ),
+                            hint: ProfileEditFormSettings
+                                .kCommercialRegisterNumber,
                           ),
                           const SizedBox(
                             height: 25,
                           ),
-                          // TODO add l18n key
                           FormTextField(
                             validationMessages: (control) =>
                                 widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings.kTaxNumber,
-                            label: tr(
-                              ProfileEditFormSettings.kTaxNumber,
+                            label: Intl.message(
+                              'label',
+                              name: ProfileEditFormSettings.kTaxNumber,
                             ),
-                            hint: tr(
-                              ProfileEditFormSettings.kTaxNumber,
+                            hint: Intl.message(
+                              'hint',
+                              name: ProfileEditFormSettings.kTaxNumber,
                             ),
                           ),
                           const SizedBox(height: 25),
-                          // TODO add l18n key
                           FormTextField(
                             validationMessages: (control) =>
                                 widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings.kVatId,
-                            label: tr(
-                              ProfileEditFormSettings.kVatId,
+                            label: Intl.message(
+                              'label',
+                              name: ProfileEditFormSettings.kVatId,
                             ),
-                            hint: tr(
-                              ProfileEditFormSettings.kVatId,
+                            hint: Intl.message(
+                              'hint',
+                              name: ProfileEditFormSettings.kVatId,
                             ),
                           ),
                           const SizedBox(height: 25),

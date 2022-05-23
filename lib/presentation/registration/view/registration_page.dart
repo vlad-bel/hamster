@@ -22,7 +22,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class RegistrationPage extends StatelessWidget {
-  const RegistrationPage({Key? key}) : super(key: key);
+  const RegistrationPage({super.key});
 
   static const path = '/registration';
 
@@ -36,7 +36,7 @@ class RegistrationPage extends StatelessWidget {
 }
 
 class RegistrationView extends StatelessWidget {
-  const RegistrationView({Key? key}) : super(key: key);
+  const RegistrationView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class RegistrationView extends StatelessWidget {
 }
 
 class RegistrationBodyView extends StatefulWidget {
-  const RegistrationBodyView({Key? key}) : super(key: key);
+  const RegistrationBodyView({super.key});
 
   @override
   State<RegistrationBodyView> createState() => _RegistrationBodyViewState();
@@ -111,7 +111,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
             Align(
               child: SizedBox(
                 width: 390,
-                child: Container(
+                child: ColoredBox(
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(35),

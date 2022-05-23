@@ -1,14 +1,25 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class BranchProfileWorkingHoursTable extends StatelessWidget {
   const BranchProfileWorkingHoursTable({
     Key? key,
   }) : super(key: key);
+
+  TableRow buildTableRow(String dayOfWeek, Widget workingHours) {
+    return TableRow(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Text(dayOfWeek),
+        ),
+        workingHours,
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +45,7 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
 
     return Stack(
       children: [
-        Container(
+        DecoratedBox(
           decoration: BoxDecoration(
             border: Border.all(
               color: Color(0x4d676f86),
@@ -52,32 +63,32 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
               defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               children: <TableRow>[
                 buildTableRow(
-                  LocaleKeys.monday.tr(),
-                  Text(LocaleKeys.closed).tr(),
+                  AppLocale.current.monday,
+                  Text(AppLocale.current.closed),
                 ),
                 buildTableRow(
-                  LocaleKeys.tuesday.tr(),
-                  Text(LocaleKeys.closed).tr(),
+                  AppLocale.current.tuesday,
+                  Text(AppLocale.current.closed),
                 ),
                 buildTableRow(
-                  LocaleKeys.wednesday.tr(),
-                  Text(LocaleKeys.closed).tr(),
+                  AppLocale.current.wednesday,
+                  Text(AppLocale.current.closed),
                 ),
                 buildTableRow(
-                  LocaleKeys.thursday.tr(),
-                  Text(LocaleKeys.closed).tr(),
+                  AppLocale.current.thursday,
+                  Text(AppLocale.current.closed),
                 ),
                 buildTableRow(
-                  LocaleKeys.friday.tr(),
-                  Text(LocaleKeys.closed).tr(),
+                  AppLocale.current.friday,
+                  Text(AppLocale.current.closed),
                 ),
                 buildTableRow(
-                  LocaleKeys.saturday.tr(),
-                  Text(LocaleKeys.closed).tr(),
+                  AppLocale.current.saturday,
+                  Text(AppLocale.current.closed),
                 ),
                 buildTableRow(
-                  LocaleKeys.sunday.tr(),
-                  Text(LocaleKeys.closed).tr(),
+                  AppLocale.current.sunday,
+                  Text(AppLocale.current.closed),
                 ),
               ],
             ),
@@ -86,23 +97,11 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
         editButton,
         Transform.translate(
           offset: Offset(20, -8),
-          child: Container(
+          child: ColoredBox(
             color: white,
-            child: Text(LocaleKeys.opening_hours, style: inter12),
+            child: Text(AppLocale.current.opening_hours, style: inter12),
           ),
         )
-      ],
-    );
-  }
-
-  TableRow buildTableRow(String dayOfWeek, Widget workingHours) {
-    return TableRow(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: Text(dayOfWeek),
-        ),
-        workingHours,
       ],
     );
   }

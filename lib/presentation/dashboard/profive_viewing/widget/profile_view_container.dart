@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class ProfileViewContainer extends StatelessWidget {
   const ProfileViewContainer({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
   final Widget child;
 
   @override

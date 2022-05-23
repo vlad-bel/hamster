@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class SimpleButtonLightBlue extends StatelessWidget {
   const SimpleButtonLightBlue({
-    Key? key,
+    super.key,
     this.isEnabled = false,
     this.width,
     required this.onPressed,
     required this.text,
-  }) : super(key: key);
+  });
 
   final bool isEnabled;
   final VoidCallback onPressed;

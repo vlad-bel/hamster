@@ -1,5 +1,5 @@
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/generated/locale_keys.g.dart';
+
 import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
@@ -15,7 +15,8 @@ import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -30,9 +31,9 @@ class CompanyCreationForm extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 120),
         child: OnboardingWhiteContainer(
           header: OnboardingWhiteContainerHeader(
-            header: tr(LocaleKeys.create_company_profile),
+            header: AppLocale.current.create_company_profile,
             subHeader: Text(
-              tr(LocaleKeys.create_company_profile_descr),
+              AppLocale.current.create_company_profile_descr,
               style: inter14,
             ),
           ),
@@ -67,8 +68,8 @@ class CompanyCreationForm extends StatelessWidget {
                       SizedBox(height: 26),
                       FormTextField(
                         name: CompanyCreationCubit.companyField,
-                        hint: tr(LocaleKeys.company_hint),
-                        label: tr(LocaleKeys.company_hint),
+                        hint: AppLocale.current.company_hint,
+                        label: AppLocale.current.company_hint,
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -78,16 +79,16 @@ class CompanyCreationForm extends StatelessWidget {
                             flex: 3,
                             child: FormTextField(
                               name: CompanyCreationCubit.streetField,
-                              hint: tr(LocaleKeys.street_hint),
-                              label: tr(LocaleKeys.street_hint),
+                              hint: AppLocale.current.street_hint,
+                              label: AppLocale.current.street_hint,
                             ),
                           ),
                           SizedBox(width: 16),
                           Flexible(
                             child: FormTextField(
                               name: CompanyCreationCubit.streetNumberField,
-                              hint: tr(LocaleKeys.num_hint),
-                              label: tr(LocaleKeys.num_hint),
+                              hint: AppLocale.current.num_hint,
+                              label: AppLocale.current.num_hint,
                             ),
                           ),
                         ],
@@ -99,8 +100,8 @@ class CompanyCreationForm extends StatelessWidget {
                           Flexible(
                             child: FormTextField(
                               name: CompanyCreationCubit.postcodeField,
-                              hint: tr(LocaleKeys.post_hint),
-                              label: tr(LocaleKeys.post_hint),
+                              hint: AppLocale.current.post_hint,
+                              label: AppLocale.current.post_hint,
                             ),
                           ),
                           SizedBox(width: 16),
@@ -108,8 +109,8 @@ class CompanyCreationForm extends StatelessWidget {
                             flex: 3,
                             child: FormTextField(
                               name: CompanyCreationCubit.cityField,
-                              hint: tr(LocaleKeys.location_hint),
-                              label: tr(LocaleKeys.location_hint),
+                              hint: AppLocale.current.location_hint,
+                              label: AppLocale.current.location_hint,
                             ),
                           ),
                         ],

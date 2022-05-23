@@ -8,10 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AccountVerificationCheckboxWithButton extends StatelessWidget {
   const AccountVerificationCheckboxWithButton({
-    Key? key,
+    super.key,
     required this.isAcceptedDataIsCorrect,
     required this.isFullyCompleted,
-  }) : super(key: key);
+  });
 
   final bool isAcceptedDataIsCorrect;
   final bool isFullyCompleted;

@@ -2,7 +2,7 @@ import 'package:business_terminal/presentation/registration/widgets/action_butto
 import 'package:flutter/material.dart';
 
 class CountryCodeLoadingButton extends StatelessWidget {
-  const CountryCodeLoadingButton({Key? key}) : super(key: key);
+  const CountryCodeLoadingButton({super.key});
 
   @override
   Widget build(BuildContext context) {
