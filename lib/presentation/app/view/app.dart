@@ -63,7 +63,7 @@ class App extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
-          locale: Locale('en'),
+          locale: Locale('de'),
           home: BlocBuilder<AppStateCubit, AppState>(
             builder: (BuildContext context, state) {
               if (state is UnauthorizedState) {
