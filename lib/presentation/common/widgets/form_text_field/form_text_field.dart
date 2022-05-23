@@ -25,6 +25,9 @@ class FormTextField extends StatefulWidget {
     this.maxLength,
     this.counter,
     this.inputFormatters,
+    this.suffix,
+    this.focusColor,
+    this.fillColor,
   }) : super(key: key);
 
   final String name;
@@ -41,10 +44,13 @@ class FormTextField extends StatefulWidget {
   final Widget? customSuffix;
   final Widget? customPrefix;
   final Widget? prefixIcon;
+  final Widget? suffix;
   final InputBorder? customBorder;
   final int? maxLength;
   final Widget? counter;
   final List<TextInputFormatter>? inputFormatters;
+  final Color? focusColor;
+  final Color? fillColor;
 
   @override
   State<FormTextField> createState() => _FormTextFieldState();
@@ -83,7 +89,10 @@ class _FormTextFieldState extends State<FormTextField> {
 
     final inputDecoration = InputDecoration(
       border: widget.customBorder ?? outlineInputBorder,
+      enabledBorder: widget.customBorder ?? outlineInputBorder,
       hintText: widget.hint,
+      focusColor: widget.focusColor,
+      fillColor: widget.fillColor,
       labelText: widget.label,
       floatingLabelAlignment: FloatingLabelAlignment.start,
       floatingLabelStyle: inter12,
@@ -94,6 +103,7 @@ class _FormTextFieldState extends State<FormTextField> {
           !widget.obscureText ? widget.customSuffix : showHidePasswordIcon,
       prefix: widget.customPrefix,
       prefixIcon: widget.prefixIcon,
+      suffix: widget.suffix,
       counter: widget.counter,
     );
 

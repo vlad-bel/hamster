@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -60,6 +59,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Genutzte Kassensysteme in Ihrer Filiale"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Passwort ändern"),
+        "choose_main_category": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie eine Hauptkategorie aus."),
+        "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie eine Hauptkategorie durch Doppelklick. Diese wird allen HamsterApp-Nutzern angezeigt."),
         "closed": MessageLookupByLibrary.simpleMessage("geschlossen"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
             "Handelsregister Nr. (falls vorhanden)"),
@@ -138,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "return_button": MessageLookupByLibrary.simpleMessage("ZURÜCK"),
         "saturday": MessageLookupByLibrary.simpleMessage("Samstag"),
         "save": MessageLookupByLibrary.simpleMessage("Speichern"),
+        "search": MessageLookupByLibrary.simpleMessage("Suchen"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Ländervorwahl wählen"),
         "select_number_title": MessageLookupByLibrary.simpleMessage(

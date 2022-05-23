@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -59,6 +58,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Cash register system used in your branch"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "choose_main_category":
+            MessageLookupByLibrary.simpleMessage("Choose a main category."),
+        "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
+            "Choose a main category by double-clicking it. This is displayed to all HamsterApp users."),
         "closed": MessageLookupByLibrary.simpleMessage("closed"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
             "Commercial Register No. (if available)"),
@@ -137,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "return_button": MessageLookupByLibrary.simpleMessage("RETURN"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Select country code"),
         "select_number_title": MessageLookupByLibrary.simpleMessage(

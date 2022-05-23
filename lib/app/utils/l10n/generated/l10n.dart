@@ -391,7 +391,7 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(int length) {
+  String min_number(Object length) {
     return Intl.message(
       'Maximum number $length characters',
       name: 'min_number',
@@ -401,7 +401,7 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(int length) {
+  String max_number(Object length) {
     return Intl.message(
       'Minimum number $length characters',
       name: 'max_number',
@@ -911,7 +911,7 @@ class S {
   }
 
   /// `Number: {number}`
-  String branch_id(int number) {
+  String branch_id(Object number) {
     return Intl.message(
       'Number: $number',
       name: 'branch_id',
@@ -1035,6 +1035,36 @@ class S {
     return Intl.message(
       'Resend email',
       name: 'resetmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a main category.`
+  String get choose_main_category {
+    return Intl.message(
+      'Choose a main category.',
+      name: 'choose_main_category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a main category by double-clicking it. This is displayed to all HamsterApp users.`
+  String get choose_main_category_descr {
+    return Intl.message(
+      'Choose a main category by double-clicking it. This is displayed to all HamsterApp users.',
+      name: 'choose_main_category_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
       desc: '',
       args: [],
     );

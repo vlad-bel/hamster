@@ -118,5 +118,8 @@
   "model_if_known": "Model (if known)",
   "number_of_registers": "Number of registers",
   "forget_pasword_header": "Forgot your password?",
-  "resetmail": "Resend email"
+  "resetmail": "Resend email",
+  "choose_main_category": "Choose a main category.",
+  "choose_main_category_descr": "Choose a main category by double-clicking it. This is displayed to all HamsterApp users.",
+  "search": "Search"
 }

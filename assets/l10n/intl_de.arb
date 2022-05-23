@@ -121,5 +121,8 @@
     "help_us_connect_branch": "Helfen Sie uns Ihre Filiale schnell anzubinden indem Sie Ihre Kassensysteme angeben",
     "cash_register_manufacturer": "Kassenhersteller",
     "model_if_known": "Modell (falls bekannt)",
-    "number_of_registers": "Anzahl Kassen"
+    "number_of_registers": "Anzahl Kassen",
+    "choose_main_category": "Wählen Sie eine Hauptkategorie aus.",
+    "choose_main_category_descr": "Wählen Sie eine Hauptkategorie durch Doppelklick. Diese wird allen HamsterApp-Nutzern angezeigt.",
+    "search": "Suchen"
 }
