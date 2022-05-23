@@ -14,9 +14,9 @@ class CallMethodSelectorPageState extends Equatable {
 
 class GoNextState extends CallMethodSelectorPageState {
   const GoNextState({
-    required bool smsSelected,
+    required super.smsSelected,
     required this.method,
-  }) : super(smsSelected: smsSelected);
+  });
 
   final VerifyMethod method;
 }

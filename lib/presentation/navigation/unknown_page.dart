@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class UnknownPage extends StatelessWidget {
   const UnknownPage({
-    Key? key,
+    super.key,
     required this.path,
-  }) : super(key: key);
+  });
 
   final String path;
 

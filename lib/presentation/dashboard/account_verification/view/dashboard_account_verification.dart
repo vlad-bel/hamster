@@ -11,23 +11,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DashboardAccountVerificationPage extends StatelessWidget {
-  const DashboardAccountVerificationPage({Key? key}) : super(key: key);
+  const DashboardAccountVerificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt.get<AccountVerificationCubit>()..getRepCompanyData(),
-      child: const _AccountVerificationView(),
+      child: _AccountVerificationView(),
     );
   }
 }
 
 class _AccountVerificationView extends StatelessWidget {
-  const _AccountVerificationView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: solitude1,
       child: Center(
         child: BlocBuilder<AccountVerificationCubit, VerifyAccountState>(
@@ -60,13 +58,13 @@ class _AccountVerificationView extends StatelessWidget {
 
 class _AccountVerificationContent extends StatelessWidget {
   const _AccountVerificationContent({
-    Key? key,
+    super.key,
     this.isAcceptedDataIsCorrect,
     this.isFullyCompleted,
     this.progressUserAccount,
     this.progressCompanyProfile,
     this.progressBranchProfile,
-  }) : super(key: key);
+  });
 
   final bool? isAcceptedDataIsCorrect;
   final bool? isFullyCompleted;

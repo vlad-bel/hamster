@@ -1,10 +1,10 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/company_data_cell.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/connection_cell.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/edit_cell.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/status_cell.dart';
 import 'package:data_table_2/data_table_2.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfileViewTableRow extends DataTableSource {
@@ -63,13 +63,13 @@ class ProfileViewTableRow extends DataTableSource {
               ConnectionCell(
                 currentConnectionValue: 5,
                 maxConnectionValue: 5,
-                title: tr('tills'),
+                title: AppLocale.current.tills,
               ),
               const SizedBox(width: 8),
               ConnectionCell(
                 currentConnectionValue: 2,
                 maxConnectionValue: 5,
-                title: tr('branches'),
+                title: AppLocale.current.branches,
               ),
             ],
           ),

@@ -1,11 +1,10 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
-import 'package:business_terminal/generated/locale_keys.g.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_state.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -94,7 +93,7 @@ class _CountryList extends StatelessWidget {
                     formGroup: cubit.numberForm,
                     child: FormTextField(
                       name: CountryCodeSelectorCubit.filterTextfield,
-                      hint: tr(LocaleKeys.country_name),
+                      hint: AppLocale.current.country_name,
                       customSuffix: CupertinoButton(
                         child: const Icon(
                           Icons.close,
