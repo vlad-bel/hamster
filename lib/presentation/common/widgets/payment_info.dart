@@ -62,25 +62,24 @@ class _PaymentInfoState extends State<PaymentInfo> {
                 borderType: BorderType.rect,
                 child: Container(
                   height: 125,
+                  alignment: Alignment.center,
                   decoration: const BoxDecoration(color: white),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.add_circle,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.add_circle,
+                        color: denim1,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        // TODO add l18n key
+                        tr('add_bank_details'),
+                        style: inter14.copyWith(
                           color: denim1,
                         ),
-                        const SizedBox(width: 4),
-                        Text(
-                          // TODO add l18n key
-                          tr('add_bank_details'),
-                          style: inter14.copyWith(
-                            color: denim1,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               )
