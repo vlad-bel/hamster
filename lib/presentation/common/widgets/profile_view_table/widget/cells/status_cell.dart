@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class VerifiedStatusCell extends StatelessWidget {
         width: 22,
         height: 22,
       ),
-      name: 'verified',
+      name: AppLocale.of(context).verified,
       padding: 8,
     );
   }
@@ -65,7 +66,9 @@ class VisibleStatusCell extends StatelessWidget {
         width: 22,
         height: 22,
       ),
-      name: visible ? 'visible' : 'not_visible',
+      name: visible
+          ? AppLocale.of(context).visible
+          : AppLocale.of(context).not_visible,
       padding: 8,
     );
   }

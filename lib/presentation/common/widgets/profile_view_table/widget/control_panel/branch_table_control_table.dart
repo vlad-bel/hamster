@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,7 +13,7 @@ class BranchTableControlPanel extends StatelessWidget {
     return Row(
       children: [
         Text(
-          'branch_profile',
+          AppLocale.of(context).branch_profile,
           style: inter16SemiBold,
         ),
         const Spacer(),

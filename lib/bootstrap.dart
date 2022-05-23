@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:business_terminal/app/utils/l10n/generated/l10n.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override

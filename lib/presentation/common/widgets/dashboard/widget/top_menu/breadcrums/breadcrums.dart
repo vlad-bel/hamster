@@ -1,5 +1,6 @@
 import 'package:business_terminal/config/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class BreadCrumbs extends StatelessWidget {
   const BreadCrumbs({
@@ -25,7 +26,7 @@ class BreadCrumbs extends StatelessWidget {
     for (var i = 0; i < currentPath.length; i++) {
       crumbs.add(
         Text(
-          currentPath[i],
+          Intl.message(currentPath[i], name: currentPath[i]),
           style: inter10,
         ),
       );

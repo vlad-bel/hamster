@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/header_cell.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/profile_view_table_row.dart';
@@ -46,33 +47,33 @@ class _ProfileViewTableState extends State<ProfileViewTable> {
         DataColumn2(
           size: ColumnSize.L,
           label: HeaderCell(
-            name: 'companies',
+            name: AppLocale.of(context).companies,
             sortable: widget.sortable,
           ),
         ),
         DataColumn2(
           label: HeaderCell(
-            name: 'number',
-            sortable: widget.sortable,
-          ),
-          size: ColumnSize.S,
-        ),
-        DataColumn2(
-          label: HeaderCell(
-            name: 'user',
+            name: AppLocale.of(context).number,
             sortable: widget.sortable,
           ),
           size: ColumnSize.S,
         ),
         DataColumn2(
           label: HeaderCell(
-            name: 'connection',
+            name: AppLocale.of(context).user,
+            sortable: widget.sortable,
+          ),
+          size: ColumnSize.S,
+        ),
+        DataColumn2(
+          label: HeaderCell(
+            name: AppLocale.of(context).connection,
             sortable: widget.sortable,
           ),
         ),
         DataColumn2(
           label: HeaderCell(
-            name: 'status',
+            name: AppLocale.of(context).status,
             sortable: widget.sortable,
           ),
           size: ColumnSize.S,
