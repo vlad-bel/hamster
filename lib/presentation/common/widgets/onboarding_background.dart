@@ -7,9 +7,11 @@ class OnboardingBackground extends StatelessWidget {
   const OnboardingBackground({
     Key? key,
     required this.children,
+    this.hasScroll = true,
   }) : super(key: key);
 
   final Widget children;
+  final bool hasScroll;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,9 @@ class OnboardingBackground extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           SingleChildScrollView(
+            physics: !hasScroll
+                ? NeverScrollableScrollPhysics()
+                : AlwaysScrollableScrollPhysics(),
             child: Column(
               children: [
                 const OnboardingAppbar(),

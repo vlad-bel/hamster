@@ -1,9 +1,12 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/presentation/categories/subcategories/select_subcategories_page/select_subcategories_page.dart';
 import 'package:business_terminal/presentation/common/widgets/categories_list/categories_list.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
+import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesForm extends StatelessWidget {
@@ -38,7 +41,22 @@ class CategoriesForm extends StatelessWidget {
                 "Qqwerty",
                 "1234",
               ],
-              onSelect: (selectedItem) {},
+              onSelect: (selectedItem) {
+                Navigator.pushNamed(context, SelectSubCategoriesPage.path);
+              },
+            ),
+            SizedBox(height: 32),
+            WhiteButton(
+              width: 500,
+              child: Text(
+                AppLocale.current.return_button,
+                style: inter14.copyWith(
+                  color: denim,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
           ],
         ),

@@ -36,6 +36,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_business_account":
             MessageLookupByLibrary.simpleMessage("Add your business account"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
+        "add_subcategory":
+            MessageLookupByLibrary.simpleMessage("Add subcategory"),
         "administration":
             MessageLookupByLibrary.simpleMessage("Administration"),
         "base_data": MessageLookupByLibrary.simpleMessage("Base data"),
@@ -77,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_number_title": MessageLookupByLibrary.simpleMessage(
             "Confirm your phone \vnumber."),
         "connection": MessageLookupByLibrary.simpleMessage("CONNECTION"),
+        "continue_button": MessageLookupByLibrary.simpleMessage("CONTINUE"),
         "country_hint": MessageLookupByLibrary.simpleMessage("Country"),
         "country_name": MessageLookupByLibrary.simpleMessage("Country name"),
         "create_company_profile": MessageLookupByLibrary.simpleMessage(
@@ -145,6 +148,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select country code"),
         "select_number_title": MessageLookupByLibrary.simpleMessage(
             "Please let us know which phone number to verify via SMS or voice call."),
+        "select_subcategories": MessageLookupByLibrary.simpleMessage(
+            "Select appropriate subcategories."),
+        "select_subcategories_descr": MessageLookupByLibrary.simpleMessage(
+            "Select up to nine subcategories to improve search results in the HamsterApp."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(
@@ -154,6 +161,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "street_hint": MessageLookupByLibrary.simpleMessage("Street"),
         "street_house_number":
             MessageLookupByLibrary.simpleMessage("Street, house number"),
+        "subcategory": MessageLookupByLibrary.simpleMessage("Subcategory"),
         "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "tax_number": MessageLookupByLibrary.simpleMessage("Tax number"),
         "telephone_number_if_available": MessageLookupByLibrary.simpleMessage(

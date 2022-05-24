@@ -124,5 +124,10 @@
     "number_of_registers": "Anzahl Kassen",
     "choose_main_category": "Wählen Sie eine Hauptkategorie aus.",
     "choose_main_category_descr": "Wählen Sie eine Hauptkategorie durch Doppelklick. Diese wird allen HamsterApp-Nutzern angezeigt.",
-    "search": "Suchen"
+    "search": "Suchen",
+    "select_subcategories": "Wählen Sie passende Unterkategorien aus.",
+    "select_subcategories_descr": "Wählen Sie bis zu neun Unterkategorien aus, um die Suchergebnisse in der HamsterApp zu verbessern.",
+    "add_subcategory": "Unterkategorie hinzufügen",
+    "subcategory": "Unterkategorie",
+    "continue_button": "WEITER"
 }

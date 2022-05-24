@@ -1069,6 +1069,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Select appropriate subcategories.`
+  String get select_subcategories {
+    return Intl.message(
+      'Select appropriate subcategories.',
+      name: 'select_subcategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select up to nine subcategories to improve search results in the HamsterApp.`
+  String get select_subcategories_descr {
+    return Intl.message(
+      'Select up to nine subcategories to improve search results in the HamsterApp.',
+      name: 'select_subcategories_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add subcategory`
+  String get add_subcategory {
+    return Intl.message(
+      'Add subcategory',
+      name: 'add_subcategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subcategory`
+  String get subcategory {
+    return Intl.message(
+      'Subcategory',
+      name: 'subcategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONTINUE`
+  String get continue_button {
+    return Intl.message(
+      'CONTINUE',
+      name: 'continue_button',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

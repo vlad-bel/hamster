@@ -17,7 +17,7 @@ class CategoriesList extends StatelessWidget {
     required this.onSelect,
   }) : super(key: key);
 
-  final Function(String item) onSelect;
+  final Function(int index) onSelect;
   final List<String> data;
 
   @override
@@ -49,18 +49,7 @@ class CategoriesList extends StatelessWidget {
                     ),
                   ),
                   CategoriesItems(
-                    onSelect: (String item) {},
-                  ),
-                  SizedBox(height: 32),
-                  WhiteButton(
-                    width: 500,
-                    child: Text(
-                      AppLocale.current.return_button,
-                      style: inter14.copyWith(
-                        color: denim,
-                      ),
-                    ),
-                    onPressed: () {},
+                    onSelect: onSelect,
                   ),
                 ],
               );

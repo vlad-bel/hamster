@@ -1,7 +1,7 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
+import 'package:business_terminal/presentation/common/widgets/bordered_container.dart';
 import 'package:flutter/material.dart';
 
 class BranchProfileWorkingHoursTable extends StatelessWidget {
@@ -45,14 +45,8 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
 
     return Stack(
       children: [
-        DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Color(0x4d676f86),
-              width: 1.5,
-            ),
-            borderRadius: BorderRadius.circular(4),
-          ),
+        BorderedContainer(
+          title: AppLocale.current.opening_hours,
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: Table(
@@ -95,13 +89,6 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
           ),
         ),
         editButton,
-        Transform.translate(
-          offset: Offset(20, -8),
-          child: ColoredBox(
-            color: white,
-            child: Text(AppLocale.current.opening_hours, style: inter12),
-          ),
-        )
       ],
     );
   }
