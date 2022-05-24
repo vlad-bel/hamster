@@ -7,13 +7,14 @@ import 'package:reactive_forms/reactive_forms.dart';
 class FormTextField extends StatefulWidget {
   const FormTextField({
     Key? key,
-    required this.name,
+    this.name,
     this.hint,
     this.label,
     this.validationMessages,
     this.keyboardType,
     this.obscureText = false,
     this.readOnly = false,
+    this.reactive = true,
     this.textInputAction = TextInputAction.next,
     this.controller,
     this.focusListener,
@@ -28,15 +29,18 @@ class FormTextField extends StatefulWidget {
     this.suffix,
     this.focusColor,
     this.fillColor,
+    this.initialText,
   }) : super(key: key);
 
-  final String name;
+  final String? name;
   final String? hint;
   final String? label;
+  final String? initialText;
   final ValidationMessagesFunction? validationMessages;
   final TextInputType? keyboardType;
   final bool obscureText;
   final bool readOnly;
+  final bool reactive;
   final TextInputAction textInputAction;
   final TextEditingController? controller;
   final FocusNode? focusListener;
@@ -58,6 +62,7 @@ class FormTextField extends StatefulWidget {
 
 class _FormTextFieldState extends State<FormTextField> {
   late bool _obscureText;
+
   @override
   void initState() {
     _obscureText = widget.obscureText;
@@ -107,19 +112,36 @@ class _FormTextFieldState extends State<FormTextField> {
       counter: widget.counter,
     );
 
-    return ReactiveTextField<String>(
-      formControlName: widget.name,
-      validationMessages: widget.validationMessages,
-      textInputAction: widget.textInputAction,
-      keyboardType: widget.keyboardType,
-      obscureText: _obscureText,
-      decoration: inputDecoration,
-      controller: widget.controller,
-      focusNode: widget.focusListener,
-      onTap: widget.onTap,
-      readOnly: widget.readOnly,
-      maxLength: widget.maxLength,
-      inputFormatters: widget.inputFormatters,
-    );
+    if (widget.reactive) {
+      return ReactiveTextField<String>(
+        formControlName: widget.name,
+        validationMessages: widget.validationMessages,
+        textInputAction: widget.textInputAction,
+        keyboardType: widget.keyboardType,
+        obscureText: _obscureText,
+        decoration: inputDecoration,
+        controller: widget.controller ?? TextEditingController()
+          ..text = widget.initialText ?? '',
+        focusNode: widget.focusListener,
+        onTap: widget.onTap,
+        readOnly: widget.readOnly,
+        maxLength: widget.maxLength,
+        inputFormatters: widget.inputFormatters,
+      );
+    } else {
+      return TextField(
+        textInputAction: widget.textInputAction,
+        keyboardType: widget.keyboardType,
+        obscureText: _obscureText,
+        decoration: inputDecoration,
+        controller: widget.controller ?? TextEditingController()
+          ..text = widget.initialText ?? '',
+        focusNode: widget.focusListener,
+        onTap: widget.onTap,
+        readOnly: widget.readOnly,
+        maxLength: widget.maxLength,
+        inputFormatters: widget.inputFormatters,
+      );
+    }
   }
 }

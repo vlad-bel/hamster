@@ -1,5 +1,4 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
-
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
