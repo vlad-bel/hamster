@@ -58,8 +58,10 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
             fit: BoxFit.cover,
           ),
           ReactiveFormBuilder(
-            form:
-                getIt.get<ProfileEditCubit>().profileEditFormSettings.buildForm,
+            form: context
+                .read<ProfileEditCubit>()
+                .profileEditFormSettings
+                .buildForm,
             builder: (context, form, child) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,11 +145,6 @@ class _ProfileEditContent extends StatefulWidget {
 }
 
 class _ProfileEditContentState extends State<_ProfileEditContent> {
-  // TODO: Temporary - remove
-  var _accountOwner = '';
-
-  var _iban = '';
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -369,22 +366,30 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                       color: white,
                     ),
                     child: GestureDetector(
-                      // TODO!
                       onTap: () async {
                         final result = await Navigator.pushNamed(
                           context,
                           AddPaymentPage.path,
-                        ) as List<String>?;
-                        if (result == null) return;
+                        ) as Map<String, String>?;
 
-                        setState(() {
-                          _accountOwner = result[0];
-                          _iban = result[1];
-                        });
+                        if (result == null) return;
+                        context
+                            .read<ProfileEditCubit>()
+                            .updatePaymentData(result);
                       },
                       child: PaymentInfo(
-                        accountOwner: _accountOwner,
-                        iban: _iban,
+                        accountOwner: context
+                                .read<ProfileEditCubit>()
+                                .profileEditFormSettings
+                                .controls[ProfileEditFormSettings.kAccountOwner]
+                                ?.value ??
+                            '',
+                        iban: context
+                                .read<ProfileEditCubit>()
+                                .profileEditFormSettings
+                                .controls[ProfileEditFormSettings.kIban]
+                                ?.value ??
+                            '',
                       ),
                     ),
                   ),

@@ -12,6 +12,10 @@ class AddPaymentFormSettings {
   /// Actual value is 10 aligned by spaces
   static const kMinLengthIban = 12;
 
+  static const kAccountOwnerField = 'account_owner';
+  static const kIbanField = 'iban';
+  static const kAcceptCheckBox = 'accept_terms';
+
   final validationMessageAccountOwner = {
     ValidationMessage.required: 'Should not be empty',
     ValidationMessage.maxLength: AppLocale.current.max_length_reached,
@@ -26,9 +30,6 @@ class AddPaymentFormSettings {
     ValidationMessage.pattern: AppLocale.current.iban_format_error
   };
 
-  static const accountOwnerField = 'accountOwner';
-  static const ibanField = 'iban';
-
   FormGroup buildForm(
     String? accountOwner,
     String? iban, {
@@ -36,7 +37,7 @@ class AddPaymentFormSettings {
   }) {
     return FormGroup(
       {
-        accountOwnerField: FormControl<String>(
+        kAccountOwnerField: FormControl<String>(
           // Disable validators when in read only mode
           validators: enableValidators
               ? [
@@ -47,7 +48,7 @@ class AddPaymentFormSettings {
               : [],
           value: accountOwner,
         ),
-        ibanField: FormControl<String>(
+        kIbanField: FormControl<String>(
           // Disable validators when in read only mode
           validators: enableValidators
               ? [
@@ -58,6 +59,11 @@ class AddPaymentFormSettings {
                 ]
               : [],
           value: iban,
+        ),
+        kAcceptCheckBox: FormControl<bool>(
+          validators: [
+            Validators.requiredTrue,
+          ],
         ),
       },
     );

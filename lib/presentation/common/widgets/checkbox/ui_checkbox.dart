@@ -1,34 +1,28 @@
 import 'package:business_terminal/presentation/common/widgets/checkbox/other/position.dart';
 import 'package:flutter/material.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class UiCheckbox extends StatelessWidget {
   const UiCheckbox({
     Key? key,
-    required this.value,
-    required this.onChanged,
-    this.active = true,
+    required this.name,
     this.title,
     this.position,
   }) : super(key: key);
 
-  final bool value;
-  final bool active;
-
   /// Position for aligning checkbox widget
   final Position? position;
   final Widget? title;
-  final Function(bool?) onChanged;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
       offset: position?.toOffset() ?? Offset.zero,
-      // TODO(dvakhnin): Move to reactive checkbox
-      child: CheckboxListTile(
-        value: value,
+      child: ReactiveCheckboxListTile(
+        formControlName: name,
         title: title,
         controlAffinity: ListTileControlAffinity.leading,
-        onChanged: active ? onChanged : null,
         contentPadding: EdgeInsets.zero,
       ),
     );

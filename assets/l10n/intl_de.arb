@@ -121,5 +121,7 @@
     "help_us_connect_branch": "Helfen Sie uns Ihre Filiale schnell anzubinden indem Sie Ihre Kassensysteme angeben",
     "cash_register_manufacturer": "Kassenhersteller",
     "model_if_known": "Modell (falls bekannt)",
-    "number_of_registers": "Anzahl Kassen"
+    "number_of_registers": "Anzahl Kassen",
+    "i_certify_info_correct": "Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind.",
+    "request_verification": "Verifikation beantragen"
 }

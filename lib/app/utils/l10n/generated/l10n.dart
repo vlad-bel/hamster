@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1040,6 +1039,26 @@ class S {
       args: [],
     );
   }
+
+  /// `I hereby certify that all of the information I have given is complete and correct.`
+  String get i_certify_info_correct {
+    return Intl.message(
+      'I hereby certify that all of the information I have given is complete and correct.',
+      name: 'i_certify_info_correct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request verification`
+  String get request_verification {
+    return Intl.message(
+      'Request verification',
+      name: 'request_verification',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -1054,10 +1073,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 
