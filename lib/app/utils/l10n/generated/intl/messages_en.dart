@@ -27,7 +27,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(length) => "Maximum number ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Account owner"),
         "account_verification":
@@ -104,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Help us connect your branch by specifying you POS systems"),
         "i_authorize_collect_payment": MessageLookupByLibrary.simpleMessage(
             "I authorize Hamster Systems AG to collect payments from my account by direct debit. At the same time, I instruct my bank to redeem the direct debits drawn by Hamster Systems AG on my account. By accepting this agreement, Hamster Systems AG undertakes to im to the same extent on the payment of credit to the above account"),
+        "i_certify_info_correct": MessageLookupByLibrary.simpleMessage(
+            "I hereby certify that all of the information I have given is complete and correct."),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "The IBAN number should only contain Latin letters and numbers"),
@@ -132,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Payment Information"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),
         "post_hint": MessageLookupByLibrary.simpleMessage("Postcode"),
+        "request_verification":
+            MessageLookupByLibrary.simpleMessage("Request verification"),
         "required_field":
             MessageLookupByLibrary.simpleMessage("Required field"),
         "resetmail": MessageLookupByLibrary.simpleMessage("Resend email"),

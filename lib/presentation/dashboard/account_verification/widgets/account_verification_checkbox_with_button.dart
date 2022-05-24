@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/checkbox/ui_checkbox.dart';
@@ -25,10 +26,8 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
           width: 588,
           child: UiCheckbox(
             name: checkboxName,
-            //onChanged: (value) => onChangeCheckBox(context, value: value),
             title: Text(
-              'Hiermit versichere ich, dass alle von mir getätigten'
-              ' Angaben vollständig und korrekt sind.',
+              AppLocale.current.i_certify_info_correct,
               style: inter12,
               textAlign: TextAlign.center,
             ),
@@ -43,7 +42,7 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
           },
           isEnabled: formGroup.valid,
           width: 580,
-          child: const Text('VERIFIKATION BEANTRAGEN'),
+          child: Text(AppLocale.current.request_verification.toUpperCase()),
         ),
       ],
     );
