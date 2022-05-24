@@ -12,8 +12,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 /// Payment info - account owner and IBAN with possibility to edit this info
 /// and submit via [formConsumer]
-class PaymentInfo extends StatefulWidget {
-  const PaymentInfo({
+class PaymentInfo extends StatelessWidget {
+  PaymentInfo({
     Key? key,
     this.accountOwner = '',
     this.iban = '',
@@ -24,20 +24,15 @@ class PaymentInfo extends StatefulWidget {
   final String iban;
   final Widget? formConsumer;
 
-  @override
-  State<PaymentInfo> createState() => _PaymentInfoState();
-}
-
-class _PaymentInfoState extends State<PaymentInfo> {
   final formSettings = AddPaymentFormSettings();
 
   @override
   Widget build(BuildContext context) {
     return ReactiveFormBuilder(
       form: () => formSettings.buildForm(
-        widget.accountOwner,
-        widget.iban,
-        enableValidators: widget.formConsumer != null,
+        accountOwner,
+        iban,
+        enableValidators: formConsumer != null,
       ),
       builder: (
         BuildContext context,
@@ -47,14 +42,13 @@ class _PaymentInfoState extends State<PaymentInfo> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (widget.formConsumer == null)
+            if (formConsumer == null)
               Text(
                 AppLocale.current.payment_information,
                 style: inter16SemiBold,
               ),
             const SizedBox(height: 24),
-            if ((widget.accountOwner.isEmpty || widget.iban.isEmpty) &&
-                widget.formConsumer == null)
+            if ((accountOwner.isEmpty || iban.isEmpty) && formConsumer == null)
               AppDashBorderedContainer(
                 borderType: BorderType.rect,
                 child: Container(
@@ -101,7 +95,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
                     validationMessages: (control) =>
                         formSettings.validationMessageIban,
                   ),
-                  if (widget.formConsumer != null)
+                  if (formConsumer != null)
                     Column(
                       children: [
                         const SizedBox(height: 16),
@@ -114,7 +108,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
                           position: Position.left,
                         ),
                         const SizedBox(height: 24),
-                        widget.formConsumer!,
+                        formConsumer!,
                       ],
                     ),
                 ],
