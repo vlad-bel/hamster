@@ -1,19 +1,20 @@
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/checkbox/ui_checkbox.dart';
-import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class AccountVerificationCheckboxWithButton extends StatelessWidget {
   const AccountVerificationCheckboxWithButton({
     super.key,
-    required this.isAcceptedDataIsCorrect,
     required this.isFullyCompleted,
+    required this.checkboxName,
+    required this.formGroup,
   });
 
-  final bool isAcceptedDataIsCorrect;
+  final String checkboxName;
+  final FormGroup formGroup;
   final bool isFullyCompleted;
 
   @override
@@ -23,12 +24,11 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
         SizedBox(
           width: 588,
           child: UiCheckbox(
-            value: isAcceptedDataIsCorrect,
-            active: isFullyCompleted,
-            onChanged: (value) => onChangeCheckBox(context, value: value),
+            name: checkboxName,
+            //onChanged: (value) => onChangeCheckBox(context, value: value),
             title: Text(
               'Hiermit versichere ich, dass alle von mir getätigten'
-              ' Angaben vollständig und korrekt sind. ',
+              ' Angaben vollständig und korrekt sind.',
               style: inter12,
               textAlign: TextAlign.center,
             ),
@@ -41,17 +41,11 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
               'Verifikation feature is work in progress',
             );
           },
-          isEnabled: isAcceptedDataIsCorrect,
+          isEnabled: formGroup.valid,
           width: 580,
           child: const Text('VERIFIKATION BEANTRAGEN'),
         ),
       ],
     );
-  }
-
-  void onChangeCheckBox(BuildContext context, {required bool? value}) {
-    context.read<AccountVerificationCubit>().changeCheckBoxDataIsCorrect(
-          isAcceptedDataIsCorrect: value ?? false,
-        );
   }
 }

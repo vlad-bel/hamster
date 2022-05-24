@@ -31,8 +31,6 @@ class PaymentInfo extends StatefulWidget {
 class _PaymentInfoState extends State<PaymentInfo> {
   final formSettings = AddPaymentFormSettings();
 
-  var _acceptedTerms = false;
-
   @override
   Widget build(BuildContext context) {
     return ReactiveFormBuilder(
@@ -108,17 +106,12 @@ class _PaymentInfoState extends State<PaymentInfo> {
                       children: [
                         const SizedBox(height: 16),
                         UiCheckbox(
-                          value: _acceptedTerms,
+                          name: AddPaymentFormSettings.acceptCheckBox,
                           title: Text(
                             AppLocale.current.i_authorize_collect_payment,
                             style: inter12,
                           ),
                           position: Position.left,
-                          onChanged: (value) {
-                            setState(() {
-                              _acceptedTerms = !_acceptedTerms;
-                            });
-                          },
                         ),
                         const SizedBox(height: 24),
                         widget.formConsumer!,

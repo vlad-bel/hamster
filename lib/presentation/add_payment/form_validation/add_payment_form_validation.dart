@@ -28,6 +28,7 @@ class AddPaymentFormSettings {
 
   static const accountOwnerField = 'accountOwner';
   static const ibanField = 'iban';
+  static const acceptCheckBox = 'acceptTerms';
 
   FormGroup buildForm(
     String? accountOwner,
@@ -58,6 +59,11 @@ class AddPaymentFormSettings {
                 ]
               : [],
           value: iban,
+        ),
+        acceptCheckBox: FormControl<bool>(
+          validators: [
+            Validators.requiredTrue,
+          ],
         ),
       },
     );
