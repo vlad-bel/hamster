@@ -6,6 +6,7 @@ class ProfileViewContainer extends StatelessWidget {
     super.key,
     required this.child,
   });
+
   final Widget child;
 
   @override
