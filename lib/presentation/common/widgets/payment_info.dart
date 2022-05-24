@@ -84,7 +84,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
               Column(
                 children: [
                   FormTextField(
-                    name: AddPaymentFormSettings.accountOwnerField,
+                    name: AddPaymentFormSettings.kAccountOwnerField,
                     hint: AppLocale.current.account_owner,
                     label: AppLocale.current.account_owner,
                     validationMessages: (control) =>
@@ -92,7 +92,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
                   ),
                   const SizedBox(height: 16),
                   FormTextField(
-                    name: AddPaymentFormSettings.ibanField,
+                    name: AddPaymentFormSettings.kIbanField,
                     hint: AppLocale.current.iban,
                     label: AppLocale.current.iban,
                     inputFormatters: [
@@ -106,7 +106,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
                       children: [
                         const SizedBox(height: 16),
                         UiCheckbox(
-                          name: AddPaymentFormSettings.acceptCheckBox,
+                          name: AddPaymentFormSettings.kAcceptCheckBox,
                           title: Text(
                             AppLocale.current.i_authorize_collect_payment,
                             style: inter12,
