@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -36,7 +35,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_branch": MessageLookupByLibrary.simpleMessage("Add branch"),
         "add_business_account":
             MessageLookupByLibrary.simpleMessage("Add your business account"),
+        "add_category":
+            MessageLookupByLibrary.simpleMessage("Add store categories"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
+        "add_subcategory":
+            MessageLookupByLibrary.simpleMessage("Add subcategory"),
         "administration":
             MessageLookupByLibrary.simpleMessage("Administration"),
         "base_data": MessageLookupByLibrary.simpleMessage("Base data"),
@@ -59,6 +62,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Cash register system used in your branch"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "choose_main_category":
+            MessageLookupByLibrary.simpleMessage("Choose a main category."),
+        "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
+            "Choose a main category by double-clicking it. This is displayed to all HamsterApp users."),
         "closed": MessageLookupByLibrary.simpleMessage("closed"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
             "Commercial Register No. (if available)"),
@@ -74,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_number_title": MessageLookupByLibrary.simpleMessage(
             "Confirm your phone \vnumber."),
         "connection": MessageLookupByLibrary.simpleMessage("CONNECTION"),
+        "continue_button": MessageLookupByLibrary.simpleMessage("CONTINUE"),
         "country_hint": MessageLookupByLibrary.simpleMessage("Country"),
         "country_name": MessageLookupByLibrary.simpleMessage("Country name"),
         "create_company_profile": MessageLookupByLibrary.simpleMessage(
@@ -109,6 +117,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "The IBAN number should only contain Latin letters and numbers"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
+        "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "The maximum length is \$0 characters"),
         "max_length_reached":
@@ -141,10 +150,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "return_button": MessageLookupByLibrary.simpleMessage("RETURN"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Select country code"),
         "select_number_title": MessageLookupByLibrary.simpleMessage(
             "Please let us know which phone number to verify via SMS or voice call."),
+        "select_subcategories": MessageLookupByLibrary.simpleMessage(
+            "Select appropriate subcategories."),
+        "select_subcategories_descr": MessageLookupByLibrary.simpleMessage(
+            "Select up to nine subcategories to improve search results in the HamsterApp."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(
@@ -154,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "street_hint": MessageLookupByLibrary.simpleMessage("Street"),
         "street_house_number":
             MessageLookupByLibrary.simpleMessage("Street, house number"),
+        "subcategory": MessageLookupByLibrary.simpleMessage("Subcategory"),
         "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "tax_number": MessageLookupByLibrary.simpleMessage("Tax number"),
         "telephone_number_if_available": MessageLookupByLibrary.simpleMessage(

@@ -391,7 +391,7 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(int length) {
+  String min_number(Object length) {
     return Intl.message(
       'Maximum number $length characters',
       name: 'min_number',
@@ -401,7 +401,7 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(int length) {
+  String max_number(Object length) {
     return Intl.message(
       'Minimum number $length characters',
       name: 'max_number',
@@ -911,7 +911,7 @@ class S {
   }
 
   /// `Number: {number}`
-  String branch_id(int number) {
+  String branch_id(Object number) {
     return Intl.message(
       'Number: $number',
       name: 'branch_id',
@@ -1040,21 +1040,101 @@ class S {
     );
   }
 
-  /// `I hereby certify that all of the information I have given is complete and correct.`
-  String get i_certify_info_correct {
+  /// `Choose a main category.`
+  String get choose_main_category {
     return Intl.message(
-      'I hereby certify that all of the information I have given is complete and correct.',
-      name: 'i_certify_info_correct',
+      'Choose a main category.',
+      name: 'choose_main_category',
       desc: '',
       args: [],
     );
   }
 
-  /// `Request verification`
-  String get request_verification {
+  /// `Choose a main category by double-clicking it. This is displayed to all HamsterApp users.`
+  String get choose_main_category_descr {
     return Intl.message(
-      'Request verification',
-      name: 'request_verification',
+      'Choose a main category by double-clicking it. This is displayed to all HamsterApp users.',
+      name: 'choose_main_category_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select appropriate subcategories.`
+  String get select_subcategories {
+    return Intl.message(
+      'Select appropriate subcategories.',
+      name: 'select_subcategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select up to nine subcategories to improve search results in the HamsterApp.`
+  String get select_subcategories_descr {
+    return Intl.message(
+      'Select up to nine subcategories to improve search results in the HamsterApp.',
+      name: 'select_subcategories_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add subcategory`
+  String get add_subcategory {
+    return Intl.message(
+      'Add subcategory',
+      name: 'add_subcategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subcategory`
+  String get subcategory {
+    return Intl.message(
+      'Subcategory',
+      name: 'subcategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONTINUE`
+  String get continue_button {
+    return Intl.message(
+      'CONTINUE',
+      name: 'continue_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add store categories`
+  String get add_category {
+    return Intl.message(
+      'Add store categories',
+      name: 'add_category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main category`
+  String get main_category {
+    return Intl.message(
+      'Main category',
+      name: 'main_category',
       desc: '',
       args: [],
     );

@@ -86,4 +86,7 @@ abstract class RestClient {
 
   @GET('/rep/company')
   Future<RepCompany> repCompany();
+
+  @GET('/common/categories')
+  Future<List<String>> getCategories();
 }

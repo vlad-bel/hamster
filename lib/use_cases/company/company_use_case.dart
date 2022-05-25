@@ -16,5 +16,7 @@ abstract class CompanyUsecase {
     required String countryCode,
   });
 
+  Future<List<String>> getCategories();
+
   Future<RepCompany> fetchRepCompany();
 }

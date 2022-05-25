@@ -6,11 +6,14 @@ class WhiteButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     this.width = 145,
+    this.child,
   });
 
   final VoidCallback onPressed;
 
   final double width;
+
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class WhiteButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(
+        child: child ?? Text(
           AppLocale.current.return_button,
           style: const TextStyle(color: Color(0xff147bd9)),
         ),
