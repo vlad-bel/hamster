@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -33,15 +34,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_bank_details":
             MessageLookupByLibrary.simpleMessage("Add bank details"),
         "add_branch": MessageLookupByLibrary.simpleMessage("Add branch"),
+        "add_branch_hours":
+            MessageLookupByLibrary.simpleMessage("Add branch hours"),
         "add_business_account":
             MessageLookupByLibrary.simpleMessage("Add your business account"),
         "add_category":
             MessageLookupByLibrary.simpleMessage("Add store categories"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
+        "add_opening_time":
+            MessageLookupByLibrary.simpleMessage("Add opening time"),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Add subcategory"),
         "administration":
             MessageLookupByLibrary.simpleMessage("Administration"),
+        "ass": MessageLookupByLibrary.simpleMessage("as"),
         "base_data": MessageLookupByLibrary.simpleMessage("Base data"),
         "branch_category":
             MessageLookupByLibrary.simpleMessage("Store Categories"),
@@ -67,6 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
             "Choose a main category by double-clicking it. This is displayed to all HamsterApp users."),
         "closed": MessageLookupByLibrary.simpleMessage("closed"),
+        "closes": MessageLookupByLibrary.simpleMessage("Closes"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
             "Commercial Register No. (if available)"),
         "companies": MessageLookupByLibrary.simpleMessage("COMPANIES"),
@@ -116,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "The IBAN number should only contain Latin letters and numbers"),
+        "if_branch_closed_on_selected": MessageLookupByLibrary.simpleMessage(
+            "If the branch is closed on the selected day(s), leave the fields below empty"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
         "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
@@ -138,6 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "number_of_registers":
             MessageLookupByLibrary.simpleMessage("Number of registers"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Opening hours"),
+        "opens": MessageLookupByLibrary.simpleMessage("Opens"),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Payment Information"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),
