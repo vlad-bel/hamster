@@ -17,7 +17,7 @@ class CategoriesList extends StatelessWidget {
     required this.onSelect,
   }) : super(key: key);
 
-  final Function(int index) onSelect;
+  final Function(String index) onSelect;
   final List<String> data;
 
   @override

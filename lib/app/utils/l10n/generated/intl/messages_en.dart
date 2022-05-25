@@ -26,7 +26,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(length) => "Maximum number ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Account owner"),
         "account_verification":
@@ -36,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_branch": MessageLookupByLibrary.simpleMessage("Add branch"),
         "add_business_account":
             MessageLookupByLibrary.simpleMessage("Add your business account"),
+        "add_category":
+            MessageLookupByLibrary.simpleMessage("Add store categories"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Add subcategory"),
@@ -114,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "The IBAN number should only contain Latin letters and numbers"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
+        "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "The maximum length is \$0 characters"),
         "max_length_reached":

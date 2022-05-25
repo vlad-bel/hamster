@@ -126,5 +126,7 @@
   "select_subcategories_descr": "Select up to nine subcategories to improve search results in the HamsterApp.",
   "add_subcategory": "Add subcategory",
   "subcategory": "Subcategory",
-  "continue_button": "CONTINUE"
+  "continue_button": "CONTINUE",
+  "add_category": "Add store categories",
+  "main_category": "Main category"
 }

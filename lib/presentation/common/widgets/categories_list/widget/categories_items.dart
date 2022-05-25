@@ -11,7 +11,7 @@ class CategoriesItems extends StatelessWidget {
     required this.onSelect,
   }) : super(key: key);
 
-  final Function(int index) onSelect;
+  final Function(String index) onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class CategoriesItems extends StatelessWidget {
                         left: 16,
                       ),
                       onTap: () {
-                        onSelect(index);
+                        onSelect(state.items[index]);
                       },
                       title: Text(
                         state.items[index],

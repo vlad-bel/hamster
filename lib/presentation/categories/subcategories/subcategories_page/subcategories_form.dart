@@ -1,8 +1,8 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/presentation/categories/subcategories/cubit/subcategories_cubit.dart';
-import 'package:business_terminal/presentation/categories/subcategories/cubit/subcategories_state.dart';
+import 'package:business_terminal/presentation/categories/cubit/subcategories_cubit.dart';
+import 'package:business_terminal/presentation/categories/cubit/subcategories_state.dart';
 import 'package:business_terminal/presentation/common/widgets/categories_list/categories_list.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
@@ -30,13 +30,25 @@ class SubcategoriesForm extends StatelessWidget {
             ),
             body: Column(
               children: [
-                CategoriesList(
-                  data: state.subcategories ?? [],
-                  onSelect: (index) {
-                    cubit.selectSubcategory(index);
-                    Navigator.of(context).pop();
-                  },
-                ),
+                state.whenOrNull(
+                      init: (category, categories, selectedCategories) {
+                        return CategoriesList(
+                          data: categories.where((e) {
+                            if (e != category) {
+                              if (!selectedCategories.contains(e)) {
+                                return true;
+                              }
+                            }
+                            return false;
+                          }).toList(),
+                          onSelect: (category) {
+                            cubit.selectSubcategory(category);
+                            Navigator.of(context).pop();
+                          },
+                        );
+                      },
+                    ) ??
+                    SizedBox(),
                 SizedBox(height: 32),
                 WhiteButton(
                   width: 500,
