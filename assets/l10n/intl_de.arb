@@ -123,5 +123,7 @@
     "model_if_known": "Modell (falls bekannt)",
     "number_of_registers": "Anzahl Kassen",
     "i_certify_info_correct": "Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind.",
-    "request_verification": "Verifikation beantragen"
+    "request_verification": "Verifikation beantragen",
+    "error" : "Fehler",
+    "success" : "Erfolg"
 }

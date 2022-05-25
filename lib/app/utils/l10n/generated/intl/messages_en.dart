@@ -83,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
@@ -154,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "street_hint": MessageLookupByLibrary.simpleMessage("Street"),
         "street_house_number":
             MessageLookupByLibrary.simpleMessage("Street, house number"),
+        "success": MessageLookupByLibrary.simpleMessage("Success"),
         "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "tax_number": MessageLookupByLibrary.simpleMessage("Tax number"),
         "telephone_number_if_available": MessageLookupByLibrary.simpleMessage(

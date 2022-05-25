@@ -41,7 +41,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> checkCompanyCreatedGoNext() async {
     try {
-      final repCompany = await _companyUsecase.fetchRepCompany();
+      final repCompany = await _companyUsecase.getRepCompany();
 
       if (repCompany.company != null) {
         return emit(LoginState.success(DashboardPage.path));

@@ -25,7 +25,7 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
 
   Future getRepCompanyData() async {
     try {
-      final repCompany = await companyUsecase.fetchRepCompany();
+      final repCompany = await companyUsecase.getRepCompany();
 
       dashboardCubit.updateRepCompany(repCompany);
       state.whenOrNull(

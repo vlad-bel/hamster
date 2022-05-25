@@ -120,5 +120,7 @@
   "forget_pasword_header": "Forgot your password?",
   "resetmail": "Resend email",
   "i_certify_info_correct": "I hereby certify that all of the information I have given is complete and correct.",
-  "request_verification": "Request verification"
+  "request_verification": "Request verification",
+  "error": "Error",
+  "success": "Success"
 }

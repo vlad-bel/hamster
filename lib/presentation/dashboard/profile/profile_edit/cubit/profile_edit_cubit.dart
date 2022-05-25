@@ -2,6 +2,7 @@ import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/request_model/profile/profile_edit/profile_edit_request.dart';
+import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
 import 'package:business_terminal/use_cases/profile/profile_edit/profile_edit_use_case.dart';
@@ -11,7 +12,7 @@ import 'package:injectable/injectable.dart';
 
 part 'profile_edit_cubit.freezed.dart';
 
-@singleton
+@Singleton()
 class ProfileEditCubit extends Cubit<ProfileEditState> {
   ProfileEditCubit({
     required this.profileEditFormSettings,
@@ -23,7 +24,10 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
   final ProfileEditFormSettings profileEditFormSettings;
   final ProfileEditUsecase profileEditUsecase;
 
-  void updatePaymentData(Map<String, String> values) {
+  Future<void> updatePaymentData(Map<String, String> values) async {
+    emit(
+      ProfileEditState.loading(),
+    );
     _setControlValue(
       ProfileEditFormSettings.kAccountOwner,
       values[ProfileEditFormSettings.kAccountOwner],
@@ -32,52 +36,80 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
       ProfileEditFormSettings.kIban,
       values[ProfileEditFormSettings.kIban],
     );
-  }
+    final company = await getIt.get<CompanyUsecase>().getCompany(
+          companyId: '628740f177419483f8313798',
+        );
 
-  void _setControlValue(String key, String? value) {
-    if (value.toString() != null.toString()) {
-      profileEditFormSettings.controls[key]!.value = value;
-    }
+    emit(
+      ProfileEditState.initial(
+        company: company,
+        profileEditFormSettings: profileEditFormSettings,
+      ),
+    );
+    return;
   }
 
   Future<void> getInitialData() async {
     try {
-      final result = getIt.get<CompanyUsecase>().repCompany;
-      final company = result!.company;
+      final company = await getIt.get<CompanyUsecase>().getCompany(
+            companyId: '628740f177419483f8313798',
+          );
+      emit(
+        ProfileEditState.loading(),
+      );
+      _setControlValue(
+        ProfileEditFormSettings.kStreetField,
+        '${company.streetName}',
+      );
       _setControlValue(
         ProfileEditFormSettings.kAccountOwner,
-        '${company?.accountOwner}',
+        '${company.accountOwner}',
       );
       _setControlValue(
         ProfileEditFormSettings.kCompanyName,
-        company?.companyName,
+        company.companyName,
       );
-      _setControlValue(
-        ProfileEditFormSettings.kCommercialRegisterNumber,
-        company?.companyNumber,
-      );
+
       _setControlValue(
         ProfileEditFormSettings.kIban,
-        company?.iban,
+        company.iban,
       );
       _setControlValue(
-        ProfileEditFormSettings.kStreetHouseNumber,
-        '${company?.streetName} ${company?.streetNumber}',
+        ProfileEditFormSettings.kStreetNumberField,
+        '${company.streetName}',
+      );
+      _setControlValue(
+        ProfileEditFormSettings.kStreetNumberField,
+        '${company.streetNumber}',
       );
       _setControlValue(
         ProfileEditFormSettings.kTaxNumber,
-        '${company?.taxNumber}',
+        '${company.taxNumber}',
       );
       _setControlValue(
-        ProfileEditFormSettings.kZipCodeAndLocation,
-        '${company?.postalCode} ${company?.city}',
+        ProfileEditFormSettings.kPostcodeField,
+        '${company.postalCode}',
       );
+      _setControlValue(
+        ProfileEditFormSettings.kCityField,
+        '${company.city}',
+      );
+      _setControlValue(
+        ProfileEditFormSettings.kAccountOwner,
+        '${company.accountOwner}',
+      );
+      _setControlValue(
+        ProfileEditFormSettings.kIban,
+        '${company.iban}',
+      );
+
       emit(
         ProfileEditState.initial(
-          company: company!,
+          company: company,
           profileEditFormSettings: profileEditFormSettings,
         ),
       );
+      return;
     } on ApiFailure catch (e) {
       logger.e(e.response.message);
       emit(
@@ -102,6 +134,9 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
       state.whenOrNull(
         initial: (company, profileEditFormSettings) {
           emit(
+            ProfileEditState.success(),
+          );
+          emit(
             ProfileEditState.initial(
               company: company,
               profileEditFormSettings: profileEditFormSettings,
@@ -116,6 +151,12 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
           error: e,
         ),
       );
+    }
+  }
+
+  void _setControlValue(String key, String? value) {
+    if (value.toString() != null.toString()) {
+      profileEditFormSettings.controls[key]!.value = value;
     }
   }
 }
@@ -133,7 +174,5 @@ class ProfileEditState with _$ProfileEditState {
 
   const factory ProfileEditState.loading() = LoadingProfileEditState;
 
-  const factory ProfileEditState.success({
-    required Company company,
-  }) = SuccessProfileEditState;
+  const factory ProfileEditState.success() = SuccessProfileEditState;
 }

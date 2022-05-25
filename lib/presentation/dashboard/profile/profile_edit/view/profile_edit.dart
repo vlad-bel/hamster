@@ -5,10 +5,13 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/request_model/profile/profile_edit/profile_edit_request.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
+import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/header_app_bar/header_app_bar_widget.dart';
@@ -16,6 +19,7 @@ import 'package:business_terminal/presentation/common/widgets/payment_info.dart'
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/cubit/profile_edit_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
+import 'package:business_terminal/use_cases/company/company_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -31,10 +35,7 @@ class ProfileEditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt.get<ProfileEditCubit>()..getInitialData(),
-      child: const _ProfileEditView(),
-    );
+    return const _ProfileEditView();
   }
 }
 
@@ -48,8 +49,8 @@ class _ProfileEditView extends StatefulWidget {
 class _ProfileEditViewState extends State<_ProfileEditView> {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Stack(
+    return Scaffold(
+      body: Stack(
         children: [
           Image.asset(
             Assets.imagesBackgroundImageSignUp,
@@ -57,73 +58,130 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
             width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
           ),
-          ReactiveFormBuilder(
-            form: context
-                .read<ProfileEditCubit>()
-                .profileEditFormSettings
-                .buildForm,
-            builder: (context, form, child) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  HeaderAppBarWidget(
-                    trailing: ReactiveFormConsumer(
-                      builder: (context, formGroup, child) {
-                        return ActionButtonBlue(
-                          onPressed: () async {
-                            // getIt.get<ProfileEditCubit>().editProfile(
-                            //       '1',
-                            //       ProfileEditRequest(
-                            //         city: '',
-                            //         commercialRegisterNumber: '',
-                            //         companyName: '',
-                            //         country: '',
-                            //         streetName: '',
-                            //         countryCode: '',
-                            //         postalCode: '',
-                            //         streetNumber: '',
-                            //         taxNumber: '',
-                            //         vatId: '',
-                            //       ),
-                            //     );
-                          },
-                          isEnabled: form.valid,
-                          child: Text(
-                            AppLocale.of(context).save,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: BlocBuilder<ProfileEditCubit, ProfileEditState>(
-                        buildWhen: (previous, current) =>
-                            current is InitialProfileEditState,
-                        builder: (context, state) {
-                          return state.when(
-                            initial: (company, profileEditFormSettings) =>
-                                _ProfileEditContent(
-                              formSettings: profileEditFormSettings,
-                              company: company,
-                            ),
-                            error: (ApiFailure error) {
-                              return Text('Error');
-                            },
-                            success: (company) {
-                              return Text('success ${company.toJson()}');
-                            },
-                            loading: () {
-                              return SizedBox();
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              );
+          BlocProvider(
+            create: (BuildContext context) {
+              return GetIt.instance.get<CountrySelectorCubit>();
             },
+            child: BlocBuilder<CountrySelectorCubit, CountrySelectorState>(
+                builder: (context, state) {
+              final countrySelectorCubit =
+                  BlocProvider.of<CountrySelectorCubit>(
+                context,
+              );
+
+              return ReactiveFormBuilder(
+                form: context
+                    .read<ProfileEditCubit>()
+                    .profileEditFormSettings
+                    .buildForm,
+                builder: (context, form, child) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      HeaderAppBarWidget(
+                        trailing: ReactiveFormConsumer(
+                          builder: (context, formGroup, child) {
+                            return ActionButtonBlue(
+                              onPressed: () async {
+                                final result =
+                                    getIt.get<CompanyUsecase>().repCompany;
+                                final company = result!.company;
+
+                                final selectedCountry =
+                                    countrySelectorCubit.state.whenOrNull(
+                                  close: (country, _) => country,
+                                );
+
+                                await context
+                                    .read<ProfileEditCubit>()
+                                    .editProfile(
+                                      '${company?.id}',
+                                      ProfileEditRequest(
+                                          city:
+                                              '${formGroup.controls[ProfileEditFormSettings.kCityField]?.value}',
+                                          commercialRegisterNumber:
+                                              '${formGroup.controls[ProfileEditFormSettings.kCommercialRegisterNumber]?.value}',
+                                          companyName:
+                                              '${formGroup.controls[ProfileEditFormSettings.kCompanyName]?.value}',
+                                          country: selectedCountry?.name ??
+                                              '${company?.country}',
+                                          streetName:
+                                              '${formGroup.controls[ProfileEditFormSettings.kStreetField]?.value.toString()}',
+                                          countryCode:
+                                              '${selectedCountry?.code}',
+                                          postalCode:
+                                              '${formGroup.controls[ProfileEditFormSettings.kPostcodeField]?.value.toString()}',
+                                          streetNumber:
+                                              '${formGroup.controls[ProfileEditFormSettings.kStreetNumberField]?.value.toString()}',
+                                          taxNumber:
+                                              '${formGroup.controls[ProfileEditFormSettings.kTaxNumber]?.value}',
+                                          vatId:
+                                              '${formGroup.controls[ProfileEditFormSettings.kVatId]?.value}',
+                                          accountOwner:
+                                              '${context.read<ProfileEditCubit>().profileEditFormSettings.controls[ProfileEditFormSettings.kAccountOwner]?.value}',
+                                          iban:
+                                              '${context.read<ProfileEditCubit>().profileEditFormSettings.controls[ProfileEditFormSettings.kIban]?.value}'),
+                                    );
+                              },
+                              isEnabled: form.valid,
+                              child: Text(
+                                AppLocale.of(context).save,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child:
+                              BlocConsumer<ProfileEditCubit, ProfileEditState>(
+                            listener: (context, state) {
+                              if (state is SuccessProfileEditState) {
+                                SnackBarManager.showSuccess(
+                                  AppLocale.of(context).success,
+                                );
+                                Navigator.pop(context);
+                              } else if (state is ErrorProfileEditState) {
+                                SnackBarManager.showError(
+                                  AppLocale.of(context).error,
+                                );
+                              } else if (state is InitialProfileEditState) {
+                                countrySelectorCubit.selectInitialCountry(
+                                  countryName: '${state.company.country}',
+                                );
+                              }
+                            },
+                            buildWhen: (previous, current) =>
+                                current is InitialProfileEditState,
+                            builder: (context, state) {
+                              return state.when(
+                                initial: (company, profileEditFormSettings) =>
+                                    _ProfileEditContent(
+                                  formSettings: profileEditFormSettings,
+                                  company: company,
+                                  countrySelectorCubit: countrySelectorCubit,
+                                ),
+                                error: (ApiFailure error) {
+                                  return Text('Error');
+                                },
+                                success: () {
+                                  return Text('success');
+                                },
+                                loading: () {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }),
           ),
         ],
       ),
@@ -135,9 +193,11 @@ class _ProfileEditContent extends StatefulWidget {
   const _ProfileEditContent({
     required this.formSettings,
     required this.company,
+    required this.countrySelectorCubit,
   });
 
   final Company company;
+  final CountrySelectorCubit countrySelectorCubit;
   final ProfileEditFormSettings formSettings;
 
   @override
@@ -145,6 +205,19 @@ class _ProfileEditContent extends StatefulWidget {
 }
 
 class _ProfileEditContentState extends State<_ProfileEditContent> {
+  @override
+  void initState() {
+    super.initState();
+    // final json = {
+    // 'name': '${widget.company.country}',
+    // };
+    // widget.countrySelectorCubit.selectCountry(
+    //   Country.fromJson(
+    //     json,
+    //   ),
+    // );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -226,48 +299,55 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                 ),
                               ),
                               const SizedBox(height: 25),
-                              FormTextField(
-                                validationMessages: (control) =>
-                                    widget.formSettings.validationMessages,
-                                onTap: () {},
-                                name:
-                                    ProfileEditFormSettings.kStreetHouseNumber,
-                                label: Intl.message(
-                                  'label',
-                                  name: ProfileEditFormSettings
-                                      .kStreetHouseNumber,
-                                ),
-                                hint: Intl.message(
-                                  'hint',
-                                  name: ProfileEditFormSettings
-                                      .kStreetHouseNumber,
-                                ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Flexible(
+                                    flex: 3,
+                                    child: FormTextField(
+                                      name:
+                                          ProfileEditFormSettings.kStreetField,
+                                      hint: AppLocale.current.street_hint,
+                                      label: AppLocale.current.street_hint,
+                                    ),
+                                  ),
+                                  SizedBox(width: 16),
+                                  Flexible(
+                                    child: FormTextField(
+                                      name: ProfileEditFormSettings
+                                          .kStreetNumberField,
+                                      hint: AppLocale.current.num_hint,
+                                      label: AppLocale.current.num_hint,
+                                    ),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 25),
-                              FormTextField(
-                                validationMessages: (control) =>
-                                    widget.formSettings.validationMessages,
-                                name:
-                                    ProfileEditFormSettings.kZipCodeAndLocation,
-                                label: Intl.message(
-                                  'label',
-                                  name: ProfileEditFormSettings
-                                      .kZipCodeAndLocation,
-                                ),
-                                hint: Intl.message(
-                                  'hint',
-                                  name: ProfileEditFormSettings
-                                      .kZipCodeAndLocation,
-                                ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Flexible(
+                                    child: FormTextField(
+                                      name: ProfileEditFormSettings
+                                          .kPostcodeField,
+                                      hint: AppLocale.current.post_hint,
+                                      label: AppLocale.current.post_hint,
+                                    ),
+                                  ),
+                                  SizedBox(width: 16),
+                                  Flexible(
+                                    flex: 3,
+                                    child: FormTextField(
+                                      name: ProfileEditFormSettings.kCityField,
+                                      hint: AppLocale.current.location_hint,
+                                      label: AppLocale.current.location_hint,
+                                    ),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 25),
-                              BlocProvider(
-                                create: (_) =>
-                                    GetIt.instance.get<CountrySelectorCubit>(),
-                                child: CountrySelector(
-                                  cubit: GetIt.instance
-                                      .get<CountrySelectorCubit>(),
-                                ),
+                              CountrySelector(
+                                cubit: widget.countrySelectorCubit,
                               ),
                             ],
                           ),
@@ -312,12 +392,15 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                             name: ProfileEditFormSettings
                                 .kCommercialRegisterNumber,
                             label: Intl.message(
-                              'label',
+                              ProfileEditFormSettings.kCommercialRegisterNumber,
                               name: ProfileEditFormSettings
                                   .kCommercialRegisterNumber,
                             ),
-                            hint: ProfileEditFormSettings
-                                .kCommercialRegisterNumber,
+                            hint: Intl.message(
+                              ProfileEditFormSettings.kCommercialRegisterNumber,
+                              name: ProfileEditFormSettings
+                                  .kCommercialRegisterNumber,
+                            ),
                           ),
                           const SizedBox(
                             height: 25,
@@ -327,11 +410,11 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                 widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings.kTaxNumber,
                             label: Intl.message(
-                              'label',
+                              ProfileEditFormSettings.kTaxNumber,
                               name: ProfileEditFormSettings.kTaxNumber,
                             ),
                             hint: Intl.message(
-                              'hint',
+                              ProfileEditFormSettings.kTaxNumber,
                               name: ProfileEditFormSettings.kTaxNumber,
                             ),
                           ),
@@ -341,7 +424,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                 widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings.kVatId,
                             label: Intl.message(
-                              'label',
+                              ProfileEditFormSettings.kVatId,
                               name: ProfileEditFormSettings.kVatId,
                             ),
                             hint: Intl.message(
@@ -376,6 +459,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                         context
                             .read<ProfileEditCubit>()
                             .updatePaymentData(result);
+                        setState(() {});
                       },
                       child: PaymentInfo(
                         accountOwner: context

@@ -15,10 +15,15 @@ class ProfileEditRequest {
     required this.commercialRegisterNumber,
     required this.taxNumber,
     required this.vatId,
+    required this.accountOwner,
+    required this.iban,
   });
 
   factory ProfileEditRequest.fromJson(Map<String, dynamic> json) =>
       _$ProfileEditRequestFromJson(json);
+
+  @JsonKey(name: 'accountOwner')
+  final String accountOwner;
 
   @JsonKey(name: '')
   final String city;
@@ -32,6 +37,9 @@ class ProfileEditRequest {
 
   @JsonKey(name: 'countryCode')
   final String countryCode;
+
+  @JsonKey(name: 'IBAN')
+  final String iban;
 
   @JsonKey(name: 'postalCode')
   final String postalCode;
