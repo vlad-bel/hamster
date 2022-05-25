@@ -114,7 +114,7 @@ class HamsterApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: Locale('en'),
+      locale: Locale('de'),
       home: home,
     );
   }
