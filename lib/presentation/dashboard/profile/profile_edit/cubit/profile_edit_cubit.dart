@@ -23,7 +23,18 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
   final ProfileEditFormSettings profileEditFormSettings;
   final ProfileEditUsecase profileEditUsecase;
 
-  void setControlValue(String key, String? value) {
+  void updatePaymentData(Map<String, String> values) {
+    _setControlValue(
+      ProfileEditFormSettings.kAccountOwner,
+      values[ProfileEditFormSettings.kAccountOwner],
+    );
+    _setControlValue(
+      ProfileEditFormSettings.kIban,
+      values[ProfileEditFormSettings.kIban],
+    );
+  }
+
+  void _setControlValue(String key, String? value) {
     if (value.toString() != null.toString()) {
       profileEditFormSettings.controls[key]!.value = value;
     }
@@ -33,31 +44,31 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
     try {
       final result = getIt.get<CompanyUsecase>().repCompany;
       final company = result!.company;
-      setControlValue(
+      _setControlValue(
         ProfileEditFormSettings.kAccountOwner,
         '${company?.accountOwner}',
       );
-      setControlValue(
+      _setControlValue(
         ProfileEditFormSettings.kCompanyName,
         company?.companyName,
       );
-      setControlValue(
+      _setControlValue(
         ProfileEditFormSettings.kCommercialRegisterNumber,
         company?.companyNumber,
       );
-      setControlValue(
+      _setControlValue(
         ProfileEditFormSettings.kIban,
         company?.iban,
       );
-      setControlValue(
+      _setControlValue(
         ProfileEditFormSettings.kStreetHouseNumber,
         '${company?.streetName} ${company?.streetNumber}',
       );
-      setControlValue(
+      _setControlValue(
         ProfileEditFormSettings.kTaxNumber,
         '${company?.taxNumber}',
       );
-      setControlValue(
+      _setControlValue(
         ProfileEditFormSettings.kZipCodeAndLocation,
         '${company?.postalCode} ${company?.city}',
       );

@@ -114,6 +114,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Helfen Sie uns Ihre Filiale schnell anzubinden indem Sie Ihre Kassensysteme angeben"),
         "i_authorize_collect_payment": MessageLookupByLibrary.simpleMessage(
             "Ich ermächtige die Hamster Systems AG Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von der Hamster Systems AG auf mein Konto gezogenen Lastschriften einzulösen. Mit Akzeptanz dieser Vereinbarung verpflichtet sich die Hamster Systems AG im gleichen Maße auf die Auszahlung von Guthaben auf das o.g. Konto"),
+        "i_certify_info_correct": MessageLookupByLibrary.simpleMessage(
+            "Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind."),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "Die IBAN Nummer sollte nur lateinische Buchstaben und Zahlen enthalten"),
@@ -143,6 +145,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Zahlungsinformationen"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Anruf"),
         "post_hint": MessageLookupByLibrary.simpleMessage("PLZ"),
+        "request_verification":
+            MessageLookupByLibrary.simpleMessage("Verifikation beantragen"),
         "required_field": MessageLookupByLibrary.simpleMessage("Pflichtfeld"),
         "return_button": MessageLookupByLibrary.simpleMessage("ZURÜCK"),
         "saturday": MessageLookupByLibrary.simpleMessage("Samstag"),

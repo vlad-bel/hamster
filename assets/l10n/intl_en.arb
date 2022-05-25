@@ -118,7 +118,6 @@
   "model_if_known": "Model (if known)",
   "number_of_registers": "Number of registers",
   "forget_pasword_header": "Forgot your password?",
-  "resetmail": "Resend email",
   "choose_main_category": "Choose a main category.",
   "choose_main_category_descr": "Choose a main category by double-clicking it. This is displayed to all HamsterApp users.",
   "search": "Search",
@@ -129,4 +128,7 @@
   "continue_button": "CONTINUE",
   "add_category": "Add store categories",
   "main_category": "Main category"
+  "resetmail": "Resend email",
+  "i_certify_info_correct": "I hereby certify that all of the information I have given is complete and correct.",
+  "request_verification": "Request verification"
 }

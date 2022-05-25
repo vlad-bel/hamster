@@ -30,7 +30,7 @@ class AuthorizedState extends AppState {
                 page = const ProfileEditPage();
                 break;
               case AddPaymentPage.path:
-                page = const AddPaymentPage();
+                page = AddPaymentPage();
                 break;
               case BranchProfilePage.path:
                 page = BranchProfilePage();
