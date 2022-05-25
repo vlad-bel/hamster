@@ -120,5 +120,8 @@
   "forget_pasword_header": "Forgot your password?",
   "resetmail": "Resend email",
   "i_certify_info_correct": "I hereby certify that all of the information I have given is complete and correct.",
-  "request_verification": "Request verification"
+  "request_verification": "Request verification",
+  "add_branch_hours": "Add branch hours",
+  "select_week_days": "First select the day(s) of the week whose opening hours you want to edit",
+  "select_all": "Select all"
 }

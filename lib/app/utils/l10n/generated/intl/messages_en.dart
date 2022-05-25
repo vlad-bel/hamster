@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_bank_details":
             MessageLookupByLibrary.simpleMessage("Add bank details"),
         "add_branch": MessageLookupByLibrary.simpleMessage("Add branch"),
+        "add_branch_hours":
+            MessageLookupByLibrary.simpleMessage("Add branch hours"),
         "add_business_account":
             MessageLookupByLibrary.simpleMessage("Add your business account"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
@@ -141,10 +143,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "return_button": MessageLookupByLibrary.simpleMessage("RETURN"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "select_all": MessageLookupByLibrary.simpleMessage("Select all"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Select country code"),
         "select_number_title": MessageLookupByLibrary.simpleMessage(
             "Please let us know which phone number to verify via SMS or voice call."),
+        "select_week_days": MessageLookupByLibrary.simpleMessage(
+            "First select the day(s) of the week whose opening hours you want to edit"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(

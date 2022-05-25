@@ -122,6 +122,9 @@
     "cash_register_manufacturer": "Kassenhersteller",
     "model_if_known": "Modell (falls bekannt)",
     "number_of_registers": "Anzahl Kassen",
-    "i_certify_info_correct": "Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind.",
-    "request_verification": "Verifikation beantragen"
+    "i_certify_info_correct": "Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind",
+    "request_verification": "Verifikation beantragen",
+    "add_branch_hours": "Öffnungszeiten der Filiale hinzufügen",
+    "select_week_days": "Wählen Sie zuerst den/die Wochentag/e aus, deren Öffnungszeiten Sie bearbeiten wollen",
+    "select_all": "Alles auswählen"
 }

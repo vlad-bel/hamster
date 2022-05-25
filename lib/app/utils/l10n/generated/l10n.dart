@@ -1059,6 +1059,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Add branch hours`
+  String get add_branch_hours {
+    return Intl.message(
+      'Add branch hours',
+      name: 'add_branch_hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First select the day(s) of the week whose opening hours you want to edit`
+  String get select_week_days {
+    return Intl.message(
+      'First select the day(s) of the week whose opening hours you want to edit',
+      name: 'select_week_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select all`
+  String get select_all {
+    return Intl.message(
+      'Select all',
+      name: 'select_all',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

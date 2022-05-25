@@ -35,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bankverbindung hinzufügen"),
         "add_branch":
             MessageLookupByLibrary.simpleMessage("Filiale hinzufügen"),
+        "add_branch_hours": MessageLookupByLibrary.simpleMessage(
+            "Öffnungszeiten der Filiale hinzufügen"),
         "add_business_account": MessageLookupByLibrary.simpleMessage(
             "Fügen Sie ihr Unternehmenskonto hinzu"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Logo hinzufügen"),
@@ -107,7 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "i_authorize_collect_payment": MessageLookupByLibrary.simpleMessage(
             "Ich ermächtige die Hamster Systems AG Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von der Hamster Systems AG auf mein Konto gezogenen Lastschriften einzulösen. Mit Akzeptanz dieser Vereinbarung verpflichtet sich die Hamster Systems AG im gleichen Maße auf die Auszahlung von Guthaben auf das o.g. Konto"),
         "i_certify_info_correct": MessageLookupByLibrary.simpleMessage(
-            "Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind."),
+            "Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind"),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "Die IBAN Nummer sollte nur lateinische Buchstaben und Zahlen enthalten"),
@@ -142,10 +144,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "return_button": MessageLookupByLibrary.simpleMessage("ZURÜCK"),
         "saturday": MessageLookupByLibrary.simpleMessage("Samstag"),
         "save": MessageLookupByLibrary.simpleMessage("Speichern"),
+        "select_all": MessageLookupByLibrary.simpleMessage("Alles auswählen"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Ländervorwahl wählen"),
         "select_number_title": MessageLookupByLibrary.simpleMessage(
             "Bitte teilen Sie uns mit, welche Telefonnummer per SMS oder Anruf mit automatischer Sprachansage verifiziert werden soll."),
+        "select_week_days": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie zuerst den/die Wochentag/e aus, deren Öffnungszeiten Sie bearbeiten wollen"),
         "settings": MessageLookupByLibrary.simpleMessage("Einstellungen"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(
