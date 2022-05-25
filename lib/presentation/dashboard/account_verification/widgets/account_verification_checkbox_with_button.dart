@@ -42,7 +42,9 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
           },
           isEnabled: formGroup.valid,
           width: 580,
-          child: Text(AppLocale.current.request_verification.toUpperCase()),
+          child: Text(
+            AppLocale.current.request_verification.toUpperCase(),
+          ),
         ),
       ],
     );

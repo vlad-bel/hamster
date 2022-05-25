@@ -20,17 +20,9 @@ class BorderedEditContainer extends StatelessWidget {
       offset: Offset(5, -10),
       child: Align(
         alignment: Alignment.topRight,
-        child: SizedBox(
-          width: 25,
-          height: 25,
-          child: RawMaterialButton(
-            onPressed: onEditTap,
-            fillColor: razzmatazz,
-            shape: CircleBorder(),
-            child: Icon(Icons.edit_outlined, color: white, size: 15),
-          ),
+        child: EditButton(
+          onEditTap: onEditTap,
         ),
-        // Icon(Icons.edit),
       ),
     );
 
@@ -42,6 +34,29 @@ class BorderedEditContainer extends StatelessWidget {
         ),
         editButton,
       ],
+    );
+  }
+}
+
+class EditButton extends StatelessWidget {
+  const EditButton({
+    Key? key,
+    required this.onEditTap,
+  }) : super(key: key);
+
+  final VoidCallback onEditTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 25,
+      height: 25,
+      child: RawMaterialButton(
+        onPressed: onEditTap,
+        fillColor: razzmatazz,
+        shape: CircleBorder(),
+        child: Icon(Icons.edit_outlined, color: white, size: 15),
+      ),
     );
   }
 }
