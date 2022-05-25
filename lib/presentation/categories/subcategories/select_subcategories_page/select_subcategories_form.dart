@@ -83,9 +83,7 @@ class SelectSubCategoriesForm extends StatelessWidget {
                         Navigator.pop(context);
                       },
                     ),
-                    SizedBox(
-                      width: 25,
-                    ),
+                    SizedBox(width: 25),
                     ActionButtonBlue(
                       width: 162,
                       isEnabled: state.whenOrNull(

@@ -12,15 +12,7 @@ class CategoriesListCubit extends Cubit<CategoriesListState> {
     searchForm.control(searchFormField).valueChanges.listen(
       (event) {
         emit(
-          CategoriesListState.focused(
-            cachedItems
-                .where(
-                  (element) => element.toLowerCase().startsWith(
-                        event.toString().toLowerCase(),
-                      ),
-                )
-                .toList(),
-          ),
+          CategoriesListState.focused(filterCategories(event)),
         );
       },
     );
@@ -45,5 +37,19 @@ class CategoriesListCubit extends Cubit<CategoriesListState> {
 
   void unfocus() {
     emit(CategoriesListState.unfocused(state.items));
+  }
+
+  List<String> filterCategories(dynamic event) {
+    return cachedItems
+        .where(
+          (element) => element.toLowerCase().startsWith(
+                event.toString().toLowerCase(),
+              ),
+        )
+        .toList();
+  }
+
+  void clearSearchForm() {
+    searchForm.control(CategoriesListCubit.searchFormField).value = '';
   }
 }

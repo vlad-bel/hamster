@@ -55,9 +55,8 @@ class _CategoriesListSearchState extends State<CategoriesListSearch> {
         hint: AppLocale.current.search,
         keyboardType: TextInputType.text,
         prefixIcon: Padding(
-          padding: const EdgeInsets.only(
-            left: 16,
-            right: 16,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
           ),
           child: Icon(
             Icons.search,
@@ -88,14 +87,12 @@ class _CategoriesListSearchState extends State<CategoriesListSearch> {
             topLeft: Radius.circular(4),
             topRight: Radius.circular(4),
           ),
-
         ),
       ),
     );
   }
 
   void _clearFilter() {
-    final cubit = context.read<CategoriesListCubit>();
-    cubit.searchForm.control(CategoriesListCubit.searchFormField).value = '';
+    context.read<CategoriesListCubit>()..clearSearchForm();
   }
 }
