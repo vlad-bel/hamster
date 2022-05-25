@@ -2,6 +2,7 @@ import 'package:business_terminal/presentation/add_payment/view/add_payment_page
 import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
+import 'package:business_terminal/presentation/dashboard/change_password/view/change_password_page.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/unknown_page.dart';
@@ -31,6 +32,9 @@ class AuthorizedState extends AppState {
                 break;
               case BranchProfilePage.path:
                 page = BranchProfilePage();
+                break;
+              case ChangePasswordPage.path:
+                page = ChangePasswordPage();
                 break;
             }
 

@@ -1039,6 +1039,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Ersetzen Sie Ihr altes Passwort.`
+  String get changePasswordHeader {
+    return Intl.message(
+      'Ersetzen Sie Ihr altes Passwort.',
+      name: 'changePasswordHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren`
+  String get changePasswordSubHeader {
+    return Intl.message(
+      'Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren',
+      name: 'changePasswordSubHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aktuelles Passwort`
+  String get currentPassword {
+    return Intl.message(
+      'Aktuelles Passwort',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:`
+  String get passwordHintTitle {
+    return Intl.message(
+      'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
+      name: 'passwordHintTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `10 Zeichen lang`
+  String get hasTenCharacters {
+    return Intl.message(
+      '10 Zeichen lang',
+      name: 'hasTenCharacters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 Kleinbuchstabe`
+  String get hasOneLoweCaseLetter {
+    return Intl.message(
+      '1 Kleinbuchstabe',
+      name: 'hasOneLoweCaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 Großbuchstabe`
+  String get hasOneUpperCaseLetter {
+    return Intl.message(
+      '1 Großbuchstabe',
+      name: 'hasOneUpperCaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 Zahl`
+  String get hasOneSpecialCharacter {
+    return Intl.message(
+      '1 Zahl',
+      name: 'hasOneSpecialCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hinweis schließen`
+  String get closeHint {
+    return Intl.message(
+      'Hinweis schließen',
+      name: 'closeHint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

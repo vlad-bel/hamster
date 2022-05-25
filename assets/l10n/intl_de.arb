@@ -121,5 +121,14 @@
     "help_us_connect_branch": "Helfen Sie uns Ihre Filiale schnell anzubinden indem Sie Ihre Kassensysteme angeben",
     "cash_register_manufacturer": "Kassenhersteller",
     "model_if_known": "Modell (falls bekannt)",
-    "number_of_registers": "Anzahl Kassen"
+    "number_of_registers": "Anzahl Kassen",
+  "changePasswordHeader": "Ersetzen Sie Ihr altes Passwort.",
+    "changePasswordSubHeader": "Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren",
+  "currentPassword": "Aktuelles Passwort",
+  "passwordHintTitle": "Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:",
+    "hasTenCharacters": "10 Zeichen lang",
+    "hasOneLoweCaseLetter": "1 Kleinbuchstabe",
+    "hasOneUpperCaseLetter": "1 Großbuchstabe",
+    "hasOneSpecialCharacter": "1 Zahl",
+    "closeHint": "Hinweis schließen"
 }

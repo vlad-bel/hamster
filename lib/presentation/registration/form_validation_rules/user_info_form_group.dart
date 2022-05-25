@@ -1,4 +1,4 @@
-import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
+import 'package:business_terminal/app/utils/validation_utils.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class FormSettingsRegistrationUserInfo {
@@ -77,30 +77,13 @@ class FormSettingsRegistrationUserInfo {
           ],
         )
       },
-      validators: [_mustMatch(kFieldPassword, kFieldPasswordConfirmation)],
+      validators: [
+        ValidationUtils.mustMatch(
+            validationRuleKey: kPasswordValidationRuleMustMatch,
+            controlName: kFieldPassword,
+            matchingControlName: kFieldPasswordConfirmation),
+      ],
     );
-  }
-
-  // Both fields in form must be the same
-  ValidatorFunction _mustMatch(String controlName, String matchingControlName) {
-    return (AbstractControl<dynamic> control) {
-      final form = control as FormGroup;
-
-      final formControl = form.control(controlName);
-      final matchingFormControl = form.control(matchingControlName);
-
-      if (formControl.value != matchingFormControl.value) {
-        final errors = {kPasswordValidationRuleMustMatch: true};
-        matchingFormControl
-          ..setErrors(errors)
-          ..markAsTouched();
-        // force messages to show up as soon as possible
-      } else {
-        matchingFormControl.removeError(kPasswordValidationRuleMustMatch);
-      }
-
-      return null;
-    };
   }
 }
 

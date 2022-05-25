@@ -58,8 +58,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Kassenhersteller"),
         "cash_register_system_used": MessageLookupByLibrary.simpleMessage(
             "Genutzte Kassensysteme in Ihrer Filiale"),
+        "changePasswordHeader": MessageLookupByLibrary.simpleMessage(
+            "Ersetzen Sie Ihr altes Passwort."),
+        "changePasswordSubHeader": MessageLookupByLibrary.simpleMessage(
+            "Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Passwort ändern"),
+        "closeHint": MessageLookupByLibrary.simpleMessage("Hinweis schließen"),
         "closed": MessageLookupByLibrary.simpleMessage("geschlossen"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
             "Handelsregister Nr. (falls vorhanden)"),
@@ -83,6 +88,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Legen Sie Ihr Unternehmensprofil an."),
         "create_company_profile_descr": MessageLookupByLibrary.simpleMessage(
             "Teilen Sie uns mit, wie Ihr Unternehmen postalisch erreicht werden kann."),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
@@ -101,6 +108,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetpassword_email_subtitle2":
             MessageLookupByLibrary.simpleMessage("\nde zurückzusetzen."),
         "friday": MessageLookupByLibrary.simpleMessage("Freitag"),
+        "hasOneLoweCaseLetter":
+            MessageLookupByLibrary.simpleMessage("1 Kleinbuchstabe"),
+        "hasOneSpecialCharacter":
+            MessageLookupByLibrary.simpleMessage("1 Zahl"),
+        "hasOneUpperCaseLetter":
+            MessageLookupByLibrary.simpleMessage("1 Großbuchstabe"),
+        "hasTenCharacters":
+            MessageLookupByLibrary.simpleMessage("10 Zeichen lang"),
         "help_center": MessageLookupByLibrary.simpleMessage("Hilfe-Center"),
         "help_us_connect_branch": MessageLookupByLibrary.simpleMessage(
             "Helfen Sie uns Ihre Filiale schnell anzubinden indem Sie Ihre Kassensysteme angeben"),
@@ -130,6 +145,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "number_of_registers":
             MessageLookupByLibrary.simpleMessage("Anzahl Kassen"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Öffnungszeiten"),
+        "passwordHintTitle": MessageLookupByLibrary.simpleMessage(
+            "Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:"),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Zahlungsinformationen"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Anruf"),

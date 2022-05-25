@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 ///View that uses on registration screens
 class OnboardingBackground extends StatelessWidget {
-  const OnboardingBackground({
-    Key? key,
-    required this.children,
-  }) : super(key: key);
+  const OnboardingBackground(
+      {Key? key, required this.children, this.showLanguageDropdown = true})
+      : super(key: key);
 
   final Widget children;
+  final bool showLanguageDropdown;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class OnboardingBackground extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: [
-                const OnboardingAppbar(),
+                OnboardingAppbar(showLanguageDropdown: showLanguageDropdown),
                 Center(
                   child: children,
                 ),

@@ -1,31 +1,33 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/presentation/common/widgets/hint/hint_overlay_provider_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class FormTextField extends StatefulWidget {
-  const FormTextField({
-    Key? key,
-    required this.name,
-    this.hint,
-    this.label,
-    this.validationMessages,
-    this.keyboardType,
-    this.obscureText = false,
-    this.readOnly = false,
-    this.textInputAction = TextInputAction.next,
-    this.controller,
-    this.focusListener,
-    this.onTap,
-    this.customSuffix,
-    this.customPrefix,
-    this.prefixIcon,
-    this.customBorder,
-    this.maxLength,
-    this.counter,
-    this.inputFormatters,
-  }) : super(key: key);
+  const FormTextField(
+      {Key? key,
+      required this.name,
+      this.hint,
+      this.label,
+      this.validationMessages,
+      this.keyboardType,
+      this.obscureText = false,
+      this.readOnly = false,
+      this.textInputAction = TextInputAction.next,
+      this.controller,
+      this.focusListener,
+      this.onTap,
+      this.customSuffix,
+      this.customPrefix,
+      this.prefixIcon,
+      this.customBorder,
+      this.maxLength,
+      this.counter,
+      this.inputFormatters,
+      this.hintOverlayBuilder})
+      : super(key: key);
 
   final String name;
   final String? hint;
@@ -45,18 +47,36 @@ class FormTextField extends StatefulWidget {
   final int? maxLength;
   final Widget? counter;
   final List<TextInputFormatter>? inputFormatters;
+  final HintOverlayWidgetBuilder? hintOverlayBuilder;
 
   @override
   State<FormTextField> createState() => _FormTextFieldState();
 }
 
-class _FormTextFieldState extends State<FormTextField> {
+class _FormTextFieldState extends State<FormTextField>
+    with HintOverlayProviderMixin<FormTextField> {
   late bool _obscureText;
+  late FocusNode _focusListener;
+
   @override
   void initState() {
     _obscureText = widget.obscureText;
+    _focusListener = widget.focusListener ?? FocusNode();
+
+    _initFocusListener();
+
+    overlayWidgetBuilder = widget.hintOverlayBuilder;
 
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(FormTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    overlayWidgetBuilder = widget.hintOverlayBuilder;
+    if (widget.hintOverlayBuilder == null) {
+      hideOverlay();
+    }
   }
 
   OutlineInputBorder get outlineInputBorder => const OutlineInputBorder(
@@ -64,6 +84,28 @@ class _FormTextFieldState extends State<FormTextField> {
           color: Color(0x4d676f86),
         ),
       );
+
+  void _initFocusListener() {
+    _focusListener.addListener(_onFocusChanged);
+  }
+
+  void _onFocusChanged() {
+    if (_focusListener.hasFocus) {
+      _onFocused();
+    } else {
+      _onUnfocused();
+    }
+  }
+
+  void _onFocused() {
+    if (widget.hintOverlayBuilder != null) {
+      showOverlay();
+    }
+  }
+
+  void _onUnfocused() {
+    hideOverlay();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,19 +139,28 @@ class _FormTextFieldState extends State<FormTextField> {
       counter: widget.counter,
     );
 
-    return ReactiveTextField<String>(
-      formControlName: widget.name,
-      validationMessages: widget.validationMessages,
-      textInputAction: widget.textInputAction,
-      keyboardType: widget.keyboardType,
-      obscureText: _obscureText,
-      decoration: inputDecoration,
-      controller: widget.controller,
-      focusNode: widget.focusListener,
-      onTap: widget.onTap,
-      readOnly: widget.readOnly,
-      maxLength: widget.maxLength,
-      inputFormatters: widget.inputFormatters,
+    return CompositedTransformTarget(
+      link: hintLayerLink,
+      child: ReactiveTextField<String>(
+        formControlName: widget.name,
+        validationMessages: widget.validationMessages,
+        textInputAction: widget.textInputAction,
+        keyboardType: widget.keyboardType,
+        obscureText: _obscureText,
+        decoration: inputDecoration,
+        controller: widget.controller,
+        focusNode: _focusListener,
+        onTap: widget.onTap,
+        readOnly: widget.readOnly,
+        maxLength: widget.maxLength,
+        inputFormatters: widget.inputFormatters,
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _focusListener.removeListener(_onFocusChanged);
   }
 }
