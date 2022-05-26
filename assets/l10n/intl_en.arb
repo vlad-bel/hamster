@@ -140,5 +140,8 @@
   "if_branch_closed_on_selected": "If the branch is closed on the selected day(s), leave the fields below empty",
   "opens": "Opens",
   "closes": "Closes",
-  "add_opening_time": "Add opening time"
+  "add_opening_time": "Add opening time",
+  "addYourCompanyLogo": "Add your company logo.",
+  "addYourCompanyLogoDescription": "Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.",
+  "next": "Next"
 }

@@ -10,9 +10,11 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required String category,
     required List<String> subcategories,
   }) {
-    emit(BranchProfileState.init(
-      category: category,
-      subcategories: subcategories,
-    ));
+    emit(
+      BranchProfileState.init(
+        category: category,
+        subcategories: subcategories,
+      ),
+    );
   }
 }

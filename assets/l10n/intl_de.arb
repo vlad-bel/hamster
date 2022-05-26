@@ -122,8 +122,8 @@
     "cash_register_manufacturer": "Kassenhersteller",
     "model_if_known": "Modell (falls bekannt)",
     "number_of_registers": "Anzahl Kassen",
-    "error" : "Fehler",
-    "success" : "Erfolg",
+    "error": "Fehler",
+    "success": "Erfolg",
     "choose_main_category": "Wählen Sie eine Hauptkategorie aus.",
     "choose_main_category_descr": "Wählen Sie eine Hauptkategorie durch Doppelklick. Diese wird allen HamsterApp-Nutzern angezeigt.",
     "search": "Suchen",
@@ -143,5 +143,8 @@
     "if_branch_closed_on_selected": "Sollte die Filiale an dem/den zuvor ausgewählten Tag/en geschlossen sein so lassen Sie die unten stehenden Felder leer",
     "opens": "Öffnet",
     "closes": "Schließt",
-    "add_opening_time": "Öffnungszeit hinzufügen"
+    "add_opening_time": "Öffnungszeit hinzufügen",
+    "addYourCompanyLogo": "Fügen Sie Ihr Unternehmenslogo hinzu.",
+    "addYourCompanyLogoDescription": "Wähle Sie Ihr Unternehmenslogo aus und laden es hoch. Achten Sie darauf, dass die ausgewählte Bilddatei eine ausreichende Qualität hat.",
+    "next" : "Weiter"
 }

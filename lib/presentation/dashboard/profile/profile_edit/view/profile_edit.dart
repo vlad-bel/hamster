@@ -6,14 +6,16 @@ import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
+import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo/add_logo_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
-import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/header_app_bar/header_app_bar_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/payment_info.dart';
+import 'package:business_terminal/presentation/dashboard/profile/profile_add_logo/view/profile_add_logo.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/cubit/profile_edit_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
@@ -213,33 +215,12 @@ class _ProfileEditContent extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     Center(
-                      child: AppDashBorderedContainer(
-                        boxShape: BoxShape.circle,
-                        child: Container(
-                          height: 200,
-                          width: 200,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.add_circle,
-                                  color: denim1,
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  AppLocale.of(context).add_logo,
-                                  style: inter14.copyWith(
-                                    color: denim1,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      child: AppAddLogoWidget(
+                        onPressed: () {
+                          authNavigatorKey.currentState?.pushNamed(
+                            ProfileAddLogoPage.path,
+                          );
+                        },
                       ),
                     ),
                     Padding(

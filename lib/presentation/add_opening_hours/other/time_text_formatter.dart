@@ -8,7 +8,9 @@ class DateTextFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     final text = _format(newValue.text);
     return newValue.copyWith(text: text, selection: updateCursorPosition(text));
   }

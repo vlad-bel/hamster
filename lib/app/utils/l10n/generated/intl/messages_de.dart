@@ -31,6 +31,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "account_owner": MessageLookupByLibrary.simpleMessage("Kontoinhaber"),
         "account_verification":
             MessageLookupByLibrary.simpleMessage("Account Verifikation"),
+        "addYourCompanyLogo": MessageLookupByLibrary.simpleMessage(
+            "Fügen Sie Ihr Unternehmenslogo hinzu."),
+        "addYourCompanyLogoDescription": MessageLookupByLibrary.simpleMessage(
+            "Wähle Sie Ihr Unternehmenslogo aus und laden es hoch. Achten Sie darauf, dass die ausgewählte Bilddatei eine ausreichende Qualität hat."),
         "add_bank_details":
             MessageLookupByLibrary.simpleMessage("Bankverbindung hinzufügen"),
         "add_branch":
@@ -143,6 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Modell (falls bekannt)"),
         "monday": MessageLookupByLibrary.simpleMessage("Montag"),
         "my_company": MessageLookupByLibrary.simpleMessage("Mein Unternehmen"),
+        "next": MessageLookupByLibrary.simpleMessage("Weiter"),
         "not_visible": MessageLookupByLibrary.simpleMessage("Nicht sichtbar"),
         "num_hint": MessageLookupByLibrary.simpleMessage("Nr."),
         "number": MessageLookupByLibrary.simpleMessage("NUMMER"),
