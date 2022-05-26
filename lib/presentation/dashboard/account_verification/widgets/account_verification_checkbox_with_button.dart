@@ -27,7 +27,9 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
           child: UiCheckbox(
             name: checkboxName,
             title: Text(
-              AppLocale.current.i_certify_info_correct,
+              //todo return
+              // AppLocale.current.i_certify_info_correct,
+              AppLocale.current.add_subcategory,
               style: inter12,
               textAlign: TextAlign.center,
             ),
@@ -43,7 +45,9 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
           isEnabled: formGroup.valid,
           width: 580,
           child: Text(
-            AppLocale.current.request_verification.toUpperCase(),
+            //todo return
+            // AppLocale.current.request_verification.toUpperCase(),
+            AppLocale.current.add_subcategory.toUpperCase(),
           ),
         ),
       ],

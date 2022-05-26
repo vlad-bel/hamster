@@ -38,6 +38,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_category":
             MessageLookupByLibrary.simpleMessage("Add store categories"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
+        "add_picture_for_branch": MessageLookupByLibrary.simpleMessage(
+            "Add pictures of your branch."),
+        "add_picture_for_branch_descr": MessageLookupByLibrary.simpleMessage(
+            "Select and upload your branch images. Make sure that the selected image files are of sufficient quality."),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Add subcategory"),
         "administration":
@@ -54,8 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "call_method1": MessageLookupByLibrary.simpleMessage(
             "Choose your favorite method to the number you provided "),
         "call_method2": MessageLookupByLibrary.simpleMessage(" to verify."),
-        "cancel_register":
-            MessageLookupByLibrary.simpleMessage("Cancel registration"),
+        "cancel_register": MessageLookupByLibrary.simpleMessage("Logout"),
         "cash_register_manufacturer":
             MessageLookupByLibrary.simpleMessage("Cash register manufacturer"),
         "cash_register_system_used": MessageLookupByLibrary.simpleMessage(

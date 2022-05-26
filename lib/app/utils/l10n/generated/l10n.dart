@@ -330,10 +330,10 @@ class S {
     );
   }
 
-  /// `Cancel registration`
+  /// `Logout`
   String get cancel_register {
     return Intl.message(
-      'Cancel registration',
+      'Logout',
       name: 'cancel_register',
       desc: '',
       args: [],
@@ -1030,16 +1030,6 @@ class S {
     );
   }
 
-  /// `Resend email`
-  String get resetmail {
-    return Intl.message(
-      'Resend email',
-      name: 'resetmail',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Choose a main category.`
   String get choose_main_category {
     return Intl.message(
@@ -1135,6 +1125,56 @@ class S {
     return Intl.message(
       'Main category',
       name: 'main_category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend email`
+  String get resetmail {
+    return Intl.message(
+      'Resend email',
+      name: 'resetmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I hereby certify that all of the information I have given is complete and correct.`
+  String get i_certify_info_correct {
+    return Intl.message(
+      'I hereby certify that all of the information I have given is complete and correct.',
+      name: 'i_certify_info_correct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request verification`
+  String get request_verification {
+    return Intl.message(
+      'Request verification',
+      name: 'request_verification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add pictures of your branch.`
+  String get add_picture_for_branch {
+    return Intl.message(
+      'Add pictures of your branch.',
+      name: 'add_picture_for_branch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select and upload your branch images. Make sure that the selected image files are of sufficient quality.`
+  String get add_picture_for_branch_descr {
+    return Intl.message(
+      'Select and upload your branch images. Make sure that the selected image files are of sufficient quality.',
+      name: 'add_picture_for_branch_descr',
       desc: '',
       args: [],
     );

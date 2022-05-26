@@ -55,7 +55,11 @@ class EditButton extends StatelessWidget {
         onPressed: onEditTap,
         fillColor: razzmatazz,
         shape: CircleBorder(),
-        child: Icon(Icons.edit_outlined, color: white, size: 15),
+        child: Icon(
+          Icons.edit_outlined,
+          color: white,
+          size: 15,
+        ),
       ),
     );
   }

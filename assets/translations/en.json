@@ -27,7 +27,7 @@
   "change_password": "Change password",
   "settings": "Settings",
   "help_center": "Help center",
-  "cancel_register": "Cancel registration",
+  "cancel_register": "Logout",
   "company_hint": "Company name",
   "street_hint": "Street",
   "post_hint": "Postcode",
@@ -95,5 +95,6 @@
   "help_us_connect_branch": "Help us connect your branch by specifying you POS systems",
   "cash_register_manufacturer": "Cash register manufacturer",
   "model_if_known": "Model (if known)",
-  "number_of_registers": "Number of registers"
+  "number_of_registers": "Number of registers",
+  "add_picture_for_branch": "Add pictures of your branch."
 }

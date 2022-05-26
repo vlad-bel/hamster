@@ -9,6 +9,7 @@ class Assets {
   static const String imagesArrowUp = 'assets/images/arrow_up.svg';
   static const String imagesBackgroundImageSignUp = 'assets/images/background_image_sign_up.png';
   static const String imagesBranchProfile = 'assets/images/branch_profile.svg';
+  static const String imagesCheckMark = 'assets/images/check_mark.svg';
   static const String imagesCompanyProfile = 'assets/images/company_profile.svg';
   static const String imagesEdit = 'assets/images/edit.svg';
   static const String imagesEditPencil = 'assets/images/edit_pencil.svg';
@@ -16,6 +17,7 @@ class Assets {
   static const String imagesFinanzen = 'assets/images/finanzen.svg';
   static const String imagesHamsterLogo = 'assets/images/hamster_logo.svg';
   static const String imagesHome = 'assets/images/home.svg';
+  static const String imagesIconPlus = 'assets/images/icon_plus.svg';
   static const String imagesInvisible = 'assets/images/invisible.svg';
   static const String imagesMenu = 'assets/images/menu.svg';
   static const String imagesPagerArrowLeft = 'assets/images/pager_arrow_left.svg';

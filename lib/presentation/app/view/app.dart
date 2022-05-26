@@ -16,6 +16,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
+import '../../branch_profile_picture/branch_profile_picture_page.dart';
+
 final authNavigatorKey = GlobalKey<NavigatorState>();
 final unauthNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -44,24 +46,25 @@ class App extends StatelessWidget {
         ],
         child: BlocBuilder<AppStateCubit, AppState>(
           builder: (context, state) {
-            if (state is UnauthorizedState) {
-              return HamsterApp(
-                navKey: unauthNavigatorKey,
-                initialRoute: state.initialRoute,
-                onGenerateRoute: state.onGenerateRoute,
-              );
-            }
-
-            if (state is AuthorizedState) {
-              return HamsterApp(
-                navKey: authNavigatorKey,
-                initialRoute: state.initialRoute,
-                onGenerateRoute: state.onGenerateRoute,
-              );
-            }
+            // if (state is UnauthorizedState) {
+            //   return HamsterApp(
+            //     navKey: unauthNavigatorKey,
+            //     initialRoute: state.initialRoute,
+            //     onGenerateRoute: state.onGenerateRoute,
+            //   );
+            // }
+            //
+            // if (state is AuthorizedState) {
+            //   return HamsterApp(
+            //     navKey: authNavigatorKey,
+            //     initialRoute: state.initialRoute,
+            //     onGenerateRoute: state.onGenerateRoute,
+            //   );
+            // }
 
             return HamsterApp(
-              home: SlashPage(),
+              // home: SlashPage(),
+              home: BranchProfilePicturePage(),
             );
           },
         ),

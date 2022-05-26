@@ -39,6 +39,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_category":
             MessageLookupByLibrary.simpleMessage("Filialkategorien hinzufügen"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Logo hinzufügen"),
+        "add_picture_for_branch": MessageLookupByLibrary.simpleMessage(
+            "Fügen Sie Bilder Ihrer Filiale hinzu."),
+        "add_picture_for_branch_descr": MessageLookupByLibrary.simpleMessage(
+            "Wähle Sie Ihre Filialbilder aus und laden Sie sie hoch. Achten Sie darauf, dass die ausgewählten Bilddateien eine ausreichende Qualität haben."),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Unterkategorie hinzufügen"),
         "administration":
