@@ -2,7 +2,6 @@ import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/request_model/profile/profile_edit/profile_edit_request.dart';
-import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
 import 'package:business_terminal/use_cases/profile/profile_edit/profile_edit_use_case.dart';
@@ -21,6 +20,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
           const ProfileEditState.loading(),
         );
 
+  final CompanyUsecase companyUsecase = getIt.get<CompanyUsecase>();
   final ProfileEditFormSettings profileEditFormSettings;
   final ProfileEditUsecase profileEditUsecase;
 
@@ -36,10 +36,11 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
       ProfileEditFormSettings.kIban,
       values[ProfileEditFormSettings.kIban],
     );
-    final company = await getIt.get<CompanyUsecase>().getCompany(
-          companyId:
-              '${(await getIt.get<CompanyUsecase>().getRepCompany()).company?.id}',
-        );
+
+    final companyId = (await companyUsecase.getRepCompany()).company?.id;
+    final company = await companyUsecase.getCompany(
+      companyId: '$companyId',
+    );
 
     emit(
       ProfileEditState.initial(
@@ -52,10 +53,11 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
 
   Future<void> getInitialData() async {
     try {
-      final company = await getIt.get<CompanyUsecase>().getCompany(
-            companyId:
-                '${(await getIt.get<CompanyUsecase>().getRepCompany()).company?.id}',
-          );
+      final companyId = (await companyUsecase.getRepCompany()).company?.id;
+      final company = await companyUsecase.getCompany(
+        companyId: '$companyId',
+      );
+
       emit(
         ProfileEditState.loading(),
       );
@@ -124,10 +126,46 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
 
   // TODO Implement functionality
   Future<void> editProfile(
-    String companyId,
-    ProfileEditRequest profileEditRequest,
-  ) async {
+    String companyId, {
+    required String countryCode,
+    required String country,
+  }) async {
     try {
+      final profileEditRequest = ProfileEditRequest(
+        city: '${getControlValue(
+          ProfileEditFormSettings.kCityField,
+        )}',
+        commercialRegisterNumber: '${getControlValue(
+          ProfileEditFormSettings.kCommercialRegisterNumber,
+        )}',
+        companyName: '${getControlValue(
+          ProfileEditFormSettings.kCompanyName,
+        )}',
+        country: country,
+        streetName: '${getControlValue(
+          ProfileEditFormSettings.kStreetField,
+        )}',
+        countryCode: country,
+        postalCode: '${getControlValue(
+          ProfileEditFormSettings.kPostcodeField,
+        )}',
+        streetNumber: '${getControlValue(
+          ProfileEditFormSettings.kStreetNumberField,
+        )}',
+        taxNumber: '${getControlValue(
+          ProfileEditFormSettings.kTaxNumber,
+        )}',
+        vatId: '${getControlValue(
+          ProfileEditFormSettings.kVatId,
+        )}',
+        accountOwner: '${getControlValue(
+          ProfileEditFormSettings.kAccountOwner,
+        )}',
+        iban: '${getControlValue(
+          ProfileEditFormSettings.kIban,
+        )}',
+      );
+
       await profileEditUsecase.editProfile(
         companyId,
         profileEditRequest,
@@ -154,6 +192,12 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
         ),
       );
     }
+  }
+
+  String? getControlValue(
+    String key,
+  ) {
+    return profileEditFormSettings.controls[key]?.value;
   }
 
   void _setControlValue(String key, String? value) {

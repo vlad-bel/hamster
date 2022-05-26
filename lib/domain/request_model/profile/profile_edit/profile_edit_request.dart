@@ -25,7 +25,7 @@ class ProfileEditRequest {
   @JsonKey(name: 'accountOwner')
   final String accountOwner;
 
-  @JsonKey(name: '')
+  @JsonKey(name: 'city')
   final String city;
 
   @JsonKey(name: 'commercialRegisterNumber')

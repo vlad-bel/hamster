@@ -51,18 +51,6 @@ class ProfileViewTableRow extends DataTableSource {
           Row(
             children: [
               ConnectionCell(
-                // currentConnectionValue: int.tryParse(
-                //       (repCompany.company?.connectionsStatistics['branches'][0]
-                //               as String?)
-                //           .toString(),
-                //     ) ??
-                //     0,
-                // maxConnectionValue: int.tryParse(
-                //       (repCompany.company?.connectionsStatistics['branches'][2]
-                //               as String?)
-                //           .toString(),
-                //     ) ??
-                //     5,
                 title: AppLocale.current.tills,
                 currentConnectionValue: 5,
                 maxConnectionValue: 5,

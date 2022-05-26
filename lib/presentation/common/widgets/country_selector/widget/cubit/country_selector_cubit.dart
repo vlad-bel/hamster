@@ -92,12 +92,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
     } on ApiFailure catch (e) {
       emit(CountrySelectorState.error(e));
     } catch (e, s) {
-      logger.e(
-        e,
-        [
-          s,
-        ],
-      );
+      logger.e(e, [s]);
     }
   }
 
