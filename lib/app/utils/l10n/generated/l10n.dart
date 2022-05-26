@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1021,20 +1022,120 @@ class S {
   }
 
   /// `Forgot your password?`
-  String get forget_pasword_header {
+  String get forget_password_header {
     return Intl.message(
       'Forgot your password?',
-      name: 'forget_pasword_header',
+      name: 'forget_password_header',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a main category.`
+  String get choose_main_category {
+    return Intl.message(
+      'Choose a main category.',
+      name: 'choose_main_category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a main category by double-clicking it. This is displayed to all HamsterApp users.`
+  String get choose_main_category_descr {
+    return Intl.message(
+      'Choose a main category by double-clicking it. This is displayed to all HamsterApp users.',
+      name: 'choose_main_category_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select appropriate subcategories.`
+  String get select_subcategories {
+    return Intl.message(
+      'Select appropriate subcategories.',
+      name: 'select_subcategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select up to nine subcategories to improve search results in the HamsterApp.`
+  String get select_subcategories_descr {
+    return Intl.message(
+      'Select up to nine subcategories to improve search results in the HamsterApp.',
+      name: 'select_subcategories_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add subcategory`
+  String get add_subcategory {
+    return Intl.message(
+      'Add subcategory',
+      name: 'add_subcategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subcategory`
+  String get subcategory {
+    return Intl.message(
+      'Subcategory',
+      name: 'subcategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONTINUE`
+  String get continue_button {
+    return Intl.message(
+      'CONTINUE',
+      name: 'continue_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add store categories`
+  String get add_category {
+    return Intl.message(
+      'Add store categories',
+      name: 'add_category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main category`
+  String get main_category {
+    return Intl.message(
+      'Main category',
+      name: 'main_category',
       desc: '',
       args: [],
     );
   }
 
   /// `Resend email`
-  String get resetmail {
+  String get reset_email {
     return Intl.message(
       'Resend email',
-      name: 'resetmail',
+      name: 'reset_email',
       desc: '',
       args: [],
     );
@@ -1089,6 +1190,16 @@ class S {
       args: [],
     );
   }
+
+  /// `as`
+  String get ass {
+    return Intl.message(
+      'as',
+      name: 'ass',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -1103,8 +1214,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

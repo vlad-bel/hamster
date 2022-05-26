@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(length) => "Minimale Nummernlänge ${length} Zeichen";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Kontoinhaber"),
         "account_verification":
@@ -39,9 +40,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Öffnungszeiten der Filiale hinzufügen"),
         "add_business_account": MessageLookupByLibrary.simpleMessage(
             "Fügen Sie ihr Unternehmenskonto hinzu"),
+        "add_category":
+            MessageLookupByLibrary.simpleMessage("Filialkategorien hinzufügen"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Logo hinzufügen"),
+        "add_subcategory":
+            MessageLookupByLibrary.simpleMessage("Unterkategorie hinzufügen"),
         "administration":
             MessageLookupByLibrary.simpleMessage("Administration"),
+        "ass": MessageLookupByLibrary.simpleMessage("as"),
         "base_data": MessageLookupByLibrary.simpleMessage("Stammdaten"),
         "branch_category":
             MessageLookupByLibrary.simpleMessage("Filialkategorien"),
@@ -62,6 +68,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Genutzte Kassensysteme in Ihrer Filiale"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Passwort ändern"),
+        "choose_main_category": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie eine Hauptkategorie aus."),
+        "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie eine Hauptkategorie durch Doppelklick. Diese wird allen HamsterApp-Nutzern angezeigt."),
         "closed": MessageLookupByLibrary.simpleMessage("geschlossen"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
             "Handelsregister Nr. (falls vorhanden)"),
@@ -79,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_number_title": MessageLookupByLibrary.simpleMessage(
             "Bestätigen Sie Ihre \vTelefonnummer."),
         "connection": MessageLookupByLibrary.simpleMessage("ANBINDUNG"),
+        "continue_button": MessageLookupByLibrary.simpleMessage("WEITER"),
         "country_hint": MessageLookupByLibrary.simpleMessage("Land"),
         "country_name": MessageLookupByLibrary.simpleMessage("Country name"),
         "create_company_profile": MessageLookupByLibrary.simpleMessage(
@@ -94,10 +105,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Für Gutschriften und regelmäßige Abrechnungen benötigen wir noch Ihre Bankverbindung und die Einwilligung zum Bankeinzugsverfahren"),
         "forget_password": MessageLookupByLibrary.simpleMessage(
             "Sie haben Ihr Passwort\nvergessen?"),
+        "forget_password_header": MessageLookupByLibrary.simpleMessage(
+            "Sie haben Ihr Passwort vergessen?"),
         "forget_password_subtitle": MessageLookupByLibrary.simpleMessage(
             "Geben Sie Ihre E-Mail-Adresse ein, welche mit Ihrem\nKonto verbunden ist, um mit dem Zurücksetzen Ihres\nPassworts fortzufahren."),
-        "forget_pasword_header": MessageLookupByLibrary.simpleMessage(
-            "Sie haben Ihr Passwort vergessen?"),
         "forgetpassword_email_subtitle": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie Ihre favorisierte Methode, um das Passwort des Accounts "),
         "forgetpassword_email_subtitle2":
@@ -114,6 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "Die IBAN Nummer sollte nur lateinische Buchstaben und Zahlen enthalten"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
+        "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "Die maximale Länge entspricht \$0 Zeichen"),
         "max_length_reached": MessageLookupByLibrary.simpleMessage(
@@ -141,14 +153,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "request_verification":
             MessageLookupByLibrary.simpleMessage("Verifikation beantragen"),
         "required_field": MessageLookupByLibrary.simpleMessage("Pflichtfeld"),
+        "reset_email":
+            MessageLookupByLibrary.simpleMessage("E-Mail erneut versenden"),
         "return_button": MessageLookupByLibrary.simpleMessage("ZURÜCK"),
         "saturday": MessageLookupByLibrary.simpleMessage("Samstag"),
         "save": MessageLookupByLibrary.simpleMessage("Speichern"),
+        "search": MessageLookupByLibrary.simpleMessage("Suchen"),
         "select_all": MessageLookupByLibrary.simpleMessage("Alles auswählen"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Ländervorwahl wählen"),
         "select_number_title": MessageLookupByLibrary.simpleMessage(
             "Bitte teilen Sie uns mit, welche Telefonnummer per SMS oder Anruf mit automatischer Sprachansage verifiziert werden soll."),
+        "select_subcategories": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie passende Unterkategorien aus."),
+        "select_subcategories_descr": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie bis zu neun Unterkategorien aus, um die Suchergebnisse in der HamsterApp zu verbessern."),
         "select_week_days": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie zuerst den/die Wochentag/e aus, deren Öffnungszeiten Sie bearbeiten wollen"),
         "settings": MessageLookupByLibrary.simpleMessage("Einstellungen"),
@@ -161,6 +180,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "street_hint": MessageLookupByLibrary.simpleMessage("Straße"),
         "street_house_number":
             MessageLookupByLibrary.simpleMessage("Straße, Hausnummer"),
+        "subcategory": MessageLookupByLibrary.simpleMessage("Unterkategorie"),
         "sunday": MessageLookupByLibrary.simpleMessage("Sonntag"),
         "tax_number": MessageLookupByLibrary.simpleMessage("Steuernummer"),
         "telephone_number_if_available": MessageLookupByLibrary.simpleMessage(

@@ -1,6 +1,7 @@
 import 'package:business_terminal/app/utils/l10n/generated/l10n.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/presentation/categories/cubit/subcategories_cubit.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
@@ -35,6 +36,11 @@ class App extends StatelessWidget {
           BlocProvider<AccountVerificationCubit>(
             create: (_) => getIt.get<AccountVerificationCubit>(),
           ),
+          BlocProvider<SubcategoriesCubit>(
+            create: (BuildContext context) {
+              return getIt.get<SubcategoriesCubit>();
+            },
+          )
         ],
         child: BlocBuilder<AppStateCubit, AppState>(
           builder: (context, state) {
