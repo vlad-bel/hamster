@@ -137,5 +137,9 @@
     "request_verification": "Verifikation beantragen",
     "add_branch_hours": "Öffnungszeiten der Filiale hinzufügen",
     "select_week_days": "Wählen Sie zuerst den/die Wochentag/e aus, deren Öffnungszeiten Sie bearbeiten wollen",
-    "select_all": "Alles auswählen"
+    "select_all": "Alles auswählen",
+    "if_branch_closed_on_selected": "Sollte die Filiale an dem/den zuvor ausgewählten Tag/en geschlossen sein so lassen Sie die unten stehenden Felder leer",
+    "opens": "Öffnet",
+    "closes": "Schließt",
+    "add_opening_time": "Öffnungszeit hinzufügen"
 }

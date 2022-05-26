@@ -49,7 +49,7 @@ class DashedButton extends StatelessWidget {
                       style: inter14.copyWith(
                         color: denim,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

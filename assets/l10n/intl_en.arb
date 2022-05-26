@@ -134,5 +134,9 @@
   "add_branch_hours": "Add branch hours",
   "select_week_days": "First select the day(s) of the week whose opening hours you want to edit",
   "select_all": "Select all",
-  "ass": "as"
+  "ass": "as",
+  "if_branch_closed_on_selected": "If the branch is closed on the selected day(s), leave the fields below empty",
+  "opens": "Opens",
+  "closes": "Closes",
+  "add_opening_time": "Add opening time"
 }

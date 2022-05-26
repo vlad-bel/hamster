@@ -1200,6 +1200,46 @@ class S {
       args: [],
     );
   }
+
+  /// `If the branch is closed on the selected day(s), leave the fields below empty`
+  String get if_branch_closed_on_selected {
+    return Intl.message(
+      'If the branch is closed on the selected day(s), leave the fields below empty',
+      name: 'if_branch_closed_on_selected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Opens`
+  String get opens {
+    return Intl.message(
+      'Opens',
+      name: 'opens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Closes`
+  String get closes {
+    return Intl.message(
+      'Closes',
+      name: 'closes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add opening time`
+  String get add_opening_time {
+    return Intl.message(
+      'Add opening time',
+      name: 'add_opening_time',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

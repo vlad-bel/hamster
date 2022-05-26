@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_category":
             MessageLookupByLibrary.simpleMessage("Add store categories"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
+        "add_opening_time":
+            MessageLookupByLibrary.simpleMessage("Add opening time"),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Add subcategory"),
         "administration":
@@ -72,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
             "Choose a main category by double-clicking it. This is displayed to all HamsterApp users."),
         "closed": MessageLookupByLibrary.simpleMessage("closed"),
+        "closes": MessageLookupByLibrary.simpleMessage("Closes"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
             "Commercial Register No. (if available)"),
         "companies": MessageLookupByLibrary.simpleMessage("COMPANIES"),
@@ -121,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "The IBAN number should only contain Latin letters and numbers"),
+        "if_branch_closed_on_selected": MessageLookupByLibrary.simpleMessage(
+            "If the branch is closed on the selected day(s), leave the fields below empty"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
         "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
@@ -143,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "number_of_registers":
             MessageLookupByLibrary.simpleMessage("Number of registers"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Opening hours"),
+        "opens": MessageLookupByLibrary.simpleMessage("Opens"),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Payment Information"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),

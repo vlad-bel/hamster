@@ -43,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_category":
             MessageLookupByLibrary.simpleMessage("Filialkategorien hinzufügen"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Logo hinzufügen"),
+        "add_opening_time":
+            MessageLookupByLibrary.simpleMessage("Öffnungszeit hinzufügen"),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Unterkategorie hinzufügen"),
         "administration":
@@ -73,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie eine Hauptkategorie durch Doppelklick. Diese wird allen HamsterApp-Nutzern angezeigt."),
         "closed": MessageLookupByLibrary.simpleMessage("geschlossen"),
+        "closes": MessageLookupByLibrary.simpleMessage("Schließt"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
             "Handelsregister Nr. (falls vorhanden)"),
         "companies": MessageLookupByLibrary.simpleMessage("UNTERNEHMEN"),
@@ -124,6 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "Die IBAN Nummer sollte nur lateinische Buchstaben und Zahlen enthalten"),
+        "if_branch_closed_on_selected": MessageLookupByLibrary.simpleMessage(
+            "Sollte die Filiale an dem/den zuvor ausgewählten Tag/en geschlossen sein so lassen Sie die unten stehenden Felder leer"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
         "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
@@ -146,6 +151,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "number_of_registers":
             MessageLookupByLibrary.simpleMessage("Anzahl Kassen"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Öffnungszeiten"),
+        "opens": MessageLookupByLibrary.simpleMessage("Öffnet"),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Zahlungsinformationen"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Anruf"),
