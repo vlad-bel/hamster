@@ -4,14 +4,17 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 @singleton
 class ProfileEditFormSettings {
+  static const addressField = 'address';
   static const kAccountOwner = 'account_owner';
+  static const kCityField = 'city';
   static const kCommercialRegisterNumber = 'commercial_register_number';
   static const kCompanyName = 'company_name';
   static const kIban = 'iban';
-  static const kStreetHouseNumber = 'street_house_number';
+  static const kPostcodeField = 'postcode';
+  static const kStreetField = 'street';
+  static const kStreetNumberField = 'houseNum';
   static const kTaxNumber = 'tax_number';
   static const kVatId = 'vat_id';
-  static const kZipCodeAndLocation = 'zip_code_and_location';
 
   final controls = {
     kCompanyName: FormControl<String>(
@@ -19,12 +22,22 @@ class ProfileEditFormSettings {
         Validators.required,
       ],
     ),
-    kStreetHouseNumber: FormControl<String>(
+    kStreetField: FormControl<String>(
       validators: [
         Validators.required,
       ],
     ),
-    kZipCodeAndLocation: FormControl<String>(
+    kStreetNumberField: FormControl<String>(
+      validators: [
+        Validators.required,
+      ],
+    ),
+    kPostcodeField: FormControl<String>(
+      validators: [
+        Validators.required,
+      ],
+    ),
+    kCityField: FormControl<String>(
       validators: [
         Validators.required,
       ],
@@ -32,7 +45,9 @@ class ProfileEditFormSettings {
     kCommercialRegisterNumber: FormControl<String>(
       validators: [
         Validators.maxLength(64),
-        Validators.minLength(2),
+        Validators.minLength(
+          2,
+        ),
       ],
     ),
     kTaxNumber: FormControl<String>(

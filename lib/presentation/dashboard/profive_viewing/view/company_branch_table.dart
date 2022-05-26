@@ -23,6 +23,7 @@ class CompanyBranchTable extends StatelessWidget {
           ProfileViewTable(
             sortable: true,
             row: ProfileViewTableRow(
+              onPressed: () {},
               companies: [
                 ///TODO remove mock data
                 ///get companies from backend

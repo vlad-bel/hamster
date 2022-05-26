@@ -38,7 +38,7 @@ class AppStateCubit extends Cubit<AppState> {
 
   Future<void> checkCompanyCreatedGoNext() async {
     try {
-      final repCompany = await companyUseCase.fetchRepCompany();
+      final repCompany = await companyUseCase.getRepCompany();
 
       if (repCompany.company != null) {
         return emit(

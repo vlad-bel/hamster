@@ -27,7 +27,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(length) => "Maximum number ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Account owner"),
         "account_verification":
@@ -99,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
@@ -183,6 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "street_house_number":
             MessageLookupByLibrary.simpleMessage("Street, house number"),
         "subcategory": MessageLookupByLibrary.simpleMessage("Subcategory"),
+        "success": MessageLookupByLibrary.simpleMessage("Success"),
         "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "tax_number": MessageLookupByLibrary.simpleMessage("Tax number"),
         "telephone_number_if_available": MessageLookupByLibrary.simpleMessage(
