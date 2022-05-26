@@ -55,7 +55,7 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocale.of(context).forget_pasword_header,
+          header: AppLocale.of(context).forget_password_header,
           subHeader: RichText(
             text: TextSpan(
               style: inter14,
@@ -150,7 +150,7 @@ class ResetCodeButton extends StatelessWidget {
           context.read<ForgetPasswordCubit>().resendSmsCode(email, type);
         },
         child: Text(
-          AppLocale.of(context).resetmail,
+          AppLocale.of(context).reset_email,
           style: TextStyle(color: denim),
         ),
       ),

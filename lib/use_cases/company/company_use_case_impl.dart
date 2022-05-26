@@ -115,4 +115,17 @@ class CompanyUseCaseImpl extends CompanyUsecase {
       );
     }
   }
+
+  @override
+  Future<List<String>> getCategories() async {
+    try {
+      final categories = await _repository.getCategories();
+      return categories;
+    } on DioError catch (e) {
+      throw ApiFailure(
+        ApiFailureResponse.fromJson(e),
+        'getCategories',
+      );
+    }
+  }
 }

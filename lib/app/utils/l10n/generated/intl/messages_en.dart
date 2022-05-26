@@ -34,11 +34,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_bank_details":
             MessageLookupByLibrary.simpleMessage("Add bank details"),
         "add_branch": MessageLookupByLibrary.simpleMessage("Add branch"),
+        "add_branch_hours":
+            MessageLookupByLibrary.simpleMessage("Add branch hours"),
         "add_business_account":
             MessageLookupByLibrary.simpleMessage("Add your business account"),
+        "add_category":
+            MessageLookupByLibrary.simpleMessage("Add store categories"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
+        "add_opening_time":
+            MessageLookupByLibrary.simpleMessage("Add opening time"),
+        "add_subcategory":
+            MessageLookupByLibrary.simpleMessage("Add subcategory"),
         "administration":
             MessageLookupByLibrary.simpleMessage("Administration"),
+        "ass": MessageLookupByLibrary.simpleMessage("as"),
         "base_data": MessageLookupByLibrary.simpleMessage("Base data"),
         "branch_category":
             MessageLookupByLibrary.simpleMessage("Store Categories"),
@@ -59,7 +68,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Cash register system used in your branch"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "choose_main_category":
+            MessageLookupByLibrary.simpleMessage("Choose a main category."),
+        "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
+            "Choose a main category by double-clicking it. This is displayed to all HamsterApp users."),
         "closed": MessageLookupByLibrary.simpleMessage("closed"),
+        "closes": MessageLookupByLibrary.simpleMessage("Closes"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
             "Commercial Register No. (if available)"),
         "companies": MessageLookupByLibrary.simpleMessage("COMPANIES"),
@@ -74,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_number_title": MessageLookupByLibrary.simpleMessage(
             "Confirm your phone \vnumber."),
         "connection": MessageLookupByLibrary.simpleMessage("CONNECTION"),
+        "continue_button": MessageLookupByLibrary.simpleMessage("CONTINUE"),
         "country_hint": MessageLookupByLibrary.simpleMessage("Country"),
         "country_name": MessageLookupByLibrary.simpleMessage("Country name"),
         "create_company_profile": MessageLookupByLibrary.simpleMessage(
@@ -90,10 +105,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "For credits and regular billing, we still need your bank details and consent to the direct debit procedure"),
         "forget_password": MessageLookupByLibrary.simpleMessage(
             "Have you forgotten\nyour password?"),
+        "forget_password_header":
+            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forget_password_subtitle": MessageLookupByLibrary.simpleMessage(
             "Enter your email address associated with\nyour account to continue\nresetting your password."),
-        "forget_pasword_header":
-            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forgetpassword_email_subtitle": MessageLookupByLibrary.simpleMessage(
             "Choose your favorite method to recover the account password"),
         "forgetpassword_email_subtitle2":
@@ -109,7 +124,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "The IBAN number should only contain Latin letters and numbers"),
+        "if_branch_closed_on_selected": MessageLookupByLibrary.simpleMessage(
+            "If the branch is closed on the selected day(s), leave the fields below empty"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
+        "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "The maximum length is \$0 characters"),
         "max_length_reached":
@@ -130,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "number_of_registers":
             MessageLookupByLibrary.simpleMessage("Number of registers"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Opening hours"),
+        "opens": MessageLookupByLibrary.simpleMessage("Opens"),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Payment Information"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),
@@ -138,14 +157,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Request verification"),
         "required_field":
             MessageLookupByLibrary.simpleMessage("Required field"),
-        "resetmail": MessageLookupByLibrary.simpleMessage("Resend email"),
+        "reset_email": MessageLookupByLibrary.simpleMessage("Resend email"),
         "return_button": MessageLookupByLibrary.simpleMessage("RETURN"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "select_all": MessageLookupByLibrary.simpleMessage("Select all"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Select country code"),
         "select_number_title": MessageLookupByLibrary.simpleMessage(
             "Please let us know which phone number to verify via SMS or voice call."),
+        "select_subcategories": MessageLookupByLibrary.simpleMessage(
+            "Select appropriate subcategories."),
+        "select_subcategories_descr": MessageLookupByLibrary.simpleMessage(
+            "Select up to nine subcategories to improve search results in the HamsterApp."),
+        "select_week_days": MessageLookupByLibrary.simpleMessage(
+            "First select the day(s) of the week whose opening hours you want to edit"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(
@@ -155,6 +182,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "street_hint": MessageLookupByLibrary.simpleMessage("Street"),
         "street_house_number":
             MessageLookupByLibrary.simpleMessage("Street, house number"),
+        "subcategory": MessageLookupByLibrary.simpleMessage("Subcategory"),
         "success": MessageLookupByLibrary.simpleMessage("Success"),
         "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "tax_number": MessageLookupByLibrary.simpleMessage("Tax number"),

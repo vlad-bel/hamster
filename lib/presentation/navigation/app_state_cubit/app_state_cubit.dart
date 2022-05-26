@@ -58,7 +58,7 @@ class AppStateCubit extends Cubit<AppState> {
       ///now when company is not created
       ///it's returns to front 500 error
       ///need to more specify error for that case
-      if (e.response.statusCode == 500) {
+      if (e.response.statusCode == 404) {
         return emit(
           AuthorizedState(
             initialRoute: CompanyCreationPage.path,
