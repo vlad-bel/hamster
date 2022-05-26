@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bankverbindung hinzufügen"),
         "add_branch":
             MessageLookupByLibrary.simpleMessage("Filiale hinzufügen"),
+        "add_branch_picture":
+            MessageLookupByLibrary.simpleMessage("Filialbild hinzufügen"),
         "add_business_account": MessageLookupByLibrary.simpleMessage(
             "Fügen Sie ihr Unternehmenskonto hinzu"),
         "add_category":

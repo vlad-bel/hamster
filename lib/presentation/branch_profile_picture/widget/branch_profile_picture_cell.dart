@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BranchProfilePictureCell extends StatelessWidget {
@@ -34,7 +36,7 @@ class BranchProfilePictureCell extends StatelessWidget {
                   height: 50,
                   child: CachedNetworkImage(
                     imageUrl: imagePath,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     errorWidget: (context, url, error) {
                       return Image.file(File(imagePath));
                     },
@@ -43,7 +45,11 @@ class BranchProfilePictureCell extends StatelessWidget {
                 Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context
+                          .read<BranchProfilePictureCubit>()
+                          .selectImage(imagePath);
+                    },
                     child: Ink(
                       width: 50,
                       height: 50,

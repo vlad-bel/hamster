@@ -33,6 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_bank_details":
             MessageLookupByLibrary.simpleMessage("Add bank details"),
         "add_branch": MessageLookupByLibrary.simpleMessage("Add branch"),
+        "add_branch_picture":
+            MessageLookupByLibrary.simpleMessage("Add branch picture"),
         "add_business_account":
             MessageLookupByLibrary.simpleMessage("Add your business account"),
         "add_category":

@@ -138,6 +138,7 @@ class _BranchTopPhotoAndLogoPagerState
           child: Align(
             alignment: Alignment.topRight,
             child: EditButton(
+              icon: Icons.edit,
               onEditTap: () {},
             ),
           ),

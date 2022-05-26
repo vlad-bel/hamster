@@ -1179,6 +1179,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Add branch picture`
+  String get add_branch_picture {
+    return Intl.message(
+      'Add branch picture',
+      name: 'add_branch_picture',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

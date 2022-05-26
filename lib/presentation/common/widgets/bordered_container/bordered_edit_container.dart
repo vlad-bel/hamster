@@ -22,6 +22,7 @@ class BorderedEditContainer extends StatelessWidget {
         alignment: Alignment.topRight,
         child: EditButton(
           onEditTap: onEditTap,
+          icon: Icons.edit,
         ),
       ),
     );
@@ -42,9 +43,11 @@ class EditButton extends StatelessWidget {
   const EditButton({
     Key? key,
     required this.onEditTap,
+    required this.icon,
   }) : super(key: key);
 
   final VoidCallback onEditTap;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,7 @@ class EditButton extends StatelessWidget {
         fillColor: razzmatazz,
         shape: CircleBorder(),
         child: Icon(
-          Icons.edit_outlined,
+          icon,
           color: white,
           size: 15,
         ),
