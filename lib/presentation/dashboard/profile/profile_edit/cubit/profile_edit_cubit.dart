@@ -37,7 +37,8 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
       values[ProfileEditFormSettings.kIban],
     );
     final company = await getIt.get<CompanyUsecase>().getCompany(
-          companyId: '628740f177419483f8313798',
+          companyId:
+              '${(await getIt.get<CompanyUsecase>().getRepCompany()).company?.id}',
         );
 
     emit(
@@ -52,7 +53,8 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
   Future<void> getInitialData() async {
     try {
       final company = await getIt.get<CompanyUsecase>().getCompany(
-            companyId: '628740f177419483f8313798',
+            companyId:
+                '${(await getIt.get<CompanyUsecase>().getRepCompany()).company?.id}',
           );
       emit(
         ProfileEditState.loading(),
