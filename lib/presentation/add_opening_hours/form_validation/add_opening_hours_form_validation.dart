@@ -12,7 +12,8 @@ class AddOpeningHoursFormSettings {
 
   final validationMessage = {
     ValidationMessage.required: 'Should not be empty',
-    ValidationMessage.pattern: 'Wrong time format. Time should be in 24h format.',
+    ValidationMessage.pattern:
+        'Wrong time format. Time should be in 24h format.',
     ValidationMessage.maxLength: AppLocale.current.max_length_reached,
     ValidationMessage.minLength: 'Minimal length is $kMinLengthField',
   };

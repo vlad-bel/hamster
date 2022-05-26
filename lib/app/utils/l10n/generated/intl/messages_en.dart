@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(length) => "Maximum number ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Account owner"),
         "account_verification":
@@ -104,10 +105,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "For credits and regular billing, we still need your bank details and consent to the direct debit procedure"),
         "forget_password": MessageLookupByLibrary.simpleMessage(
             "Have you forgotten\nyour password?"),
+        "forget_password_header":
+            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forget_password_subtitle": MessageLookupByLibrary.simpleMessage(
             "Enter your email address associated with\nyour account to continue\nresetting your password."),
-        "forget_pasword_header":
-            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forgetpassword_email_subtitle": MessageLookupByLibrary.simpleMessage(
             "Choose your favorite method to recover the account password"),
         "forgetpassword_email_subtitle2":
@@ -156,11 +157,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Request verification"),
         "required_field":
             MessageLookupByLibrary.simpleMessage("Required field"),
-        "resetmail": MessageLookupByLibrary.simpleMessage("Resend email"),
+        "reset_email": MessageLookupByLibrary.simpleMessage("Resend email"),
         "return_button": MessageLookupByLibrary.simpleMessage("RETURN"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "select_all": MessageLookupByLibrary.simpleMessage("Select all"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Select country code"),
         "select_number_title": MessageLookupByLibrary.simpleMessage(
@@ -169,6 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select appropriate subcategories."),
         "select_subcategories_descr": MessageLookupByLibrary.simpleMessage(
             "Select up to nine subcategories to improve search results in the HamsterApp."),
+        "select_week_days": MessageLookupByLibrary.simpleMessage(
+            "First select the day(s) of the week whose opening hours you want to edit"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(

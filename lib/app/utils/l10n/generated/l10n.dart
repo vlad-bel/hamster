@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1021,10 +1022,10 @@ class S {
   }
 
   /// `Forgot your password?`
-  String get forget_pasword_header {
+  String get forget_password_header {
     return Intl.message(
       'Forgot your password?',
-      name: 'forget_pasword_header',
+      name: 'forget_password_header',
       desc: '',
       args: [],
     );
@@ -1131,10 +1132,10 @@ class S {
   }
 
   /// `Resend email`
-  String get resetmail {
+  String get reset_email {
     return Intl.message(
       'Resend email',
-      name: 'resetmail',
+      name: 'reset_email',
       desc: '',
       args: [],
     );
@@ -1160,21 +1161,41 @@ class S {
     );
   }
 
-  /// `as`
-  String get ass {
-    return Intl.message(
-      'as',
-      name: 'ass',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Add branch hours`
   String get add_branch_hours {
     return Intl.message(
       'Add branch hours',
       name: 'add_branch_hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First select the day(s) of the week whose opening hours you want to edit`
+  String get select_week_days {
+    return Intl.message(
+      'First select the day(s) of the week whose opening hours you want to edit',
+      name: 'select_week_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select all`
+  String get select_all {
+    return Intl.message(
+      'Select all',
+      name: 'select_all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `as`
+  String get ass {
+    return Intl.message(
+      'as',
+      name: 'ass',
       desc: '',
       args: [],
     );
@@ -1233,8 +1254,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

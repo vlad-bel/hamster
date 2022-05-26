@@ -39,7 +39,11 @@ class CategoriesForm extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     );
                   },
-                  init: (selectedCategory, categories, selectedCategories,) {
+                  init: (
+                    selectedCategory,
+                    categories,
+                    selectedCategories,
+                  ) {
                     return CategoriesList(
                       data: categories,
                       onSelect: (category) {

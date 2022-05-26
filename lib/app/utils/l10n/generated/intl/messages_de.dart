@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(length) => "Minimale Nummernlänge ${length} Zeichen";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Kontoinhaber"),
         "account_verification":
@@ -107,10 +108,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Für Gutschriften und regelmäßige Abrechnungen benötigen wir noch Ihre Bankverbindung und die Einwilligung zum Bankeinzugsverfahren"),
         "forget_password": MessageLookupByLibrary.simpleMessage(
             "Sie haben Ihr Passwort\nvergessen?"),
+        "forget_password_header": MessageLookupByLibrary.simpleMessage(
+            "Sie haben Ihr Passwort vergessen?"),
         "forget_password_subtitle": MessageLookupByLibrary.simpleMessage(
             "Geben Sie Ihre E-Mail-Adresse ein, welche mit Ihrem\nKonto verbunden ist, um mit dem Zurücksetzen Ihres\nPassworts fortzufahren."),
-        "forget_pasword_header": MessageLookupByLibrary.simpleMessage(
-            "Sie haben Ihr Passwort vergessen?"),
         "forgetpassword_email_subtitle": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie Ihre favorisierte Methode, um das Passwort des Accounts "),
         "forgetpassword_email_subtitle2":
@@ -122,7 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "i_authorize_collect_payment": MessageLookupByLibrary.simpleMessage(
             "Ich ermächtige die Hamster Systems AG Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von der Hamster Systems AG auf mein Konto gezogenen Lastschriften einzulösen. Mit Akzeptanz dieser Vereinbarung verpflichtet sich die Hamster Systems AG im gleichen Maße auf die Auszahlung von Guthaben auf das o.g. Konto"),
         "i_certify_info_correct": MessageLookupByLibrary.simpleMessage(
-            "Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind."),
+            "Hiermit versichere ich, dass alle von mir getätigten Angaben vollständig und korrekt sind"),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "iban_format_error": MessageLookupByLibrary.simpleMessage(
             "Die IBAN Nummer sollte nur lateinische Buchstaben und Zahlen enthalten"),
@@ -158,10 +159,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "request_verification":
             MessageLookupByLibrary.simpleMessage("Verifikation beantragen"),
         "required_field": MessageLookupByLibrary.simpleMessage("Pflichtfeld"),
+        "reset_email":
+            MessageLookupByLibrary.simpleMessage("E-Mail erneut versenden"),
         "return_button": MessageLookupByLibrary.simpleMessage("ZURÜCK"),
         "saturday": MessageLookupByLibrary.simpleMessage("Samstag"),
         "save": MessageLookupByLibrary.simpleMessage("Speichern"),
         "search": MessageLookupByLibrary.simpleMessage("Suchen"),
+        "select_all": MessageLookupByLibrary.simpleMessage("Alles auswählen"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Ländervorwahl wählen"),
         "select_number_title": MessageLookupByLibrary.simpleMessage(
@@ -170,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Wählen Sie passende Unterkategorien aus."),
         "select_subcategories_descr": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie bis zu neun Unterkategorien aus, um die Suchergebnisse in der HamsterApp zu verbessern."),
+        "select_week_days": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie zuerst den/die Wochentag/e aus, deren Öffnungszeiten Sie bearbeiten wollen"),
         "settings": MessageLookupByLibrary.simpleMessage("Einstellungen"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(

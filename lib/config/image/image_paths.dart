@@ -3,7 +3,6 @@
 part 'svg_paths.dart';
 
 class ImagePaths {
-
   static const String _logosPath = 'logos/';
   static const String _imagesPath = 'images/';
 

@@ -13,5 +13,6 @@ class SubcategoriesState with _$SubcategoriesState {
     required List<String> selectedSubcategories,
   }) = InitSubcategoriesState;
 
-  const factory SubcategoriesState.error(ApiFailure e) = ErrorSubcategoriesState;
+  const factory SubcategoriesState.error(ApiFailure e) =
+      ErrorSubcategoriesState;
 }

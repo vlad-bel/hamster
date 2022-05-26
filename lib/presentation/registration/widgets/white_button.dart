@@ -31,10 +31,11 @@ class WhiteButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: child ?? Text(
-          AppLocale.current.return_button,
-          style: const TextStyle(color: Color(0xff147bd9)),
-        ),
+        child: child ??
+            Text(
+              AppLocale.current.return_button,
+              style: const TextStyle(color: Color(0xff147bd9)),
+            ),
       ),
     );
   }
