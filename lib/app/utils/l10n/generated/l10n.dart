@@ -391,7 +391,7 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(Object length) {
+  String min_number(int length) {
     return Intl.message(
       'Maximum number $length characters',
       name: 'min_number',
@@ -401,7 +401,7 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(Object length) {
+  String max_number(int length) {
     return Intl.message(
       'Minimum number $length characters',
       name: 'max_number',
@@ -911,7 +911,7 @@ class S {
   }
 
   /// `Number: {number}`
-  String branch_id(Object number) {
+  String branch_id(int number) {
     return Intl.message(
       'Number: $number',
       name: 'branch_id',
@@ -1030,16 +1030,6 @@ class S {
     );
   }
 
-  /// `Resend email`
-  String get resetmail {
-    return Intl.message(
-      'Resend email',
-      name: 'resetmail',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Choose a main category.`
   String get choose_main_category {
     return Intl.message(
@@ -1135,6 +1125,96 @@ class S {
     return Intl.message(
       'Main category',
       name: 'main_category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend email`
+  String get resetmail {
+    return Intl.message(
+      'Resend email',
+      name: 'resetmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I hereby certify that all of the information I have given is complete and correct.`
+  String get i_certify_info_correct {
+    return Intl.message(
+      'I hereby certify that all of the information I have given is complete and correct.',
+      name: 'i_certify_info_correct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request verification`
+  String get request_verification {
+    return Intl.message(
+      'Request verification',
+      name: 'request_verification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `as`
+  String get ass {
+    return Intl.message(
+      'as',
+      name: 'ass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add branch hours`
+  String get add_branch_hours {
+    return Intl.message(
+      'Add branch hours',
+      name: 'add_branch_hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If the branch is closed on the selected day(s), leave the fields below empty`
+  String get if_branch_closed_on_selected {
+    return Intl.message(
+      'If the branch is closed on the selected day(s), leave the fields below empty',
+      name: 'if_branch_closed_on_selected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Opens`
+  String get opens {
+    return Intl.message(
+      'Opens',
+      name: 'opens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Closes`
+  String get closes {
+    return Intl.message(
+      'Closes',
+      name: 'closes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add opening time`
+  String get add_opening_time {
+    return Intl.message(
+      'Add opening time',
+      name: 'add_opening_time',
       desc: '',
       args: [],
     );

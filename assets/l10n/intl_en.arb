@@ -127,9 +127,14 @@
   "subcategory": "Subcategory",
   "continue_button": "CONTINUE",
   "add_category": "Add store categories",
-  "main_category": "Main category"
+  "main_category": "Main category",
   "resetmail": "Resend email",
   "i_certify_info_correct": "I hereby certify that all of the information I have given is complete and correct.",
   "request_verification": "Request verification",
-  "ass": "as"
+  "ass": "as",
+  "add_branch_hours": "Add branch hours",
+  "if_branch_closed_on_selected": "If the branch is closed on the selected day(s), leave the fields below empty",
+  "opens": "Opens",
+  "closes": "Closes",
+  "add_opening_time": "Add opening time"
 }
