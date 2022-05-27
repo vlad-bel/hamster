@@ -154,5 +154,8 @@
         "type": "int"
       }
     }
-  }
+  },
+  "addYourCompanyLogo": "Fügen Sie Ihr Unternehmenslogo hinzu.",
+  "addYourCompanyLogoDescription": "Wähle Sie Ihr Unternehmenslogo aus und laden es hoch. Achten Sie darauf, dass die ausgewählte Bilddatei eine ausreichende Qualität hat.",
+  "next": "Weiter"
 }

@@ -25,7 +25,6 @@ class SelectSubCategoriesForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SubcategoriesCubit, SubcategoriesState>(
       builder: (context, state) {
-        final cubit = context.read<SubcategoriesCubit>();
         return OnboardingBackground(
           hasScroll: false,
           children: OnboardingWhiteContainer(

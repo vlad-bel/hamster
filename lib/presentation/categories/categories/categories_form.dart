@@ -35,7 +35,7 @@ class CategoriesForm extends StatelessWidget {
                 state.when(
                   loading: () {
                     return Padding(
-                      padding: const EdgeInsets.only(top: 32.0),
+                      padding: const EdgeInsets.only(top: 32),
                       child: CircularProgressIndicator(),
                     );
                   },
@@ -60,7 +60,7 @@ class CategoriesForm extends StatelessWidget {
                       child: Text(
                         ///TODO improvement
                         ///make real error placeholder
-                        "Error of loading categories",
+                        'Error of loading categories',
                         style: inter14,
                       ),
                     );

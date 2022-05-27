@@ -1260,6 +1260,36 @@ class S {
     );
   }
 
+  /// `Add your company logo.`
+  String get addYourCompanyLogo {
+    return Intl.message(
+      'Add your company logo.',
+      name: 'addYourCompanyLogo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.`
+  String get addYourCompanyLogoDescription {
+    return Intl.message(
+      'Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.',
+      name: 'addYourCompanyLogoDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `wip`
   String get work_in_progress {
     return Intl.message(
