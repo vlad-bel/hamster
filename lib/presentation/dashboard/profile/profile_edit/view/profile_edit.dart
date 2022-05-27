@@ -1,6 +1,5 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/config/route_names.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
@@ -12,6 +11,7 @@ import 'package:business_terminal/presentation/common/widgets/add_logo/add_logo_
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/header_app_bar/header_app_bar_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/payment_info.dart';
@@ -30,7 +30,7 @@ class ProfileEditPage extends StatelessWidget {
     super.key,
   });
 
-  static const String path = RouteNames.profileEdit;
+  static const String path = myCompanyEditPath;
 
   @override
   Widget build(BuildContext context) {

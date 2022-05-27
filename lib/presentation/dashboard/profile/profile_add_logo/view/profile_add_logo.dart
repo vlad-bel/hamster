@@ -1,7 +1,6 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
-import 'package:business_terminal/config/route_names.dart';
-import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo/add_logo_widget.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
@@ -14,7 +13,7 @@ class ProfileAddLogoPage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  static const String path = RouteNames.profileAddLogo;
+  static const String path = myCompanyEditAddLogoPath;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +25,11 @@ class ProfileAddLogoPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            SizedBox(
-              height: 24,
-            ),
+            SizedBox(height: 24),
             AppAddLogoWidget(
               onPressed: () {},
             ),
-            SizedBox(
-              height: 100,
-            ),
+            SizedBox(height: 100),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
