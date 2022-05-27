@@ -22,9 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(number) => "Number: ${number}";
 
-  static String m1(length) => "Minimum number ${length} characters";
+  static String m1(number) => "Entrance doors amount ${number}";
 
-  static String m2(length) => "Maximum number ${length} characters";
+  static String m2(length) => "Minimum number ${length} characters";
+
+  static String m3(length) => "Maximum number ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -44,6 +46,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add your business account"),
         "add_category":
             MessageLookupByLibrary.simpleMessage("Add store categories"),
+        "add_details": MessageLookupByLibrary.simpleMessage(
+            "Add the appropriate\nbranch information"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
         "add_opening_time":
             MessageLookupByLibrary.simpleMessage("Add opening time"),
@@ -102,6 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
@@ -130,16 +135,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "The IBAN number should only contain Latin letters and numbers"),
         "if_branch_closed_on_selected": MessageLookupByLibrary.simpleMessage(
             "If the branch is closed on the selected day(s), leave the fields below empty"),
+        "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
+            "If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging."),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
         "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "The maximum length is \$0 characters"),
         "max_length_reached":
             MessageLookupByLibrary.simpleMessage("Maximum length reached"),
-        "max_number": m1,
+        "max_number": m2,
         "min_length_field": MessageLookupByLibrary.simpleMessage(
             "The minimum number of characters was not reached"),
-        "min_number": m2,
+        "min_number": m3,
         "model_if_known":
             MessageLookupByLibrary.simpleMessage("Model (if known)"),
         "monday": MessageLookupByLibrary.simpleMessage("Monday"),
@@ -210,6 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "website_if_available":
             MessageLookupByLibrary.simpleMessage("Website (if any)"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
+        "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
         "zip_code_and_location":
             MessageLookupByLibrary.simpleMessage("ZIP code and location")
       };

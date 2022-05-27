@@ -1289,6 +1289,46 @@ class S {
       args: [],
     );
   }
+
+  /// `wip`
+  String get work_in_progress {
+    return Intl.message(
+      'wip',
+      name: 'work_in_progress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add the appropriate\nbranch information`
+  String get add_details {
+    return Intl.message(
+      'Add the appropriate\nbranch information',
+      name: 'add_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.`
+  String get if_identical_addresses {
+    return Intl.message(
+      'If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.',
+      name: 'if_identical_addresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entrance doors amount {number}`
+  String entrances_count(int number) {
+    return Intl.message(
+      'Entrance doors amount $number',
+      name: 'entrances_count',
+      desc: '',
+      args: [number],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -143,5 +143,16 @@
   "add_opening_time": "Add opening time",
   "addYourCompanyLogo": "Add your company logo.",
   "addYourCompanyLogoDescription": "Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.",
-  "next": "Next"
+  "next": "Next",
+  "work_in_progress": "wip",
+  "add_details": "Add the appropriate\nbranch information",
+  "if_identical_addresses": "If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.",
+  "entrances_count": "Entrance doors amount {number}",
+  "@entrances_count": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }
