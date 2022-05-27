@@ -46,9 +46,7 @@ dependencies:
   dropdown_button2: ^1.4.0
   animated_custom_dropdown: ^1.2.0
   hamster_widgets:
-    git:
-      url: https://bitbucket.org/raikjakschis/hamster_widgets
-      ref: develop
+    path: ../hamster_widgets
   cached_network_image:
   loader_overlay: ^2.0.6
   pinput: ^2.2.7

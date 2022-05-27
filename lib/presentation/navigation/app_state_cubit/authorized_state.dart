@@ -1,4 +1,7 @@
+import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
+import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
+import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/view/create_branch_profile_checkboxes_page.dart';
 import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
 import 'package:business_terminal/presentation/categories/categories/categories_page.dart';
 import 'package:business_terminal/presentation/categories/subcategories/select_subcategories_page/select_subcategories_page.dart';
@@ -16,6 +19,8 @@ class AuthorizedState extends AppState {
   }) : super(
           onGenerateRoute: (RouteSettings settings) {
             Widget? page;
+            final params = settings.arguments as Map<String, dynamic>?;
+
             switch (settings.name) {
               case CompanyCreationPage.path:
                 page = const CompanyCreationPage();
@@ -32,8 +37,41 @@ class AuthorizedState extends AppState {
               case AddPaymentPage.path:
                 page = AddPaymentPage();
                 break;
+              case CreateBranchProfileCheckboxesPage.path:
+                final company =
+                    params?[CreateBranchProfileCheckboxesPage.paramRepCompany]
+                        as RepCompany?;
+
+                if (company != null) {
+                  page = CreateBranchProfileCheckboxesPage(
+                    repCompany: company,
+                  );
+                } else {
+                  // TODO: add ErroPage later and display error
+                  throw Exception(
+                    'CreateBranchProfileCheckboxesPage company '
+                        'parameter is NULL',
+                  );
+                }
+                break;
               case BranchProfilePage.path:
-                page = BranchProfilePage();
+                final data = params?[BranchProfilePage.paramData]
+                    as CreateBranchProfileCheckboxesData?;
+                final company =
+                    params?[BranchProfilePage.paramCompany] as RepCompany?;
+
+                if (data != null && company != null) {
+                  page = BranchProfilePage(
+                    branchSelectedFieldsMap: data,
+                    company: company,
+                  );
+                } else {
+                  // TODO: add ErroPage later and display error
+                  throw Exception(
+                    'BranchProfilePage data or company parameter is NULL',
+                  );
+                }
+
                 break;
               case CategoriesPage.path:
                 page = CategoriesPage();

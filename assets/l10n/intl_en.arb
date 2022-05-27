@@ -140,5 +140,16 @@
   "if_branch_closed_on_selected": "If the branch is closed on the selected day(s), leave the fields below empty",
   "opens": "Opens",
   "closes": "Closes",
-  "add_opening_time": "Add opening time"
+  "add_opening_time": "Add opening time",
+  "work_in_progress": "wip",
+  "add_details": "Add the appropriate\nbranch information",
+  "if_identical_addresses": "If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.",
+  "entrances_count": "Entrance doors amount {number}",
+  "@entrances_count": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }
