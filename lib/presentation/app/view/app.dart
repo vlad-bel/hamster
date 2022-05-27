@@ -1,6 +1,7 @@
 import 'package:business_terminal/app/utils/l10n/generated/l10n.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/view/create_branch_profile_checkboxes_page.dart';
 import 'package:business_terminal/presentation/categories/cubit/subcategories_cubit.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
