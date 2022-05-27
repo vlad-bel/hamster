@@ -130,5 +130,9 @@
     "hasOneLoweCaseLetter": "1 Kleinbuchstabe",
     "hasOneUpperCaseLetter": "1 Großbuchstabe",
     "hasOneSpecialCharacter": "1 Zahl",
-    "closeHint": "Hinweis schließen"
+    "closeHint": "Hinweis schließen",
+  "passwordChanged": "Passwort geändert.",
+  "passwordChangedDescription": "Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.",
+  "falschesPasswort": "Falsches Passwort",
+    "passwordIncorrectDescription": "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt."
 }

@@ -86,4 +86,7 @@ abstract class RestClient {
 
   @GET('/rep/company')
   Future<RepCompany> repCompany();
+
+  @POST('/rep/change-password')
+  Future changePassword(@Body() Map<String, dynamic> changePasswordMap);
 }

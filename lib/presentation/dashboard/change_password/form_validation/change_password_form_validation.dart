@@ -17,10 +17,10 @@ class FormSettingsChangePassword {
   static const _kPasswordValidationRuleValidPass = 'passwordValid';
 
   final validationMessagePassword = {
-    ValidationMessage.required: 'Should not be empty',
-    ValidationMessage.maxLength: 'Maximal length is $kMaxLength',
+    ValidationMessage.required: '',
+    ValidationMessage.maxLength: '',
     _kPasswordValidationRuleMustMatch: 'Passwords should be the same',
-    _kPasswordValidationRuleValidPass: 'Password should be valid'
+    _kPasswordValidationRuleValidPass: ''
   };
 
   FormGroup buildForm() => FormGroup(

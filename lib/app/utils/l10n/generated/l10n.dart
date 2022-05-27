@@ -1129,6 +1129,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Passwort geändert.`
+  String get passwordChanged {
+    return Intl.message(
+      'Passwort geändert.',
+      name: 'passwordChanged',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.`
+  String get passwordChangedDescription {
+    return Intl.message(
+      'Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.',
+      name: 'passwordChangedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Falsches Passwort`
+  String get falschesPasswort {
+    return Intl.message(
+      'Falsches Passwort',
+      name: 'falschesPasswort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.`
+  String get passwordIncorrectDescription {
+    return Intl.message(
+      'Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.',
+      name: 'passwordIncorrectDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

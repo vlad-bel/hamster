@@ -90,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "falschesPasswort":
+            MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
@@ -142,8 +144,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "number_of_registers":
             MessageLookupByLibrary.simpleMessage("Number of registers"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Opening hours"),
+        "passwordChanged":
+            MessageLookupByLibrary.simpleMessage("Passwort geändert."),
+        "passwordChangedDescription": MessageLookupByLibrary.simpleMessage(
+            "Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden."),
         "passwordHintTitle": MessageLookupByLibrary.simpleMessage(
             "Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:"),
+        "passwordIncorrectDescription": MessageLookupByLibrary.simpleMessage(
+            "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt."),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Payment Information"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),
