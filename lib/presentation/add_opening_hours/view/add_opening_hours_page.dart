@@ -42,82 +42,66 @@ class _AddOpeningHoursForm extends StatelessWidget {
         ),
         body: ReactiveFormBuilder(
           form: () =>
-          context
-              .read<AddOpeningHoursCubit>()
-              .formSettings
-              .formGroup,
-          builder: (BuildContext context,
-              FormGroup formGroup,
-              Widget? child,) {
-            return ReactiveFormConsumer(
-              builder: (context, formGroup, child) {
-                return BlocBuilder<AddOpeningHoursCubit, AddOpeningHoursState>(
-                  buildWhen: (previous, current) =>
+              context.read<AddOpeningHoursCubit>().formSettings.formGroup,
+          builder: (
+            BuildContext context,
+            FormGroup formGroup,
+            Widget? child,
+          ) {
+            return BlocBuilder<AddOpeningHoursCubit, AddOpeningHoursState>(
+              buildWhen: (previous, current) =>
                   current is InitialAddOpeningHours,
-                  builder: (context, state) {
-                    final formSettings =
-                        context
-                            .read<AddOpeningHoursCubit>()
-                            .formSettings;
+              builder: (context, state) {
+                final formSettings =
+                    context.read<AddOpeningHoursCubit>().formSettings;
 
-                    return Column(
-                      children: [
-                        const SizedBox(height: 24),
-                        for (var item
+                return Column(
+                  children: [
+                    const SizedBox(height: 24),
+                    for (var item
                         in (state as InitialAddOpeningHours).hourRanges)
-                          _OpeningHoursRange(
-                            key: ValueKey(item),
-                            formSettings: formSettings,
-                            openField: formSettings.openFields.firstWhere(
-                                  (element) =>
+                      _OpeningHoursRange(
+                        key: ValueKey(item),
+                        formSettings: formSettings,
+                        openField: formSettings.openFields.firstWhere(
+                          (element) =>
                               element ==
-                                  '${AddOpeningHoursFormSettings
-                                      .opensField}$item',
-                            ),
-                            closeField: formSettings.closeFields.firstWhere(
-                                  (element) =>
-                              element ==
-                                  '${AddOpeningHoursFormSettings
-                                      .closesField}$item',
-                            ),
-                            onDelete: () =>
-                                context
-                                    .read<AddOpeningHoursCubit>()
-                                    .deleteRange(item),
-                            onChange: () {
-                              context
-                                  .read<AddOpeningHoursCubit>()
-                                  .validateForms();
-                            },
-                          ),
-                        if (state.error.isNotEmpty)
-                          Text(
-                            state.error,
-                            style: inter16Medium.copyWith(color: razzmatazz),
-                          ),
-                        if (context
-                            .read<AddOpeningHoursCubit>()
-                            .showAddButton)
-                          Column(
-                            children: [
-                              const SizedBox(height: 16),
-                              DashedButton(
-                                onTap: context
-                                    .read<AddOpeningHoursCubit>()
-                                    .addRange,
-                                label: AppLocale.current.add_opening_time,
-                              ),
-                            ],
-                          ),
-                        const SizedBox(height: 24),
-                        FormConsumer(
-                          onTap: (form) {
-                            // TODO(dvakhnin): Form behaviour
-                          },
+                              '${AddOpeningHoursFormSettings.opensField}$item',
                         ),
-                      ],
-                    );
-                  },
+                        closeField: formSettings.closeFields.firstWhere(
+                          (element) =>
+                              element ==
+                              '${AddOpeningHoursFormSettings.closesField}$item',
+                        ),
+                        onDelete: () => context
+                            .read<AddOpeningHoursCubit>()
+                            .deleteRange(item),
+                        onChange:
+                            context.read<AddOpeningHoursCubit>().validateForms,
+                      ),
+                    if (state.error.isNotEmpty)
+                      Text(
+                        state.error,
+                        style: inter16Medium.copyWith(color: razzmatazz),
+                      ),
+                    if (context.read<AddOpeningHoursCubit>().showAddButton)
+                      Column(
+                        children: [
+                          const SizedBox(height: 16),
+                          DashedButton(
+                            onTap:
+                                context.read<AddOpeningHoursCubit>().addRange,
+                            label: AppLocale.current.add_opening_time,
+                          ),
+                        ],
+                      ),
+                    const SizedBox(height: 24),
+                    FormConsumer(
+                      onTap: (form) {
+                        // TODO(dvakhnin): Form behaviour
+                      },
+                    ),
+                  ],
                 );
               },
             );
@@ -215,10 +199,14 @@ class _OpeningHoursRangeState extends State<_OpeningHoursRange> {
             ),
           ),
           const SizedBox(width: 8),
-          IconButton(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-            onPressed: widget.onDelete,
-            icon: SvgPicture.asset(ImagePaths.svg(SvgPaths.dismiss)),
+          SizedBox(
+            height: 48,
+            width: 48,
+            child: MaterialButton(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              onPressed: widget.onDelete,
+              child: SvgPicture.asset(ImagePaths.svg(SvgPaths.dismiss)),
+            ),
           ),
         ],
       ),

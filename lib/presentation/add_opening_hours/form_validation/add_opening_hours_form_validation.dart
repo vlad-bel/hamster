@@ -16,7 +16,7 @@ class AddOpeningHoursFormSettings {
   final openFields = <String>[];
   final closeFields = <String>[];
 
-  final formGroup = FormGroup({});
+  final formGroup = FormGroup({}, validators: [Validators.required]);
 
   final validationMessage = {
     ValidationMessage.required: 'Should not be empty',
