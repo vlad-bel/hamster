@@ -21,35 +21,40 @@ class CurrentPasswordIncorrectHint extends StatelessWidget
       child: PasswordHintBackground(
         height: _kDefaultHeight,
         width: _kDefaultWidth,
-        child: Column(
-          children: [
-            Spacer(),
-            Icon(
-              Icons.error_outline_rounded,
-              color: Color(0xffe10054),
-              size: 80,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              AppLocale.current.falschesPasswort,
-              style: inter24,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              AppLocale.current.passwordIncorrectDescription,
-            ),
-            const SizedBox(height: 24),
-            Align(
-              child: TextButton(
-                onPressed: onPressed,
-                child: Text(
-                  AppLocale.current.closeHint,
-                  style: TextStyle(color: Color(0xffe10054)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              Spacer(),
+              Icon(
+                Icons.error_outline_rounded,
+                color: Color(0xffe10054),
+                size: 80,
+              ),
+              const SizedBox(height: 24),
+              Text(
+                AppLocale.current.falschesPasswort,
+                style: inter24,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              Text(
+                AppLocale.current.passwordIncorrectDescription,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              Align(
+                child: TextButton(
+                  onPressed: onPressed,
+                  child: Text(
+                    AppLocale.current.closeHint,
+                    style: TextStyle(color: Color(0xffe10054)),
+                  ),
                 ),
               ),
-            ),
-            Spacer()
-          ],
+              Spacer()
+            ],
+          ),
         ),
       ),
     );

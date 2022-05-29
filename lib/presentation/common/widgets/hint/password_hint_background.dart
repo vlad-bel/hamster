@@ -15,8 +15,8 @@ class PasswordHintBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
-      height: height,
+      // width: width,
+      // height: height,
       child: Row(
         children: [
           ClipPath(

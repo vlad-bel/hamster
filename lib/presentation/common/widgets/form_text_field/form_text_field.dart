@@ -2,6 +2,7 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/widgets/hint/hint_overlay_provider_mixin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -76,6 +77,9 @@ class _FormTextFieldState extends State<FormTextField>
     overlayWidgetBuilder = widget.hintOverlayBuilder;
     if (widget.hintOverlayBuilder == null) {
       hideOverlay();
+    }
+    if (widget.hintOverlayBuilder != null && _focusListener.hasFocus) {
+      showOverlay();
     }
   }
 

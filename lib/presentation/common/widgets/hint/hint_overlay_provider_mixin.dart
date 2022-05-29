@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 typedef HintOverlayWidgetBuilder = PreferredSizeWidget Function(BuildContext);
 
@@ -27,7 +28,10 @@ mixin HintOverlayProviderMixin<T extends StatefulWidget> on State<T> {
   void showOverlay() {
     if (_inserted) return;
 
-    Overlay.of(context)?.insert(_lazyHintOverlay);
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      Overlay.of(context)?.insert(_lazyHintOverlay);
+    });
+
     _inserted = true;
   }
 
