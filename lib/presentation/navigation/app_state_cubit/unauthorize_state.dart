@@ -1,4 +1,5 @@
 import 'package:business_terminal/app/utils/storage/storage_service.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/forgetpassword.dart/view/chooseverifypage.dart';
@@ -140,5 +141,5 @@ class UnauthorizedState extends AppState {
           },
         );
 
-  static final appStorageService = AppStorageService();
+  static final appStorageService = getIt.get<AppStorageService>();
 }
