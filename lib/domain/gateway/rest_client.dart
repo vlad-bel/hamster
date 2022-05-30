@@ -1,3 +1,4 @@
+import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
@@ -91,6 +92,27 @@ abstract class RestClient {
 
   @GET('/rep/company')
   Future<RepCompany> repCompany();
+
+  // Branch Profile:
+
+  // TODO: make page param as @query param during pagination implementation
+  @GET('/branch/?page=1')
+  Future<BranchProfile> getBranchByRepresentative();
+
+  @GET('/branch/{id}')
+  Future<BranchProfile> getBranchById(
+    @Path('id') String id,
+  );
+
+  @PUT('/branch/{id}')
+  Future<BranchProfile> updateBranchById(
+    @Path('id') String id,
+  );
+
+  @POST('/branch')
+  Future<BranchProfile> createBranch(
+    @Body() Map<String, dynamic> branchProfile,
+  );
 
   @GET('/common/categories')
   Future<List<String>> getCategories();
