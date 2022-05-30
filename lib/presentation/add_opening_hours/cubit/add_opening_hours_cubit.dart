@@ -24,20 +24,21 @@ class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
   void addRange() {
     state.whenOrNull(
       initial: (hourRanges, error) {
-        final numToAdd = hourRanges.contains(0) ? 1 : 0;
-        final openField = '${AddOpeningHoursFormSettings.opensField}$numToAdd';
-        final closeField =
-            '${AddOpeningHoursFormSettings.closesField}$numToAdd';
+        final endingNumber = hourRanges.contains(0) ? 1 : 0;
+        final openFieldName =
+            '${AddOpeningHoursFormSettings.opensField}$endingNumber';
+        final closeFieldName =
+            '${AddOpeningHoursFormSettings.closesField}$endingNumber';
 
-        formSettings.openFields.add(openField);
-        formSettings.closeFields.add(closeField);
+        formSettings.openFields.add(openFieldName);
+        formSettings.closeFields.add(closeFieldName);
 
         formSettings.formGroup.addAll({
-          openField: FormControl<String>(
+          openFieldName: FormControl<String>(
             validators: formSettings.fieldValidators,
             value: '',
           ),
-          closeField: FormControl<String>(
+          closeFieldName: FormControl<String>(
             validators: formSettings.fieldValidators,
             value: '',
           ),
@@ -47,7 +48,38 @@ class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
 
         emit(
           AddOpeningHoursState.initial(
-            hourRanges: [...hourRanges, numToAdd],
+            hourRanges: [...hourRanges, endingNumber],
+            error: error,
+          ),
+        );
+      },
+    );
+  }
+
+  void deleteRange(int item) {
+    state.whenOrNull(
+      initial: (hourRange, error) {
+        final openFieldName = '${AddOpeningHoursFormSettings.opensField}$item';
+        final closeFieldName = '${AddOpeningHoursFormSettings.closesField}$item';
+
+        formSettings.openFields.remove(openFieldName);
+        formSettings.closeFields.remove(closeFieldName);
+
+        // TODO: Bug in library - actually deletes controls but throws an error
+        // DO NOT REMOVE until library is fixed (https://github.com/joanpablo/reactive_forms/issues/292)
+        formSettings.formGroup.removeControl(openFieldName);
+        try {
+          formSettings.formGroup.removeControl(openFieldName);
+        } catch (_) {}
+        try {
+          formSettings.formGroup.removeControl(closeFieldName);
+        } catch (_) {}
+
+        _updateValidators();
+
+        emit(
+          AddOpeningHoursState.initial(
+            hourRanges: [...hourRange]..remove(item),
             error: error,
           ),
         );
@@ -97,34 +129,6 @@ class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
           formSettings.closeFields.last,
         ),
     ]);
-  }
-
-  void deleteRange(int item) {
-    state.whenOrNull(
-      initial: (hourRange, error) {
-        final openField = '${AddOpeningHoursFormSettings.opensField}$item';
-        final closeField = '${AddOpeningHoursFormSettings.closesField}$item';
-
-        formSettings.openFields.remove(openField);
-        formSettings.closeFields.remove(closeField);
-
-        try {
-          formSettings.formGroup.removeControl(openField);
-        } catch (_) {}
-        try {
-          formSettings.formGroup.removeControl(closeField);
-        } catch (_) {}
-
-        _updateValidators();
-
-        emit(
-          AddOpeningHoursState.initial(
-            hourRanges: [...hourRange]..remove(item),
-            error: error,
-          ),
-        );
-      },
-    );
   }
 }
 

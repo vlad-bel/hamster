@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class AddOpeningHoursFormSettings {
-  static const _kMinLengthField = 5;
+  static const _kTimeLengthField = 5;
 
   static const opensField = 'opens_field';
   static const closesField = 'closes_field';
@@ -20,7 +20,7 @@ class AddOpeningHoursFormSettings {
 
   final validationMessage = {
     ValidationMessage.required: 'Should not be empty',
-    ValidationMessage.minLength: 'Minimal length is $_kMinLengthField',
+    ValidationMessage.minLength: 'Minimal length is $_kTimeLengthField',
     ValidationMessage.pattern:
         'Wrong time format. Time should be in 24h format.',
     _openCloseError: 'Opening time should be before closing time',
@@ -30,7 +30,7 @@ class AddOpeningHoursFormSettings {
   final fieldValidators = [
     Validators.required,
     Validators.pattern(_timeFormat),
-    Validators.minLength(_kMinLengthField),
+    Validators.minLength(_kTimeLengthField),
   ];
 
   ValidatorFunction openCloseValidator(
@@ -45,7 +45,8 @@ class AddOpeningHoursFormSettings {
       final openTimeString = formGroup.control(openControl).value as String;
       final closeTimeString = formGroup.control(closeControl).value as String;
 
-      if (openTimeString.length < 5 || closeTimeString.length < 5) return null;
+      if (openTimeString.length < _kTimeLengthField ||
+          closeTimeString.length < _kTimeLengthField) return null;
 
       final format = DateFormat(_timePattern);
       final openTime = format.parse(openTimeString);
@@ -82,10 +83,10 @@ class AddOpeningHoursFormSettings {
       final openTimeString1 = formGroup.control(openControl1).value as String;
       final closeTimeString1 = formGroup.control(closeControl1).value as String;
 
-      if (openTimeString0.length < 5 ||
-          closeTimeString0.length < 5 ||
-          openTimeString1.length < 5 ||
-          closeTimeString1.length < 5) return null;
+      if (openTimeString0.length < _kTimeLengthField ||
+          closeTimeString0.length < _kTimeLengthField ||
+          openTimeString1.length < _kTimeLengthField ||
+          closeTimeString1.length < _kTimeLengthField) return null;
 
       final openFormControl1 = formGroup.control(openControl1);
 

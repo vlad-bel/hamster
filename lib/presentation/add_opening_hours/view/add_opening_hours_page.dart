@@ -49,8 +49,6 @@ class _AddOpeningHoursForm extends StatelessWidget {
             Widget? child,
           ) {
             return BlocBuilder<AddOpeningHoursCubit, AddOpeningHoursState>(
-              buildWhen: (previous, current) =>
-                  current is InitialAddOpeningHours,
               builder: (context, state) {
                 final formSettings =
                     context.read<AddOpeningHoursCubit>().formSettings;
@@ -203,7 +201,7 @@ class _OpeningHoursRangeState extends State<_OpeningHoursRange> {
             height: 48,
             width: 48,
             child: MaterialButton(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              padding: EdgeInsets.all(8),
               onPressed: widget.onDelete,
               child: SvgPicture.asset(ImagePaths.svg(SvgPaths.dismiss)),
             ),
