@@ -1,4 +1,5 @@
 import 'package:business_terminal/app/utils/validation_utils.dart';
+import 'package:business_terminal/config/validation_constants.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class FormSettingsRegistrationUserInfo {
@@ -106,7 +107,8 @@ class PasswordValidator extends Validator<dynamic> {
   }
 
   bool isPasswordValid(String password) {
-    final has10Characters = password.length >= minimalPasswordLength;
+    final has10Characters =
+        password.length >= ValidationConstants.kMinimalPasswordLength;
     final has1LowerCaseLetter = password.containsLowercase;
     final has1UpperCaseLetter = password.containsUppercase;
     final has1SpecialCharacter = password.containsSpecialCharacters;

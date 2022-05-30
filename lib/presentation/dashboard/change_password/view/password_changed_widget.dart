@@ -25,7 +25,9 @@ class PasswordChangedWidget extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           ActionButtonBlue(
-              isEnabled: true, onPressed: () => Navigator.of(context).pop())
+            isEnabled: true,
+            onPressed: () => Navigator.of(context).pop(),
+          )
         ],
       ),
     );

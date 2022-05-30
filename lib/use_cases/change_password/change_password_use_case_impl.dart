@@ -1,6 +1,7 @@
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/request_model/change_password/change_password_request.dart';
 import 'package:business_terminal/use_cases/change_password/change_password_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -12,12 +13,9 @@ class ChangePasswordUseCaseImpl extends ChangePasswordUseCase {
   final RestClient _client;
 
   @override
-  Future changePassword(String oldPassword, String newPassword) async {
+  Future changePassword(ChangePasswordRequest request) async {
     try {
-      await _client.changePassword({
-        'currentPassword': oldPassword,
-        'newPassword': newPassword
-      });
+      await _client.changePassword(request.toJson());
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),

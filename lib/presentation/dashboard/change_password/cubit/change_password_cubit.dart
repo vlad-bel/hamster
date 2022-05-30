@@ -1,4 +1,5 @@
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/request_model/change_password/change_password_request.dart';
 import 'package:business_terminal/presentation/dashboard/change_password/cubit/change_password_state.dart';
 import 'package:business_terminal/use_cases/change_password/change_password_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,12 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   Future<void> changePassword(String oldPassword, String newPassword) async {
     try {
       emit(ChangePasswordState.loading());
-      await _changePasswordUseCase.changePassword(oldPassword, newPassword);
+      await _changePasswordUseCase.changePassword(
+        ChangePasswordRequest(
+          currentPassword: oldPassword,
+          newPassword: newPassword,
+        ),
+      );
       emit(ChangePasswordState.success());
     } on ApiFailure catch (e) {
       if (e.response.statusCode == 404) {

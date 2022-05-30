@@ -41,7 +41,6 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   @override
   void initState() {
     super.initState();
-    _oldPasswordController = TextEditingController();
     _newPasswordController = TextEditingController();
     _newPasswordConfirmationController = TextEditingController();
   }
@@ -77,7 +76,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                 const SizedBox(height: 25),
                 FormTextField(
                   name: _formSettings.kFieldOldPassword,
-                  label: S.of(context).currentPassword,
+                  label: AppLocale.of(context).currentPassword,
                   focusListener: _oldPasswordFocusNode,
                   controller: _oldPasswordController,
                   validationMessages: (control) =>
@@ -89,7 +88,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                 const SizedBox(height: 18),
                 FormTextField(
                   name: _formSettings.kFieldNewPassword,
-                  label: S.of(context).currentPassword,
+                  label: AppLocale.of(context).currentPassword,
                   focusListener: _newPasswordFocusNode,
                   controller: _newPasswordController,
                   validationMessages: (control) =>
@@ -104,7 +103,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                 const SizedBox(height: 18),
                 FormTextField(
                   name: _formSettings.kFieldNewPasswordConfirmation,
-                  label: S.of(context).currentPassword,
+                  label: AppLocale.of(context).currentPassword,
                   focusListener: _newPasswordConfirmationFocusNode,
                   controller: _newPasswordConfirmationController,
                   validationMessages: (control) =>

@@ -26,8 +26,6 @@ class ValidationUtils {
   }
 }
 
-const int minimalPasswordLength = 10;
-
 extension StringValidators on String {
   bool get containsUppercase => contains(RegExp('[A-Z]'));
 

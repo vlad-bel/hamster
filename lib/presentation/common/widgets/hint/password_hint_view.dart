@@ -1,5 +1,8 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/app/utils/validation_utils.dart';
+import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/config/validation_constants.dart';
 import 'package:business_terminal/presentation/common/widgets/hint/password_hint_background.dart';
 import 'package:business_terminal/presentation/registration/widgets/check_box_icon.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +50,8 @@ class _PasswordHintViewState extends State<PasswordHintView> {
     final password = widget.controllerPassword?.text ?? '';
 
     setState(() {
-      has10Characters = password.length >= minimalPasswordLength;
+      has10Characters =
+          password.length >= ValidationConstants.kMinimalPasswordLength;
       has1LowerCaseLetter = password.containsLowercase;
       has1UpperCaseLetter = password.containsUppercase;
       has1SpecialCharacter = password.containsSpecialCharacters;
@@ -76,27 +80,27 @@ class _PasswordHintViewState extends State<PasswordHintView> {
               ),
               Container(height: 20),
               Text(
-                AppLocale.current.passwordHintTitle,
+                AppLocale.of(context).passwordHintTitle,
               ),
               Container(height: 20),
               CheckBoxIconGreen(
-                text: AppLocale.current.hasTenCharacters,
+                text: AppLocale.of(context).hasTenCharacters,
                 enabled: has10Characters,
               ),
               CheckBoxIconGreen(
-                text: AppLocale.current.hasOneLoweCaseLetter,
+                text: AppLocale.of(context).hasOneLoweCaseLetter,
                 enabled: has1LowerCaseLetter,
               ),
               CheckBoxIconGreen(
-                text: AppLocale.current.hasOneUpperCaseLetter,
+                text: AppLocale.of(context).hasOneUpperCaseLetter,
                 enabled: has1UpperCaseLetter,
               ),
               CheckBoxIconGreen(
-                text: AppLocale.current.hasOneSpecialCharacter,
+                text: AppLocale.of(context).hasOneSpecialCharacter,
                 enabled: has1Number,
               ),
               CheckBoxIconGreen(
-                text: AppLocale.current.hasOneSpecialCharacter,
+                text: AppLocale.of(context).hasOneSpecialCharacter,
                 enabled: has1SpecialCharacter,
               ),
               SizedBox(height: 24),
@@ -104,8 +108,8 @@ class _PasswordHintViewState extends State<PasswordHintView> {
                 child: TextButton(
                   onPressed: widget.onPressed,
                   child: Text(
-                    AppLocale.current.closeHint,
-                    style: TextStyle(color: Color(0xffe10054)),
+                    AppLocale.of(context).closeHint,
+                    style: inter14.copyWith(color: razzmatazz),
                   ),
                 ),
               ),
