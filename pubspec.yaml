@@ -48,7 +48,7 @@ dependencies:
   animated_custom_dropdown: ^1.2.0
   hamster_widgets:
     git:
-      url: https://git.andersenlab.com/hamster/hamster-widgets
+      url: git@git.andersenlab.com:hamster/hamster-widgets.git
       ref: develop
   cached_network_image:
   loader_overlay: ^2.0.6
