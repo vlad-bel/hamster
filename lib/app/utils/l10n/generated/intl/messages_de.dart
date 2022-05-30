@@ -22,16 +22,21 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(number) => "Nummer: ${number}";
 
-  static String m1(length) => "Maximale Nummernlänge ${length} Zeichen";
+  static String m1(number) => "Eingangstüren ${number}";
 
-  static String m2(length) => "Minimale Nummernlänge ${length} Zeichen";
+  static String m2(length) => "Maximale Nummernlänge ${length} Zeichen";
+
+  static String m3(length) => "Minimale Nummernlänge ${length} Zeichen";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Kontoinhaber"),
         "account_verification":
             MessageLookupByLibrary.simpleMessage("Account Verifikation"),
+        "addYourCompanyLogo": MessageLookupByLibrary.simpleMessage(
+            "Fügen Sie Ihr Unternehmenslogo hinzu."),
+        "addYourCompanyLogoDescription": MessageLookupByLibrary.simpleMessage(
+            "Wähle Sie Ihr Unternehmenslogo aus und laden es hoch. Achten Sie darauf, dass die ausgewählte Bilddatei eine ausreichende Qualität hat."),
         "add_bank_details":
             MessageLookupByLibrary.simpleMessage("Bankverbindung hinzufügen"),
         "add_branch":
@@ -42,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Fügen Sie ihr Unternehmenskonto hinzu"),
         "add_category":
             MessageLookupByLibrary.simpleMessage("Filialkategorien hinzufügen"),
+        "add_details": MessageLookupByLibrary.simpleMessage(
+            "Fügen Sie die passenden\nFilialangaben hinzu."),
         "add_logo": MessageLookupByLibrary.simpleMessage("Logo hinzufügen"),
         "add_opening_time":
             MessageLookupByLibrary.simpleMessage("Öffnungszeit hinzufügen"),
@@ -102,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "entrances_count": m1,
+        "error": MessageLookupByLibrary.simpleMessage("Fehler"),
         "finance": MessageLookupByLibrary.simpleMessage("Finanzen"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finanzen1"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
@@ -129,20 +138,23 @@ class MessageLookup extends MessageLookupByLibrary {
             "Die IBAN Nummer sollte nur lateinische Buchstaben und Zahlen enthalten"),
         "if_branch_closed_on_selected": MessageLookupByLibrary.simpleMessage(
             "Sollte die Filiale an dem/den zuvor ausgewählten Tag/en geschlossen sein so lassen Sie die unten stehenden Felder leer"),
+        "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
+            "Sollten Ihr Unternehmen und eine Filiale die identisch \nAdresse haben, dann markieren Sie bitte die \nübereinstimmenden Angaben."),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
         "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "Die maximale Länge entspricht \$0 Zeichen"),
         "max_length_reached": MessageLookupByLibrary.simpleMessage(
             "Die maximale Zeichenangabe ist erreicht"),
-        "max_number": m1,
+        "max_number": m2,
         "min_length_field": MessageLookupByLibrary.simpleMessage(
             "Die mindestanzahl an Zeichen wurde nicht erreicht"),
-        "min_number": m2,
+        "min_number": m3,
         "model_if_known":
             MessageLookupByLibrary.simpleMessage("Modell (falls bekannt)"),
         "monday": MessageLookupByLibrary.simpleMessage("Montag"),
         "my_company": MessageLookupByLibrary.simpleMessage("Mein Unternehmen"),
+        "next": MessageLookupByLibrary.simpleMessage("Weiter"),
         "not_visible": MessageLookupByLibrary.simpleMessage("Nicht sichtbar"),
         "num_hint": MessageLookupByLibrary.simpleMessage("Nr."),
         "number": MessageLookupByLibrary.simpleMessage("NUMMER"),
@@ -187,6 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "street_house_number":
             MessageLookupByLibrary.simpleMessage("Straße, Hausnummer"),
         "subcategory": MessageLookupByLibrary.simpleMessage("Unterkategorie"),
+        "success": MessageLookupByLibrary.simpleMessage("Erfolg"),
         "sunday": MessageLookupByLibrary.simpleMessage("Sonntag"),
         "tax_number": MessageLookupByLibrary.simpleMessage("Steuernummer"),
         "telephone_number_if_available": MessageLookupByLibrary.simpleMessage(
@@ -209,6 +222,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "website_if_available":
             MessageLookupByLibrary.simpleMessage("Webseite (falls vorhanden)"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Mittwoch"),
+        "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
         "zip_code_and_location":
             MessageLookupByLibrary.simpleMessage("Postleitzahl und Ort")
       };

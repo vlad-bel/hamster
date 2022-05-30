@@ -131,6 +131,8 @@
   "reset_email": "Resend email",
   "i_certify_info_correct": "I hereby certify that all of the information I have given is complete and correct.",
   "request_verification": "Request verification",
+  "error": "Error",
+  "success": "Success",
   "add_branch_hours": "Add branch hours",
   "select_week_days": "First select the day(s) of the week whose opening hours you want to edit",
   "select_all": "Select all",
@@ -138,5 +140,19 @@
   "if_branch_closed_on_selected": "If the branch is closed on the selected day(s), leave the fields below empty",
   "opens": "Opens",
   "closes": "Closes",
-  "add_opening_time": "Add opening time"
+  "add_opening_time": "Add opening time",
+  "addYourCompanyLogo": "Add your company logo.",
+  "addYourCompanyLogoDescription": "Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.",
+  "next": "Next",
+  "work_in_progress": "wip",
+  "add_details": "Add the appropriate\nbranch information",
+  "if_identical_addresses": "If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.",
+  "entrances_count": "Entrance doors amount {number}",
+  "@entrances_count": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -2,6 +2,7 @@ import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 
 abstract class CompanyUsecase {
+  Company? company;
   RepCompany? repCompany;
 
   Future<RepCompany> getRepCompany();
@@ -19,4 +20,12 @@ abstract class CompanyUsecase {
   Future<List<String>> getCategories();
 
   Future<RepCompany> fetchRepCompany();
+
+  Future<Company> fetchCompany({
+    required String companyId,
+  });
+
+  Future<Company> getCompany({
+    required String companyId,
+  });
 }

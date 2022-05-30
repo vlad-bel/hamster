@@ -31,7 +31,7 @@ class BorderedContainer extends StatelessWidget {
           child: ColoredBox(
             color: white,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Text(
                 title,
                 style: inter12,

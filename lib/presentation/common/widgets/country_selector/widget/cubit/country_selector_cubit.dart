@@ -1,3 +1,4 @@
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
@@ -22,6 +23,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   static const countryField = 'country';
   static const filterTextfield = 'filter';
 
+  late final List<Country> cachedCountries;
   final countryForm = fb.group({
     countryField: FormControl<String>(
       value: '',
@@ -33,8 +35,6 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   });
 
   final NumberVerificationUseCase useCase;
-
-  late final List<Country> cachedCountries;
 
   Future getCountryList() async {
     try {
@@ -82,8 +82,36 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
     );
   }
 
+  /// Selects country in [cachedCountries] by [countryName]
+  void selectInitialCountry({required String countryName}) {
+    try {
+      final selectedInitialCountry = cachedCountries.firstWhere(
+        (element) => element.name == countryName,
+      );
+      selectCountry(selectedInitialCountry);
+    } on ApiFailure catch (e) {
+      emit(CountrySelectorState.error(e));
+    } catch (e, s) {
+      logger.e(e, [s]);
+    }
+  }
+
   void selectCountry(Country? country) {
     state.whenOrNull(
+      close: (_, countries) {
+        if (country != null) {
+          countryForm.control(countryField).value =
+              ' ${country.emoji}  ${country.name}';
+        } else {
+          countryForm.control(countryField).value = '';
+        }
+        emit(
+          CountrySelectorState.close(
+            selectedCountry: country,
+            countries: countries,
+          ),
+        );
+      },
       open: (_, countries) {
         if (country != null) {
           countryForm.control(countryField).value =

@@ -93,6 +93,6 @@ class _CategoriesListSearchState extends State<CategoriesListSearch> {
   }
 
   void _clearFilter() {
-    context.read<CategoriesListCubit>()..clearSearchForm();
+    context.read<CategoriesListCubit>().clearSearchForm();
   }
 }

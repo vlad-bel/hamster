@@ -12,6 +12,9 @@ const finance1Path = '/finance/finance';
 const finance2Path = '/finance/finance1';
 const accountVerificationPath = '/administration/account-verification';
 const myCompanyPath = '/administration/my-company';
+const myCompanyEditPath = '/administration/my-company/edit';
+const myCompanyEditAddLogoPath = '/administration/my-company/edit/add-logo';
+
 const userManagementPath = '/administration/user-management';
 
 class DashboardPage extends StatefulWidget {

@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1161,6 +1160,26 @@ class S {
     );
   }
 
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get success {
+    return Intl.message(
+      'Success',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add branch hours`
   String get add_branch_hours {
     return Intl.message(
@@ -1240,6 +1259,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Add your company logo.`
+  String get addYourCompanyLogo {
+    return Intl.message(
+      'Add your company logo.',
+      name: 'addYourCompanyLogo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.`
+  String get addYourCompanyLogoDescription {
+    return Intl.message(
+      'Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.',
+      name: 'addYourCompanyLogoDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `wip`
+  String get work_in_progress {
+    return Intl.message(
+      'wip',
+      name: 'work_in_progress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add the appropriate\nbranch information`
+  String get add_details {
+    return Intl.message(
+      'Add the appropriate\nbranch information',
+      name: 'add_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.`
+  String get if_identical_addresses {
+    return Intl.message(
+      'If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.',
+      name: 'if_identical_addresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entrance doors amount {number}`
+  String entrances_count(int number) {
+    return Intl.message(
+      'Entrance doors amount $number',
+      name: 'entrances_count',
+      desc: '',
+      args: [number],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -1254,10 +1343,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 
