@@ -18,7 +18,27 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
   final RestClient repository;
 
   @override
-  Future<Map<String, Country>> getCountries() async {
+  Future createPhone({
+    required String email,
+    required String phone,
+  }) async {
+    try {
+      await repository.createPhone(
+        CreatePhoneRequest(
+          phone: phone,
+          email: email,
+        ).toJson(),
+      );
+    } on DioError catch (e) {
+      throw ApiFailure(
+        ApiFailureResponse.fromJson(e),
+        'createPhone',
+      );
+    }
+  }
+
+  @override
+  Future<Map<String, Country>> fetchCountries() async {
     try {
       final response = await repository.getCountries();
       final countriesWithCodes = response.map(
@@ -40,12 +60,20 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
   }
 
   @override
-  Future verifyPhoneBy({
-    required VerifyMethod method,
+  Future<Map<String, Country>> getCountries() async {
+    if (countries != null) {
+      return countries!;
+    }
+    return fetchCountries();
+  }
+
+  @override
+  Future<void> resendSMSCode({
     required String email,
-  }) {
+    required VerifyMethod method,
+  }) async {
     try {
-      return repository.verifyPhoneBy(
+      await repository.resendSMSCode(
         VerifyPhoneRequest(
           verifyMethod: method.string,
           email: email,
@@ -54,27 +82,7 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),
-        'createPhone',
-      );
-    }
-  }
-
-  @override
-  Future createPhone({
-    required String email,
-    required String phone,
-  }) async {
-    try {
-      await repository.createPhone(
-        CreatePhoneRequest(
-          phone: phone,
-          email: email,
-        ).toJson(),
-      );
-    } on DioError catch (e) {
-      throw ApiFailure(
-        ApiFailureResponse.fromJson(e),
-        'createPhone',
+        'resendSMSCode',
       );
     }
   }
@@ -102,12 +110,12 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
   }
 
   @override
-  Future<void> resendSMSCode({
-    required String email,
+  Future verifyPhoneBy({
     required VerifyMethod method,
-  }) async {
+    required String email,
+  }) {
     try {
-      await repository.resendSMSCode(
+      return repository.verifyPhoneBy(
         VerifyPhoneRequest(
           verifyMethod: method.string,
           email: email,
@@ -116,7 +124,7 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),
-        'resendSMSCode',
+        'createPhone',
       );
     }
   }

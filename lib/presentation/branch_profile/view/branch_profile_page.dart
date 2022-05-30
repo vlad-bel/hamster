@@ -2,6 +2,8 @@ import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/company/rep_company.dart';
+import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
@@ -18,9 +20,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BranchProfilePage extends StatelessWidget {
-  const BranchProfilePage({super.key});
+  const BranchProfilePage({
+    required this.company,
+    required this.branchSelectedFieldsMap,
+    super.key,
+  });
 
   static const path = '/branch_profile';
+  static const paramCompany = 'company';
+  static const paramData = 'data';
+
+  final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
+  final RepCompany company;
 
   @override
   Widget build(BuildContext context) {
@@ -33,22 +44,22 @@ class BranchProfilePage extends StatelessWidget {
           create: (_) => getIt.get<BranchProfileCubit>(),
         ),
       ],
-      child: _BranchProfileView(),
+      child: _BranchProfileView(company, branchSelectedFieldsMap),
     );
   }
 }
 
 class _BranchProfileView extends StatelessWidget {
-  _BranchProfileView({super.key});
+  _BranchProfileView(this.company, this.branchSelectedFieldsMap, {super.key});
+
+  final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
+  final RepCompany company;
 
   final formSettings = BranchProfileFormValidation();
-
   final verticalPaddingBetweenTextInputs = 18.0;
 
   @override
   Widget build(BuildContext context) {
-    final countrySelectorCubit = BlocProvider.of<CountrySelectorCubit>(context);
-
     final paddingBetweenTextInputs = SizedBox(
       height: verticalPaddingBetweenTextInputs,
     );
@@ -59,11 +70,9 @@ class _BranchProfileView extends StatelessWidget {
           children: Column(
             children: [
               BranchProfileContainerWhite(
-                headerLeft: Text(AppLocale.current.branch_profile),
+                headerLeft: Text(AppLocale.of(context).branch_profile),
                 headerRight: Text(
-                  AppLocale.current.branch_id(
-                    0001,
-                  ),
+                  AppLocale.of(context).branch_id(0001),
                 ),
                 body: Column(
                   children: [
@@ -76,7 +85,8 @@ class _BranchProfileView extends StatelessWidget {
                         BranchDataForm(
                           formSettings: formSettings,
                           paddingBetweenTextInputs: paddingBetweenTextInputs,
-                          countrySelectorCubit: countrySelectorCubit,
+                          branchSelectedFieldsMap: branchSelectedFieldsMap,
+                          company: company,
                         ),
                         const SizedBox(width: 45),
 
@@ -90,13 +100,13 @@ class _BranchProfileView extends StatelessWidget {
               // Branch category:
               const SizedBox(height: 16),
               BranchProfileContainerWhite(
-                headerLeft: Text(AppLocale.current.branch_category),
+                headerLeft: Text(AppLocale.of(context).branch_category),
                 body: BranchProfileCategories(),
               ),
               // Branch equipment:
               const SizedBox(height: 16),
               BranchProfileContainerWhite(
-                headerLeft: Text(AppLocale.current.branch_equipment),
+                headerLeft: Text(AppLocale.of(context).branch_equipment),
                 body: Column(
                   children: [
                     ListView.builder(
@@ -124,7 +134,7 @@ class _BranchProfileView extends StatelessWidget {
                             ),
                             const SizedBox(width: 4),
                             Text(
-                              AppLocale.current.add_bank_details,
+                              AppLocale.of(context).add_bank_details,
                               style: inter14.copyWith(
                                 color: denim1,
                               ),

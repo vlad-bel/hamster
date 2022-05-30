@@ -23,7 +23,7 @@ dependencies:
 
   # Tools:
   intl: ^0.17.0
-  reactive_forms: ^12.0.0
+  reactive_forms: ^13.0.0
 
 
   # Network:
@@ -38,6 +38,7 @@ dependencies:
   dartz: ^0.10.1
   flutter_secure_storage: ^5.0.2
   iban: ^1.0.1
+  shared_preferences: ^2.0.15
   image_picker: ^0.8.5+3
   crop_your_image: ^0.7.2
 
@@ -49,7 +50,7 @@ dependencies:
   animated_custom_dropdown: ^1.2.0
   hamster_widgets:
     git:
-      url: https://bitbucket.org/raikjakschis/hamster_widgets
+      url: https://git.andersenlab.com/hamster/hamster-widgets
       ref: develop
   cached_network_image:
   loader_overlay: ^2.0.6

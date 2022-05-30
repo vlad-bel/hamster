@@ -391,7 +391,7 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(Object length) {
+  String min_number(int length) {
     return Intl.message(
       'Maximum number $length characters',
       name: 'min_number',
@@ -401,7 +401,7 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(Object length) {
+  String max_number(int length) {
     return Intl.message(
       'Minimum number $length characters',
       name: 'max_number',
@@ -911,7 +911,7 @@ class S {
   }
 
   /// `Number: {number}`
-  String branch_id(Object number) {
+  String branch_id(int number) {
     return Intl.message(
       'Number: $number',
       name: 'branch_id',
@@ -1021,10 +1021,10 @@ class S {
   }
 
   /// `Forgot your password?`
-  String get forget_pasword_header {
+  String get forget_password_header {
     return Intl.message(
       'Forgot your password?',
-      name: 'forget_pasword_header',
+      name: 'forget_password_header',
       desc: '',
       args: [],
     );
@@ -1131,10 +1131,10 @@ class S {
   }
 
   /// `Resend email`
-  String get resetmail {
+  String get reset_email {
     return Intl.message(
       'Resend email',
-      name: 'resetmail',
+      name: 'reset_email',
       desc: '',
       args: [],
     );
@@ -1160,63 +1160,173 @@ class S {
     );
   }
 
-  /// `Add pictures of your branch.`
-  String get add_picture_for_branch {
+  /// `Error`
+  String get error {
     return Intl.message(
-      'Add pictures of your branch.',
-      name: 'add_picture_for_branch',
+      'Error',
+      name: 'error',
       desc: '',
       args: [],
     );
   }
 
-  /// `Select and upload your branch images. Make sure that the selected image files are of sufficient quality.`
-  String get add_picture_for_branch_descr {
+  /// `Success`
+  String get success {
     return Intl.message(
-      'Select and upload your branch images. Make sure that the selected image files are of sufficient quality.',
-      name: 'add_picture_for_branch_descr',
+      'Success',
+      name: 'success',
       desc: '',
       args: [],
     );
   }
 
-  /// `Add branch picture`
-  String get add_branch_picture {
+  /// `Add branch hours`
+  String get add_branch_hours {
     return Intl.message(
-      'Add branch picture',
-      name: 'add_branch_picture',
+      'Add branch hours',
+      name: 'add_branch_hours',
       desc: '',
       args: [],
     );
   }
 
-  /// `TO SAVE`
-  String get to_save {
+  /// `First select the day(s) of the week whose opening hours you want to edit`
+  String get select_week_days {
     return Intl.message(
-      'TO SAVE',
-      name: 'to_save',
+      'First select the day(s) of the week whose opening hours you want to edit',
+      name: 'select_week_days',
       desc: '',
       args: [],
     );
   }
 
-  /// `Edit your profile photo.`
-  String get edit_photo {
+  /// `Select all`
+  String get select_all {
     return Intl.message(
-      'Edit your profile photo.',
-      name: 'edit_photo',
+      'Select all',
+      name: 'select_all',
       desc: '',
       args: [],
     );
   }
 
-  /// `Select the correct section of your profile photo.`
-  String get edit_photo_descr {
+  /// `as`
+  String get ass {
     return Intl.message(
-      'Select the correct section of your profile photo.',
-      name: 'edit_photo_descr',
+      'as',
+      name: 'ass',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `If the branch is closed on the selected day(s), leave the fields below empty`
+  String get if_branch_closed_on_selected {
+    return Intl.message(
+      'If the branch is closed on the selected day(s), leave the fields below empty',
+      name: 'if_branch_closed_on_selected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Opens`
+  String get opens {
+    return Intl.message(
+      'Opens',
+      name: 'opens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Closes`
+  String get closes {
+    return Intl.message(
+      'Closes',
+      name: 'closes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add opening time`
+  String get add_opening_time {
+    return Intl.message(
+      'Add opening time',
+      name: 'add_opening_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add your company logo.`
+  String get addYourCompanyLogo {
+    return Intl.message(
+      'Add your company logo.',
+      name: 'addYourCompanyLogo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.`
+  String get addYourCompanyLogoDescription {
+    return Intl.message(
+      'Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.',
+      name: 'addYourCompanyLogoDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `wip`
+  String get work_in_progress {
+    return Intl.message(
+      'wip',
+      name: 'work_in_progress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add the appropriate\nbranch information`
+  String get add_details {
+    return Intl.message(
+      'Add the appropriate\nbranch information',
+      name: 'add_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.`
+  String get if_identical_addresses {
+    return Intl.message(
+      'If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.',
+      name: 'if_identical_addresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entrance doors amount {number}`
+  String entrances_count(int number) {
+    return Intl.message(
+      'Entrance doors amount $number',
+      name: 'entrances_count',
+      desc: '',
+      args: [number],
     );
   }
 }

@@ -10,9 +10,82 @@ import 'package:flutter/material.dart';
 class ProfileViewTableRow extends DataTableSource {
   ProfileViewTableRow({
     required this.companies,
+    required this.onPressed,
   });
 
   final List<RepCompany> companies;
+  final VoidCallback onPressed;
+
+  @override
+  DataRow getRow(int index) {
+    final repCompany = companies[index];
+    return DataRow2.byIndex(
+      index: index,
+      onSelectChanged: (value) {},
+      cells: [
+        DataCell(
+          CompanyCell(
+            repCompany: repCompany,
+          ),
+        ),
+
+        ///TODO remove mock data
+        ///get data from backend
+        DataCell(
+          Text(
+            '${repCompany.company?.companyNumber}',
+          ),
+        ),
+        DataCell(
+          CompanyCellAvatar(
+            imagePath: [
+              ///TODO remove mock data
+              ///get data from backend
+              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
+              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
+              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
+            ],
+          ),
+        ),
+        DataCell(
+          Row(
+            children: [
+              ConnectionCell(
+                title: AppLocale.current.tills,
+                currentConnectionValue: 5,
+                maxConnectionValue: 5,
+              ),
+              const SizedBox(width: 8),
+              ConnectionCell(
+                currentConnectionValue: 2,
+                maxConnectionValue: 5,
+                title: AppLocale.current.branches,
+              ),
+            ],
+          ),
+        ),
+        const DataCell(
+          VisibleStatusCell(
+            visible: false,
+          ),
+        ),
+        DataCell(
+          EditCell(
+            onPressed: onPressed,
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  bool get isRowCountApproximate => true;
+
+  @override
+  int get rowCount => companies.length;
+
+  @override
+  int get selectedRowCount => 0;
 
   ///todo refactor to bloc
   ///will be done on next pull request
@@ -29,69 +102,4 @@ class ProfileViewTableRow extends DataTableSource {
     });
     notifyListeners();
   }
-
-  @override
-  DataRow getRow(int index) {
-    final company = companies[index];
-    return DataRow2.byIndex(
-      index: index,
-      onSelectChanged: (value) {},
-      cells: [
-        DataCell(
-          CompanyCell(
-            repCompany: company,
-          ),
-        ),
-
-        ///TODO remove mock data
-        ///get data from backend
-        const DataCell(Text('0000')),
-        const DataCell(
-          CompanyCellAvatar(
-            imagePath: [
-              ///TODO remove mock data
-              ///get data from backend
-              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-            ],
-          ),
-        ),
-        DataCell(
-          Row(
-            children: [
-              ConnectionCell(
-                currentConnectionValue: 5,
-                maxConnectionValue: 5,
-                title: AppLocale.current.tills,
-              ),
-              const SizedBox(width: 8),
-              ConnectionCell(
-                currentConnectionValue: 2,
-                maxConnectionValue: 5,
-                title: AppLocale.current.branches,
-              ),
-            ],
-          ),
-        ),
-        const DataCell(
-          VisibleStatusCell(
-            visible: false,
-          ),
-        ),
-        const DataCell(
-          EditCell(),
-        ),
-      ],
-    );
-  }
-
-  @override
-  int get rowCount => companies.length;
-
-  @override
-  bool get isRowCountApproximate => true;
-
-  @override
-  int get selectedRowCount => 0;
 }

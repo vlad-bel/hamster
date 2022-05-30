@@ -21,9 +21,9 @@ class CategoriesForm extends StatelessWidget {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocale.current.choose_main_category,
+          header: AppLocale.of(context).choose_main_category,
           subHeader: Text(
-            AppLocale.current.choose_main_category_descr,
+            AppLocale.of(context).choose_main_category_descr,
             style: inter14,
           ),
         ),
@@ -35,11 +35,15 @@ class CategoriesForm extends StatelessWidget {
                 state.when(
                   loading: () {
                     return Padding(
-                      padding: const EdgeInsets.only(top: 32.0),
+                      padding: const EdgeInsets.only(top: 32),
                       child: CircularProgressIndicator(),
                     );
                   },
-                  init: (selectedCategory, categories, selectedCategories,) {
+                  init: (
+                    selectedCategory,
+                    categories,
+                    selectedCategories,
+                  ) {
                     return CategoriesList(
                       data: categories,
                       onSelect: (category) {
@@ -56,7 +60,7 @@ class CategoriesForm extends StatelessWidget {
                       child: Text(
                         ///TODO improvement
                         ///make real error placeholder
-                        "Error of loading categories",
+                        'Error of loading categories',
                         style: inter14,
                       ),
                     );
@@ -66,7 +70,7 @@ class CategoriesForm extends StatelessWidget {
                 WhiteButton(
                   width: 500,
                   child: Text(
-                    AppLocale.current.return_button,
+                    AppLocale.of(context).return_button,
                     style: inter14.copyWith(
                       color: denim,
                     ),

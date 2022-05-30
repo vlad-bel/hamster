@@ -69,8 +69,8 @@ class SubcategoriesCubit extends Cubit<SubcategoriesState> {
   void removeSelectedSubcategory(int index) {
     state.whenOrNull(
       init: (selectedCategory, categories, _selectedSubcategories) {
-        final selectedSubcategories = List<String>.of(_selectedSubcategories);
-        selectedSubcategories.removeAt(index);
+        final selectedSubcategories = List<String>.of(_selectedSubcategories)
+          ..removeAt(index);
 
         emit(
           SubcategoriesState.init(

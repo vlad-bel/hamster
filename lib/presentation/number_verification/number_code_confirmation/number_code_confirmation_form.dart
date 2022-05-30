@@ -58,10 +58,10 @@ class _NumberCodeConfirmationFormState
             : 'Bestätigungscode per SMS erneut gesendet';
         return CodeVerificationForm(
           controller: pinController,
-          header: AppLocale.current.confirm_number_title,
+          header: AppLocale.of(context).confirm_number_title,
           subheader: RichText(
             text: TextSpan(
-              text: AppLocale.current.confirm_number_subtitle1,
+              text: AppLocale.of(context).confirm_number_subtitle1,
               style: inter14.copyWith(height: 1.6),
               children: [
                 TextSpan(
@@ -69,7 +69,7 @@ class _NumberCodeConfirmationFormState
                   style: inter14.copyWith(color: denim),
                 ),
                 TextSpan(
-                  text: AppLocale.current.confirm_number_subtitle2,
+                  text: AppLocale.of(context).confirm_number_subtitle2,
                   style: inter14,
                 ),
               ],
@@ -91,7 +91,7 @@ class _NumberCodeConfirmationFormState
               method: widget.verifyMethod,
             );
           },
-          resendButtonTitle: AppLocale.current.sms_resend,
+          resendButtonTitle: AppLocale.of(context).sms_resend,
           verificationResult: NumberVerificationResult(
             pinController: pinController,
             emailWasSentColor: fruitSalad,

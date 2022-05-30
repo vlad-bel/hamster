@@ -1,4 +1,5 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/config/colors.dart';
 import 'package:flutter/material.dart';
 
 class WhiteButton extends StatelessWidget {
@@ -36,8 +37,10 @@ class WhiteButton extends StatelessWidget {
         onPressed: enabled ? onPressed : null,
         child: child ??
             Text(
-              AppLocale.current.return_button,
-              style: const TextStyle(color: Color(0xff147bd9)),
+              AppLocale.of(context).return_button,
+              style: const TextStyle(
+                color: denim1,
+              ),
             ),
       ),
     );

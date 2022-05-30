@@ -25,7 +25,7 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
 
   Future getRepCompanyData() async {
     try {
-      final repCompany = await companyUsecase.fetchRepCompany();
+      final repCompany = await companyUsecase.getRepCompany();
 
       dashboardCubit.updateRepCompany(repCompany);
       state.whenOrNull(
@@ -46,9 +46,9 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
     }
   }
 
-  bool isFullyCompleted(RepCompany repCompany) {
-    const fullyCompleted = 100;
+  final fullyCompleted = 100;
 
+  bool isFullyCompleted(RepCompany repCompany) {
     return repCompany.rep?.fillingProgress == fullyCompleted &&
         repCompany.company?.fillingProgress == fullyCompleted &&
         repCompany.branch?.fillingProgress == fullyCompleted;

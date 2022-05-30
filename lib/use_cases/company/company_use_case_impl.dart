@@ -49,15 +49,53 @@ class CompanyUseCaseImpl extends CompanyUsecase {
   }
 
   @override
-  Future<RepCompany> fetchRepCompany() async {
+  Future<Company> fetchCompany({
+    required String companyId,
+  }) async {
     try {
-      final repCopany = await _repository.repCompany(); // TODO rename
-      repCompany = repCopany;
-      return repCopany;
+      final _company = await _repository.fetchCompany(
+        companyId,
+      );
+      company = _company;
+      return _company;
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),
-        'getRepCompany',
+        'fetchCompany',
+      );
+    }
+  }
+
+  @override
+  Future<RepCompany> fetchRepCompany() async {
+    try {
+      final _repCompany = await _repository.repCompany();
+      repCompany = _repCompany;
+      return _repCompany;
+    } on DioError catch (e) {
+      throw ApiFailure(
+        ApiFailureResponse.fromJson(e),
+        'fetchRepCompany',
+      );
+    }
+  }
+
+  @override
+  Future<Company> getCompany({
+    required String companyId,
+  }) async {
+    try {
+      if (company != null) {
+        return company!;
+      } else {
+        return await fetchCompany(
+          companyId: companyId,
+        );
+      }
+    } on DioError catch (e) {
+      throw ApiFailure(
+        ApiFailureResponse.fromJson(e),
+        'getCompany',
       );
     }
   }

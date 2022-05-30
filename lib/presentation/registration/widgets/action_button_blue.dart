@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:flutter/material.dart';
 
 class ActionButtonBlue extends StatelessWidget {
@@ -35,7 +36,10 @@ class ActionButtonBlue extends StatelessWidget {
           }),
         ),
         onPressed: isEnabled ? onPressed : null,
-        child: child ?? const Text('WEITER'),
+        child: child ??
+            Text(
+              AppLocale.of(context).next.toUpperCase(),
+            ),
       ),
     );
   }
