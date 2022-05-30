@@ -391,7 +391,7 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(int length) {
+  String min_number(Object length) {
     return Intl.message(
       'Maximum number $length characters',
       name: 'min_number',
@@ -401,7 +401,7 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(int length) {
+  String max_number(Object length) {
     return Intl.message(
       'Minimum number $length characters',
       name: 'max_number',
@@ -911,7 +911,7 @@ class S {
   }
 
   /// `Number: {number}`
-  String branch_id(int number) {
+  String branch_id(Object number) {
     return Intl.message(
       'Number: $number',
       name: 'branch_id',
@@ -1321,12 +1321,72 @@ class S {
   }
 
   /// `Entrance doors amount {number}`
-  String entrances_count(int number) {
+  String entrances_count(Object number) {
     return Intl.message(
       'Entrance doors amount $number',
       name: 'entrances_count',
       desc: '',
       args: [number],
+    );
+  }
+
+  /// `Add pictures of your branch.`
+  String get add_picture_for_branch {
+    return Intl.message(
+      'Add pictures of your branch.',
+      name: 'add_picture_for_branch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select and upload your branch images. Make sure that the selected image files are of sufficient quality.`
+  String get add_picture_for_branch_descr {
+    return Intl.message(
+      'Select and upload your branch images. Make sure that the selected image files are of sufficient quality.',
+      name: 'add_picture_for_branch_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add branch picture`
+  String get add_branch_picture {
+    return Intl.message(
+      'Add branch picture',
+      name: 'add_branch_picture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TO SAVE`
+  String get to_save {
+    return Intl.message(
+      'TO SAVE',
+      name: 'to_save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit your profile photo.`
+  String get edit_photo {
+    return Intl.message(
+      'Edit your profile photo.',
+      name: 'edit_photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the correct section of your profile photo.`
+  String get edit_photo_descr {
+    return Intl.message(
+      'Select the correct section of your profile photo.',
+      name: 'edit_photo_descr',
+      desc: '',
+      args: [],
     );
   }
 }

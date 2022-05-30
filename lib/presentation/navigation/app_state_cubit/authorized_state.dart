@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'dart:typed_data';
 
+import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/view/create_branch_profile_checkboxes_page.dart';

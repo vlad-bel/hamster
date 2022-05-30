@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -43,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Filiale hinzufügen"),
         "add_branch_hours": MessageLookupByLibrary.simpleMessage(
             "Öffnungszeiten der Filiale hinzufügen"),
+        "add_branch_picture":
+            MessageLookupByLibrary.simpleMessage("Filialbild hinzufügen"),
         "add_business_account": MessageLookupByLibrary.simpleMessage(
             "Fügen Sie ihr Unternehmenskonto hinzu"),
         "add_category":
@@ -52,6 +53,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_logo": MessageLookupByLibrary.simpleMessage("Logo hinzufügen"),
         "add_opening_time":
             MessageLookupByLibrary.simpleMessage("Öffnungszeit hinzufügen"),
+        "add_picture_for_branch": MessageLookupByLibrary.simpleMessage(
+            "Fügen Sie Bilder Ihrer Filiale hinzu."),
+        "add_picture_for_branch_descr": MessageLookupByLibrary.simpleMessage(
+            "Wähle Sie Ihre Filialbilder aus und laden Sie sie hoch. Achten Sie darauf, dass die ausgewählten Bilddateien eine ausreichende Qualität haben."),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Unterkategorie hinzufügen"),
         "administration":
@@ -108,6 +113,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Teilen Sie uns mit, wie Ihr Unternehmen postalisch erreicht werden kann."),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
+        "edit_photo": MessageLookupByLibrary.simpleMessage(
+            "Bearbeiten Sie Ihr Profilfoto."),
+        "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie den richtigen Bereich Ihres Profilfotos aus."),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Fehler"),
@@ -206,6 +215,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Telefonnummer für Kunden (falls vorhanden)"),
         "thursday": MessageLookupByLibrary.simpleMessage("Donnerstag"),
         "tills": MessageLookupByLibrary.simpleMessage("Kassen"),
+        "to_save": MessageLookupByLibrary.simpleMessage("SPEICHERN"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Dienstag"),
         "user": MessageLookupByLibrary.simpleMessage("NUTZER"),
         "user_account": MessageLookupByLibrary.simpleMessage("Nutzeraccount"),
