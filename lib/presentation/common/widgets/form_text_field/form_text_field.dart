@@ -31,7 +31,7 @@ class FormTextField extends StatefulWidget {
     this.focusColor,
     this.fillColor,
     this.initialText,
-    this.showErrors = true,
+    this.showErrors,
   }) : super(key: key);
 
   final String? name;
@@ -43,7 +43,7 @@ class FormTextField extends StatefulWidget {
   final bool obscureText;
   final bool readOnly;
   final bool reactive;
-  final bool showErrors;
+  final bool? showErrors;
   final TextInputAction textInputAction;
   final TextEditingController? controller;
   final FocusNode? focusListener;
@@ -128,7 +128,8 @@ class _FormTextFieldState extends State<FormTextField> {
         focusNode: widget.focusListener,
         onTap: widget.onTap,
         onEditingComplete: widget.onEditingComplete,
-        showErrors: (_) => widget.showErrors,
+        showErrors:
+            widget.showErrors == null ? null : (_) => widget.showErrors!,
         readOnly: widget.readOnly,
         maxLength: widget.maxLength,
         inputFormatters: widget.inputFormatters,
