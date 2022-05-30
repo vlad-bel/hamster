@@ -4,7 +4,6 @@ import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/widget/list.dart';
 import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
-import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
@@ -57,7 +56,10 @@ class CreateBranchProfileCheckboxesView extends StatelessWidget {
                         SizedBox(height: 25),
 
                         // Listview with checkboxes:
-                        BranchProfileDataCheckBoxesList(data),
+                        BranchProfileDataCheckBoxesList(
+                          data,
+                          company: company,
+                        ),
                         SizedBox(height: 25),
 
                         // Bottom action buttons:
