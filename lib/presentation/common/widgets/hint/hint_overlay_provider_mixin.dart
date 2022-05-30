@@ -11,12 +11,11 @@ typedef HintOverlayWidgetBuilder = PreferredSizeWidget Function(BuildContext);
 /// 2. Initialize overlayWidgetBuilder, like
 ///   overlayWidgetBuilder = MyHint();
 ///   MyHint class must implements PreferredSizeWidget to use with this mixin
-/// 3. Wrap your widgets in build() method to CompositedTransformTarget
-///       with argument link: hintLayerLink
+/// 3. Wrap your widgets in build() method to hintOverlayHost
 /// 4. Invoke [showOverlay] to show your hint or [hideOverlay] to hide
 mixin HintOverlayProviderMixin<T extends StatefulWidget> on State<T> {
   OverlayEntry? _hintOverlay;
-  final hintLayerLink = LayerLink();
+  final _hintLayerLink = LayerLink();
   HintOverlayWidgetBuilder? _overlayWidgetBuilder;
 
   bool _inserted = false;
@@ -41,6 +40,9 @@ mixin HintOverlayProviderMixin<T extends StatefulWidget> on State<T> {
     _inserted = false;
   }
 
+  Widget hintOverlayHost({required Widget child}) =>
+      CompositedTransformTarget(link: _hintLayerLink, child: child);
+
   OverlayEntry get _lazyHintOverlay {
     assert(
       _overlayWidgetBuilder != null,
@@ -60,7 +62,7 @@ mixin HintOverlayProviderMixin<T extends StatefulWidget> on State<T> {
                     size!.width,
                     -(hintOverlay.preferredSize.height / 2) + size.height / 2,
                   ),
-                  link: hintLayerLink,
+                  link: _hintLayerLink,
                   showWhenUnlinked: false,
                   child: Material(
                     color: Colors.transparent,

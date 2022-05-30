@@ -7,7 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class FormTextField extends StatefulWidget {
-  const FormTextField({Key? key,
+  const FormTextField({
+    Key? key,
     this.name,
     this.hint,
     this.label,
@@ -31,10 +32,10 @@ class FormTextField extends StatefulWidget {
     this.suffix,
     this.focusColor,
     this.fillColor,
-    this.initialText,})
-      : super(key: key);
+    this.initialText,
+  }) : super(key: key);
 
-  final String name;
+  final String? name;
   final String? hint;
   final String? label;
   final ValidationMessagesFunction? validationMessages;
@@ -50,7 +51,6 @@ class FormTextField extends StatefulWidget {
   final Widget? customPrefix;
   final Widget? prefixIcon;
   final Widget? suffix;
-  final Widget? suffix;
   final InputBorder? customBorder;
   final int? maxLength;
   final Widget? counter;
@@ -58,6 +58,7 @@ class FormTextField extends StatefulWidget {
   final HintOverlayWidgetBuilder? hintOverlayBuilder;
   final Color? focusColor;
   final Color? fillColor;
+  final String? initialText;
 
   @override
   State<FormTextField> createState() => _FormTextFieldState();
@@ -67,6 +68,7 @@ class _FormTextFieldState extends State<FormTextField>
     with HintOverlayProviderMixin<FormTextField> {
   late bool _obscureText;
   late FocusNode _focusListener;
+  late TextEditingController _controller;
 
   @override
   void initState() {
@@ -76,6 +78,11 @@ class _FormTextFieldState extends State<FormTextField>
     _initFocusListener();
 
     overlayWidgetBuilder = widget.hintOverlayBuilder;
+
+    _controller = widget.controller ?? TextEditingController();
+    if (widget.initialText != null) {
+      _controller.text = widget.initialText!;
+    }
 
     super.initState();
   }
@@ -92,8 +99,7 @@ class _FormTextFieldState extends State<FormTextField>
     }
   }
 
-  OutlineInputBorder get outlineInputBorder =>
-      const OutlineInputBorder(
+  OutlineInputBorder get outlineInputBorder => const OutlineInputBorder(
         borderSide: BorderSide(
           color: Color(0x4d676f86),
         ),
@@ -150,7 +156,7 @@ class _FormTextFieldState extends State<FormTextField>
       alignLabelWithHint: true,
       hintStyle: inter14.copyWith(color: lynch.withOpacity(0.3)),
       suffixIcon:
-      !widget.obscureText ? widget.customSuffix : showHidePasswordIcon,
+          !widget.obscureText ? widget.customSuffix : showHidePasswordIcon,
       prefix: widget.customPrefix,
       prefixIcon: widget.prefixIcon,
       suffix: widget.suffix,
@@ -158,38 +164,38 @@ class _FormTextFieldState extends State<FormTextField>
     );
 
     if (widget.reactive) {
-      return ReactiveTextField<String>(
+      return hintOverlayHost(
+        child: ReactiveTextField<String>(
           formControlName: widget.name,
           validationMessages: widget.validationMessages,
           textInputAction: widget.textInputAction,
           keyboardType: widget.keyboardType,
           obscureText: _obscureText,
           decoration: inputDecoration,
-          controller: widget.controller ?? TextEditingController()
-            ..text = widget.initialText ?? '',
+          controller: _controller,
           focusNode: _focusListener,
           onTap: widget.onTap,
           readOnly: widget.readOnly,
           maxLength: widget.maxLength,
           inputFormatters: widget.inputFormatters,
+        ),
       );
     } else {
-      return TextField(
-        textInputAction: widget.textInputAction,
-        keyboardType: widget.keyboardType,
-        obscureText: _obscureText,
-        decoration: inputDecoration,
-        controller: widget.controller ?? TextEditingController()
-          ..text = widget.initialText ?? '',
-        focusNode: widget.focusListener,
-        onTap: widget.onTap,
-        readOnly: widget.readOnly,
-        maxLength: widget.maxLength,
-        inputFormatters: widget.inputFormatters,
+      return hintOverlayHost(
+        child: TextField(
+          textInputAction: widget.textInputAction,
+          keyboardType: widget.keyboardType,
+          obscureText: _obscureText,
+          decoration: inputDecoration,
+          controller: _controller,
+          focusNode: widget.focusListener,
+          onTap: widget.onTap,
+          readOnly: widget.readOnly,
+          maxLength: widget.maxLength,
+          inputFormatters: widget.inputFormatters,
+        ),
       );
     }
-      ),
-    );
   }
 
   @override

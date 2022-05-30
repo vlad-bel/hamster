@@ -13,6 +13,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
 
   Future<void> changePassword(String oldPassword, String newPassword) async {
     try {
+      emit(ChangePasswordState.loading());
       await _changePasswordUseCase.changePassword(oldPassword, newPassword);
       emit(ChangePasswordState.success());
     } on ApiFailure catch (e) {

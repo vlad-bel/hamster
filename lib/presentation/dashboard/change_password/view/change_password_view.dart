@@ -14,6 +14,7 @@ import 'package:business_terminal/presentation/registration/widgets/action_butto
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ChangePasswordView extends StatefulWidget {
@@ -30,12 +31,20 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   final _newPasswordFocusNode = FocusNode();
   final _newPasswordConfirmationFocusNode = FocusNode();
 
-  final _oldPasswordController = TextEditingController();
-  final _newPasswordController = TextEditingController();
-  final _newPasswordConfirmationController = TextEditingController();
+  late final TextEditingController _oldPasswordController;
+  late final TextEditingController _newPasswordController;
+  late final TextEditingController _newPasswordConfirmationController;
 
   var _shouldShowPasswordHint = true;
   var _shouldShowIncorrectPasswordHint = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _oldPasswordController = TextEditingController();
+    _newPasswordController = TextEditingController();
+    _newPasswordConfirmationController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +55,19 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
       ),
       body: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
         listener: (_, state) {
-          state.whenOrNull(
-            currentPasswordIncorrect: () {
-              _oldPasswordFocusNode.requestFocus();
-            },
-            error: (message) {
-              SnackBarManager.showError(message);
-            },
-          );
+          state
+            ..whenOrNull(
+              currentPasswordIncorrect: () {
+                _oldPasswordFocusNode.requestFocus();
+              },
+              error: (message) {
+                SnackBarManager.showError(message);
+              },
+            )
+            ..maybeWhen(
+              loading: () => context.loaderOverlay.show(),
+              orElse: () => context.loaderOverlay.hide(),
+            );
         },
         builder: (context, state) {
           return ReactiveFormBuilder(

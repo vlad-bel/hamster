@@ -7,10 +7,12 @@ class OnboardingBackground extends StatelessWidget {
   const OnboardingBackground({
     Key? key,
     required this.children,
+    this.showLanguageDropdown = true,
     this.hasScroll = true,
   }) : super(key: key);
 
   final Widget children;
+  final bool showLanguageDropdown;
   final bool hasScroll;
 
   @override
@@ -30,7 +32,7 @@ class OnboardingBackground extends StatelessWidget {
                 : AlwaysScrollableScrollPhysics(),
             child: Column(
               children: [
-                const OnboardingAppbar(),
+                OnboardingAppbar(showLanguageDropdown: showLanguageDropdown),
                 Center(
                   child: children,
                 ),
