@@ -1,6 +1,7 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_header.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_dropdown/cubit/menu_dropdown_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_dropdown/menu_dropdown.dart';
@@ -72,7 +73,7 @@ class _MenuUserDataState extends State<MenuUserData> {
             child: Row(
               children: [
                 const Avatar(
-                  placeholderImage: 'images/profile_icon_grey.png',
+                  placeholderImage: Assets.imagesProfileIconGrey,
                   width: 30,
                   height: 30,
                 ),

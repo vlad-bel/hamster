@@ -10,6 +10,10 @@ class AppStorageService {
     return _prefs.remove(key);
   }
 
+  bool containsKey({required String key}) {
+    return _prefs.containsKey(key);
+  }
+
   int? getInt({
     required String key,
   }) {

@@ -1,4 +1,5 @@
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/breadcrums/breadcrums.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_button/menu_button.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_dropdown/menu_user_data.dart';
@@ -30,12 +31,12 @@ class TopMenu extends StatelessWidget {
           ),
           const Spacer(),
           MenuButton(
-            image: 'images/advertising.svg',
+            image: Assets.imagesAdvertising,
             onPress: () {},
             count: 1,
           ),
           MenuButton(
-            image: 'images/finanzen.svg',
+            image: Assets.imagesFinanzen,
             onPress: () {},
           ),
           const SizedBox(width: 16),

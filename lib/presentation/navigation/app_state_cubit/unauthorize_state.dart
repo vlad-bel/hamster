@@ -1,5 +1,4 @@
-import 'dart:html';
-
+import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/forgetpassword.dart/view/chooseverifypage.dart';
@@ -37,13 +36,16 @@ class UnauthorizedState extends AppState {
               case EmailVerificationPage.path:
                 if (params?[emailParam] != null) {
                   final email = params![emailParam]! as String;
-                  window.sessionStorage[emailParam] = email;
+                  appStorageService.setString(
+                    key: emailParam,
+                    value: email,
+                  );
                 }
 
                 page = buildPage(
                   requiredParams: [emailParam],
                   child: EmailVerificationPage(
-                    userEmail: window.sessionStorage[emailParam],
+                    userEmail: appStorageService.getString(key: emailParam),
                   ),
                 );
                 break;
@@ -51,14 +53,17 @@ class UnauthorizedState extends AppState {
                 page = buildPage(
                   requiredParams: [emailParam],
                   child: CountriesCodePage(
-                    email: window.sessionStorage[emailParam]!,
+                    email: appStorageService.getString(key: emailParam)!,
                   ),
                 );
                 break;
               case CallMethodSelectorPage.path:
                 if (params?[phoneNumberParam] != null) {
                   final phone = params![phoneNumberParam]! as String;
-                  window.sessionStorage[phoneNumberParam] = phone;
+                  appStorageService.setString(
+                    key: phoneNumberParam,
+                    value: phone,
+                  );
                 }
 
                 page = buildPage(
@@ -67,8 +72,9 @@ class UnauthorizedState extends AppState {
                     emailParam,
                   ],
                   child: CallMethodSelectorPage(
-                    phoneNumber: window.sessionStorage[phoneNumberParam]!,
-                    email: window.sessionStorage[emailParam]!,
+                    phoneNumber:
+                        appStorageService.getString(key: phoneNumberParam)!,
+                    email: appStorageService.getString(key: emailParam)!,
                   ),
                 );
                 break;
@@ -77,9 +83,10 @@ class UnauthorizedState extends AppState {
                   final verifyMethod = VerifyMethodExtension.fromString(
                     params![verifyMethodParam]! as String,
                   );
-
-                  window.sessionStorage[verifyMethodParam] =
-                      verifyMethod.string;
+                  appStorageService.setString(
+                    key: verifyMethodParam,
+                    value: verifyMethod.string,
+                  );
                 }
 
                 page = buildPage(
@@ -89,10 +96,10 @@ class UnauthorizedState extends AppState {
                     verifyMethodParam,
                   ],
                   child: NumberCodeConfirmationPage(
-                    phone: window.sessionStorage[phoneNumberParam]!,
-                    email: window.sessionStorage[emailParam]!,
+                    phone: appStorageService.getString(key: phoneNumberParam)!,
+                    email: appStorageService.getString(key: emailParam)!,
                     verificationMethod: VerifyMethodExtension.fromString(
-                      window.sessionStorage[verifyMethodParam]!,
+                      appStorageService.getString(key: verifyMethodParam)!,
                     ),
                   ),
                 );
@@ -132,4 +139,6 @@ class UnauthorizedState extends AppState {
             );
           },
         );
+
+  static final appStorageService = AppStorageService();
 }
