@@ -1,4 +1,5 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
@@ -9,13 +10,16 @@ import 'package:business_terminal/presentation/common/widgets/profile_view_table
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/profile_view_table_row.dart';
 import 'package:flutter/material.dart';
 
+// TODO: rename to branchProfileTable
 class CompanyBranchTableWithData extends StatelessWidget {
-  const CompanyBranchTableWithData(
-      this.repCompany, {
-        Key? key,
-      }) : super(key: key);
+  const CompanyBranchTableWithData({
+    Key? key,
+    this.repCompany,
+    required this.branchProfile,
+  }) : super(key: key);
 
   final RepCompany? repCompany;
+  final BranchProfile branchProfile;
 
   @override
   Widget build(BuildContext context) {

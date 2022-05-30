@@ -1,7 +1,7 @@
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 
 abstract class BranchProfileUseCase {
-  Future<BranchProfile> getBranchByRepresentative();
+  Future<List<BranchProfile>> getBranchByRepresentative();
 
   Future<BranchProfile> getBranchById(String id);
 

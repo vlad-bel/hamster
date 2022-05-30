@@ -23,8 +23,8 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
   }
 
   @override
-  Future<BranchProfile> getBranchByRepresentative() async {
-    final response = await _repository.getBranchByRepresentative();
+  Future<List<BranchProfile>> getBranchByRepresentative() async {
+    final response = await _repository.getBranchesByRepresentative();
     return response;
   }
 

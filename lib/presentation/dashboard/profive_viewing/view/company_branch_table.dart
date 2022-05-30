@@ -15,6 +15,7 @@ class CompanyBranchTable extends StatelessWidget {
         builder: (context, state) {
           return state.when(
             init: (_, __, ___, repCompany) {
+              // TODO: fetch branchProfile and put here
               return CompanyBranchTableWithData(repCompany);
             },
             error: error,

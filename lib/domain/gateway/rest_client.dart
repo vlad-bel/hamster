@@ -97,7 +97,7 @@ abstract class RestClient {
 
   // TODO: make page param as @query param during pagination implementation
   @GET('/branch/?page=1')
-  Future<BranchProfile> getBranchByRepresentative();
+  Future<List<BranchProfile>> getBranchesByRepresentative();
 
   @GET('/branch/{id}')
   Future<BranchProfile> getBranchById(
