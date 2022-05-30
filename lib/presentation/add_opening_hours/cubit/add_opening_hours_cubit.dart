@@ -67,7 +67,6 @@ class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
 
         // TODO: Bug in library - actually deletes controls but throws an error
         // DO NOT REMOVE until library is fixed (https://github.com/joanpablo/reactive_forms/issues/292)
-        formSettings.formGroup.removeControl(openFieldName);
         try {
           formSettings.formGroup.removeControl(openFieldName);
         } catch (_) {}
