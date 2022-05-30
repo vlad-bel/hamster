@@ -38,6 +38,7 @@ dependencies:
   dartz: ^0.10.1
   flutter_secure_storage: ^5.0.2
   iban: ^1.0.1
+  shared_preferences: ^2.0.15
 
   # UI:
   flutter_svg: ^1.0.3

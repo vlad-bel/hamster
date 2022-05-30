@@ -27,7 +27,7 @@ class BranchProfileCategories extends StatelessWidget {
                   reactive: false,
                   readOnly: true,
                   initialText: state.category,
-                  label: AppLocale.current.main_category,
+                  label: AppLocale.of(context).main_category,
                 ),
               ),
               const SizedBox(width: 45),
@@ -36,7 +36,7 @@ class BranchProfileCategories extends StatelessWidget {
                   height: 200,
                   width: 300,
                   child: BorderedEditContainer(
-                    title: AppLocale.current.subcategory,
+                    title: AppLocale.of(context).subcategory,
                     onEditTap: () {
                       Navigator.of(context).pushNamed(CategoriesPage.path);
                     },
@@ -63,7 +63,7 @@ class BranchProfileCategories extends StatelessWidget {
         }
 
         return DashedButton(
-          label: AppLocale.current.add_category,
+          label: AppLocale.of(context).add_category,
           onTap: () {
             Navigator.pushNamed(context, CategoriesPage.path);
           },

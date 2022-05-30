@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:business_terminal/app/utils/l10n/generated/l10n.dart';
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:flutter/widgets.dart';
 
@@ -26,10 +27,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   WidgetsFlutterBinding.ensureInitialized();
-  for (final element in S.delegate.supportedLocales) {
+  for (final element in AppLocale.delegate.supportedLocales) {
     await S.load(element);
   }
-  configureDependencies();
+  await configureDependencies();
 
   await runZonedGuarded(
     () async {

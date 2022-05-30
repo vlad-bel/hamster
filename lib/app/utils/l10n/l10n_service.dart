@@ -8,6 +8,10 @@ class AppLocale {
     return S.current;
   }
 
+  static AppLocalizationDelegate get delegate {
+    return S.delegate;
+  }
+
   static S of(BuildContext context) {
     return S.of(context);
   }

@@ -26,12 +26,12 @@ class PhoneVerificationResultPage extends StatelessWidget {
             ),
             const SizedBox(height: 36),
             Text(
-              AppLocale.current.user_account_created,
+              AppLocale.of(context).user_account_created,
               style: inter24,
             ),
             const SizedBox(height: 20),
             Text(
-              AppLocale.current.user_account_created_description,
+              AppLocale.of(context).user_account_created_description,
               style: inter14,
             ),
             const SizedBox(height: 36),
