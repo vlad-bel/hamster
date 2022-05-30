@@ -1,6 +1,8 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/presentation/common/widgets/hint/hint_overlay_provider_mixin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -27,6 +29,7 @@ class FormTextField extends StatefulWidget {
     this.maxLength,
     this.counter,
     this.inputFormatters,
+    this.hintOverlayBuilder,
     this.suffix,
     this.focusColor,
     this.fillColor,
@@ -37,7 +40,6 @@ class FormTextField extends StatefulWidget {
   final String? name;
   final String? hint;
   final String? label;
-  final String? initialText;
   final ValidationMessagesFunction? validationMessages;
   final TextInputType? keyboardType;
   final bool obscureText;
@@ -57,21 +59,48 @@ class FormTextField extends StatefulWidget {
   final int? maxLength;
   final Widget? counter;
   final List<TextInputFormatter>? inputFormatters;
+  final HintOverlayWidgetBuilder? hintOverlayBuilder;
   final Color? focusColor;
   final Color? fillColor;
+  final String? initialText;
 
   @override
   State<FormTextField> createState() => _FormTextFieldState();
 }
 
-class _FormTextFieldState extends State<FormTextField> {
+class _FormTextFieldState extends State<FormTextField>
+    with HintOverlayProviderMixin<FormTextField> {
   late bool _obscureText;
+  late FocusNode _focusListener;
+  late TextEditingController _controller;
 
   @override
   void initState() {
     _obscureText = widget.obscureText;
+    _focusListener = widget.focusListener ?? FocusNode();
+
+    _initFocusListener();
+
+    overlayWidgetBuilder = widget.hintOverlayBuilder;
+
+    _controller = widget.controller ?? TextEditingController();
+    if (widget.initialText != null) {
+      _controller.text = widget.initialText!;
+    }
 
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(FormTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    overlayWidgetBuilder = widget.hintOverlayBuilder;
+    if (widget.hintOverlayBuilder == null) {
+      hideOverlay();
+    }
+    if (widget.hintOverlayBuilder != null && _focusListener.hasFocus) {
+      showOverlay();
+    }
   }
 
   OutlineInputBorder get outlineInputBorder => const OutlineInputBorder(
@@ -79,6 +108,28 @@ class _FormTextFieldState extends State<FormTextField> {
           color: Color(0x4d676f86),
         ),
       );
+
+  void _initFocusListener() {
+    _focusListener.addListener(_onFocusChanged);
+  }
+
+  void _onFocusChanged() {
+    if (_focusListener.hasFocus) {
+      _onFocused();
+    } else {
+      _onUnfocused();
+    }
+  }
+
+  void _onFocused() {
+    if (widget.hintOverlayBuilder != null) {
+      showOverlay();
+    }
+  }
+
+  void _onUnfocused() {
+    hideOverlay();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,38 +168,47 @@ class _FormTextFieldState extends State<FormTextField> {
     );
 
     if (widget.reactive) {
-      return ReactiveTextField<String>(
-        formControlName: widget.name,
-        validationMessages: widget.validationMessages,
-        textInputAction: widget.textInputAction,
-        keyboardType: widget.keyboardType,
-        obscureText: _obscureText,
-        decoration: inputDecoration,
-        controller: widget.controller,
-        focusNode: widget.focusListener,
-        onTap: widget.onTap,
-        onEditingComplete: widget.onEditingComplete,
-        showErrors:
-            widget.showErrors == null ? null : (_) => widget.showErrors!,
-        readOnly: widget.readOnly,
-        maxLength: widget.maxLength,
-        inputFormatters: widget.inputFormatters,
+      return hintOverlayHost(
+        child: ReactiveTextField<String>(
+          formControlName: widget.name,
+          validationMessages: widget.validationMessages,
+          textInputAction: widget.textInputAction,
+          keyboardType: widget.keyboardType,
+          obscureText: _obscureText,
+          decoration: inputDecoration,
+          controller: _controller,
+          focusNode: _focusListener,
+          onTap: widget.onTap,
+          onEditingComplete: widget.onEditingComplete,
+          showErrors:
+              widget.showErrors == null ? null : (_) => widget.showErrors!,
+          readOnly: widget.readOnly,
+          maxLength: widget.maxLength,
+          inputFormatters: widget.inputFormatters,
+        ),
       );
     } else {
-      return TextField(
-        textInputAction: widget.textInputAction,
-        keyboardType: widget.keyboardType,
-        obscureText: _obscureText,
-        decoration: inputDecoration,
-        controller: widget.controller ?? TextEditingController()
-          ..text = widget.initialText ?? '',
-        focusNode: widget.focusListener,
-        onTap: widget.onTap,
-        onEditingComplete: widget.onEditingComplete,
-        readOnly: widget.readOnly,
-        maxLength: widget.maxLength,
-        inputFormatters: widget.inputFormatters,
+      return hintOverlayHost(
+        child: TextField(
+          textInputAction: widget.textInputAction,
+          keyboardType: widget.keyboardType,
+          obscureText: _obscureText,
+          decoration: inputDecoration,
+          controller: _controller,
+          focusNode: widget.focusListener,
+          onTap: widget.onTap,
+          onEditingComplete: widget.onEditingComplete,
+          readOnly: widget.readOnly,
+          maxLength: widget.maxLength,
+          inputFormatters: widget.inputFormatters,
+        ),
       );
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _focusListener.removeListener(_onFocusChanged);
   }
 }

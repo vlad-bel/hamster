@@ -154,5 +154,21 @@
         "type": "int"
       }
     }
-  }
+  },
+  "forget_pasword_header": "Forgot your password?",
+  "resetmail": "Resend email",
+  "changePasswordHeader": "Ersetzen Sie Ihr altes Passwort.",
+  "changePasswordSubHeader": "Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren",
+  "currentPassword": "Aktuelles Passwort",
+  "passwordHintTitle": "Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:",
+  "hasTenCharacters": "10 Zeichen lang",
+  "hasOneLoweCaseLetter": "1 Kleinbuchstabe",
+  "hasOneUpperCaseLetter": "1 Großbuchstabe",
+  "hasOneSpecialCharacter": "1 Zahl",
+  "closeHint": "Hinweis schließen",
+  "passwordChanged": "Passwort geändert.",
+  "passwordChangedDescription": "Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.",
+  "falschesPasswort": "Falsches Passwort",
+  "passwordIncorrectDescription": "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt."
+
 }

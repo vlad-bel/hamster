@@ -48,7 +48,7 @@ dependencies:
   animated_custom_dropdown: ^1.2.0
   hamster_widgets:
     git:
-      url: https://git.andersenlab.com/hamster/hamster-widgets
+      url: git@git.andersenlab.com:hamster/hamster-widgets.git
       ref: develop
   cached_network_image:
   loader_overlay: ^2.0.6
@@ -79,7 +79,7 @@ flutter:
     - assets/images/
     - assets/translations/
     - assets/images/flags/
- 
+
 flutter_intl:
   enabled: true # Required. Must be set to true to activate the plugin. Default: false
   class_name: S # Optional. Sets the name for the generated localization class. Default: S

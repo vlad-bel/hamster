@@ -43,19 +43,11 @@ class UserInfoInitCubit extends Cubit<UserInfoInitState> {
       emit(const UserInfoInitState.initial());
     }
   }
-
-  void setVisibilityPasswordValidation({required bool isVisible}) {
-    emit(
-      UserInfoInitState.initial(shouldShowPasswordValidationWidget: isVisible),
-    );
-  }
 }
 
 @freezed
 class UserInfoInitState with _$UserInfoInitState {
-  const factory UserInfoInitState.initial({
-    @Default(false) bool shouldShowPasswordValidationWidget,
-  }) = InitialUserInfoInit;
+  const factory UserInfoInitState.initial() = InitialUserInfoInit;
 
   const factory UserInfoInitState.loading() = LoadingUserInfoInit;
 

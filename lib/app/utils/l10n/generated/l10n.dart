@@ -1329,6 +1329,156 @@ class S {
       args: [number],
     );
   }
+
+  /// `Forgot your password?`
+  String get forget_pasword_header {
+    return Intl.message(
+      'Forgot your password?',
+      name: 'forget_pasword_header',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend email`
+  String get resetmail {
+    return Intl.message(
+      'Resend email',
+      name: 'resetmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ersetzen Sie Ihr altes Passwort.`
+  String get changePasswordHeader {
+    return Intl.message(
+      'Ersetzen Sie Ihr altes Passwort.',
+      name: 'changePasswordHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren`
+  String get changePasswordSubHeader {
+    return Intl.message(
+      'Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren',
+      name: 'changePasswordSubHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aktuelles Passwort`
+  String get currentPassword {
+    return Intl.message(
+      'Aktuelles Passwort',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:`
+  String get passwordHintTitle {
+    return Intl.message(
+      'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
+      name: 'passwordHintTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `10 Zeichen lang`
+  String get hasTenCharacters {
+    return Intl.message(
+      '10 Zeichen lang',
+      name: 'hasTenCharacters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 Kleinbuchstabe`
+  String get hasOneLoweCaseLetter {
+    return Intl.message(
+      '1 Kleinbuchstabe',
+      name: 'hasOneLoweCaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 Großbuchstabe`
+  String get hasOneUpperCaseLetter {
+    return Intl.message(
+      '1 Großbuchstabe',
+      name: 'hasOneUpperCaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 Zahl`
+  String get hasOneSpecialCharacter {
+    return Intl.message(
+      '1 Zahl',
+      name: 'hasOneSpecialCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hinweis schließen`
+  String get closeHint {
+    return Intl.message(
+      'Hinweis schließen',
+      name: 'closeHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwort geändert.`
+  String get passwordChanged {
+    return Intl.message(
+      'Passwort geändert.',
+      name: 'passwordChanged',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.`
+  String get passwordChangedDescription {
+    return Intl.message(
+      'Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.',
+      name: 'passwordChangedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Falsches Passwort`
+  String get falschesPasswort {
+    return Intl.message(
+      'Falsches Passwort',
+      name: 'falschesPasswort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.`
+  String get passwordIncorrectDescription {
+    return Intl.message(
+      'Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.',
+      name: 'passwordIncorrectDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
