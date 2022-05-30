@@ -10,8 +10,8 @@ clone:
     - git clone https://$GIT_USERNAME:$GIT_PASSWORD@bitbucket.org/raikjakschis/hamster_widgets.git
     - cd hamster_widgets && git checkout develop
   artifacts:
-    when: always
-    - hamster_widgets/**
+    paths:
+      - hamster_widgets/**
 
 build:
   image: cirrusci/flutter:stable
@@ -20,8 +20,8 @@ build:
     - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
     - flutter build web -t lib/main_development.dart --release --web-renderer html
   artifacts:
-    when: always
-    - build/web/**
+    paths:
+      - build/web/**
 
 #deploy:
 #  image: atlassian/pipelines-awscli
