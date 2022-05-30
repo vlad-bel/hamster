@@ -2,7 +2,7 @@ import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-@singleton
+@injectable
 class ProfileEditFormSettings {
   static const addressField = 'address';
   static const kAccountOwner = 'account_owner';
@@ -44,21 +44,18 @@ class ProfileEditFormSettings {
     ),
     kCommercialRegisterNumber: FormControl<String>(
       validators: [
-        Validators.maxLength(64),
-        Validators.minLength(
-          2,
-        ),
+        Validators.pattern(r'^.{2,64}$'),
       ],
     ),
     kTaxNumber: FormControl<String>(
       validators: [
-        Validators.required,
-        Validators.maxLength(64),
-        Validators.minLength(2),
+        Validators.pattern(r'^.{2,64}$'),
       ],
     ),
     kVatId: FormControl<String>(
-      validators: [],
+      validators: [
+        Validators.pattern(r'^.{2,64}$'),
+      ],
     ),
     kAccountOwner: FormControl<String>(
       validators: [],

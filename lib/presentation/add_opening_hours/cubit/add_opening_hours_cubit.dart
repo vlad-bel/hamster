@@ -60,7 +60,8 @@ class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
     state.whenOrNull(
       initial: (hourRange, error) {
         final openFieldName = '${AddOpeningHoursFormSettings.opensField}$item';
-        final closeFieldName = '${AddOpeningHoursFormSettings.closesField}$item';
+        final closeFieldName =
+            '${AddOpeningHoursFormSettings.closesField}$item';
 
         formSettings.openFields.remove(openFieldName);
         formSettings.closeFields.remove(closeFieldName);

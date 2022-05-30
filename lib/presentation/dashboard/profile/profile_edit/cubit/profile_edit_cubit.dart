@@ -11,7 +11,7 @@ import 'package:injectable/injectable.dart';
 
 part 'profile_edit_cubit.freezed.dart';
 
-@Singleton()
+@injectable
 class ProfileEditCubit extends Cubit<ProfileEditState> {
   ProfileEditCubit({
     required this.profileEditFormSettings,
@@ -38,6 +38,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
     );
 
     final companyId = (await companyUsecase.getRepCompany()).company?.id;
+
     final company = await companyUsecase.getCompany(
       companyId: '$companyId',
     );
@@ -124,7 +125,6 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
     }
   }
 
-  // TODO Implement functionality
   Future<void> editProfile(
     String companyId, {
     required String countryCode,

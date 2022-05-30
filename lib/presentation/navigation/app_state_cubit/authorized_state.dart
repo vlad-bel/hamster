@@ -54,7 +54,7 @@ class AuthorizedState extends AppState {
                   // TODO: add ErroPage later and display error
                   throw Exception(
                     'CreateBranchProfileCheckboxesPage company '
-                        'parameter is NULL',
+                    'parameter is NULL',
                   );
                 }
                 break;

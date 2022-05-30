@@ -104,7 +104,6 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
 
 class _Selector extends StatelessWidget {
   const _Selector({
-    super.key,
     required this.overlayEntry,
     required this.layerLink,
     required this.selectedCountry,

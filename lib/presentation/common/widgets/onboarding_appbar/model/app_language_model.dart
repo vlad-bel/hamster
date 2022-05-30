@@ -13,12 +13,4 @@ class AppLanguageModel extends Locale {
   final String code;
   final String iconPath;
   final String title;
-
-  @override
-  bool operator ==(Object other) {
-    return super == other;
-  }
-
-  @override
-  int get hashCode => iconPath.length ^ code.length ^ super.hashCode;
 }
