@@ -1,5 +1,6 @@
 import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/config/app_storage_keys.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/model/app_language_model.dart';
 import 'package:business_terminal/use_cases/settings/language/language_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,10 +31,10 @@ class LocaleSettingsController with ChangeNotifier {
   Future<void> updateLocale(Locale? newLocale) async {
     if (newLocale == null || newLocale == _locale) return;
 
-    await AppStorageService().setString(
-      key: AppStorageKeys.languageCode,
-      value: '$newLocale',
-    );
+    await getIt.get<AppStorageService>().setString(
+          key: AppStorageKeys.languageCode,
+          value: '$newLocale',
+        );
     _locale = newLocale;
     notifyListeners();
   }

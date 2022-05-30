@@ -1,5 +1,6 @@
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_header.dart';
 import 'package:flutter/material.dart';
 
@@ -90,7 +91,7 @@ class CompanyCellAvatar extends StatelessWidget {
 
             ///TODO remove mock data
             ///get data from backend
-            placeholderImage: 'images/profile_icon.png',
+            placeholderImage: Assets.imagesProfileIcon,
           ),
         ),
       );

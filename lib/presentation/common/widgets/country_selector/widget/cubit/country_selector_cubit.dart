@@ -23,7 +23,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   static const countryField = 'country';
   static const filterTextfield = 'filter';
 
-  late final List<Country> cachedCountries;
+  List<Country>? cachedCountries;
   final countryForm = fb.group({
     countryField: FormControl<String>(
       value: '',
@@ -69,7 +69,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
         emit(
           CountrySelectorState.open(
             countries: cachedCountries
-                .where(
+                ?.where(
                   (element) => element.name.toLowerCase().startsWith(
                         value.toLowerCase(),
                       ),
@@ -85,7 +85,7 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   /// Selects country in [cachedCountries] by [countryName]
   void selectInitialCountry({required String countryName}) {
     try {
-      final selectedInitialCountry = cachedCountries.firstWhere(
+      final selectedInitialCountry = cachedCountries?.firstWhere(
         (element) => element.name == countryName,
       );
       selectCountry(selectedInitialCountry);
