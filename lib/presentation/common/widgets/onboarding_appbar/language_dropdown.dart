@@ -1,3 +1,4 @@
+import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/model/app_language_model.dart';
 import 'package:business_terminal/use_cases/settings/language/language_controller.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -57,9 +58,7 @@ class LanguageDropdownState extends State<LanguageDropdown> {
                 value: item,
                 child: buildDropDownListItem(
                   item,
-                  color: const Color(
-                    0xff146dd9,
-                  ),
+                  color: denim2,
                 ),
               ),
             )
