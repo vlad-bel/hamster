@@ -99,7 +99,7 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                                 },
                                 isEnabled: form.valid,
                                 child: Text(
-                                  AppLocale.of(context).save,
+                                  AppLocale.of(context).save.toUpperCase(),
                                 ),
                               );
                             },
@@ -253,8 +253,8 @@ class _ProfileEditContent extends StatelessWidget {
                                     child: FormTextField(
                                       name:
                                           ProfileEditFormSettings.kStreetField,
-                                      hint: AppLocale.current.street_hint,
-                                      label: AppLocale.current.street_hint,
+                                      hint: AppLocale.of(context).street_hint,
+                                      label: AppLocale.of(context).street_hint,
                                     ),
                                   ),
                                   SizedBox(width: 16),
@@ -262,8 +262,8 @@ class _ProfileEditContent extends StatelessWidget {
                                     child: FormTextField(
                                       name: ProfileEditFormSettings
                                           .kStreetNumberField,
-                                      hint: AppLocale.current.num_hint,
-                                      label: AppLocale.current.num_hint,
+                                      hint: AppLocale.of(context).num_hint,
+                                      label: AppLocale.of(context).num_hint,
                                     ),
                                   ),
                                 ],
@@ -276,8 +276,8 @@ class _ProfileEditContent extends StatelessWidget {
                                     child: FormTextField(
                                       name: ProfileEditFormSettings
                                           .kPostcodeField,
-                                      hint: AppLocale.current.post_hint,
-                                      label: AppLocale.current.post_hint,
+                                      hint: AppLocale.of(context).post_hint,
+                                      label: AppLocale.of(context).post_hint,
                                     ),
                                   ),
                                   SizedBox(width: 16),
@@ -285,8 +285,9 @@ class _ProfileEditContent extends StatelessWidget {
                                     flex: 3,
                                     child: FormTextField(
                                       name: ProfileEditFormSettings.kCityField,
-                                      hint: AppLocale.current.location_hint,
-                                      label: AppLocale.current.location_hint,
+                                      hint: AppLocale.of(context).location_hint,
+                                      label:
+                                          AppLocale.of(context).location_hint,
                                     ),
                                   ),
                                 ],

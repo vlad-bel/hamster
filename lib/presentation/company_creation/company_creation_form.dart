@@ -29,9 +29,9 @@ class CompanyCreationForm extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 120),
         child: OnboardingWhiteContainer(
           header: OnboardingWhiteContainerHeader(
-            header: AppLocale.current.create_company_profile,
+            header: AppLocale.of(context).create_company_profile,
             subHeader: Text(
-              AppLocale.current.create_company_profile_descr,
+              AppLocale.of(context).create_company_profile_descr,
               style: inter14,
             ),
           ),
@@ -66,8 +66,8 @@ class CompanyCreationForm extends StatelessWidget {
                       SizedBox(height: 26),
                       FormTextField(
                         name: CompanyCreationCubit.companyField,
-                        hint: AppLocale.current.company_hint,
-                        label: AppLocale.current.company_hint,
+                        hint: AppLocale.of(context).company_hint,
+                        label: AppLocale.of(context).company_hint,
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -77,16 +77,16 @@ class CompanyCreationForm extends StatelessWidget {
                             flex: 3,
                             child: FormTextField(
                               name: CompanyCreationCubit.streetField,
-                              hint: AppLocale.current.street_hint,
-                              label: AppLocale.current.street_hint,
+                              hint: AppLocale.of(context).street_hint,
+                              label: AppLocale.of(context).street_hint,
                             ),
                           ),
                           SizedBox(width: 16),
                           Flexible(
                             child: FormTextField(
                               name: CompanyCreationCubit.streetNumberField,
-                              hint: AppLocale.current.num_hint,
-                              label: AppLocale.current.num_hint,
+                              hint: AppLocale.of(context).num_hint,
+                              label: AppLocale.of(context).num_hint,
                             ),
                           ),
                         ],
@@ -98,8 +98,8 @@ class CompanyCreationForm extends StatelessWidget {
                           Flexible(
                             child: FormTextField(
                               name: CompanyCreationCubit.postcodeField,
-                              hint: AppLocale.current.post_hint,
-                              label: AppLocale.current.post_hint,
+                              hint: AppLocale.of(context).post_hint,
+                              label: AppLocale.of(context).post_hint,
                             ),
                           ),
                           SizedBox(width: 16),
@@ -107,8 +107,8 @@ class CompanyCreationForm extends StatelessWidget {
                             flex: 3,
                             child: FormTextField(
                               name: CompanyCreationCubit.cityField,
-                              hint: AppLocale.current.location_hint,
-                              label: AppLocale.current.location_hint,
+                              hint: AppLocale.of(context).location_hint,
+                              label: AppLocale.of(context).location_hint,
                             ),
                           ),
                         ],

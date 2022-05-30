@@ -56,7 +56,7 @@ class CountrySelectorList extends StatelessWidget {
                             child: FormTextField(
                               focusListener: filterFocusNode,
                               name: CountrySelectorCubit.filterTextfield,
-                              hint: AppLocale.current.country_name,
+                              hint: AppLocale.of(context).country_name,
                               customSuffix: CupertinoButton(
                                 child: const Icon(
                                   Icons.close,

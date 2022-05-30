@@ -84,7 +84,7 @@ class _CountrySelectorState extends State<CountrySelector> {
             loading: () {
               return FormTextField(
                 name: CountrySelectorCubit.countryField,
-                hint: AppLocale.current.country_hint,
+                hint: AppLocale.of(context).country_hint,
                 readOnly: true,
               );
             },
@@ -94,8 +94,8 @@ class _CountrySelectorState extends State<CountrySelector> {
                 child: FormTextField(
                   focusListener: focusNode,
                   name: CountrySelectorCubit.countryField,
-                  label: AppLocale.current.country_hint,
-                  hint: AppLocale.current.country_hint,
+                  label: AppLocale.of(context).country_hint,
+                  hint: AppLocale.of(context).country_hint,
                   readOnly: true,
                 ),
               );
@@ -106,8 +106,8 @@ class _CountrySelectorState extends State<CountrySelector> {
                 child: FormTextField(
                   focusListener: focusNode,
                   name: CountrySelectorCubit.countryField,
-                  label: AppLocale.current.country_hint,
-                  hint: AppLocale.current.country_hint,
+                  label: AppLocale.of(context).country_hint,
+                  hint: AppLocale.of(context).country_hint,
                   readOnly: true,
                   onTap: showOverlay,
                 ),
@@ -117,7 +117,7 @@ class _CountrySelectorState extends State<CountrySelector> {
               return FormTextField(
                 focusListener: focusNode,
                 name: CountrySelectorCubit.countryField,
-                hint: AppLocale.current.country_hint,
+                hint: AppLocale.of(context).country_hint,
                 readOnly: true,
               );
             },

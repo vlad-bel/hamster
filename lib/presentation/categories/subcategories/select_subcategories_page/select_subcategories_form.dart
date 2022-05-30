@@ -29,9 +29,9 @@ class SelectSubCategoriesForm extends StatelessWidget {
           hasScroll: false,
           children: OnboardingWhiteContainer(
             header: OnboardingWhiteContainerHeader(
-              header: AppLocale.current.select_subcategories,
+              header: AppLocale.of(context).select_subcategories,
               subHeader: Text(
-                AppLocale.current.select_subcategories_descr,
+                AppLocale.of(context).select_subcategories_descr,
                 style: inter14,
               ),
             ),
@@ -46,7 +46,7 @@ class SelectSubCategoriesForm extends StatelessWidget {
                               width: 350,
                               height: 246,
                               child: BorderedContainer(
-                                title: AppLocale.current.subcategory,
+                                title: AppLocale.of(context).subcategory,
                                 child: SelectedSubcategoryList(),
                               ),
                             ),
@@ -64,7 +64,7 @@ class SelectSubCategoriesForm extends StatelessWidget {
                       SubcategoriesPage.path,
                     );
                   },
-                  label: AppLocale.current.add_subcategory,
+                  label: AppLocale.of(context).add_subcategory,
                 ),
                 SizedBox(height: 36),
                 Row(
@@ -73,7 +73,7 @@ class SelectSubCategoriesForm extends StatelessWidget {
                     WhiteButton(
                       width: 162,
                       child: Text(
-                        AppLocale.current.return_button,
+                        AppLocale.of(context).return_button,
                         style: inter14.copyWith(
                           color: denim,
                         ),
@@ -91,7 +91,7 @@ class SelectSubCategoriesForm extends StatelessWidget {
                           ) ??
                           false,
                       child: Text(
-                        AppLocale.current.continue_button,
+                        AppLocale.of(context).continue_button,
                         style: inter14.copyWith(
                           color: white,
                         ),

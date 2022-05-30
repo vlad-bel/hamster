@@ -70,9 +70,9 @@ class _BranchProfileView extends StatelessWidget {
           children: Column(
             children: [
               BranchProfileContainerWhite(
-                headerLeft: Text(AppLocale.current.branch_profile),
+                headerLeft: Text(AppLocale.of(context).branch_profile),
                 headerRight: Text(
-                  AppLocale.current.branch_id(0001),
+                  AppLocale.of(context).branch_id(0001),
                 ),
                 body: Column(
                   children: [
@@ -100,13 +100,13 @@ class _BranchProfileView extends StatelessWidget {
               // Branch category:
               const SizedBox(height: 16),
               BranchProfileContainerWhite(
-                headerLeft: Text(AppLocale.current.branch_category),
+                headerLeft: Text(AppLocale.of(context).branch_category),
                 body: BranchProfileCategories(),
               ),
               // Branch equipment:
               const SizedBox(height: 16),
               BranchProfileContainerWhite(
-                headerLeft: Text(AppLocale.current.branch_equipment),
+                headerLeft: Text(AppLocale.of(context).branch_equipment),
                 body: Column(
                   children: [
                     ListView.builder(
@@ -134,7 +134,7 @@ class _BranchProfileView extends StatelessWidget {
                             ),
                             const SizedBox(width: 4),
                             Text(
-                              AppLocale.current.add_bank_details,
+                              AppLocale.of(context).add_bank_details,
                               style: inter14.copyWith(
                                 color: denim1,
                               ),
