@@ -23,7 +23,7 @@ dependencies:
 
   # Tools:
   intl: ^0.17.0
-  reactive_forms: ^12.0.0
+  reactive_forms: ^13.0.0
 
 
   # Network:

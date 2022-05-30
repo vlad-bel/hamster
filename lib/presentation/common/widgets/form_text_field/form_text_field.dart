@@ -21,6 +21,7 @@ class FormTextField extends StatefulWidget {
     this.controller,
     this.focusListener,
     this.onTap,
+    this.onEditingComplete,
     this.customSuffix,
     this.customPrefix,
     this.prefixIcon,
@@ -33,6 +34,7 @@ class FormTextField extends StatefulWidget {
     this.focusColor,
     this.fillColor,
     this.initialText,
+    this.showErrors,
   }) : super(key: key);
 
   final String? name;
@@ -43,10 +45,12 @@ class FormTextField extends StatefulWidget {
   final bool obscureText;
   final bool readOnly;
   final bool reactive;
+  final bool? showErrors;
   final TextInputAction textInputAction;
   final TextEditingController? controller;
   final FocusNode? focusListener;
   final VoidCallback? onTap;
+  final VoidCallback? onEditingComplete;
   final Widget? customSuffix;
   final Widget? customPrefix;
   final Widget? prefixIcon;
@@ -175,6 +179,9 @@ class _FormTextFieldState extends State<FormTextField>
           controller: _controller,
           focusNode: _focusListener,
           onTap: widget.onTap,
+          onEditingComplete: widget.onEditingComplete,
+          showErrors:
+              widget.showErrors == null ? null : (_) => widget.showErrors!,
           readOnly: widget.readOnly,
           maxLength: widget.maxLength,
           inputFormatters: widget.inputFormatters,
@@ -190,6 +197,7 @@ class _FormTextFieldState extends State<FormTextField>
           controller: _controller,
           focusNode: widget.focusListener,
           onTap: widget.onTap,
+          onEditingComplete: widget.onEditingComplete,
           readOnly: widget.readOnly,
           maxLength: widget.maxLength,
           inputFormatters: widget.inputFormatters,

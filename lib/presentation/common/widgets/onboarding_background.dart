@@ -17,29 +17,32 @@ class OnboardingBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            Assets.imagesBackgroundImageSignUp,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ),
-          SingleChildScrollView(
-            physics: !hasScroll
-                ? NeverScrollableScrollPhysics()
-                : AlwaysScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                OnboardingAppbar(showLanguageDropdown: showLanguageDropdown),
-                Center(
-                  child: children,
-                ),
-              ],
+    return GestureDetector(
+      onTap: FocusScope.of(context).unfocus,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Image.asset(
+              Assets.imagesBackgroundImageSignUp,
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.cover,
             ),
-          ),
-        ],
+            SingleChildScrollView(
+              physics: !hasScroll
+                  ? NeverScrollableScrollPhysics()
+                  : AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  OnboardingAppbar(showLanguageDropdown: showLanguageDropdown),
+                  Center(
+                    child: children,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
