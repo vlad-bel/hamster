@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 
 class Triangle extends StatelessWidget {
   const Triangle({
-    Key? key,
+    super.key,
     required this.color,
-  }) : super(key: key);
+  });
+
   final Color color;
 
   @override

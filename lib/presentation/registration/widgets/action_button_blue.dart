@@ -1,19 +1,24 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:flutter/material.dart';
 
 class ActionButtonBlue extends StatelessWidget {
   const ActionButtonBlue({
-    Key? key,
+    super.key,
     this.isEnabled = false,
+    this.width,
     required this.onPressed,
-  }) : super(key: key);
+    this.child,
+  });
 
   final bool isEnabled;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
+  final double? width;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 145,
+      width: width ?? 145,
       height: 37,
       child: ElevatedButton(
         style: ButtonStyle(
@@ -25,13 +30,16 @@ class ActionButtonBlue extends StatelessWidget {
           ),
           textStyle: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.disabled)) {
-              return const TextStyle(color: Color(0x66676f86));
+              return const TextStyle(color: Color(0xff676f86));
             }
             return const TextStyle(color: Colors.white);
           }),
         ),
         onPressed: isEnabled ? onPressed : null,
-        child: const Text('WEITER'),
+        child: child ??
+            Text(
+              AppLocale.of(context).next.toUpperCase(),
+            ),
       ),
     );
   }

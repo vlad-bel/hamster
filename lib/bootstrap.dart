@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:business_terminal/domain/dependency_injection/di.dart';
+import 'package:business_terminal/app/utils/l10n/generated/l10n.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:flutter/widgets.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -24,12 +25,18 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
-  DI.initializeDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
+  for (final element in S.delegate.supportedLocales) {
+    await S.load(element);
+  }
+  configureDependencies();
 
   await runZonedGuarded(
     () async {
       await BlocOverrides.runZoned(
-        () async => runApp(await builder()),
+        () async => runApp(
+          await builder(),
+        ),
         blocObserver: AppBlocObserver(),
       );
     },

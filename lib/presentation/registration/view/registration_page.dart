@@ -1,17 +1,19 @@
 // TODO: remove when code is finalized
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:business_terminal/domain/dependency_injection/di.dart';
-import 'package:business_terminal/domain/use_cases/registration/user_info_init/user_info_init.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/horizontal_line_short_grey.dart';
+import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/language_dropdown.dart';
 import 'package:business_terminal/presentation/common/widgets/text_title.dart';
+import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
+import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
-import 'package:business_terminal/presentation/registration/widgets/form_text_field.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,19 +22,21 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class RegistrationPage extends StatelessWidget {
-  const RegistrationPage({Key? key}) : super(key: key);
+  const RegistrationPage({super.key});
+
+  static const path = '/registration';
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => UserInfoInitCubit(get<UserInfoInitUseCase>()),
+      create: (_) => getIt<UserInfoInitCubit>(),
       child: const RegistrationView(),
     );
   }
 }
 
 class RegistrationView extends StatelessWidget {
-  const RegistrationView({Key? key}) : super(key: key);
+  const RegistrationView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,7 @@ class RegistrationView extends StatelessWidget {
 }
 
 class RegistrationBodyView extends StatefulWidget {
-  const RegistrationBodyView({Key? key}) : super(key: key);
+  const RegistrationBodyView({super.key});
 
   @override
   State<RegistrationBodyView> createState() => _RegistrationBodyViewState();
@@ -52,6 +56,7 @@ class RegistrationBodyView extends StatefulWidget {
 class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   TextEditingController? _controllerPassword;
   final FocusNode _focusListenerPassword = FocusNode();
+  final FocusNode _focusListenerPasswordConfirmation = FocusNode();
 
   final formSettings = FormSettingsRegistrationUserInfo();
 
@@ -61,7 +66,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
 
     _focusListenerPassword.addListener(() {
       context.read<UserInfoInitCubit>().setVisibilityPasswordValidation(
-            isVisible: _focusListenerPassword.hasFocus,
+            isVisible: true,
           );
     });
 
@@ -71,7 +76,8 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   @override
   Widget build(BuildContext context) {
     final subtitleText = Text(
-      'Registrieren Sie sich jetzt, um Teil des deutschlandweiten Netzwerks zu werden.',
+      'Registrieren Sie sich jetzt, um'
+      ' Teil des deutschlandweiten Netzwerks zu werden.',
     );
 
     return Stack(
@@ -92,13 +98,20 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
             ),
           ),
         ),
+        Align(
+          alignment: Alignment.topRight,
+          child: Padding(
+            padding: const EdgeInsets.all(33),
+            child: LanguageDropdown(),
+          ),
+        ),
         Stack(
           alignment: Alignment.center,
           children: [
             Align(
               child: SizedBox(
                 width: 390,
-                child: Container(
+                child: ColoredBox(
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(35),
@@ -121,7 +134,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                               children: [
                                 FormTextField(
                                   name: formSettings.kFieldName,
-                                  hint: 'Vor- und Nachname',
+                                  label: 'Vorname eingeben',
                                   validationMessages: (control) =>
                                       formSettings.validationMessageNameSurname,
                                   keyboardType: TextInputType.name,
@@ -129,7 +142,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 Container(height: 18),
                                 FormTextField(
                                   name: formSettings.kFieldSurname,
-                                  hint: 'Nachnamen eingeben',
+                                  label: 'Nachname eingeben',
                                   validationMessages: (control) =>
                                       formSettings.validationMessageNameSurname,
                                   keyboardType: TextInputType.name,
@@ -137,7 +150,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 Container(height: 18),
                                 FormTextField(
                                   name: formSettings.kFieldEmail,
-                                  hint: 'E-Mail',
+                                  label: 'E-Mail',
                                   validationMessages: (control) =>
                                       formSettings.validationMessageEmail,
                                   keyboardType: TextInputType.emailAddress,
@@ -145,7 +158,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 Container(height: 18),
                                 FormTextField(
                                   name: formSettings.kFieldPassword,
-                                  hint: 'Passwort wählen',
+                                  label: 'Passwort wählen',
                                   validationMessages: (control) =>
                                       formSettings.validationMessagePassword,
                                   keyboardType: TextInputType.text,
@@ -156,12 +169,14 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                 Container(height: 18),
                                 FormTextField(
                                   name: formSettings.kFieldPasswordConfirmation,
-                                  hint: 'Passwort wählen',
+                                  label: 'Passwort wiederholen',
                                   validationMessages: (control) =>
                                       formSettings.validationMessagePassword,
                                   keyboardType: TextInputType.text,
                                   obscureText: true,
                                   textInputAction: TextInputAction.done,
+                                  focusListener:
+                                      _focusListenerPasswordConfirmation,
                                 ),
                                 Container(height: 28),
 
@@ -170,24 +185,33 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    WhiteButton(),
-                                    BlocListener<UserInfoInitCubit,
-                                        UserInfoInitState>(
-                                      listener:
-                                          (context, UserInfoInitState state) {
-                                        if (state is LoadingUserInfoInit) {
-                                          context.loaderOverlay.show();
-                                        } else {
-                                          context.loaderOverlay.hide();
-                                        }
-
-                                        if (state is ErrorUserInfoInit) {
-                                          showErrorSnackbar();
-                                        }
+                                    WhiteButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
                                       },
-                                      child: ReactiveFormConsumer(
-                                        builder: (context, formGroup, child) {
-                                          return ActionButtonBlue(
+                                    ),
+                                    ReactiveFormConsumer(
+                                      builder: (context, formGroup, child) {
+                                        return BlocListener<UserInfoInitCubit,
+                                            UserInfoInitState>(
+                                          listener: (
+                                            context,
+                                            UserInfoInitState state,
+                                          ) {
+                                            if (state is LoadingUserInfoInit) {
+                                              context.loaderOverlay.show();
+                                            } else {
+                                              context.loaderOverlay.hide();
+                                            }
+
+                                            if (state is ErrorUserInfoInit) {
+                                              showErrorSnackbar();
+                                            }
+                                            if (state is SuccessUserInfoInit) {
+                                              goToNextPage(context, form);
+                                            }
+                                          },
+                                          child: ActionButtonBlue(
                                             isEnabled: formGroup.valid,
                                             onPressed: () {
                                               onPressedRegister(
@@ -195,9 +219,9 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                                 formGroup,
                                               );
                                             },
-                                          );
-                                        },
-                                      ),
+                                          ),
+                                        );
+                                      },
                                     )
                                   ],
                                 ),
@@ -229,6 +253,7 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   child: PasswordValidationView(
                                     onPressed: onPressedClosePasswordValidation,
                                     controllerPassword: _controllerPassword,
+                                    focusNodePassword: _focusListenerPassword,
                                   ),
                                 ),
                                 const Align(
@@ -269,22 +294,23 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
           email,
           password,
         );
+  }
 
-    showProcessingDataSnackbar(context);
+  void goToNextPage(BuildContext context, FormGroup form) {
+    final email = form.value[formSettings.kFieldEmail] as String?;
+
+    Navigator.of(context).pushNamed(
+      EmailVerificationPage.path,
+      arguments: {
+        emailParam: email!,
+      },
+    );
   }
 
   void onPressedClosePasswordValidation() {
     context
         .read<UserInfoInitCubit>()
         .setVisibilityPasswordValidation(isVisible: false);
-  }
-
-  void showProcessingDataSnackbar(BuildContext context) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-    context.showSnackBar(
-      const SnackBar(content: Text('Processing Data...')),
-    );
   }
 
   void showErrorSnackbar() {

@@ -16,3 +16,17 @@ class TextTitle extends StatelessWidget {
     );
   }
 }
+
+class TextTitleWithSpannable extends StatelessWidget {
+  const TextTitleWithSpannable({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  final Widget title;
+
+  @override
+  Widget build(BuildContext context) {
+    return title;
+  }
+}

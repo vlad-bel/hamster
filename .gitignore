@@ -56,6 +56,10 @@ unlinked.ds
 unlinked_spec.ds
 .fvm/
 .build/
+**.freezed.dart
+**.g.dart
+**.config.dart
+**/generated_plugin_registrant.dart
 
 # Android related
 **/android/**/gradle-wrapper.jar
@@ -130,3 +134,11 @@ app.*.map.json
 .idea/dictionaries/
 
 pubspec.lock
+
+.firebase/hosting.YnVpbGQvd2Vi.cache
+
+# Hide all generated files
+*.g.dart
+
+# Except this one
+!lib/generated/locale_keys.g.dart

@@ -4,7 +4,7 @@ version: 0.1.0+1
 publish_to: none
 
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -13,13 +13,18 @@ dependencies:
     sdk: flutter
 
   # State management:
-  bloc: ^8.0.3
   flutter_bloc: ^8.0.1
-  freezed_annotation: ^0.14.2
+  freezed_annotation: ^2.0.3
+  equatable: ^2.0.3
+
+  # DI
+  injectable: ^1.5.0
+  flutter_dotenv: ^5.0.2
 
   # Tools:
   intl: ^0.17.0
   reactive_forms: ^12.0.0
+
 
   # Network:
   dio: 4.0.6
@@ -31,30 +36,64 @@ dependencies:
   logger: ^1.1.0
   dart_extensions: ^2.2.0
   dartz: ^0.10.1
+  flutter_secure_storage: ^5.0.2
+  iban: ^1.0.1
 
   # UI:
   flutter_svg: ^1.0.3
-  google_fonts: ^2.3.1
+  google_fonts: ^2.3.2
   black_hole_flutter: ^0.3.5
+  dropdown_button2: ^1.4.0
+  animated_custom_dropdown: ^1.2.0
+  hamster_widgets:
+    path: ../hamster_widgets
   cached_network_image:
   loader_overlay: ^2.0.6
   pinput: ^2.2.7
-
+  expandable: ^5.0.1
+  flutter_portal: ^1.0.0
+  data_table_2: ^2.2.2
+  dotted_border: ^2.0.0+2
+  json_annotation: ^4.5.0
 
 dev_dependencies:
   bloc_test: ^9.0.3
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
-  very_good_analysis: ^2.4.0
-
+  very_good_analysis: ^3.0.0
   retrofit_generator:
+
   build_runner: ^2.0.1
   json_serializable: ^6.1.5
-  freezed: ^0.14.2
+  freezed: ^2.0.3+1
+  injectable_generator: ^1.4.1
 
 flutter:
   uses-material-design: true
-  generate: true
+  generate: false
   assets:
     - assets/images/
+    - assets/translations/
+    - assets/images/flags/
+ 
+flutter_intl:
+  enabled: true # Required. Must be set to true to activate the plugin. Default: false
+  class_name: S # Optional. Sets the name for the generated localization class. Default: S
+  main_locale: en # Optional. Sets the main locale used for generating localization files. Provided value should consist of language code and optional script and country codes separated with underscore (e.g. 'en', 'en_GB', 'zh_Hans', 'zh_Hans_CN'). Default: en
+  arb_dir: assets/l10n # Optional. Sets the directory of your ARB resource files. Provided value should be a valid path on your system. Default: lib/l10n
+  output_dir: lib/app/utils/l10n/generated # Optional. Sets the directory of generated localization files. Provided value should be a valid path on your system. Default: lib/generated
+  use_deferred_loading: false # Optional. Must be set to true to generate localization code that is loaded with deferred loading. Default: false
+
+  localizely: # Optional settings if you use Localizely platform. Read more: https://localizely.com/flutter-localization-workflow
+    project_id: # Configured manually or through 'Connect to Localizely' command. Get it from the https://app.localizely.com/projects page.
+    branch: # Configured manually. Get it from the “Branches” page on the Localizely platform, in case branching is enabled and you want to use a non-main branch.
+    upload_overwrite: # Set to true if you want to overwrite translations with upload. Default: false
+    upload_as_reviewed: # Set to true if you want to mark uploaded translations as reviewed. Default: false
+    upload_tag_added: # Optional list of tags to add to new translations with upload (e.g. ['new', 'New translation']). Default: []
+    upload_tag_updated: # Optional list of tags to add to updated translations with upload (e.g. ['updated', 'Updated translation']). Default: []
+    upload_tag_removed: # Optional list of tags to add to removed translations with upload (e.g. ['removed', 'Removed translation']). Default: []
+    download_empty_as: # Set to empty|main|skip, to configure how empty translations should be exported from the Localizely platform. Default: empty
+    download_include_tags: # Optional list of tags to be downloaded (e.g. ['include', 'Include key']). If not set, all string keys will be considered for download. Default: []
+    download_exclude_tags: # Optional list of tags to be excluded from download (e.g. ['exclude', 'Exclude key']). If not set, all string keys will be considered for download. Default: []
+    ota_enabled: # Set to true if you want to use Localizely Over-the-air functionality. Default: false

@@ -2,11 +2,11 @@ import 'package:business_terminal/presentation/registration/widgets/check_box_ic
 import 'package:flutter/material.dart';
 
 extension StringValidators on String {
-  bool get containsUppercase => contains(RegExp(r'[A-Z]'));
+  bool get containsUppercase => contains(RegExp('[A-Z]'));
 
-  bool get containsLowercase => contains(RegExp(r'[a-z]'));
+  bool get containsLowercase => contains(RegExp('[a-z]'));
 
-  bool get containsNumbers => contains(RegExp(r'[0-9]'));
+  bool get containsNumbers => contains(RegExp('[0-9]'));
 
   bool get containsSpecialCharacters =>
       contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
@@ -16,11 +16,13 @@ class PasswordValidationView extends StatefulWidget {
   const PasswordValidationView({
     this.controllerPassword,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+    required this.focusNodePassword,
+    super.key,
+  });
 
   final TextEditingController? controllerPassword;
   final VoidCallback onPressed;
+  final FocusNode focusNodePassword;
 
   @override
   State<PasswordValidationView> createState() => _PasswordValidationViewState();
@@ -50,6 +52,7 @@ class _PasswordValidationViewState extends State<PasswordValidationView> {
   void initState() {
     super.initState();
     widget.controllerPassword?.addListener(passValidation);
+    widget.focusNodePassword.addListener(passValidation);
   }
 
   void passValidation() {
@@ -69,7 +72,7 @@ class _PasswordValidationViewState extends State<PasswordValidationView> {
     return SizedBox(
       height: 450,
       width: 310,
-      child: Container(
+      child: DecoratedBox(
         decoration: boxDecoration,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
@@ -89,7 +92,8 @@ class _PasswordValidationViewState extends State<PasswordValidationView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
+                    'Dein Passwort muss mindestens die \n'
+                    'nachfolgenden Kriterien erfüllen:',
                   ),
                   Container(height: 20),
                   CheckBoxIconGreen(
@@ -120,9 +124,7 @@ class _PasswordValidationViewState extends State<PasswordValidationView> {
                   Padding(
                     padding: const EdgeInsets.only(right: 28),
                     child: TextButton(
-                      onPressed: () {
-                        print('close pass validation window');
-                      },
+                      onPressed: () {},
                       child: const Text(
                         'Hinweis schließen',
                         style: TextStyle(color: Color(0xffe10054)),

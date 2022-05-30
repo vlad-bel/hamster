@@ -3,8 +3,13 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class FormSettingsRegistrationUserInfo {
   static const kNameSurnameMin = 2;
+  static const nameEmailMaxLength = 70;
   static const kMaxLength = 256;
   static const kPasswordValidationRuleMustMatch = 'mustMatch';
+  static const kPasswordValidationRuleValidPass = 'passwordValid';
+  final nameSurnameRegexp = RegExp(r"^[a-z ,.\'-]+$", caseSensitive: false);
+
+  ValidatorFunction get validPassword => PasswordValidator().validate;
 
   // Form fields:
   final kFieldName = 'name';
@@ -16,49 +21,60 @@ class FormSettingsRegistrationUserInfo {
   final Map<String, String> validationMessageNameSurname = {
     ValidationMessage.required: 'Should not be empty',
     ValidationMessage.minLength: 'Minimal length is $kNameSurnameMin',
-    ValidationMessage.maxLength: 'Maximal length is $kMaxLength'
+    ValidationMessage.maxLength: 'Maximal length is $nameEmailMaxLength',
+    ValidationMessage.pattern: 'Should not contain special characters'
   };
 
   final validationMessageEmail = {
     ValidationMessage.required: 'Should not be empty',
     ValidationMessage.email: 'Should be a valid email',
-    ValidationMessage.maxLength: 'Maximal length is $kMaxLength'
+    ValidationMessage.maxLength: 'Maximal length is $nameEmailMaxLength',
+    kPasswordValidationRuleValidPass: 'Password should be valid'
   };
 
   final validationMessagePassword = {
     ValidationMessage.required: 'Should not be empty',
+    ValidationMessage.maxLength: 'Maximal length is $kMaxLength',
     kPasswordValidationRuleMustMatch: 'Passwords should be the same',
+    kPasswordValidationRuleValidPass: 'Password should be valid'
   };
 
   FormGroup buildForm() {
+    final nameSurnameValidators = [
+      Validators.required,
+      Validators.minLength(kNameSurnameMin),
+      Validators.maxLength(nameEmailMaxLength),
+      Validators.pattern(nameSurnameRegexp)
+    ];
+
     return FormGroup(
       {
         kFieldName: FormControl<String>(
-          validators: [
-            Validators.required,
-            Validators.minLength(kNameSurnameMin),
-            Validators.maxLength(kMaxLength)
-          ],
+          validators: nameSurnameValidators,
         ),
         kFieldSurname: FormControl<String>(
-          validators: [
-            Validators.required,
-            Validators.minLength(kNameSurnameMin),
-            Validators.maxLength(kMaxLength)
-          ],
+          validators: nameSurnameValidators,
         ),
         kFieldEmail: FormControl<String>(
           validators: [
             Validators.required,
             Validators.email,
-            Validators.maxLength(kMaxLength)
+            Validators.maxLength(nameEmailMaxLength)
           ],
         ),
         kFieldPassword: FormControl<String>(
-          validators: [Validators.required],
+          validators: [
+            Validators.required,
+            Validators.maxLength(kMaxLength),
+            validPassword
+          ],
         ),
         kFieldPasswordConfirmation: FormControl<String>(
-          validators: [Validators.required],
+          validators: [
+            Validators.required,
+            Validators.maxLength(kMaxLength),
+            validPassword
+          ],
         )
       },
       validators: [_mustMatch(kFieldPassword, kFieldPasswordConfirmation)],
@@ -85,6 +101,25 @@ class FormSettingsRegistrationUserInfo {
 
       return null;
     };
+  }
+}
+
+// Checks all 5 rules for password (length, characters, numbers, etc)
+class PasswordValidator extends Validator<dynamic> {
+  @override
+  Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
+    final error = <String, dynamic>{
+      FormSettingsRegistrationUserInfo.kPasswordValidationRuleValidPass: true
+    };
+
+    final value = control.value as String?;
+    if (value == null) {
+      return error;
+    } else if (!isPasswordValid(value)) {
+      return error;
+    }
+
+    return null;
   }
 
   bool isPasswordValid(String password) {
