@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
@@ -156,13 +157,11 @@ Future pickAndCropImage(BuildContext context) async {
       context,
       CropperPage.path,
       arguments: {
-        CropperPage.pHeader: "Bearbeiten Sie Ihr Profilfoto.",
-        CropperPage.pSubheader:
-            'Wählen Sie den richtigen Bereich Ihres Profilfotos aus.',
+        CropperPage.pHeader: AppLocale.current.edit_photo,
+        CropperPage.pSubheader: AppLocale.current.edit_photo_descr,
         CropperPage.pImageForCrop: image,
       },
     );
-
 
     if (croppedImage != null) {
       return cubit.setImage(imageBytes: croppedImage);

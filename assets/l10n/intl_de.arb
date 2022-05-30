@@ -137,5 +137,7 @@
   "add_picture_for_branch": "Fügen Sie Bilder Ihrer Filiale hinzu.",
   "add_picture_for_branch_descr": "Wähle Sie Ihre Filialbilder aus und laden Sie sie hoch. Achten Sie darauf, dass die ausgewählten Bilddateien eine ausreichende Qualität haben.",
   "add_branch_picture": "Filialbild hinzufügen",
-  "to_save": "SPEICHERN"
+  "to_save": "SPEICHERN",
+  "edit_photo": "Bearbeiten Sie Ihr Profilfoto.",
+  "edit_photo_descr": "Wählen Sie den richtigen Bereich Ihres Profilfotos aus."
 }

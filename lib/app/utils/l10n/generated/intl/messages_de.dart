@@ -99,6 +99,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Teilen Sie uns mit, wie Ihr Unternehmen postalisch erreicht werden kann."),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
+        "edit_photo": MessageLookupByLibrary.simpleMessage(
+            "Bearbeiten Sie Ihr Profilfoto."),
+        "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie den richtigen Bereich Ihres Profilfotos aus."),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "finance": MessageLookupByLibrary.simpleMessage("Finanzen"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finanzen1"),

@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
@@ -55,9 +56,20 @@ class AuthorizedState extends AppState {
                 break;
               case CropperPage.path:
                 final imageForCrop =
-                    params![CropperPage.pImageForCrop] as Uint8List;
-                final header = params[CropperPage.pHeader] as String;
-                final subheader = params[CropperPage.pSubheader] as String;
+                    params?[CropperPage.pImageForCrop] as Uint8List;
+                final header = params?[CropperPage.pHeader] as String;
+                final subheader = params?[CropperPage.pSubheader] as String;
+
+                window.sessionStorage[CropperPage.pImageForCrop] =
+                    String.fromCharCodes(imageForCrop);
+
+                window.sessionStorage[CropperPage.pHeader] = header;
+                window.sessionStorage[CropperPage.pSubheader] = subheader;
+
+                final imageBytes =
+                    window.sessionStorage[CropperPage.pImageForCrop]!.codeUnits;
+
+                final bytes = Uint8List.fromList(imageBytes);
 
                 page = buildPage(
                   requiredParams: [
@@ -66,9 +78,9 @@ class AuthorizedState extends AppState {
                     CropperPage.pSubheader,
                   ],
                   child: CropperPage(
-                    imageForCrop: imageForCrop,
-                    header: header,
-                    subheader: subheader,
+                    imageForCrop: bytes,
+                    header: window.sessionStorage[CropperPage.pHeader]!,
+                    subheader: window.sessionStorage[CropperPage.pSubheader]!,
                   ),
                 );
 

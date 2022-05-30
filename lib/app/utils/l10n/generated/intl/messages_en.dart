@@ -95,6 +95,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Let us know how your company can be reached by post."),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
+        "edit_photo":
+            MessageLookupByLibrary.simpleMessage("Edit your profile photo."),
+        "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
+            "Select the correct section of your profile photo."),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
