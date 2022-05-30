@@ -21,7 +21,7 @@ class ProfileAddLogoPage extends StatelessWidget {
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
           header: AppLocale.of(context).addYourCompanyLogo,
-          subHeader: Text(AppLocale.current.addYourCompanyLogoDescription),
+          subHeader: Text(AppLocale.of(context).addYourCompanyLogoDescription),
         ),
         body: Column(
           children: [

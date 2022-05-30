@@ -60,7 +60,7 @@ class MenuDropDown extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 onPressed: close,
                 child: Text(
-                  AppLocale.current.user_account,
+                  AppLocale.of(context).user_account,
                   style: inter14Medium,
                 ),
               ),
@@ -70,7 +70,7 @@ class MenuDropDown extends StatelessWidget {
                   Navigator.of(context).pushNamed(ChangePasswordPage.path);
                 },
                 child: Text(
-                  AppLocale.current.change_password,
+                  AppLocale.of(context).change_password,
                   style: inter14Medium,
                 ),
               ),
@@ -78,7 +78,7 @@ class MenuDropDown extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 onPressed: close,
                 child: Text(
-                  AppLocale.current.settings,
+                  AppLocale.of(context).settings,
                   style: inter14Medium,
                 ),
               ),
@@ -86,7 +86,7 @@ class MenuDropDown extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 onPressed: close,
                 child: Text(
-                  AppLocale.current.help_center,
+                  AppLocale.of(context).help_center,
                   style: inter14Medium,
                 ),
               ),
@@ -94,7 +94,7 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  AppLocale.current.cancel_register,
+                  AppLocale.of(context).cancel_register,
                   style: inter14Medium.copyWith(color: razzmatazz),
                 ),
                 onPressed: () {

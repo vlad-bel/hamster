@@ -52,7 +52,7 @@ class _CategoriesListSearchState extends State<CategoriesListSearch> {
       child: FormTextField(
         focusListener: focusNode,
         name: CategoriesListCubit.searchFormField,
-        hint: AppLocale.current.search,
+        hint: AppLocale.of(context).search,
         keyboardType: TextInputType.text,
         prefixIcon: Padding(
           padding: const EdgeInsets.symmetric(

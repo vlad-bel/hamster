@@ -16,8 +16,8 @@ class PosListItem extends StatelessWidget {
           Expanded(
             flex: 250,
             child: FormTextField(
-              hint: AppLocale.current.cash_register_manufacturer,
-              label: AppLocale.current.cash_register_manufacturer,
+              hint: AppLocale.of(context).cash_register_manufacturer,
+              label: AppLocale.of(context).cash_register_manufacturer,
               // TODO(dvakhnin): integrate with BE
               initialText: 'Manufacturer',
               readOnly: true,
@@ -28,8 +28,8 @@ class PosListItem extends StatelessWidget {
           Expanded(
             flex: 250,
             child: FormTextField(
-              hint: AppLocale.current.model_if_known,
-              label: AppLocale.current.model_if_known,
+              hint: AppLocale.of(context).model_if_known,
+              label: AppLocale.of(context).model_if_known,
               // TODO(dvakhnin): integrate with BE
               initialText: 'Model',
               readOnly: true,
@@ -40,8 +40,8 @@ class PosListItem extends StatelessWidget {
           Expanded(
             flex: 150,
             child: FormTextField(
-              hint: AppLocale.current.number_of_registers,
-              label: AppLocale.current.number_of_registers,
+              hint: AppLocale.of(context).number_of_registers,
+              label: AppLocale.of(context).number_of_registers,
               // TODO(dvakhnin): integrate with BE
               initialText: 'Kassa $index',
               readOnly: true,

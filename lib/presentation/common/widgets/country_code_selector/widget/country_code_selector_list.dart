@@ -93,7 +93,7 @@ class _CountryList extends StatelessWidget {
                     formGroup: cubit.numberForm,
                     child: FormTextField(
                       name: CountryCodeSelectorCubit.filterTextfield,
-                      hint: AppLocale.current.country_name,
+                      hint: AppLocale.of(context).country_name,
                       customSuffix: CupertinoButton(
                         child: const Icon(
                           Icons.close,

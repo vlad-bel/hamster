@@ -46,9 +46,9 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
     }
   }
 
-  bool isFullyCompleted(RepCompany repCompany) {
-    const fullyCompleted = 100;
+  final fullyCompleted = 100;
 
+  bool isFullyCompleted(RepCompany repCompany) {
     return repCompany.rep?.fillingProgress == fullyCompleted &&
         repCompany.company?.fillingProgress == fullyCompleted &&
         repCompany.branch?.fillingProgress == fullyCompleted;

@@ -34,8 +34,8 @@ class _AddOpeningHoursForm extends StatelessWidget {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocale.current.add_branch_hours,
-          subHeader: Text(AppLocale.current.if_branch_closed_on_selected),
+          header: AppLocale.of(context).add_branch_hours,
+          subHeader: Text(AppLocale.of(context).if_branch_closed_on_selected),
         ),
         body: ReactiveFormBuilder(
           form: context.read<AddOpeningHoursCubit>().formSettings.buildForm,
@@ -60,7 +60,7 @@ class _AddOpeningHoursForm extends StatelessWidget {
                 const SizedBox(height: 16),
                 DashedButton(
                   onTap: () {},
-                  label: AppLocale.current.add_opening_time,
+                  label: AppLocale.of(context).add_opening_time,
                 ),
                 const SizedBox(height: 16),
                 const SizedBox(height: 32),
@@ -93,8 +93,8 @@ class _OpeningHoursRange extends StatelessWidget {
           Expanded(
             child: FormTextField(
               name: AddOpeningHoursFormSettings.opensField,
-              hint: AppLocale.current.opens,
-              label: AppLocale.current.opens,
+              hint: AppLocale.of(context).opens,
+              label: AppLocale.of(context).opens,
               inputFormatters: [
                 DateTextFormatter(),
               ],
@@ -110,8 +110,8 @@ class _OpeningHoursRange extends StatelessWidget {
           Expanded(
             child: FormTextField(
               name: AddOpeningHoursFormSettings.closedField,
-              hint: AppLocale.current.closes,
-              label: AppLocale.current.closes,
+              hint: AppLocale.of(context).closes,
+              label: AppLocale.of(context).closes,
               inputFormatters: [
                 DateTextFormatter(),
               ],
