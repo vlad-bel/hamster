@@ -121,12 +121,20 @@ class OpeningHours {
   @JsonKey(name: 'friday')
   final List<OpeningHourItem> friday;
 
+  @JsonKey(name: 'saturday')
+  final List<OpeningHourItem> saturday;
+
+  @JsonKey(name: 'sunday')
+  final List<OpeningHourItem> sunday;
+
   OpeningHours(
     this.monday,
     this.tuesday,
     this.wednesday,
     this.thursday,
     this.friday,
+    this.saturday,
+    this.sunday,
   );
 
   factory OpeningHours.fromJson(Map<String, dynamic> json) =>
