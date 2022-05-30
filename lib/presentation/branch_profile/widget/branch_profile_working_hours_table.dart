@@ -23,7 +23,7 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BorderedEditContainer(
-      title: AppLocale.current.opening_hours,
+      title: AppLocale.of(context).opening_hours,
       onEditTap: () {
         authNavigatorKey.currentState?.pop();
       },
@@ -37,32 +37,32 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: <TableRow>[
             buildTableRow(
-              AppLocale.current.monday,
-              Text(AppLocale.current.closed),
+              AppLocale.of(context).monday,
+              Text(AppLocale.of(context).closed),
             ),
             buildTableRow(
-              AppLocale.current.tuesday,
-              Text(AppLocale.current.closed),
+              AppLocale.of(context).tuesday,
+              Text(AppLocale.of(context).closed),
             ),
             buildTableRow(
-              AppLocale.current.wednesday,
-              Text(AppLocale.current.closed),
+              AppLocale.of(context).wednesday,
+              Text(AppLocale.of(context).closed),
             ),
             buildTableRow(
-              AppLocale.current.thursday,
-              Text(AppLocale.current.closed),
+              AppLocale.of(context).thursday,
+              Text(AppLocale.of(context).closed),
             ),
             buildTableRow(
-              AppLocale.current.friday,
-              Text(AppLocale.current.closed),
+              AppLocale.of(context).friday,
+              Text(AppLocale.of(context).closed),
             ),
             buildTableRow(
-              AppLocale.current.saturday,
-              Text(AppLocale.current.closed),
+              AppLocale.of(context).saturday,
+              Text(AppLocale.of(context).closed),
             ),
             buildTableRow(
-              AppLocale.current.sunday,
-              Text(AppLocale.current.closed),
+              AppLocale.of(context).sunday,
+              Text(AppLocale.of(context).closed),
             ),
           ],
         ),

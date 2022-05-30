@@ -39,7 +39,7 @@ class PaymentInfo extends StatelessWidget {
         children: [
           if (formConsumer == null)
             Text(
-              AppLocale.current.payment_information,
+              AppLocale.of(context).payment_information,
               style: inter16SemiBold,
             ),
           const SizedBox(height: 24),
@@ -74,16 +74,16 @@ class PaymentInfo extends StatelessWidget {
               children: [
                 FormTextField(
                   name: AddPaymentFormSettings.kAccountOwnerField,
-                  hint: AppLocale.current.account_owner,
-                  label: AppLocale.current.account_owner,
+                  hint: AppLocale.of(context).account_owner,
+                  label: AppLocale.of(context).account_owner,
                   validationMessages: (control) =>
                       AddPaymentFormSettings.validationMessageAccountOwner,
                 ),
                 const SizedBox(height: 16),
                 FormTextField(
                   name: AddPaymentFormSettings.kIbanField,
-                  hint: AppLocale.current.iban,
-                  label: AppLocale.current.iban,
+                  hint: AppLocale.of(context).iban,
+                  label: AppLocale.of(context).iban,
                   inputFormatters: [
                     IbanInputFormatter(),
                   ],
@@ -97,7 +97,7 @@ class PaymentInfo extends StatelessWidget {
                       UiCheckbox(
                         name: AddPaymentFormSettings.kAcceptCheckBox,
                         title: Text(
-                          AppLocale.current.i_authorize_collect_payment,
+                          AppLocale.of(context).i_authorize_collect_payment,
                           style: inter12,
                         ),
                         position: Position.left,

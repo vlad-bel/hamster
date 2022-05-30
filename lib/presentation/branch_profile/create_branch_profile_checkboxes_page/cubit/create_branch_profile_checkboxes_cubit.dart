@@ -15,7 +15,7 @@ enum CompanyDataCommonFieldsWithBranchData {
 typedef CreateBranchProfileCheckboxesData
     = Map<CompanyDataCommonFieldsWithBranchData, bool>;
 
-@Singleton()
+@injectable
 class CreateBranchProfileCheckboxesCubit
     extends Cubit<CreateBranchProfileCheckboxesState> {
   CreateBranchProfileCheckboxesCubit()

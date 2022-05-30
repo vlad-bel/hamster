@@ -34,7 +34,7 @@ class WhiteButton extends StatelessWidget {
         onPressed: onPressed,
         child: child ??
             Text(
-              AppLocale.current.return_button,
+              AppLocale.of(context).return_button,
               style: const TextStyle(
                 color: denim1,
               ),

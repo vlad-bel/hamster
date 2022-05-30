@@ -37,8 +37,8 @@ class _AddOpeningHoursForm extends StatelessWidget {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocale.current.add_branch_hours,
-          subHeader: Text(AppLocale.current.if_branch_closed_on_selected),
+          header: AppLocale.of(context).add_branch_hours,
+          subHeader: Text(AppLocale.of(context).if_branch_closed_on_selected),
         ),
         body: ReactiveFormBuilder(
           form: () =>

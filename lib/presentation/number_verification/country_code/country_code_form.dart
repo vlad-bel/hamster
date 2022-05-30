@@ -25,9 +25,9 @@ class ContryCodeForm extends StatelessWidget {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocale.current.confirm_number_title,
+          header: AppLocale.of(context).confirm_number_title,
           subHeader: Text(
-            AppLocale.current.select_number_title,
+            AppLocale.of(context).select_number_title,
           ),
         ),
         body: ReactiveFormBuilder(

@@ -36,8 +36,8 @@ class AddPosForm extends StatelessWidget {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocale.current.cash_register_system_used,
-          subHeader: Text(AppLocale.current.help_us_connect_branch),
+          header: AppLocale.of(context).cash_register_system_used,
+          subHeader: Text(AppLocale.of(context).help_us_connect_branch),
         ),
         body: ReactiveFormBuilder(
           form: formSettings.buildForm,
@@ -51,16 +51,16 @@ class AddPosForm extends StatelessWidget {
                 const SizedBox(height: 32),
                 FormTextField(
                   name: AddPosFormSettings.cashRegisterField,
-                  hint: AppLocale.current.cash_register_manufacturer,
-                  label: AppLocale.current.cash_register_manufacturer,
+                  hint: AppLocale.of(context).cash_register_manufacturer,
+                  label: AppLocale.of(context).cash_register_manufacturer,
                   validationMessages: (control) =>
                       formSettings.validationMessageCashRegister,
                 ),
                 const SizedBox(height: 16),
                 FormTextField(
                   name: AddPosFormSettings.modelField,
-                  hint: AppLocale.current.model_if_known,
-                  label: AppLocale.current.model_if_known,
+                  hint: AppLocale.of(context).model_if_known,
+                  label: AppLocale.of(context).model_if_known,
                   validationMessages: (control) =>
                       formSettings.validationMessageModel,
                 ),
