@@ -42,6 +42,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   void initState() {
     super.initState();
     _newPasswordController = TextEditingController();
+    _oldPasswordController = TextEditingController();
     _newPasswordConfirmationController = TextEditingController();
   }
 
