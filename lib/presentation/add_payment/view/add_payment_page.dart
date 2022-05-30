@@ -37,6 +37,7 @@ class AddPaymentPage extends StatelessWidget {
               },
             ),
           ),
+          onTap: () {},
         ),
       ),
     );

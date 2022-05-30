@@ -1,5 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
@@ -36,7 +37,7 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
           child: Column(
             children: [
               MenuItem(
-                image: '/images/finanzen.svg',
+                image: Assets.imagesFinanzen,
                 name: 'Finanzen',
                 initialRouteName: 'finance',
                 selectedRoute: widget.selectedPage,
@@ -67,7 +68,7 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
                   final count =
                       state.whenOrNull(init: (count, _, __, ___) => count);
                   return MenuItem(
-                    image: '/images/administration.svg',
+                    image: Assets.imagesAdministration,
                     name: 'Administration',
                     initialRouteName: 'administration',
                     selectedRoute: widget.selectedPage,

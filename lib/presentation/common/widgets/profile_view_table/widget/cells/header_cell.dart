@@ -1,4 +1,5 @@
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -27,11 +28,15 @@ class HeaderCell extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset('images/arrow_up.svg'),
+                SvgPicture.asset(
+                  Assets.imagesArrowUp,
+                ),
                 SizedBox(
                   height: 2,
                 ),
-                SvgPicture.asset('images/arrow_down.svg'),
+                SvgPicture.asset(
+                  Assets.imagesArrowDown,
+                ),
               ],
             ),
           )

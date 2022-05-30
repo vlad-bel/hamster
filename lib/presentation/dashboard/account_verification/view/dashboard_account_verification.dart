@@ -58,7 +58,6 @@ class _AccountVerificationView extends StatelessWidget {
 
 class _AccountVerificationContent extends StatelessWidget {
   _AccountVerificationContent({
-    super.key,
     this.isAcceptedDataIsCorrect,
     this.isFullyCompleted,
     this.progressUserAccount,

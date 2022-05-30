@@ -11,9 +11,9 @@ import 'package:flutter/material.dart';
 
 class CompanyBranchTableWithData extends StatelessWidget {
   const CompanyBranchTableWithData(
-      this.repCompany, {
-        Key? key,
-      }) : super(key: key);
+    this.repCompany, {
+    Key? key,
+  }) : super(key: key);
 
   final RepCompany? repCompany;
 

@@ -1,6 +1,7 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/generated/assets.dart';
@@ -11,6 +12,7 @@ import 'package:business_terminal/presentation/common/widgets/add_logo/add_logo_
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/header_app_bar/header_app_bar_widget.dart';
@@ -18,10 +20,10 @@ import 'package:business_terminal/presentation/common/widgets/payment_info.dart'
 import 'package:business_terminal/presentation/dashboard/profile/profile_add_logo/view/profile_add_logo.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/cubit/profile_edit_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
+import 'package:business_terminal/presentation/dashboard/profive_viewing/cubit/profile_viewing_cubit.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -48,7 +50,6 @@ class _ProfileEditView extends StatefulWidget {
 class _ProfileEditViewState extends State<_ProfileEditView> {
   @override
   Widget build(BuildContext context) {
-    final profileEditCubit = context.read<ProfileEditCubit>();
     return Scaffold(
       body: Stack(
         children: [
@@ -58,16 +59,23 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
             width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
           ),
-          BlocProvider(
-            create: (BuildContext context) {
-              return GetIt.instance.get<CountrySelectorCubit>();
-            },
+          MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) =>
+                    getIt.get<CountrySelectorCubit>()..getCountryList(),
+              ),
+              BlocProvider(
+                create: (_) => getIt.get<ProfileEditCubit>()..getInitialData(),
+              ),
+            ],
             child: BlocBuilder<CountrySelectorCubit, CountrySelectorState>(
               builder: (context, state) {
                 final countrySelectorCubit =
                     BlocProvider.of<CountrySelectorCubit>(
                   context,
                 );
+                final profileEditCubit = context.read<ProfileEditCubit>();
 
                 return ReactiveFormBuilder(
                   form: profileEditCubit.profileEditFormSettings.buildForm,
@@ -121,7 +129,27 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                                       AppLocale.of(context).error,
                                     );
                                   },
-                                  success: () {
+                                  success: () async {
+                                    final fetchRepCompany =
+                                        await profileEditCubit.companyUsecase
+                                            .fetchRepCompany();
+                                    if (fetchRepCompany.company?.id != null) {
+                                      await profileEditCubit.companyUsecase
+                                          .fetchCompany(
+                                        companyId: fetchRepCompany.company!.id!,
+                                      );
+                                    }
+
+                                    await getIt
+                                        .get<ProfileViewingCubit>()
+                                        .getInitialData();
+                                    if (!mounted) return;
+                                    context
+                                        .read<DashboardCubit>()
+                                        .updateRepCompany(
+                                          fetchRepCompany,
+                                        );
+
                                     SnackBarManager.showSuccess(
                                       AppLocale.of(context).success,
                                     );
@@ -375,7 +403,7 @@ class _ProfileEditContent extends StatelessWidget {
                               name: ProfileEditFormSettings.kVatId,
                             ),
                             hint: Intl.message(
-                              'hint',
+                              ProfileEditFormSettings.kVatId,
                               name: ProfileEditFormSettings.kVatId,
                             ),
                           ),
@@ -395,7 +423,15 @@ class _ProfileEditContent extends StatelessWidget {
                     decoration: const BoxDecoration(
                       color: white,
                     ),
-                    child: GestureDetector(
+                    child: PaymentInfo(
+                      accountOwner: profileEditCubit.getControlValue(
+                            ProfileEditFormSettings.kAccountOwner,
+                          ) ??
+                          '',
+                      iban: profileEditCubit.getControlValue(
+                            ProfileEditFormSettings.kIban,
+                          ) ??
+                          '',
                       onTap: () async {
                         final result = await Navigator.pushNamed(
                           context,
@@ -405,16 +441,6 @@ class _ProfileEditContent extends StatelessWidget {
                         if (result == null) return;
                         await profileEditCubit.updatePaymentData(result);
                       },
-                      child: PaymentInfo(
-                        accountOwner: profileEditCubit.getControlValue(
-                              ProfileEditFormSettings.kAccountOwner,
-                            ) ??
-                            '',
-                        iban: profileEditCubit.getControlValue(
-                              ProfileEditFormSettings.kIban,
-                            ) ??
-                            '',
-                      ),
                     ),
                   ),
                 ],

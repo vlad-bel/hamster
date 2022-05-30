@@ -5,6 +5,7 @@ import 'package:business_terminal/presentation/common/widgets/dashboard/widget/s
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/top_menu.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/view/dashboard_account_verification.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/view/profile_viewing.dart';
+import 'package:business_terminal/presentation/navigation/unknown_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -118,7 +119,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                 transitionDuration: Duration.zero,
                                 reverseTransitionDuration: Duration.zero,
                                 pageBuilder: (context, anim1, anim2) {
-                                  return page!;
+                                  return UnknownPage(
+                                    path: settings.name ?? 'unknown path',
+                                  );
                                 },
                                 settings: settings,
                               );
@@ -151,7 +154,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                 transitionDuration: Duration.zero,
                                 reverseTransitionDuration: Duration.zero,
                                 pageBuilder: (context, anim1, anim2) {
-                                  return page!;
+                                  return page ??
+                                      UnknownPage(
+                                        path: settings.name ?? 'unknown path',
+                                      );
                                 },
                                 settings: settings,
                               );
