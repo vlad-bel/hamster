@@ -1,6 +1,7 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/presentation/add_opening_hours/view/add_opening_hours_page.dart';
 import 'package:business_terminal/presentation/common/widgets/checkbox/ui_checkbox.dart';
 import 'package:business_terminal/presentation/common/widgets/form_consumer.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
@@ -110,8 +111,18 @@ class PickDayForm extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 FormConsumer(
-                  onTap: (form) {
-                    // TODO(dvakhnin): Form behaviour
+                  onTap: (form) async {
+                    final result = await Navigator.pushNamed(
+                      context,
+                      AddOpeningHoursPage.path,
+                    ) as List<Map<String, String>>?;
+
+                    if (result == null) return;
+
+                    form.controls.forEach((key, value) {
+                      final control = value.value as bool;
+                      if (control) {}
+                    });
                   },
                 ),
               ],

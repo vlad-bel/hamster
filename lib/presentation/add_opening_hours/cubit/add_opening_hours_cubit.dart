@@ -60,7 +60,8 @@ class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
     state.whenOrNull(
       initial: (hourRange, error) {
         final openFieldName = '${AddOpeningHoursFormSettings.opensField}$item';
-        final closeFieldName = '${AddOpeningHoursFormSettings.closesField}$item';
+        final closeFieldName =
+            '${AddOpeningHoursFormSettings.closesField}$item';
 
         formSettings.openFields.remove(openFieldName);
         formSettings.closeFields.remove(closeFieldName);
@@ -128,6 +129,25 @@ class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
           formSettings.closeFields.last,
         ),
     ]);
+  }
+
+  List<Map<String, String>> openingHours() {
+    final hoursList = <Map<String, String>>[];
+
+    for (var i = 0; i < formSettings.openFields.length; i++) {
+      hoursList.add({
+        formSettings.formGroup
+                .control(formSettings.openFields[i])
+                .value
+                .toString():
+            formSettings.formGroup
+                .control(formSettings.closeFields[i])
+                .value
+                .toString(),
+      });
+    }
+
+    return hoursList;
   }
 }
 

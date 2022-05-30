@@ -1,12 +1,17 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/domain/temp/days_hours.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/widgets/bordered_container/bordered_edit_container.dart';
+import 'package:business_terminal/presentation/pick_day/view/pick_day_page.dart';
 import 'package:flutter/material.dart';
 
 class BranchProfileWorkingHoursTable extends StatelessWidget {
   const BranchProfileWorkingHoursTable({
     Key? key,
+    required this.hours,
   }) : super(key: key);
+
+  final DaysHours hours;
 
   TableRow buildTableRow(String dayOfWeek, Widget workingHours) {
     return TableRow(
@@ -24,9 +29,9 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return BorderedEditContainer(
       title: AppLocale.of(context).opening_hours,
-      onEditTap: () {
-        authNavigatorKey.currentState?.pop();
-      },
+      onEditTap: () => authNavigatorKey.currentState?.pushNamed(
+        PickDayPage.path,
+      ),
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Table(
@@ -36,37 +41,49 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
           },
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: <TableRow>[
-            buildTableRow(
+            _buildTableRow(
               AppLocale.of(context).monday,
-              Text(AppLocale.of(context).closed),
+              Text(hours.monday),
             ),
-            buildTableRow(
+            _buildTableRow(
               AppLocale.of(context).tuesday,
-              Text(AppLocale.of(context).closed),
+              Text(hours.tuesday),
             ),
-            buildTableRow(
+            _buildTableRow(
               AppLocale.of(context).wednesday,
-              Text(AppLocale.of(context).closed),
+              Text(hours.wednesday),
             ),
-            buildTableRow(
+            _buildTableRow(
               AppLocale.of(context).thursday,
-              Text(AppLocale.of(context).closed),
+              Text(hours.thursday),
             ),
-            buildTableRow(
+            _buildTableRow(
               AppLocale.of(context).friday,
-              Text(AppLocale.of(context).closed),
+              Text(hours.friday),
             ),
-            buildTableRow(
+            _buildTableRow(
               AppLocale.of(context).saturday,
-              Text(AppLocale.of(context).closed),
+              Text(hours.saturday),
             ),
-            buildTableRow(
+            _buildTableRow(
               AppLocale.of(context).sunday,
-              Text(AppLocale.of(context).closed),
+              Text(hours.sunday),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  TableRow _buildTableRow(String dayOfWeek, Widget workingHours) {
+    return TableRow(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Text(dayOfWeek),
+        ),
+        workingHours,
+      ],
     );
   }
 }

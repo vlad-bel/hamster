@@ -3,6 +3,7 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
+import 'package:business_terminal/domain/temp/days_hours.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
@@ -91,7 +92,12 @@ class _BranchProfileView extends StatelessWidget {
                         const SizedBox(width: 45),
 
                         /// Right side part:
-                        Expanded(child: BranchProfileWorkingHoursTable()),
+                        Expanded(
+                          child: BranchProfileWorkingHoursTable(
+                            hours: DaysHours(
+                                (state as InitBranchProfileState).hours),
+                          ),
+                        ),
                       ],
                     ),
                   ],

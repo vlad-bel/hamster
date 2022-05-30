@@ -1,4 +1,5 @@
 import 'package:business_terminal/domain/model/company/rep_company.dart';
+import 'package:business_terminal/presentation/add_opening_hours/view/add_opening_hours_page.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/view/create_branch_profile_checkboxes_page.dart';
@@ -13,6 +14,7 @@ import 'package:business_terminal/presentation/dashboard/profile/profile_add_log
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/unknown_page.dart';
+import 'package:business_terminal/presentation/pick_day/view/pick_day_page.dart';
 import 'package:flutter/material.dart';
 
 class AuthorizedState extends AppState {
@@ -89,6 +91,12 @@ class AuthorizedState extends AppState {
                 break;
               case SubcategoriesPage.path:
                 page = SubcategoriesPage();
+                break;
+              case PickDayPage.path:
+                page = PickDayPage();
+                break;
+              case AddOpeningHoursPage.path:
+                page = AddOpeningHoursPage();
                 break;
             }
 
