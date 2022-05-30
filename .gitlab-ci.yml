@@ -4,7 +4,7 @@ stages:
   - deploy
 
 clone:
-  image: alpine
+  image: bitnami/git
   stage: clone
   script:
     - git clone https://$GIT_USERNAME:$GIT_PASSWORD@bitbucket.org/raikjakschis/hamster_widgets.git
