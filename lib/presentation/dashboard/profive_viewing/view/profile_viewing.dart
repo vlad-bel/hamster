@@ -1,7 +1,10 @@
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/presentation/dashboard/profive_viewing/cubit/profile_viewing_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/view/company_branch_table.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/view/company_profile_table.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileViewing extends StatelessWidget {
   const ProfileViewing({super.key});
@@ -24,12 +27,42 @@ class CompanyProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: const [
-          CompanyProfileTable(),
-          SizedBox(height: 25),
-          CompanyBranchTable(),
-        ],
+      child: BlocProvider(
+        create: (BuildContext context) {
+          return getIt.get<ProfileViewingCubit>()..getInitialData();
+        },
+        child: BlocBuilder<ProfileViewingCubit, ProfileViewingState>(
+          buildWhen: (previous, current) {
+            return current is SuccessProfileViewingState ||
+                current is LoadingProfileViewingState;
+          },
+          builder: (context, state) {
+            return state.when(
+              error: (error) {
+                return SizedBox.shrink();
+              },
+              success: (company) {
+                return Column(
+                  children: [
+                    CompanyProfileTable(
+                      repCompany: company,
+                    ),
+                    const SizedBox(height: 25),
+                    const CompanyBranchTable(),
+                  ],
+                );
+              },
+              loading: () {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+              initial: () {
+                return SizedBox.shrink();
+              },
+            );
+          },
+        ),
       ),
     );
   }

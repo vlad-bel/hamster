@@ -4,11 +4,13 @@ import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
+import 'package:business_terminal/presentation/dashboard/account_verification/form_validation/dashboard_form_validation.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/widgets/account_verification_checkbox_with_button.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/widgets/account_verification_title_subtitle.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/widgets/dashboard_profile_feelup_percents_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class DashboardAccountVerificationPage extends StatelessWidget {
   const DashboardAccountVerificationPage({super.key});
@@ -32,21 +34,19 @@ class _AccountVerificationView extends StatelessWidget {
           builder: (context, state) {
             return state.when(
               initial: (
-                isAcceptedDataIsCorrect,
                 isFullyCompleted,
                 progressUserAccount,
                 progressCompanyProfile,
                 progressBranchProfile,
               ) =>
                   _AccountVerificationContent(
-                isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
                 isFullyCompleted: isFullyCompleted,
                 progressUserAccount: progressUserAccount,
                 progressCompanyProfile: progressCompanyProfile,
                 progressBranchProfile: progressBranchProfile,
               ),
               error: (ApiFailure error) {
-                return const _AccountVerificationContent();
+                return _AccountVerificationContent();
               },
             );
           },
@@ -57,7 +57,7 @@ class _AccountVerificationView extends StatelessWidget {
 }
 
 class _AccountVerificationContent extends StatelessWidget {
-  const _AccountVerificationContent({
+  _AccountVerificationContent({
     super.key,
     this.isAcceptedDataIsCorrect,
     this.isFullyCompleted,
@@ -71,6 +71,8 @@ class _AccountVerificationContent extends StatelessWidget {
   final int? progressUserAccount;
   final int? progressCompanyProfile;
   final int? progressBranchProfile;
+
+  final formSettings = DashboardFormValidation();
 
   @override
   Widget build(BuildContext context) {
@@ -124,9 +126,19 @@ class _AccountVerificationContent extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 45),
-        AccountVerificationCheckboxWithButton(
-          isFullyCompleted: isFullyCompleted ?? false,
-          isAcceptedDataIsCorrect: isAcceptedDataIsCorrect ?? false,
+        ReactiveFormBuilder(
+          form: formSettings.buildForm,
+          builder: (
+            BuildContext context,
+            FormGroup formGroup,
+            Widget? child,
+          ) {
+            return AccountVerificationCheckboxWithButton(
+              checkboxName: DashboardFormValidation.acceptCheckBox,
+              formGroup: formGroup,
+              isFullyCompleted: true, //isFullyCompleted ?? false,
+            );
+          },
         ),
       ],
     );

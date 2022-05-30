@@ -7,27 +7,31 @@ import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class FormTextField extends StatefulWidget {
-  const FormTextField(
-      {Key? key,
-      required this.name,
-      this.hint,
-      this.label,
-      this.validationMessages,
-      this.keyboardType,
-      this.obscureText = false,
-      this.readOnly = false,
-      this.textInputAction = TextInputAction.next,
-      this.controller,
-      this.focusListener,
-      this.onTap,
-      this.customSuffix,
-      this.customPrefix,
-      this.prefixIcon,
-      this.customBorder,
-      this.maxLength,
-      this.counter,
-      this.inputFormatters,
-      this.hintOverlayBuilder})
+  const FormTextField({Key? key,
+    this.name,
+    this.hint,
+    this.label,
+    this.validationMessages,
+    this.keyboardType,
+    this.obscureText = false,
+    this.readOnly = false,
+    this.reactive = true,
+    this.textInputAction = TextInputAction.next,
+    this.controller,
+    this.focusListener,
+    this.onTap,
+    this.customSuffix,
+    this.customPrefix,
+    this.prefixIcon,
+    this.customBorder,
+    this.maxLength,
+    this.counter,
+    this.inputFormatters,
+    this.hintOverlayBuilder,
+    this.suffix,
+    this.focusColor,
+    this.fillColor,
+    this.initialText,})
       : super(key: key);
 
   final String name;
@@ -37,6 +41,7 @@ class FormTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final bool obscureText;
   final bool readOnly;
+  final bool reactive;
   final TextInputAction textInputAction;
   final TextEditingController? controller;
   final FocusNode? focusListener;
@@ -44,11 +49,15 @@ class FormTextField extends StatefulWidget {
   final Widget? customSuffix;
   final Widget? customPrefix;
   final Widget? prefixIcon;
+  final Widget? suffix;
+  final Widget? suffix;
   final InputBorder? customBorder;
   final int? maxLength;
   final Widget? counter;
   final List<TextInputFormatter>? inputFormatters;
   final HintOverlayWidgetBuilder? hintOverlayBuilder;
+  final Color? focusColor;
+  final Color? fillColor;
 
   @override
   State<FormTextField> createState() => _FormTextFieldState();
@@ -83,7 +92,8 @@ class _FormTextFieldState extends State<FormTextField>
     }
   }
 
-  OutlineInputBorder get outlineInputBorder => const OutlineInputBorder(
+  OutlineInputBorder get outlineInputBorder =>
+      const OutlineInputBorder(
         borderSide: BorderSide(
           color: Color(0x4d676f86),
         ),
@@ -129,7 +139,10 @@ class _FormTextFieldState extends State<FormTextField>
 
     final inputDecoration = InputDecoration(
       border: widget.customBorder ?? outlineInputBorder,
+      enabledBorder: widget.customBorder ?? outlineInputBorder,
       hintText: widget.hint,
+      focusColor: widget.focusColor,
+      fillColor: widget.fillColor,
       labelText: widget.label,
       floatingLabelAlignment: FloatingLabelAlignment.start,
       floatingLabelStyle: inter12,
@@ -137,27 +150,44 @@ class _FormTextFieldState extends State<FormTextField>
       alignLabelWithHint: true,
       hintStyle: inter14.copyWith(color: lynch.withOpacity(0.3)),
       suffixIcon:
-          !widget.obscureText ? widget.customSuffix : showHidePasswordIcon,
+      !widget.obscureText ? widget.customSuffix : showHidePasswordIcon,
       prefix: widget.customPrefix,
       prefixIcon: widget.prefixIcon,
+      suffix: widget.suffix,
       counter: widget.counter,
     );
 
-    return CompositedTransformTarget(
-      link: hintLayerLink,
-      child: ReactiveTextField<String>(
-        formControlName: widget.name,
-        validationMessages: widget.validationMessages,
+    if (widget.reactive) {
+      return ReactiveTextField<String>(
+          formControlName: widget.name,
+          validationMessages: widget.validationMessages,
+          textInputAction: widget.textInputAction,
+          keyboardType: widget.keyboardType,
+          obscureText: _obscureText,
+          decoration: inputDecoration,
+          controller: widget.controller ?? TextEditingController()
+            ..text = widget.initialText ?? '',
+          focusNode: _focusListener,
+          onTap: widget.onTap,
+          readOnly: widget.readOnly,
+          maxLength: widget.maxLength,
+          inputFormatters: widget.inputFormatters,
+      );
+    } else {
+      return TextField(
         textInputAction: widget.textInputAction,
         keyboardType: widget.keyboardType,
         obscureText: _obscureText,
         decoration: inputDecoration,
-        controller: widget.controller,
-        focusNode: _focusListener,
+        controller: widget.controller ?? TextEditingController()
+          ..text = widget.initialText ?? '',
+        focusNode: widget.focusListener,
         onTap: widget.onTap,
         readOnly: widget.readOnly,
         maxLength: widget.maxLength,
         inputFormatters: widget.inputFormatters,
+      );
+    }
       ),
     );
   }

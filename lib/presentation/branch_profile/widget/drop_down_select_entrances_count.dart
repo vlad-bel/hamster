@@ -28,7 +28,10 @@ class EntrancesCountGenerator {
       entrancesMaxCount,
       (i) {
         final value = i + 1;
-        return PlaceEntranceCount(value, 'Eingangstüren $value');
+        return PlaceEntranceCount(
+          value,
+          AppLocale.current.entrances_count(value),
+        );
       },
     );
 

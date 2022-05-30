@@ -14,12 +14,15 @@ import 'package:hamster_widgets/hamster_widgets.dart';
 class PinCodePasswordResetPage extends StatelessWidget {
   final String email;
   final String type;
+
   const PinCodePasswordResetPage({
     super.key,
     required this.email,
     required this.type,
   });
+
   static const path = '/pincoderesetpassword';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -32,6 +35,7 @@ class PinCodePasswordResetPage extends StatelessWidget {
 class PinCodePasswordResetView extends StatefulWidget {
   final String email;
   final String type;
+
   const PinCodePasswordResetView({
     super.key,
     required this.email,
@@ -51,7 +55,7 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocale.of(context).forget_pasword_header,
+          header: AppLocale.of(context).forget_password_header,
           subHeader: RichText(
             text: TextSpan(
               style: inter14,
@@ -93,6 +97,7 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
 
 class ResetPasswordPinInput extends StatelessWidget {
   final String email;
+
   const ResetPasswordPinInput({
     super.key,
     required this.pinController,
@@ -129,6 +134,7 @@ class ResetPasswordPinInput extends StatelessWidget {
 class ResetCodeButton extends StatelessWidget {
   final String email;
   final String type;
+
   const ResetCodeButton({
     super.key,
     required this.email,
@@ -144,7 +150,7 @@ class ResetCodeButton extends StatelessWidget {
           context.read<ForgetPasswordCubit>().resendSmsCode(email, type);
         },
         child: Text(
-          AppLocale.of(context).resetmail,
+          AppLocale.of(context).reset_email,
           style: TextStyle(color: denim),
         ),
       ),

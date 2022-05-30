@@ -1,5 +1,5 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
-
+import 'package:business_terminal/config/colors.dart';
 import 'package:flutter/material.dart';
 
 class WhiteButton extends StatelessWidget {
@@ -7,11 +7,14 @@ class WhiteButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     this.width = 145,
+    this.child,
   });
 
   final VoidCallback onPressed;
 
   final double width;
+
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +32,13 @@ class WhiteButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(
-          AppLocale.current.return_button,
-          style: const TextStyle(color: Color(0xff147bd9)),
-        ),
+        child: child ??
+            Text(
+              AppLocale.current.return_button,
+              style: const TextStyle(
+                color: denim1,
+              ),
+            ),
       ),
     );
   }

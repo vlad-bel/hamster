@@ -1021,152 +1021,312 @@ class S {
   }
 
   /// `Forgot your password?`
-  String get forget_pasword_header {
+  String get forget_password_header {
     return Intl.message(
       'Forgot your password?',
-      name: 'forget_pasword_header',
+      name: 'forget_password_header',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a main category.`
+  String get choose_main_category {
+    return Intl.message(
+      'Choose a main category.',
+      name: 'choose_main_category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a main category by double-clicking it. This is displayed to all HamsterApp users.`
+  String get choose_main_category_descr {
+    return Intl.message(
+      'Choose a main category by double-clicking it. This is displayed to all HamsterApp users.',
+      name: 'choose_main_category_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select appropriate subcategories.`
+  String get select_subcategories {
+    return Intl.message(
+      'Select appropriate subcategories.',
+      name: 'select_subcategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select up to nine subcategories to improve search results in the HamsterApp.`
+  String get select_subcategories_descr {
+    return Intl.message(
+      'Select up to nine subcategories to improve search results in the HamsterApp.',
+      name: 'select_subcategories_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add subcategory`
+  String get add_subcategory {
+    return Intl.message(
+      'Add subcategory',
+      name: 'add_subcategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subcategory`
+  String get subcategory {
+    return Intl.message(
+      'Subcategory',
+      name: 'subcategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONTINUE`
+  String get continue_button {
+    return Intl.message(
+      'CONTINUE',
+      name: 'continue_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add store categories`
+  String get add_category {
+    return Intl.message(
+      'Add store categories',
+      name: 'add_category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main category`
+  String get main_category {
+    return Intl.message(
+      'Main category',
+      name: 'main_category',
       desc: '',
       args: [],
     );
   }
 
   /// `Resend email`
-  String get resetmail {
+  String get reset_email {
     return Intl.message(
       'Resend email',
-      name: 'resetmail',
+      name: 'reset_email',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ersetzen Sie Ihr altes Passwort.`
-  String get changePasswordHeader {
+  /// `I hereby certify that all of the information I have given is complete and correct.`
+  String get i_certify_info_correct {
     return Intl.message(
-      'Ersetzen Sie Ihr altes Passwort.',
-      name: 'changePasswordHeader',
+      'I hereby certify that all of the information I have given is complete and correct.',
+      name: 'i_certify_info_correct',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren`
-  String get changePasswordSubHeader {
+  /// `Request verification`
+  String get request_verification {
     return Intl.message(
-      'Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren',
-      name: 'changePasswordSubHeader',
+      'Request verification',
+      name: 'request_verification',
       desc: '',
       args: [],
     );
   }
 
-  /// `Aktuelles Passwort`
-  String get currentPassword {
+  /// `Error`
+  String get error {
     return Intl.message(
-      'Aktuelles Passwort',
-      name: 'currentPassword',
+      'Error',
+      name: 'error',
       desc: '',
       args: [],
     );
   }
 
-  /// `Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:`
-  String get passwordHintTitle {
+  /// `Success`
+  String get success {
     return Intl.message(
-      'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
-      name: 'passwordHintTitle',
+      'Success',
+      name: 'success',
       desc: '',
       args: [],
     );
   }
 
-  /// `10 Zeichen lang`
-  String get hasTenCharacters {
+  /// `Add branch hours`
+  String get add_branch_hours {
     return Intl.message(
-      '10 Zeichen lang',
-      name: 'hasTenCharacters',
+      'Add branch hours',
+      name: 'add_branch_hours',
       desc: '',
       args: [],
     );
   }
 
-  /// `1 Kleinbuchstabe`
-  String get hasOneLoweCaseLetter {
+  /// `First select the day(s) of the week whose opening hours you want to edit`
+  String get select_week_days {
     return Intl.message(
-      '1 Kleinbuchstabe',
-      name: 'hasOneLoweCaseLetter',
+      'First select the day(s) of the week whose opening hours you want to edit',
+      name: 'select_week_days',
       desc: '',
       args: [],
     );
   }
 
-  /// `1 Großbuchstabe`
-  String get hasOneUpperCaseLetter {
+  /// `Select all`
+  String get select_all {
     return Intl.message(
-      '1 Großbuchstabe',
-      name: 'hasOneUpperCaseLetter',
+      'Select all',
+      name: 'select_all',
       desc: '',
       args: [],
     );
   }
 
-  /// `1 Zahl`
-  String get hasOneSpecialCharacter {
+  /// `as`
+  String get ass {
     return Intl.message(
-      '1 Zahl',
-      name: 'hasOneSpecialCharacter',
+      'as',
+      name: 'ass',
       desc: '',
       args: [],
     );
   }
 
-  /// `Hinweis schließen`
-  String get closeHint {
+  /// `If the branch is closed on the selected day(s), leave the fields below empty`
+  String get if_branch_closed_on_selected {
     return Intl.message(
-      'Hinweis schließen',
-      name: 'closeHint',
+      'If the branch is closed on the selected day(s), leave the fields below empty',
+      name: 'if_branch_closed_on_selected',
       desc: '',
       args: [],
     );
   }
 
-  /// `Passwort geändert.`
-  String get passwordChanged {
+  /// `Opens`
+  String get opens {
     return Intl.message(
-      'Passwort geändert.',
-      name: 'passwordChanged',
+      'Opens',
+      name: 'opens',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.`
-  String get passwordChangedDescription {
+  /// `Closes`
+  String get closes {
     return Intl.message(
-      'Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.',
-      name: 'passwordChangedDescription',
+      'Closes',
+      name: 'closes',
       desc: '',
       args: [],
     );
   }
 
-  /// `Falsches Passwort`
-  String get falschesPasswort {
+  /// `Add opening time`
+  String get add_opening_time {
     return Intl.message(
-      'Falsches Passwort',
-      name: 'falschesPasswort',
+      'Add opening time',
+      name: 'add_opening_time',
       desc: '',
       args: [],
     );
   }
 
-  /// `Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.`
-  String get passwordIncorrectDescription {
+  /// `Add your company logo.`
+  String get addYourCompanyLogo {
     return Intl.message(
-      'Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.',
-      name: 'passwordIncorrectDescription',
+      'Add your company logo.',
+      name: 'addYourCompanyLogo',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.`
+  String get addYourCompanyLogoDescription {
+    return Intl.message(
+      'Choose your company logo and upload it. Make sure the selected image file is of sufficient quality.',
+      name: 'addYourCompanyLogoDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `wip`
+  String get work_in_progress {
+    return Intl.message(
+      'wip',
+      name: 'work_in_progress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add the appropriate\nbranch information`
+  String get add_details {
+    return Intl.message(
+      'Add the appropriate\nbranch information',
+      name: 'add_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.`
+  String get if_identical_addresses {
+    return Intl.message(
+      'If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging.',
+      name: 'if_identical_addresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entrance doors amount {number}`
+  String entrances_count(int number) {
+    return Intl.message(
+      'Entrance doors amount $number',
+      name: 'entrances_count',
+      desc: '',
+      args: [number],
     );
   }
 }

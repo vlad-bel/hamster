@@ -5,7 +5,6 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
-import 'package:business_terminal/presentation/common/widgets/hint/password_hint_view.dart';
 import 'package:business_terminal/presentation/common/widgets/horizontal_line_short_grey.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/language_dropdown.dart';
 import 'package:business_terminal/presentation/common/widgets/text_title.dart';
@@ -13,6 +12,7 @@ import 'package:business_terminal/presentation/email_verification/view/email_ver
 import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
+import 'package:business_terminal/presentation/registration/view/password_checkboxes_view.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
@@ -58,13 +58,17 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   final FocusNode _focusListenerPassword = FocusNode();
   final FocusNode _focusListenerPasswordConfirmation = FocusNode();
 
-  var _shouldShowPasswordValidationWidget = true;
-
   final formSettings = FormSettingsRegistrationUserInfo();
 
   @override
   void initState() {
     _controllerPassword = TextEditingController();
+
+    _focusListenerPassword.addListener(() {
+      context.read<UserInfoInitCubit>().setVisibilityPasswordValidation(
+            isVisible: true,
+          );
+    });
 
     super.initState();
   }
@@ -161,17 +165,6 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                                   obscureText: true,
                                   controller: _controllerPassword,
                                   focusListener: _focusListenerPassword,
-                                  hintOverlayBuilder:
-                                      _shouldShowPasswordValidationWidget
-                                          ? (context) => PasswordHintView(
-                                                onPressed:
-                                                    onPressedClosePasswordValidation,
-                                                controllerPassword:
-                                                    _controllerPassword,
-                                                focusNodePassword:
-                                                    _focusListenerPassword,
-                                              )
-                                          : null,
                                 ),
                                 Container(height: 18),
                                 FormTextField(
@@ -242,6 +235,47 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 800),
+              child: Align(
+                child: BlocBuilder<UserInfoInitCubit, UserInfoInitState>(
+                  builder: (context, state) {
+                    if (state is InitialUserInfoInit) {
+                      return Visibility(
+                        visible: state.shouldShowPasswordValidationWidget,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 20, top: 156),
+                          child: SizedBox(
+                            width: 400,
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: PasswordValidationView(
+                                    onPressed: onPressedClosePasswordValidation,
+                                    controllerPassword: _controllerPassword,
+                                    focusNodePassword: _focusListenerPassword,
+                                  ),
+                                ),
+                                const Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Icon(
+                                    Icons.arrow_left,
+                                    color: Colors.white,
+                                    size: 80,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ],
@@ -274,9 +308,9 @@ class _RegistrationBodyViewState extends State<RegistrationBodyView> {
   }
 
   void onPressedClosePasswordValidation() {
-    setState(() {
-      _shouldShowPasswordValidationWidget = false;
-    });
+    context
+        .read<UserInfoInitCubit>()
+        .setVisibilityPasswordValidation(isVisible: false);
   }
 
   void showErrorSnackbar() {

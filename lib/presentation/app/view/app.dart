@@ -1,9 +1,12 @@
 import 'package:business_terminal/app/utils/l10n/generated/l10n.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/view/create_branch_profile_checkboxes_page.dart';
+import 'package:business_terminal/presentation/categories/cubit/subcategories_cubit.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
+import 'package:business_terminal/presentation/dashboard/profile/profile_edit/cubit/profile_edit_cubit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/authorized_state.dart';
@@ -29,12 +32,20 @@ class App extends StatelessWidget {
           BlocProvider<AppStateCubit>(
             create: (_) => AppStateCubit(),
           ),
+          BlocProvider(
+            create: (_) => getIt.get<ProfileEditCubit>()..getInitialData(),
+          ),
           BlocProvider<DashboardCubit>(
             create: (_) => getIt.get<DashboardCubit>(),
           ),
           BlocProvider<AccountVerificationCubit>(
             create: (_) => getIt.get<AccountVerificationCubit>(),
           ),
+          BlocProvider<SubcategoriesCubit>(
+            create: (BuildContext context) {
+              return getIt.get<SubcategoriesCubit>();
+            },
+          )
         ],
         child: BlocBuilder<AppStateCubit, AppState>(
           builder: (context, state) {
@@ -104,13 +115,13 @@ class HamsterApp extends StatelessWidget {
         ),
       ),
       localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: Locale('en'),
+      locale: Locale('de'),
       home: home,
     );
   }

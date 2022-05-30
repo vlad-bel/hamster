@@ -36,6 +36,11 @@ abstract class RestClient {
     @Body() Map<String, dynamic> body,
   );
 
+  @GET('/company/{id}')
+  Future<Company> fetchCompany(
+    @Path('id') String id,
+  );
+
   @GET('/common/countries')
   Future<Map<String, Country>> getCountries();
 
@@ -86,6 +91,9 @@ abstract class RestClient {
 
   @GET('/rep/company')
   Future<RepCompany> repCompany();
+
+  @GET('/common/categories')
+  Future<List<String>> getCategories();
 
   @POST('/rep/change-password')
   Future changePassword(@Body() Map<String, dynamic> changePasswordMap);

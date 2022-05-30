@@ -11,7 +11,7 @@ import 'package:injectable/injectable.dart';
 
 part 'profile_edit_cubit.freezed.dart';
 
-@singleton
+@Singleton()
 class ProfileEditCubit extends Cubit<ProfileEditState> {
   ProfileEditCubit({
     required this.profileEditFormSettings,
@@ -20,53 +20,100 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
           const ProfileEditState.loading(),
         );
 
+  final CompanyUsecase companyUsecase = getIt.get<CompanyUsecase>();
   final ProfileEditFormSettings profileEditFormSettings;
   final ProfileEditUsecase profileEditUsecase;
 
-  void setControlValue(String key, String? value) {
-    if (value.toString() != null.toString()) {
-      profileEditFormSettings.controls[key]!.value = value;
-    }
+  Future<void> updatePaymentData(Map<String, String> values) async {
+    emit(
+      ProfileEditState.loading(),
+    );
+    _setControlValue(
+      ProfileEditFormSettings.kAccountOwner,
+      values[ProfileEditFormSettings.kAccountOwner],
+    );
+    _setControlValue(
+      ProfileEditFormSettings.kIban,
+      values[ProfileEditFormSettings.kIban],
+    );
+
+    final companyId = (await companyUsecase.getRepCompany()).company?.id;
+    final company = await companyUsecase.getCompany(
+      companyId: '$companyId',
+    );
+
+    emit(
+      ProfileEditState.initial(
+        company: company,
+        profileEditFormSettings: profileEditFormSettings,
+      ),
+    );
+    return;
   }
 
   Future<void> getInitialData() async {
     try {
-      final result = getIt.get<CompanyUsecase>().repCompany;
-      final company = result!.company;
-      setControlValue(
+      final companyId = (await companyUsecase.getRepCompany()).company?.id;
+      final company = await companyUsecase.getCompany(
+        companyId: '$companyId',
+      );
+
+      emit(
+        ProfileEditState.loading(),
+      );
+      _setControlValue(
+        ProfileEditFormSettings.kStreetField,
+        '${company.streetName}',
+      );
+      _setControlValue(
         ProfileEditFormSettings.kAccountOwner,
-        '${company?.accountOwner}',
+        '${company.accountOwner}',
       );
-      setControlValue(
+      _setControlValue(
         ProfileEditFormSettings.kCompanyName,
-        company?.companyName,
+        company.companyName,
       );
-      setControlValue(
-        ProfileEditFormSettings.kCommercialRegisterNumber,
-        company?.companyNumber,
-      );
-      setControlValue(
+
+      _setControlValue(
         ProfileEditFormSettings.kIban,
-        company?.iban,
+        company.iban,
       );
-      setControlValue(
-        ProfileEditFormSettings.kStreetHouseNumber,
-        '${company?.streetName} ${company?.streetNumber}',
+      _setControlValue(
+        ProfileEditFormSettings.kStreetNumberField,
+        '${company.streetName}',
       );
-      setControlValue(
+      _setControlValue(
+        ProfileEditFormSettings.kStreetNumberField,
+        '${company.streetNumber}',
+      );
+      _setControlValue(
         ProfileEditFormSettings.kTaxNumber,
-        '${company?.taxNumber}',
+        '${company.taxNumber}',
       );
-      setControlValue(
-        ProfileEditFormSettings.kZipCodeAndLocation,
-        '${company?.postalCode} ${company?.city}',
+      _setControlValue(
+        ProfileEditFormSettings.kPostcodeField,
+        '${company.postalCode}',
       );
+      _setControlValue(
+        ProfileEditFormSettings.kCityField,
+        '${company.city}',
+      );
+      _setControlValue(
+        ProfileEditFormSettings.kAccountOwner,
+        '${company.accountOwner}',
+      );
+      _setControlValue(
+        ProfileEditFormSettings.kIban,
+        '${company.iban}',
+      );
+
       emit(
         ProfileEditState.initial(
-          company: company!,
+          company: company,
           profileEditFormSettings: profileEditFormSettings,
         ),
       );
+      return;
     } on ApiFailure catch (e) {
       logger.e(e.response.message);
       emit(
@@ -79,10 +126,46 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
 
   // TODO Implement functionality
   Future<void> editProfile(
-    String companyId,
-    ProfileEditRequest profileEditRequest,
-  ) async {
+    String companyId, {
+    required String countryCode,
+    required String country,
+  }) async {
     try {
+      final profileEditRequest = ProfileEditRequest(
+        city: '${getControlValue(
+          ProfileEditFormSettings.kCityField,
+        )}',
+        commercialRegisterNumber: '${getControlValue(
+          ProfileEditFormSettings.kCommercialRegisterNumber,
+        )}',
+        companyName: '${getControlValue(
+          ProfileEditFormSettings.kCompanyName,
+        )}',
+        country: country,
+        streetName: '${getControlValue(
+          ProfileEditFormSettings.kStreetField,
+        )}',
+        countryCode: country,
+        postalCode: '${getControlValue(
+          ProfileEditFormSettings.kPostcodeField,
+        )}',
+        streetNumber: '${getControlValue(
+          ProfileEditFormSettings.kStreetNumberField,
+        )}',
+        taxNumber: '${getControlValue(
+          ProfileEditFormSettings.kTaxNumber,
+        )}',
+        vatId: '${getControlValue(
+          ProfileEditFormSettings.kVatId,
+        )}',
+        accountOwner: '${getControlValue(
+          ProfileEditFormSettings.kAccountOwner,
+        )}',
+        iban: '${getControlValue(
+          ProfileEditFormSettings.kIban,
+        )}',
+      );
+
       await profileEditUsecase.editProfile(
         companyId,
         profileEditRequest,
@@ -90,6 +173,9 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
 
       state.whenOrNull(
         initial: (company, profileEditFormSettings) {
+          emit(
+            ProfileEditState.success(),
+          );
           emit(
             ProfileEditState.initial(
               company: company,
@@ -107,6 +193,18 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
       );
     }
   }
+
+  String? getControlValue(
+    String key,
+  ) {
+    return profileEditFormSettings.controls[key]?.value;
+  }
+
+  void _setControlValue(String key, String? value) {
+    if (value.toString() != null.toString()) {
+      profileEditFormSettings.controls[key]!.value = value;
+    }
+  }
 }
 
 @freezed
@@ -122,7 +220,5 @@ class ProfileEditState with _$ProfileEditState {
 
   const factory ProfileEditState.loading() = LoadingProfileEditState;
 
-  const factory ProfileEditState.success({
-    required Company company,
-  }) = SuccessProfileEditState;
+  const factory ProfileEditState.success() = SuccessProfileEditState;
 }

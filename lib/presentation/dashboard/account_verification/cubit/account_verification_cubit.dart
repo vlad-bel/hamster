@@ -16,7 +16,6 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
     required this.dashboardCubit,
   }) : super(
           const VerifyAccountState.initial(
-            isAcceptedDataIsCorrect: false,
             isFullyCompleted: false,
           ),
         );
@@ -30,10 +29,9 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
 
       dashboardCubit.updateRepCompany(repCompany);
       state.whenOrNull(
-        initial: (isAcceptedDataIsCorrect, isFullyCompleted, __, ___, ____) {
+        initial: (isFullyCompleted, __, ___, ____) {
           emit(
             VerifyAccountState.initial(
-              isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
               isFullyCompleted: isFullyCompleted,
               progressUserAccount: repCompany.rep?.fillingProgress,
               progressCompanyProfile: repCompany.company?.fillingProgress,
@@ -48,30 +46,6 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
     }
   }
 
-  void changeCheckBoxDataIsCorrect({
-    required bool isAcceptedDataIsCorrect,
-  }) {
-    state.whenOrNull(
-      initial: (
-        _,
-        isFullyCompleted,
-        int? progressUserAccount,
-        int? progressCompanyProfile,
-        int? progressBranchProfile,
-      ) {
-        emit(
-          VerifyAccountState.initial(
-            isAcceptedDataIsCorrect: isAcceptedDataIsCorrect,
-            isFullyCompleted: isFullyCompleted,
-            progressUserAccount: progressUserAccount,
-            progressCompanyProfile: progressCompanyProfile,
-            progressBranchProfile: progressBranchProfile,
-          ),
-        );
-      },
-    );
-  }
-
   bool isFullyCompleted(RepCompany repCompany) {
     const fullyCompleted = 100;
 
@@ -84,7 +58,6 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
 @freezed
 class VerifyAccountState with _$VerifyAccountState {
   const factory VerifyAccountState.initial({
-    bool? isAcceptedDataIsCorrect,
     bool? isFullyCompleted,
     int? progressUserAccount,
     int? progressCompanyProfile,

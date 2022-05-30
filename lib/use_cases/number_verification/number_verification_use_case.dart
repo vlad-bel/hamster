@@ -2,7 +2,11 @@ import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 
 abstract class NumberVerificationUseCase {
+  Map<String, Country>? countries;
+
   Future<Map<String, Country>> getCountries();
+
+  Future<Map<String, Country>> fetchCountries();
 
   Future verifyPhoneBy({
     required VerifyMethod method,
