@@ -90,12 +90,13 @@ class PosesData {
   @JsonKey(name: 'isActive')
   final bool isActive;
 
-  PosesData(
-      {required this.name,
-      required this.manufacturer,
-      required this.model,
-      required this.id,
-      required this.isActive});
+  PosesData({
+    required this.name,
+    required this.manufacturer,
+    required this.model,
+    required this.id,
+    required this.isActive,
+  });
 
   factory PosesData.fromJson(Map<String, dynamic> json) =>
       _$PosesDataFromJson(json);
@@ -108,7 +109,25 @@ class OpeningHours {
   @JsonKey(name: 'monday')
   final List<OpeningHourItem> monday;
 
-  OpeningHours({required this.monday});
+  @JsonKey(name: 'tuesday')
+  final List<OpeningHourItem> tuesday;
+
+  @JsonKey(name: 'wednesday')
+  final List<OpeningHourItem> wednesday;
+
+  @JsonKey(name: 'thursday')
+  final List<OpeningHourItem> thursday;
+
+  @JsonKey(name: 'friday')
+  final List<OpeningHourItem> friday;
+
+  OpeningHours(
+    this.monday,
+    this.tuesday,
+    this.wednesday,
+    this.thursday,
+    this.friday,
+  );
 
   factory OpeningHours.fromJson(Map<String, dynamic> json) =>
       _$OpeningHoursFromJson(json);
