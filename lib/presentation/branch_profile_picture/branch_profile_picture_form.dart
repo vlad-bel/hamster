@@ -32,7 +32,9 @@ class BranchProfilePictureForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 WhiteButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   width: 162,
                   child: Text(
                     AppLocale.current.return_button,
@@ -41,7 +43,11 @@ class BranchProfilePictureForm extends StatelessWidget {
                 ),
                 SizedBox(width: 25),
                 ActionButtonBlue(
-                  onPressed: () {},
+                  onPressed: () {
+                    ///todo send save image request
+                    Navigator.pop(context);
+                  },
+                  isEnabled: true,
                   width: 162,
                   child: Text(
                     AppLocale.current.continue_button,

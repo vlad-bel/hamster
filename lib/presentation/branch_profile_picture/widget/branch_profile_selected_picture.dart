@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/bordered_container/bordered_edit_container.dart';
@@ -12,7 +12,7 @@ class SelectedPicture extends StatelessWidget {
     required this.path,
   }) : super(key: key);
 
-  final String path;
+  final dynamic path;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +25,7 @@ class SelectedPicture extends StatelessWidget {
             borderRadius: BorderRadius.all(
               Radius.circular(4),
             ),
-            child: CachedNetworkImage(
-              imageUrl: path,
-              fit: BoxFit.cover,
-              errorWidget: (context, url, error) {
-                return Image.file(File(path));
-              },
-            ),
+            child: buildImage(path),
           ),
         ),
         Transform.translate(
@@ -56,6 +50,20 @@ class SelectedPicture extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget buildImage(dynamic path) {
+    if (path is String) {
+      return CachedNetworkImage(
+        imageUrl: path,
+        fit: BoxFit.cover,
+      );
+    }
+
+    return Image.memory(
+      path as Uint8List,
+      fit: BoxFit.cover,
     );
   }
 }

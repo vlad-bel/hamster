@@ -136,5 +136,6 @@
   "number_of_registers": "Anzahl Kassen",
   "add_picture_for_branch": "Fügen Sie Bilder Ihrer Filiale hinzu.",
   "add_picture_for_branch_descr": "Wähle Sie Ihre Filialbilder aus und laden Sie sie hoch. Achten Sie darauf, dass die ausgewählten Bilddateien eine ausreichende Qualität haben.",
-  "add_branch_picture": "Filialbild hinzufügen"
+  "add_branch_picture": "Filialbild hinzufügen",
+  "to_save": "SPEICHERN"
 }

@@ -183,6 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Telefonnummer für Kunden (falls vorhanden)"),
         "thursday": MessageLookupByLibrary.simpleMessage("Donnerstag"),
         "tills": MessageLookupByLibrary.simpleMessage("Kassen"),
+        "to_save": MessageLookupByLibrary.simpleMessage("SPEICHERN"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Dienstag"),
         "user": MessageLookupByLibrary.simpleMessage("NUTZER"),
         "user_account": MessageLookupByLibrary.simpleMessage("Nutzeraccount"),

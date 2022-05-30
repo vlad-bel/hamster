@@ -96,5 +96,6 @@
   "cash_register_manufacturer": "Cash register manufacturer",
   "model_if_known": "Model (if known)",
   "number_of_registers": "Number of registers",
-  "add_picture_for_branch": "Add pictures of your branch."
+  "add_picture_for_branch": "Add pictures of your branch.",
+  "to_save": "TO SAVE"
 }

@@ -180,6 +180,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Phone number for customers (if available)"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "tills": MessageLookupByLibrary.simpleMessage("Tills"),
+        "to_save": MessageLookupByLibrary.simpleMessage("TO SAVE"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "user": MessageLookupByLibrary.simpleMessage("USER"),
         "user_account": MessageLookupByLibrary.simpleMessage("User account"),

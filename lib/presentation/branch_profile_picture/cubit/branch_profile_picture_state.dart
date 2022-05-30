@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'branch_profile_picture_state.freezed.dart';
@@ -5,7 +7,12 @@ part 'branch_profile_picture_state.freezed.dart';
 @freezed
 class BranchProfilePictureState with _$BranchProfilePictureState {
   const factory BranchProfilePictureState.init({
-    String? selectedImage,
-    List<String>? images,
+    dynamic? selectedImage,
+    List<dynamic>? images,
   }) = InitBranchProfilePictureState;
+
+  const factory BranchProfilePictureState.loading({
+    dynamic? selectedImage,
+    List<dynamic>? images,
+  }) = LoadingBranchProfilePictureState;
 }

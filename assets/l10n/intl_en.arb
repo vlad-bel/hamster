@@ -133,5 +133,6 @@
   "request_verification": "Request verification",
   "add_picture_for_branch": "Add pictures of your branch.",
   "add_picture_for_branch_descr": "Select and upload your branch images. Make sure that the selected image files are of sufficient quality.",
-  "add_branch_picture": "Add branch picture"
+  "add_branch_picture": "Add branch picture",
+  "to_save": "TO SAVE"
 }

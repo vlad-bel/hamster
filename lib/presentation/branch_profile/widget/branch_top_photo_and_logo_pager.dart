@@ -1,6 +1,7 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/branch_profile_picture/branch_profile_picture_page.dart';
 import 'package:business_terminal/presentation/common/widgets/bordered_container/bordered_edit_container.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -109,7 +110,6 @@ class _BranchTopPhotoAndLogoPagerState
 
                       ///todo make to acumin font from Raik
                       child:
-                          // SizedBox(),
                           Text(
                         '${pageViewController.hasClients ? pageViewController.page!.toInt() + 1 : 1} / ${images.length}',
                         style: inter14Semibold,
@@ -139,7 +139,9 @@ class _BranchTopPhotoAndLogoPagerState
             alignment: Alignment.topRight,
             child: EditButton(
               icon: Icons.edit,
-              onEditTap: () {},
+              onEditTap: () {
+                Navigator.pushNamed(context, BranchProfilePicturePage.path);
+              },
             ),
           ),
         ),

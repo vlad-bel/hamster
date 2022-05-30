@@ -7,10 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class BranchProfilePicturePage extends StatelessWidget {
   const BranchProfilePicturePage({Key? key}) : super(key: key);
 
+  static const path = '/branch_profile_picture_page';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<BranchProfilePictureCubit>(
-      create: (context) => getIt.get<BranchProfilePictureCubit>(),
+      create: (context) => BranchProfilePictureCubit(),
       child: BranchProfilePictureForm(),
     );
   }

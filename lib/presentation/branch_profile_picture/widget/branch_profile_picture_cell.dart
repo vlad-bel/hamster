@@ -1,8 +1,9 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
+import 'package:business_terminal/presentation/common/cropper_page/cropper_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class BranchProfilePictureCell extends StatelessWidget {
   }) : super(key: key);
 
   final bool isSelected;
-  final String imagePath;
+  final dynamic imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +35,7 @@ class BranchProfilePictureCell extends StatelessWidget {
                 SizedBox(
                   width: 50,
                   height: 50,
-                  child: CachedNetworkImage(
-                    imageUrl: imagePath,
-                    fit: BoxFit.cover,
-                    errorWidget: (context, url, error) {
-                      return Image.file(File(imagePath));
-                    },
-                  ),
+                  child: buildImage(imagePath),
                 ),
                 Material(
                   color: Colors.transparent,
@@ -87,6 +82,20 @@ class BranchProfilePictureCell extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildImage(dynamic path) {
+    if (path is String) {
+      return CachedNetworkImage(
+        imageUrl: path,
+        fit: BoxFit.cover,
+      );
+    }
+
+    return Image.memory(
+      path as Uint8List,
+      fit: BoxFit.cover,
+    );
+  }
 }
 
 class BranchProfileAddCell extends StatelessWidget {
@@ -99,7 +108,9 @@ class BranchProfileAddCell extends StatelessWidget {
         borderRadius: BorderRadius.all(
           Radius.circular(4),
         ),
-        onTap: () {},
+        onTap: () {
+          pickAndCropImage(context);
+        },
         child: Ink(
           width: 50,
           height: 50,
@@ -132,4 +143,33 @@ class BranchProfileAddCell extends StatelessWidget {
       ),
     );
   }
+}
+
+Future pickAndCropImage(BuildContext context) async {
+  final cubit = context.read<BranchProfilePictureCubit>();
+  final image = await cubit.pickImage(context);
+  if (image != null) {
+    cubit.loading();
+    await Future.delayed(Duration(milliseconds: 500));
+
+    final croppedImage = await Navigator.pushNamed<Uint8List>(
+      context,
+      CropperPage.path,
+      arguments: {
+        CropperPage.pHeader: "Bearbeiten Sie Ihr Profilfoto.",
+        CropperPage.pSubheader:
+            'Wählen Sie den richtigen Bereich Ihres Profilfotos aus.',
+        CropperPage.pImageForCrop: image,
+      },
+    );
+
+
+    if (croppedImage != null) {
+      return cubit.setImage(imageBytes: croppedImage);
+    }
+
+    return cubit.setImage(imageBytes: image);
+  }
+
+  return cubit.init();
 }

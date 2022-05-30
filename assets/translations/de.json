@@ -99,6 +99,7 @@
   "cash_register_system_used": "Genutzte Kassensysteme in Ihrer Filiale",
   "help_us_connect_branch": "Helfen Sie uns Ihre Filiale schnell anzubinden indem Sie Ihre Kassensysteme angeben",
   "cash_register_manufacturer": "Kassenhersteller",
-  "model_if_known": "Modell (falls bekannt)"
+  "model_if_known": "Modell (falls bekannt)",
+  "to_save": "SPEICHERN"
 
 }

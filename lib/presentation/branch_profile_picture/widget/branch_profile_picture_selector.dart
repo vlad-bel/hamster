@@ -14,39 +14,65 @@ class BranchProfilePictureSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BranchProfilePictureCubit, BranchProfilePictureState>(
       builder: (context, state) {
+        final loader = state.when(
+          loading: (_, __) => SizedBox(
+            height: 150,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+          init: (_, __) => SizedBox(),
+        );
         if (state.images != null && state.selectedImage != null) {
           return Column(
             children: [
-              SelectedPicture(
-                path: state.selectedImage!,
+              Stack(
+                children: [
+                  SelectedPicture(
+                    path: state.selectedImage,
+                  ),
+                  loader,
+                ],
               ),
               SizedBox(height: 12),
               Row(
                 children: generatePhotoCells(
                   state.images!,
-                  state.selectedImage!,
+                  state.selectedImage,
                 ),
               ),
             ],
           );
         }
-        return SizedBox(
-          width: 350,
-          height: 150,
-          child: DashedButton(
-            label: AppLocale.current.add_branch_picture,
-            onTap: () {},
-          ),
+        return Stack(
+          children: [
+            SizedBox(
+              width: 350,
+              height: 150,
+              child: DashedButton(
+                label: AppLocale.current.add_branch_picture,
+                onTap: () {
+                  pickAndCropImage(context);
+                },
+              ),
+            ),
+            loader,
+          ],
         );
       },
     );
   }
 
   List<Widget> generatePhotoCells(
-    List<String> imagePaths,
-    String selectedImage,
+    List<dynamic> imagePaths,
+    dynamic selectedImage,
   ) {
-    final cells = <Widget>[BranchProfileAddCell()];
+    final cells = <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(right: 3.0),
+        child: BranchProfileAddCell(),
+      )
+    ];
 
     for (final imagePath in imagePaths) {
       cells.add(
