@@ -5,7 +5,10 @@ abstract class BranchProfileUseCase {
 
   Future<BranchProfile> getBranchById(String id);
 
-  Future<BranchProfile> updateBranchById(String id);
+  Future<BranchProfile> updateBranchById(
+    String id,
+    BranchProfile branchProfile,
+  );
 
   Future<BranchProfile> createBranch(BranchProfile branchProfile);
 }

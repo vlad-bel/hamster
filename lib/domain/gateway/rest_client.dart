@@ -107,6 +107,7 @@ abstract class RestClient {
   @PUT('/branch/{id}')
   Future<BranchProfile> updateBranchById(
     @Path('id') String id,
+    @Body() Map<String, dynamic> branchProfile,
   );
 
   @POST('/branch')
