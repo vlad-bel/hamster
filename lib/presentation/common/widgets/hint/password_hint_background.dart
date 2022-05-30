@@ -4,19 +4,13 @@ class PasswordHintBackground extends StatelessWidget {
   const PasswordHintBackground({
     Key? key,
     required this.child,
-    required this.width,
-    required this.height,
   }) : super(key: key);
 
   final Widget child;
-  final double width;
-  final double height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // width: width,
-      // height: height,
       child: Row(
         children: [
           ClipPath(
@@ -29,7 +23,6 @@ class PasswordHintBackground extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              height: height,
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),

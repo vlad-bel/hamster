@@ -19,8 +19,6 @@ class CurrentPasswordIncorrectHint extends StatelessWidget
     return Padding(
       padding: const EdgeInsets.only(left: _kDefaultStartMargin),
       child: PasswordHintBackground(
-        height: _kDefaultHeight,
-        width: _kDefaultWidth,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(

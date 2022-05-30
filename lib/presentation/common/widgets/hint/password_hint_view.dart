@@ -61,8 +61,6 @@ class _PasswordHintViewState extends State<PasswordHintView> {
       padding:
           const EdgeInsets.only(left: PasswordHintView._kDefaultStartMargin),
       child: PasswordHintBackground(
-        height: PasswordHintView._kDefaultHeight,
-        width: PasswordHintView._kDefaultWidth,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
           child: Column(
