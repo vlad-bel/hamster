@@ -3,11 +3,13 @@ import 'package:business_terminal/presentation/common/widgets/form_text_field/fo
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
+import 'package:business_terminal/presentation/forget_password/cubit/forget_password_cubit.dart';
 import 'package:business_terminal/presentation/forget_password/form_validation/forget_password_validation.dart';
 import 'package:business_terminal/presentation/forget_password/view/choose_verify_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ForgetPasswordEmailPage extends StatelessWidget {
@@ -90,6 +92,7 @@ class _ForgetPasswordEmailViewState extends State<ForgetPasswordEmailView> {
   }
 
   void onPressNavigateToVerify(BuildContext context, String email) {
+    context.read<ForgetPasswordCubit>().onEmailTyped(email);
     Navigator.of(context)
         .pushNamed(ChooseVerifyPage.path, arguments: {'email': email});
   }

@@ -1,8 +1,8 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
@@ -13,6 +13,7 @@ import 'package:business_terminal/presentation/registration/widgets/action_butto
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class ChooseVerifyPage extends StatelessWidget {
   final String email;
@@ -23,11 +24,8 @@ class ChooseVerifyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt.get<ForgetPasswordCubit>(),
-      child: ChooseVerifyView(
-        email: email,
-      ),
+    return ChooseVerifyView(
+      email: email,
     );
   }
 }
@@ -41,14 +39,19 @@ class ChooseVerifyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
       listener: (context, state) {
-        state.whenOrNull(
-          sent: (type) => onPressNavigateToPinCodePage(
-            context,
-            email,
-            type,
-          ),
-        );
-        // TODO: implement listener
+        state
+          ..whenOrNull(
+            sent: (type) => onPressNavigateToPinCodePage(
+              context,
+              email,
+              type,
+            ),
+            error: SnackBarManager.showError,
+          )
+          ..maybeWhen(
+            loading: () => context.loaderOverlay.show(),
+            orElse: () => context.loaderOverlay.hide(),
+          );
       },
       builder: (context, state) {
         return OnboardingBackground(

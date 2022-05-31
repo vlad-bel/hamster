@@ -1,4 +1,5 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/hint/hint_overlay_provider_mixin.dart';
 import 'package:business_terminal/presentation/common/widgets/hint/password_hint_view.dart';
@@ -12,6 +13,7 @@ import 'package:business_terminal/presentation/registration/widgets/action_butto
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ConfirmNewPasswordPage extends StatefulWidget {
@@ -40,10 +42,15 @@ class _ConfirmNewPasswordPageState extends State<ConfirmNewPasswordPage> {
       create: (_) => GetIt.instance.get<ForgetPasswordCubit>(),
       child: BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
         listener: (_, state) {
-          state.whenOrNull(
-            newPasswordInstalled: () =>
-                Navigator.of(context).pushNamed(NewPasswordInstalledPage.path),
-          );
+          state
+            ..whenOrNull(
+                newPasswordInstalled: () => Navigator.of(context)
+                    .pushNamed(NewPasswordInstalledPage.path),
+                error: SnackBarManager.showError)
+            ..maybeWhen(
+              loading: () => context.loaderOverlay.show(),
+              orElse: () => context.loaderOverlay.hide(),
+            );
         },
         child: OnboardingBackground(
           children: OnboardingWhiteContainer(

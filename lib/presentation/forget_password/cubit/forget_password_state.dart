@@ -18,6 +18,13 @@ abstract class ForgetPasswordState with _$ForgetPasswordState {
 
   const factory ForgetPasswordState.resent() = _$Resent;
 
-  const factory ForgetPasswordState.newPasswordInstalled() = _$NewPasswordInstalled;
+  const factory ForgetPasswordState.newPasswordInstalled() =
+      _$NewPasswordInstalled;
 
+  const factory ForgetPasswordState.loading() = _$Loading;
+
+  const factory ForgetPasswordState.error(String errorMessage) = _$Error;
+
+  const factory ForgetPasswordState.chooseVerificationMethod() =
+      _$ChooseVerificationMethod;
 }

@@ -21,14 +21,15 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       : super(ForgetPasswordState.initial());
 
   final ForgetPasswordUseCase _forgetPasswordUseCase;
+
   ForgetPasswordVerificationMethod? _method;
   String? _email;
 
   Future<void> sendVerificationCode(String emailMain) async {
-    _email = emailMain;
-
     try {
       if (_method != null) {
+        emit(ForgetPasswordState.loading());
+
         await _forgetPasswordUseCase.sendVerificationCode(
           ForgetPasswordRequest(email: emailMain, verificationMethod: _method!),
         );
@@ -36,12 +37,14 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         emit(ForgetPasswordState.sent(_method!));
       }
     } on ApiFailure catch (e) {
-      SnackBarManager.showError(e.response.message.toString());
+      emit(ForgetPasswordState.error(e.response.message.toString()));
     }
   }
 
   Future<void> confirmCode(String code, String email) async {
     try {
+      emit(ForgetPasswordState.loading());
+
       await _forgetPasswordUseCase.confirmCode(
         _method!,
         ForgetPasswordSendCodeRequest(email, code),
@@ -63,7 +66,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         ForgetPasswordResendCodeRequest(method: method, email: email),
       );
     } on ApiFailure catch (e) {
-      SnackBarManager.showError(e.response.message.toString());
+      emit(ForgetPasswordState.error(e.response.message.toString()));
     }
   }
 
@@ -74,13 +77,18 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   Future<void> changePassword(String password) async {
     try {
+      emit(ForgetPasswordState.loading());
       await _forgetPasswordUseCase.resetPassword(
         ResetPasswordRequest(email: _email!, password: password),
       );
+      emit(ForgetPasswordState.newPasswordInstalled());
     } on ApiFailure catch (e) {
-      SnackBarManager.showError(e.response.message.toString());
+      emit(ForgetPasswordState.error(e.response.message.toString()));
     }
+  }
 
-    emit(ForgetPasswordState.newPasswordInstalled());
+  void onEmailTyped(String email) {
+    _email = email;
+    emit(ForgetPasswordState.chooseVerificationMethod());
   }
 }

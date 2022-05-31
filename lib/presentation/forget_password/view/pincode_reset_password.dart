@@ -3,6 +3,7 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
@@ -11,7 +12,9 @@ import 'package:business_terminal/presentation/forget_password/view/confirm_new_
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class PinCodePasswordResetPage extends StatelessWidget {
   final String email;
@@ -113,12 +116,19 @@ class ResetPasswordPinInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+      bloc: GetIt.instance.get(),
       listener: (context, state) {
-        state.whenOrNull(
-          verified: () {
-            Navigator.of(context).pushNamed(ConfirmNewPasswordPage.path);
-          },
-        );
+        state
+          ..whenOrNull(
+            verified: () {
+              Navigator.of(context).pushNamed(ConfirmNewPasswordPage.path);
+            },
+            error: SnackBarManager.showError,
+          )
+          ..maybeWhen(
+            loading: () => context.loaderOverlay.show(),
+            orElse: () => context.loaderOverlay.hide(),
+          );
       },
       builder: (context, state) {
         return Padding(
