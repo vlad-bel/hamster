@@ -7,6 +7,7 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_backgro
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/forget_password/cubit/forget_password_cubit.dart';
+import 'package:business_terminal/presentation/forget_password/view/confirm_new_password_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -111,7 +112,14 @@ class ResetPasswordPinInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
+    return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          verified: () {
+            Navigator.of(context).pushNamed(ConfirmNewPasswordPage.path);
+          },
+        );
+      },
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.only(top: 25, bottom: 8),

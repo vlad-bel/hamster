@@ -169,6 +169,9 @@
   "passwordChanged": "Passwort geändert.",
   "passwordChangedDescription": "Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.",
   "falschesPasswort": "Falsches Passwort",
-  "passwordIncorrectDescription": "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt."
-
+  "passwordIncorrectDescription": "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.",
+  "confirmNewPasswordTitle": "Ersetzen Sie Ihr altes Passwort.",
+  "confirmNewPasswordSubtitle": "Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können.",
+  "newPasswordInstalledTitle": "Passwort geändert.",
+  "newPasswordIntalledDescription": "Sie haben erfolgreich Ihr altes durch ein neues. Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden."
 }

@@ -5,7 +5,8 @@ abstract class ForgetPasswordState with _$ForgetPasswordState {
   const factory ForgetPasswordState.initial() = _$Initial;
 
   const factory ForgetPasswordState.chosen(
-      ForgetPasswordVerificationMethod method) = _$Chosen;
+    ForgetPasswordVerificationMethod method,
+  ) = _$Chosen;
 
   const factory ForgetPasswordState.sent(
     ForgetPasswordVerificationMethod method,
@@ -16,4 +17,7 @@ abstract class ForgetPasswordState with _$ForgetPasswordState {
   const factory ForgetPasswordState.verified() = _$Verified;
 
   const factory ForgetPasswordState.resent() = _$Resent;
+
+  const factory ForgetPasswordState.newPasswordInstalled() = _$NewPasswordInstalled;
+
 }

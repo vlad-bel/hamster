@@ -1479,6 +1479,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Ersetzen Sie Ihr altes Passwort.`
+  String get confirmNewPasswordTitle {
+    return Intl.message(
+      'Ersetzen Sie Ihr altes Passwort.',
+      name: 'confirmNewPasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können.`
+  String get confirmNewPasswordSubtitle {
+    return Intl.message(
+      'Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können.',
+      name: 'confirmNewPasswordSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwort geändert.`
+  String get newPasswordInstalledTitle {
+    return Intl.message(
+      'Passwort geändert.',
+      name: 'newPasswordInstalledTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sie haben erfolgreich Ihr altes durch ein neues. Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.`
+  String get newPasswordIntalledDescription {
+    return Intl.message(
+      'Sie haben erfolgreich Ihr altes durch ein neues. Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.',
+      name: 'newPasswordIntalledDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

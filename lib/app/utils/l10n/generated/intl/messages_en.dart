@@ -94,6 +94,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "company_name": MessageLookupByLibrary.simpleMessage("Company name"),
         "company_profile":
             MessageLookupByLibrary.simpleMessage("Company profile"),
+        "confirmNewPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
+            "Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können."),
+        "confirmNewPasswordTitle": MessageLookupByLibrary.simpleMessage(
+            "Ersetzen Sie Ihr altes Passwort."),
         "confirm_number_subtitle1": MessageLookupByLibrary.simpleMessage(
             "You will immediately receive an SMS to the number you have given "),
         "confirm_number_subtitle2": MessageLookupByLibrary.simpleMessage(
@@ -170,6 +174,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Model (if known)"),
         "monday": MessageLookupByLibrary.simpleMessage("Monday"),
         "my_company": MessageLookupByLibrary.simpleMessage("My Company"),
+        "newPasswordInstalledTitle":
+            MessageLookupByLibrary.simpleMessage("Passwort geändert."),
+        "newPasswordIntalledDescription": MessageLookupByLibrary.simpleMessage(
+            "Sie haben erfolgreich Ihr altes durch ein neues. Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden."),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "not_visible": MessageLookupByLibrary.simpleMessage("Not visible"),
         "num_hint": MessageLookupByLibrary.simpleMessage("No."),

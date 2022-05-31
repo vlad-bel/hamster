@@ -67,4 +67,8 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     _method = method;
     emit(ForgetPasswordState.chosen(method));
   }
+
+  void changePassword(String password) {
+    emit(ForgetPasswordState.newPasswordInstalled());
+  }
 }
