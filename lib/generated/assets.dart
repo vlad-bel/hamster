@@ -11,6 +11,7 @@ class Assets {
   static const String imagesBranchProfile = 'assets/images/branch_profile.svg';
   static const String imagesCheckMark = 'assets/images/check_mark.svg';
   static const String imagesCompanyProfile = 'assets/images/company_profile.svg';
+  static const String imagesDismiss = 'assets/images/dismiss.svg';
   static const String imagesEdit = 'assets/images/edit.svg';
   static const String imagesEditPencil = 'assets/images/edit_pencil.svg';
   static const String imagesFilter = 'assets/images/filter.svg';

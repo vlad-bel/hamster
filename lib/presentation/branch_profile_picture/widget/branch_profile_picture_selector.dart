@@ -1,11 +1,12 @@
-import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_state.dart';
+import 'package:business_terminal/presentation/branch_profile_picture/widget/branch_profile_picture_add_cell.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/widget/branch_profile_picture_cell.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/widget/branch_profile_selected_picture.dart';
-import 'package:business_terminal/presentation/common/widgets/dashed_button/dashed_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../common/widgets/dashed_button/rect_dashed_button.dart';
 
 class BranchProfilePictureSelector extends StatelessWidget {
   const BranchProfilePictureSelector({Key? key}) : super(key: key);
@@ -23,6 +24,7 @@ class BranchProfilePictureSelector extends StatelessWidget {
           ),
           init: (_, __) => SizedBox(),
         );
+
         if (state.images != null && state.selectedImage != null) {
           return Column(
             children: [
@@ -49,8 +51,7 @@ class BranchProfilePictureSelector extends StatelessWidget {
             SizedBox(
               width: 350,
               height: 150,
-              child: DashedButton(
-                label: AppLocale.current.add_branch_picture,
+              child: RectDashedButton(
                 onTap: () {
                   pickAndCropImage(context);
                 },

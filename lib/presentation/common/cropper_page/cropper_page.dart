@@ -12,18 +12,21 @@ class CropperPage extends StatelessWidget {
     required this.header,
     required this.subheader,
     required this.imageForCrop,
+    required this.circleCrop,
   }) : super(key: key);
 
   static const path = '/cropper-page';
 
   ///page parameters keys
   static const pHeader = 'header';
+  static const pCircleCrop = 'circle_crop';
   static const pSubheader = 'subheader';
   static const pImageForCrop = 'image_for_crop';
 
   final String header;
   final String subheader;
   final Uint8List imageForCrop;
+  final bool circleCrop;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +38,7 @@ class CropperPage extends StatelessWidget {
         subheader: subheader,
         header: header,
         imageForCrop: imageForCrop,
+        circleCrop: circleCrop,
       ),
     );
   }

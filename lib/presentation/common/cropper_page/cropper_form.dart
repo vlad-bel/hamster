@@ -2,6 +2,8 @@ import 'dart:typed_data';
 
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/config/image/image_paths.dart';
+import 'package:business_terminal/config/image/raster_paths.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/cropper_page/cubit/cropper_cubit.dart';
 import 'package:business_terminal/presentation/common/cropper_page/cubit/cropper_state.dart';
@@ -20,11 +22,13 @@ class CropperForm extends StatefulWidget {
     required this.header,
     required this.subheader,
     required this.imageForCrop,
+    required this.circleCrop,
   }) : super(key: key);
 
   final String header;
   final String subheader;
   final Uint8List imageForCrop;
+  final bool circleCrop;
 
   @override
   State<CropperForm> createState() => _CropperFormState();
@@ -52,26 +56,28 @@ class _CropperFormState extends State<CropperForm> {
                 SizedBox(height: 32),
                 Stack(
                   children: [
+                    Image.asset(
+                      ImagePaths.jpg(RasterPaths.alphaChannel),
+                      width: 350,
+                      height: 350,
+                    ),
                     SizedBox(
-                      height: 150,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                        child: Crop(
-                          controller: _controller,
-                          image: widget.imageForCrop,
-                          onCropped: (cropped) async {
-                            await Future.delayed(Duration(milliseconds: 500));
-                            Navigator.pop(context, cropped);
-                          },
-                        ),
+                      height: 350,
+                      width: 350,
+                      child: Crop(
+                        controller: _controller,
+                        image: widget.imageForCrop,
+                        withCircleUi: widget.circleCrop,
+                        onCropped: (cropped) async {
+                          await Future.delayed(Duration(milliseconds: 500));
+                          Navigator.pop(context, cropped);
+                        },
                       ),
                     ),
                     state.whenOrNull(
                           loading: () {
                             return SizedBox(
-                              height: 150,
+                              height: 350,
                               child: Center(
                                 child: CircularProgressIndicator(),
                               ),

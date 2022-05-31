@@ -9,16 +9,7 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class BranchProfilePictureCubit extends Cubit<BranchProfilePictureState> {
-  BranchProfilePictureCubit()
-      : super(BranchProfilePictureState.init(
-          images: [
-            'https://cdn.cnn.com/cnnnext/dam/assets/211105205533-01-georgia-travel-file-full-169.jpg',
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty.jpg/1280px-24701-nature-natural-beauty.jpg',
-            'https://ds.static.rtbf.be/article/image/1248x702/2/1/b/7e32a07d16f1e5929d06b65594dfb643-1563791453.jpg',
-          ],
-          selectedImage:
-              'https://cdn.cnn.com/cnnnext/dam/assets/211105205533-01-georgia-travel-file-full-169.jpg',
-        ));
+  BranchProfilePictureCubit() : super(BranchProfilePictureState.init());
 
   void selectImage(dynamic imagePath) {
     emit(BranchProfilePictureState.init(

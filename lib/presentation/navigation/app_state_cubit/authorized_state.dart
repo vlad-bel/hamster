@@ -6,6 +6,7 @@ import 'package:business_terminal/presentation/add_payment/view/add_payment_page
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/view/create_branch_profile_checkboxes_page.dart';
 import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
+import 'package:business_terminal/presentation/branch_profile_avatar_picture/branch_profile_avatar_picture_page.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/branch_profile_picture_page.dart';
 import 'package:business_terminal/presentation/categories/categories/categories_page.dart';
 import 'package:business_terminal/presentation/categories/subcategories/select_subcategories_page/select_subcategories_page.dart';
@@ -57,10 +58,10 @@ class AuthorizedState extends AppState {
                     repCompany: company,
                   );
                 } else {
-                  // TODO: add ErroPage later and display error
+// TODO: add ErroPage later and display error
                   throw Exception(
                     'CreateBranchProfileCheckboxesPage company '
-                        'parameter is NULL',
+                    'parameter is NULL',
                   );
                 }
                 break;
@@ -76,7 +77,7 @@ class AuthorizedState extends AppState {
                     company: company,
                   );
                 } else {
-                  // TODO: add ErroPage later and display error
+// TODO: add ErroPage later and display error
                   throw Exception(
                     'BranchProfilePage data or company parameter is NULL',
                   );
@@ -95,17 +96,26 @@ class AuthorizedState extends AppState {
               case BranchProfilePicturePage.path:
                 page = BranchProfilePicturePage();
                 break;
+              case BranchProfileAvatarPicturePage.path:
+                page = BranchProfileAvatarPicturePage(
+                  showEditButton: false,
+                  showAddButton: true,
+                );
+                break;
               case CropperPage.path:
                 final imageForCrop =
                     params?[CropperPage.pImageForCrop] as Uint8List;
                 final header = params?[CropperPage.pHeader] as String;
                 final subheader = params?[CropperPage.pSubheader] as String;
+                final circleCrop = params?[CropperPage.pCircleCrop] as bool;
 
                 window.sessionStorage[CropperPage.pImageForCrop] =
                     String.fromCharCodes(imageForCrop);
 
                 window.sessionStorage[CropperPage.pHeader] = header;
                 window.sessionStorage[CropperPage.pSubheader] = subheader;
+                window.sessionStorage[CropperPage.pCircleCrop] =
+                    circleCrop.toString();
 
                 final imageBytes =
                     window.sessionStorage[CropperPage.pImageForCrop]!.codeUnits;
@@ -122,6 +132,10 @@ class AuthorizedState extends AppState {
                     imageForCrop: bytes,
                     header: window.sessionStorage[CropperPage.pHeader]!,
                     subheader: window.sessionStorage[CropperPage.pSubheader]!,
+                    circleCrop:
+                        window.sessionStorage[CropperPage.pCircleCrop] == 'true'
+                            ? true
+                            : false,
                   ),
                 );
 

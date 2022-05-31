@@ -1,11 +1,15 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_cubit.dart';
+import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
+import 'package:business_terminal/presentation/branch_profile/widget/branch_top_photo_and_logo_pager_empty.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/branch_profile_picture_page.dart';
 import 'package:business_terminal/presentation/common/widgets/bordered_container/bordered_edit_container.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:business_terminal/presentation/common/widgets/dynamic_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BranchTopPhotoAndLogoPager extends StatefulWidget {
@@ -22,12 +26,6 @@ class _BranchTopPhotoAndLogoPagerState
     extends State<BranchTopPhotoAndLogoPager> {
   final pageViewController = PageController();
 
-  ///TODO store to bloc
-  final images = [
-    'https://images.theconversation.com/files/125391/original/image-20160606-13080-s7o3qu.jpg?ixlib=rb-1.1.0&rect=273%2C0%2C2639%2C1379&q=45&auto=format&w=926&fit=clip',
-    'https://images.theconversation.com/files/125391/original/image-20160606-13080-s7o3qu.jpg?ixlib=rb-1.1.0&rect=273%2C0%2C2639%2C1379&q=45&auto=format&w=926&fit=clip',
-  ];
-
   @override
   void dispose() {
     super.dispose();
@@ -36,116 +34,138 @@ class _BranchTopPhotoAndLogoPagerState
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(left: 14),
-          child: Container(
-            height: 200,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: lynch,
+    return BlocBuilder<BranchProfileCubit, BranchProfileState>(
+      builder: (context, state) {
+        if (state.branchImages?.isEmpty ?? true) {
+          return BranchTopPhotoAndLogoPagerEmpty();
+        }
+        return Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 14),
+              child: Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: lynch,
+                  ),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Stack(
+                  children: [
+                    BlocBuilder<BranchProfileCubit, BranchProfileState>(
+                      builder: (cubit, state) {
+                        return PageView.builder(
+                          controller: pageViewController,
+                          itemCount: state.branchImages?.length ?? 0,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return SizedBox(
+                              width: double.infinity,
+                              child: DynamicImage(
+                                path: state.branchImages?[index],
+                                fit: BoxFit.cover,
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    Align(
+                      child: Row(
+                        children: [
+                          CupertinoButton(
+                            onPressed: () async {
+                              await pageViewController.previousPage(
+                                duration: Duration(milliseconds: 400),
+                                curve: Curves.ease,
+                              );
+                              setState(() {});
+                            },
+                            padding: EdgeInsets.zero,
+                            child: SvgPicture.asset(
+                              Assets.imagesPagerArrowLeft,
+                            ),
+                          ),
+                          Spacer(),
+                          CupertinoButton(
+                            onPressed: () async {
+                              await pageViewController.nextPage(
+                                duration: Duration(milliseconds: 400),
+                                curve: Curves.ease,
+                              );
+                              setState(() {});
+                            },
+                            padding: EdgeInsets.zero,
+                            child: SvgPicture.asset(
+                              Assets.imagesPagerArrowRight,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: solitude1,
+                            borderRadius: BorderRadius.all(Radius.circular(4)),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 4,
+                          ),
+
+                          ///todo make to acumin font from Raik
+                          child: BlocBuilder<BranchProfileCubit,
+                              BranchProfileState>(
+                            builder: (context, state) {
+                              return Text(
+                                '${pageViewController.hasClients ? (pageViewController.page?.toInt() ?? 0) + 1 : 1} / ${state.branchImages!.length}',
+                                style: inter14Semibold,
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              borderRadius: BorderRadius.circular(4),
             ),
-            child: Stack(
-              children: [
-                PageView.builder(
-                  controller: pageViewController,
-                  itemCount: images.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CachedNetworkImage(
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      imageUrl: images[index % images.length],
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 128,
+                left: 64,
+              ),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: BlocBuilder<BranchProfileCubit, BranchProfileState>(
+                  builder: (context, state) {
+                    return BranchLogo(
+                      image: state.avatarImages?[0],
                     );
                   },
                 ),
-                Align(
-                  child: Row(
-                    children: [
-                      CupertinoButton(
-                        onPressed: () async {
-                          await pageViewController.previousPage(
-                            duration: Duration(milliseconds: 400),
-                            curve: Curves.ease,
-                          );
-                          setState(() {});
-                        },
-                        padding: EdgeInsets.zero,
-                        child: SvgPicture.asset(
-                          Assets.imagesPagerArrowLeft,
-                        ),
-                      ),
-                      Spacer(),
-                      CupertinoButton(
-                        onPressed: () async {
-                          await pageViewController.nextPage(
-                            duration: Duration(milliseconds: 400),
-                            curve: Curves.ease,
-                          );
-                          setState(() {});
-                        },
-                        padding: EdgeInsets.zero,
-                        child: SvgPicture.asset(
-                          Assets.imagesPagerArrowRight,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: solitude1,
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 6,
-                        vertical: 4,
-                      ),
-
-                      ///todo make to acumin font from Raik
-                      child:
-                          Text(
-                        '${pageViewController.hasClients ? pageViewController.page!.toInt() + 1 : 1} / ${images.length}',
-                        style: inter14Semibold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 128,
-            left: 64,
-          ),
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child: BranchLogo(
-                image:
-                    'https://qph.cf2.quoracdn.net/main-qimg-3e45cfebdc1a71a6c2c1962f662d7873-lq'),
-          ),
-        ),
-        Transform.translate(
-          offset: Offset(8, -12),
-          child: Align(
-            alignment: Alignment.topRight,
-            child: EditButton(
-              icon: Icons.edit,
-              onEditTap: () {
-                Navigator.pushNamed(context, BranchProfilePicturePage.path);
-              },
+            Transform.translate(
+              offset: Offset(8, -12),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: EditButton(
+                  icon: Icons.edit,
+                  onEditTap: () {
+                    Navigator.pushNamed(context, BranchProfilePicturePage.path);
+                  },
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 }
@@ -156,7 +176,7 @@ class BranchLogo extends StatelessWidget {
     required this.image,
   }) : super(key: key);
 
-  final String image;
+  final dynamic image;
 
   @override
   Widget build(BuildContext context) {
@@ -169,9 +189,9 @@ class BranchLogo extends StatelessWidget {
       ),
       padding: EdgeInsets.all(4),
       child: ClipOval(
-        child: CachedNetworkImage(
+        child: DynamicImage(
+          path: image,
           fit: BoxFit.cover,
-          imageUrl: image,
         ),
       ),
     );
