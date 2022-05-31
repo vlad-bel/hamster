@@ -6,7 +6,7 @@ import 'package:business_terminal/domain/model/forget_password/forget_password_v
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/cubit/forget_password_cubit.dart';
+import 'package:business_terminal/presentation/forget_password/cubit/forget_password_cubit.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

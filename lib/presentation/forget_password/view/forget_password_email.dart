@@ -3,8 +3,8 @@ import 'package:business_terminal/presentation/common/widgets/form_text_field/fo
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/form_validation/forget_password_validation.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/view/chooseverifypage.dart';
+import 'package:business_terminal/presentation/forget_password/form_validation/forget_password_validation.dart';
+import 'package:business_terminal/presentation/forget_password/view/choose_verify_page.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,7 @@ class ForgetPasswordEmailView extends StatefulWidget {
 }
 
 class _ForgetPasswordEmailViewState extends State<ForgetPasswordEmailView> {
-  final formSettings = ForgetPasswordFormSettings();
+  final _formSettings = ForgetPasswordFormSettings();
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +43,16 @@ class _ForgetPasswordEmailViewState extends State<ForgetPasswordEmailView> {
         body: Column(
           children: [
             ReactiveFormBuilder(
-              form: formSettings.buildForm,
+              form: _formSettings.buildForm,
               builder: (context, form, child) {
                 return Column(
                   children: [
                     const SizedBox(height: 25),
                     FormTextField(
-                      name: formSettings.kfieldEmail,
+                      name: _formSettings.kfieldEmail,
                       label: 'E-Mail',
                       validationMessages: (control) =>
-                          formSettings.validationMessageEmail,
+                          _formSettings.validationMessageEmail,
                       keyboardType: TextInputType.emailAddress,
                     ),
                     SizedBox(height: 200),
@@ -71,7 +71,7 @@ class _ForgetPasswordEmailViewState extends State<ForgetPasswordEmailView> {
                             onPressed: () => onPressNavigateToVerify(
                               context,
                               formGroup
-                                  .control(formSettings.kfieldEmail)
+                                  .control(_formSettings.kfieldEmail)
                                   .value
                                   .toString(),
                             ),

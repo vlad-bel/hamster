@@ -3,9 +3,9 @@ import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/view/chooseverifypage.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/view/forgetpassword_email.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/view/pincoderesetpassword.dart';
+import 'package:business_terminal/presentation/forget_password/view/choose_verify_page.dart';
+import 'package:business_terminal/presentation/forget_password/view/forget_password_email.dart';
+import 'package:business_terminal/presentation/forget_password/view/pincode_reset_password.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/nav_utils.dart';
@@ -121,7 +121,8 @@ class UnauthorizedState extends AppState {
                 break;
               case PinCodePasswordResetPage.path:
                 final email = params!['email'] as String;
-                final method = params['method'] as ForgetPasswordVerificationMethod;
+                final method =
+                    params['method'] as ForgetPasswordVerificationMethod;
                 page = PinCodePasswordResetPage(email: email, method: method);
                 break;
 

@@ -6,8 +6,8 @@ import 'package:business_terminal/domain/model/forget_password/forget_password_v
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/cubit/forget_password_cubit.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/view/pincoderesetpassword.dart';
+import 'package:business_terminal/presentation/forget_password/cubit/forget_password_cubit.dart';
+import 'package:business_terminal/presentation/forget_password/view/pincode_reset_password.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/call_method_selector_form.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
@@ -19,7 +19,7 @@ class ChooseVerifyPage extends StatelessWidget {
 
   const ChooseVerifyPage({super.key, required this.email});
 
-  static const path = '/chooseverifypage';
+  static const path = '/choose_verify_page';
 
   @override
   Widget build(BuildContext context) {
