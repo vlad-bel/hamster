@@ -1,5 +1,6 @@
 import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/forgetpassword.dart/view/chooseverifypage.dart';
@@ -120,8 +121,8 @@ class UnauthorizedState extends AppState {
                 break;
               case PinCodePasswordResetPage.path:
                 final email = params!['email'] as String;
-                final type = params['type'] as String;
-                page = PinCodePasswordResetPage(email: email, type: type);
+                final method = params['method'] as ForgetPasswordVerificationMethod;
+                page = PinCodePasswordResetPage(email: email, method: method);
                 break;
 
               default:

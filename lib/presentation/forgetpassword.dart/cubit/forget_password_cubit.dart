@@ -2,7 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_request.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_send_code_request.dart';
-import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
+import 'package:business_terminal/domain/model/forget_password/forget_password_verify_phone_request.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/use_cases/forget_password/forget_password_use_case.dart';
 import 'package:flutter/foundation.dart';
@@ -18,15 +19,16 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       : super(ForgetPasswordState.initial());
 
   final ForgetPasswordUseCase _forgetPasswordUseCase;
-  String? type;
+  ForgetPasswordVerificationMethod? _method;
 
   Future<void> sendVerificationCode(String emailMain) async {
     try {
-      if (type != null) {
-        await _forgetPasswordUseCase
-            .sendVerificationCode(ForgetPasswordRequest(emailMain, type!));
+      if (_method != null) {
+        await _forgetPasswordUseCase.sendVerificationCode(
+          ForgetPasswordRequest(email: emailMain, verificationMethod: _method!),
+        );
 
-        emit(Sended(type!));
+        emit(ForgetPasswordState.sent(_method!));
       }
     } on ApiFailure catch (e) {
       SnackBarManager.showError(e.response.message.toString());
@@ -38,24 +40,28 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       await _forgetPasswordUseCase
           .verifyPhoneCode(ForgetPasswordSendCodeRequest(email, code));
 
-      emit(const Verified());
+      emit(ForgetPasswordState.verified());
     } on ApiFailure catch (e) {
-      emit(const WrongCode());
+      emit(ForgetPasswordState.wrongCode());
       SnackBarManager.showError(e.response.message.toString());
     }
   }
 
-  Future<void> resendSmsCode(String email, String type) async {
+  Future<void> resendSmsCode(
+    String email,
+    ForgetPasswordVerificationMethod method,
+  ) async {
     try {
-      await _forgetPasswordUseCase
-          .resendSmsCode(VerifyPhoneRequest(verifyMethod: type, email: email));
+      await _forgetPasswordUseCase.resendSmsCode(
+        ForgetPasswordVerifyPhoneRequest(method: method, email: email),
+      );
     } on ApiFailure catch (e) {
       SnackBarManager.showError(e.response.message.toString());
     }
   }
 
-  void chooseTypeOfVerification(String typeOfVerification) {
-    type = typeOfVerification;
-    emit(Choosen(typeOfVerification));
+  void chooseTypeOfVerification(ForgetPasswordVerificationMethod method) {
+    _method = method;
+    emit(ForgetPasswordState.chosen(method));
   }
 }

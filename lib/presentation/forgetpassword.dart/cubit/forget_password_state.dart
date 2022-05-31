@@ -2,15 +2,17 @@ part of 'forget_password_cubit.dart';
 
 @freezed
 abstract class ForgetPasswordState with _$ForgetPasswordState {
-  const factory ForgetPasswordState.initial() = _Initial;
+  const factory ForgetPasswordState.initial() = _$Initial;
 
-  const factory ForgetPasswordState.choosen(String type) = Choosen;
+  const factory ForgetPasswordState.chosen(
+      ForgetPasswordVerificationMethod method) = _$Chosen;
 
-  const factory ForgetPasswordState.sended(String type) = Sended;
+  const factory ForgetPasswordState.sent(
+      ForgetPasswordVerificationMethod method) = _$Sent;
 
-  const factory ForgetPasswordState.wrongCode() = WrongCode;
+  const factory ForgetPasswordState.wrongCode() = _$WrongCode;
 
-  const factory ForgetPasswordState.verified() = Verified;
+  const factory ForgetPasswordState.verified() = _$Verified;
 
-  const factory ForgetPasswordState.resended() = Resended;
+  const factory ForgetPasswordState.resent() = _$Resent;
 }

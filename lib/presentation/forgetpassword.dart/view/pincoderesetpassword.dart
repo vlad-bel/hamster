@@ -2,6 +2,7 @@ import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
@@ -13,12 +14,12 @@ import 'package:hamster_widgets/hamster_widgets.dart';
 
 class PinCodePasswordResetPage extends StatelessWidget {
   final String email;
-  final String type;
+  final ForgetPasswordVerificationMethod method;
 
   const PinCodePasswordResetPage({
     super.key,
     required this.email,
-    required this.type,
+    required this.method,
   });
 
   static const path = '/pincoderesetpassword';
@@ -27,19 +28,19 @@ class PinCodePasswordResetPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt.get<ForgetPasswordCubit>(),
-      child: PinCodePasswordResetView(email: email, type: type),
+      child: PinCodePasswordResetView(email: email, method: method),
     );
   }
 }
 
 class PinCodePasswordResetView extends StatefulWidget {
   final String email;
-  final String type;
+  final ForgetPasswordVerificationMethod method;
 
   const PinCodePasswordResetView({
     super.key,
     required this.email,
-    required this.type,
+    required this.method,
   });
 
   @override
@@ -80,7 +81,7 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
               pinController: pinController,
               hasPinError: false,
             ),
-            ResetCodeButton(email: widget.email, type: widget.type),
+            ResetCodeButton(email: widget.email, method: widget.method),
             SizedBox(height: 200),
             WhiteButton(
               width: 320,
@@ -120,7 +121,8 @@ class ResetPasswordPinInput extends StatelessWidget {
             height: 87,
             controller: pinController,
             textStyle: HamsterStyles.pincodeWeb,
-            hasError: state is WrongCode,
+            hasError:
+                state.maybeMap(wrongCode: (_) => true, orElse: () => false),
             onCompleted: (String value) {
               context.read<ForgetPasswordCubit>().verifyPhoneCode(value, email);
             },
@@ -133,12 +135,12 @@ class ResetPasswordPinInput extends StatelessWidget {
 
 class ResetCodeButton extends StatelessWidget {
   final String email;
-  final String type;
+  final ForgetPasswordVerificationMethod method;
 
   const ResetCodeButton({
     super.key,
     required this.email,
-    required this.type,
+    required this.method,
   });
 
   @override
@@ -147,7 +149,7 @@ class ResetCodeButton extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          context.read<ForgetPasswordCubit>().resendSmsCode(email, type);
+          context.read<ForgetPasswordCubit>().resendSmsCode(email, method);
         },
         child: Text(
           AppLocale.of(context).reset_email,

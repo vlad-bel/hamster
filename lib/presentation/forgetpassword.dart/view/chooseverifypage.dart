@@ -2,6 +2,7 @@ import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
@@ -41,7 +42,7 @@ class ChooseVerifyView extends StatelessWidget {
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
       listener: (context, state) {
         state.whenOrNull(
-          sended: (type) => onPressNavigateToPinCodePage(
+          sent: (type) => onPressNavigateToPinCodePage(
             context,
             email,
             type,
@@ -72,9 +73,15 @@ class ChooseVerifyView extends StatelessWidget {
                       onTap: () {
                         context
                             .read<ForgetPasswordCubit>()
-                            .chooseTypeOfVerification('EMAIL');
+                            .chooseTypeOfVerification(
+                                ForgetPasswordVerificationMethod.email);
                       },
-                      choosed: state is Choosen ? state.type == 'EMAIL' : false,
+                      choosed: state.maybeMap(
+                        chosen: (state) =>
+                            state.method ==
+                            ForgetPasswordVerificationMethod.email,
+                        orElse: () => false,
+                      ),
                     ),
                     const SizedBox(width: 10),
                     SelectorRect(
@@ -84,9 +91,15 @@ class ChooseVerifyView extends StatelessWidget {
                       onTap: () {
                         context
                             .read<ForgetPasswordCubit>()
-                            .chooseTypeOfVerification('SMS');
+                            .chooseTypeOfVerification(
+                                ForgetPasswordVerificationMethod.sms);
                       },
-                      choosed: state is Choosen ? state.type == 'SMS' : false,
+                      choosed: state.maybeMap(
+                        chosen: (state) =>
+                            state.method ==
+                            ForgetPasswordVerificationMethod.sms,
+                        orElse: () => false,
+                      ),
                     ),
                     const SizedBox(width: 10),
                     SelectorRect(
@@ -96,10 +109,15 @@ class ChooseVerifyView extends StatelessWidget {
                       onTap: () {
                         context
                             .read<ForgetPasswordCubit>()
-                            .chooseTypeOfVerification('PHONE_CALL');
+                            .chooseTypeOfVerification(
+                                ForgetPasswordVerificationMethod.phoneCall);
                       },
-                      choosed:
-                          state is Choosen ? state.type == 'PHONE_CALL' : false,
+                      choosed: state.maybeMap(
+                        chosen: (state) =>
+                            state.method ==
+                            ForgetPasswordVerificationMethod.phoneCall,
+                        orElse: () => false,
+                      ),
                     ),
                   ],
                 ),
@@ -116,7 +134,10 @@ class ChooseVerifyView extends StatelessWidget {
                     const SizedBox(width: 24),
                     ActionButtonBlue(
                       width: 162,
-                      isEnabled: state is Choosen,
+                      isEnabled: state.maybeMap(
+                        chosen: (_) => true,
+                        orElse: () => false,
+                      ),
                       onPressed: () {
                         context
                             .read<ForgetPasswordCubit>()
@@ -163,13 +184,13 @@ class SubHeaderEmailRichText extends StatelessWidget {
 void onPressNavigateToPinCodePage(
   BuildContext context,
   String email,
-  String type,
+  ForgetPasswordVerificationMethod method,
 ) {
   Navigator.of(context).pushNamed(
     PinCodePasswordResetPage.path,
     arguments: {
       'email': email,
-      'type': type,
+      'method': method,
     },
   );
 }
