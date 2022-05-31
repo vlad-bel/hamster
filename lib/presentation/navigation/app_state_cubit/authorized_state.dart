@@ -1,4 +1,5 @@
 import 'package:business_terminal/domain/model/company/rep_company.dart';
+import 'package:business_terminal/domain/temp/days_hours.dart';
 import 'package:business_terminal/presentation/add_opening_hours/view/add_opening_hours_page.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
@@ -93,7 +94,9 @@ class AuthorizedState extends AppState {
                 page = SubcategoriesPage();
                 break;
               case PickDayPage.path:
-                page = PickDayPage();
+                final daysHours = params?[PickDayPage.paramDays] as DaysHours?;
+
+                page = PickDayPage(hours: daysHours);
                 break;
               case AddOpeningHoursPage.path:
                 page = AddOpeningHoursPage();

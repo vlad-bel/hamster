@@ -39,7 +39,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   }
 
   Future<void> updateBranch() async {
-   /* BranchProfile branchProfile = BranchProfile(
+    /* BranchProfile branchProfile = BranchProfile(
       id: id,
       branchName: branchName,
       city: city,
@@ -74,6 +74,16 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
       BranchProfileState.init(
         category: category,
         subcategories: subcategories,
+      ),
+    );
+  }
+
+  void setOpeningHours({
+    required OpeningHours hours,
+  }) {
+    emit(
+      BranchProfileState.init(
+        hours: hours,
       ),
     );
   }
