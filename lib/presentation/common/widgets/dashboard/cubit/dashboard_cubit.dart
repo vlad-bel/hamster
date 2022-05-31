@@ -1,3 +1,4 @@
+import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
 import 'package:business_terminal/use_cases/login/login_use_case.dart';
@@ -52,6 +53,7 @@ class DashboardCubit extends Cubit<DashboardState> {
 
   void updateRepCompany(
     RepCompany? repCompany,
+    List<BranchProfile> branchProfilesList,
   ) {
     emit(
       const DashboardState.init().copyWith(

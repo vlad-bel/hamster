@@ -19,7 +19,7 @@ class CompanyBranchTableWithData extends StatelessWidget {
   }) : super(key: key);
 
   final RepCompany? repCompany;
-  final BranchProfile branchProfile;
+  final BranchProfile? branchProfile;
 
   @override
   Widget build(BuildContext context) {
