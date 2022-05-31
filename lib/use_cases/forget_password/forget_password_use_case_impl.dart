@@ -5,6 +5,7 @@ import 'package:business_terminal/domain/model/forget_password/forget_password_r
 import 'package:business_terminal/domain/model/forget_password/forget_password_send_code_request.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verify_phone_request.dart';
+import 'package:business_terminal/domain/model/forget_password/reset_password_request.dart';
 import 'package:business_terminal/use_cases/forget_password/forget_password_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -55,6 +56,18 @@ class ForgetPasswordUseCaseImpl extends ForgetPasswordUseCase {
   ) async {
     try {
       return await _restClient.resendSMSCode(resendCodeRequest.toJson());
+    } on DioError catch (e) {
+      throw ApiFailure(
+        ApiFailureResponse.fromJson(e),
+        'forget password verification code',
+      );
+    }
+  }
+
+  @override
+  Future<void> resetPassword(ResetPasswordRequest request) async {
+    try {
+      return await _restClient.resetPassword(request.toJson());
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),

@@ -97,4 +97,7 @@ abstract class RestClient {
 
   @POST('/rep/change-password')
   Future changePassword(@Body() Map<String, dynamic> changePasswordMap);
+
+  @POST('rep/reset-password')
+  Future resetPassword(@Body() Map<String, dynamic> resetPasswordMap);
 }

@@ -4,6 +4,7 @@ import 'package:business_terminal/domain/model/forget_password/forget_password_r
 import 'package:business_terminal/domain/model/forget_password/forget_password_send_code_request.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verify_phone_request.dart';
+import 'package:business_terminal/domain/model/forget_password/reset_password_request.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/use_cases/forget_password/forget_password_use_case.dart';
 import 'package:flutter/foundation.dart';
@@ -21,8 +22,11 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   final ForgetPasswordUseCase _forgetPasswordUseCase;
   ForgetPasswordVerificationMethod? _method;
+  String? _email;
 
   Future<void> sendVerificationCode(String emailMain) async {
+    _email = emailMain;
+
     try {
       if (_method != null) {
         await _forgetPasswordUseCase.sendVerificationCode(
@@ -68,7 +72,15 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     emit(ForgetPasswordState.chosen(method));
   }
 
-  void changePassword(String password) {
+  Future<void> changePassword(String password) async {
+    try {
+      await _forgetPasswordUseCase.resetPassword(
+        ResetPasswordRequest(email: _email!, password: password),
+      );
+    } on ApiFailure catch (e) {
+      SnackBarManager.showError(e.response.message.toString());
+    }
+
     emit(ForgetPasswordState.newPasswordInstalled());
   }
 }
