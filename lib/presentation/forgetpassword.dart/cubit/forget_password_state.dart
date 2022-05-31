@@ -8,7 +8,8 @@ abstract class ForgetPasswordState with _$ForgetPasswordState {
       ForgetPasswordVerificationMethod method) = _$Chosen;
 
   const factory ForgetPasswordState.sent(
-      ForgetPasswordVerificationMethod method) = _$Sent;
+    ForgetPasswordVerificationMethod method,
+  ) = _$Sent;
 
   const factory ForgetPasswordState.wrongCode() = _$WrongCode;
 

@@ -11,9 +11,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'forget_password_cubit.freezed.dart';
+
 part 'forget_password_state.dart';
 
-@injectable
+@Singleton()
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ForgetPasswordCubit(this._forgetPasswordUseCase)
       : super(ForgetPasswordState.initial());
@@ -35,10 +36,12 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     }
   }
 
-  Future<void> verifyPhoneCode(String code, String email) async {
+  Future<void> confirmCode(String code, String email) async {
     try {
-      await _forgetPasswordUseCase
-          .verifyPhoneCode(ForgetPasswordSendCodeRequest(email, code));
+      await _forgetPasswordUseCase.confirmCode(
+        _method!,
+        ForgetPasswordSendCodeRequest(email, code),
+      );
 
       emit(ForgetPasswordState.verified());
     } on ApiFailure catch (e) {
@@ -53,7 +56,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ) async {
     try {
       await _forgetPasswordUseCase.resendSmsCode(
-        ForgetPasswordVerifyPhoneRequest(method: method, email: email),
+        ForgetPasswordResendCodeRequest(method: method, email: email),
       );
     } on ApiFailure catch (e) {
       SnackBarManager.showError(e.response.message.toString());

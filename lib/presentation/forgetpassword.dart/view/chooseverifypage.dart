@@ -74,7 +74,8 @@ class ChooseVerifyView extends StatelessWidget {
                         context
                             .read<ForgetPasswordCubit>()
                             .chooseTypeOfVerification(
-                                ForgetPasswordVerificationMethod.email);
+                              ForgetPasswordVerificationMethod.email,
+                            );
                       },
                       choosed: state.maybeMap(
                         chosen: (state) =>

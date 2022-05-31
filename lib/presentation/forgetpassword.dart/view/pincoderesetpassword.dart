@@ -124,7 +124,7 @@ class ResetPasswordPinInput extends StatelessWidget {
             hasError:
                 state.maybeMap(wrongCode: (_) => true, orElse: () => false),
             onCompleted: (String value) {
-              context.read<ForgetPasswordCubit>().verifyPhoneCode(value, email);
+              context.read<ForgetPasswordCubit>().confirmCode(value, email);
             },
           ),
         );
