@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/temp/days_hours.dart';
 import 'package:business_terminal/presentation/add_opening_hours/view/add_opening_hours_page.dart';
@@ -169,9 +171,40 @@ class AuthorizedState extends AppState {
 
                 return _buildHamsterPage<Uint8List>(page, settings);
               case PickDayPage.path:
-                final daysHours = params?[PickDayPage.paramDays] as DaysHours?;
+                if (params?[PickDayPage.paramDays] != null) {
+                  final hours = (params![PickDayPage.paramDays] as DaysHours?)
+                      ?.originalObject()
+                      .toJson()
+                      .toString();
+                  if (hours != null) {
+                    appStorageService.setString(
+                      key: PickDayPage.paramDays,
+                      value: hours,
+                    );
+                  }
+                }
 
-                page = PickDayPage(hours: daysHours);
+                page = buildPage(
+                  requiredParams: [
+                    PickDayPage.paramDays,
+                  ],
+                  child: PickDayPage(
+                    hours: appStorageService.getString(
+                              key: PickDayPage.paramDays,
+                            ) !=
+                            null
+                        ? DaysHours(
+                            OpeningHours.fromJson(
+                              json.decode(
+                                appStorageService.getString(
+                                  key: PickDayPage.paramDays,
+                                )!,
+                              ) as Map<String, dynamic>,
+                            ),
+                          )
+                        : null,
+                  ),
+                );
                 break;
               case AddOpeningHoursPage.path:
                 page = AddOpeningHoursPage();
@@ -198,4 +231,6 @@ class AuthorizedState extends AppState {
       settings: settings,
     );
   }
+
+  static final appStorageService = getIt.get<AppStorageService>();
 }
