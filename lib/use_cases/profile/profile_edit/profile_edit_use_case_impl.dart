@@ -6,7 +6,7 @@ import 'package:business_terminal/use_cases/profile/profile_edit/profile_edit_us
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: ProfileEditUsecase)
+@Injectable(as: ProfileEditUsecase)
 class ProfileEditUsecaseImpl extends ProfileEditUsecase {
   ProfileEditUsecaseImpl(this.repository);
 

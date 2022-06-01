@@ -10,7 +10,6 @@ import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
-import 'package:business_terminal/presentation/dashboard/profile/profile_edit/cubit/profile_edit_cubit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/authorized_state.dart';
@@ -37,9 +36,6 @@ class App extends StatelessWidget {
         providers: [
           BlocProvider<AppStateCubit>(
             create: (_) => AppStateCubit(),
-          ),
-          BlocProvider(
-            create: (_) => getIt.get<ProfileEditCubit>()..getInitialData(),
           ),
           BlocProvider<DashboardCubit>(
             create: (_) => getIt.get<DashboardCubit>(),

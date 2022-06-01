@@ -1,5 +1,6 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,15 +19,15 @@ class BranchTableControlPanel extends StatelessWidget {
         ),
         const Spacer(),
         ControlPanelButton(
-          image: 'images/search.svg',
+          image: Assets.imagesSearch,
           onPress: () {},
         ),
         ControlPanelButton(
-          image: 'images/filter.svg',
+          image: Assets.imagesFilter,
           onPress: () {},
         ),
         ControlPanelButton(
-          image: 'images/menu.svg',
+          image: Assets.imagesMenu,
           onPress: () {},
         ),
         // Expanded(child: child)

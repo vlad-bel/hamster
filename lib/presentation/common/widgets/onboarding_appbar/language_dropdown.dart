@@ -26,7 +26,6 @@ class LanguageDropdownState extends State<LanguageDropdown> {
           GetIt.I<LocaleSettingsController>().locale.languageCode,
       orElse: () => languages.first,
     );
-    print('selectedValue is $selectedValue');
   }
 
   Widget buildDropDownListItem(
@@ -52,6 +51,8 @@ class LanguageDropdownState extends State<LanguageDropdown> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
+        hint: buildDropDownListItem(selectedValue!),
+        disabledHint: buildDropDownListItem(selectedValue!),
         items: languages
             .map(
               (item) => DropdownMenuItem<AppLanguageModel>(
@@ -70,7 +71,9 @@ class LanguageDropdownState extends State<LanguageDropdown> {
             value,
           );
           // TODO: replace setState with Bloc in the future
-          selectedValue = value;
+          setState(() {
+            selectedValue = value;
+          });
         },
         icon: const Icon(
           Icons.keyboard_arrow_down_outlined,

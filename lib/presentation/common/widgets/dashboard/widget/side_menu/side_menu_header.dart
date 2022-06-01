@@ -1,6 +1,7 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,7 +22,7 @@ class SideMenuHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SvgPicture.asset(
-          '/images/hamster_logo.svg',
+          Assets.imagesHamsterLogo,
           width: 135,
           color: denim,
         ),

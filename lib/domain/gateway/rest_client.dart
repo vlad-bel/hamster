@@ -94,4 +94,7 @@ abstract class RestClient {
 
   @GET('/common/categories')
   Future<List<String>> getCategories();
+
+  @POST('/rep/change-password')
+  Future changePassword(@Body() Map<String, dynamic> changePasswordMap);
 }

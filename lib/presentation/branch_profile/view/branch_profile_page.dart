@@ -25,9 +25,9 @@ class BranchProfilePage extends StatelessWidget {
     super.key,
   });
 
-  static const path = '/branch_profile';
   static const paramCompany = 'company';
   static const paramData = 'data';
+  static const path = '/branch_profile';
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
   final RepCompany company;
@@ -40,11 +40,13 @@ class BranchProfilePage extends StatelessWidget {
 }
 
 class _BranchProfileView extends StatelessWidget {
-  _BranchProfileView(this.company, this.branchSelectedFieldsMap, {super.key});
+  _BranchProfileView(
+    this.company,
+    this.branchSelectedFieldsMap,
+  );
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
   final RepCompany company;
-
   final formSettings = BranchProfileFormValidation();
   final verticalPaddingBetweenTextInputs = 18.0;
 

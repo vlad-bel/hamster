@@ -80,12 +80,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Kassenhersteller"),
         "cash_register_system_used": MessageLookupByLibrary.simpleMessage(
             "Genutzte Kassensysteme in Ihrer Filiale"),
+        "changePasswordHeader": MessageLookupByLibrary.simpleMessage(
+            "Ersetzen Sie Ihr altes Passwort."),
+        "changePasswordSubHeader": MessageLookupByLibrary.simpleMessage(
+            "Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Passwort ändern"),
         "choose_main_category": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie eine Hauptkategorie aus."),
         "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie eine Hauptkategorie durch Doppelklick. Diese wird allen HamsterApp-Nutzern angezeigt."),
+        "closeHint": MessageLookupByLibrary.simpleMessage("Hinweis schließen"),
         "closed": MessageLookupByLibrary.simpleMessage("geschlossen"),
         "closes": MessageLookupByLibrary.simpleMessage("Schließt"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
@@ -111,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Legen Sie Ihr Unternehmensprofil an."),
         "create_company_profile_descr": MessageLookupByLibrary.simpleMessage(
             "Teilen Sie uns mit, wie Ihr Unternehmen postalisch erreicht werden kann."),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
         "edit_photo": MessageLookupByLibrary.simpleMessage(
@@ -120,6 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Fehler"),
+        "falschesPasswort":
+            MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
         "finance": MessageLookupByLibrary.simpleMessage("Finanzen"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finanzen1"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
@@ -135,6 +144,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetpassword_email_subtitle2":
             MessageLookupByLibrary.simpleMessage("\nde zurückzusetzen."),
         "friday": MessageLookupByLibrary.simpleMessage("Freitag"),
+        "hasOneLoweCaseLetter":
+            MessageLookupByLibrary.simpleMessage("1 Kleinbuchstabe"),
+        "hasOneSpecialCharacter":
+            MessageLookupByLibrary.simpleMessage("1 Zahl"),
+        "hasOneUpperCaseLetter":
+            MessageLookupByLibrary.simpleMessage("1 Großbuchstabe"),
+        "hasTenCharacters":
+            MessageLookupByLibrary.simpleMessage("10 Zeichen lang"),
         "help_center": MessageLookupByLibrary.simpleMessage("Hilfe-Center"),
         "help_us_connect_branch": MessageLookupByLibrary.simpleMessage(
             "Helfen Sie uns Ihre Filiale schnell anzubinden indem Sie Ihre Kassensysteme angeben"),
@@ -173,6 +190,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Anzahl Kassen"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Öffnungszeiten"),
         "opens": MessageLookupByLibrary.simpleMessage("Öffnet"),
+        "passwordChanged":
+            MessageLookupByLibrary.simpleMessage("Passwort geändert."),
+        "passwordChangedDescription": MessageLookupByLibrary.simpleMessage(
+            "Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden."),
+        "passwordHintTitle": MessageLookupByLibrary.simpleMessage(
+            "Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:"),
+        "passwordIncorrectDescription": MessageLookupByLibrary.simpleMessage(
+            "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt."),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Zahlungsinformationen"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Anruf"),

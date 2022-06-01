@@ -330,10 +330,10 @@ class S {
     );
   }
 
-  /// `Logout`
+  /// `Cancel registration`
   String get cancel_register {
     return Intl.message(
-      'Logout',
+      'Cancel registration',
       name: 'cancel_register',
       desc: '',
       args: [],
@@ -391,7 +391,7 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(Object length) {
+  String min_number(int length) {
     return Intl.message(
       'Maximum number $length characters',
       name: 'min_number',
@@ -401,7 +401,7 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(Object length) {
+  String max_number(int length) {
     return Intl.message(
       'Minimum number $length characters',
       name: 'max_number',
@@ -911,7 +911,7 @@ class S {
   }
 
   /// `Number: {number}`
-  String branch_id(Object number) {
+  String branch_id(int number) {
     return Intl.message(
       'Number: $number',
       name: 'branch_id',
@@ -1321,7 +1321,7 @@ class S {
   }
 
   /// `Entrance doors amount {number}`
-  String entrances_count(Object number) {
+  String entrances_count(int number) {
     return Intl.message(
       'Entrance doors amount $number',
       name: 'entrances_count',
@@ -1330,61 +1330,151 @@ class S {
     );
   }
 
-  /// `Add pictures of your branch.`
-  String get add_picture_for_branch {
+  /// `Forgot your password?`
+  String get forget_pasword_header {
     return Intl.message(
-      'Add pictures of your branch.',
-      name: 'add_picture_for_branch',
+      'Forgot your password?',
+      name: 'forget_pasword_header',
       desc: '',
       args: [],
     );
   }
 
-  /// `Select and upload your branch images. Make sure that the selected image files are of sufficient quality.`
-  String get add_picture_for_branch_descr {
+  /// `Resend email`
+  String get resetmail {
     return Intl.message(
-      'Select and upload your branch images. Make sure that the selected image files are of sufficient quality.',
-      name: 'add_picture_for_branch_descr',
+      'Resend email',
+      name: 'resetmail',
       desc: '',
       args: [],
     );
   }
 
-  /// `Add branch picture`
-  String get add_branch_picture {
+  /// `Ersetzen Sie Ihr altes Passwort.`
+  String get changePasswordHeader {
     return Intl.message(
-      'Add branch picture',
-      name: 'add_branch_picture',
+      'Ersetzen Sie Ihr altes Passwort.',
+      name: 'changePasswordHeader',
       desc: '',
       args: [],
     );
   }
 
-  /// `TO SAVE`
-  String get to_save {
+  /// `Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren`
+  String get changePasswordSubHeader {
     return Intl.message(
-      'TO SAVE',
-      name: 'to_save',
+      'Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren',
+      name: 'changePasswordSubHeader',
       desc: '',
       args: [],
     );
   }
 
-  /// `Edit your profile photo.`
-  String get edit_photo {
+  /// `Aktuelles Passwort`
+  String get currentPassword {
     return Intl.message(
-      'Edit your profile photo.',
-      name: 'edit_photo',
+      'Aktuelles Passwort',
+      name: 'currentPassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Select the correct section of your profile photo.`
-  String get edit_photo_descr {
+  /// `Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:`
+  String get passwordHintTitle {
     return Intl.message(
-      'Select the correct section of your profile photo.',
-      name: 'edit_photo_descr',
+      'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
+      name: 'passwordHintTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `10 Zeichen lang`
+  String get hasTenCharacters {
+    return Intl.message(
+      '10 Zeichen lang',
+      name: 'hasTenCharacters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 Kleinbuchstabe`
+  String get hasOneLoweCaseLetter {
+    return Intl.message(
+      '1 Kleinbuchstabe',
+      name: 'hasOneLoweCaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 Großbuchstabe`
+  String get hasOneUpperCaseLetter {
+    return Intl.message(
+      '1 Großbuchstabe',
+      name: 'hasOneUpperCaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 Zahl`
+  String get hasOneSpecialCharacter {
+    return Intl.message(
+      '1 Zahl',
+      name: 'hasOneSpecialCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hinweis schließen`
+  String get closeHint {
+    return Intl.message(
+      'Hinweis schließen',
+      name: 'closeHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwort geändert.`
+  String get passwordChanged {
+    return Intl.message(
+      'Passwort geändert.',
+      name: 'passwordChanged',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.`
+  String get passwordChangedDescription {
+    return Intl.message(
+      'Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.',
+      name: 'passwordChangedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Falsches Passwort`
+  String get falschesPasswort {
+    return Intl.message(
+      'Falsches Passwort',
+      name: 'falschesPasswort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.`
+  String get passwordIncorrectDescription {
+    return Intl.message(
+      'Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.',
+      name: 'passwordIncorrectDescription',
       desc: '',
       args: [],
     );

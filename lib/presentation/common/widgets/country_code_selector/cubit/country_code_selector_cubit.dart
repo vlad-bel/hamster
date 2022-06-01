@@ -32,7 +32,7 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
 
   final NumberVerificationUseCase useCase;
 
-  late final List<Country> cachedCountries;
+  List<Country>? cachedCountries;
 
   Future getCountryList() async {
     try {
@@ -67,7 +67,7 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
         emit(
           CountryCodeSelectorState.open(
             countries: cachedCountries
-                .where(
+                ?.where(
                   (element) => element.name.toLowerCase().startsWith(
                         value.toLowerCase(),
                       ),

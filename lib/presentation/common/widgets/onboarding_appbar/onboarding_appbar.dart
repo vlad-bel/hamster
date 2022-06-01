@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OnboardingAppbar extends StatelessWidget {
-  const OnboardingAppbar({Key? key}) : super(key: key);
+  final bool showLanguageDropdown;
+
+  const OnboardingAppbar({Key? key, this.showLanguageDropdown = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +24,11 @@ class OnboardingAppbar extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        const Padding(
-          padding: EdgeInsets.all(30),
-          child: LanguageDropdown(),
-        ),
+        if (showLanguageDropdown)
+          const Padding(
+            padding: EdgeInsets.all(30),
+            child: LanguageDropdown(),
+          ),
       ],
     );
   }
