@@ -9,11 +9,13 @@ class OnboardingBackground extends StatelessWidget {
     required this.children,
     this.showLanguageDropdown = true,
     this.hasScroll = true,
+    this.customAppBar,
   }) : super(key: key);
 
   final Widget children;
   final bool showLanguageDropdown;
   final bool hasScroll;
+  final Widget? customAppBar;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,10 @@ class OnboardingBackground extends StatelessWidget {
                   : AlwaysScrollableScrollPhysics(),
               child: Column(
                 children: [
-                  OnboardingAppbar(showLanguageDropdown: showLanguageDropdown),
+                  customAppBar ??
+                      OnboardingAppbar(
+                        showLanguageDropdown: showLanguageDropdown,
+                      ),
                   Center(
                     child: children,
                   ),

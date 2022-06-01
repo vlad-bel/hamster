@@ -10,4 +10,9 @@ class BranchProfileState with _$BranchProfileState {
     List<dynamic>? branchImages,
     List<dynamic>? avatarImages,
   }) = InitBranchProfileState;
+
+  const factory BranchProfileState.branchWasCreatedSuccessfully() =
+      WasCreatedSuccesfullyBranchProfileState;
+
+  const factory BranchProfileState.error() = ErrorBranchProfileState;
 }

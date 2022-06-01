@@ -14,8 +14,11 @@ import 'package:business_terminal/presentation/common/widgets/branch_white_conta
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
+import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../common/widgets/header_app_bar/header_app_bar_widget.dart';
 
 class BranchProfilePage extends StatelessWidget {
   const BranchProfilePage({
@@ -55,9 +58,21 @@ class _BranchProfileView extends StatelessWidget {
       height: verticalPaddingBetweenTextInputs,
     );
 
+    final appBar = Padding(
+      padding: const EdgeInsets.only(bottom: 46),
+      child: HeaderAppBarWidget(
+        trailing: ActionButtonBlue(
+          onPressed: () {
+            context.read<BranchProfileCubit>().createBranch();
+          },
+        ),
+      ),
+    );
+
     return BlocBuilder<BranchProfileCubit, BranchProfileState>(
       builder: (BuildContext context, state) {
         return OnboardingBackground(
+          customAppBar: appBar,
           children: Column(
             children: [
               BranchProfileContainerWhite(
@@ -67,12 +82,6 @@ class _BranchProfileView extends StatelessWidget {
                 ),
                 body: Column(
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<BranchProfileCubit>().createBranch();
-                      },
-                      child: Text('Create new branch'),
-                    ),
                     BranchTopPhotoAndLogoPager(),
                     const SizedBox(height: 26),
                     Row(

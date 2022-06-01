@@ -1,4 +1,3 @@
-import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/widget/company_branch_table_with_data.dart';
