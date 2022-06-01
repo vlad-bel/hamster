@@ -1,7 +1,9 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
+import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -11,7 +13,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 class BranchProfileCubit extends Cubit<BranchProfileState> {
   BranchProfileCubit(this.useCase)
       : super(
-          BranchProfileState.init(
+          const BranchProfileState.init(
             ///todo mock images
             branchImages: [
               'https://cdn.cnn.com/cnnnext/dam/assets/211105205533-01-georgia-travel-file-full-169.jpg',
@@ -26,7 +28,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         );
 
   final BranchProfileUseCase useCase;
-  final FormGroup formGroup = BranchProfileFormValidation().buildForm();
+  final formGroup = BranchProfileFormValidation().buildForm();
 
   // TODO: add branch parameters
   Future<void> createBranch() async {
@@ -46,11 +48,13 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
 
     try {
       await useCase.createBranch(branchProfileDummy);
-    } catch (e) {
-      logger.e('createBranch: $e');
-    }
 
-    // useCase.createBranch(branchProfile);
+      SnackBarManager.showSuccess('Branch profile was created');
+      emit(const BranchProfileState.branchWasCreatedSuccessfully());
+    } on ApiFailure catch (e) {
+      logger.e('createBranch: $e');
+      SnackBarManager.showError(e.response.message.toString());
+    }
   }
 
   Future<void> updateBranch() async {
@@ -61,13 +65,17 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required String category,
     required List<String> subcategories,
   }) {
-    emit(
-      BranchProfileState.init(
-        category: category,
-        subcategories: subcategories,
-        branchImages: state.branchImages,
-        avatarImages: state.avatarImages,
-      ),
+    state.whenOrNull(
+      init: (category, subcategories, branchImages, avatarImages) {
+        emit(
+          BranchProfileState.init(
+            category: category,
+            subcategories: subcategories,
+            branchImages: branchImages,
+            avatarImages: avatarImages,
+          ),
+        );
+      },
     );
   }
 

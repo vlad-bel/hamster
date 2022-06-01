@@ -179,7 +179,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   );
                 },
               ) ??
-              Text('');
+              const SizedBox.shrink();
         },
       ),
     );

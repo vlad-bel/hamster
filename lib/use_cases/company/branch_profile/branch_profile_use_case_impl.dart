@@ -39,15 +39,14 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
     ];
 
     final response = BranchProfileWithPaging(
-      hasNextPage: false,
-      hasPreviousPage: false,
-      itemCount: 1,
-      page: 1,
-      order: 'DESC',
-      pageCount: 1,
-      take: 1,
-      data: branchProfile,
-    );
+        hasNextPage: false,
+        hasPreviousPage: false,
+        itemCount: 1,
+        page: 1,
+        order: 'DESC',
+        pageCount: 1,
+        take: 1,
+        data: branchProfile,);
     return response;
   }
 

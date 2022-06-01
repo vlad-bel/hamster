@@ -13,6 +13,8 @@ import 'package:business_terminal/presentation/branch_profile/widget/pos_list_it
 import 'package:business_terminal/presentation/common/widgets/branch_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
+import 'package:business_terminal/presentation/common/widgets/header_app_bar/header_app_bar_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
@@ -62,6 +64,7 @@ class _BranchProfileView extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 46),
       child: HeaderAppBarWidget(
         trailing: ActionButtonBlue(
+          isEnabled: true,
           onPressed: () {
             context.read<BranchProfileCubit>().createBranch();
           },
@@ -69,7 +72,22 @@ class _BranchProfileView extends StatelessWidget {
       ),
     );
 
-    return BlocBuilder<BranchProfileCubit, BranchProfileState>(
+    return BlocConsumer<BranchProfileCubit, BranchProfileState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          branchWasCreatedSuccessfully: (
+            category,
+            subcategories,
+            branchImages,
+            avatarImages,
+          ) {
+            Navigator.popUntil(
+              context,
+              (route) => route.settings.name == DashboardPage.path,
+            );
+          },
+        );
+      },
       builder: (BuildContext context, state) {
         return OnboardingBackground(
           customAppBar: appBar,
@@ -82,7 +100,7 @@ class _BranchProfileView extends StatelessWidget {
                 ),
                 body: Column(
                   children: [
-                    BranchTopPhotoAndLogoPager(),
+                    const BranchTopPhotoAndLogoPager(),
                     const SizedBox(height: 26),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,11 +116,7 @@ class _BranchProfileView extends StatelessWidget {
                         const SizedBox(width: 45),
 
                         /// Right side part:
-                        Expanded(
-                          child: BranchProfileWorkingHoursTable(
-                            state: state as InitBranchProfileState,
-                          ),
-                        ),
+                        const Expanded(child: BranchProfileWorkingHoursTable()),
                       ],
                     ),
                   ],
@@ -112,7 +126,7 @@ class _BranchProfileView extends StatelessWidget {
               const SizedBox(height: 16),
               BranchProfileContainerWhite(
                 headerLeft: Text(AppLocale.of(context).branch_category),
-                body: BranchProfileCategories(),
+                body: const BranchProfileCategories(),
               ),
               // Branch equipment:
               const SizedBox(height: 16),
