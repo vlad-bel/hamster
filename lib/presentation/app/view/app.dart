@@ -10,6 +10,7 @@ import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
+import 'package:business_terminal/presentation/forget_password/cubit/forget_password_cubit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/authorized_state.dart';
@@ -59,7 +60,8 @@ class App extends StatelessWidget {
             create: (BuildContext context) {
               return getIt.get<SubcategoriesCubit>();
             },
-          )
+          ),
+          BlocProvider<ForgetPasswordCubit>(create: (_) => getIt.get())
         ],
         child: BlocBuilder<AppStateCubit, AppState>(
           builder: (context, state) {

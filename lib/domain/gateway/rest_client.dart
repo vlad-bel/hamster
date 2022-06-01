@@ -2,6 +2,7 @@ import 'package:business_terminal/domain/model/company/branch/branch_profile.dar
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
+import 'package:business_terminal/domain/model/forget_password/send_verification_code_response.dart';
 import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -78,6 +79,11 @@ abstract class RestClient {
   );
 
   @POST('/rep/send-verification-code')
+  Future<SendVerificationCodeResponse> sendPhoneVerificationCode(
+    @Body() Map<String, dynamic> sendVerificationCodeMap,
+  );
+
+  @POST('/rep/send-verification-code')
   Future<String> sendVerificationCode(
     @Body() Map<String, dynamic> sendVerificationCodeMap,
   );
@@ -122,4 +128,7 @@ abstract class RestClient {
 
   @POST('/rep/change-password')
   Future changePassword(@Body() Map<String, dynamic> changePasswordMap);
+
+  @POST('rep/reset-password')
+  Future resetPassword(@Body() Map<String, dynamic> resetPasswordMap);
 }
