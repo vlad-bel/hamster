@@ -93,7 +93,7 @@ class _ForgetPasswordEmailViewState extends State<ForgetPasswordEmailView> {
 
   void onPressNavigateToVerify(BuildContext context, String email) {
     context.read<ForgetPasswordCubit>().onEmailTyped(email);
-    Navigator.of(context)
-        .pushNamed(ChooseVerifyPage.path, arguments: {'email': email});
+    Navigator.of(context).pushNamed(ChooseVerifyPage.path,
+        arguments: ChooseVerifyPage.buildParams(email));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
@@ -16,11 +17,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 class ChooseVerifyPage extends StatelessWidget {
-  final String email;
+  static const path = '/choose_verify_page';
+  static const _kEmailKey = '$path/email';
 
   const ChooseVerifyPage({super.key, required this.email});
 
-  static const path = '/choose_verify_page';
+  static Map<String, dynamic> buildParams(String email) => {_kEmailKey: email};
+
+  static void saveParams(
+      AppStorageService service, Map<String, dynamic> params) {
+    service.setString(key: _kEmailKey, value: params[_kEmailKey] as String);
+  }
+
+  factory ChooseVerifyPage.fromStorage(AppStorageService service) =>
+      ChooseVerifyPage(email: service.getString(key: _kEmailKey)!);
+
+  final String email;
 
   @override
   Widget build(BuildContext context) {

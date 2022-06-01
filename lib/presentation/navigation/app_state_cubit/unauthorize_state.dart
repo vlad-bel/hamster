@@ -116,20 +116,24 @@ class UnauthorizedState extends AppState {
                 break;
 
               case ChooseVerifyPage.path:
-                final email = params!['email'] as String;
-                page = ChooseVerifyPage(
-                  email: email,
-                );
+                if (params != null) {
+                  ChooseVerifyPage.saveParams(appStorageService, params);
+                }
+                page = ChooseVerifyPage.fromStorage(appStorageService);
                 break;
               case PinCodePasswordResetPage.path:
-                page = PinCodePasswordResetPage.fromParams(params!);
+                if (params != null) {
+                  PinCodePasswordResetPage.saveParams(
+                      appStorageService, params);
+                }
+                page = PinCodePasswordResetPage.fromStorage(appStorageService);
                 break;
               case ConfirmNewPasswordPage.path:
-                page = ConfirmNewPasswordPage();
+                page = const ConfirmNewPasswordPage();
                 break;
 
               case NewPasswordInstalledPage.path:
-                page = NewPasswordInstalledPage();
+                page = const NewPasswordInstalledPage();
                 break;
 
               default:

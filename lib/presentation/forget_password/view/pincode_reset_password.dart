@@ -1,4 +1,6 @@
+import 'package:business_terminal/app/utils/enum_utils.dart';
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
@@ -11,13 +13,14 @@ import 'package:business_terminal/presentation/forget_password/view/confirm_new_
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 class PinCodePasswordResetPage extends StatelessWidget {
-  static const _kEmailKey = 'email';
-  static const _kMethodKey = 'method';
+  static const _kEmailKey = '$path/email';
+  static const _kMethodKey = '$path/method';
 
   static const path = '/pincode_reset_password';
 
@@ -36,10 +39,22 @@ class PinCodePasswordResetPage extends StatelessWidget {
   ) =>
       {_kEmailKey: email, _kMethodKey: method};
 
-  factory PinCodePasswordResetPage.fromParams(Map<String, dynamic> params) {
+  static void saveParams(
+      AppStorageService service, Map<String, dynamic> params) {
+    service
+      ..setString(
+        key: _kMethodKey,
+        value: (params[_kMethodKey] as ForgetPasswordVerificationMethod)
+            .toString(),
+      )
+      ..setString(key: _kEmailKey, value: params[_kEmailKey].toString());
+  }
+
+  factory PinCodePasswordResetPage.fromStorage(AppStorageService service) {
     return PinCodePasswordResetPage(
-      email: params[_kEmailKey] as String,
-      method: params[_kMethodKey] as ForgetPasswordVerificationMethod,
+      email: service.getString(key: _kEmailKey)!,
+      method: enumFromString(ForgetPasswordVerificationMethod.values,
+          service.getString(key: _kMethodKey)!),
     );
   }
 
