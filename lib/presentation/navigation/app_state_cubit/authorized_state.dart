@@ -1,8 +1,12 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
+import 'package:business_terminal/domain/temp/days_hours.dart';
+import 'package:business_terminal/presentation/add_opening_hours/view/add_opening_hours_page.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/view/create_branch_profile_checkboxes_page.dart';
@@ -21,6 +25,7 @@ import 'package:business_terminal/presentation/dashboard/profile/profile_edit/vi
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/nav_utils.dart';
 import 'package:business_terminal/presentation/navigation/unknown_page.dart';
+import 'package:business_terminal/presentation/pick_day/view/pick_day_page.dart';
 import 'package:flutter/material.dart';
 
 class AuthorizedState extends AppState {
@@ -90,19 +95,19 @@ class AuthorizedState extends AppState {
 
                 break;
               case CategoriesPage.path:
-                page = CategoriesPage();
+                page = const CategoriesPage();
                 break;
               case SelectSubCategoriesPage.path:
-                page = SelectSubCategoriesPage();
+                page = const SelectSubCategoriesPage();
                 break;
               case SubcategoriesPage.path:
-                page = SubcategoriesPage();
+                page = const SubcategoriesPage();
                 break;
               case BranchProfilePicturePage.path:
-                page = BranchProfilePicturePage();
+                page = const BranchProfilePicturePage();
                 break;
               case BranchProfileAvatarPicturePage.path:
-                page = BranchProfileAvatarPicturePage(
+                page = const BranchProfileAvatarPicturePage(
                   showEditButton: false,
                   showAddButton: true,
                 );
@@ -156,15 +161,56 @@ class AuthorizedState extends AppState {
                       key: CropperPage.pSubheader,
                     )!,
                     circleCrop: appStorageService.getString(
-                              key: CropperPage.pCircleCrop,
-                            )! ==
-                            'true'
-                        ? true
-                        : false,
+                          key: CropperPage.pCircleCrop,
+                        )! ==
+                        'true',
                   ),
                 );
 
                 return _buildHamsterPage<Uint8List>(page, settings);
+              case PickDayPage.path:
+                if (params?[PickDayPage.paramDays] != null) {
+                  final hours = json.encode(
+                    (params![PickDayPage.paramDays] as DaysHours?)
+                        ?.originalObject()
+                        .toJson(),
+                  );
+                  appStorageService.setString(
+                    key: PickDayPage.paramDays,
+                    value: hours,
+                  );
+                }
+
+                DaysHours? storageHours;
+                if (appStorageService.getString(
+                      key: PickDayPage.paramDays,
+                    ) !=
+                    null) {
+                  final str = appStorageService.getString(
+                    key: PickDayPage.paramDays,
+                  )!;
+
+                  final decoded = json.decode(str) as Map<String, dynamic>;
+
+                  storageHours = DaysHours(
+                    OpeningHours.fromJson(
+                      decoded,
+                    ),
+                  );
+                }
+
+                page = buildPage(
+                  requiredParams: [
+                    PickDayPage.paramDays,
+                  ],
+                  child: PickDayPage(
+                    hours: storageHours,
+                  ),
+                );
+                break;
+              case AddOpeningHoursPage.path:
+                page = const AddOpeningHoursPage();
+                break;
             }
 
             return _buildHamsterPage<void>(page, settings);
@@ -187,4 +233,6 @@ class AuthorizedState extends AppState {
       settings: settings,
     );
   }
+
+  static final appStorageService = getIt.get<AppStorageService>();
 }

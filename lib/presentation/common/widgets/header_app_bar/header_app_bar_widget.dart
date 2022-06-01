@@ -1,5 +1,4 @@
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/config/image/image_paths.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';

@@ -68,15 +68,15 @@ class _CropperFormState extends State<CropperForm> {
                       ),
                     ),
                     state.whenOrNull(
-                      loading: () {
-                        return SizedBox(
-                          height: 350,
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      },
-                    ) ??
+                          loading: () {
+                            return SizedBox(
+                              height: 350,
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          },
+                        ) ??
                         const SizedBox(),
                   ],
                 ),

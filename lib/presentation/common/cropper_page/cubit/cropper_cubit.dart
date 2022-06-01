@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 class CropperCubit extends Cubit<CropperState> {
   CropperCubit() : super(CropperState.init());
 
-  void loading(){
+  void loading() {
     emit(CropperState.loading());
   }
 }

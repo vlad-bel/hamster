@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m3(length) => "Minimale Nummernlänge ${length} Zeichen";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Kontoinhaber"),
         "account_verification":

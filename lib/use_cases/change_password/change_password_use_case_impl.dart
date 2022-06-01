@@ -23,5 +23,4 @@ class ChangePasswordUseCaseImpl extends ChangePasswordUseCase {
       );
     }
   }
-
 }

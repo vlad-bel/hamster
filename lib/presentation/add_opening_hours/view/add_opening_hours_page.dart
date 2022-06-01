@@ -96,7 +96,9 @@ class _AddOpeningHoursForm extends StatelessWidget {
                     const SizedBox(height: 24),
                     FormConsumer(
                       onTap: (form) {
-                        // TODO(dvakhnin): Form behaviour
+                        Navigator.of(context).pop(
+                          context.read<AddOpeningHoursCubit>().openingHours(),
+                        );
                       },
                     ),
                   ],

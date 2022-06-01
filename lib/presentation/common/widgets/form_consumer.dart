@@ -6,9 +6,11 @@ import 'package:reactive_forms/reactive_forms.dart';
 /// Possible to use in other cases
 /// Consume, validate and submit form
 class FormConsumer extends StatelessWidget {
-  const FormConsumer({Key? key, required this.onTap}) : super(key: key);
+  const FormConsumer({Key? key, required this.onTap, this.onBack})
+      : super(key: key);
 
   final Function(FormGroup) onTap;
+  final VoidCallback? onBack;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +18,7 @@ class FormConsumer extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         WhiteButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: onBack ?? Navigator.of(context).pop,
         ),
         const Spacer(),
         SizedBox(

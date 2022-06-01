@@ -3,10 +3,9 @@ import 'package:business_terminal/presentation/branch_profile_picture/cubit/bran
 import 'package:business_terminal/presentation/branch_profile_picture/widget/branch_profile_picture_add_cell.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/widget/branch_profile_picture_cell.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/widget/branch_profile_selected_picture.dart';
+import 'package:business_terminal/presentation/common/widgets/dashed_button/rect_dashed_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:business_terminal/presentation/common/widgets/dashed_button/rect_dashed_button.dart';
 
 class BranchProfilePictureSelector extends StatelessWidget {
   const BranchProfilePictureSelector({Key? key}) : super(key: key);
@@ -36,7 +35,7 @@ class BranchProfilePictureSelector extends StatelessWidget {
                   loader,
                 ],
               ),
-             const SizedBox(height: 12),
+              const SizedBox(height: 12),
               Row(
                 children: _generatePhotoCells(
                   state.images!,

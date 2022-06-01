@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_state.dart';
@@ -46,10 +45,6 @@ class BranchProfilePictureCubit extends Cubit<BranchProfilePictureState> {
 
     if (result != null) {
       final imageBytes = await result.readAsBytes();
-      final imageFile = File(
-        imageBytes,
-        result.name,
-      );
 
       return imageBytes;
     }

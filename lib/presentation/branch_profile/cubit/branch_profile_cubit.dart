@@ -31,29 +31,34 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
 
   // TODO: add branch parameters
   Future<void> createBranch() async {
-    final branchProfileDummy = BranchProfile(
-      branchName: 'Branch name',
-      branchNumber: '1111',
-      city: 'City',
-      streetName: 'Street',
-      country: 'Germany',
-      streetNumber: '111',
-      website: 'www.example.com',
-      phoneNumber: '1234567890',
-      entrances: 1,
-      postalCode: '33111',
-      category: 'Restaurant',
+    await state.whenOrNull(
+      init: (category, subcategories, branchImages, avatarImages, hours) async {
+        final branchProfileDummy = BranchProfile(
+          branchName: 'Branch name',
+          branchNumber: '1111',
+          city: 'City',
+          streetName: 'Street',
+          country: 'Germany',
+          streetNumber: '111',
+          website: 'www.example.com',
+          phoneNumber: '1234567890',
+          entrances: 1,
+          postalCode: '33111',
+          category: 'Restaurant',
+          openingHours: hours,
+        );
+
+        try {
+          await useCase.createBranch(branchProfileDummy);
+
+          SnackBarManager.showSuccess('Branch profile was created');
+          emit(const BranchProfileState.branchWasCreatedSuccessfully());
+        } on ApiFailure catch (e) {
+          logger.e('createBranch: $e');
+          SnackBarManager.showError(e.response.message.toString());
+        }
+      },
     );
-
-    try {
-      await useCase.createBranch(branchProfileDummy);
-
-      SnackBarManager.showSuccess('Branch profile was created');
-      emit(const BranchProfileState.branchWasCreatedSuccessfully());
-    } on ApiFailure catch (e) {
-      logger.e('createBranch: $e');
-      SnackBarManager.showError(e.response.message.toString());
-    }
   }
 
   Future<void> updateBranch() async {
@@ -65,13 +70,14 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required List<String> subcategories,
   }) {
     state.whenOrNull(
-      init: (category, subcategories, branchImages, avatarImages) {
+      init: (category, subcategories, branchImages, avatarImages, hours) {
         emit(
           BranchProfileState.init(
             category: category,
             subcategories: subcategories,
             branchImages: branchImages,
             avatarImages: avatarImages,
+            hours: hours,
           ),
         );
       },
@@ -89,6 +95,24 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         branchImages: branchImages,
         avatarImages: avatarImages,
       ),
+    );
+  }
+
+  void setOpeningHours({
+    required OpeningHours hours,
+  }) {
+    state.whenOrNull(
+      init: (category, subcategories, branchImages, avatarImages, _) {
+        emit(
+          BranchProfileState.init(
+            category: category,
+            subcategories: subcategories,
+            branchImages: branchImages,
+            avatarImages: avatarImages,
+            hours: hours,
+          ),
+        );
+      },
     );
   }
 }

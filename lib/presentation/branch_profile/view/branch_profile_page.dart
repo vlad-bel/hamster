@@ -114,7 +114,11 @@ class _BranchProfileView extends StatelessWidget {
                         const SizedBox(width: 45),
 
                         /// Right side part:
-                        const Expanded(child: BranchProfileWorkingHoursTable()),
+                        Expanded(
+                          child: BranchProfileWorkingHoursTable(
+                            state: state as InitBranchProfileState,
+                          ),
+                        ),
                       ],
                     ),
                   ],
