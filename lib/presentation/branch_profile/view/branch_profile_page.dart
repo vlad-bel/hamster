@@ -6,7 +6,6 @@ import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
-import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:business_terminal/presentation/branch_profile/view/branch_profile_categories.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/branch_data_form.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/branch_profile_working_hours_table.dart';
@@ -27,6 +26,7 @@ class BranchProfilePage extends StatelessWidget {
   });
 
   static const path = '/branch_profile';
+
   static const paramCompany = 'company';
   static const paramData = 'data';
 
@@ -50,12 +50,15 @@ class BranchProfilePage extends StatelessWidget {
 }
 
 class _BranchProfileView extends StatelessWidget {
-  _BranchProfileView(this.company, this.branchSelectedFieldsMap, {super.key});
+  const _BranchProfileView(
+    this.company,
+    this.branchSelectedFieldsMap, {
+    super.key,
+  });
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
   final RepCompany company;
 
-  final formSettings = BranchProfileFormValidation();
   final verticalPaddingBetweenTextInputs = 18.0;
 
   @override
@@ -76,6 +79,13 @@ class _BranchProfileView extends StatelessWidget {
                 ),
                 body: Column(
                   children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<BranchProfileCubit>().createBranch();
+                      },
+                      child: Text('Create new branch'),
+                    ),
+
                     BranchTopPhotoAndLogoPager(),
                     const SizedBox(height: 26),
                     Row(
@@ -83,7 +93,8 @@ class _BranchProfileView extends StatelessWidget {
                       children: [
                         /// Left side part:
                         BranchDataForm(
-                          formSettings: formSettings,
+                          formGroup:
+                              context.read<BranchProfileCubit>().formGroup,
                           paddingBetweenTextInputs: paddingBetweenTextInputs,
                           branchSelectedFieldsMap: branchSelectedFieldsMap,
                           company: company,

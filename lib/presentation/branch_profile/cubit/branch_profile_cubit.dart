@@ -1,14 +1,17 @@
-import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
+import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:reactive_forms/src/models/models.dart';
 
 @singleton
 class BranchProfileCubit extends Cubit<BranchProfileState> {
   BranchProfileCubit(this.useCase) : super(BranchProfileState.init());
 
   final BranchProfileUseCase useCase;
+
+  final FormGroup formGroup = BranchProfileFormValidation().buildForm();
 
   Future<void> createBranch() async {
     /*BranchProfile branchProfile = BranchProfile(
@@ -39,7 +42,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   }
 
   Future<void> updateBranch() async {
-   /* BranchProfile branchProfile = BranchProfile(
+    /* BranchProfile branchProfile = BranchProfile(
       id: id,
       branchName: branchName,
       city: city,
