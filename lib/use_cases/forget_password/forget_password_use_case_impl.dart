@@ -6,6 +6,7 @@ import 'package:business_terminal/domain/model/forget_password/forget_password_s
 import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verify_phone_request.dart';
 import 'package:business_terminal/domain/model/forget_password/reset_password_request.dart';
+import 'package:business_terminal/domain/model/forget_password/send_verification_code_response.dart';
 import 'package:business_terminal/use_cases/forget_password/forget_password_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -17,12 +18,18 @@ class ForgetPasswordUseCaseImpl extends ForgetPasswordUseCase {
   final RestClient _restClient;
 
   @override
-  Future<String> sendVerificationCode(
+  Future<SendVerificationCodeResponse> sendVerificationCode(
     ForgetPasswordRequest forgetPasswordRequest,
   ) async {
     try {
-      return await _restClient
-          .sendVerificationCode(forgetPasswordRequest.toJson());
+      if (forgetPasswordRequest.verificationMethod ==
+          ForgetPasswordVerificationMethod.email) {
+        await _restClient.sendVerificationCode(forgetPasswordRequest.toJson());
+        return SendVerificationCodeResponse();
+      } else {
+        return await _restClient
+            .sendPhoneVerificationCode(forgetPasswordRequest.toJson());
+      }
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),
@@ -51,7 +58,7 @@ class ForgetPasswordUseCaseImpl extends ForgetPasswordUseCase {
   }
 
   @override
-  Future<String> resendSmsCode(
+  Future<String> resendCode(
     ForgetPasswordResendCodeRequest resendCodeRequest,
   ) async {
     try {

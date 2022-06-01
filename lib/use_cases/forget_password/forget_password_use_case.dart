@@ -3,9 +3,10 @@ import 'package:business_terminal/domain/model/forget_password/forget_password_s
 import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verify_phone_request.dart';
 import 'package:business_terminal/domain/model/forget_password/reset_password_request.dart';
+import 'package:business_terminal/domain/model/forget_password/send_verification_code_response.dart';
 
 abstract class ForgetPasswordUseCase {
-  Future<String> sendVerificationCode(
+  Future<SendVerificationCodeResponse> sendVerificationCode(
     ForgetPasswordRequest forgetPasswordRequest,
   );
 
@@ -14,7 +15,7 @@ abstract class ForgetPasswordUseCase {
     ForgetPasswordSendCodeRequest request,
   );
 
-  Future<String> resendSmsCode(
+  Future<String> resendCode(
     ForgetPasswordResendCodeRequest resendCodeRequest,
   );
 

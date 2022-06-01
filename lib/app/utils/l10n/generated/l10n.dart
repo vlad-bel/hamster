@@ -1519,6 +1519,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Sie erhalten gleich eine SMS an die mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpfte Nummer`
+  String get forgetPasswordSmsSubtitle1 {
+    return Intl.message(
+      'Sie erhalten gleich eine SMS an die mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpfte Nummer',
+      name: 'forgetPasswordSmsSubtitle1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `. Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen.`
+  String get forgetPasswordSmsSubtitle2 {
+    return Intl.message(
+      '. Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen.',
+      name: 'forgetPasswordSmsSubtitle2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sie erhalten gleich einen Anruf mit automatischer Sprachansage auf der mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpften Nummer`
+  String get forgetPasswordPhoneCallSubtitle1 {
+    return Intl.message(
+      'Sie erhalten gleich einen Anruf mit automatischer Sprachansage auf der mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpften Nummer',
+      name: 'forgetPasswordPhoneCallSubtitle1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen.`
+  String get forgetPasswordPhoneCallSubtitle2 {
+    return Intl.message(
+      'Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen.',
+      name: 'forgetPasswordPhoneCallSubtitle2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-Mail erneut versenden`
+  String get resetEmail {
+    return Intl.message(
+      'E-Mail erneut versenden',
+      name: 'resetEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SMS erneut versenden`
+  String get resetSms {
+    return Intl.message(
+      'SMS erneut versenden',
+      name: 'resetSms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Anruf erneut durchführen`
+  String get resetPhoneCall {
+    return Intl.message(
+      'Anruf erneut durchführen',
+      name: 'resetPhoneCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sie erhalten in Kürze erneut eine SMS von uns`
+  String get sieErhaltenInKrzeErneutEineSmsVonUns {
+    return Intl.message(
+      'Sie erhalten in Kürze erneut eine SMS von uns',
+      name: 'sieErhaltenInKrzeErneutEineSmsVonUns',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sie erhalten in Kürze erneut eine SMS von uns`
+  String get smsResent {
+    return Intl.message(
+      'Sie erhalten in Kürze erneut eine SMS von uns',
+      name: 'smsResent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wir werden Sie in Kürze erneut anrufen.`
+  String get callIsOrdered {
+    return Intl.message(
+      'Wir werden Sie in Kürze erneut anrufen.',
+      name: 'callIsOrdered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sie erhalten in Kürze erneut eine E-Mail von uns.`
+  String get emailCodeSent {
+    return Intl.message(
+      'Sie erhalten in Kürze erneut eine E-Mail von uns.',
+      name: 'emailCodeSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Der eingegebene Code war ungültig.`
+  String get forgetPasswordCodeIncorrect {
+    return Intl.message(
+      'Der eingegebene Code war ungültig.',
+      name: 'forgetPasswordCodeIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -122,10 +122,7 @@ class UnauthorizedState extends AppState {
                 );
                 break;
               case PinCodePasswordResetPage.path:
-                final email = params!['email'] as String;
-                final method =
-                    params['method'] as ForgetPasswordVerificationMethod;
-                page = PinCodePasswordResetPage(email: email, method: method);
+                page = PinCodePasswordResetPage.fromParams(params!);
                 break;
               case ConfirmNewPasswordPage.path:
                 page = ConfirmNewPasswordPage();

@@ -18,23 +18,26 @@ part 'forget_password_state.dart';
 @Singleton()
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ForgetPasswordCubit(this._forgetPasswordUseCase)
-      : super(ForgetPasswordState.initial());
+      : super(const ForgetPasswordState.initial());
 
   final ForgetPasswordUseCase _forgetPasswordUseCase;
 
   ForgetPasswordVerificationMethod? _method;
   String? _email;
+  String? _phoneNumber;
 
   Future<void> sendVerificationCode(String emailMain) async {
     try {
       if (_method != null) {
-        emit(ForgetPasswordState.loading());
+        emit(const ForgetPasswordState.loading());
 
-        await _forgetPasswordUseCase.sendVerificationCode(
+        final result = await _forgetPasswordUseCase.sendVerificationCode(
           ForgetPasswordRequest(email: emailMain, verificationMethod: _method!),
         );
 
-        emit(ForgetPasswordState.sent(_method!));
+        _phoneNumber = result.maskedPhone;
+
+        emit(ForgetPasswordState.sent(_method!, _phoneNumber));
       }
     } on ApiFailure catch (e) {
       emit(ForgetPasswordState.error(e.response.message.toString()));
@@ -43,16 +46,16 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   Future<void> confirmCode(String code, String email) async {
     try {
-      emit(ForgetPasswordState.loading());
+      emit(const ForgetPasswordState.loading());
 
       await _forgetPasswordUseCase.confirmCode(
         _method!,
         ForgetPasswordSendCodeRequest(email, code),
       );
 
-      emit(ForgetPasswordState.verified());
+      emit(const ForgetPasswordState.verified());
     } on ApiFailure catch (e) {
-      emit(ForgetPasswordState.wrongCode());
+      emit(ForgetPasswordState.wrongCode(_method!, _phoneNumber));
       SnackBarManager.showError(e.response.message.toString());
     }
   }
@@ -62,9 +65,10 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     ForgetPasswordVerificationMethod method,
   ) async {
     try {
-      await _forgetPasswordUseCase.resendSmsCode(
+      await _forgetPasswordUseCase.resendCode(
         ForgetPasswordResendCodeRequest(method: method, email: email),
       );
+      emit(ForgetPasswordState.resent(method, _phoneNumber));
     } on ApiFailure catch (e) {
       emit(ForgetPasswordState.error(e.response.message.toString()));
     }
@@ -77,11 +81,11 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   Future<void> changePassword(String password) async {
     try {
-      emit(ForgetPasswordState.loading());
+      emit(const ForgetPasswordState.loading());
       await _forgetPasswordUseCase.resetPassword(
         ResetPasswordRequest(email: _email!, password: password),
       );
-      emit(ForgetPasswordState.newPasswordInstalled());
+      emit(const ForgetPasswordState.newPasswordInstalled());
     } on ApiFailure catch (e) {
       emit(ForgetPasswordState.error(e.response.message.toString()));
     }
@@ -89,6 +93,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   void onEmailTyped(String email) {
     _email = email;
-    emit(ForgetPasswordState.chooseVerificationMethod());
+    emit(const ForgetPasswordState.chooseVerificationMethod());
   }
 }

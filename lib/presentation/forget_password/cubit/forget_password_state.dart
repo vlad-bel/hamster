@@ -10,13 +10,20 @@ abstract class ForgetPasswordState with _$ForgetPasswordState {
 
   const factory ForgetPasswordState.sent(
     ForgetPasswordVerificationMethod method,
+    String? phoneNumber,
   ) = _$Sent;
 
-  const factory ForgetPasswordState.wrongCode() = _$WrongCode;
+  const factory ForgetPasswordState.wrongCode(
+    ForgetPasswordVerificationMethod method,
+    String? phoneNumber,
+  ) = _$WrongCode;
 
   const factory ForgetPasswordState.verified() = _$Verified;
 
-  const factory ForgetPasswordState.resent() = _$Resent;
+  const factory ForgetPasswordState.resent(
+    ForgetPasswordVerificationMethod method,
+    String? phoneNumber,
+  ) = _$Resent;
 
   const factory ForgetPasswordState.newPasswordInstalled() =
       _$NewPasswordInstalled;

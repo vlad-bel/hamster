@@ -24,16 +24,16 @@ class ChooseVerifyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChooseVerifyView(
+    return _ChooseVerifyView(
       email: email,
     );
   }
 }
 
-class ChooseVerifyView extends StatelessWidget {
+class _ChooseVerifyView extends StatelessWidget {
   final String email;
 
-  const ChooseVerifyView({super.key, required this.email});
+  const _ChooseVerifyView({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class ChooseVerifyView extends StatelessWidget {
       listener: (context, state) {
         state
           ..whenOrNull(
-            sent: (type) => onPressNavigateToPinCodePage(
+            sent: (type, _) => onPressNavigateToPinCodePage(
               context,
               email,
               type,
@@ -192,9 +192,6 @@ void onPressNavigateToPinCodePage(
 ) {
   Navigator.of(context).pushNamed(
     PinCodePasswordResetPage.path,
-    arguments: {
-      'email': email,
-      'method': method,
-    },
+    arguments: PinCodePasswordResetPage.buildParams(email, method),
   );
 }

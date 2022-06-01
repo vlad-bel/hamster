@@ -1,6 +1,7 @@
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
+import 'package:business_terminal/domain/model/forget_password/send_verification_code_response.dart';
 import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -72,6 +73,11 @@ abstract class RestClient {
   @POST('/rep/resend-code-to-phone')
   Future<String> resendSMSCode(
     @Body() Map<String, dynamic> resendEmailCodeMap,
+  );
+
+  @POST('/rep/send-verification-code')
+  Future<SendVerificationCodeResponse> sendPhoneVerificationCode(
+    @Body() Map<String, dynamic> sendVerificationCodeMap,
   );
 
   @POST('/rep/send-verification-code')

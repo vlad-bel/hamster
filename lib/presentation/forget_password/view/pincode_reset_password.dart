@@ -16,6 +16,11 @@ import 'package:hamster_widgets/hamster_widgets.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 class PinCodePasswordResetPage extends StatelessWidget {
+  static const _kEmailKey = 'email';
+  static const _kMethodKey = 'method';
+
+  static const path = '/pincode_reset_password';
+
   final String email;
   final ForgetPasswordVerificationMethod method;
 
@@ -25,30 +30,41 @@ class PinCodePasswordResetPage extends StatelessWidget {
     required this.method,
   });
 
-  static const path = '/pincoderesetpassword';
+  static Map<String, dynamic> buildParams(
+    String email,
+    ForgetPasswordVerificationMethod method,
+  ) =>
+      {_kEmailKey: email, _kMethodKey: method};
+
+  factory PinCodePasswordResetPage.fromParams(Map<String, dynamic> params) {
+    return PinCodePasswordResetPage(
+      email: params[_kEmailKey] as String,
+      method: params[_kMethodKey] as ForgetPasswordVerificationMethod,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return PinCodePasswordResetView(email: email, method: method);
+    return _PinCodePasswordResetView(email: email, method: method);
   }
 }
 
-class PinCodePasswordResetView extends StatefulWidget {
+class _PinCodePasswordResetView extends StatefulWidget {
   final String email;
   final ForgetPasswordVerificationMethod method;
 
-  const PinCodePasswordResetView({
+  const _PinCodePasswordResetView({
     super.key,
     required this.email,
     required this.method,
   });
 
   @override
-  State<PinCodePasswordResetView> createState() =>
+  State<_PinCodePasswordResetView> createState() =>
       _PinCodePasswordResetViewState();
 }
 
-class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
+class _PinCodePasswordResetViewState extends State<_PinCodePasswordResetView> {
   final pinController = TextEditingController();
 
   @override
@@ -57,32 +73,20 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
           header: AppLocale.of(context).forget_password_header,
-          subHeader: RichText(
-            text: TextSpan(
-              style: inter14,
-              text: AppLocale.of(context).forgetpassword_email_subtitle,
-              children: [
-                TextSpan(
-                  style: inter14Medium.copyWith(color: denim),
-                  text: widget.email,
-                ),
-                TextSpan(
-                  style: inter14,
-                  text: AppLocale.of(context).forgetpassword_email_subtitle2,
-                ),
-              ],
-            ),
-          ),
+          subHeader: _getSubtitle(),
         ),
         body: Column(
           children: [
-            ResetPasswordPinInput(
+            _ResetPasswordPinInput(
               email: widget.email,
               pinController: pinController,
               hasPinError: false,
             ),
-            ResetCodeButton(email: widget.email, method: widget.method),
-            SizedBox(height: 200),
+            _ResetCodeButton(email: widget.email, method: widget.method),
+            const SizedBox(
+              height: 150,
+              child: Center(child: _CodeStatusWidget()),
+            ),
             WhiteButton(
               width: 320,
               onPressed: () {
@@ -94,12 +98,78 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
       ),
     );
   }
+
+  Widget _getSubtitle() {
+    final phone = context.read<ForgetPasswordCubit>().state.mapOrNull(
+          sent: (state) => state.phoneNumber,
+          wrongCode: (state) => state.phoneNumber,
+        );
+    switch (widget.method) {
+      case ForgetPasswordVerificationMethod.phoneCall:
+        return _getPhoneCallSubtitle(phone);
+      case ForgetPasswordVerificationMethod.sms:
+        return _getSmsSubtitle(phone);
+      case ForgetPasswordVerificationMethod.email:
+        return _getEmailSubtitle();
+    }
+  }
+
+  Widget _getPhoneCallSubtitle(String? phoneNumber) => RichText(
+        text: TextSpan(
+          style: inter14,
+          text: AppLocale.of(context).forgetPasswordPhoneCallSubtitle1,
+          children: [
+            TextSpan(
+              style: inter14Medium.copyWith(color: denim),
+              text: phoneNumber,
+            ),
+            TextSpan(
+              style: inter14,
+              text: AppLocale.of(context).forgetPasswordPhoneCallSubtitle2,
+            ),
+          ],
+        ),
+      );
+
+  Widget _getSmsSubtitle(String? phoneNumber) => RichText(
+        text: TextSpan(
+          style: inter14,
+          text: AppLocale.of(context).forgetPasswordSmsSubtitle1,
+          children: [
+            TextSpan(
+              style: inter14Medium.copyWith(color: denim),
+              text: phoneNumber,
+            ),
+            TextSpan(
+              style: inter14,
+              text: AppLocale.of(context).forgetPasswordSmsSubtitle2,
+            ),
+          ],
+        ),
+      );
+
+  Widget _getEmailSubtitle() => RichText(
+        text: TextSpan(
+          style: inter14,
+          text: AppLocale.of(context).forgetpassword_email_subtitle,
+          children: [
+            TextSpan(
+              style: inter14Medium.copyWith(color: denim),
+              text: widget.email,
+            ),
+            TextSpan(
+              style: inter14,
+              text: AppLocale.of(context).forgetpassword_email_subtitle2,
+            ),
+          ],
+        ),
+      );
 }
 
-class ResetPasswordPinInput extends StatelessWidget {
+class _ResetPasswordPinInput extends StatelessWidget {
   final String email;
 
-  const ResetPasswordPinInput({
+  const _ResetPasswordPinInput({
     super.key,
     required this.pinController,
     required this.hasPinError,
@@ -147,11 +217,11 @@ class ResetPasswordPinInput extends StatelessWidget {
   }
 }
 
-class ResetCodeButton extends StatelessWidget {
+class _ResetCodeButton extends StatelessWidget {
   final String email;
   final ForgetPasswordVerificationMethod method;
 
-  const ResetCodeButton({
+  const _ResetCodeButton({
     super.key,
     required this.email,
     required this.method,
@@ -166,10 +236,84 @@ class ResetCodeButton extends StatelessWidget {
           context.read<ForgetPasswordCubit>().resendSmsCode(email, method);
         },
         child: Text(
-          AppLocale.of(context).reset_email,
-          style: TextStyle(color: denim),
+          _getButtonText(context),
+          style: const TextStyle(color: denim),
         ),
       ),
     );
   }
+
+  String _getButtonText(BuildContext context) {
+    switch (method) {
+      case ForgetPasswordVerificationMethod.phoneCall:
+        return AppLocale.of(context).resetPhoneCall;
+      case ForgetPasswordVerificationMethod.sms:
+        return AppLocale.of(context).resetSms;
+      case ForgetPasswordVerificationMethod.email:
+        return AppLocale.of(context).resetEmail;
+    }
+  }
+}
+
+class _CodeStatusWidget extends StatelessWidget {
+  const _CodeStatusWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
+      builder: (context, state) {
+        return state.maybeMap(
+          resent: (state) => _getCodeResentMessage(context, state.method),
+          wrongCode: (state) => _getIncorrectCodeMessage(context),
+          orElse: SizedBox.shrink,
+        );
+      },
+    );
+  }
+
+  Widget _getCodeResentMessage(
+    BuildContext context,
+    ForgetPasswordVerificationMethod method,
+  ) =>
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.send, size: 22, color: fruitSalad),
+          const SizedBox(width: 16),
+          Flexible(
+            child: Text(
+              _getCodeResentText(context, method),
+              style: inter16.copyWith(color: fruitSalad),
+            ),
+          )
+        ],
+      );
+
+  String _getCodeResentText(
+    BuildContext context,
+    ForgetPasswordVerificationMethod method,
+  ) {
+    switch (method) {
+      case ForgetPasswordVerificationMethod.email:
+        return AppLocale.of(context).emailCodeSent;
+      case ForgetPasswordVerificationMethod.phoneCall:
+        return AppLocale.of(context).callIsOrdered;
+      case ForgetPasswordVerificationMethod.sms:
+        return AppLocale.of(context).smsResent;
+    }
+  }
+
+  Widget _getIncorrectCodeMessage(BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.error_outline, size: 22, color: razzmatazz),
+          const SizedBox(width: 16),
+          Flexible(
+            child: Text(
+              AppLocale.of(context).forgetPasswordCodeIncorrect,
+              style: inter16.copyWith(color: razzmatazz),
+            ),
+          )
+        ],
+      );
 }
