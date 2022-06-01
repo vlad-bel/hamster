@@ -81,7 +81,7 @@ class _PinCodePasswordResetViewState extends State<PinCodePasswordResetView> {
               hasPinError: false,
             ),
             ResetCodeButton(email: widget.email, type: widget.type),
-            SizedBox(height: 200),
+            const SizedBox(height: 200),
             WhiteButton(
               width: 320,
               onPressed: () {
