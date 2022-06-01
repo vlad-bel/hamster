@@ -1,7 +1,6 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_cubit.dart';
@@ -25,27 +24,17 @@ class BranchProfilePage extends StatelessWidget {
     super.key,
   });
 
-  static const path = '/branch_profile';
-
   static const paramCompany = 'company';
   static const paramData = 'data';
+  static const path = '/branch_profile';
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
   final RepCompany company;
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => getIt.get<CountrySelectorCubit>()..getCountryList(),
-        ),
-        BlocProvider(
-          create: (_) => getIt.get<BranchProfileCubit>(),
-        ),
-      ],
-      child: _BranchProfileView(company, branchSelectedFieldsMap),
-    );
+    context.read<CountrySelectorCubit>().getCountryList();
+    return _BranchProfileView(company, branchSelectedFieldsMap);
   }
 }
 
@@ -58,7 +47,7 @@ class _BranchProfileView extends StatelessWidget {
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
   final RepCompany company;
-
+  final formSettings = BranchProfileFormValidation();
   final verticalPaddingBetweenTextInputs = 18.0;
 
   @override
@@ -157,7 +146,7 @@ class _BranchProfileView extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 60),
+             const SizedBox(height: 60),
             ],
           ),
         );

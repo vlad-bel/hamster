@@ -21,11 +21,13 @@ class PaymentInfo extends StatelessWidget {
     this.accountOwner = '',
     this.iban = '',
     this.formConsumer,
+    required this.onTap,
   }) : super(key: key);
 
   final String accountOwner;
   final Widget? formConsumer;
   final String iban;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -44,28 +46,31 @@ class PaymentInfo extends StatelessWidget {
             ),
           const SizedBox(height: 24),
           if ((accountOwner.isEmpty || iban.isEmpty) && formConsumer == null)
-            AppDashBorderedContainer(
-              borderType: BorderType.rect,
-              child: Container(
-                height: 125,
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(color: white),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.add_circle,
-                      color: denim1,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      // TODO add l18n key
-                      AppLocale.of(context).add_bank_details,
-                      style: inter14.copyWith(
+            GestureDetector(
+              onTap: onTap,
+              child: AppDashBorderedContainer(
+                borderType: BorderType.rect,
+                child: Container(
+                  height: 125,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(color: white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.add_circle,
                         color: denim1,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 4),
+                      Text(
+                        // TODO add l18n key
+                        AppLocale.of(context).add_bank_details,
+                        style: inter14.copyWith(
+                          color: denim1,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )

@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_branch": MessageLookupByLibrary.simpleMessage("Add branch"),
         "add_branch_hours":
             MessageLookupByLibrary.simpleMessage("Add branch hours"),
+        "add_branch_picture":
+            MessageLookupByLibrary.simpleMessage("Add branch picture"),
         "add_business_account":
             MessageLookupByLibrary.simpleMessage("Add your business account"),
         "add_category":
@@ -51,6 +53,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
         "add_opening_time":
             MessageLookupByLibrary.simpleMessage("Add opening time"),
+        "add_picture_for_branch": MessageLookupByLibrary.simpleMessage(
+            "Add pictures of your branch."),
+        "add_picture_for_branch_descr": MessageLookupByLibrary.simpleMessage(
+            "Select and upload your branch images. Make sure that the selected image files are of sufficient quality."),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Add subcategory"),
         "administration":
@@ -68,18 +74,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "call_method1": MessageLookupByLibrary.simpleMessage(
             "Choose your favorite method to the number you provided "),
         "call_method2": MessageLookupByLibrary.simpleMessage(" to verify."),
-        "cancel_register":
-            MessageLookupByLibrary.simpleMessage("Cancel registration"),
+        "cancel_register": MessageLookupByLibrary.simpleMessage("Logout"),
         "cash_register_manufacturer":
             MessageLookupByLibrary.simpleMessage("Cash register manufacturer"),
         "cash_register_system_used": MessageLookupByLibrary.simpleMessage(
             "Cash register system used in your branch"),
+        "changePasswordHeader": MessageLookupByLibrary.simpleMessage(
+            "Ersetzen Sie Ihr altes Passwort."),
+        "changePasswordSubHeader": MessageLookupByLibrary.simpleMessage(
+            "Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Change password"),
         "choose_main_category":
             MessageLookupByLibrary.simpleMessage("Choose a main category."),
         "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
             "Choose a main category by double-clicking it. This is displayed to all HamsterApp users."),
+        "closeHint": MessageLookupByLibrary.simpleMessage("Hinweis schließen"),
         "closed": MessageLookupByLibrary.simpleMessage("closed"),
         "closes": MessageLookupByLibrary.simpleMessage("Closes"),
         "commercial_register_number": MessageLookupByLibrary.simpleMessage(
@@ -103,11 +113,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "Create your company profile."),
         "create_company_profile_descr": MessageLookupByLibrary.simpleMessage(
             "Let us know how your company can be reached by post."),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
+        "edit_photo":
+            MessageLookupByLibrary.simpleMessage("Edit your profile photo."),
+        "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
+            "Select the correct section of your profile photo."),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "falschesPasswort":
+            MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
@@ -118,11 +136,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forget_password_subtitle": MessageLookupByLibrary.simpleMessage(
             "Enter your email address associated with\nyour account to continue\nresetting your password."),
+        "forget_pasword_header":
+            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forgetpassword_email_subtitle": MessageLookupByLibrary.simpleMessage(
             "Choose your favorite method to recover the account password"),
         "forgetpassword_email_subtitle2":
             MessageLookupByLibrary.simpleMessage("\nto reset."),
         "friday": MessageLookupByLibrary.simpleMessage("Friday"),
+        "hasOneLoweCaseLetter":
+            MessageLookupByLibrary.simpleMessage("1 Kleinbuchstabe"),
+        "hasOneSpecialCharacter":
+            MessageLookupByLibrary.simpleMessage("1 Zahl"),
+        "hasOneUpperCaseLetter":
+            MessageLookupByLibrary.simpleMessage("1 Großbuchstabe"),
+        "hasTenCharacters":
+            MessageLookupByLibrary.simpleMessage("10 Zeichen lang"),
         "help_center": MessageLookupByLibrary.simpleMessage("Help center"),
         "help_us_connect_branch": MessageLookupByLibrary.simpleMessage(
             "Help us connect your branch by specifying you POS systems"),
@@ -161,6 +189,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Number of registers"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Opening hours"),
         "opens": MessageLookupByLibrary.simpleMessage("Opens"),
+        "passwordChanged":
+            MessageLookupByLibrary.simpleMessage("Passwort geändert."),
+        "passwordChangedDescription": MessageLookupByLibrary.simpleMessage(
+            "Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden."),
+        "passwordHintTitle": MessageLookupByLibrary.simpleMessage(
+            "Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:"),
+        "passwordIncorrectDescription": MessageLookupByLibrary.simpleMessage(
+            "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt."),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Payment Information"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),
@@ -170,6 +206,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "required_field":
             MessageLookupByLibrary.simpleMessage("Required field"),
         "reset_email": MessageLookupByLibrary.simpleMessage("Resend email"),
+        "resetmail": MessageLookupByLibrary.simpleMessage("Resend email"),
         "return_button": MessageLookupByLibrary.simpleMessage("RETURN"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
@@ -202,6 +239,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Phone number for customers (if available)"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "tills": MessageLookupByLibrary.simpleMessage("Tills"),
+        "to_save": MessageLookupByLibrary.simpleMessage("TO SAVE"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "user": MessageLookupByLibrary.simpleMessage("USER"),
         "user_account": MessageLookupByLibrary.simpleMessage("User account"),

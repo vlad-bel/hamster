@@ -7,7 +7,6 @@ class Triangle extends StatelessWidget {
     super.key,
     required this.color,
   });
-
   final Color color;
 
   @override
