@@ -66,7 +66,7 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
               BlocBuilder<DashboardCubit, DashboardState>(
                 builder: (context, state) {
                   final count =
-                      state.whenOrNull(init: (count, _, __, ___) => count);
+                      state.whenOrNull(init: (state) => state.testCount);
                   return MenuItem(
                     image: Assets.imagesAdministration,
                     name: 'Administration',

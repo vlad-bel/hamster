@@ -5,70 +5,70 @@ part 'branch_profile.g.dart';
 @JsonSerializable(ignoreUnannotated: false)
 class BranchProfile {
   @JsonKey(name: '_id')
-  final String id;
+  final String? id;
   @JsonKey(name: 'branchName')
-  final String branchName;
+  final String? branchName;
   @JsonKey(name: 'city')
-  final String city;
+  final String? city;
   @JsonKey(name: 'country')
-  final String country;
+  final String? country;
   @JsonKey(name: 'postalCode')
-  final String postalCode;
+  final String? postalCode;
   @JsonKey(name: 'streetName')
-  final String streetName;
+  final String? streetName;
   @JsonKey(name: 'streetNumber')
-  final String streetNumber;
+  final String? streetNumber;
   @JsonKey(name: 'entrances')
-  final int entrances;
+  final int? entrances;
   @JsonKey(name: 'website')
-  final String website;
+  final String? website;
   @JsonKey(name: 'phoneNumber')
-  final String phoneNumber;
+  final String? phoneNumber;
   @JsonKey(name: 'companyId')
-  final String companyId;
+  final String? companyId;
   @JsonKey(name: 'branchNumber')
-  final String branchNumber;
+  final String? branchNumber;
   @JsonKey(name: 'fillingProgress')
-  final int fillingProgress;
+  final int? fillingProgress;
   @JsonKey(name: 'posesData')
-  final List<PosesData> posesData;
+  final List<PosesData>? posesData;
   @JsonKey(name: 'category')
-  final String category;
+  final String? category;
   @JsonKey(name: 'subcategories')
-  final List<String> subcategories;
+  final List<String>? subcategories;
   @JsonKey(name: 'openingHours')
-  final OpeningHours openingHours;
+  final OpeningHours? openingHours;
   @JsonKey(name: 'createdAt')
-  final String createdAt;
+  final String? createdAt;
   @JsonKey(name: 'updatedAt')
-  final String updatedAt;
+  final String? updatedAt;
   @JsonKey(name: 'isVerificationRequestDeclined')
-  final bool isVerificationRequestDeclined;
+  final bool? isVerificationRequestDeclined;
   @JsonKey(name: 'isVerified')
-  final bool isVerified;
+  final bool? isVerified;
 
   BranchProfile({
-    required this.id,
-    required this.branchName,
-    required this.city,
-    required this.country,
-    required this.postalCode,
-    required this.streetName,
-    required this.streetNumber,
-    required this.entrances,
-    required this.website,
-    required this.phoneNumber,
-    required this.companyId,
-    required this.branchNumber,
-    required this.fillingProgress,
-    required this.posesData,
-    required this.category,
-    required this.subcategories,
-    required this.openingHours,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.isVerificationRequestDeclined,
-    required this.isVerified,
+    this.id,
+    this.branchName,
+    this.city,
+    this.country,
+    this.postalCode,
+    this.streetName,
+    this.streetNumber,
+    this.entrances,
+    this.website,
+    this.phoneNumber,
+    this.companyId,
+    this.branchNumber,
+    this.fillingProgress,
+    this.posesData,
+    this.category,
+    this.subcategories,
+    this.openingHours,
+    this.createdAt,
+    this.updatedAt,
+    this.isVerificationRequestDeclined,
+    this.isVerified,
   });
 
   factory BranchProfile.fromJson(Map<String, dynamic> json) =>

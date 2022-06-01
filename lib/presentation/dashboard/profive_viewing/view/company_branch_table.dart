@@ -14,8 +14,12 @@ class CompanyBranchTable extends StatelessWidget {
       child: BlocBuilder<DashboardCubit, DashboardState>(
         builder: (context, state) {
           return state.when(
-            init: (_, __, ___, repCompany) {
-              return CompanyBranchTableWithData(repCompany);
+            init: (state) {
+              // TODO: fetch branchProfile and put here
+              return CompanyBranchTableWithData(
+                repCompany: state.repCompany,
+                branchProfile: state.branchProfilesList,
+              );
             },
             error: error,
           );
