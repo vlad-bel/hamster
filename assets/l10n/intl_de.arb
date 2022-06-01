@@ -170,7 +170,6 @@
   "passwordChanged": "Passwort geändert.",
   "passwordChangedDescription": "Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.",
   "falschesPasswort": "Falsches Passwort",
-  "passwordIncorrectDescription": "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.",
   "confirmNewPasswordTitle": "Ersetzen Sie Ihr altes Passwort.",
   "confirmNewPasswordSubtitle": "Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können.",
   "newPasswordInstalledTitle": "Passwort geändert.",
@@ -186,7 +185,7 @@
   "smsResent": "Sie erhalten in Kürze erneut eine SMS von uns",
   "callIsOrdered": "Wir werden Sie in Kürze erneut anrufen.",
   "emailCodeSent": "Sie erhalten in Kürze erneut eine E-Mail von uns.",
-  "forgetPasswordCodeIncorrect": "Der eingegebene Code war ungültig."
+  "forgetPasswordCodeIncorrect": "Der eingegebene Code war ungültig.",
   "passwordIncorrectDescription": "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.",
   "add_picture_for_branch": "Fügen Sie Bilder Ihrer Filiale hinzu.",
   "add_picture_for_branch_descr": "Wähle Sie Ihre Filialbilder aus und laden Sie sie hoch. Achten Sie darauf, dass die ausgewählten Bilddateien eine ausreichende Qualität haben.",
