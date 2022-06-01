@@ -44,7 +44,7 @@ deploy:
     - ./aws/install
     - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
     - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-    - aws s3 sync --acl public-read --delete $LOCAL_PATH "${ENVIRONMENT}${S3_BUCKET_NAME}"
+    - aws s3 sync $LOCAL_PATH "s3://$ENVIRONMENT$S3_BUCKET_NAME" --acl public-read --delete
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
 
 
