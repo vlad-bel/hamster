@@ -56,7 +56,7 @@ class SelectSubCategoriesForm extends StatelessWidget {
                         return SizedBox();
                       },
                     ) ??
-                 const   SizedBox(),
+                    const SizedBox(),
                 SizedBox(height: 24),
                 DashedButton(
                   onTap: () {
@@ -114,7 +114,11 @@ class SelectSubCategoriesForm extends StatelessWidget {
                           subcategories: subcategories,
                         );
 
-                        Navigator.pushNamed(context, BranchProfilePage.path);
+                        Navigator.popUntil(
+                          context,
+                          (route) =>
+                              route.settings.name == BranchProfilePage.path,
+                        );
                       },
                     ),
                   ],
