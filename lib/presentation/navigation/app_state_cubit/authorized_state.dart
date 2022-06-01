@@ -1,6 +1,7 @@
-import 'dart:html';
 import 'dart:typed_data';
 
+import 'package:business_terminal/app/utils/storage/storage_service.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
@@ -113,16 +114,30 @@ class AuthorizedState extends AppState {
                 final subheader = params?[CropperPage.pSubheader] as String;
                 final circleCrop = params?[CropperPage.pCircleCrop] as bool;
 
-                window.sessionStorage[CropperPage.pImageForCrop] =
-                    String.fromCharCodes(imageForCrop);
+                final appStorageService = getIt.get<AppStorageService>();
 
-                window.sessionStorage[CropperPage.pHeader] = header;
-                window.sessionStorage[CropperPage.pSubheader] = subheader;
-                window.sessionStorage[CropperPage.pCircleCrop] =
-                    circleCrop.toString();
+                appStorageService.setString(
+                  key: CropperPage.pImageForCrop,
+                  value: String.fromCharCodes(imageForCrop),
+                );
 
-                final imageBytes =
-                    window.sessionStorage[CropperPage.pImageForCrop]!.codeUnits;
+                appStorageService.setString(
+                  key: CropperPage.pHeader,
+                  value: header,
+                );
+
+                appStorageService.setString(
+                  key: CropperPage.pSubheader,
+                  value: subheader,
+                );
+                appStorageService.setString(
+                  key: CropperPage.pCircleCrop,
+                  value: circleCrop.toString(),
+                );
+
+                final imageBytes = appStorageService
+                    .getString(key: CropperPage.pImageForCrop)!
+                    .codeUnits;
 
                 final bytes = Uint8List.fromList(imageBytes);
 
@@ -134,12 +149,18 @@ class AuthorizedState extends AppState {
                   ],
                   child: CropperPage(
                     imageForCrop: bytes,
-                    header: window.sessionStorage[CropperPage.pHeader]!,
-                    subheader: window.sessionStorage[CropperPage.pSubheader]!,
-                    circleCrop:
-                        window.sessionStorage[CropperPage.pCircleCrop] == 'true'
-                            ? true
-                            : false,
+                    header: appStorageService.getString(
+                      key: CropperPage.pHeader,
+                    )!,
+                    subheader: appStorageService.getString(
+                      key: CropperPage.pSubheader,
+                    )!,
+                    circleCrop: appStorageService.getString(
+                              key: CropperPage.pCircleCrop,
+                            )! ==
+                            'true'
+                        ? true
+                        : false,
                   ),
                 );
 

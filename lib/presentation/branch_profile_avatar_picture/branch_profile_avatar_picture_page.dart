@@ -19,14 +19,6 @@ class BranchProfileAvatarPicturePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final branchProfileCubit = context.read<BranchProfileCubit>();
-    final cubit = context.read<BranchProfileAvatarPictureCubit>()
-      ..emit(
-        BranchProfileAvatarPictureState.init(
-          images: branchProfileCubit.state.avatarImages,
-          selectedImage: branchProfileCubit.state.avatarImages?[0],
-        ),
-      );
 
     return BranchProfileAvatarPictureForm(
       showAddButton: showAddButton,
