@@ -20,8 +20,6 @@ import 'package:business_terminal/presentation/registration/widgets/action_butto
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../common/widgets/header_app_bar/header_app_bar_widget.dart';
-
 class BranchProfilePage extends StatelessWidget {
   const BranchProfilePage({
     required this.company,
@@ -116,7 +114,11 @@ class _BranchProfileView extends StatelessWidget {
                         const SizedBox(width: 45),
 
                         /// Right side part:
-                        const Expanded(child: BranchProfileWorkingHoursTable()),
+                        Expanded(
+                          child: BranchProfileWorkingHoursTable(
+                            state: state as InitBranchProfileState,
+                          ),
+                        ),
                       ],
                     ),
                   ],

@@ -7,7 +7,6 @@ import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:reactive_forms/reactive_forms.dart';
 
 @singleton
 class BranchProfileCubit extends Cubit<BranchProfileState> {
@@ -32,29 +31,34 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
 
   // TODO: add branch parameters
   Future<void> createBranch() async {
-    final branchProfileDummy = BranchProfile(
-      branchName: 'Branch name',
-      branchNumber: '1111',
-      city: 'City',
-      streetName: 'Street',
-      country: 'Germany',
-      streetNumber: '111',
-      website: 'www.example.com',
-      phoneNumber: '1234567890',
-      entrances: 1,
-      postalCode: '33111',
-      category: 'Restaurant',
+    await state.whenOrNull(
+      init: (category, subcategories, branchImages, avatarImages, hours) async {
+        final branchProfileDummy = BranchProfile(
+          branchName: 'Branch name',
+          branchNumber: '1111',
+          city: 'City',
+          streetName: 'Street',
+          country: 'Germany',
+          streetNumber: '111',
+          website: 'www.example.com',
+          phoneNumber: '1234567890',
+          entrances: 1,
+          postalCode: '33111',
+          category: 'Restaurant',
+          openingHours: hours,
+        );
+
+        try {
+          await useCase.createBranch(branchProfileDummy);
+
+          SnackBarManager.showSuccess('Branch profile was created');
+          emit(const BranchProfileState.branchWasCreatedSuccessfully());
+        } on ApiFailure catch (e) {
+          logger.e('createBranch: $e');
+          SnackBarManager.showError(e.response.message.toString());
+        }
+      },
     );
-
-    try {
-      await useCase.createBranch(branchProfileDummy);
-
-      SnackBarManager.showSuccess('Branch profile was created');
-      emit(const BranchProfileState.branchWasCreatedSuccessfully());
-    } on ApiFailure catch (e) {
-      logger.e('createBranch: $e');
-      SnackBarManager.showError(e.response.message.toString());
-    }
   }
 
   Future<void> updateBranch() async {
@@ -66,13 +70,14 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required List<String> subcategories,
   }) {
     state.whenOrNull(
-      init: (category, subcategories, branchImages, avatarImages) {
+      init: (category, subcategories, branchImages, avatarImages, hours) {
         emit(
           BranchProfileState.init(
             category: category,
             subcategories: subcategories,
             branchImages: branchImages,
             avatarImages: avatarImages,
+            hours: hours,
           ),
         );
       },
@@ -96,10 +101,18 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   void setOpeningHours({
     required OpeningHours hours,
   }) {
-    emit(
-      BranchProfileState.init(
-        hours: hours,
-      ),
+    state.whenOrNull(
+      init: (category, subcategories, branchImages, avatarImages, _) {
+        emit(
+          BranchProfileState.init(
+            category: category,
+            subcategories: subcategories,
+            branchImages: branchImages,
+            avatarImages: avatarImages,
+            hours: hours,
+          ),
+        );
+      },
     );
   }
 }
