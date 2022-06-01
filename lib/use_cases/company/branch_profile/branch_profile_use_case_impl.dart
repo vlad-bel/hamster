@@ -12,8 +12,18 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
 
   @override
   Future<BranchProfile> createBranch(BranchProfile branchProfile) async {
+    // TODO revert non-mock data
     final branchJson = branchProfile.toJson();
-    final response = await _repository.createBranch(branchJson);
+
+    final branchProfileDummy = BranchProfile(
+      branchName: 'Branch name',
+      branchNumber: '1111',
+      city: 'City',
+      entrances: 1,
+    );
+
+    final response =
+        await _repository.createBranch(branchProfileDummy.toJson());
     return response;
   }
 
