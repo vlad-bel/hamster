@@ -55,7 +55,7 @@ abstract class RestClient {
     @Body() Map<String, dynamic> body,
   );
 
-  @POST('/rep/verify-otp-and-create')
+  @POST('/rep/verify-phone-code-and-create')
   Future<String> verifyNumber(
     @Body() Map<String, dynamic> body,
   );

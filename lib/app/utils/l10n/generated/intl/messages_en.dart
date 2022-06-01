@@ -29,7 +29,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m3(length) => "Maximum number ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Account owner"),
         "account_verification":
@@ -43,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_branch": MessageLookupByLibrary.simpleMessage("Add branch"),
         "add_branch_hours":
             MessageLookupByLibrary.simpleMessage("Add branch hours"),
+        "add_branch_picture":
+            MessageLookupByLibrary.simpleMessage("Add branch picture"),
         "add_business_account":
             MessageLookupByLibrary.simpleMessage("Add your business account"),
         "add_category":
@@ -52,6 +53,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
         "add_opening_time":
             MessageLookupByLibrary.simpleMessage("Add opening time"),
+        "add_picture_for_branch": MessageLookupByLibrary.simpleMessage(
+            "Add pictures of your branch."),
+        "add_picture_for_branch_descr": MessageLookupByLibrary.simpleMessage(
+            "Select and upload your branch images. Make sure that the selected image files are of sufficient quality."),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Add subcategory"),
         "administration":
@@ -69,8 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "call_method1": MessageLookupByLibrary.simpleMessage(
             "Choose your favorite method to the number you provided "),
         "call_method2": MessageLookupByLibrary.simpleMessage(" to verify."),
-        "cancel_register":
-            MessageLookupByLibrary.simpleMessage("Cancel registration"),
+        "cancel_register": MessageLookupByLibrary.simpleMessage("Logout"),
         "cash_register_manufacturer":
             MessageLookupByLibrary.simpleMessage("Cash register manufacturer"),
         "cash_register_system_used": MessageLookupByLibrary.simpleMessage(
@@ -113,6 +117,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
+        "edit_photo":
+            MessageLookupByLibrary.simpleMessage("Edit your profile photo."),
+        "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
+            "Select the correct section of your profile photo."),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Error"),
@@ -231,6 +239,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Phone number for customers (if available)"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "tills": MessageLookupByLibrary.simpleMessage("Tills"),
+        "to_save": MessageLookupByLibrary.simpleMessage("TO SAVE"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "user": MessageLookupByLibrary.simpleMessage("USER"),
         "user_account": MessageLookupByLibrary.simpleMessage("User account"),

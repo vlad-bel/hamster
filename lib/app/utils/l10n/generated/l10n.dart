@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -331,10 +330,10 @@ class S {
     );
   }
 
-  /// `Cancel registration`
+  /// `Logout`
   String get cancel_register {
     return Intl.message(
-      'Cancel registration',
+      'Logout',
       name: 'cancel_register',
       desc: '',
       args: [],
@@ -1480,6 +1479,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Add pictures of your branch.`
+  String get add_picture_for_branch {
+    return Intl.message(
+      'Add pictures of your branch.',
+      name: 'add_picture_for_branch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select and upload your branch images. Make sure that the selected image files are of sufficient quality.`
+  String get add_picture_for_branch_descr {
+    return Intl.message(
+      'Select and upload your branch images. Make sure that the selected image files are of sufficient quality.',
+      name: 'add_picture_for_branch_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add branch picture`
+  String get add_branch_picture {
+    return Intl.message(
+      'Add branch picture',
+      name: 'add_branch_picture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TO SAVE`
+  String get to_save {
+    return Intl.message(
+      'TO SAVE',
+      name: 'to_save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit your profile photo.`
+  String get edit_photo {
+    return Intl.message(
+      'Edit your profile photo.',
+      name: 'edit_photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the correct section of your profile photo.`
+  String get edit_photo_descr {
+    return Intl.message(
+      'Select the correct section of your profile photo.',
+      name: 'edit_photo_descr',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -1494,10 +1553,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

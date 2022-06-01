@@ -8,6 +8,8 @@ class BranchProfileState with _$BranchProfileState {
   const factory BranchProfileState.init({
     String? category,
     List<String>? subcategories,
+    List<dynamic>? branchImages,
+    List<dynamic>? avatarImages,
     OpeningHours? hours,
   }) = InitBranchProfileState;
 }
