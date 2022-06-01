@@ -11,7 +11,7 @@ clone:
   image: bitnami/git
   stage: clone
   tags:
-    - docker
+    - hamster
   script:
     - git clone https://$GIT_USERNAME:$GIT_PASSWORD@bitbucket.org/raikjakschis/hamster_widgets.git
     - cd hamster_widgets && git checkout develop
@@ -23,7 +23,7 @@ build:
   image: cirrusci/flutter:stable
   stage: build
   tags:
-    - docker
+    - hamster
   script:
     - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
     - flutter build web -t lib/main_development.dart --release --web-renderer html
@@ -35,7 +35,7 @@ deploy:
   image: atlassian/default-image:2
   stage: deploy
   tags:
-    - docker
+    - hamster
   script:
     - apt-get update -y && apt-get install -y curl unzip groff jq bc
     - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
