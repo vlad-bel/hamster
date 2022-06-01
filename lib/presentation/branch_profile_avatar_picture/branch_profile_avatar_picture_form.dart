@@ -64,7 +64,7 @@ class BranchProfileAvatarPictureForm extends StatelessWidget {
                   isEnabled: true,
                   width: 162,
                   child: Text(
-                    AppLocale.current.continue_button,
+                    AppLocale.of(context).continue_button,
                     style: inter14.copyWith(color: white),
                   ),
                 ),

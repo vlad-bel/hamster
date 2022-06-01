@@ -34,7 +34,7 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
           ),
-          init: (_, __) => SizedBox(),
+          init: (_, __) => const SizedBox(),
         );
         if (state.images != null && state.selectedImage != null) {
           return Column(
@@ -49,9 +49,9 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
                   loader,
                 ],
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Row(
-                children: generatePhotoCells(
+                children: _generatePhotoCells(
                   state.images!,
                   state.selectedImage,
                 ),
@@ -78,7 +78,7 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
     );
   }
 
-  List<Widget> generatePhotoCells(
+  List<Widget> _generatePhotoCells(
     List<dynamic> imagePaths,
     dynamic selectedImage,
   ) {
@@ -110,7 +110,7 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
     final image = await cubit.pickImage(context);
     if (image != null) {
       cubit.loading();
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(Duration(milliseconds: 50));
 
       final croppedImage = await Navigator.pushNamed<Uint8List>(
         context,

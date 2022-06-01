@@ -59,7 +59,7 @@ class SelectedSubcategoryList extends StatelessWidget {
                   );
                 },
               ) ??
-              SizedBox(),
+             const SizedBox(),
         );
       },
     );

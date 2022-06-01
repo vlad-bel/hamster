@@ -10,10 +10,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SelectedPicture extends StatelessWidget {
   const SelectedPicture({
     Key? key,
-    required this.path,
+    required this.image,
   }) : super(key: key);
 
-  final dynamic path;
+  ///could be string path or Uint8List data
+  final dynamic image;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class SelectedPicture extends StatelessWidget {
               Radius.circular(4),
             ),
             child: DynamicImage(
-              path: path,
+              path: image,
               fit: BoxFit.cover,
             ),
           ),
@@ -46,7 +47,7 @@ class SelectedPicture extends StatelessWidget {
                 icon: Icons.remove,
                 onEditTap: () {
                   context.read<BranchProfilePictureCubit>().removeSelectedImage(
-                        path,
+                        image,
                       );
                 },
               ),

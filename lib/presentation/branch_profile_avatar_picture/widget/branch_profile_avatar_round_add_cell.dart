@@ -13,7 +13,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 class BranchProfileAvatarRoundAddCell extends StatelessWidget {
   const BranchProfileAvatarRoundAddCell({
     Key? key,
+    this.dashPattertn = const [7, 7],
   }) : super(key: key);
+
+  final List<double> dashPattertn;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class BranchProfileAvatarRoundAddCell extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: DottedBorder(
-              dashPattern: [7, 7],
+              dashPattern: dashPattertn,
               color: lynch.withOpacity(0.3),
               borderType: BorderType.Circle,
               strokeWidth: 1.2,
@@ -72,7 +75,7 @@ class BranchProfileAvatarRoundAddCell extends StatelessWidget {
     final image = await cubit.pickImage(context);
     if (image != null) {
       cubit.loading();
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(Duration(milliseconds: 50));
 
       final croppedImage = await Navigator.pushNamed<Uint8List>(
         context,

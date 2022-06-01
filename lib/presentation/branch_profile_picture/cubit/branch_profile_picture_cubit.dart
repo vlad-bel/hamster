@@ -25,7 +25,7 @@ class BranchProfilePictureCubit extends Cubit<BranchProfilePictureState> {
         (element) => element == imagePath,
       );
 
-    late dynamic updatedSelectedImage;
+    final dynamic updatedSelectedImage;
     if (updatedImages.isNotEmpty) {
       final indexForRemove = removedIndex > 1 ? removedIndex - 1 : 0;
       updatedSelectedImage = updatedImages[indexForRemove];

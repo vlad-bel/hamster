@@ -2,8 +2,6 @@ import 'dart:typed_data';
 
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/config/image/image_paths.dart';
-import 'package:business_terminal/config/image/raster_paths.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/cropper_page/cubit/cropper_cubit.dart';
 import 'package:business_terminal/presentation/common/cropper_page/cubit/cropper_state.dart';
@@ -56,11 +54,6 @@ class _CropperFormState extends State<CropperForm> {
                 SizedBox(height: 32),
                 Stack(
                   children: [
-                    Image.asset(
-                      ImagePaths.jpg(RasterPaths.alphaChannel),
-                      width: 350,
-                      height: 350,
-                    ),
                     SizedBox(
                       height: 350,
                       width: 350,
@@ -69,22 +62,22 @@ class _CropperFormState extends State<CropperForm> {
                         image: widget.imageForCrop,
                         withCircleUi: widget.circleCrop,
                         onCropped: (cropped) async {
-                          await Future.delayed(Duration(milliseconds: 500));
+                          await Future.delayed(Duration(milliseconds: 50));
                           Navigator.pop(context, cropped);
                         },
                       ),
                     ),
                     state.whenOrNull(
-                          loading: () {
-                            return SizedBox(
-                              height: 350,
-                              child: Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                            );
-                          },
-                        ) ??
-                        SizedBox(),
+                      loading: () {
+                        return SizedBox(
+                          height: 350,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      },
+                    ) ??
+                        const SizedBox(),
                   ],
                 ),
                 SizedBox(height: 62),
@@ -93,11 +86,11 @@ class _CropperFormState extends State<CropperForm> {
                   children: [
                     WhiteButton(
                       width: 162,
-                      enabled: state.whenOrNull(
-                            loading: () => false,
-                            init: () => true,
-                          ) ??
-                          false,
+                      enabled: state.maybeWhen(
+                        loading: () => false,
+                        init: () => true,
+                        orElse: () => false,
+                      ),
                       child: Text(
                         AppLocale.current.return_button,
                         style: inter14.copyWith(
@@ -110,11 +103,11 @@ class _CropperFormState extends State<CropperForm> {
                     ),
                     SizedBox(width: 26),
                     ActionButtonBlue(
-                      isEnabled: state.whenOrNull(
-                            loading: () => false,
-                            init: () => true,
-                          ) ??
-                          false,
+                      isEnabled: state.maybeWhen(
+                        loading: () => false,
+                        init: () => true,
+                        orElse: () => false,
+                      ),
                       width: 162,
                       child: Text(
                         AppLocale.current.to_save,
@@ -124,7 +117,7 @@ class _CropperFormState extends State<CropperForm> {
                       ),
                       onPressed: () async {
                         cubit.loading();
-                        await Future.delayed(Duration(milliseconds: 500));
+                        await Future.delayed(Duration(milliseconds: 50));
                         _controller.crop();
                       },
                     ),

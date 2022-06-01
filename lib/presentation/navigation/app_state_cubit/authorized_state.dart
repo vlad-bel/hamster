@@ -139,14 +139,14 @@ class AuthorizedState extends AppState {
                   ),
                 );
 
-                return buildHamsterPage<Uint8List>(page, settings);
+                return _buildHamsterPage<Uint8List>(page, settings);
             }
 
-            return buildHamsterPage<void>(page, settings);
+            return _buildHamsterPage<void>(page, settings);
           },
         );
 
-  static PageRouteBuilder<T> buildHamsterPage<T>(
+  static PageRouteBuilder<T> _buildHamsterPage<T>(
     Widget? page,
     RouteSettings settings,
   ) {

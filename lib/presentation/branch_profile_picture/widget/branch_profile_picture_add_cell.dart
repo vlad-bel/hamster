@@ -8,7 +8,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 class BranchProfileAddCell extends StatelessWidget {
   const BranchProfileAddCell({
     Key? key,
+    this.dashPattertn = const [7, 7],
   }) : super(key: key);
+
+  final List<double> dashPattertn;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +27,12 @@ class BranchProfileAddCell extends StatelessWidget {
           width: 50,
           height: 50,
           child: DottedBorder(
-            dashPattern: [7, 7],
+            dashPattern: dashPattertn,
             color: lynch.withOpacity(0.3),
             radius: Radius.circular(4),
             strokeWidth: 1.2,
             child: Padding(
-              padding: EdgeInsets.all(4),
+              padding: const EdgeInsets.all(4),
               child: Container(
                 decoration: BoxDecoration(
                   color: denim.withOpacity(0.1),

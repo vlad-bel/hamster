@@ -60,7 +60,7 @@ class PercentsRect extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        padding: EdgeInsets.all(4),
+        padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
           color: fruitSalad.withOpacity(0.05),
           borderRadius: const BorderRadius.all(

@@ -18,9 +18,9 @@ class BranchProfilePictureForm extends StatelessWidget {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocale.current.add_picture_for_branch,
+          header: AppLocale.of(context).add_picture_for_branch,
           subHeader: Text(
-            AppLocale.current.add_picture_for_branch_descr,
+            AppLocale.of(context).add_picture_for_branch_descr,
             style: inter14,
           ),
         ),
@@ -38,7 +38,7 @@ class BranchProfilePictureForm extends StatelessWidget {
                   },
                   width: 162,
                   child: Text(
-                    AppLocale.current.return_button,
+                    AppLocale.of(context).return_button,
                     style: inter14.copyWith(color: denim),
                   ),
                 ),
@@ -52,7 +52,7 @@ class BranchProfilePictureForm extends StatelessWidget {
                   isEnabled: true,
                   width: 162,
                   child: Text(
-                    AppLocale.current.continue_button,
+                    AppLocale.of(context).continue_button,
                     style: inter14.copyWith(color: white),
                   ),
                 ),

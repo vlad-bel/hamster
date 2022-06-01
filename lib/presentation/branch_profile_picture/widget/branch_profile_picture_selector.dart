@@ -22,7 +22,7 @@ class BranchProfilePictureSelector extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
           ),
-          init: (_, __) => SizedBox(),
+          init: (_, __) => const SizedBox(),
         );
 
         if (state.images != null && state.selectedImage != null) {
@@ -31,14 +31,14 @@ class BranchProfilePictureSelector extends StatelessWidget {
               Stack(
                 children: [
                   SelectedPicture(
-                    path: state.selectedImage,
+                    image: state.selectedImage,
                   ),
                   loader,
                 ],
               ),
-              SizedBox(height: 12),
+             const SizedBox(height: 12),
               Row(
-                children: generatePhotoCells(
+                children: _generatePhotoCells(
                   state.images!,
                   state.selectedImage,
                 ),
@@ -64,7 +64,7 @@ class BranchProfilePictureSelector extends StatelessWidget {
     );
   }
 
-  List<Widget> generatePhotoCells(
+  List<Widget> _generatePhotoCells(
     List<dynamic> imagePaths,
     dynamic selectedImage,
   ) {

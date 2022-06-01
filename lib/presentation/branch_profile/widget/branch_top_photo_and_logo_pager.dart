@@ -122,8 +122,10 @@ class _BranchTopPhotoAndLogoPagerState
                           child: BlocBuilder<BranchProfileCubit,
                               BranchProfileState>(
                             builder: (context, state) {
+                              final currentPageIndex =
+                                  '${pageViewController.hasClients ? (pageViewController.page?.toInt() ?? 0) + 1 : 1} / ${state.branchImages!.length}';
                               return Text(
-                                '${pageViewController.hasClients ? (pageViewController.page?.toInt() ?? 0) + 1 : 1} / ${state.branchImages!.length}',
+                                currentPageIndex,
                                 style: inter14Semibold,
                               );
                             },
@@ -187,7 +189,7 @@ class BranchLogo extends StatelessWidget {
         shape: BoxShape.circle,
         color: white,
       ),
-      padding: EdgeInsets.all(4),
+      padding: const EdgeInsets.all(4),
       child: ClipOval(
         child: DynamicImage(
           path: image,

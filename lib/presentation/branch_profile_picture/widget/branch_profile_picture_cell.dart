@@ -105,7 +105,7 @@ Future pickAndCropImage(BuildContext context) async {
   final image = await cubit.pickImage(context);
   if (image != null) {
     cubit.loading();
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(Duration(milliseconds: 50));
 
     final croppedImage = await Navigator.pushNamed<Uint8List>(
       context,
