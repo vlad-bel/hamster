@@ -35,6 +35,7 @@ class CategoriesList extends StatelessWidget {
                   .value
                   .toString()
                   .isNotEmpty;
+
               return Column(
                 children: [
                   SizedBox(height: 32),

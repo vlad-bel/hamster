@@ -31,9 +31,7 @@ class HeaderCell extends StatelessWidget {
                 SvgPicture.asset(
                   Assets.imagesArrowUp,
                 ),
-                SizedBox(
-                  height: 2,
-                ),
+                const SizedBox(height: 2),
                 SvgPicture.asset(
                   Assets.imagesArrowDown,
                 ),

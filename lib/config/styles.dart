@@ -21,10 +21,13 @@ final inter16Medium = GoogleFonts.inter(
   fontWeight: FontWeight.w500,
 );
 final inter14 = GoogleFonts.inter(fontSize: 14, color: lynch);
-final inter14Medium = GoogleFonts.inter(
-  fontSize: 14,
-  color: lynch,
+
+final inter14Medium = inter14.copyWith(
   fontWeight: FontWeight.w500,
+);
+
+final inter14Semibold = inter14.copyWith(
+  fontWeight: FontWeight.w600,
 );
 final inter12 = GoogleFonts.inter(fontSize: 12, color: lynch);
 final inter10 = GoogleFonts.inter(fontSize: 10, color: lynch);

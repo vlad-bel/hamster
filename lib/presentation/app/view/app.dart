@@ -2,8 +2,12 @@ import 'package:business_terminal/app/utils/l10n/generated/l10n.dart';
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_cubit.dart';
+import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
+import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
 import 'package:business_terminal/presentation/categories/cubit/subcategories_cubit.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
 import 'package:business_terminal/presentation/forget_password/cubit/forget_password_cubit.dart';
@@ -39,6 +43,18 @@ class App extends StatelessWidget {
           ),
           BlocProvider<AccountVerificationCubit>(
             create: (_) => getIt.get<AccountVerificationCubit>(),
+          ),
+          BlocProvider<BranchProfilePictureCubit>(
+            create: (_) => getIt.get<BranchProfilePictureCubit>(),
+          ),
+          BlocProvider<BranchProfileAvatarPictureCubit>(
+            create: (_) => getIt.get<BranchProfileAvatarPictureCubit>(),
+          ),
+          BlocProvider<CountrySelectorCubit>(
+            create: (_) => getIt.get<CountrySelectorCubit>(),
+          ),
+          BlocProvider<BranchProfileCubit>(
+            create: (_) => getIt.get<BranchProfileCubit>(),
           ),
           BlocProvider<SubcategoriesCubit>(
             create: (BuildContext context) {

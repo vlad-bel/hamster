@@ -57,7 +57,7 @@ class _ForgetPasswordEmailViewState extends State<ForgetPasswordEmailView> {
                           _formSettings.validationMessageEmail,
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    SizedBox(height: 200),
+                    const SizedBox(height: 200),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
