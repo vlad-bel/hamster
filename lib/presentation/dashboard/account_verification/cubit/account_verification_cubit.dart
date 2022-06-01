@@ -30,10 +30,10 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
   Future getRepCompanyData() async {
     try {
       final repCompany = await companyUsecase.getRepCompany();
-      final branchProfilesList =
-          await branchProfileUseCase.getBranchByRepresentative();
+      final branchProfiles =
+          await branchProfileUseCase.getBranchesListByRepresentative();
 
-      dashboardCubit.updateRepCompany(repCompany, branchProfilesList);
+      dashboardCubit.updateRepCompany(repCompany, branchProfiles);
       state.whenOrNull(
         initial: (isFullyCompleted, __, ___, ____) {
           emit(

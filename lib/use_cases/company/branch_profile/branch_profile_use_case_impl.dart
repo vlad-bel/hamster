@@ -1,5 +1,6 @@
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
+import 'package:business_terminal/domain/model/company/branch/branch_profile_with_paging.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
 import 'package:injectable/injectable.dart';
 
@@ -23,8 +24,27 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
   }
 
   @override
-  Future<List<BranchProfile>> getBranchByRepresentative() async {
-    final response = await _repository.getBranchesByRepresentative();
+  Future<BranchProfileWithPaging> getBranchesListByRepresentative() async {
+    // final response = await _repository.getBranchesByRepresentative();
+
+    final branchProfile = [
+      BranchProfile(
+        branchName: 'Branch name',
+        branchNumber: '1111',
+        city: 'City',
+        entrances: 1,
+      ),
+    ];
+
+    final response = BranchProfileWithPaging(
+        hasNextPage: false,
+        hasPreviousPage: false,
+        itemCount: 1,
+        page: 1,
+        order: 'DESC',
+        pageCount: 1,
+        take: 1,
+        data: branchProfile);
     return response;
   }
 

@@ -1,4 +1,4 @@
-import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
+import 'package:business_terminal/domain/model/company/branch/branch_profile_with_paging.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -23,7 +23,7 @@ class DashboardStateObject {
   bool? finansenOpen;
   bool? administrationOpen;
   RepCompany? repCompany;
-  List<BranchProfile>? branchProfilesList;
+  BranchProfileWithPaging? branchProfilesList;
 
   DashboardStateObject({
     this.testCount = 0,
@@ -57,7 +57,7 @@ class DashboardStateObject {
     bool? finansenOpen,
     bool? administrationOpen,
     RepCompany? repCompany,
-    List<BranchProfile>? branchProfilesList,
+    BranchProfileWithPaging? branchProfilesList,
   }) {
     return DashboardStateObject(
       testCount: testCount ?? this.testCount,

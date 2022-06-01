@@ -7,6 +7,8 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../model/company/branch/branch_profile_with_paging.dart';
+
 part 'rest_client.g.dart';
 
 ///todo add .env file
@@ -97,7 +99,7 @@ abstract class RestClient {
 
   // TODO: make page param as @query param during pagination implementation
   @GET('/branch/?page=1')
-  Future<List<BranchProfile>> getBranchesByRepresentative();
+  Future<BranchProfileWithPaging> getBranchesByRepresentative();
 
   @GET('/branch/{id}')
   Future<BranchProfile> getBranchById(

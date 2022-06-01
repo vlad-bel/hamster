@@ -1,13 +1,12 @@
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
+import 'package:business_terminal/presentation/dashboard/profive_viewing/widget/company_branch_table_with_data.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/widget/profile_view_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompanyBranchTable extends StatelessWidget {
-  final BranchProfile? branchProfile = null; // TODO mock
-
   const CompanyBranchTable({super.key});
 
   @override
@@ -15,17 +14,16 @@ class CompanyBranchTable extends StatelessWidget {
     return ProfileViewContainer(
       child: BlocBuilder<DashboardCubit, DashboardState>(
         builder: (context, state) {
-          return Text("TODO"); // TODO
-          /*state.when(
-            init: (_, __, ___, repCompany) {
+          return state.when(
+            init: (state) {
               // TODO: fetch branchProfile and put here
               return CompanyBranchTableWithData(
-                repCompany: repCompany,
-                branchProfile: branchProfile,
+                repCompany: state.repCompany,
+                branchProfile: state.branchProfilesList,
               );
             },
             error: error,
-          );*/
+          );
         },
       ),
     );
