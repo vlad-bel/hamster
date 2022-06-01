@@ -136,7 +136,7 @@ class _BranchProfileView extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 60),
+             const SizedBox(height: 60),
             ],
           ),
         );

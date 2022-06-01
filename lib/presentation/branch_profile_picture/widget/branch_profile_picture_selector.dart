@@ -6,7 +6,7 @@ import 'package:business_terminal/presentation/branch_profile_picture/widget/bra
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../common/widgets/dashed_button/rect_dashed_button.dart';
+import 'package:business_terminal/presentation/common/widgets/dashed_button/rect_dashed_button.dart';
 
 class BranchProfilePictureSelector extends StatelessWidget {
   const BranchProfilePictureSelector({Key? key}) : super(key: key);

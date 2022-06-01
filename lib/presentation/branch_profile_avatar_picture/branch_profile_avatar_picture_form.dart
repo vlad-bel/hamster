@@ -37,12 +37,12 @@ class BranchProfileAvatarPictureForm extends StatelessWidget {
         ),
         body: Column(
           children: [
-            SizedBox(height: 26),
+           const SizedBox(height: 26),
             BranchProfileAvatarPictureSelector(
               showAddButton: showAddButton,
               showEditButton: showEditButton,
             ),
-            SizedBox(height: 38),
+           const SizedBox(height: 38),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

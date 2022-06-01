@@ -26,36 +26,29 @@ class AvatarSelectedPicture extends StatelessWidget {
             ),
           ),
         ),
-        if(showEditButton)
-        SizedBox(
-          width: 200,
-          height: 200,
-          child: Transform.translate(
-            offset: Offset(-12, 16),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                padding: EdgeInsets.all(2),
-                child: EditButton(
-                  icon: Icons.edit,
-                  onEditTap: () {
-                    // context
-                    //     .read<BranchProfileAvatarPictureCubit>()
-                    //     .removeSelectedImage(
-                    //       path,
-                    //     );
-                  },
+        if (showEditButton)
+          SizedBox(
+            width: 200,
+            height: 200,
+            child: Transform.translate(
+              offset: Offset(-12, 16),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsets.all(2),
+                  child: EditButton(
+                    icon: Icons.edit,
+                    onEditTap: () {},
+                  ),
                 ),
               ),
             ),
           ),
-        ),
       ],
     );
   }
-
 }
