@@ -12,7 +12,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'forget_password_cubit.freezed.dart';
-
 part 'forget_password_state.dart';
 
 @Singleton()

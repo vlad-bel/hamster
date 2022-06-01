@@ -12,8 +12,7 @@ part 'pick_day_cubit.freezed.dart';
 
 @injectable
 class PickDayCubit extends Cubit<PickDayState> {
-  PickDayCubit({DaysHours? hours})
-      : super(PickDayState.initial(hours: hours ?? DaysHours.empty()));
+  PickDayCubit() : super(PickDayState.initial(hours: DaysHours.empty()));
 
   final formSettings = PickDayFormSettings();
 

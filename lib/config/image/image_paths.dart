@@ -12,9 +12,9 @@ class ImagePaths {
       );
 
   static String jpg(String name) => _assetPath(
-    name,
-    imageExtension: _ImageExtension.jpg,
-  );
+        name,
+        imageExtension: _ImageExtension.jpg,
+      );
 
   static String svg(String name) => _assetPath(name);
 

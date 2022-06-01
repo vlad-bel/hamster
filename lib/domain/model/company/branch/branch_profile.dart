@@ -104,28 +104,14 @@ class PosesData {
   Map<String, dynamic> toJson() => _$PosesDataToJson(this);
 }
 
-@JsonSerializable(ignoreUnannotated: false)
 class OpeningHours {
-  @JsonKey(name: 'monday')
-  final List<OpeningHourItem> monday;
-
-  @JsonKey(name: 'tuesday')
-  final List<OpeningHourItem> tuesday;
-
-  @JsonKey(name: 'wednesday')
-  final List<OpeningHourItem> wednesday;
-
-  @JsonKey(name: 'thursday')
-  final List<OpeningHourItem> thursday;
-
-  @JsonKey(name: 'friday')
-  final List<OpeningHourItem> friday;
-
-  @JsonKey(name: 'saturday')
-  final List<OpeningHourItem> saturday;
-
-  @JsonKey(name: 'sunday')
-  final List<OpeningHourItem> sunday;
+  List<OpeningHourItem>? monday;
+  List<OpeningHourItem>? tuesday;
+  List<OpeningHourItem>? wednesday;
+  List<OpeningHourItem>? thursday;
+  List<OpeningHourItem>? friday;
+  List<OpeningHourItem>? saturday;
+  List<OpeningHourItem>? sunday;
 
   OpeningHours(
     this.monday,
@@ -137,23 +123,93 @@ class OpeningHours {
     this.sunday,
   );
 
-  factory OpeningHours.fromJson(Map<String, dynamic> json) =>
-      _$OpeningHoursFromJson(json);
+  OpeningHours.fromJson(Map<String, dynamic> json) {
+    if (json['monday'] != null) {
+      monday = <OpeningHourItem>[];
+      json['monday'].forEach((v) {
+        monday!.add(OpeningHourItem.fromJson(v as Map<String, dynamic>));
+      });
+    }
+    if (json['tuesday'] != null) {
+      tuesday = <OpeningHourItem>[];
+      json['tuesday'].forEach((v) {
+        tuesday!.add(OpeningHourItem.fromJson(v as Map<String, dynamic>));
+      });
+    }
+    if (json['wednesday'] != null) {
+      wednesday = <OpeningHourItem>[];
+      json['wednesday'].forEach((v) {
+        wednesday!.add(OpeningHourItem.fromJson(v as Map<String, dynamic>));
+      });
+    }
+    if (json['thursday'] != null) {
+      thursday = <OpeningHourItem>[];
+      json['thursday'].forEach((v) {
+        thursday!.add(OpeningHourItem.fromJson(v as Map<String, dynamic>));
+      });
+    }
+    if (json['friday'] != null) {
+      friday = <OpeningHourItem>[];
+      json['friday'].forEach((v) {
+        friday!.add(OpeningHourItem.fromJson(v as Map<String, dynamic>));
+      });
+    }
+    if (json['saturday'] != null) {
+      saturday = <OpeningHourItem>[];
+      json['saturday'].forEach((v) {
+        saturday!.add(OpeningHourItem.fromJson(v as Map<String, dynamic>));
+      });
+    }
+    if (json['sunday'] != null) {
+      sunday = <OpeningHourItem>[];
+      json['sunday'].forEach((v) {
+        sunday!.add(OpeningHourItem.fromJson(v as Map<String, dynamic>));
+      });
+    }
+  }
 
-  Map<String, dynamic> toJson() => _$OpeningHoursToJson(this);
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    if (monday != null) {
+      data['monday'] = monday!.map((v) => v.toJson()).toList();
+    }
+    if (tuesday != null) {
+      data['tuesday'] = tuesday!.map((v) => v.toJson()).toList();
+    }
+    if (wednesday != null) {
+      data['wednesday'] = wednesday!.map((v) => v.toJson()).toList();
+    }
+    if (thursday != null) {
+      data['thursday'] = thursday!.map((v) => v.toJson()).toList();
+    }
+    if (friday != null) {
+      data['friday'] = friday!.map((v) => v.toJson()).toList();
+    }
+    if (saturday != null) {
+      data['saturday'] = saturday!.map((v) => v.toJson()).toList();
+    }
+    if (sunday != null) {
+      data['sunday'] = sunday!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
-@JsonSerializable(ignoreUnannotated: false)
 class OpeningHourItem {
-  @JsonKey(name: 'from')
-  final String from;
-  @JsonKey(name: 'to')
-  final String to;
+  String? from;
+  String? to;
 
-  OpeningHourItem({required this.from, required this.to});
+  OpeningHourItem({this.from, this.to});
 
-  factory OpeningHourItem.fromJson(Map<String, dynamic> json) =>
-      _$OpeningHourItemFromJson(json);
+  OpeningHourItem.fromJson(Map<String, dynamic> json) {
+    from = json['from'] as String?;
+    to = json['to'] as String?;
+  }
 
-  Map<String, dynamic> toJson() => _$OpeningHourItemToJson(this);
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['from'] = from;
+    data['to'] = to;
+    return data;
+  }
 }

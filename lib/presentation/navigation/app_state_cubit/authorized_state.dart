@@ -95,19 +95,19 @@ class AuthorizedState extends AppState {
 
                 break;
               case CategoriesPage.path:
-                page = CategoriesPage();
+                page = const CategoriesPage();
                 break;
               case SelectSubCategoriesPage.path:
-                page = SelectSubCategoriesPage();
+                page = const SelectSubCategoriesPage();
                 break;
               case SubcategoriesPage.path:
-                page = SubcategoriesPage();
+                page = const SubcategoriesPage();
                 break;
               case BranchProfilePicturePage.path:
-                page = BranchProfilePicturePage();
+                page = const BranchProfilePicturePage();
                 break;
               case BranchProfileAvatarPicturePage.path:
-                page = BranchProfileAvatarPicturePage(
+                page = const BranchProfileAvatarPicturePage(
                   showEditButton: false,
                   showAddButton: true,
                 );
@@ -161,27 +161,42 @@ class AuthorizedState extends AppState {
                       key: CropperPage.pSubheader,
                     )!,
                     circleCrop: appStorageService.getString(
-                              key: CropperPage.pCircleCrop,
-                            )! ==
-                            'true'
-                        ? true
-                        : false,
+                          key: CropperPage.pCircleCrop,
+                        )! ==
+                        'true',
                   ),
                 );
 
                 return _buildHamsterPage<Uint8List>(page, settings);
               case PickDayPage.path:
                 if (params?[PickDayPage.paramDays] != null) {
-                  final hours = (params![PickDayPage.paramDays] as DaysHours?)
-                      ?.originalObject()
-                      .toJson()
-                      .toString();
-                  if (hours != null) {
-                    appStorageService.setString(
+                  final hours = json.encode(
+                    (params![PickDayPage.paramDays] as DaysHours?)
+                        ?.originalObject()
+                        .toJson(),
+                  );
+                  appStorageService.setString(
+                    key: PickDayPage.paramDays,
+                    value: hours,
+                  );
+                }
+
+                DaysHours? storageHours;
+                if (appStorageService.getString(
                       key: PickDayPage.paramDays,
-                      value: hours,
-                    );
-                  }
+                    ) !=
+                    null) {
+                  final str = appStorageService.getString(
+                    key: PickDayPage.paramDays,
+                  )!;
+
+                  final decoded = json.decode(str) as Map<String, dynamic>;
+
+                  storageHours = DaysHours(
+                    OpeningHours.fromJson(
+                      decoded,
+                    ),
+                  );
                 }
 
                 page = buildPage(
@@ -189,25 +204,12 @@ class AuthorizedState extends AppState {
                     PickDayPage.paramDays,
                   ],
                   child: PickDayPage(
-                    hours: appStorageService.getString(
-                              key: PickDayPage.paramDays,
-                            ) !=
-                            null
-                        ? DaysHours(
-                            OpeningHours.fromJson(
-                              json.decode(
-                                appStorageService.getString(
-                                  key: PickDayPage.paramDays,
-                                )!,
-                              ) as Map<String, dynamic>,
-                            ),
-                          )
-                        : null,
+                    hours: storageHours,
                   ),
                 );
                 break;
               case AddOpeningHoursPage.path:
-                page = AddOpeningHoursPage();
+                page = const AddOpeningHoursPage();
                 break;
             }
 

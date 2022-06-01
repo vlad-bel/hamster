@@ -1,9 +1,6 @@
-import 'dart:typed_data';
-
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/bordered_container/bordered_edit_container.dart';
 import 'package:business_terminal/presentation/common/widgets/dynamic_image.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -57,5 +54,4 @@ class SelectedPicture extends StatelessWidget {
       ],
     );
   }
-
 }
