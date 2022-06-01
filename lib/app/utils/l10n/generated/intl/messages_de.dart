@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -71,6 +72,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "branch_name": MessageLookupByLibrary.simpleMessage("Filialname"),
         "branch_profile": MessageLookupByLibrary.simpleMessage("Filialprofil"),
         "branches": MessageLookupByLibrary.simpleMessage("Filialien"),
+        "callIsOrdered": MessageLookupByLibrary.simpleMessage(
+            "Wir werden Sie in Kürze erneut anrufen."),
         "call_method1": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie Ihre favorisierte Methode, um die von Ihnen angegebenen Nummer "),
         "call_method2":
@@ -102,6 +105,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Unternehmensname"),
         "company_profile":
             MessageLookupByLibrary.simpleMessage("Unternehmensprofil"),
+        "confirmNewPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
+            "Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können."),
+        "confirmNewPasswordTitle": MessageLookupByLibrary.simpleMessage(
+            "Ersetzen Sie Ihr altes Passwort."),
         "confirm_number_subtitle1": MessageLookupByLibrary.simpleMessage(
             "Sie erhalten gleich eine SMS an die von Ihnen angegebenen Nummer "),
         "confirm_number_subtitle2": MessageLookupByLibrary.simpleMessage(
@@ -125,6 +132,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie den richtigen Bereich Ihres Profilfotos aus."),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "emailCodeSent": MessageLookupByLibrary.simpleMessage(
+            "Sie erhalten in Kürze erneut eine E-Mail von uns."),
         "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Fehler"),
         "falschesPasswort":
@@ -133,6 +142,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "finance1": MessageLookupByLibrary.simpleMessage("Finanzen1"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
             "Für Gutschriften und regelmäßige Abrechnungen benötigen wir noch Ihre Bankverbindung und die Einwilligung zum Bankeinzugsverfahren"),
+        "forgetPasswordCodeIncorrect": MessageLookupByLibrary.simpleMessage(
+            "Der eingegebene Code war ungültig."),
+        "forgetPasswordPhoneCallSubtitle1": MessageLookupByLibrary.simpleMessage(
+            "Sie erhalten gleich einen Anruf mit automatischer Sprachansage auf der mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpften Nummer"),
+        "forgetPasswordPhoneCallSubtitle2": MessageLookupByLibrary.simpleMessage(
+            "Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen."),
+        "forgetPasswordSmsSubtitle1": MessageLookupByLibrary.simpleMessage(
+            "Sie erhalten gleich eine SMS an die mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpfte Nummer"),
+        "forgetPasswordSmsSubtitle2": MessageLookupByLibrary.simpleMessage(
+            ". Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen."),
         "forget_password": MessageLookupByLibrary.simpleMessage(
             "Sie haben Ihr Passwort\nvergessen?"),
         "forget_password_header": MessageLookupByLibrary.simpleMessage(
@@ -180,6 +199,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Modell (falls bekannt)"),
         "monday": MessageLookupByLibrary.simpleMessage("Montag"),
         "my_company": MessageLookupByLibrary.simpleMessage("Mein Unternehmen"),
+        "newPasswordInstalledTitle":
+            MessageLookupByLibrary.simpleMessage("Passwort geändert."),
+        "newPasswordIntalledDescription": MessageLookupByLibrary.simpleMessage(
+            "Sie haben erfolgreich Ihr altes durch ein neues. Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden."),
         "next": MessageLookupByLibrary.simpleMessage("Weiter"),
         "not_visible": MessageLookupByLibrary.simpleMessage("Nicht sichtbar"),
         "num_hint": MessageLookupByLibrary.simpleMessage("Nr."),
@@ -205,6 +228,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "request_verification":
             MessageLookupByLibrary.simpleMessage("Verifikation beantragen"),
         "required_field": MessageLookupByLibrary.simpleMessage("Pflichtfeld"),
+        "resetEmail":
+            MessageLookupByLibrary.simpleMessage("E-Mail erneut versenden"),
+        "resetPhoneCall":
+            MessageLookupByLibrary.simpleMessage("Anruf erneut durchführen"),
+        "resetSms":
+            MessageLookupByLibrary.simpleMessage("SMS erneut versenden"),
         "reset_email":
             MessageLookupByLibrary.simpleMessage("E-Mail erneut versenden"),
         "return_button": MessageLookupByLibrary.simpleMessage("ZURÜCK"),
@@ -223,7 +252,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "select_week_days": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie zuerst den/die Wochentag/e aus, deren Öffnungszeiten Sie bearbeiten wollen"),
         "settings": MessageLookupByLibrary.simpleMessage("Einstellungen"),
+        "sieErhaltenInKrzeErneutEineSmsVonUns":
+            MessageLookupByLibrary.simpleMessage(
+                "Sie erhalten in Kürze erneut eine SMS von uns"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
+        "smsResent": MessageLookupByLibrary.simpleMessage(
+            "Sie erhalten in Kürze erneut eine SMS von uns"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(
             "Der eingegebene Code war ungültig."),
         "sms_resend":
