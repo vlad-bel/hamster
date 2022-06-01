@@ -12,18 +12,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class BranchDataForm extends StatelessWidget {
-  const BranchDataForm({
+  BranchDataForm({
     Key? key,
-    required this.formSettings,
+    required this.formGroup,
     required this.paddingBetweenTextInputs,
     required this.branchSelectedFieldsMap,
     required this.company,
   }) : super(key: key);
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
+  final FormGroup formGroup;
   final RepCompany company;
 
-  final BranchProfileFormValidation formSettings;
+  final formSettings = BranchProfileFormValidation();
+
   final SizedBox paddingBetweenTextInputs;
 
   @override
@@ -32,7 +34,7 @@ class BranchDataForm extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: ReactiveFormBuilder(
-          form: formSettings.buildForm,
+          form: () => formGroup,
           builder: (context, form, child) {
             fillUpPredefinedData(form);
 

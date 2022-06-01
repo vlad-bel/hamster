@@ -10,4 +10,20 @@ class BranchProfileState with _$BranchProfileState {
     List<dynamic>? branchImages,
     List<dynamic>? avatarImages,
   }) = InitBranchProfileState;
+
+  const factory BranchProfileState.branchWasCreatedSuccessfully({
+    // TODO: remove below fields here after demo
+    String? category,
+    List<String>? subcategories,
+    List<dynamic>? branchImages,
+    List<dynamic>? avatarImages,
+  }) = WasCreatedSuccesfullyBranchProfileState;
+
+  const factory BranchProfileState.error({
+    // TODO: remove below fields here after demo
+    String? category,
+    List<String>? subcategories,
+    List<dynamic>? branchImages,
+    List<dynamic>? avatarImages,
+  }) = ErrorBranchProfileState;
 }

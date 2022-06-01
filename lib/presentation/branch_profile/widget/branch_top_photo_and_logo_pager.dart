@@ -60,7 +60,7 @@ class _BranchTopPhotoAndLogoPagerState
                           itemCount: state.branchImages?.length ?? 0,
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
-                            return  SizedBox(
+                            return SizedBox(
                               width: double.infinity,
                               child: DynamicImage(
                                 path: state.branchImages?[index],
