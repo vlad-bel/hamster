@@ -12,18 +12,9 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
 
   @override
   Future<BranchProfile> createBranch(BranchProfile branchProfile) async {
-    // TODO revert non-mock data
     final branchJson = branchProfile.toJson();
 
-    final branchProfileDummy = BranchProfile(
-      branchName: 'Branch name',
-      branchNumber: '1111',
-      city: 'City',
-      entrances: 1,
-    );
-
-    final response =
-        await _repository.createBranch(branchProfileDummy.toJson());
+    final response = await _repository.createBranch(branchJson);
     return response;
   }
 
@@ -37,6 +28,7 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
   Future<BranchProfileWithPaging> getBranchesListByRepresentative() async {
     // final response = await _repository.getBranchesByRepresentative();
 
+    // TODO: mock
     final branchProfile = [
       BranchProfile(
         branchName: 'Branch name',
@@ -54,7 +46,7 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
         order: 'DESC',
         pageCount: 1,
         take: 1,
-        data: branchProfile);
+        data: branchProfile,);
     return response;
   }
 
