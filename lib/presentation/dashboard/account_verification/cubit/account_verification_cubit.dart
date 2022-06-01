@@ -33,7 +33,10 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
       final branchProfiles =
           await branchProfileUseCase.getBranchesListByRepresentative();
 
-      dashboardCubit.updateRepCompany(repCompany, branchProfiles);
+      dashboardCubit.updateRepCompany(
+        repCompany: repCompany,
+        branchProfilesList: branchProfiles,
+      );
       state.whenOrNull(
         initial: (isFullyCompleted, __, ___, ____) {
           emit(

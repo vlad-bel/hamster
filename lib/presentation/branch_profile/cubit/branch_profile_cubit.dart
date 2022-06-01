@@ -9,11 +9,10 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 @singleton
 class BranchProfileCubit extends Cubit<BranchProfileState> {
-  BranchProfileCubit()
+  BranchProfileCubit(this.useCase)
       : super(
           BranchProfileState.init(
-
-              ///todo mock images
+            ///todo mock images
             branchImages: [
               'https://cdn.cnn.com/cnnnext/dam/assets/211105205533-01-georgia-travel-file-full-169.jpg',
               'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty.jpg/1280px-24701-nature-natural-beauty.jpg',
@@ -27,9 +26,9 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         );
 
   final BranchProfileUseCase useCase;
-
   final FormGroup formGroup = BranchProfileFormValidation().buildForm();
 
+  // TODO: add branch parameters
   Future<void> createBranch() async {
     final branchProfileDummy = BranchProfile(
       branchName: 'Branch name',
@@ -51,58 +50,10 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
       logger.e('createBranch: $e');
     }
 
-    /*BranchProfile branchProfile = BranchProfile(
-      id: 'id',
-      branchName: 'branchName',
-      city: 'city',
-      country: country,
-      postalCode: postalCode,
-      streetName: streetName,
-      streetNumber: streetNumber,
-      entrances: entrances,
-      website: website,
-      phoneNumber: phoneNumber,
-      companyId: companyId,
-      branchNumber: branchNumber,
-      fillingProgress: fillingProgress,
-      posesData: posesData,
-      category: category,
-      subcategories: subcategories,
-      openingHours: openingHours,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-      isVerificationRequestDeclined: isVerificationRequestDeclined,
-      isVerified: isVerified,
-    );*/
-
     // useCase.createBranch(branchProfile);
   }
 
   Future<void> updateBranch() async {
-    /* BranchProfile branchProfile = BranchProfile(
-      id: id,
-      branchName: branchName,
-      city: city,
-      country: country,
-      postalCode: postalCode,
-      streetName: streetName,
-      streetNumber: streetNumber,
-      entrances: entrances,
-      website: website,
-      phoneNumber: phoneNumber,
-      companyId: companyId,
-      branchNumber: branchNumber,
-      fillingProgress: fillingProgress,
-      posesData: posesData,
-      category: category,
-      subcategories: subcategories,
-      openingHours: openingHours,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-      isVerificationRequestDeclined: isVerificationRequestDeclined,
-      isVerified: isVerified,
-    );*/
-
     // useCase.updateBranchById('id', branchProfile);
   }
 

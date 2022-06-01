@@ -1,4 +1,3 @@
-import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
@@ -124,8 +123,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                             Duration.zero,
                                         pageBuilder: (context, anim1, anim2) {
                                           return UnknownPage(
-                                    path: settings.name ?? 'unknown path',
-                                  );
+                                            path:
+                                                settings.name ?? 'unknown path',
+                                          );
                                         },
                                         settings: settings,
                                       );
@@ -154,27 +154,32 @@ class _DashboardPageState extends State<DashboardPage> {
                                           break;
                                       }
 
-                              return PageRouteBuilder<void>(
-                                transitionDuration: Duration.zero,
-                                reverseTransitionDuration: Duration.zero,
-                                pageBuilder: (context, anim1, anim2) {
-                                  return page ??
-                                      UnknownPage(
-                                        path: settings.name ?? 'unknown path',
+                                      return PageRouteBuilder<void>(
+                                        transitionDuration: Duration.zero,
+                                        reverseTransitionDuration:
+                                            Duration.zero,
+                                        pageBuilder: (context, anim1, anim2) {
+                                          return page ??
+                                              UnknownPage(
+                                                path: settings.name ??
+                                                    'unknown path',
+                                              );
+                                        },
+                                        settings: settings,
                                       );
-                                },
-                                settings: settings,
-                              );
-                            },
-                          ),
-                        ],
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          );
+                    ],
+                  );
+                },
+              ) ??
+              Text('');
         },
       ),
     );

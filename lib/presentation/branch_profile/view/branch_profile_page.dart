@@ -47,7 +47,6 @@ class _BranchProfileView extends StatelessWidget {
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
   final RepCompany company;
-  final formSettings = BranchProfileFormValidation();
   final verticalPaddingBetweenTextInputs = 18.0;
 
   @override
@@ -74,7 +73,6 @@ class _BranchProfileView extends StatelessWidget {
                       },
                       child: Text('Create new branch'),
                     ),
-
                     BranchTopPhotoAndLogoPager(),
                     const SizedBox(height: 26),
                     Row(
@@ -146,7 +144,7 @@ class _BranchProfileView extends StatelessWidget {
                   ],
                 ),
               ),
-             const SizedBox(height: 60),
+              const SizedBox(height: 60),
             ],
           ),
         );
