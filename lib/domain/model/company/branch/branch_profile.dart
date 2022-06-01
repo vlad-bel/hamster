@@ -1,0 +1,159 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'branch_profile.g.dart';
+
+@JsonSerializable(ignoreUnannotated: false)
+class BranchProfile {
+  @JsonKey(name: '_id')
+  final String? id;
+  @JsonKey(name: 'branchName')
+  final String? branchName;
+  @JsonKey(name: 'city')
+  final String? city;
+  @JsonKey(name: 'country')
+  final String? country;
+  @JsonKey(name: 'postalCode')
+  final String? postalCode;
+  @JsonKey(name: 'streetName')
+  final String? streetName;
+  @JsonKey(name: 'streetNumber')
+  final String? streetNumber;
+  @JsonKey(name: 'entrances')
+  final int? entrances;
+  @JsonKey(name: 'website')
+  final String? website;
+  @JsonKey(name: 'phoneNumber')
+  final String? phoneNumber;
+  @JsonKey(name: 'companyId')
+  final String? companyId;
+  @JsonKey(name: 'branchNumber')
+  final String? branchNumber;
+  @JsonKey(name: 'fillingProgress')
+  final int? fillingProgress;
+  @JsonKey(name: 'posesData')
+  final List<PosesData>? posesData;
+  @JsonKey(name: 'category')
+  final String? category;
+  @JsonKey(name: 'subcategories')
+  final List<String>? subcategories;
+  @JsonKey(name: 'openingHours')
+  final OpeningHours? openingHours;
+  @JsonKey(name: 'createdAt')
+  final String? createdAt;
+  @JsonKey(name: 'updatedAt')
+  final String? updatedAt;
+  @JsonKey(name: 'isVerificationRequestDeclined')
+  final bool? isVerificationRequestDeclined;
+  @JsonKey(name: 'isVerified')
+  final bool? isVerified;
+
+  BranchProfile({
+    this.id,
+    this.branchName,
+    this.city,
+    this.country,
+    this.postalCode,
+    this.streetName,
+    this.streetNumber,
+    this.entrances,
+    this.website,
+    this.phoneNumber,
+    this.companyId,
+    this.branchNumber,
+    this.fillingProgress,
+    this.posesData,
+    this.category,
+    this.subcategories,
+    this.openingHours,
+    this.createdAt,
+    this.updatedAt,
+    this.isVerificationRequestDeclined,
+    this.isVerified,
+  });
+
+  factory BranchProfile.fromJson(Map<String, dynamic> json) =>
+      _$BranchProfileFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BranchProfileToJson(this);
+}
+
+@JsonSerializable(ignoreUnannotated: false)
+class PosesData {
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'manufacturer')
+  final String manufacturer;
+  @JsonKey(name: 'model')
+  final String model;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: 'isActive')
+  final bool isActive;
+
+  PosesData({
+    required this.name,
+    required this.manufacturer,
+    required this.model,
+    required this.id,
+    required this.isActive,
+  });
+
+  factory PosesData.fromJson(Map<String, dynamic> json) =>
+      _$PosesDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PosesDataToJson(this);
+}
+
+@JsonSerializable(ignoreUnannotated: false)
+class OpeningHours {
+  @JsonKey(name: 'monday')
+  final List<OpeningHourItem> monday;
+
+  @JsonKey(name: 'tuesday')
+  final List<OpeningHourItem> tuesday;
+
+  @JsonKey(name: 'wednesday')
+  final List<OpeningHourItem> wednesday;
+
+  @JsonKey(name: 'thursday')
+  final List<OpeningHourItem> thursday;
+
+  @JsonKey(name: 'friday')
+  final List<OpeningHourItem> friday;
+
+  @JsonKey(name: 'saturday')
+  final List<OpeningHourItem> saturday;
+
+  @JsonKey(name: 'sunday')
+  final List<OpeningHourItem> sunday;
+
+  OpeningHours(
+    this.monday,
+    this.tuesday,
+    this.wednesday,
+    this.thursday,
+    this.friday,
+    this.saturday,
+    this.sunday,
+  );
+
+  factory OpeningHours.fromJson(Map<String, dynamic> json) =>
+      _$OpeningHoursFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OpeningHoursToJson(this);
+}
+
+@JsonSerializable(ignoreUnannotated: false)
+class OpeningHourItem {
+  @JsonKey(name: 'from')
+  final String from;
+  @JsonKey(name: 'to')
+  final String to;
+
+  OpeningHourItem({required this.from, required this.to});
+
+  factory OpeningHourItem.fromJson(Map<String, dynamic> json) =>
+      _$OpeningHourItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OpeningHourItemToJson(this);
+}

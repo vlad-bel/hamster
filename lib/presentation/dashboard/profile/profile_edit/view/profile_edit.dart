@@ -147,7 +147,7 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                                     context
                                         .read<DashboardCubit>()
                                         .updateRepCompany(
-                                          fetchRepCompany,
+                                          repCompany: fetchRepCompany,
                                         );
 
                                     SnackBarManager.showSuccess(
