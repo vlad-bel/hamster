@@ -1,7 +1,6 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/forget_password/forget_password_verification_method.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
@@ -30,10 +29,7 @@ class PinCodePasswordResetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt.get<ForgetPasswordCubit>(),
-      child: PinCodePasswordResetView(email: email, method: method),
-    );
+    return PinCodePasswordResetView(email: email, method: method);
   }
 }
 
