@@ -21,9 +21,8 @@ build:
   tags:
     - docker
   script:
-    - ls -la
-    #- flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
-    #- flutter build web -t lib/main_development.dart --release --web-renderer html
+    - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
+    - flutter build web -t lib/main_development.dart --release --web-renderer html
   artifacts:
     paths:
       - build/web/**
