@@ -19,14 +19,14 @@ class AddLogoRoundAddCellWidget extends StatelessWidget {
     return ClipOval(
       child: Material(
         child: InkWell(
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(4),
           ),
           onTap: onPressed,
           child: Ink(
             width: 50,
             height: 50,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
             child: DottedBorder(
@@ -35,16 +35,16 @@ class AddLogoRoundAddCellWidget extends StatelessWidget {
               borderType: BorderType.Circle,
               strokeWidth: 1.2,
               child: Padding(
-                padding: EdgeInsets.all(2),
+                padding: const EdgeInsets.all(2),
                 child: Center(
                   child: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: denim.withOpacity(0.1),
                     ),
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: white,
                         shape: BoxShape.circle,
                       ),
