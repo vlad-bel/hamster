@@ -17,6 +17,7 @@ class ProfileEditRequest {
     required this.vatId,
     required this.accountOwner,
     required this.iban,
+    required this.backgrounds,
   });
 
   factory ProfileEditRequest.fromJson(Map<String, dynamic> json) =>
@@ -24,6 +25,9 @@ class ProfileEditRequest {
 
   @JsonKey(name: 'accountOwner')
   final String accountOwner;
+
+  @JsonKey(name: 'backgrounds')
+  final List<String> backgrounds;
 
   @JsonKey(name: 'city')
   final String city;

@@ -1,6 +1,5 @@
+import 'package:business_terminal/use_cases/settings/theme/theme_service.dart';
 import 'package:flutter/material.dart';
-
-import 'theme_service.dart';
 
 class ThemeSettingsController with ChangeNotifier {
   ThemeSettingsController(this._settingsService) {

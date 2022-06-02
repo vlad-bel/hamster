@@ -60,6 +60,7 @@ dependencies:
   data_table_2: ^2.2.2
   dotted_border: ^2.0.0+2
   json_annotation: ^4.5.0
+  file_picker: ^3.0.4
 
 dev_dependencies:
   bloc_test: ^9.0.3
@@ -79,6 +80,8 @@ flutter:
   generate: false
   assets:
     - assets/images/
+    - assets/icons/
+    - assets/logos/
     - assets/translations/
     - assets/images/flags/
 

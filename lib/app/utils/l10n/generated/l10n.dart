@@ -391,7 +391,7 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(Object length) {
+  String min_number(int length) {
     return Intl.message(
       'Maximum number $length characters',
       name: 'min_number',
@@ -401,7 +401,7 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(Object length) {
+  String max_number(int length) {
     return Intl.message(
       'Minimum number $length characters',
       name: 'max_number',
@@ -911,7 +911,7 @@ class S {
   }
 
   /// `Number: {number}`
-  String branch_id(Object number) {
+  String branch_id(int number) {
     return Intl.message(
       'Number: $number',
       name: 'branch_id',
@@ -1321,7 +1321,7 @@ class S {
   }
 
   /// `Entrance doors amount {number}`
-  String entrances_count(Object number) {
+  String entrances_count(int number) {
     return Intl.message(
       'Entrance doors amount $number',
       name: 'entrances_count',
@@ -1535,6 +1535,36 @@ class S {
     return Intl.message(
       'Select the correct section of your profile photo.',
       name: 'edit_photo_descr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit your company logo.`
+  String get edit_company_logo {
+    return Intl.message(
+      'Edit your company logo.',
+      name: 'edit_company_logo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose the appropriate background color.`
+  String get choose_background_color {
+    return Intl.message(
+      'Choose the appropriate background color.',
+      name: 'choose_background_color',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
       desc: '',
       args: [],
     );

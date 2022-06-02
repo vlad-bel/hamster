@@ -15,7 +15,7 @@ class ChangePasswordUseCaseImpl extends ChangePasswordUseCase {
   @override
   Future changePassword(ChangePasswordRequest request) async {
     try {
-      await _client.changePassword(request.toJson());
+      // await _client.changePassword(request.toJson());
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),
@@ -23,5 +23,4 @@ class ChangePasswordUseCaseImpl extends ChangePasswordUseCase {
       );
     }
   }
-
 }

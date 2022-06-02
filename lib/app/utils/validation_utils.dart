@@ -1,10 +1,11 @@
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ValidationUtils {
-  static ValidatorFunction mustMatch(
-      {required String validationRuleKey,
-      required String controlName,
-      required String matchingControlName}) {
+  static ValidatorFunction mustMatch({
+    required String validationRuleKey,
+    required String controlName,
+    required String matchingControlName,
+  }) {
     return (AbstractControl<dynamic> control) {
       final form = control as FormGroup;
 

@@ -80,9 +80,10 @@ class FormSettingsRegistrationUserInfo {
       },
       validators: [
         ValidationUtils.mustMatch(
-            validationRuleKey: kPasswordValidationRuleMustMatch,
-            controlName: kFieldPassword,
-            matchingControlName: kFieldPasswordConfirmation),
+          validationRuleKey: kPasswordValidationRuleMustMatch,
+          controlName: kFieldPassword,
+          matchingControlName: kFieldPasswordConfirmation,
+        ),
       ],
     );
   }

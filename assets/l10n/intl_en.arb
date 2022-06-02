@@ -175,5 +175,8 @@
   "add_branch_picture": "Add branch picture",
   "to_save": "TO SAVE",
   "edit_photo": "Edit your profile photo.",
-  "edit_photo_descr": "Select the correct section of your profile photo."
+  "edit_photo_descr": "Select the correct section of your profile photo.",
+  "edit_company_logo": "Edit your company logo.",
+  "choose_background_color": "Choose the appropriate background color.",
+  "close": "Close"
 }
