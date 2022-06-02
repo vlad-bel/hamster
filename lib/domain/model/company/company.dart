@@ -52,7 +52,7 @@ class Company {
   @JsonKey(name: 'connectionsStatistics')
   final dynamic connectionsStatistics;
   @JsonKey(name: 'fillingProgress')
-  final String? fillingProgress;
+  final dynamic fillingProgress;
   @JsonKey(name: 'taxNumber')
   final dynamic taxNumber;
   @JsonKey(name: 'accountOwner')
