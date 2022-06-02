@@ -28,7 +28,7 @@ build:
   script:
     - sed -i 52's/git:/path:/g' pubspec.yaml
     - sed -i 52's/$/ \.\/hamster_widgets &/' pubspec.yaml
-    - sed '53,54d' pubspec.yaml
+    - sed -i '53,54d' pubspec.yaml
     - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
     - flutter build web -t lib/main_development.dart --release --web-renderer html
   artifacts:
