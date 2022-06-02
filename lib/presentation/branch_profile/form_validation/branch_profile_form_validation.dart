@@ -46,6 +46,7 @@ class BranchProfileFormValidation {
           Validators.minLength(kMinLength),
           Validators.maxLength(200),
           Validators.required,
+          // TODO: add website validation after demo
         ],
       ),
       kFieldPhone: FormControl<String>(
@@ -53,6 +54,7 @@ class BranchProfileFormValidation {
           Validators.minLength(kMinLength),
           Validators.maxLength(200),
           Validators.required,
+          // TODO: add number validation after demo
         ],
       ),
       kFieldEntrancesCount: FormControl<PlaceEntranceCount>(

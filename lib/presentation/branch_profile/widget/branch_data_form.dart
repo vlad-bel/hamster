@@ -32,7 +32,7 @@ class BranchDataForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ReactiveFormBuilder(
           form: () => formGroup,
           builder: (context, form, child) {
