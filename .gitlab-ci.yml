@@ -26,7 +26,7 @@ build:
   tags:
     - hamster
   before_script:
-    - sed '50,/git:/s/.*git:.*/path[:] \.\/hamster_widgets/g pubspec.yaml
+    - sed '50,/git:/s/.*git:.*/path[:] \.\/hamster_widgets/g' pubspec.yaml
     - sed '53,54d' pubspec.yaml
     - sed -n 52p
   script:
