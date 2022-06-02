@@ -114,7 +114,11 @@ class SelectSubCategoriesForm extends StatelessWidget {
                           subcategories: subcategories,
                         );
 
-                        Navigator.pushNamed(context, BranchProfilePage.path);
+                        Navigator.popUntil(
+                          context,
+                          (route) =>
+                              route.settings.name == BranchProfilePage.path,
+                        );
                       },
                     ),
                   ],

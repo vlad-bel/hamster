@@ -130,6 +130,25 @@ class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
         ),
     ]);
   }
+
+  List<Map<String, String>> openingHours() {
+    final hoursList = <Map<String, String>>[];
+
+    for (var i = 0; i < formSettings.openFields.length; i++) {
+      hoursList.add({
+        formSettings.formGroup
+                .control(formSettings.openFields[i])
+                .value
+                .toString():
+            formSettings.formGroup
+                .control(formSettings.closeFields[i])
+                .value
+                .toString(),
+      });
+    }
+
+    return hoursList;
+  }
 }
 
 @freezed

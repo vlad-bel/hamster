@@ -1,10 +1,15 @@
+import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
+import 'package:business_terminal/domain/model/company/branch/branch_profile_with_paging.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
+import 'package:business_terminal/domain/model/forget_password/send_verification_code_response.dart';
 import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
+
+import '../model/company/branch/branch_profile_with_paging.dart';
 
 part 'rest_client.g.dart';
 
@@ -69,6 +74,11 @@ abstract class RestClient {
   );
 
   @POST('/rep/send-verification-code')
+  Future<SendVerificationCodeResponse> sendPhoneVerificationCode(
+    @Body() Map<String, dynamic> sendVerificationCodeMap,
+  );
+
+  @POST('/rep/send-verification-code')
   Future<String> sendVerificationCode(
     @Body() Map<String, dynamic> sendVerificationCodeMap,
   );
@@ -86,9 +96,34 @@ abstract class RestClient {
   @GET('/rep/company')
   Future<RepCompany> repCompany();
 
+  // Branch Profile:
+
+  // TODO: make page param as @query param during pagination implementation
+  @GET('/branch/?page=1')
+  Future<BranchProfileWithPaging> getBranchesByRepresentative();
+
+  @GET('/branch/{id}')
+  Future<BranchProfile> getBranchById(
+    @Path('id') String id,
+  );
+
+  @PUT('/branch/{id}')
+  Future<BranchProfile> updateBranchById(
+    @Path('id') String id,
+    @Body() Map<String, dynamic> branchProfile,
+  );
+
+  @POST('/branch')
+  Future<BranchProfile> createBranch(
+    @Body() Map<String, dynamic> branchProfile,
+  );
+
   @GET('/common/categories')
   Future<List<String>> getCategories();
 
   @POST('/rep/change-password')
   Future changePassword(@Body() Map<String, dynamic> changePasswordMap);
+
+  @POST('rep/reset-password')
+  Future resetPassword(@Body() Map<String, dynamic> resetPasswordMap);
 }
