@@ -28,7 +28,7 @@ class BranchProfileAvatarRoundCell extends StatelessWidget {
                 SizedBox(
                   width: 50,
                   height: 50,
-                  child: DynamicImage(
+                  child: DynamicBranchImage(
                     path: imagePath,
                     fit: BoxFit.cover,
                   ),

@@ -43,7 +43,10 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
             VerifyAccountState.initial(
               isFullyCompleted: isFullyCompleted,
               progressUserAccount: repCompany.rep?.fillingProgress,
-              progressCompanyProfile: repCompany.company?.fillingProgress,
+              progressCompanyProfile:
+                  repCompany.company?.fillingProgress != null
+                      ? int.parse(repCompany.company!.fillingProgress!)
+                      : null,
               progressBranchProfile: repCompany.branch?.fillingProgress,
             ),
           );

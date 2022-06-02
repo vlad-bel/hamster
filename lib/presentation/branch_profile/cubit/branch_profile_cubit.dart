@@ -4,7 +4,9 @@ import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
+import 'package:dio/dio.dart';
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -150,6 +152,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required List<dynamic> branchImages,
     required List<dynamic> avatarImages,
   }) {
+    uploadImage(branchImages);
     emit(
       BranchProfileState.init(
         category: state.category,
@@ -183,5 +186,22 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         );
       },
     );
+  }
+
+  Future uploadImage(List<dynamic> images) async {
+    try {
+      final pictureModels = <PictureModel>[];
+
+      for (final image in images) {
+        if (image is PictureModel) {
+          pictureModels.add(image);
+        }
+      }
+
+      await useCase.uloadBranchProfilePictures(pictureModels);
+      SnackBarManager.showSuccess('Uploaded!');
+    } on DioError catch (e) {
+      SnackBarManager.showError(e.message);
+    }
   }
 }

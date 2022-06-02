@@ -62,7 +62,7 @@ class _CropperFormState extends State<CropperForm> {
                         image: widget.imageForCrop,
                         withCircleUi: widget.circleCrop,
                         onCropped: (cropped) async {
-                          await Future.delayed(Duration(milliseconds: 50));
+                          await Future.delayed(Duration(milliseconds: 200));
                           Navigator.pop(context, cropped);
                         },
                       ),
@@ -117,7 +117,7 @@ class _CropperFormState extends State<CropperForm> {
                       ),
                       onPressed: () async {
                         cubit.loading();
-                        await Future.delayed(Duration(milliseconds: 50));
+                        await Future.delayed(Duration(milliseconds: 200));
                         _controller.crop();
                       },
                     ),

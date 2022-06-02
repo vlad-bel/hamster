@@ -29,7 +29,7 @@ class AddLogoRoundImageCell extends StatelessWidget {
                 SizedBox(
                   width: 50,
                   height: 50,
-                  child: DynamicImage(
+                  child: DynamicBranchImage(
                     path: imagePath.imageBytes,
                     fit: BoxFit.cover,
                   ),

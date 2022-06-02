@@ -391,7 +391,7 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(int length) {
+  String min_number(Object length) {
     return Intl.message(
       'Maximum number $length characters',
       name: 'min_number',
@@ -401,7 +401,7 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(int length) {
+  String max_number(Object length) {
     return Intl.message(
       'Minimum number $length characters',
       name: 'max_number',
@@ -911,7 +911,7 @@ class S {
   }
 
   /// `Number: {number}`
-  String branch_id(int number) {
+  String branch_id(Object number) {
     return Intl.message(
       'Number: $number',
       name: 'branch_id',
@@ -1321,7 +1321,7 @@ class S {
   }
 
   /// `Entrance doors amount {number}`
-  String entrances_count(int number) {
+  String entrances_count(Object number) {
     return Intl.message(
       'Entrance doors amount $number',
       name: 'entrances_count',

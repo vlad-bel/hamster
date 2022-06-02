@@ -22,7 +22,7 @@ class AddLogoSelectedWidget extends StatelessWidget {
           width: 200,
           height: 200,
           child: ClipOval(
-            child: DynamicImage(
+            child: DynamicBranchImage(
               path: path,
               fit: BoxFit.cover,
             ),
