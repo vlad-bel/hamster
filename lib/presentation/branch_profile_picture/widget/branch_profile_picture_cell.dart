@@ -6,10 +6,10 @@ import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
 import 'package:business_terminal/presentation/common/cropper_page/cropper_page.dart';
 import 'package:business_terminal/presentation/common/widgets/dynamic_image.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 
 class BranchProfilePictureCell extends StatelessWidget {
   const BranchProfilePictureCell({
@@ -34,7 +34,7 @@ class BranchProfilePictureCell extends StatelessWidget {
                 SizedBox(
                   width: 50,
                   height: 50,
-                  child: DynamicImage(
+                  child: DynamicBranchImage(
                     path: imagePath,
                     fit: BoxFit.cover,
                   ),
@@ -84,45 +84,40 @@ class BranchProfilePictureCell extends StatelessWidget {
       ),
     );
   }
-
-  Widget generateImage(dynamic path) {
-    if (path is String) {
-      return CachedNetworkImage(
-        imageUrl: path as String,
-        fit: BoxFit.cover,
-      );
-    }
-
-    return Image.memory(
-      path as Uint8List,
-      fit: BoxFit.cover,
-    );
-  }
 }
 
-Future pickAndCropImage(BuildContext context) async {
+Future pickAndCropImage(
+  BuildContext context,
+) async {
   final cubit = context.read<BranchProfilePictureCubit>();
   final image = await cubit.pickImage(context);
   if (image != null) {
     cubit.loading();
-    await Future.delayed(Duration(milliseconds: 50));
+    await Future.delayed(Duration(milliseconds: 200));
 
+    final imageBytes = await image.readAsBytes();
     final croppedImage = await Navigator.pushNamed<Uint8List>(
       context,
       CropperPage.path,
       arguments: {
         CropperPage.pHeader: AppLocale.current.edit_photo,
         CropperPage.pSubheader: AppLocale.current.edit_photo_descr,
-        CropperPage.pImageForCrop: image,
+        CropperPage.pImageForCrop: imageBytes,
         CropperPage.pCircleCrop: false,
       },
     );
 
     if (croppedImage != null) {
-      return cubit.setImage(imageBytes: croppedImage);
+      final xFile = XFile.fromData(
+        croppedImage,
+        name: image.name,
+        mimeType: image.mimeType,
+      );
+
+      return cubit.setImage(xFile: xFile);
     }
 
-    return cubit.setImage(imageBytes: image);
+    return cubit.setImage(xFile: image);
   }
 
   return cubit.init();

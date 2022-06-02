@@ -24,7 +24,7 @@ class SelectedPicture extends StatelessWidget {
             borderRadius: BorderRadius.all(
               Radius.circular(4),
             ),
-            child: DynamicImage(
+            child: DynamicBranchImage(
               path: image,
               fit: BoxFit.cover,
             ),
