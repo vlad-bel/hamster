@@ -230,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Zahlungsinformationen"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Anruf"),
+        "phone_validation": MessageLookupByLibrary.simpleMessage(
+            "Die angegebene Telefonnummer ist ungültig. Bitte versuchen Sie eine andere"),
         "post_hint": MessageLookupByLibrary.simpleMessage("PLZ"),
         "request_verification":
             MessageLookupByLibrary.simpleMessage("Verifikation beantragen"),
@@ -296,6 +298,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "visible": MessageLookupByLibrary.simpleMessage("Sichtbar"),
         "website_if_available":
             MessageLookupByLibrary.simpleMessage("Webseite (falls vorhanden)"),
+        "website_valigation": MessageLookupByLibrary.simpleMessage(
+            "Die Website muss nach der folgenden Vorlage \'website.net\' geschrieben werden"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Mittwoch"),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
         "zip_code_and_location":
