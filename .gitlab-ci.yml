@@ -26,8 +26,11 @@ build:
   tags:
     - hamster
   script:
-    - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
-    - flutter build web -t lib/main_development.dart --release --web-renderer html
+    - sed -i 52's/git:/path:/g pubspec.yaml
+    - sed '53,54d' pubspec.yaml
+    - sed -n 51,52p
+    #- flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
+    #- flutter build web -t lib/main_development.dart --release --web-renderer html
   artifacts:
     paths:
       - build/web/**
