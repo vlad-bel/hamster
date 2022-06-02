@@ -45,7 +45,9 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
               progressUserAccount: repCompany.rep?.fillingProgress,
               progressCompanyProfile:
                   repCompany.company?.fillingProgress != null
-                      ? int.parse(repCompany.company!.fillingProgress!)
+                      ? _parseFillingProgress(
+                          repCompany.company!.fillingProgress,
+                        )
                       : null,
               progressBranchProfile: repCompany.branch?.fillingProgress,
             ),
@@ -56,6 +58,14 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
       logger.e(e.response.message);
       emit(VerifyAccountState.error(error: e));
     }
+  }
+
+  int _parseFillingProgress(dynamic value) {
+    if (value is String) {
+      return int.parse(value);
+    }
+
+    return value as int;
   }
 
   final fullyCompleted = 100;
