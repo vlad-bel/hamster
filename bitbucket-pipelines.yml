@@ -1,5 +1,17 @@
 definitions:
   services:
+    clone-widgets: &clone-widgets
+      runs-on:
+        - self.hosted
+        - linux
+      name: Clone repo
+      image: cirrusci/flutter:stable
+      script:
+        - git clone https://$GIT_USERNAME:$GIT_PASSWORD@bitbucket.org/raikjakschis/hamster_widgets.git
+        - cd hamster_widgets && git checkout develop
+      artifacts:
+        - hamster_widgets/**
+
     push-image: &build-app
       runs-on:
         - self.hosted
@@ -9,6 +21,7 @@ definitions:
 #      caches:
 #       - flutter
       script:
+        - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
         - flutter build web -t lib/main_development.dart --release --web-renderer html
       artifacts:
         - build/web/**
@@ -20,7 +33,6 @@ definitions:
       name: Deploy to Cloudfront
       image: atlassian/pipelines-awscli
       script:
-#        - aws s3 sync build/web/ s3://<YOUR_S3_BUCKET_NAME> --delete
         - pipe: atlassian/aws-s3-deploy:1.1.0
           variables:
             AWS_ACCESS_KEY_ID: $AWS_KEY
@@ -29,15 +41,16 @@ definitions:
             S3_BUCKET: 'www.hamster.business'
             LOCAL_PATH: 'build/web/'
             ACL: 'public-read'
-#        - pipe: atlassian/aws-cloudfront-invalidate:0.6.0
-#          variables:
-#            AWS_ACCESS_KEY_ID: $AWS_KEY
-#            AWS_SECRET_ACCESS_KEY: $AWS_SECRET
-#            AWS_DEFAULT_REGION: $AWS_REGION
-#            DISTRIBUTION_ID: "<string>"
-#            PATHS: "/*"
+        - pipe: atlassian/aws-cloudfront-invalidate:0.6.0
+          variables:
+            AWS_ACCESS_KEY_ID: $AWS_KEY
+            AWS_SECRET_ACCESS_KEY: $AWS_SECRET
+            AWS_DEFAULT_REGION: $AWS_REGION
+            DISTRIBUTION_ID: "E321DXQJI5QC0G"
+            PATHS: "/*"
 
 pipelines:
   default:
+    - step: *clone-widgets
     - step: *build-app
     - step: *deploy-to-cloudfront
