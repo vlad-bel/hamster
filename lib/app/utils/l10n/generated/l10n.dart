@@ -1739,6 +1739,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Waiting for verification`
+  String get waiting_for_verification {
+    return Intl.message(
+      'Waiting for verification',
+      name: 'waiting_for_verification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Declined`
+  String get declined {
+    return Intl.message(
+      'Declined',
+      name: 'declined',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

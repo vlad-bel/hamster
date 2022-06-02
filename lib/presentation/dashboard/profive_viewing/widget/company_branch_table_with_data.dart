@@ -47,6 +47,12 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   streetNumber: '1',
                   postalCode: '36037',
                   city: 'Fulda',
+                  fillingProgress: 10,
+                  isVerified: false,
+                  isVerificationRequestDeclined: false,
+                  connectionsStatistics: {
+                    "test": "10/10",
+                  },
                 ),
                 branch: Branch(
                   fillingProgress: 1,
@@ -65,6 +71,12 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   streetNumber: '2',
                   postalCode: '36038',
                   city: 'Berlin',
+                  fillingProgress: 5,
+                  isVerified: false,
+                  isVerificationRequestDeclined: false,
+                  connectionsStatistics: {
+                    "test": "5/10",
+                  },
                 ),
                 branch: Branch(
                   fillingProgress: 2,
@@ -83,6 +95,12 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   streetNumber: '2',
                   postalCode: '36038',
                   city: 'Berlin',
+                  fillingProgress: 15,
+                  isVerified: false,
+                  isVerificationRequestDeclined: false,
+                  connectionsStatistics: {
+                    "test": "1/10",
+                  },
                 ),
                 branch: Branch(
                   fillingProgress: 2,

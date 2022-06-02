@@ -39,7 +39,9 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
     final company = await companyUsecase.getCompany(
       companyId: '$companyId',
     );
+
     files.addAll(images);
+
     emit(
       ProfileEditState.imagesAdded(
         company: company,

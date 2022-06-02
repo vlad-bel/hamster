@@ -195,5 +195,7 @@
   "smsResent": "Sie erhalten in Kürze erneut eine SMS von uns",
   "callIsOrdered": "Wir werden Sie in Kürze erneut anrufen.",
   "emailCodeSent": "Sie erhalten in Kürze erneut eine E-Mail von uns.",
-  "forgetPasswordCodeIncorrect": "Der eingegebene Code war ungültig."
+  "forgetPasswordCodeIncorrect": "Der eingegebene Code war ungültig.",
+  "waiting_for_verification": "Waiting for verification",
+  "declined": "Declined"
 }

@@ -70,17 +70,17 @@ class _ProfileViewTableState extends State<ProfileViewTable> {
             name: AppLocale.of(context).connection,
             sortable: widget.sortable,
           ),
+          size: ColumnSize.L,
         ),
         DataColumn2(
           label: HeaderCell(
             name: AppLocale.of(context).status,
             sortable: widget.sortable,
           ),
-          size: ColumnSize.S,
         ),
-        DataColumn2(
+        const DataColumn2(
           label: Text(''),
-          size: ColumnSize.S,
+          fixedWidth: 64,
         ),
       ],
       rows: List<DataRow>.generate(

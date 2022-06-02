@@ -30,7 +30,7 @@ class AvatarPictureSelector extends StatelessWidget {
     final image = await cubit.pickImage(context);
     if (image != null) {
       cubit.loading();
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 200));
 
       final croppedImage = await Navigator.pushNamed<AddedProfileLogoModel>(
         context,

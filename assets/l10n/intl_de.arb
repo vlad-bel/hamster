@@ -196,5 +196,7 @@
   "edit_company_logo" : "Bearbeiten Sie Ihr Unternehmenslogo.",
   "choose_background_color" : "Wählen Sie die passende Hintergrundfarbe aus.",
   "close" : "SchliEßEn",
-  "palette" : "Farbenskala"
+  "palette" : "Farbenskala",
+  "waiting_for_verification": "Warten auf Überprüfung",
+  "declined": "Zurückgegangen"
 }

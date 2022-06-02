@@ -129,6 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
+        "declined": MessageLookupByLibrary.simpleMessage("Zurückgegangen"),
         "edit_company_logo": MessageLookupByLibrary.simpleMessage(
             "Bearbeiten Sie Ihr Unternehmenslogo."),
         "edit_photo": MessageLookupByLibrary.simpleMessage(
@@ -293,6 +294,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Umsatzsteuer ID (falls vorhanden)"),
         "verified": MessageLookupByLibrary.simpleMessage("Verifiziert"),
         "visible": MessageLookupByLibrary.simpleMessage("Sichtbar"),
+        "waiting_for_verification":
+            MessageLookupByLibrary.simpleMessage("Warten auf Überprüfung"),
         "website_if_available":
             MessageLookupByLibrary.simpleMessage("Webseite (falls vorhanden)"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Mittwoch"),

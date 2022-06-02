@@ -39,6 +39,7 @@ class ProfileEditUsecaseImpl extends ProfileEditUsecase {
             'http://localhost:3003/api/company/$companyId',
             data: formData,
           );
+
       return true;
     } on DioError catch (e) {
       throw ApiFailure(

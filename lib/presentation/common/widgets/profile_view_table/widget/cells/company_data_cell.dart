@@ -16,14 +16,8 @@ class CompanyCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CompanyCellAvatar(
-          imagePath: [
-            ///TODO remove mock data
-            ///get data from backend
-            'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-            'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-            'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-          ],
+        CompanyCellAvatar(
+          imagePath: repCompany.company?.logos,
         ),
         const SizedBox(width: 16),
         Expanded(
@@ -51,35 +45,49 @@ class CompanyCell extends StatelessWidget {
 class CompanyCellAvatar extends StatelessWidget {
   const CompanyCellAvatar({
     Key? key,
-    required this.imagePath,
+    this.imagePath,
   }) : super(key: key);
 
-  final List<String> imagePath;
+  final List<String>? imagePath;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: 90,
-          child: Stack(
-            alignment: Alignment.center,
-            children: generateAvatars(),
-          ),
+    if (imagePath != null) {
+      if (imagePath!.isNotEmpty) {
+        return Row(
+          children: [
+            SizedBox(
+              width: 90,
+              child: Stack(
+                alignment: Alignment.center,
+                children: generateAvatars(),
+              ),
+            ),
+            if (imagePath!.length > 2)
+              Text(
+                '+${imagePath!.length - 2}',
+                style: inter14,
+              ),
+          ],
+        );
+      }
+    }
+
+    return SizedBox(
+      height: 50,
+      width: 50,
+      child: ClipOval(
+        child: Image.asset(
+          Assets.imagesProfileIcon,
         ),
-        if (imagePath.length > 2)
-          Text(
-            '+${imagePath.length - 2}',
-            style: inter14,
-          ),
-      ],
+      ),
     );
   }
 
   List<Widget> generateAvatars() {
     final avatars = <Widget>[];
     const horizontalOffset = 32.0;
-    for (var i = 0; i < imagePath.length; i++) {
+    for (var i = 0; i < imagePath!.length; i++) {
       if (i == 2) break;
       avatars.add(
         Positioned(
@@ -87,7 +95,7 @@ class CompanyCellAvatar extends StatelessWidget {
           child: Avatar(
             width: 50,
             height: 50,
-            image: imagePath[i],
+            image: imagePath![i],
 
             ///TODO remove mock data
             ///get data from backend

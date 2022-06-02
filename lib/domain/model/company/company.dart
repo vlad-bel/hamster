@@ -25,6 +25,9 @@ class Company {
     this.updatedAt,
     this.vatId,
     this.commercialRegisterNumber,
+    this.logos,
+    this.isVerified,
+    this.isVerificationRequestDeclined,
   });
 
   @JsonKey(name: 'id')
@@ -50,9 +53,9 @@ class Company {
   @JsonKey(name: 'user')
   final dynamic user;
   @JsonKey(name: 'connectionsStatistics')
-  final dynamic connectionsStatistics;
+  final Map<String, String>? connectionsStatistics;
   @JsonKey(name: 'fillingProgress')
-  final dynamic fillingProgress;
+   dynamic fillingProgress;
   @JsonKey(name: 'taxNumber')
   final dynamic taxNumber;
   @JsonKey(name: 'accountOwner')
@@ -67,6 +70,12 @@ class Company {
   final DateTime? createdAt;
   @JsonKey(name: 'updatedAt')
   final DateTime? updatedAt;
+  @JsonKey(name: 'logos')
+  final List<String>? logos;
+  @JsonKey(name: 'isVerified')
+  final bool? isVerified;
+  @JsonKey(name: 'isVerificationRequestDeclined')
+  final bool? isVerificationRequestDeclined;
 
   factory Company.fromJson(Map<String, dynamic> json) =>
       _$CompanyFromJson(json);

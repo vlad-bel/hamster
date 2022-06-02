@@ -60,6 +60,9 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
     }
   }
 
+  ///parse dynamic fillingProgress field from backend
+  ///because it's receive sometimes like String and sometimes like Int
+  ///TODO this is temporary solution. remove after fix on backend
   int _parseFillingProgress(dynamic value) {
     if (value is String) {
       return int.parse(value);

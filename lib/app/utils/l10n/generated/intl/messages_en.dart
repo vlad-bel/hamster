@@ -125,6 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
+        "declined": MessageLookupByLibrary.simpleMessage("Declined"),
         "edit_company_logo":
             MessageLookupByLibrary.simpleMessage("Edit your company logo."),
         "edit_photo":
@@ -290,6 +291,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "vat_id": MessageLookupByLibrary.simpleMessage("VAT ID (if available)"),
         "verified": MessageLookupByLibrary.simpleMessage("Verified"),
         "visible": MessageLookupByLibrary.simpleMessage("Visible"),
+        "waiting_for_verification":
+            MessageLookupByLibrary.simpleMessage("Waiting for verification"),
         "website_if_available":
             MessageLookupByLibrary.simpleMessage("Website (if any)"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
