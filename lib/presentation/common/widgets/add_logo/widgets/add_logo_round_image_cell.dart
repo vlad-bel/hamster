@@ -43,7 +43,7 @@ class AddLogoRoundImageCell extends StatelessWidget {
                     child: Ink(
                       width: 50,
                       height: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                     ),

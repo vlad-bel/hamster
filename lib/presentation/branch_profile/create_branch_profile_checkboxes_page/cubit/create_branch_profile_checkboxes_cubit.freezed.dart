@@ -24,7 +24,6 @@ mixin _$CreateBranchProfileCheckboxesState {
     required TResult Function() loading,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Map<CompanyDataCommonFieldsWithBranchData, bool> data)?
@@ -32,7 +31,6 @@ mixin _$CreateBranchProfileCheckboxesState {
     TResult Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Map<CompanyDataCommonFieldsWithBranchData, bool> data)?
@@ -41,21 +39,18 @@ mixin _$CreateBranchProfileCheckboxesState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialBranchCheckboxes value) initial,
     required TResult Function(LoadingBranchCheckboxes value) loading,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitialBranchCheckboxes value)? initial,
     TResult Function(LoadingBranchCheckboxes value)? loading,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialBranchCheckboxes value)? initial,
@@ -79,7 +74,6 @@ class _$CreateBranchProfileCheckboxesStateCopyWithImpl<$Res>
   _$CreateBranchProfileCheckboxesStateCopyWithImpl(this._value, this._then);
 
   final CreateBranchProfileCheckboxesState _value;
-
   // ignore: unused_field
   final $Res Function(CreateBranchProfileCheckboxesState) _then;
 }
@@ -89,7 +83,6 @@ abstract class _$$InitialBranchCheckboxesCopyWith<$Res> {
   factory _$$InitialBranchCheckboxesCopyWith(_$InitialBranchCheckboxes value,
           $Res Function(_$InitialBranchCheckboxes) then) =
       __$$InitialBranchCheckboxesCopyWithImpl<$Res>;
-
   $Res call({Map<CompanyDataCommonFieldsWithBranchData, bool> data});
 }
 
@@ -126,7 +119,6 @@ class _$InitialBranchCheckboxes implements InitialBranchCheckboxes {
       : _data = data;
 
   final Map<CompanyDataCommonFieldsWithBranchData, bool> _data;
-
   @override
   Map<CompanyDataCommonFieldsWithBranchData, bool> get data {
     // ignore: implicit_dynamic_type
@@ -231,7 +223,6 @@ abstract class InitialBranchCheckboxes
 
   Map<CompanyDataCommonFieldsWithBranchData, bool> get data =>
       throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   _$$InitialBranchCheckboxesCopyWith<_$InitialBranchCheckboxes> get copyWith =>
       throw _privateConstructorUsedError;
