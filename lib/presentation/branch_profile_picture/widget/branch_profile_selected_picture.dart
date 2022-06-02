@@ -57,5 +57,4 @@ class SelectedPicture extends StatelessWidget {
       ],
     );
   }
-
 }

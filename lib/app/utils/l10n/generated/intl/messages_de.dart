@@ -196,6 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Anzahl Kassen"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Öffnungszeiten"),
         "opens": MessageLookupByLibrary.simpleMessage("Öffnet"),
+        "palette": MessageLookupByLibrary.simpleMessage("Farbenskala"),
         "passwordChanged":
             MessageLookupByLibrary.simpleMessage("Passwort geändert."),
         "passwordChangedDescription": MessageLookupByLibrary.simpleMessage(

@@ -179,5 +179,6 @@
   "edit_photo_descr": "Wählen Sie den richtigen Bereich Ihres Profilfotos aus.",
   "edit_company_logo" : "Bearbeiten Sie Ihr Unternehmenslogo.",
   "choose_background_color" : "Wählen Sie die passende Hintergrundfarbe aus.",
-  "close" : "SchliEßEn"
+  "close" : "SchliEßEn",
+  "palette" : "Farbenskala"
 }

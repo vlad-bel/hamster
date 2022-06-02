@@ -7,8 +7,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   BranchProfileCubit()
       : super(
           BranchProfileState.init(
-
-              ///todo mock images
+            ///todo mock images
             branchImages: [
               'https://cdn.cnn.com/cnnnext/dam/assets/211105205533-01-georgia-travel-file-full-169.jpg',
               'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty.jpg/1280px-24701-nature-natural-beauty.jpg',

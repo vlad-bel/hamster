@@ -221,11 +221,9 @@ class AuthorizedState extends AppState {
                       key: AddLogoCropperPage.pSubheader,
                     )!,
                     circleCrop: appStorageService.getString(
-                              key: AddLogoCropperPage.pCircleCrop,
-                            )! ==
-                            'true'
-                        ? true
-                        : false,
+                          key: AddLogoCropperPage.pCircleCrop,
+                        )! ==
+                        'true',
                   ),
                 );
 

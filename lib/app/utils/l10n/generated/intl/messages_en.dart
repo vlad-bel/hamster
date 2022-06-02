@@ -194,6 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Number of registers"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Opening hours"),
         "opens": MessageLookupByLibrary.simpleMessage("Opens"),
+        "palette": MessageLookupByLibrary.simpleMessage("Palette"),
         "passwordChanged":
             MessageLookupByLibrary.simpleMessage("Passwort geändert."),
         "passwordChangedDescription": MessageLookupByLibrary.simpleMessage(

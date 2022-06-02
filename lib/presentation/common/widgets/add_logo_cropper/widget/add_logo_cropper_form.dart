@@ -17,6 +17,7 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_white_c
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:crop_your_image/crop_your_image.dart';
+import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_portal/flutter_portal.dart';
@@ -105,7 +106,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                     child: ColoredBox(
                       color: Color(
                         int.parse(
-                          color.colorHex,
+                          '0xFF${color.colorHex}',
                         ),
                       ),
                     ),
@@ -150,266 +151,287 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
             create: (context) => getIt.get<AddLogoCropperFormCubit>(),
             child:
                 BlocBuilder<AddLogoCropperFormCubit, AddLogoCropperFormState>(
-                    builder: (_, formState) {
-              return OnboardingBackground(
-                children: Column(
-                  children: [
-                    OnboardingWhiteContainer(
-                      header: OnboardingWhiteContainerHeader(
-                        header: widget.header,
-                        subHeader: Text(
-                          widget.subheader,
-                          style: inter14,
+              builder: (formContext, formState) {
+                return OnboardingBackground(
+                  children: Column(
+                    children: [
+                      OnboardingWhiteContainer(
+                        header: OnboardingWhiteContainerHeader(
+                          header: widget.header,
+                          subHeader: Text(
+                            widget.subheader,
+                            style: inter14,
+                          ),
                         ),
-                      ),
-                      body: Column(
-                        children: [
-                          SizedBox(height: 32),
-                          Stack(
-                            children: [
-                              SizedBox(
-                                height: 350,
-                                width: 350,
-                                child: Stack(
-                                  children: [
-                                    Crop(
-                                      controller: _controller,
-                                      image: widget.imageForCrop,
-                                      withCircleUi: widget.circleCrop,
-                                      onCropped: (cropped) async {
-                                        await Future.delayed(
-                                          Duration(milliseconds: 50),
-                                        );
-                                        formState.maybeWhen(success: (color) {
-                                          Navigator.pop(
-                                            context,
-                                            AddedProfileLogoModel(
-                                              backgroundColorModel: color,
-                                              imageBytes: cropped,
-                                            ),
-                                          );
-                                        }, orElse: () {
-                                          Navigator.pop(
-                                            context,
-                                            AddedProfileLogoModel(
-                                              imageBytes: cropped,
-                                              backgroundColorModel: null,
-                                            ),
-                                          );
-                                        });
-                                      },
-                                    ),
-                                    Transform.translate(
-                                      offset: Offset(8, -12),
-                                      child: Align(
-                                        alignment: Alignment.topRight,
-                                        child: EditButton(
-                                          icon: Icons.remove,
-                                          onEditTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              state.whenOrNull(
-                                    loading: () {
-                                      return SizedBox(
-                                        height: 350,
-                                        child: Center(
-                                          child: CircularProgressIndicator(),
-                                        ),
-                                      );
-                                    },
-                                  ) ??
-                                  const SizedBox(),
-                            ],
-                          ),
-                          SizedBox(height: 62),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              WhiteButton(
-                                width: 162,
-                                enabled: state.maybeWhen(
-                                  loading: () => false,
-                                  init: () => true,
-                                  orElse: () => false,
-                                ),
-                                child: Text(
-                                  AppLocale.current.return_button,
-                                  style: inter14.copyWith(
-                                    color: denim,
-                                  ),
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              SizedBox(width: 26),
-                              ActionButtonBlue(
-                                isEnabled: state.maybeWhen(
-                                  loading: () => false,
-                                  init: () => true,
-                                  orElse: () => false,
-                                ),
-                                width: 162,
-                                child: Text(
-                                  AppLocale.current.to_save,
-                                  style: inter14.copyWith(
-                                    color: white,
-                                  ),
-                                ),
-                                onPressed: () async {
-                                  cubit.loading();
-                                  await Future.delayed(
-                                      Duration(milliseconds: 50));
-                                  _controller.crop();
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    PortalTarget(
-                      visible: formState is! HideAddLogoCropperFormState,
-                      portalFollower: Transform.translate(
-                        offset: const Offset(1150, -100),
-                        child: Stack(
+                        body: Column(
                           children: [
-                            Container(
-                              width: 350,
-                              height: 350,
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0x29000000),
-                                    offset: Offset(0, 3),
-                                    blurRadius: 6,
-                                  ),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(30),
-                                child: Column(
-                                  children: [
-                                    SvgPicture.asset(
-                                      ImagePaths.icon(
-                                        SvgPaths.palette,
-                                      ),
-                                      height: 100,
-                                      width: 100,
-                                    ),
-                                    const SizedBox(height: 22),
-                                    Text(
-                                      AppLocale.of(context)
-                                          .choose_background_color,
-                                      style: inter16,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 16),
-                                    BlocBuilder<AddLogoCropperFormCubit,
-                                        AddLogoCropperFormState>(
-                                      builder: (_, state) {
-                                        return state.when(
-                                          loading: (text) {
-                                            return Center(
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            );
-                                          },
-                                          init: (text) {
-                                            return Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: _generatePhotoCells(
-                                                [
-                                                  BackgroundColorModel(
-                                                    colorTitle: 'blue',
-                                                    colorHex: '0xFF2196F3',
-                                                  ),
-                                                  BackgroundColorModel(
-                                                    colorTitle: 'red',
-                                                    colorHex: '0xFF2136F3',
-                                                  ),
-                                                ],
-                                                BackgroundColorModel(
-                                                  colorTitle: 'blue',
-                                                  colorHex: '0xFF2196F3',
+                            SizedBox(height: 32),
+                            Stack(
+                              children: [
+                                SizedBox(
+                                  height: 350,
+                                  width: 350,
+                                  child: Stack(
+                                    children: [
+                                      Crop(
+                                        controller: _controller,
+                                        image: widget.imageForCrop,
+                                        withCircleUi: widget.circleCrop,
+                                        onCropped: (cropped) async {
+                                          await Future.delayed(
+                                            Duration(milliseconds: 50),
+                                          );
+                                          formState.maybeWhen(
+                                            success: (
+                                              palette,
+                                              color,
+                                            ) {
+                                              Navigator.pop(
+                                                context,
+                                                AddedProfileLogoModel(
+                                                  backgroundColorModel: color,
+                                                  imageBytes: cropped,
                                                 ),
-                                                _,
-                                              ),
-                                            );
-                                          },
-                                          success: (selectedColor) {
-                                            return Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: _generatePhotoCells(
-                                                [
-                                                  BackgroundColorModel(
-                                                    colorTitle: 'blue',
-                                                    colorHex: '0xFF2196F3',
-                                                  ),
-                                                  BackgroundColorModel(
-                                                    colorTitle: 'red',
-                                                    colorHex: '0xFF2136F3',
-                                                  ),
-                                                ],
-                                                selectedColor,
-                                                _,
-                                              ),
-                                            );
-                                          },
-                                          hide: (text) {
-                                            return SizedBox();
-                                          },
-                                        );
-                                      },
-                                    ),
-                                    const SizedBox(height: 16),
-                                    TextButton(
-                                      onPressed: () {
-                                        _
-                                            .read<AddLogoCropperFormCubit>()
-                                            .hide();
-                                      },
-                                      child: Text(
-                                        AppLocale.of(context).close,
-                                        style: inter14.copyWith(
-                                          color: denim1,
+                                              );
+                                            },
+                                            orElse: () {
+                                              Navigator.pop(
+                                                context,
+                                                AddedProfileLogoModel(
+                                                  imageBytes: cropped,
+                                                  backgroundColorModel: null,
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                      Transform.translate(
+                                        offset: Offset(8, -12),
+                                        child: Align(
+                                          alignment: Alignment.topRight,
+                                          child: EditButton(
+                                            icon: Icons.remove,
+                                            onEditTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
+                                state.whenOrNull(
+                                      loading: () {
+                                        return SizedBox(
+                                          height: 350,
+                                          child: Center(
+                                            child: CircularProgressIndicator(),
+                                          ),
+                                        );
+                                      },
+                                    ) ??
+                                    const SizedBox(),
+                              ],
                             ),
-                            Transform.translate(
-                              offset: const Offset(-45, -300),
-                              child: const Align(
-                                alignment: Alignment.centerLeft,
-                                child: Icon(
-                                  Icons.arrow_left,
-                                  color: Colors.white,
-                                  size: 80,
+                            SizedBox(height: 62),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                WhiteButton(
+                                  width: 162,
+                                  enabled: state.maybeWhen(
+                                    loading: () => false,
+                                    init: () => true,
+                                    orElse: () => false,
+                                  ),
+                                  child: Text(
+                                    AppLocale.current.return_button,
+                                    style: inter14.copyWith(
+                                      color: denim,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
                                 ),
-                              ),
+                                SizedBox(width: 26),
+                                ActionButtonBlue(
+                                  isEnabled: state.maybeWhen(
+                                    loading: () => false,
+                                    init: () => true,
+                                    orElse: () => false,
+                                  ),
+                                  width: 162,
+                                  child: Text(
+                                    AppLocale.current.to_save,
+                                    style: inter14.copyWith(
+                                      color: white,
+                                    ),
+                                  ),
+                                  onPressed: () async {
+                                    cubit.loading();
+                                    await Future.delayed(
+                                      Duration(milliseconds: 50),
+                                    );
+                                    _controller.crop();
+                                  },
+                                ),
+                              ],
                             ),
                           ],
                         ),
                       ),
-                      anchor: Aligned.center,
-                      child: const SizedBox(height: 0),
-                    ),
-                  ],
-                ),
-              );
-            }),
+                      PortalTarget(
+                        visible: formState is! HideAddLogoCropperFormState,
+                        portalFollower: Transform.translate(
+                          offset: const Offset(1150, -100),
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: 350,
+                                height: 350,
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0x29000000),
+                                      offset: Offset(0, 3),
+                                      blurRadius: 6,
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Column(
+                                    children: [
+                                      InkWell(
+                                        onTap: () async {
+                                          final newColor =
+                                              await showColorPickerDialog(
+                                            context,
+                                            Colors.red,
+                                            title: Text(
+                                              AppLocale.of(context).palette,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline6,
+                                            ),
+                                            spacing: 0,
+                                            runSpacing: 0,
+                                            borderRadius: 0,
+                                            wheelDiameter: 165,
+                                            showColorCode: true,
+                                            colorCodeHasColor: true,
+                                            pickersEnabled: <ColorPickerType,
+                                                bool>{
+                                              ColorPickerType.wheel: true,
+                                              ColorPickerType.accent: false,
+                                              ColorPickerType.primary: false,
+                                            },
+                                            constraints: const BoxConstraints(
+                                              minHeight: 480,
+                                              minWidth: 320,
+                                              maxWidth: 320,
+                                            ),
+                                          );
+
+                                          formContext
+                                              .read<AddLogoCropperFormCubit>()
+                                              .addColorToPalette(
+                                                backgroundColorModel:
+                                                    BackgroundColorModel(
+                                                  colorTitle: newColor.hex,
+                                                  colorHex: newColor.hex,
+                                                ),
+                                              );
+                                        },
+                                        child: SvgPicture.asset(
+                                          ImagePaths.icon(
+                                            SvgPaths.palette,
+                                          ),
+                                          height: 100,
+                                          width: 100,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 22),
+                                      Text(
+                                        AppLocale.of(context)
+                                            .choose_background_color,
+                                        style: inter16,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      const SizedBox(height: 16),
+                                      BlocBuilder<AddLogoCropperFormCubit,
+                                          AddLogoCropperFormState>(
+                                        builder: (_, state) {
+                                          return state.when(
+                                            loading: (text) {
+                                              return Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              );
+                                            },
+                                            init: (text) {
+                                              return const SizedBox.shrink();
+                                            },
+                                            success: (palette, selectedColor) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: _generatePhotoCells(
+                                                  palette,
+                                                  selectedColor,
+                                                  _,
+                                                ),
+                                              );
+                                            },
+                                            hide: (text) {
+                                              return const SizedBox.shrink();
+                                            },
+                                          );
+                                        },
+                                      ),
+                                      const SizedBox(height: 16),
+                                      TextButton(
+                                        onPressed: () {
+                                          formContext
+                                              .read<AddLogoCropperFormCubit>()
+                                              .hide();
+                                        },
+                                        child: Text(
+                                          AppLocale.of(context).close,
+                                          style: inter14.copyWith(
+                                            color: denim1,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Transform.translate(
+                                offset: const Offset(-45, -300),
+                                child: const Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Icon(
+                                    Icons.arrow_left,
+                                    color: Colors.white,
+                                    size: 80,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        anchor: Aligned.center,
+                        child: const SizedBox.shrink(),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           );
         },
       ),

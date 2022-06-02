@@ -1,7 +1,4 @@
-import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
-import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
-import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/dashboard/change_password/cubit/change_password_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/change_password/cubit/change_password_state.dart';
 import 'package:business_terminal/presentation/dashboard/change_password/view/change_password_view.dart';

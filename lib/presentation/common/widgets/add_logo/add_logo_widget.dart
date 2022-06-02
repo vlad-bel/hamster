@@ -121,7 +121,7 @@ class AvatarPictureSelector extends StatelessWidget {
                     state.selectedImage,
                   ),
                 ),
-                SizedBox(height: 100),
+                const SizedBox(height: 100),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -152,7 +152,7 @@ class AvatarPictureSelector extends StatelessWidget {
                     width: 220,
                     height: 220,
                     child: CircleDashedButton(
-                      label: AppLocale.current.add_branch_picture,
+                      label: AppLocale.of(context).add_logo,
                       onTap: () {
                         pickAndCropImage(context);
                       },
@@ -161,7 +161,7 @@ class AvatarPictureSelector extends StatelessWidget {
                   loader,
                 ],
               ),
-              SizedBox(height: 100),
+              const SizedBox(height: 100),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

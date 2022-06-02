@@ -1,4 +1,3 @@
-import 'package:business_terminal/app/utils/l10n/generated/l10n.dart';
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';

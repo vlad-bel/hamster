@@ -12,8 +12,22 @@ class AddLogoCropperFormCubit extends Cubit<AddLogoCropperFormState> {
           ),
         );
 
+  final List<BackgroundColorModel> palette = [];
+
   void loading() {
     emit(AddLogoCropperFormState.loading(text: 'loading'));
+  }
+
+  void addColorToPalette({
+    required BackgroundColorModel backgroundColorModel,
+  }) {
+    palette.add(backgroundColorModel);
+    emit(
+      AddLogoCropperFormState.success(
+        palette: palette,
+        backgroundColorModel: backgroundColorModel,
+      ),
+    );
   }
 
   void changeBackground({
@@ -22,6 +36,7 @@ class AddLogoCropperFormCubit extends Cubit<AddLogoCropperFormState> {
     loading();
     emit(
       AddLogoCropperFormState.success(
+        palette: palette,
         backgroundColorModel: backgroundColorModel,
       ),
     );

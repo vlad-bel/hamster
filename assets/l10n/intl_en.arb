@@ -178,5 +178,6 @@
   "edit_photo_descr": "Select the correct section of your profile photo.",
   "edit_company_logo": "Edit your company logo.",
   "choose_background_color": "Choose the appropriate background color.",
-  "close": "Close"
+  "close": "Close",
+  "palette": "Palette"
 }

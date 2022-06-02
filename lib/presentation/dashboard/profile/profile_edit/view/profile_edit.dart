@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
@@ -213,7 +211,8 @@ class _ProfileEditContent extends StatefulWidget {
 }
 
 class _ProfileEditContentState extends State<_ProfileEditContent> {
-  PageController controller = PageController();
+  final PageController controller = PageController();
+
   @override
   Widget build(BuildContext context) {
     final profileEditCubit = context.read<ProfileEditCubit>();
@@ -259,22 +258,22 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          await controller.previousPage(
-                                            duration: Duration(
-                                              milliseconds: 400,
-                                            ),
-                                            curve: Curves.easeIn,
-                                          );
-                                          setState(() {});
-                                        },
-                                        child: Icon(
-                                          Icons.arrow_back_ios,
-                                          color: lynch,
-                                          size: 32,
+                                      if (images.length > 1)
+                                        InkWell(
+                                          onTap: () async {
+                                            await controller.previousPage(
+                                              duration:
+                                                  Duration(milliseconds: 1),
+                                              curve: Curves.easeIn,
+                                            );
+                                            setState(() {});
+                                          },
+                                          child: Icon(
+                                            Icons.arrow_back_ios,
+                                            color: lynch,
+                                            size: 32,
+                                          ),
                                         ),
-                                      ),
                                       SizedBox(
                                         width: 200,
                                         height: 200,
@@ -292,39 +291,42 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                           },
                                         ),
                                       ),
-                                      InkWell(
-                                        onTap: () async {
-                                          await controller.nextPage(
-                                            duration: Duration(
-                                              milliseconds: 400,
-                                            ),
-                                            curve: Curves.easeIn,
-                                          );
-                                          setState(() {});
-                                        },
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: lynch,
-                                          size: 32,
+                                      if (images.length > 1)
+                                        InkWell(
+                                          onTap: () async {
+                                            await controller.nextPage(
+                                              duration:
+                                                  Duration(milliseconds: 1),
+                                              curve: Curves.easeIn,
+                                            );
+                                            setState(() {});
+                                          },
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: lynch,
+                                            size: 32,
+                                          ),
                                         ),
-                                      ),
                                     ],
                                   ),
-                                  Center(
-                                    child: Container(
-                                      padding: EdgeInsets.all(8),
-                                      color: white,
-                                      child: FutureBuilder(
-                                        future: Future.value(true),
-                                        builder: (
-                                          BuildContext context,
-                                          AsyncSnapshot<void> snap,
-                                        ) {
-                                          return Text(
-                                            '${(controller.page?.round() ?? 0) + 1} / ${images.length}',
-                                            style: inter14,
-                                          );
-                                        },
+                                  Positioned.fill(
+                                    child: Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Container(
+                                        padding: EdgeInsets.all(8),
+                                        color: white,
+                                        child: FutureBuilder(
+                                          future: Future.value(true),
+                                          builder: (
+                                            BuildContext context,
+                                            AsyncSnapshot<void> snap,
+                                          ) {
+                                            return Text(
+                                              '${(controller.page?.round() ?? 0) + 1} / ${images.length}',
+                                              style: inter14,
+                                            );
+                                          },
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -344,8 +346,6 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                       result,
                                     );
                                   }
-
-                                  print('result $result');
                                 },
                               );
                             },

@@ -1569,6 +1569,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Palette`
+  String get palette {
+    return Intl.message(
+      'Palette',
+      name: 'palette',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

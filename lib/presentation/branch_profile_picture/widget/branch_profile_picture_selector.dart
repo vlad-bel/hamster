@@ -36,7 +36,7 @@ class BranchProfilePictureSelector extends StatelessWidget {
                   loader,
                 ],
               ),
-             const SizedBox(height: 12),
+              const SizedBox(height: 12),
               Row(
                 children: _generatePhotoCells(
                   state.images!,

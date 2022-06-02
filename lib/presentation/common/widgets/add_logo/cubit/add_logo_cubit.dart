@@ -74,10 +74,10 @@ class AddLogoState with _$AddLogoState {
   const factory AddLogoState.init({
     AddedProfileLogoModel? selectedImage,
     List<AddedProfileLogoModel>? images,
-  }) = InitAddLogoState;
+  }) = _$InitAddLogoState;
 
   const factory AddLogoState.loading({
     AddedProfileLogoModel? selectedImage,
     List<AddedProfileLogoModel>? images,
-  }) = LoadingAddLogoState;
+  }) = _$LoadingAddLogoState;
 }

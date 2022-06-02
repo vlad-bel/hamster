@@ -56,7 +56,7 @@ class SelectSubCategoriesForm extends StatelessWidget {
                         return SizedBox();
                       },
                     ) ??
-                 const   SizedBox(),
+                    const SizedBox(),
                 SizedBox(height: 24),
                 DashedButton(
                   onTap: () {

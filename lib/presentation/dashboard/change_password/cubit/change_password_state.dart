@@ -14,5 +14,4 @@ class ChangePasswordState with _$ChangePasswordState {
       _$CurrentPasswordIncorrect;
 
   const factory ChangePasswordState.loading() = _$Loading;
-
 }
