@@ -3,15 +3,15 @@ import 'package:business_terminal/domain/model/company/branch/branch_profile.dar
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
-import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
-import 'package:dio/dio.dart';
 import 'package:dart_extensions/dart_extensions.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@singleton
 class BranchProfileCubit extends Cubit<BranchProfileState> {
   BranchProfileCubit(this.useCase)
       : super(
@@ -126,25 +126,15 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required String category,
     required List<String> subcategories,
   }) {
-    state.whenOrNull(
-      init: (
-        category,
-        subcategories,
-        branchImages,
-        avatarImages,
-        hours,
-        isCreateBranchButtonEnabled,
-      ) {
-        emit(
-          BranchProfileState.init(
-            category: category,
-            subcategories: subcategories,
-            branchImages: branchImages,
-            avatarImages: avatarImages,
-            hours: hours,
-          ),
-        );
-      },
+    emit(
+      BranchProfileState.init(
+        category: category,
+        subcategories: subcategories,
+        branchImages: state.branchImages,
+        avatarImages: state.avatarImages,
+        hours: state.hours,
+        isCreateBranchButtonEnabled: state.isCreateBranchButtonEnabled,
+      ),
     );
   }
 
