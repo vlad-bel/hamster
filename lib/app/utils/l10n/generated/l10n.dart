@@ -1530,6 +1530,46 @@ class S {
     );
   }
 
+  /// `Edit your company logo.`
+  String get edit_company_logo {
+    return Intl.message(
+      'Edit your company logo.',
+      name: 'edit_company_logo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose the appropriate background color.`
+  String get choose_background_color {
+    return Intl.message(
+      'Choose the appropriate background color.',
+      name: 'choose_background_color',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Palette`
+  String get palette {
+    return Intl.message(
+      'Palette',
+      name: 'palette',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.`
   String get passwordIncorrectDescription {
     return Intl.message(

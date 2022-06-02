@@ -89,10 +89,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Passwort ändern"),
+        "choose_background_color": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie die passende Hintergrundfarbe aus."),
         "choose_main_category": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie eine Hauptkategorie aus."),
         "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie eine Hauptkategorie durch Doppelklick. Diese wird allen HamsterApp-Nutzern angezeigt."),
+        "close": MessageLookupByLibrary.simpleMessage("SchliEßEn"),
         "closeHint": MessageLookupByLibrary.simpleMessage("Hinweis schließen"),
         "closed": MessageLookupByLibrary.simpleMessage("geschlossen"),
         "closes": MessageLookupByLibrary.simpleMessage("Schließt"),
@@ -127,6 +130,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
+        "edit_company_logo": MessageLookupByLibrary.simpleMessage(
+            "Bearbeiten Sie Ihr Unternehmenslogo."),
         "edit_photo": MessageLookupByLibrary.simpleMessage(
             "Bearbeiten Sie Ihr Profilfoto."),
         "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
@@ -213,6 +218,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Anzahl Kassen"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Öffnungszeiten"),
         "opens": MessageLookupByLibrary.simpleMessage("Öffnet"),
+        "palette": MessageLookupByLibrary.simpleMessage("Farbenskala"),
         "passwordChanged":
             MessageLookupByLibrary.simpleMessage("Passwort geändert."),
         "passwordChangedDescription": MessageLookupByLibrary.simpleMessage(

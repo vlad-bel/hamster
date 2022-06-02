@@ -87,10 +87,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "choose_background_color": MessageLookupByLibrary.simpleMessage(
+            "Choose the appropriate background color."),
         "choose_main_category":
             MessageLookupByLibrary.simpleMessage("Choose a main category."),
         "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
             "Choose a main category by double-clicking it. This is displayed to all HamsterApp users."),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "closeHint": MessageLookupByLibrary.simpleMessage("Hinweis schließen"),
         "closed": MessageLookupByLibrary.simpleMessage("closed"),
         "closes": MessageLookupByLibrary.simpleMessage("Closes"),
@@ -123,6 +126,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
+        "edit_company_logo":
+            MessageLookupByLibrary.simpleMessage("Edit your company logo."),
         "edit_photo":
             MessageLookupByLibrary.simpleMessage("Edit your profile photo."),
         "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
@@ -211,6 +216,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Number of registers"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Opening hours"),
         "opens": MessageLookupByLibrary.simpleMessage("Opens"),
+        "palette": MessageLookupByLibrary.simpleMessage("Palette"),
         "passwordChanged":
             MessageLookupByLibrary.simpleMessage("Passwort geändert."),
         "passwordChangedDescription": MessageLookupByLibrary.simpleMessage(

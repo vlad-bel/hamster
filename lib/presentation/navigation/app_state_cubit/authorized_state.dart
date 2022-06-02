@@ -17,6 +17,8 @@ import 'package:business_terminal/presentation/categories/categories/categories_
 import 'package:business_terminal/presentation/categories/subcategories/select_subcategories_page/select_subcategories_page.dart';
 import 'package:business_terminal/presentation/categories/subcategories/subcategories_page/subcategories_page.dart';
 import 'package:business_terminal/presentation/common/cropper_page/cropper_page.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/add_logo_cropper_page.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/dashboard/change_password/view/change_password_page.dart';
@@ -51,7 +53,10 @@ class AuthorizedState extends AppState {
                 break;
               case ProfileAddLogoPage.path:
                 page = const ProfileAddLogoPage();
-                break;
+                return _buildHamsterPage<List<AddedProfileLogoModel>>(
+                  page,
+                  settings,
+                );
               case ChangePasswordPage.path:
                 page = const ChangePasswordPage();
                 break;
@@ -119,8 +124,6 @@ class AuthorizedState extends AppState {
                 final subheader = params?[CropperPage.pSubheader] as String;
                 final circleCrop = params?[CropperPage.pCircleCrop] as bool;
 
-                final appStorageService = getIt.get<AppStorageService>();
-
                 appStorageService.setString(
                   key: CropperPage.pImageForCrop,
                   value: String.fromCharCodes(imageForCrop),
@@ -168,6 +171,62 @@ class AuthorizedState extends AppState {
                 );
 
                 return _buildHamsterPage<Uint8List>(page, settings);
+              case AddLogoCropperPage.path:
+                final imageForCrop =
+                    params?[AddLogoCropperPage.pImageForCrop] as Uint8List;
+                final header = params?[AddLogoCropperPage.pHeader] as String;
+                final subheader =
+                    params?[AddLogoCropperPage.pSubheader] as String;
+                final circleCrop =
+                    params?[AddLogoCropperPage.pCircleCrop] as bool;
+
+                appStorageService.setString(
+                  key: AddLogoCropperPage.pImageForCrop,
+                  value: String.fromCharCodes(imageForCrop),
+                );
+
+                appStorageService.setString(
+                  key: AddLogoCropperPage.pHeader,
+                  value: header,
+                );
+
+                appStorageService.setString(
+                  key: AddLogoCropperPage.pSubheader,
+                  value: subheader,
+                );
+                appStorageService.setString(
+                  key: AddLogoCropperPage.pCircleCrop,
+                  value: circleCrop.toString(),
+                );
+
+                final imageBytes = appStorageService
+                    .getString(key: AddLogoCropperPage.pImageForCrop)!
+                    .codeUnits;
+
+                final bytes = Uint8List.fromList(imageBytes);
+
+                page = buildPage(
+                  requiredParams: [
+                    AddLogoCropperPage.pImageForCrop,
+                    AddLogoCropperPage.pHeader,
+                    AddLogoCropperPage.pSubheader,
+                  ],
+                  child: AddLogoCropperPage(
+                    imageForCrop: bytes,
+                    header: appStorageService.getString(
+                      key: AddLogoCropperPage.pHeader,
+                    )!,
+                    subheader: appStorageService.getString(
+                      key: AddLogoCropperPage.pSubheader,
+                    )!,
+                    circleCrop: appStorageService.getString(
+                          key: AddLogoCropperPage.pCircleCrop,
+                        )! ==
+                        'true',
+                  ),
+                );
+
+                return _buildHamsterPage<AddedProfileLogoModel>(page, settings);
               case PickDayPage.path:
                 if (params?[PickDayPage.paramDays] != null) {
                   final hours = json.encode(

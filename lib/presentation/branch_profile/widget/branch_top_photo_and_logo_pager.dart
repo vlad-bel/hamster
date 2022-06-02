@@ -105,7 +105,7 @@ class _BranchTopPhotoAndLogoPagerState
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8),
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: Container(
