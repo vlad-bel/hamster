@@ -1,6 +1,7 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/temp/pos_raw.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
@@ -10,6 +11,7 @@ import 'package:dart_extensions/dart_extensions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 @singleton
 class BranchProfileCubit extends Cubit<BranchProfileState> {
@@ -61,6 +63,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         subcategoriesParam,
         branchImages,
         avatarImages,
+        poses,
         hours,
         isCreateBranchButtonEnabled,
       ) async {
@@ -86,6 +89,22 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         final phoneNumber =
             formGroup.control(_formSettings.kFieldPhone).value as String?;
 
+        final posDatas = <PosData>[];
+        poses?.forEach((pos) {
+          for (var i = 0; i < pos.tillCount; i++) {
+            final uuid = const Uuid().v4();
+            posDatas.add(
+              PosData(
+                name: '$uuid$i',
+                manufacturer: pos.manufacturer,
+                model: pos.model,
+                id: uuid,
+                isActive: false,
+              ),
+            );
+          }
+        });
+
         final branchProfileDummy = BranchProfile(
           branchName: name,
           branchNumber: branchNumber,
@@ -99,6 +118,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
           postalCode: postalCode,
           category: category,
           openingHours: hours,
+          posesData: posDatas,
           subcategories: subCategories,
         );
 
@@ -162,16 +182,33 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         subcategories,
         branchImages,
         avatarImages,
+        poses,
+        _,
+        isCreateBranchButtonEnabled,
+      ) {
+        emit(state.copyWith(hours: hours));
+      },
+    );
+  }
+
+  void addPos({
+    required PosRaw? pos,
+  }) {
+    if (pos == null) return;
+
+    state.whenOrNull(
+      init: (
+        category,
+        subcategories,
+        branchImages,
+        avatarImages,
+        poses,
         hours,
         isCreateBranchButtonEnabled,
       ) {
         emit(
-          BranchProfileState.init(
-            category: category,
-            subcategories: subcategories,
-            branchImages: branchImages,
-            avatarImages: avatarImages,
-            hours: hours,
+          state.copyWith(
+            poses: (poses ?? [])..add(pos),
           ),
         );
       },
