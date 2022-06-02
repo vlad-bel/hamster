@@ -7,37 +7,47 @@ class OnboardingBackground extends StatelessWidget {
   const OnboardingBackground({
     Key? key,
     required this.children,
+    this.showLanguageDropdown = true,
     this.hasScroll = true,
+    this.customAppBar,
   }) : super(key: key);
 
   final Widget children;
+  final bool showLanguageDropdown;
   final bool hasScroll;
+  final Widget? customAppBar;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            Assets.imagesBackgroundImageSignUp,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ),
-          SingleChildScrollView(
-            physics: !hasScroll
-                ? NeverScrollableScrollPhysics()
-                : AlwaysScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                const OnboardingAppbar(),
-                Center(
-                  child: children,
-                ),
-              ],
+    return GestureDetector(
+      onTap: FocusScope.of(context).unfocus,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Image.asset(
+              Assets.imagesBackgroundImageSignUp,
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.cover,
             ),
-          ),
-        ],
+            SingleChildScrollView(
+              physics: !hasScroll
+                  ? NeverScrollableScrollPhysics()
+                  : AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  customAppBar ??
+                      OnboardingAppbar(
+                        showLanguageDropdown: showLanguageDropdown,
+                      ),
+                  Center(
+                    child: children,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

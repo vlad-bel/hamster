@@ -1,16 +1,20 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
+import 'package:business_terminal/presentation/branch_profile_avatar_picture/widget/avatar_selected_picture.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo/add_logo_widget.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/header_app_bar/header_app_bar_widget.dart';
@@ -18,10 +22,10 @@ import 'package:business_terminal/presentation/common/widgets/payment_info.dart'
 import 'package:business_terminal/presentation/dashboard/profile/profile_add_logo/view/profile_add_logo.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/cubit/profile_edit_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
+import 'package:business_terminal/presentation/dashboard/profive_viewing/cubit/profile_viewing_cubit.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -48,7 +52,6 @@ class _ProfileEditView extends StatefulWidget {
 class _ProfileEditViewState extends State<_ProfileEditView> {
   @override
   Widget build(BuildContext context) {
-    final profileEditCubit = context.read<ProfileEditCubit>();
     return Scaffold(
       body: Stack(
         children: [
@@ -58,16 +61,23 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
             width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
           ),
-          BlocProvider(
-            create: (BuildContext context) {
-              return GetIt.instance.get<CountrySelectorCubit>();
-            },
+          MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) =>
+                    getIt.get<CountrySelectorCubit>()..getCountryList(),
+              ),
+              BlocProvider(
+                create: (_) => getIt.get<ProfileEditCubit>()..getInitialData(),
+              ),
+            ],
             child: BlocBuilder<CountrySelectorCubit, CountrySelectorState>(
               builder: (context, state) {
                 final countrySelectorCubit =
                     BlocProvider.of<CountrySelectorCubit>(
                   context,
                 );
+                final profileEditCubit = context.read<ProfileEditCubit>();
 
                 return ReactiveFormBuilder(
                   form: profileEditCubit.profileEditFormSettings.buildForm,
@@ -99,7 +109,7 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                                 },
                                 isEnabled: form.valid,
                                 child: Text(
-                                  AppLocale.of(context).save,
+                                  AppLocale.of(context).save.toUpperCase(),
                                 ),
                               );
                             },
@@ -121,7 +131,27 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                                       AppLocale.of(context).error,
                                     );
                                   },
-                                  success: () {
+                                  success: () async {
+                                    final fetchRepCompany =
+                                        await profileEditCubit.companyUsecase
+                                            .fetchRepCompany();
+                                    if (fetchRepCompany.company?.id != null) {
+                                      await profileEditCubit.companyUsecase
+                                          .fetchCompany(
+                                        companyId: fetchRepCompany.company!.id!,
+                                      );
+                                    }
+
+                                    await getIt
+                                        .get<ProfileViewingCubit>()
+                                        .getInitialData();
+                                    if (!mounted) return;
+                                    context
+                                        .read<DashboardCubit>()
+                                        .updateRepCompany(
+                                          repCompany: fetchRepCompany,
+                                        );
+
                                     SnackBarManager.showSuccess(
                                       AppLocale.of(context).success,
                                     );
@@ -132,29 +162,22 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                               buildWhen: (previous, current) =>
                                   current is InitialProfileEditState,
                               builder: (context, state) {
-                                return state.when(
-                                  initial: (company, profileEditFormSettings) =>
-                                      _ProfileEditContent(
-                                    formSettings: profileEditFormSettings,
-                                    company: company,
-                                    countrySelectorCubit: countrySelectorCubit,
-                                  ),
-                                  error: (ApiFailure error) {
-                                    return Text(
-                                      AppLocale.of(context).error,
-                                    );
-                                  },
-                                  success: () {
-                                    return Text(
-                                      AppLocale.of(context).success,
-                                    );
-                                  },
-                                  loading: () {
-                                    return Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  },
-                                );
+                                return state.whenOrNull(
+                                      initial:
+                                          (company, profileEditFormSettings) =>
+                                              _ProfileEditContent(
+                                        formSettings: profileEditFormSettings,
+                                        company: company,
+                                        countrySelectorCubit:
+                                            countrySelectorCubit,
+                                      ),
+                                      loading: () {
+                                        return Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      },
+                                    ) ??
+                                    const SizedBox.shrink();
                               },
                             ),
                           ),
@@ -172,7 +195,7 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
   }
 }
 
-class _ProfileEditContent extends StatelessWidget {
+class _ProfileEditContent extends StatefulWidget {
   const _ProfileEditContent({
     required this.formSettings,
     required this.company,
@@ -182,6 +205,13 @@ class _ProfileEditContent extends StatelessWidget {
   final Company company;
   final CountrySelectorCubit countrySelectorCubit;
   final ProfileEditFormSettings formSettings;
+
+  @override
+  State<_ProfileEditContent> createState() => _ProfileEditContentState();
+}
+
+class _ProfileEditContentState extends State<_ProfileEditContent> {
+  final PageController controller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -215,10 +245,110 @@ class _ProfileEditContent extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     Center(
-                      child: AppAddLogoWidget(
-                        onPressed: () {
-                          authNavigatorKey.currentState?.pushNamed(
-                            ProfileAddLogoPage.path,
+                      child: BlocBuilder<ProfileEditCubit, ProfileEditState>(
+                        builder: (context, state) {
+                          return state.maybeWhen(
+                            imagesAdded: (
+                              company,
+                              profileEditFormSettings,
+                              images,
+                            ) {
+                              return Stack(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      if (images.length > 1)
+                                        InkWell(
+                                          onTap: () async {
+                                            await controller.previousPage(
+                                              duration:
+                                                  Duration(milliseconds: 1),
+                                              curve: Curves.easeIn,
+                                            );
+                                            setState(() {});
+                                          },
+                                          child: Icon(
+                                            Icons.arrow_back_ios,
+                                            color: lynch,
+                                            size: 32,
+                                          ),
+                                        ),
+                                      SizedBox(
+                                        width: 200,
+                                        height: 200,
+                                        child: PageView.builder(
+                                          itemCount: images.length,
+                                          controller: controller,
+                                          itemBuilder: (
+                                            BuildContext context,
+                                            int index,
+                                          ) {
+                                            return AvatarSelectedPicture(
+                                              path: images[index].imageBytes,
+                                              showEditButton: true,
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      if (images.length > 1)
+                                        InkWell(
+                                          onTap: () async {
+                                            await controller.nextPage(
+                                              duration:
+                                                  Duration(milliseconds: 1),
+                                              curve: Curves.easeIn,
+                                            );
+                                            setState(() {});
+                                          },
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: lynch,
+                                            size: 32,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                  Positioned.fill(
+                                    child: Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Container(
+                                        padding: EdgeInsets.all(8),
+                                        color: white,
+                                        child: FutureBuilder(
+                                          future: Future.value(true),
+                                          builder: (
+                                            BuildContext context,
+                                            AsyncSnapshot<void> snap,
+                                          ) {
+                                            return Text(
+                                              '${(controller.page?.round() ?? 0) + 1} / ${images.length}',
+                                              style: inter14,
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                            orElse: () {
+                              return AppAddLogoWidget(
+                                onPressed: () async {
+                                  final result = await authNavigatorKey
+                                      .currentState
+                                      ?.pushNamed<List<AddedProfileLogoModel>>(
+                                    ProfileAddLogoPage.path,
+                                  );
+                                  if (result != null) {
+                                    await profileEditCubit.addImages(
+                                      result,
+                                    );
+                                  }
+                                },
+                              );
+                            },
                           );
                         },
                       ),
@@ -233,7 +363,7 @@ class _ProfileEditContent extends StatelessWidget {
                             children: [
                               FormTextField(
                                 validationMessages: (control) =>
-                                    formSettings.validationMessages,
+                                    widget.formSettings.validationMessages,
                                 name: ProfileEditFormSettings.kCompanyName,
                                 label: Intl.message(
                                   ProfileEditFormSettings.kCompanyName,
@@ -253,8 +383,8 @@ class _ProfileEditContent extends StatelessWidget {
                                     child: FormTextField(
                                       name:
                                           ProfileEditFormSettings.kStreetField,
-                                      hint: AppLocale.current.street_hint,
-                                      label: AppLocale.current.street_hint,
+                                      hint: AppLocale.of(context).street_hint,
+                                      label: AppLocale.of(context).street_hint,
                                     ),
                                   ),
                                   SizedBox(width: 16),
@@ -262,8 +392,8 @@ class _ProfileEditContent extends StatelessWidget {
                                     child: FormTextField(
                                       name: ProfileEditFormSettings
                                           .kStreetNumberField,
-                                      hint: AppLocale.current.num_hint,
-                                      label: AppLocale.current.num_hint,
+                                      hint: AppLocale.of(context).num_hint,
+                                      label: AppLocale.of(context).num_hint,
                                     ),
                                   ),
                                 ],
@@ -276,8 +406,8 @@ class _ProfileEditContent extends StatelessWidget {
                                     child: FormTextField(
                                       name: ProfileEditFormSettings
                                           .kPostcodeField,
-                                      hint: AppLocale.current.post_hint,
-                                      label: AppLocale.current.post_hint,
+                                      hint: AppLocale.of(context).post_hint,
+                                      label: AppLocale.of(context).post_hint,
                                     ),
                                   ),
                                   SizedBox(width: 16),
@@ -285,15 +415,16 @@ class _ProfileEditContent extends StatelessWidget {
                                     flex: 3,
                                     child: FormTextField(
                                       name: ProfileEditFormSettings.kCityField,
-                                      hint: AppLocale.current.location_hint,
-                                      label: AppLocale.current.location_hint,
+                                      hint: AppLocale.of(context).location_hint,
+                                      label:
+                                          AppLocale.of(context).location_hint,
                                     ),
                                   ),
                                 ],
                               ),
                               const SizedBox(height: 25),
                               CountrySelector(
-                                cubit: countrySelectorCubit,
+                                cubit: widget.countrySelectorCubit,
                               ),
                             ],
                           ),
@@ -334,7 +465,7 @@ class _ProfileEditContent extends StatelessWidget {
                           ),
                           FormTextField(
                             validationMessages: (control) =>
-                                formSettings.validationMessages,
+                                widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings
                                 .kCommercialRegisterNumber,
                             label: Intl.message(
@@ -353,7 +484,7 @@ class _ProfileEditContent extends StatelessWidget {
                           ),
                           FormTextField(
                             validationMessages: (control) =>
-                                formSettings.validationMessages,
+                                widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings.kTaxNumber,
                             label: Intl.message(
                               ProfileEditFormSettings.kTaxNumber,
@@ -367,14 +498,14 @@ class _ProfileEditContent extends StatelessWidget {
                           const SizedBox(height: 25),
                           FormTextField(
                             validationMessages: (control) =>
-                                formSettings.validationMessages,
+                                widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings.kVatId,
                             label: Intl.message(
                               ProfileEditFormSettings.kVatId,
                               name: ProfileEditFormSettings.kVatId,
                             ),
                             hint: Intl.message(
-                              'hint',
+                              ProfileEditFormSettings.kVatId,
                               name: ProfileEditFormSettings.kVatId,
                             ),
                           ),
@@ -394,7 +525,15 @@ class _ProfileEditContent extends StatelessWidget {
                     decoration: const BoxDecoration(
                       color: white,
                     ),
-                    child: GestureDetector(
+                    child: PaymentInfo(
+                      accountOwner: profileEditCubit.getControlValue(
+                            ProfileEditFormSettings.kAccountOwner,
+                          ) ??
+                          '',
+                      iban: profileEditCubit.getControlValue(
+                            ProfileEditFormSettings.kIban,
+                          ) ??
+                          '',
                       onTap: () async {
                         final result = await Navigator.pushNamed(
                           context,
@@ -404,16 +543,6 @@ class _ProfileEditContent extends StatelessWidget {
                         if (result == null) return;
                         await profileEditCubit.updatePaymentData(result);
                       },
-                      child: PaymentInfo(
-                        accountOwner: profileEditCubit.getControlValue(
-                              ProfileEditFormSettings.kAccountOwner,
-                            ) ??
-                            '',
-                        iban: profileEditCubit.getControlValue(
-                              ProfileEditFormSettings.kIban,
-                            ) ??
-                            '',
-                      ),
                     ),
                   ),
                 ],

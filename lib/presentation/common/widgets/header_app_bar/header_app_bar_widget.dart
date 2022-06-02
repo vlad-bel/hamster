@@ -1,5 +1,5 @@
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/config/image/image_paths.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -53,7 +53,7 @@ class HeaderAppBarWidget extends StatelessWidget {
               child: SizedBox(
                 height: 42,
                 child: SvgPicture.asset(
-                  ImagePaths.logo(SvgPaths.brandLogoDenim),
+                  Assets.logosBrandLogoDenim,
                 ),
               ),
             ),

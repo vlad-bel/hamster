@@ -49,6 +49,7 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
           ),
         ),
       );
+      countries = countriesWithCodes;
 
       return countriesWithCodes;
     } on DioError catch (e) {

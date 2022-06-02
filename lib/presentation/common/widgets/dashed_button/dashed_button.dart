@@ -24,34 +24,32 @@ class DashedButton extends StatelessWidget {
           color: lynch.withOpacity(0.3),
           padding: const EdgeInsets.symmetric(vertical: 14),
           child: Ink(
-            child: Expanded(
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: denim,
-                      ),
-                      padding: const EdgeInsets.all(2),
-                      child: const Center(
-                        child: Icon(
-                          Icons.add,
-                          color: white,
-                          size: 22,
-                        ),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: denim,
+                    ),
+                    padding: const EdgeInsets.all(2),
+                    child: const Center(
+                      child: Icon(
+                        Icons.add,
+                        color: white,
+                        size: 22,
                       ),
                     ),
-                    const SizedBox(width: 12),
-                    Text(
-                      label,
-                      style: inter14.copyWith(
-                        color: denim,
-                      ),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    label,
+                    style: inter14.copyWith(
+                      color: denim,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

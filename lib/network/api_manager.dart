@@ -86,6 +86,7 @@ Future<void> _refreshToken(
         final newResponse = await dio.request<dynamic>(
           ///TODO extract it to .env file after demo
           'http://localhost:3003/api${options.path}',
+          data: options.data,
           options: Options(
             headers: options.headers,
             method: options.method,

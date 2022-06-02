@@ -1,21 +1,23 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
-import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:business_terminal/presentation/branch_profile/view/branch_profile_categories.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/branch_data_form.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/branch_profile_working_hours_table.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/branch_top_photo_and_logo_pager.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/pos_list_item.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/branch_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
+import 'package:business_terminal/presentation/common/widgets/header_app_bar/header_app_bar_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
+import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,36 +28,29 @@ class BranchProfilePage extends StatelessWidget {
     super.key,
   });
 
-  static const path = '/branch_profile';
   static const paramCompany = 'company';
   static const paramData = 'data';
+  static const path = '/branch_profile';
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
   final RepCompany company;
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => getIt.get<CountrySelectorCubit>()..getCountryList(),
-        ),
-        BlocProvider(
-          create: (_) => getIt.get<BranchProfileCubit>(),
-        ),
-      ],
-      child: _BranchProfileView(company, branchSelectedFieldsMap),
-    );
+    context.read<CountrySelectorCubit>().getCountryList();
+    return _BranchProfileView(company, branchSelectedFieldsMap);
   }
 }
 
 class _BranchProfileView extends StatelessWidget {
-  _BranchProfileView(this.company, this.branchSelectedFieldsMap, {super.key});
+  const _BranchProfileView(
+    this.company,
+    this.branchSelectedFieldsMap, {
+    super.key,
+  });
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
   final RepCompany company;
-
-  final formSettings = BranchProfileFormValidation();
   final verticalPaddingBetweenTextInputs = 18.0;
 
   @override
@@ -64,26 +59,88 @@ class _BranchProfileView extends StatelessWidget {
       height: verticalPaddingBetweenTextInputs,
     );
 
-    return BlocBuilder<BranchProfileCubit, BranchProfileState>(
+    return BlocConsumer<BranchProfileCubit, BranchProfileState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          branchWasCreatedSuccessfully: (
+            category,
+            subcategories,
+            branchImages,
+            avatarImages,
+            hours,
+            isCreateBranchButtonEnabled,
+          ) {
+            Navigator.popUntil(
+              context,
+              (route) => route.settings.name == DashboardPage.path,
+            );
+          },
+          error: (
+              category,
+              subcategories,
+              branchImages,
+              avatarImages,
+              hours,
+              isCreateBranchButtonEnabled,
+          ){
+            SnackBarManager.showError(category!);
+          }
+        );
+      },
       builder: (BuildContext context, state) {
         return OnboardingBackground(
+          customAppBar: Padding(
+            padding: const EdgeInsets.only(bottom: 46),
+            child: BlocBuilder<BranchProfileCubit, BranchProfileState>(
+              builder: (context, state) {
+                return state.whenOrNull(
+                      init: (
+                        category,
+                        subcategories,
+                        branchImages,
+                        avatarImages,
+                        hours,
+                        isCreateBranchButtonEnabled,
+                      ) {
+                        return HeaderAppBarWidget(
+                          trailing: ActionButtonBlue(
+                            isEnabled: true,
+
+                            // TODO: check why bellow lines has runtime error
+                            /*context
+                                    .read<BranchProfileCubit>()
+                                    .isCreateBranchButtonEnabled() ??
+                                false,*/
+
+                            onPressed: () {
+                              context.read<BranchProfileCubit>().createBranch();
+                            },
+                          ),
+                        );
+                      },
+                    ) ??
+                    Text(AppLocale.of(context).error);
+              },
+            ),
+          ),
           children: Column(
             children: [
               BranchProfileContainerWhite(
-                headerLeft: Text(AppLocale.current.branch_profile),
+                headerLeft: Text(AppLocale.of(context).branch_profile),
                 headerRight: Text(
-                  AppLocale.current.branch_id(0001),
+                  AppLocale.of(context).branch_id(0001),
                 ),
                 body: Column(
                   children: [
-                    BranchTopPhotoAndLogoPager(),
+                    const BranchTopPhotoAndLogoPager(),
                     const SizedBox(height: 26),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         /// Left side part:
                         BranchDataForm(
-                          formSettings: formSettings,
+                          formGroup:
+                              context.read<BranchProfileCubit>().formGroup,
                           paddingBetweenTextInputs: paddingBetweenTextInputs,
                           branchSelectedFieldsMap: branchSelectedFieldsMap,
                           company: company,
@@ -91,7 +148,11 @@ class _BranchProfileView extends StatelessWidget {
                         const SizedBox(width: 45),
 
                         /// Right side part:
-                        Expanded(child: BranchProfileWorkingHoursTable()),
+                        Expanded(
+                          child: BranchProfileWorkingHoursTable(
+                            state: state as InitBranchProfileState,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -100,13 +161,13 @@ class _BranchProfileView extends StatelessWidget {
               // Branch category:
               const SizedBox(height: 16),
               BranchProfileContainerWhite(
-                headerLeft: Text(AppLocale.current.branch_category),
-                body: BranchProfileCategories(),
+                headerLeft: Text(AppLocale.of(context).branch_category),
+                body: const BranchProfileCategories(),
               ),
               // Branch equipment:
               const SizedBox(height: 16),
               BranchProfileContainerWhite(
-                headerLeft: Text(AppLocale.current.branch_equipment),
+                headerLeft: Text(AppLocale.of(context).branch_equipment),
                 body: Column(
                   children: [
                     ListView.builder(
@@ -134,7 +195,7 @@ class _BranchProfileView extends StatelessWidget {
                             ),
                             const SizedBox(width: 4),
                             Text(
-                              AppLocale.current.add_bank_details,
+                              AppLocale.of(context).add_bank_details,
                               style: inter14.copyWith(
                                 color: denim1,
                               ),
@@ -146,7 +207,7 @@ class _BranchProfileView extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
             ],
           ),
         );

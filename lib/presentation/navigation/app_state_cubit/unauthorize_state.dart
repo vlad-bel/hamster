@@ -1,10 +1,12 @@
-import 'dart:html';
-
+import 'package:business_terminal/app/utils/storage/storage_service.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/view/chooseverifypage.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/view/forgetpassword_email.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/view/pincoderesetpassword.dart';
+import 'package:business_terminal/presentation/forget_password/view/choose_verify_page.dart';
+import 'package:business_terminal/presentation/forget_password/view/confirm_new_password_page.dart';
+import 'package:business_terminal/presentation/forget_password/view/forget_password_email.dart';
+import 'package:business_terminal/presentation/forget_password/view/new_password_installed_page.dart';
+import 'package:business_terminal/presentation/forget_password/view/pincode_reset_password.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/nav_utils.dart';
@@ -37,13 +39,16 @@ class UnauthorizedState extends AppState {
               case EmailVerificationPage.path:
                 if (params?[emailParam] != null) {
                   final email = params![emailParam]! as String;
-                  window.sessionStorage[emailParam] = email;
+                  appStorageService.setString(
+                    key: emailParam,
+                    value: email,
+                  );
                 }
 
                 page = buildPage(
                   requiredParams: [emailParam],
                   child: EmailVerificationPage(
-                    userEmail: window.sessionStorage[emailParam],
+                    userEmail: appStorageService.getString(key: emailParam),
                   ),
                 );
                 break;
@@ -51,14 +56,17 @@ class UnauthorizedState extends AppState {
                 page = buildPage(
                   requiredParams: [emailParam],
                   child: CountriesCodePage(
-                    email: window.sessionStorage[emailParam]!,
+                    email: appStorageService.getString(key: emailParam)!,
                   ),
                 );
                 break;
               case CallMethodSelectorPage.path:
                 if (params?[phoneNumberParam] != null) {
                   final phone = params![phoneNumberParam]! as String;
-                  window.sessionStorage[phoneNumberParam] = phone;
+                  appStorageService.setString(
+                    key: phoneNumberParam,
+                    value: phone,
+                  );
                 }
 
                 page = buildPage(
@@ -67,8 +75,9 @@ class UnauthorizedState extends AppState {
                     emailParam,
                   ],
                   child: CallMethodSelectorPage(
-                    phoneNumber: window.sessionStorage[phoneNumberParam]!,
-                    email: window.sessionStorage[emailParam]!,
+                    phoneNumber:
+                        appStorageService.getString(key: phoneNumberParam)!,
+                    email: appStorageService.getString(key: emailParam)!,
                   ),
                 );
                 break;
@@ -77,9 +86,10 @@ class UnauthorizedState extends AppState {
                   final verifyMethod = VerifyMethodExtension.fromString(
                     params![verifyMethodParam]! as String,
                   );
-
-                  window.sessionStorage[verifyMethodParam] =
-                      verifyMethod.string;
+                  appStorageService.setString(
+                    key: verifyMethodParam,
+                    value: verifyMethod.string,
+                  );
                 }
 
                 page = buildPage(
@@ -89,10 +99,10 @@ class UnauthorizedState extends AppState {
                     verifyMethodParam,
                   ],
                   child: NumberCodeConfirmationPage(
-                    phone: window.sessionStorage[phoneNumberParam]!,
-                    email: window.sessionStorage[emailParam]!,
+                    phone: appStorageService.getString(key: phoneNumberParam)!,
+                    email: appStorageService.getString(key: emailParam)!,
                     verificationMethod: VerifyMethodExtension.fromString(
-                      window.sessionStorage[verifyMethodParam]!,
+                      appStorageService.getString(key: verifyMethodParam)!,
                     ),
                   ),
                 );
@@ -105,15 +115,24 @@ class UnauthorizedState extends AppState {
                 break;
 
               case ChooseVerifyPage.path:
-                final email = params!['email'] as String;
-                page = ChooseVerifyPage(
-                  email: email,
-                );
+                if (params != null) {
+                  ChooseVerifyPage.saveParams(appStorageService, params);
+                }
+                page = ChooseVerifyPage.fromStorage(appStorageService);
                 break;
               case PinCodePasswordResetPage.path:
-                final email = params!['email'] as String;
-                final type = params['type'] as String;
-                page = PinCodePasswordResetPage(email: email, type: type);
+                if (params != null) {
+                  PinCodePasswordResetPage.saveParams(
+                      appStorageService, params);
+                }
+                page = PinCodePasswordResetPage.fromStorage(appStorageService);
+                break;
+              case ConfirmNewPasswordPage.path:
+                page = const ConfirmNewPasswordPage();
+                break;
+
+              case NewPasswordInstalledPage.path:
+                page = const NewPasswordInstalledPage();
                 break;
 
               default:
@@ -132,4 +151,6 @@ class UnauthorizedState extends AppState {
             );
           },
         );
+
+  static final appStorageService = getIt.get<AppStorageService>();
 }

@@ -1,3 +1,4 @@
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
@@ -6,44 +7,43 @@ import 'package:business_terminal/use_cases/profile/profile_edit/profile_edit_us
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: ProfileEditUsecase)
+@Injectable(as: ProfileEditUsecase)
 class ProfileEditUsecaseImpl extends ProfileEditUsecase {
   ProfileEditUsecaseImpl(this.repository);
 
   final RestClient repository;
 
   @override
-  Future<void> editProfile(
+  Future<bool> editProfile(
     String companyId,
     ProfileEditRequest profileEditRequest,
+    List<MultipartFile> files,
   ) async {
     try {
-      await repository.updateProfile(
-        companyId,
+      final formData = FormData.fromMap(
         profileEditRequest.toJson(),
       );
+      for (final file in files) {
+        formData.files.addAll(
+          {
+            MapEntry(
+              'files',
+              file,
+            ),
+          },
+        );
+      }
 
-      return await Future.delayed(
-        const Duration(
-          seconds: 2,
-        ),
-      );
+      // TODO(b.nurmoldanov) change hardcoded URI,
+      await getIt.get<Dio>().put(
+            'http://localhost:3003/api/company/$companyId',
+            data: formData,
+          );
+      return true;
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),
-        // TODO Check if it's works
         StackTrace.current.toString(),
-      );
-    }
-  }
-
-  // TODO Implement other functionality
-  @override
-  Future<void> foo() async {
-    try {} on DioError catch (e) {
-      throw ApiFailure(
-        ApiFailureResponse.fromJson(e),
-        'foo',
       );
     }
   }

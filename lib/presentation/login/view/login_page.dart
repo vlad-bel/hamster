@@ -8,7 +8,7 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_backgro
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
 import 'package:business_terminal/presentation/common/widgets/text_button_link.dart';
-import 'package:business_terminal/presentation/forgetpassword.dart/view/forgetpassword_email.dart';
+import 'package:business_terminal/presentation/forget_password/view/forget_password_email.dart';
 import 'package:business_terminal/presentation/login/cubit/login_cubit.dart';
 import 'package:business_terminal/presentation/login/form_validation/login_form_validation.dart';
 import 'package:business_terminal/presentation/login/view/floating_wrong_credentials_view.dart';

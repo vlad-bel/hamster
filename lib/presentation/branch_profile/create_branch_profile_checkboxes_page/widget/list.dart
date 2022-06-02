@@ -4,21 +4,21 @@ import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/widget/list_item.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/widget/list_item_header.dart';
-import 'package:business_terminal/presentation/dashboard/profive_viewing/mock_repository/mock_company_repo.dart';
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/material.dart';
 
 class BranchProfileDataCheckBoxesList extends StatelessWidget {
-  const BranchProfileDataCheckBoxesList(this.state, {Key? key})
-      : super(key: key);
+  const BranchProfileDataCheckBoxesList(
+    this.state, {
+    required this.company,
+    Key? key,
+  }) : super(key: key);
 
   final CreateBranchProfileCheckboxesData state;
+  final RepCompany company;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: mock
-    final company = CompanyRepositoryMock.getMockCompany();
-
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -31,11 +31,9 @@ class BranchProfileDataCheckBoxesList extends StatelessWidget {
           BranchProfileDataCheckboxListItemHeader(
             text: AppLocale.of(context).select_all,
           ),
-          SizedBox(
-            height: 245,
-            child: ListView(
-              children: _buildListItems(company, state),
-            ),
+          ListView(
+            shrinkWrap: true,
+            children: _buildListItems(company, state),
           ),
         ],
       ),
@@ -53,27 +51,27 @@ class BranchProfileDataCheckBoxesList extends StatelessWidget {
     final city = company.company?.city;
 
     return [
-      if (companyName != null && companyName.isNotEmpty)
+      if (!companyName.isEmptyOrNull)
         BranchProfileDataCheckboxListItem(
-          fieldContent: companyName,
+          fieldContent: companyName!,
           fieldType: CompanyDataCommonFieldsWithBranchData.companyName,
           state: state,
         ),
-      if (!streetName.isEmptyOrNull && !streetNumber.isEmptyOrNull)
+      if (!streetName.isEmptyOrNull)
         BranchProfileDataCheckboxListItem(
           fieldContent: '${streetName!} ${streetNumber!}',
           fieldType: CompanyDataCommonFieldsWithBranchData.streetNameAndNumber,
           state: state,
         ),
-      if (postalCode != null && postalCode.isNotEmpty)
+      if (!postalCode.isEmptyOrNull)
         BranchProfileDataCheckboxListItem(
-          fieldContent: postalCode,
+          fieldContent: postalCode!,
           fieldType: CompanyDataCommonFieldsWithBranchData.postalCode,
           state: state,
         ),
-      if (city != null && city.isNotEmpty)
+      if (!city.isEmptyOrNull)
         BranchProfileDataCheckboxListItem(
-          fieldContent: city,
+          fieldContent: city!,
           fieldType: CompanyDataCommonFieldsWithBranchData.city,
           state: state,
         ),

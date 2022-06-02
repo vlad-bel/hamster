@@ -1,6 +1,7 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -39,7 +40,7 @@ class VerifiedStatusCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseStatusCell(
       icon: SvgPicture.asset(
-        'images/verified.svg',
+        Assets.imagesVerified,
         width: 22,
         height: 22,
       ),
@@ -62,7 +63,7 @@ class VisibleStatusCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseStatusCell(
       icon: SvgPicture.asset(
-        visible ? 'images/visible.svg' : 'images/invisible.svg',
+        visible ? Assets.imagesVisible : Assets.imagesInvisible,
         width: 22,
         height: 22,
       ),

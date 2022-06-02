@@ -4,11 +4,9 @@ import 'package:business_terminal/presentation/common/widgets/dashboard/dashboar
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
-import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
-import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 
-class ProfileAddLogoPage extends StatelessWidget {
+class ProfileAddLogoPage extends StatefulWidget {
   const ProfileAddLogoPage({
     Key? key,
   }) : super(key: key);
@@ -16,34 +14,28 @@ class ProfileAddLogoPage extends StatelessWidget {
   static const String path = myCompanyEditAddLogoPath;
 
   @override
+  State<ProfileAddLogoPage> createState() => _ProfileAddLogoPageState();
+}
+
+class _ProfileAddLogoPageState extends State<ProfileAddLogoPage> {
+  @override
   Widget build(BuildContext context) {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
           header: AppLocale.of(context).addYourCompanyLogo,
-          subHeader: Text(AppLocale.current.addYourCompanyLogoDescription),
+          subHeader: Text(AppLocale.of(context).addYourCompanyLogoDescription),
         ),
-        body: Column(
-          children: [
-            SizedBox(height: 24),
-            AppAddLogoWidget(
-              onPressed: () {},
-            ),
-            SizedBox(height: 100),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                WhiteButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                ActionButtonBlue(
-                  onPressed: () {},
-                ),
-              ],
-            )
-          ],
+        body: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 24),
+              AvatarPictureSelector(
+                showAddButton: true,
+                showEditButton: true,
+              ),
+            ],
+          ),
         ),
       ),
     );

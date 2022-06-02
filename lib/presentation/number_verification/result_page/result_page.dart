@@ -1,6 +1,7 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
@@ -21,17 +22,17 @@ class PhoneVerificationResultPage extends StatelessWidget {
           children: [
             const PercentsRect(),
             Image.asset(
-              'assets/images/profile_icon.png',
+              Assets.imagesProfileIcon,
               width: 100,
             ),
             const SizedBox(height: 36),
             Text(
-              AppLocale.current.user_account_created,
+              AppLocale.of(context).user_account_created,
               style: inter24,
             ),
             const SizedBox(height: 20),
             Text(
-              AppLocale.current.user_account_created_description,
+              AppLocale.of(context).user_account_created_description,
               style: inter14,
             ),
             const SizedBox(height: 36),
@@ -60,7 +61,7 @@ class PercentsRect extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        padding: EdgeInsets.all(4),
+        padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
           color: fruitSalad.withOpacity(0.05),
           borderRadius: const BorderRadius.all(

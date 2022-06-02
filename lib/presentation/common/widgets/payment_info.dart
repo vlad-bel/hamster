@@ -21,11 +21,13 @@ class PaymentInfo extends StatelessWidget {
     this.accountOwner = '',
     this.iban = '',
     this.formConsumer,
+    required this.onTap,
   }) : super(key: key);
 
   final String accountOwner;
   final Widget? formConsumer;
   final String iban;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -39,33 +41,36 @@ class PaymentInfo extends StatelessWidget {
         children: [
           if (formConsumer == null)
             Text(
-              AppLocale.current.payment_information,
+              AppLocale.of(context).payment_information,
               style: inter16SemiBold,
             ),
           const SizedBox(height: 24),
           if ((accountOwner.isEmpty || iban.isEmpty) && formConsumer == null)
-            AppDashBorderedContainer(
-              borderType: BorderType.rect,
-              child: Container(
-                height: 125,
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(color: white),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.add_circle,
-                      color: denim1,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      // TODO add l18n key
-                      AppLocale.of(context).add_bank_details,
-                      style: inter14.copyWith(
+            GestureDetector(
+              onTap: onTap,
+              child: AppDashBorderedContainer(
+                borderType: BorderType.rect,
+                child: Container(
+                  height: 125,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(color: white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.add_circle,
                         color: denim1,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 4),
+                      Text(
+                        // TODO add l18n key
+                        AppLocale.of(context).add_bank_details,
+                        style: inter14.copyWith(
+                          color: denim1,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )
@@ -74,16 +79,16 @@ class PaymentInfo extends StatelessWidget {
               children: [
                 FormTextField(
                   name: AddPaymentFormSettings.kAccountOwnerField,
-                  hint: AppLocale.current.account_owner,
-                  label: AppLocale.current.account_owner,
+                  hint: AppLocale.of(context).account_owner,
+                  label: AppLocale.of(context).account_owner,
                   validationMessages: (control) =>
                       AddPaymentFormSettings.validationMessageAccountOwner,
                 ),
                 const SizedBox(height: 16),
                 FormTextField(
                   name: AddPaymentFormSettings.kIbanField,
-                  hint: AppLocale.current.iban,
-                  label: AppLocale.current.iban,
+                  hint: AppLocale.of(context).iban,
+                  label: AppLocale.of(context).iban,
                   inputFormatters: [
                     IbanInputFormatter(),
                   ],
@@ -97,7 +102,7 @@ class PaymentInfo extends StatelessWidget {
                       UiCheckbox(
                         name: AddPaymentFormSettings.kAcceptCheckBox,
                         title: Text(
-                          AppLocale.current.i_authorize_collect_payment,
+                          AppLocale.of(context).i_authorize_collect_payment,
                           style: inter12,
                         ),
                         position: Position.left,

@@ -19,8 +19,9 @@ class AddPaymentPage extends StatelessWidget {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocale.current.add_business_account,
-          subHeader: Text(AppLocale.current.for_credits_and_regular_billing),
+          header: AppLocale.of(context).add_business_account,
+          subHeader:
+              Text(AppLocale.of(context).for_credits_and_regular_billing),
         ),
         body: PaymentInfo(
           formConsumer: FormConsumer(
@@ -36,6 +37,7 @@ class AddPaymentPage extends StatelessWidget {
               },
             ),
           ),
+          onTap: () {},
         ),
       ),
     );

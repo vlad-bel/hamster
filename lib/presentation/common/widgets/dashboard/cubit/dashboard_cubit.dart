@@ -1,3 +1,4 @@
+import 'package:business_terminal/domain/model/company/branch/branch_profile_with_paging.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
 import 'package:business_terminal/use_cases/login/login_use_case.dart';
@@ -8,7 +9,11 @@ import 'package:injectable/injectable.dart';
 class DashboardCubit extends Cubit<DashboardState> {
   DashboardCubit({
     required this.loginUseCase,
-  }) : super(const DashboardState.init());
+  }) : super(
+          DashboardState.init(
+            stateObject: DashboardStateObject(),
+          ),
+        );
 
   final LoginUseCase loginUseCase;
 
@@ -17,25 +22,21 @@ class DashboardCubit extends Cubit<DashboardState> {
       loginUseCase.logout();
     } catch (e) {
       emit(
-        DashboardState.error().copyWith(),
+        DashboardState.error(),
       );
     }
   }
 
   ///test function for demo from other place
   void increaseCount() {
-    state.whenOrNull(
-      init: (testCount, _, __, ___) {
-        testCount ??= 0;
+    state.when(
+      init: (state) {
+        state.testCount ??= 0;
+        state.testCount = 3;
 
-        testCount = 3;
-        emit(
-          DashboardState.init(
-            testCount: testCount,
-            administrationOpen: true,
-            finansenOpen: true,
-          ),
-        );
+        final newState = state.copyWith(testCount: 3);
+
+        emit(DashboardState.init(stateObject: newState));
       },
       error: (
         int? testCount,
@@ -44,19 +45,30 @@ class DashboardCubit extends Cubit<DashboardState> {
         RepCompany? repCompany,
       ) {
         emit(
-          DashboardState.error().copyWith(),
+          DashboardState.error(
+            testCount: testCount,
+            finansenOpen: finansenOpen,
+            administrationOpen: administrationOpen,
+            repCompany: repCompany,
+          ),
         );
       },
     );
   }
 
-  void updateRepCompany(
+  void updateRepCompany({
     RepCompany? repCompany,
-  ) {
-    emit(
-      const DashboardState.init().copyWith(
-        repCompany: repCompany,
-      ),
+    BranchProfileWithPaging? branchProfilesList,
+  }) {
+    state.whenOrNull(
+      init: (stateObject) {
+        final newState = stateObject.copyWith(
+          repCompany: repCompany,
+          branchProfilesList: branchProfilesList,
+        );
+
+        emit(DashboardState.init(stateObject: newState));
+      },
     );
   }
 }

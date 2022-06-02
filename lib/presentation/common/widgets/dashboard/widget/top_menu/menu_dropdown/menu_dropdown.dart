@@ -5,6 +5,7 @@ import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_dropdown/cubit/menu_dropdown_cubit.dart';
+import 'package:business_terminal/presentation/dashboard/change_password/view/change_password_page.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:flutter/cupertino.dart';
@@ -59,7 +60,17 @@ class MenuDropDown extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 onPressed: close,
                 child: Text(
-                  AppLocale.current.user_account,
+                  AppLocale.of(context).user_account,
+                  style: inter14Medium,
+                ),
+              ),
+              CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: () {
+                  Navigator.of(context).pushNamed(ChangePasswordPage.path);
+                },
+                child: Text(
+                  AppLocale.of(context).change_password,
                   style: inter14Medium,
                 ),
               ),
@@ -67,7 +78,7 @@ class MenuDropDown extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 onPressed: close,
                 child: Text(
-                  AppLocale.current.change_password,
+                  AppLocale.of(context).settings,
                   style: inter14Medium,
                 ),
               ),
@@ -75,15 +86,7 @@ class MenuDropDown extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 onPressed: close,
                 child: Text(
-                  AppLocale.current.settings,
-                  style: inter14Medium,
-                ),
-              ),
-              CupertinoButton(
-                padding: EdgeInsets.zero,
-                onPressed: close,
-                child: Text(
-                  AppLocale.current.help_center,
+                  AppLocale.of(context).help_center,
                   style: inter14Medium,
                 ),
               ),
@@ -91,7 +94,7 @@ class MenuDropDown extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 child: Text(
-                  AppLocale.current.cancel_register,
+                  AppLocale.of(context).cancel_register,
                   style: inter14Medium.copyWith(color: razzmatazz),
                 ),
                 onPressed: () {

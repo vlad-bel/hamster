@@ -29,12 +29,10 @@ class PickDayFormSettings {
     selectAllField: FormControl<bool>(value: false),
   };
 
-  FormGroup buildForm() {
-    return FormGroup(
-      weekControls..addAll(otherControls),
-      validators: [emptyAddressee],
-    );
-  }
+  late final formGroup = FormGroup(
+    weekControls..addAll(otherControls),
+    validators: [emptyAddressee],
+  );
 
   Map<String, dynamic>? emptyAddressee(AbstractControl control) {
     final checkboxValues =

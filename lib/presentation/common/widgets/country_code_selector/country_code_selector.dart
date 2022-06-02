@@ -65,7 +65,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
           loading: () {
             return FormTextField(
               name: CountryCodeSelectorCubit.numberTextfield,
-              hint: AppLocale.current.select_country_code,
+              hint: AppLocale.of(context).select_country_code,
               readOnly: true,
             );
           },
@@ -92,7 +92,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
           error: (e) {
             return FormTextField(
               name: CountryCodeSelectorCubit.numberTextfield,
-              hint: AppLocale.current.select_country_code,
+              hint: AppLocale.of(context).select_country_code,
               readOnly: true,
             );
           },
@@ -104,7 +104,6 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
 
 class _Selector extends StatelessWidget {
   const _Selector({
-    super.key,
     required this.overlayEntry,
     required this.layerLink,
     required this.selectedCountry,
@@ -150,18 +149,18 @@ class _Selector extends StatelessWidget {
                 color: lynch,
               )
             : null,
-        hint: AppLocale.current.select_country_code,
+        hint: AppLocale.of(context).select_country_code,
         readOnly: selectedCountry == null,
         keyboardType: TextInputType.phone,
         inputFormatters: <TextInputFormatter>[
           FilteringTextInputFormatter.allow(RegExp('[0-9]')),
         ],
         validationMessages: (control) => {
-          ValidationMessage.required: AppLocale.current.required_field,
-          ValidationMessage.minLength: AppLocale.current.min_number(
+          ValidationMessage.required: AppLocale.of(context).required_field,
+          ValidationMessage.minLength: AppLocale.of(context).min_number(
             _getPhoneLenghtString(10),
           ),
-          ValidationMessage.maxLength: AppLocale.current.max_number(
+          ValidationMessage.maxLength: AppLocale.of(context).max_number(
             _getPhoneLenghtString(15),
           ),
         },

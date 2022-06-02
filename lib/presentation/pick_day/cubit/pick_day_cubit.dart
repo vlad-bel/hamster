@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:business_terminal/domain/model/errors/failures.dart';
-import 'package:business_terminal/domain/model/login/login_response.dart';
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/domain/temp/days_hours.dart';
 import 'package:business_terminal/presentation/pick_day/form_validation/pick_day_form_validation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -12,7 +12,7 @@ part 'pick_day_cubit.freezed.dart';
 
 @injectable
 class PickDayCubit extends Cubit<PickDayState> {
-  PickDayCubit() : super(PickDayState.initial());
+  PickDayCubit() : super(PickDayState.initial(hours: DaysHours.empty()));
 
   final formSettings = PickDayFormSettings();
 
@@ -81,13 +81,87 @@ class PickDayCubit extends Cubit<PickDayState> {
       }
     });
   }
+
+  void setInitialHours(DaysHours? hours) {
+    if (hours == null) return;
+
+    emit(state.copyWith(hours: state.hours));
+  }
+
+  void setOpeningHours({
+    required List<Map<String, String>> hours,
+  }) {
+    final time = _concatenateStrings(hours);
+
+    for (final day in formSettings.formGroup.controls.keys) {
+      if (day == PickDayFormSettings.selectAllField) {
+        continue;
+      }
+
+      if (formSettings.formGroup.control(day).value as bool) {
+        _setTime(day, time, state);
+      }
+    }
+
+    state.whenOrNull(
+      initial: (
+        oldHours,
+      ) {
+        emit(state.copyWith(hours: state.hours));
+      },
+    );
+    formSettings.formGroup.forEachChild((checkbox) {
+      checkbox.value = false;
+    });
+  }
+
+  void _setTime(String day, String value, PickDayState state) {
+    switch (day) {
+      case PickDayFormSettings.mondayField:
+        state.hours.monday = value;
+        break;
+      case PickDayFormSettings.tuesdayField:
+        state.hours.tuesday = value;
+        break;
+      case PickDayFormSettings.wednesdayField:
+        state.hours.wednesday = value;
+        break;
+      case PickDayFormSettings.thursdayField:
+        state.hours.thursday = value;
+        break;
+      case PickDayFormSettings.fridayField:
+        state.hours.friday = value;
+        break;
+      case PickDayFormSettings.saturdayField:
+        state.hours.saturday = value;
+        break;
+      case PickDayFormSettings.sundayField:
+        state.hours.sunday = value;
+        break;
+    }
+  }
+
+  String _concatenateStrings(List<Map<String, String>> str) {
+    final buffer = StringBuffer();
+
+    if (str.isEmpty) {
+      return AppLocale.current.closed;
+    }
+
+    for (var i = 0; i < str.length; i++) {
+      buffer.write('${str[i].keys.first} - ${str[i].values.first}');
+
+      if (i != str.length - 1) {
+        buffer.write(', ');
+      }
+    }
+
+    return buffer.toString();
+  }
 }
 
 @freezed
 class PickDayState with _$PickDayState {
-  const factory PickDayState.initial() = InitialPickDay;
-
-  const factory PickDayState.success(LoginResponse response) = SuccessPickDay;
-
-  const factory PickDayState.error(ApiFailure failure) = ErrorPickDay;
+  const factory PickDayState.initial({required DaysHours hours}) =
+      InitialPickDay;
 }

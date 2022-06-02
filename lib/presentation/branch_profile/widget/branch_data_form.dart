@@ -12,27 +12,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class BranchDataForm extends StatelessWidget {
-  const BranchDataForm({
+  BranchDataForm({
     Key? key,
-    required this.formSettings,
+    required this.formGroup,
     required this.paddingBetweenTextInputs,
     required this.branchSelectedFieldsMap,
     required this.company,
   }) : super(key: key);
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
+  final FormGroup formGroup;
   final RepCompany company;
 
-  final BranchProfileFormValidation formSettings;
+  final formSettings = BranchProfileFormValidation();
+
   final SizedBox paddingBetweenTextInputs;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ReactiveFormBuilder(
-          form: formSettings.buildForm,
+          form: () => formGroup,
           builder: (context, form, child) {
             fillUpPredefinedData(form);
 
@@ -40,21 +42,21 @@ class BranchDataForm extends StatelessWidget {
               children: [
                 FormTextField(
                   name: formSettings.kFieldBranchName,
-                  label: AppLocale.current.branch_name,
+                  label: AppLocale.of(context).branch_name,
                   validationMessages: (control) =>
                       formSettings.validationMessagesGeneric,
                 ),
                 paddingBetweenTextInputs,
                 FormTextField(
                   name: formSettings.kFieldStreet,
-                  label: AppLocale.current.street_house_number,
+                  label: AppLocale.of(context).street_house_number,
                   validationMessages: (control) =>
                       formSettings.validationMessagesGeneric,
                 ),
                 paddingBetweenTextInputs,
                 FormTextField(
                   name: formSettings.kFieldCity,
-                  label: AppLocale.current.zip_code_and_location,
+                  label: AppLocale.of(context).zip_code_and_location,
                   validationMessages: (control) =>
                       formSettings.validationMessagesGeneric,
                 ),
@@ -63,14 +65,14 @@ class BranchDataForm extends StatelessWidget {
                 paddingBetweenTextInputs,
                 FormTextField(
                   name: formSettings.kFieldWebsite,
-                  label: AppLocale.current.website_if_available,
+                  label: AppLocale.of(context).website_if_available,
                   validationMessages: (control) =>
                       formSettings.validationMessagesGeneric,
                 ),
                 paddingBetweenTextInputs,
                 FormTextField(
                   name: formSettings.kFieldPhone,
-                  label: AppLocale.current.telephone_number_if_available,
+                  label: AppLocale.of(context).telephone_number_if_available,
                   validationMessages: (control) =>
                       formSettings.validationMessagesGeneric,
                 ),

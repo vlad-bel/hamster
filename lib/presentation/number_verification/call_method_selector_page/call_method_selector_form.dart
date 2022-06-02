@@ -34,11 +34,11 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: AppLocale.current.confirm_number_title,
+          header: AppLocale.of(context).confirm_number_title,
           subHeader: RichText(
             text: TextSpan(
               style: inter14,
-              text: AppLocale.current.call_method1,
+              text: AppLocale.of(context).call_method1,
               children: [
                 TextSpan(
                   style: inter14Medium.copyWith(color: denim),
@@ -46,7 +46,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                 ),
                 TextSpan(
                   style: inter14,
-                  text: AppLocale.current.call_method2,
+                  text: AppLocale.of(context).call_method2,
                 ),
               ],
             ),
@@ -65,7 +65,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                   children: [
                     SelectorRect(
                       size: 160,
-                      title: AppLocale.current.sms,
+                      title: AppLocale.of(context).sms,
                       icon: Icons.sms,
                       choosed: state.smsSelected,
                       onTap: () {
@@ -75,7 +75,7 @@ class _CallMethodSelectorFormState extends State<CallMethodSelectorForm> {
                     const SizedBox(width: 28),
                     SelectorRect(
                       size: 160,
-                      title: AppLocale.current.phone_call,
+                      title: AppLocale.of(context).phone_call,
                       icon: Icons.call_outlined,
                       choosed: !state.smsSelected,
                       onTap: () {

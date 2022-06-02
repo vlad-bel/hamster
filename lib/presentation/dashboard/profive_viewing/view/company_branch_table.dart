@@ -1,111 +1,34 @@
-import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
-import 'package:business_terminal/domain/model/company/company.dart';
-import 'package:business_terminal/domain/model/company/rep_company.dart';
-import 'package:business_terminal/presentation/app/view/app.dart';
-import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/view/create_branch_profile_checkboxes_page.dart';
-import 'package:business_terminal/presentation/common/widgets/dashed_button/dashed_button.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/profile_view_table.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/control_panel/branch_table_control_table.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/profile_view_table_row.dart';
-import 'package:business_terminal/presentation/dashboard/profive_viewing/mock_repository/mock_company_repo.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
+import 'package:business_terminal/presentation/dashboard/profive_viewing/widget/company_branch_table_with_data.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/widget/profile_view_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompanyBranchTable extends StatelessWidget {
   const CompanyBranchTable({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: replace mock data (it's in DashboardCubit)
-    final company = CompanyRepositoryMock.getMockCompany();
-
     return ProfileViewContainer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const BranchTableControlPanel(),
-          ProfileViewTable(
-            sortable: true,
-            row: ProfileViewTableRow(
-              onPressed: () {},
-              companies: [
-                ///TODO remove mock data
-                ///get companies from backend
-                RepCompany(
-                  rep: Rep(
-                    name: 'test',
-                    avatar: '',
-                    surname: 'test',
-                    fillingProgress: 1,
-                  ),
-                  company: Company(
-                    companyName: 'Testcompany',
-                    streetName: 'Streetname',
-                    streetNumber: '1',
-                    postalCode: '36037',
-                    city: 'Fulda',
-                  ),
-                  branch: Branch(
-                    fillingProgress: 1,
-                  ),
-                ),
-                RepCompany(
-                  rep: Rep(
-                    name: 'test1',
-                    avatar: '',
-                    surname: 'test1',
-                    fillingProgress: 1,
-                  ),
-                  company: Company(
-                    companyName: 'Testcompany1',
-                    streetName: 'Streetname1',
-                    streetNumber: '2',
-                    postalCode: '36038',
-                    city: 'Berlin',
-                  ),
-                  branch: Branch(
-                    fillingProgress: 2,
-                  ),
-                ),
-                RepCompany(
-                  rep: Rep(
-                    name: 'test1',
-                    avatar: '',
-                    surname: 'test1',
-                    fillingProgress: 1,
-                  ),
-                  company: Company(
-                    companyName: 'Testcompany1',
-                    streetName: 'Streetname1',
-                    streetNumber: '2',
-                    postalCode: '36038',
-                    city: 'Berlin',
-                  ),
-                  branch: Branch(
-                    fillingProgress: 2,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          DashedButton(
-            onTap: () => onNavigateToBranchProfilePage(company),
-            label: AppLocale.of(context).add_branch,
-          ),
-        ],
+      child: BlocBuilder<DashboardCubit, DashboardState>(
+        builder: (context, state) {
+          return state.when(
+            init: (state) {
+              // TODO: fetch branchProfile and put here
+              return CompanyBranchTableWithData(
+                repCompany: state.repCompany,
+                branchProfile: state.branchProfilesList,
+              );
+            },
+            error: error,
+          );
+        },
       ),
     );
   }
 
-  void onNavigateToBranchProfilePage(RepCompany company) {
-    final args = {
-      CreateBranchProfileCheckboxesPage.paramRepCompany: company,
-    };
-
-    authNavigatorKey.currentState?.pushNamed(
-      CreateBranchProfileCheckboxesPage.path,
-      arguments: args,
-    );
+  Widget error(testCount, finansenOpen, administrationOpen, repCompany) {
+    return Center(child: Text('CompanyBranchTable -> DashboardCubit Error'));
   }
 }

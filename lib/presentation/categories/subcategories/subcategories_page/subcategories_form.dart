@@ -22,9 +22,9 @@ class SubcategoriesForm extends StatelessWidget {
         return OnboardingBackground(
           children: OnboardingWhiteContainer(
             header: OnboardingWhiteContainerHeader(
-              header: AppLocale.current.choose_main_category,
+              header: AppLocale.of(context).choose_main_category,
               subHeader: Text(
-                AppLocale.current.choose_main_category_descr,
+                AppLocale.of(context).choose_main_category_descr,
                 style: inter14,
               ),
             ),
@@ -48,12 +48,12 @@ class SubcategoriesForm extends StatelessWidget {
                         );
                       },
                     ) ??
-                    SizedBox(),
+                    const SizedBox(),
                 SizedBox(height: 32),
                 WhiteButton(
                   width: 500,
                   child: Text(
-                    AppLocale.current.return_button,
+                    AppLocale.of(context).return_button,
                     style: inter14.copyWith(
                       color: denim,
                     ),
