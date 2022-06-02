@@ -10,6 +10,7 @@ import 'package:business_terminal/presentation/branch_profile/widget/branch_data
 import 'package:business_terminal/presentation/branch_profile/widget/branch_profile_working_hours_table.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/branch_top_photo_and_logo_pager.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/pos_list_item.dart';
+import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/branch_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
@@ -58,18 +59,6 @@ class _BranchProfileView extends StatelessWidget {
       height: verticalPaddingBetweenTextInputs,
     );
 
-    final appBar = Padding(
-      padding: const EdgeInsets.only(bottom: 46),
-      child: HeaderAppBarWidget(
-        trailing: ActionButtonBlue(
-          isEnabled: true,
-          onPressed: () {
-            context.read<BranchProfileCubit>().createBranch();
-          },
-        ),
-      ),
-    );
-
     return BlocConsumer<BranchProfileCubit, BranchProfileState>(
       listener: (context, state) {
         state.whenOrNull(
@@ -78,17 +67,62 @@ class _BranchProfileView extends StatelessWidget {
             subcategories,
             branchImages,
             avatarImages,
+            hours,
+            isCreateBranchButtonEnabled,
           ) {
             Navigator.popUntil(
               context,
               (route) => route.settings.name == DashboardPage.path,
             );
           },
+          error: (
+              category,
+              subcategories,
+              branchImages,
+              avatarImages,
+              hours,
+              isCreateBranchButtonEnabled,
+          ){
+            SnackBarManager.showError(category!);
+          }
         );
       },
       builder: (BuildContext context, state) {
         return OnboardingBackground(
-          customAppBar: appBar,
+          customAppBar: Padding(
+            padding: const EdgeInsets.only(bottom: 46),
+            child: BlocBuilder<BranchProfileCubit, BranchProfileState>(
+              builder: (context, state) {
+                return state.whenOrNull(
+                      init: (
+                        category,
+                        subcategories,
+                        branchImages,
+                        avatarImages,
+                        hours,
+                        isCreateBranchButtonEnabled,
+                      ) {
+                        return HeaderAppBarWidget(
+                          trailing: ActionButtonBlue(
+                            isEnabled: true,
+
+                            // TODO: check why bellow lines has runtime error
+                            /*context
+                                    .read<BranchProfileCubit>()
+                                    .isCreateBranchButtonEnabled() ??
+                                false,*/
+
+                            onPressed: () {
+                              context.read<BranchProfileCubit>().createBranch();
+                            },
+                          ),
+                        );
+                      },
+                    ) ??
+                    Text(AppLocale.of(context).error);
+              },
+            ),
+          ),
           children: Column(
             children: [
               BranchProfileContainerWhite(
