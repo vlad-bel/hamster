@@ -154,7 +154,7 @@ class _BranchTopPhotoAndLogoPagerState
               ),
             ),
             Transform.translate(
-              offset: Offset(8, -12),
+              offset: const Offset(8, -12),
               child: Align(
                 alignment: Alignment.topRight,
                 child: EditButton(

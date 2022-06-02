@@ -20,6 +20,7 @@ import 'package:business_terminal/presentation/common/cropper_page/cropper_page.
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/dashboard/change_password/view/change_password_page.dart';
+import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/edit_personal_data_page.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_add_logo/view/profile_add_logo.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
@@ -57,6 +58,9 @@ class AuthorizedState extends AppState {
                 break;
               case AddPaymentPage.path:
                 page = AddPaymentPage();
+                break;
+              case EditPersonalDataPage.path:
+                page = const EditPersonalDataPage();
                 break;
               case CreateBranchProfileCheckboxesPage.path:
                 final company =
