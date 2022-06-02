@@ -196,5 +196,7 @@
   "edit_company_logo" : "Bearbeiten Sie Ihr Unternehmenslogo.",
   "choose_background_color" : "Wählen Sie die passende Hintergrundfarbe aus.",
   "close" : "SchliEßEn",
-  "palette" : "Farbenskala"
+  "palette" : "Farbenskala",
+  "website_valigation": "Die Website muss nach der folgenden Vorlage 'website.net' geschrieben werden",
+  "phone_validation": "Die angegebene Telefonnummer ist ungültig. Bitte versuchen Sie eine andere"
 }
