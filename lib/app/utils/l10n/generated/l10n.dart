@@ -391,7 +391,7 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(int length) {
+  String min_number(Object length) {
     return Intl.message(
       'Maximum number $length characters',
       name: 'min_number',
@@ -401,7 +401,7 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(int length) {
+  String max_number(Object length) {
     return Intl.message(
       'Minimum number $length characters',
       name: 'max_number',
@@ -911,7 +911,7 @@ class S {
   }
 
   /// `Number: {number}`
-  String branch_id(int number) {
+  String branch_id(Object number) {
     return Intl.message(
       'Number: $number',
       name: 'branch_id',
@@ -1321,7 +1321,7 @@ class S {
   }
 
   /// `Entrance doors amount {number}`
-  String entrances_count(int number) {
+  String entrances_count(Object number) {
     return Intl.message(
       'Entrance doors amount $number',
       name: 'entrances_count',
@@ -1735,6 +1735,26 @@ class S {
     return Intl.message(
       'Der eingegebene Code war ungültig.',
       name: 'forgetPasswordCodeIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The web site must be written according to the following template 'website.net'`
+  String get website_valigation {
+    return Intl.message(
+      'The web site must be written according to the following template \'website.net\'',
+      name: 'website_valigation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The phone number provided is invalid. Please try a different one`
+  String get phone_validation {
+    return Intl.message(
+      'The phone number provided is invalid. Please try a different one',
+      name: 'phone_validation',
       desc: '',
       args: [],
     );
