@@ -1350,121 +1350,121 @@ class S {
     );
   }
 
-  /// `Ersetzen Sie Ihr altes Passwort.`
+  /// `Replace your old password.`
   String get changePasswordHeader {
     return Intl.message(
-      'Ersetzen Sie Ihr altes Passwort.',
+      'Replace your old password.',
       name: 'changePasswordHeader',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren`
+  /// `Now replace your old, obsolete password with a new one to keep your account secure`
   String get changePasswordSubHeader {
     return Intl.message(
-      'Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren',
+      'Now replace your old, obsolete password with a new one to keep your account secure',
       name: 'changePasswordSubHeader',
       desc: '',
       args: [],
     );
   }
 
-  /// `Aktuelles Passwort`
+  /// `Current password`
   String get currentPassword {
     return Intl.message(
-      'Aktuelles Passwort',
+      'Current password',
       name: 'currentPassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:`
+  /// `Your password must meet at least \nthe following criteria:`
   String get passwordHintTitle {
     return Intl.message(
-      'Dein Passwort muss mindestens die \nnachfolgenden Kriterien erfüllen:',
+      'Your password must meet at least \nthe following criteria:',
       name: 'passwordHintTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `10 Zeichen lang`
+  /// `10 characters long`
   String get hasTenCharacters {
     return Intl.message(
-      '10 Zeichen lang',
+      '10 characters long',
       name: 'hasTenCharacters',
       desc: '',
       args: [],
     );
   }
 
-  /// `1 Kleinbuchstabe`
+  /// `1 lowercase letter`
   String get hasOneLoweCaseLetter {
     return Intl.message(
-      '1 Kleinbuchstabe',
+      '1 lowercase letter',
       name: 'hasOneLoweCaseLetter',
       desc: '',
       args: [],
     );
   }
 
-  /// `1 Großbuchstabe`
+  /// `1 Uppercase Letter`
   String get hasOneUpperCaseLetter {
     return Intl.message(
-      '1 Großbuchstabe',
+      '1 Uppercase Letter',
       name: 'hasOneUpperCaseLetter',
       desc: '',
       args: [],
     );
   }
 
-  /// `1 Zahl`
+  /// `1 number`
   String get hasOneSpecialCharacter {
     return Intl.message(
-      '1 Zahl',
+      '1 number',
       name: 'hasOneSpecialCharacter',
       desc: '',
       args: [],
     );
   }
 
-  /// `Hinweis schließen`
+  /// `Close Hint`
   String get closeHint {
     return Intl.message(
-      'Hinweis schließen',
+      'Close Hint',
       name: 'closeHint',
       desc: '',
       args: [],
     );
   }
 
-  /// `Passwort geändert.`
+  /// `Password changed.`
   String get passwordChanged {
     return Intl.message(
-      'Passwort geändert.',
+      'Password changed.',
       name: 'passwordChanged',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.`
+  /// `You have successfully replaced your old password with a new one and can now log in with it.`
   String get passwordChangedDescription {
     return Intl.message(
-      'Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.',
+      'You have successfully replaced your old password with a new one and can now log in with it.',
       name: 'passwordChangedDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Falsches Passwort`
-  String get falschesPasswort {
+  /// `wrong password`
+  String get wrongPassword {
     return Intl.message(
-      'Falsches Passwort',
-      name: 'falschesPasswort',
+      'wrong password',
+      name: 'wrongPassword',
       desc: '',
       args: [],
     );
@@ -1530,200 +1530,200 @@ class S {
     );
   }
 
-  /// `Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.`
+  /// `Please double check the current password you entered as it does not match our data.`
   String get passwordIncorrectDescription {
     return Intl.message(
-      'Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt.',
+      'Please double check the current password you entered as it does not match our data.',
       name: 'passwordIncorrectDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ersetzen Sie Ihr altes Passwort.`
+  /// `Replace your old password.`
   String get confirmNewPasswordTitle {
     return Intl.message(
-      'Ersetzen Sie Ihr altes Passwort.',
+      'Replace your old password.',
       name: 'confirmNewPasswordTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können.`
+  /// `Now replace your old, obsolete password with a new one to be able to access your account again without problems.`
   String get confirmNewPasswordSubtitle {
     return Intl.message(
-      'Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können.',
+      'Now replace your old, obsolete password with a new one to be able to access your account again without problems.',
       name: 'confirmNewPasswordSubtitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Passwort geändert.`
+  /// `Password changed.`
   String get newPasswordInstalledTitle {
     return Intl.message(
-      'Passwort geändert.',
+      'Password changed.',
       name: 'newPasswordInstalledTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sie haben erfolgreich Ihr altes durch ein neues. Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.`
+  /// `You have successfully replaced your old password with a new one. You can now log in with it.`
   String get newPasswordIntalledDescription {
     return Intl.message(
-      'Sie haben erfolgreich Ihr altes durch ein neues. Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.',
+      'You have successfully replaced your old password with a new one. You can now log in with it.',
       name: 'newPasswordIntalledDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sie erhalten gleich eine SMS an die mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpfte Nummer`
+  /// `You will shortly receive an SMS to the number associated with the user account, example@company.de`
   String get forgetPasswordSmsSubtitle1 {
     return Intl.message(
-      'Sie erhalten gleich eine SMS an die mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpfte Nummer',
+      'You will shortly receive an SMS to the number associated with the user account, example@company.de',
       name: 'forgetPasswordSmsSubtitle1',
       desc: '',
       args: [],
     );
   }
 
-  /// `. Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen.`
+  /// `. Please enter the 5-digit code to reset your password.`
   String get forgetPasswordSmsSubtitle2 {
     return Intl.message(
-      '. Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen.',
+      '. Please enter the 5-digit code to reset your password.',
       name: 'forgetPasswordSmsSubtitle2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sie erhalten gleich einen Anruf mit automatischer Sprachansage auf der mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpften Nummer`
+  /// `You will soon receive a voice prompt call to the number associated with the user account, example@company.com`
   String get forgetPasswordPhoneCallSubtitle1 {
     return Intl.message(
-      'Sie erhalten gleich einen Anruf mit automatischer Sprachansage auf der mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpften Nummer',
+      'You will soon receive a voice prompt call to the number associated with the user account, example@company.com',
       name: 'forgetPasswordPhoneCallSubtitle1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen.`
+  /// `Please enter the 5-digit code to reset your password.`
   String get forgetPasswordPhoneCallSubtitle2 {
     return Intl.message(
-      'Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen.',
+      'Please enter the 5-digit code to reset your password.',
       name: 'forgetPasswordPhoneCallSubtitle2',
       desc: '',
       args: [],
     );
   }
 
-  /// `E-Mail erneut versenden`
+  /// `Resend email`
   String get resetEmail {
     return Intl.message(
-      'E-Mail erneut versenden',
+      'Resend email',
       name: 'resetEmail',
       desc: '',
       args: [],
     );
   }
 
-  /// `SMS erneut versenden`
+  /// `Resend SMS`
   String get resetSms {
     return Intl.message(
-      'SMS erneut versenden',
+      'Resend SMS',
       name: 'resetSms',
       desc: '',
       args: [],
     );
   }
 
-  /// `Anruf erneut durchführen`
+  /// `Retry call`
   String get resetPhoneCall {
     return Intl.message(
-      'Anruf erneut durchführen',
+      'Retry call',
       name: 'resetPhoneCall',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sie erhalten in Kürze erneut eine SMS von uns`
-  String get sieErhaltenInKrzeErneutEineSmsVonUns {
+  /// `You will shortly receive another SMS from us`
+  String get smsSentDescription {
     return Intl.message(
-      'Sie erhalten in Kürze erneut eine SMS von uns',
-      name: 'sieErhaltenInKrzeErneutEineSmsVonUns',
+      'You will shortly receive another SMS from us',
+      name: 'smsSentDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sie erhalten in Kürze erneut eine SMS von uns`
+  /// `You will receive another SMS from us shortly`
   String get smsResent {
     return Intl.message(
-      'Sie erhalten in Kürze erneut eine SMS von uns',
+      'You will receive another SMS from us shortly',
       name: 'smsResent',
       desc: '',
       args: [],
     );
   }
 
-  /// `Wir werden Sie in Kürze erneut anrufen.`
+  /// `We will call you again shortly.`
   String get callIsOrdered {
     return Intl.message(
-      'Wir werden Sie in Kürze erneut anrufen.',
+      'We will call you again shortly.',
       name: 'callIsOrdered',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sie erhalten in Kürze erneut eine E-Mail von uns.`
+  /// `You will receive another email from us shortly.`
   String get emailCodeSent {
     return Intl.message(
-      'Sie erhalten in Kürze erneut eine E-Mail von uns.',
+      'You will receive another email from us shortly.',
       name: 'emailCodeSent',
       desc: '',
       args: [],
     );
   }
 
-  /// `Der eingegebene Code war ungültig.`
+  /// `The code you entered was invalid.`
   String get forgetPasswordCodeIncorrect {
     return Intl.message(
-      'Der eingegebene Code war ungültig.',
+      'The code you entered was invalid.',
       name: 'forgetPasswordCodeIncorrect',
       desc: '',
       args: [],
     );
   }
 
-  /// `Vorname`
+  /// `First Name`
   String get firstName {
     return Intl.message(
-      'Vorname',
+      'First Name',
       name: 'firstName',
       desc: '',
       args: [],
     );
   }
 
-  /// `Nachname`
+  /// `Last Name`
   String get lastName {
     return Intl.message(
-      'Nachname',
+      'Last Name',
       name: 'lastName',
       desc: '',
       args: [],
     );
   }
 
-  /// `Telefonnummer`
+  /// `Phone Number`
   String get phoneNumber {
     return Intl.message(
-      'Telefonnummer',
+      'Phone Number',
       name: 'phoneNumber',
       desc: '',
       args: [],

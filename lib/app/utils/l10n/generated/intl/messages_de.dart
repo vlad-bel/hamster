@@ -136,8 +136,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sie erhalten in Kürze erneut eine E-Mail von uns."),
         "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Fehler"),
-        "falschesPasswort":
-            MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
         "finance": MessageLookupByLibrary.simpleMessage("Finanzen"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finanzen1"),
         "firstName": MessageLookupByLibrary.simpleMessage("Vorname"),
@@ -255,11 +253,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "select_week_days": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie zuerst den/die Wochentag/e aus, deren Öffnungszeiten Sie bearbeiten wollen"),
         "settings": MessageLookupByLibrary.simpleMessage("Einstellungen"),
-        "sieErhaltenInKrzeErneutEineSmsVonUns":
-            MessageLookupByLibrary.simpleMessage(
-                "Sie erhalten in Kürze erneut eine SMS von uns"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "smsResent": MessageLookupByLibrary.simpleMessage(
+            "Sie erhalten in Kürze erneut eine SMS von uns"),
+        "smsSentDescription": MessageLookupByLibrary.simpleMessage(
             "Sie erhalten in Kürze erneut eine SMS von uns"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(
             "Der eingegebene Code war ungültig."),
@@ -295,6 +292,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Webseite (falls vorhanden)"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Mittwoch"),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
+        "wrongPassword":
+            MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
         "zip_code_and_location":
             MessageLookupByLibrary.simpleMessage("Postleitzahl und Ort")
       };
