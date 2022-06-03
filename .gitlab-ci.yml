@@ -4,7 +4,7 @@ stages:
   - deploy
 
 variables:
-  ENVIRONMENT: www
+  ENVIRONMENT: dev
   LOCAL_PATH: 'build/web/'
 
 clone:
