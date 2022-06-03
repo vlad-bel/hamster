@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.0.15
   image_picker: ^0.8.5+3
   crop_your_image: ^0.7.2
+  uuid: ^3.0.6
 
   # UI:
   flutter_svg: ^1.0.3
@@ -50,7 +51,7 @@ dependencies:
   animated_custom_dropdown: ^1.2.0
   hamster_widgets:
     git:
-      url: git@git.andersenlab.com:hamster/hamster-widgets.git
+      url: https://git.andersenlab.com/hamster/hamster-widgets.git
       ref: develop
   cached_network_image:
   loader_overlay: ^2.0.6
@@ -61,6 +62,7 @@ dependencies:
   dotted_border: ^2.0.0+2
   json_annotation: ^4.5.0
   flex_color_picker: ^2.5.0
+  file_picker: ^3.0.4
 
 dev_dependencies:
   bloc_test: ^9.0.3
@@ -82,7 +84,6 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/logos/
-    - assets/translations/
     - assets/images/flags/
 
 flutter_intl:

@@ -21,15 +21,13 @@ class AddPosPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt.get<AddPosCubit>(),
-      child: AddPosForm(),
+      child: const AddPosForm(),
     );
   }
 }
 
 class AddPosForm extends StatelessWidget {
-  AddPosForm({super.key});
-
-  final formSettings = AddPosFormSettings();
+  const AddPosForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class AddPosForm extends StatelessWidget {
           subHeader: Text(AppLocale.of(context).help_us_connect_branch),
         ),
         body: ReactiveFormBuilder(
-          form: formSettings.buildForm,
+          form: context.read<AddPosCubit>().formSettings.buildForm,
           builder: (
             BuildContext context,
             FormGroup formGroup,
@@ -50,32 +48,37 @@ class AddPosForm extends StatelessWidget {
               children: [
                 const SizedBox(height: 32),
                 FormTextField(
-                  name: AddPosFormSettings.cashRegisterField,
+                  name: AddPosFormSettings.cashRegisterManufacturerField,
                   hint: AppLocale.of(context).cash_register_manufacturer,
                   label: AppLocale.of(context).cash_register_manufacturer,
-                  validationMessages: (control) =>
-                      formSettings.validationMessageCashRegister,
+                  validationMessages: (control) => context
+                      .read<AddPosCubit>()
+                      .formSettings
+                      .validationMessageCashRegister,
                 ),
                 const SizedBox(height: 16),
                 FormTextField(
                   name: AddPosFormSettings.modelField,
                   hint: AppLocale.of(context).model_if_known,
                   label: AppLocale.of(context).model_if_known,
-                  validationMessages: (control) =>
-                      formSettings.validationMessageModel,
+                  validationMessages: (control) => context
+                      .read<AddPosCubit>()
+                      .formSettings
+                      .validationMessageModel,
                 ),
                 const SizedBox(height: 16),
                 DropDown(
                   formControlName: AddPosFormSettings.posNumberField,
                   itemsList: EntrancesCountGenerator.getEntrancesCountList(
                     entrancesMaxCount: AddPosFormSettings.kMaxPosCount,
+                    type: CounterType.till,
                   ),
                 ),
                 const SizedBox(height: 32),
                 FormConsumer(
-                  onTap: (form) {
-                    // TODO(dvakhnin): Form behaviour
-                  },
+                  onTap: (form) => Navigator.of(context).pop(
+                    context.read<AddPosCubit>().generatePos(form),
+                  ),
                 ),
               ],
             );

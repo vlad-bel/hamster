@@ -47,6 +47,7 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   streetNumber: '1',
                   postalCode: '36037',
                   city: 'Fulda',
+                  logos: [],
                 ),
                 branch: Branch(
                   fillingProgress: 1,
@@ -65,6 +66,7 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   streetNumber: '2',
                   postalCode: '36038',
                   city: 'Berlin',
+                  logos: [],
                 ),
                 branch: Branch(
                   fillingProgress: 2,
@@ -83,6 +85,7 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   streetNumber: '2',
                   postalCode: '36038',
                   city: 'Berlin',
+                  logos: [],
                 ),
                 branch: Branch(
                   fillingProgress: 2,
@@ -100,7 +103,9 @@ class CompanyBranchTableWithData extends StatelessWidget {
     );
   }
 
-  void onNavigateToBranchProfilePage(RepCompany? company) {
+  void onNavigateToBranchProfilePage(
+    RepCompany? company,
+  ) {
     final args = {
       CreateBranchProfileCheckboxesPage.paramRepCompany: company,
     };

@@ -22,7 +22,7 @@ class ProfileViewingCubit extends Cubit<ProfileViewingState> {
   Future<void> getInitialData() async {
     try {
       emit(
-        ProfileViewingState.loading(),
+        const ProfileViewingState.loading(),
       );
       final repCompany = await getIt.get<CompanyUsecase>().getRepCompany();
       emit(
