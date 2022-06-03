@@ -4,7 +4,7 @@ stages:
   - deploy
 
 variables:
-  ENVIRONMENT: dev
+  ENVIRONMENT: www
   LOCAL_PATH: 'build/web/'
 
 clone:
@@ -13,7 +13,6 @@ clone:
   tags:
     - hamster
   script:
-    - echo "$LOCAL_PATH - $ENVIRONMENT$S3_BUCKET_NAME"
     - git clone https://$GIT_USERNAME:$GIT_PASSWORD@bitbucket.org/raikjakschis/hamster_widgets.git
     - cd hamster_widgets && git checkout develop
   only:
