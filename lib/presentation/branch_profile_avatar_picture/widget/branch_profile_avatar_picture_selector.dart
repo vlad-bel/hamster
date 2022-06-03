@@ -46,7 +46,7 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
                 children: [
                   AvatarSelectedPicture(
                     path: state.selectedImage,
-                    showEditButton: showEditButton,
+                    onPressed: () {},
                   ),
                   loader,
                 ],

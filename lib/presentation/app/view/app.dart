@@ -81,7 +81,7 @@ class App extends StatelessWidget {
               );
             }
 
-            return HamsterApp(
+            return const HamsterApp(
               home: SlashPage(),
             );
           },

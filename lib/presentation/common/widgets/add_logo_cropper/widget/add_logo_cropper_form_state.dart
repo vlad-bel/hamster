@@ -7,7 +7,7 @@ part 'add_logo_cropper_form_state.freezed.dart';
 class AddLogoCropperFormState with _$AddLogoCropperFormState {
   const factory AddLogoCropperFormState.hide({
     required String text,
-  }) = HideAddLogoCropperFormState;
+  }) = _$HideAddLogoCropperFormState;
 
   const factory AddLogoCropperFormState.init({
     required String text,

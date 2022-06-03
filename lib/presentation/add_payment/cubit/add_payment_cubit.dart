@@ -8,7 +8,7 @@ part 'add_payment_cubit.freezed.dart';
 
 @injectable
 class AddPaymentCubit extends Cubit<AddPaymentState> {
-  AddPaymentCubit() : super(AddPaymentState.initial());
+  AddPaymentCubit() : super(const AddPaymentState.initial());
 }
 
 @freezed

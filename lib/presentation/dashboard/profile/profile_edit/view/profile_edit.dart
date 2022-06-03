@@ -4,7 +4,9 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/add_payment/form_validation/add_payment_form_validation.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/widget/avatar_selected_picture.dart';
@@ -173,7 +175,7 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                                             countrySelectorCubit,
                                       ),
                                       loading: () {
-                                        return Center(
+                                        return const Center(
                                           child: CircularProgressIndicator(),
                                         );
                                       },
@@ -212,8 +214,6 @@ class _ProfileEditContent extends StatefulWidget {
 }
 
 class _ProfileEditContentState extends State<_ProfileEditContent> {
-  final PageController controller = PageController();
-
   @override
   Widget build(BuildContext context) {
     final profileEditCubit = context.read<ProfileEditCubit>();
@@ -247,6 +247,18 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                     const SizedBox(height: 30),
                     Center(
                       child: BlocBuilder<ProfileEditCubit, ProfileEditState>(
+                        buildWhen: (context, state) {
+                          return state.maybeWhen(
+                            imagesAdded: (
+                              company,
+                              profileEditFormSettings,
+                              images,
+                            ) =>
+                                true,
+                            initial: (company, settings) => true,
+                            orElse: () => false,
+                          );
+                        },
                         builder: (context, state) {
                           return state.maybeWhen(
                             imagesAdded: (
@@ -254,84 +266,24 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                               profileEditFormSettings,
                               images,
                             ) {
-                              return Stack(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (images.length > 1)
-                                        InkWell(
-                                          onTap: () async {
-                                            await controller.previousPage(
-                                              duration:
-                                                  Duration(milliseconds: 1),
-                                              curve: Curves.easeIn,
-                                            );
-                                            setState(() {});
-                                          },
-                                          child: Icon(
-                                            Icons.arrow_back_ios,
-                                            color: lynch,
-                                            size: 32,
-                                          ),
-                                        ),
-                                      SizedBox(
-                                        width: 200,
-                                        height: 200,
-                                        child: PageView.builder(
-                                          itemCount: images.length,
-                                          controller: controller,
-                                          itemBuilder: (
-                                            BuildContext context,
-                                            int index,
-                                          ) {
-                                            return AvatarSelectedPicture(
-                                              path: images[index].imageBytes,
-                                              showEditButton: true,
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                      if (images.length > 1)
-                                        InkWell(
-                                          onTap: () async {
-                                            await controller.nextPage(
-                                              duration:
-                                                  Duration(milliseconds: 1),
-                                              curve: Curves.easeIn,
-                                            );
-                                            setState(() {});
-                                          },
-                                          child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: lynch,
-                                            size: 32,
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                  Positioned.fill(
-                                    child: Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Container(
-                                        padding: EdgeInsets.all(8),
-                                        color: white,
-                                        child: FutureBuilder(
-                                          future: Future.value(true),
-                                          builder: (
-                                            BuildContext context,
-                                            AsyncSnapshot<void> snap,
-                                          ) {
-                                            return Text(
-                                              '${(controller.page?.round() ?? 0) + 1} / ${images.length}',
-                                              style: inter14,
-                                            );
-                                          },
-                                        ),
-                                      ),
+                              return AppLogoViewer(
+                                images: images,
+                                onPressed: () async {
+                                  final result = await authNavigatorKey
+                                      .currentState
+                                      ?.pushNamed<List<AddedProfileLogoModel>>(
+                                    ProfileAddLogoPage.path,
+                                    arguments: ProfileAddLogoArguments(
+                                      files: images,
                                     ),
-                                  ),
-                                ],
+                                  );
+                                  if (result != null) {
+                                    await profileEditCubit.addImages(
+                                      result,
+                                      withUpload: true,
+                                    );
+                                  }
+                                },
                               );
                             },
                             orElse: () {
@@ -341,10 +293,14 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                       .currentState
                                       ?.pushNamed<List<AddedProfileLogoModel>>(
                                     ProfileAddLogoPage.path,
+                                    arguments: ProfileAddLogoArguments(
+                                      files: [],
+                                    ),
                                   );
                                   if (result != null) {
                                     await profileEditCubit.addImages(
                                       result,
+                                      withUpload: true,
                                     );
                                   }
                                 },
@@ -388,7 +344,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                       label: AppLocale.of(context).street_hint,
                                     ),
                                   ),
-                                  SizedBox(width: 16),
+                                  const SizedBox(width: 16),
                                   Flexible(
                                     child: FormTextField(
                                       name: ProfileEditFormSettings
@@ -411,7 +367,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                       label: AppLocale.of(context).post_hint,
                                     ),
                                   ),
-                                  SizedBox(width: 16),
+                                  const SizedBox(width: 16),
                                   Flexible(
                                     flex: 3,
                                     child: FormTextField(
@@ -527,6 +483,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                       color: white,
                     ),
                     child: PaymentInfo(
+                      addPaymentFormSettings: AddPaymentFormSettings(),
                       accountOwner: profileEditCubit.getControlValue(
                             ProfileEditFormSettings.kAccountOwner,
                           ) ??
@@ -539,6 +496,10 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                         final result = await Navigator.pushNamed(
                           context,
                           AddPaymentPage.path,
+                          arguments: AddPaymentArguments(
+                            addPaymentArguments:
+                                profileEditCubit.addPaymentFormSettings,
+                          ),
                         ) as Map<String, String>?;
 
                         if (result == null) return;
@@ -550,6 +511,120 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
               ),
             ),
           ],
+        ),
+      ],
+    );
+  }
+}
+
+// TODO(b.nurmoldanov) extract to file
+class AppLogoViewer extends StatefulWidget {
+  const AppLogoViewer({
+    Key? key,
+    required this.images,
+    required this.onPressed,
+  }) : super(key: key);
+
+  final List<AppFile> images;
+  final VoidCallback onPressed;
+
+  @override
+  State<AppLogoViewer> createState() => _AppLogoViewerState();
+}
+
+class _AppLogoViewerState extends State<AppLogoViewer> {
+  final PageController controller = PageController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (widget.images.length > 1)
+              InkWell(
+                onTap: () async {
+                  await controller.previousPage(
+                    duration: const Duration(
+                      milliseconds: 1,
+                    ),
+                    curve: Curves.easeIn,
+                  );
+                  setState(() {});
+                },
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  color: lynch,
+                  size: 32,
+                ),
+              ),
+            SizedBox(
+              width: 200,
+              height: 200,
+              child: PageView.builder(
+                itemCount: widget.images.length,
+                controller: controller,
+                itemBuilder: (
+                  BuildContext context,
+                  int index,
+                ) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(250),
+                      color: widget.images[index].color != null &&
+                              widget.images[index].color?.length == 6
+                          ? Color(
+                              int.parse('0xFF${widget.images[index].color}'))
+                          : Colors.transparent,
+                    ),
+                    child: AvatarSelectedPicture(
+                      path: widget.images[index].bytes,
+                      onPressed: widget.onPressed,
+                    ),
+                  );
+                },
+              ),
+            ),
+            if (widget.images.length > 1)
+              InkWell(
+                onTap: () async {
+                  await controller.nextPage(
+                    duration: const Duration(
+                      milliseconds: 1,
+                    ),
+                    curve: Curves.easeIn,
+                  );
+                  setState(() {});
+                },
+                child: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: lynch,
+                  size: 32,
+                ),
+              ),
+          ],
+        ),
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              color: white,
+              child: FutureBuilder(
+                future: Future.value(true),
+                builder: (
+                  BuildContext context,
+                  AsyncSnapshot<void> snap,
+                ) {
+                  return Text(
+                    '${(controller.page?.round() ?? 0) + 1} / ${widget.images.length}',
+                    style: inter14,
+                  );
+                },
+              ),
+            ),
+          ),
         ),
       ],
     );

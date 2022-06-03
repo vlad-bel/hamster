@@ -37,7 +37,6 @@ class AuthorizedState extends AppState {
   }) : super(
           onGenerateRoute: (RouteSettings settings) {
             Widget? page;
-            final params = settings.arguments as Map<String, dynamic>?;
 
             switch (settings.name) {
               case CompanyCreationPage.path:
@@ -53,7 +52,11 @@ class AuthorizedState extends AppState {
                 page = const ProfileEditPage();
                 break;
               case ProfileAddLogoPage.path:
-                page = const ProfileAddLogoPage();
+                final args = settings.arguments! as ProfileAddLogoArguments;
+
+                page = ProfileAddLogoPage(
+                  arguments: args,
+                );
                 return _buildHamsterPage<List<AddedProfileLogoModel>>(
                   page,
                   settings,
@@ -62,9 +65,14 @@ class AuthorizedState extends AppState {
                 page = const ChangePasswordPage();
                 break;
               case AddPaymentPage.path:
-                page = AddPaymentPage();
+                final args = settings.arguments! as AddPaymentArguments;
+
+                page = AddPaymentPage(
+                  addPaymentArguments: args,
+                );
                 break;
               case CreateBranchProfileCheckboxesPage.path:
+                final params = settings.arguments as Map<String, dynamic>?;
                 final company =
                     params?[CreateBranchProfileCheckboxesPage.paramRepCompany]
                         as RepCompany?;
@@ -82,6 +90,7 @@ class AuthorizedState extends AppState {
                 }
                 break;
               case BranchProfilePage.path:
+                final params = settings.arguments as Map<String, dynamic>?;
                 final data = params?[BranchProfilePage.paramData]
                     as CreateBranchProfileCheckboxesData?;
                 final company =
@@ -122,6 +131,7 @@ class AuthorizedState extends AppState {
                 );
                 break;
               case CropperPage.path:
+                final params = settings.arguments as Map<String, dynamic>?;
                 final imageForCrop =
                     params?[CropperPage.pImageForCrop] as Uint8List;
                 final header = params?[CropperPage.pHeader] as String;
@@ -176,62 +186,15 @@ class AuthorizedState extends AppState {
 
                 return _buildHamsterPage<Uint8List>(page, settings);
               case AddLogoCropperPage.path:
-                final imageForCrop =
-                    params?[AddLogoCropperPage.pImageForCrop] as Uint8List;
-                final header = params?[AddLogoCropperPage.pHeader] as String;
-                final subheader =
-                    params?[AddLogoCropperPage.pSubheader] as String;
-                final circleCrop =
-                    params?[AddLogoCropperPage.pCircleCrop] as bool;
+                final params = settings.arguments! as AddLogoCropperArguments;
 
-                appStorageService.setString(
-                  key: AddLogoCropperPage.pImageForCrop,
-                  value: String.fromCharCodes(imageForCrop),
-                );
-
-                appStorageService.setString(
-                  key: AddLogoCropperPage.pHeader,
-                  value: header,
-                );
-
-                appStorageService.setString(
-                  key: AddLogoCropperPage.pSubheader,
-                  value: subheader,
-                );
-                appStorageService.setString(
-                  key: AddLogoCropperPage.pCircleCrop,
-                  value: circleCrop.toString(),
-                );
-
-                final imageBytes = appStorageService
-                    .getString(key: AddLogoCropperPage.pImageForCrop)!
-                    .codeUnits;
-
-                final bytes = Uint8List.fromList(imageBytes);
-
-                page = buildPage(
-                  requiredParams: [
-                    AddLogoCropperPage.pImageForCrop,
-                    AddLogoCropperPage.pHeader,
-                    AddLogoCropperPage.pSubheader,
-                  ],
-                  child: AddLogoCropperPage(
-                    imageForCrop: bytes,
-                    header: appStorageService.getString(
-                      key: AddLogoCropperPage.pHeader,
-                    )!,
-                    subheader: appStorageService.getString(
-                      key: AddLogoCropperPage.pSubheader,
-                    )!,
-                    circleCrop: appStorageService.getString(
-                          key: AddLogoCropperPage.pCircleCrop,
-                        )! ==
-                        'true',
-                  ),
+                page = AddLogoCropperPage(
+                  addLogoCropperArguments: params,
                 );
 
                 return _buildHamsterPage<AddedProfileLogoModel>(page, settings);
               case PickDayPage.path:
+                final params = settings.arguments as Map<String, dynamic>?;
                 if (params?[PickDayPage.paramDays] != null) {
                   final hours = json.encode(
                     (params![PickDayPage.paramDays] as DaysHours?)
