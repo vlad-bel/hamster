@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -22,32 +24,50 @@ class AddLogoCubit extends Cubit<AddLogoState> {
     );
   }
 
-  Future<Uint8List?> pickImage(BuildContext context) async {
-    final result = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
+  Future<AppFile?> pickImage(BuildContext context) async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['png', 'jpeg', 'svg'],
+      withData: true,
     );
 
     if (result != null) {
-      final imageBytes = await result.readAsBytes();
-
-      return imageBytes;
+      final file = result.files.first;
+      return AppFile(
+        extension: file.extension,
+        bytes: file.bytes,
+        size: file.size,
+        name: '',
+      );
     }
 
     return null;
   }
 
   void setImage({
-    required AddedProfileLogoModel imageBytes,
+    required AddedProfileLogoModel addedProfileLogo,
   }) {
-    final images = List.of(state.images ?? <AddedProfileLogoModel>[])
-      ..insert(0, imageBytes);
+    if (state.images?.isNotEmpty == true) {
+      state.images?.add(addedProfileLogo);
 
-    return emit(
-      AddLogoState.init(
-        selectedImage: imageBytes,
-        images: images,
-      ),
-    );
+      return emit(
+        AddLogoState.init(
+          selectedImage: addedProfileLogo,
+          images: state.images,
+        ),
+      );
+    } else {
+      final images = <AddedProfileLogoModel>[]..insert(
+          0,
+          addedProfileLogo,
+        );
+      return emit(
+        AddLogoState.init(
+          selectedImage: addedProfileLogo,
+          images: images,
+        ),
+      );
+    }
   }
 
   void loading() {

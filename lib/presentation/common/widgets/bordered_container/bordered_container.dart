@@ -19,7 +19,7 @@ class BorderedContainer extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: Color(0x4d676f86),
+              color: const Color(0x4d676f86),
               width: 1.5,
             ),
             borderRadius: BorderRadius.circular(4),
@@ -27,7 +27,7 @@ class BorderedContainer extends StatelessWidget {
           child: child,
         ),
         Transform.translate(
-          offset: Offset(20, -8),
+          offset: const Offset(20, -8),
           child: ColoredBox(
             color: white,
             child: Padding(

@@ -4,6 +4,7 @@ import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/request_model/profile/profile_edit/profile_edit_request.dart';
+import 'package:business_terminal/presentation/add_payment/form_validation/add_payment_form_validation.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
@@ -21,6 +22,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
   ProfileEditCubit({
     required this.profileEditFormSettings,
     required this.profileEditUsecase,
+    required this.addPaymentFormSettings,
   }) : super(
           const ProfileEditState.loading(),
         );
@@ -29,7 +31,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
   final List<AddedProfileLogoModel> files = [];
   final ProfileEditFormSettings profileEditFormSettings;
   final ProfileEditUsecase profileEditUsecase;
-
+  final AddPaymentFormSettings addPaymentFormSettings;
   Future<void> addImages(List<AddedProfileLogoModel> images) async {
     emit(
       const ProfileEditState.loading(),
@@ -51,7 +53,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
 
   Future<void> updatePaymentData(Map<String, String> values) async {
     emit(
-      ProfileEditState.loading(),
+      const ProfileEditState.loading(),
     );
     _setControlValue(
       ProfileEditFormSettings.kAccountOwner,
@@ -85,7 +87,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
       );
 
       emit(
-        ProfileEditState.loading(),
+        const ProfileEditState.loading(),
       );
       _setControlValue(
         ProfileEditFormSettings.kStreetField,
@@ -225,7 +227,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
       state.whenOrNull(
         initial: (company, profileEditFormSettings) {
           emit(
-            ProfileEditState.success(),
+            const ProfileEditState.success(),
           );
           emit(
             ProfileEditState.initial(
@@ -243,6 +245,12 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
         ),
       );
     }
+  }
+
+  String? getAddPaymentControlValue(
+    String key,
+  ) {
+    return addPaymentFormSettings.controls[key]?.value.toString();
   }
 
   String? getControlValue(

@@ -1,4 +1,5 @@
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo/cubit/add_logo_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
@@ -30,7 +31,12 @@ class AddLogoRoundImageCell extends StatelessWidget {
                   width: 50,
                   height: 50,
                   child: DynamicBranchImage(
-                    path: imagePath.imageBytes,
+                    path: AppFile(
+                      size: null,
+                      extension: null,
+                      name: null,
+                      bytes: imagePath.imageBytes,
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),

@@ -5,6 +5,7 @@ import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/generated/assets.dart';
+import 'package:business_terminal/presentation/add_payment/form_validation/add_payment_form_validation.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/widget/avatar_selected_picture.dart';
@@ -173,7 +174,7 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                                             countrySelectorCubit,
                                       ),
                                       loading: () {
-                                        return Center(
+                                        return const Center(
                                           child: CircularProgressIndicator(),
                                         );
                                       },
@@ -263,13 +264,14 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                         InkWell(
                                           onTap: () async {
                                             await controller.previousPage(
-                                              duration:
-                                                  Duration(milliseconds: 1),
+                                              duration: const Duration(
+                                                milliseconds: 1,
+                                              ),
                                               curve: Curves.easeIn,
                                             );
                                             setState(() {});
                                           },
-                                          child: Icon(
+                                          child: const Icon(
                                             Icons.arrow_back_ios,
                                             color: lynch,
                                             size: 32,
@@ -296,13 +298,14 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                         InkWell(
                                           onTap: () async {
                                             await controller.nextPage(
-                                              duration:
-                                                  Duration(milliseconds: 1),
+                                              duration: const Duration(
+                                                milliseconds: 1,
+                                              ),
                                               curve: Curves.easeIn,
                                             );
                                             setState(() {});
                                           },
-                                          child: Icon(
+                                          child: const Icon(
                                             Icons.arrow_forward_ios,
                                             color: lynch,
                                             size: 32,
@@ -314,7 +317,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                     child: Align(
                                       alignment: Alignment.bottomCenter,
                                       child: Container(
-                                        padding: EdgeInsets.all(8),
+                                        padding: const EdgeInsets.all(8),
                                         color: white,
                                         child: FutureBuilder(
                                           future: Future.value(true),
@@ -388,7 +391,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                       label: AppLocale.of(context).street_hint,
                                     ),
                                   ),
-                                  SizedBox(width: 16),
+                                  const SizedBox(width: 16),
                                   Flexible(
                                     child: FormTextField(
                                       name: ProfileEditFormSettings
@@ -411,7 +414,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                       label: AppLocale.of(context).post_hint,
                                     ),
                                   ),
-                                  SizedBox(width: 16),
+                                  const SizedBox(width: 16),
                                   Flexible(
                                     flex: 3,
                                     child: FormTextField(
@@ -527,6 +530,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                       color: white,
                     ),
                     child: PaymentInfo(
+                      addPaymentFormSettings: AddPaymentFormSettings(),
                       accountOwner: profileEditCubit.getControlValue(
                             ProfileEditFormSettings.kAccountOwner,
                           ) ??
@@ -539,6 +543,10 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                         final result = await Navigator.pushNamed(
                           context,
                           AddPaymentPage.path,
+                          arguments: AddPaymentArguments(
+                            addPaymentArguments:
+                                profileEditCubit.addPaymentFormSettings,
+                          ),
                         ) as Map<String, String>?;
 
                         if (result == null) return;

@@ -22,7 +22,6 @@ class BranchProfileFormValidation {
   };
 
   final phoneNumValidationMessage = {
-
     ///need make dynamic valigation
     ///that depended from countrycodes
     ValidationMessage.maxLength: AppLocale.current.max_length_reached,
@@ -102,7 +101,7 @@ class OptionalWebsiteValidator extends Validator<dynamic> {
 
     final exp = RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
 
-    final valueIsWebsite = exp.hasMatch(value ?? '');
+    final valueIsWebsite = exp.hasMatch(value);
 
     if (!valueIsWebsite) {
       return {
@@ -134,7 +133,7 @@ class OptionalPhoneNumberValidator extends Validator<dynamic> {
     final exp = RegExp(
         r'^(?:\+\d{1,3}|0\d{1,3}|00\d{1,2})?(?:\s?\(\d+\))?(?:[-\/\s.]|\d)+$');
 
-    final valueIsNumber = exp.hasMatch(value ?? '');
+    final valueIsNumber = exp.hasMatch(value);
 
     if (!valueIsNumber) {
       return {

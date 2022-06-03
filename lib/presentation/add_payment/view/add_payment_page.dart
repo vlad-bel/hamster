@@ -7,12 +7,23 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_white_c
 import 'package:business_terminal/presentation/common/widgets/payment_info.dart';
 import 'package:flutter/material.dart';
 
+class AddPaymentArguments {
+  final AddPaymentFormSettings addPaymentArguments;
+
+  AddPaymentArguments({
+    required this.addPaymentArguments,
+  });
+}
+
 class AddPaymentPage extends StatelessWidget {
-  AddPaymentPage({Key? key}) : super(key: key);
+  const AddPaymentPage({
+    Key? key,
+    required this.addPaymentArguments,
+  }) : super(key: key);
 
   static const path = '/add_payment';
 
-  final formSettings = AddPaymentFormSettings();
+  final AddPaymentArguments addPaymentArguments;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +35,7 @@ class AddPaymentPage extends StatelessWidget {
               Text(AppLocale.of(context).for_credits_and_regular_billing),
         ),
         body: PaymentInfo(
+          addPaymentFormSettings: addPaymentArguments.addPaymentArguments,
           formConsumer: FormConsumer(
             onTap: (form) => Navigator.pop(
               context,

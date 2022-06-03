@@ -38,7 +38,7 @@ class CategoriesList extends StatelessWidget {
 
               return Column(
                 children: [
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
                   CategoriesListSearch(
                     hasFocus: state.when(
                       unfocused: (_) => false || hasText,
