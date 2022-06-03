@@ -22,15 +22,18 @@ class PlaceEntranceCount extends DropDownDataItem {
 class EntrancesCountGenerator {
   static List<PlaceEntranceCount> getEntrancesCountList({
     int entrancesMaxCount = 20,
+    CounterType type = CounterType.entrance,
   }) {
-    // Generate from 1 to 20
+    // Generate from 1 to [entrancesMaxCount]
     final resultList = List.generate(
       entrancesMaxCount,
       (i) {
         final value = i + 1;
         return PlaceEntranceCount(
           value,
-          AppLocale.current.entrances_count(value),
+          type == CounterType.entrance
+              ? AppLocale.current.entrances_count(value)
+              : AppLocale.current.tills_count(value),
         );
       },
     );
@@ -38,6 +41,8 @@ class EntrancesCountGenerator {
     return resultList;
   }
 }
+
+enum CounterType { entrance, till }
 
 class DropDown extends StatelessWidget {
   const DropDown({

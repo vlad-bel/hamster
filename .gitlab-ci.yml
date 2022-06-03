@@ -1,0 +1,62 @@
+stages:
+  - clone
+  - build
+  - deploy
+
+variables:
+  ENVIRONMENT: dev
+  LOCAL_PATH: 'build/web/'
+
+clone:
+  image: bitnami/git
+  stage: clone
+  tags:
+    - hamster
+  script:
+    - git clone https://$GIT_USERNAME:$GIT_PASSWORD@bitbucket.org/raikjakschis/hamster_widgets.git
+    - cd hamster_widgets && git checkout develop
+  only:
+    variables:
+      - ($CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "test")
+  artifacts:
+    paths:
+      - hamster_widgets/**
+
+build:
+  image: cirrusci/flutter:stable
+  stage: build
+  tags:
+    - hamster
+  script:
+    - sed -i 's/git:/path:/g' pubspec.yaml
+    - sed -i 's/path:/& \.\/hamster_widgets/' pubspec.yaml
+    - sed -i '/url:/d' pubspec.yaml
+    - sed -i '/ref:/d' pubspec.yaml
+    - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
+    - flutter build web -t lib/main_development.dart --release --web-renderer html
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == "develop"
+  artifacts:
+    paths:
+      - build/web/**
+
+deploy:
+  image: atlassian/default-image:2
+  stage: deploy
+  tags:
+    - hamster
+  script:
+    - apt-get update -y && apt-get install -y curl unzip groff jq bc
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - ./aws/install
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws s3 sync $LOCAL_PATH "s3://$ENVIRONMENT$S3_BUCKET_NAME" --acl public-read --delete
+    - aws cloudfront create-invalidation --distribution-id $DEV_DISTRIBUTION_ID --paths '/*'
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == "develop"
+
+

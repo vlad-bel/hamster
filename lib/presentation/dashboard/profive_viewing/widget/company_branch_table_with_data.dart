@@ -103,7 +103,9 @@ class CompanyBranchTableWithData extends StatelessWidget {
     );
   }
 
-  void onNavigateToBranchProfilePage(RepCompany? company) {
+  void onNavigateToBranchProfilePage(
+    RepCompany? company,
+  ) {
     final args = {
       CreateBranchProfileCheckboxesPage.paramRepCompany: company,
     };

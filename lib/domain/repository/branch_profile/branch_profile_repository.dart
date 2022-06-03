@@ -1,4 +1,4 @@
-import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:injectable/injectable.dart';
@@ -12,16 +12,16 @@ class BranchProfileRepository {
   final Dio dio;
 
   Future<Response> uloadBranchProfilePictures(
-    List<PictureModel> pictureModels,
+    List<AppFile> pictureFiles,
   ) async {
     final formData = FormData();
-    for (final pictureModel in pictureModels) {
+    for (final pictureFile in pictureFiles) {
       final multipartFile = MultipartFile.fromBytes(
-        pictureModel.imageBytes,
-        filename: pictureModel.imageFile.name,
+        pictureFile.bytes!,
+        filename: pictureFile.name,
         contentType: MediaType(
           'image',
-          pictureModel.imageFile.mimeType!,
+          'image/${pictureFile.extension}',
         ),
       );
 

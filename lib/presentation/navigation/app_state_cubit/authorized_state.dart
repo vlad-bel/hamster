@@ -8,6 +8,7 @@ import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/temp/days_hours.dart';
 import 'package:business_terminal/presentation/add_opening_hours/view/add_opening_hours_page.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
+import 'package:business_terminal/presentation/add_pos/view/add_pos_page.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/view/create_branch_profile_checkboxes_page.dart';
 import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
@@ -111,6 +112,9 @@ class AuthorizedState extends AppState {
               case CategoriesPage.path:
                 page = const CategoriesPage();
                 break;
+              case AddPosPage.path:
+                page = const AddPosPage();
+                break;
               case SelectSubCategoriesPage.path:
                 page = const SelectSubCategoriesPage();
                 break;
@@ -123,7 +127,7 @@ class AuthorizedState extends AppState {
               case BranchProfileAvatarPicturePage.path:
                 page = const BranchProfileAvatarPicturePage(
                   showEditButton: false,
-                  showAddButton: true,
+                  showAddButton: false,
                 );
                 break;
               case CropperPage.path:

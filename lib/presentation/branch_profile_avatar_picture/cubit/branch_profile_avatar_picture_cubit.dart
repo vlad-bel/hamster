@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_state.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -29,30 +31,39 @@ class BranchProfileAvatarPictureCubit
     ));
   }
 
-  Future<XFile?> pickImage(BuildContext context) async {
-    final result = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
+  Future<AppFile?> pickImage(BuildContext context) async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: [
+        'png',
+        'jpeg',
+      ],
+      withData: true,
     );
 
     if (result != null) {
-      final imageBytes = await result.readAsBytes();
+      final file = AppFile(
+        size: result.files.first.size,
+        extension: result.files.first.extension,
+        name: result.files.first.name,
+        bytes: result.files.first.bytes,
+      );
 
-      return result;
+      return file;
     }
 
     return null;
   }
 
-  Future setImage({required XFile xFile}) async {
-    final pictureModel = PictureModel(
-      imageFile: xFile,
-      imageBytes: await xFile.readAsBytes(),
-    );
-
-    final images = List.of(state.images ?? <String>[])..insert(0, pictureModel);
+  Future setImage({required AppFile appFile}) async {
+    final images = List.of(state.images ?? <String>[])
+      ..insert(
+        0,
+        appFile,
+      );
 
     return emit(BranchProfileAvatarPictureState.init(
-      selectedImage: pictureModel,
+      selectedImage: appFile,
       images: images,
     ));
   }

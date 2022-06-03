@@ -1,6 +1,7 @@
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile_with_paging.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/domain/repository/branch_profile/branch_profile_repository.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
@@ -71,10 +72,10 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
 
   @override
   Future<Response> uloadBranchProfilePictures(
-    List<PictureModel> pictureModels,
+      List<AppFile> pictureFiles,
   ) {
     return branchProfileRepository.uloadBranchProfilePictures(
-      pictureModels,
+      pictureFiles,
     );
   }
 }
