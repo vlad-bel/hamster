@@ -1,4 +1,5 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/country_code_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
@@ -21,7 +22,7 @@ class EditPersonalDataPage extends StatefulWidget {
 }
 
 class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
-  final countryCodeCubit = GetIt.instance.get<CountryCodeSelectorCubit>()
+  final countryCodeCubit = getIt.get<CountryCodeSelectorCubit>()
     ..getCountryList();
 
   @override

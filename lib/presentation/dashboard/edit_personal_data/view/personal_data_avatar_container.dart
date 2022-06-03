@@ -64,16 +64,17 @@ class _AvatarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = radius * 2;
     return GestureDetector(
       onTap: onClicked,
       child: SizedBox(
-        width: radius * 2,
-        height: radius * 2,
+        width: size,
+        height: size,
         child: Stack(
           children: [
             Avatar(
-              width: radius * 2,
-              height: radius * 2,
+              width: size,
+              height: size,
               image: imageUrl,
             ),
             Align(
