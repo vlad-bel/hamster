@@ -217,233 +217,306 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
   Widget build(BuildContext context) {
     final profileEditCubit = context.read<ProfileEditCubit>();
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 450,
-              height: 750,
-              decoration: const BoxDecoration(
-                color: white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 46,
-                  horizontal: 50,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 450,
+                height: 750,
+                decoration: const BoxDecoration(
+                  color: white,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppLocale.of(context).company_profile,
-                      style: inter16SemiBold.copyWith(
-                        color: lynch,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 46,
+                    horizontal: 50,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocale.of(context).company_profile,
+                        style: inter16SemiBold.copyWith(
+                          color: lynch,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 30),
-                    Center(
-                      child: BlocBuilder<ProfileEditCubit, ProfileEditState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            imagesAdded: (
-                              company,
-                              profileEditFormSettings,
-                              images,
-                            ) {
-                              return Stack(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (images.length > 1)
-                                        InkWell(
-                                          onTap: () async {
-                                            await controller.previousPage(
-                                              duration:
-                                                  Duration(milliseconds: 1),
-                                              curve: Curves.easeIn,
-                                            );
-                                            setState(() {});
-                                          },
-                                          child: Icon(
-                                            Icons.arrow_back_ios,
-                                            color: lynch,
-                                            size: 32,
+                      const SizedBox(height: 30),
+                      Center(
+                        child: BlocBuilder<ProfileEditCubit, ProfileEditState>(
+                          builder: (context, state) {
+                            return state.maybeWhen(
+                              imagesAdded: (
+                                company,
+                                profileEditFormSettings,
+                                images,
+                              ) {
+                                return Stack(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        if (images.length > 1)
+                                          InkWell(
+                                            onTap: () async {
+                                              await controller.previousPage(
+                                                duration:
+                                                    Duration(milliseconds: 1),
+                                                curve: Curves.easeIn,
+                                              );
+                                              setState(() {});
+                                            },
+                                            child: Icon(
+                                              Icons.arrow_back_ios,
+                                              color: lynch,
+                                              size: 32,
+                                            ),
+                                          ),
+                                        SizedBox(
+                                          width: 200,
+                                          height: 200,
+                                          child: PageView.builder(
+                                            itemCount: images.length,
+                                            controller: controller,
+                                            itemBuilder: (
+                                              BuildContext context,
+                                              int index,
+                                            ) {
+                                              return AvatarSelectedPicture(
+                                                path: images[index].imageBytes,
+                                                showEditButton: true,
+                                              );
+                                            },
                                           ),
                                         ),
-                                      SizedBox(
-                                        width: 200,
-                                        height: 200,
-                                        child: PageView.builder(
-                                          itemCount: images.length,
-                                          controller: controller,
-                                          itemBuilder: (
-                                            BuildContext context,
-                                            int index,
-                                          ) {
-                                            return AvatarSelectedPicture(
-                                              path: images[index].imageBytes,
-                                              showEditButton: true,
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                      if (images.length > 1)
-                                        InkWell(
-                                          onTap: () async {
-                                            await controller.nextPage(
-                                              duration:
-                                                  Duration(milliseconds: 1),
-                                              curve: Curves.easeIn,
-                                            );
-                                            setState(() {});
-                                          },
-                                          child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: lynch,
-                                            size: 32,
+                                        if (images.length > 1)
+                                          InkWell(
+                                            onTap: () async {
+                                              await controller.nextPage(
+                                                duration:
+                                                    Duration(milliseconds: 1),
+                                                curve: Curves.easeIn,
+                                              );
+                                              setState(() {});
+                                            },
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: lynch,
+                                              size: 32,
+                                            ),
                                           ),
-                                        ),
-                                    ],
-                                  ),
-                                  Positioned.fill(
-                                    child: Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Container(
-                                        padding: EdgeInsets.all(8),
-                                        color: white,
-                                        child: FutureBuilder(
-                                          future: Future.value(true),
-                                          builder: (
-                                            BuildContext context,
-                                            AsyncSnapshot<void> snap,
-                                          ) {
-                                            return Text(
-                                              '${(controller.page?.round() ?? 0) + 1} / ${images.length}',
-                                              style: inter14,
-                                            );
-                                          },
+                                      ],
+                                    ),
+                                    Positioned.fill(
+                                      child: Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: Container(
+                                          padding: EdgeInsets.all(8),
+                                          color: white,
+                                          child: FutureBuilder(
+                                            future: Future.value(true),
+                                            builder: (
+                                              BuildContext context,
+                                              AsyncSnapshot<void> snap,
+                                            ) {
+                                              return Text(
+                                                '${(controller.page?.round() ?? 0) + 1} / ${images.length}',
+                                                style: inter14,
+                                              );
+                                            },
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              );
-                            },
-                            orElse: () {
-                              return AppAddLogoWidget(
-                                onPressed: () async {
-                                  final result = await authNavigatorKey
-                                      .currentState
-                                      ?.pushNamed<List<AddedProfileLogoModel>>(
-                                    ProfileAddLogoPage.path,
-                                  );
-                                  if (result != null) {
-                                    await profileEditCubit.addImages(
-                                      result,
+                                  ],
+                                );
+                              },
+                              orElse: () {
+                                return AppAddLogoWidget(
+                                  onPressed: () async {
+                                    final result = await authNavigatorKey
+                                        .currentState
+                                        ?.pushNamed<
+                                            List<AddedProfileLogoModel>>(
+                                      ProfileAddLogoPage.path,
                                     );
-                                  }
-                                },
-                              );
-                            },
-                          );
-                        },
+                                    if (result != null) {
+                                      await profileEditCubit.addImages(
+                                        result,
+                                      );
+                                    }
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 25,
-                      ),
-                      child: Column(
-                        children: [
-                          Column(
-                            children: [
-                              FormTextField(
-                                validationMessages: (control) =>
-                                    widget.formSettings.validationMessages,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 25,
+                        ),
+                        child: Column(
+                          children: [
+                            FormTextField(
+                              validationMessages: (control) =>
+                                  widget.formSettings.validationMessages,
+                              name: ProfileEditFormSettings.kCompanyName,
+                              label: Intl.message(
+                                ProfileEditFormSettings.kCompanyName,
                                 name: ProfileEditFormSettings.kCompanyName,
-                                label: Intl.message(
-                                  ProfileEditFormSettings.kCompanyName,
-                                  name: ProfileEditFormSettings.kCompanyName,
+                              ),
+                              hint: Intl.message(
+                                ProfileEditFormSettings.kCompanyName,
+                                name: ProfileEditFormSettings.kCompanyName,
+                              ),
+                            ),
+                            const SizedBox(height: 25),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  flex: 3,
+                                  child: FormTextField(
+                                    name: ProfileEditFormSettings.kStreetField,
+                                    hint: AppLocale.of(context).street_hint,
+                                    label: AppLocale.of(context).street_hint,
+                                  ),
                                 ),
-                                hint: Intl.message(
-                                  ProfileEditFormSettings.kCompanyName,
-                                  name: ProfileEditFormSettings.kCompanyName,
+                                SizedBox(width: 16),
+                                Flexible(
+                                  child: FormTextField(
+                                    name: ProfileEditFormSettings
+                                        .kStreetNumberField,
+                                    hint: AppLocale.of(context).num_hint,
+                                    label: AppLocale.of(context).num_hint,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 25),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Flexible(
-                                    flex: 3,
-                                    child: FormTextField(
-                                      name:
-                                          ProfileEditFormSettings.kStreetField,
-                                      hint: AppLocale.of(context).street_hint,
-                                      label: AppLocale.of(context).street_hint,
-                                    ),
+                              ],
+                            ),
+                            const SizedBox(height: 25),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  child: FormTextField(
+                                    name:
+                                        ProfileEditFormSettings.kPostcodeField,
+                                    hint: AppLocale.of(context).post_hint,
+                                    label: AppLocale.of(context).post_hint,
                                   ),
-                                  SizedBox(width: 16),
-                                  Flexible(
-                                    child: FormTextField(
-                                      name: ProfileEditFormSettings
-                                          .kStreetNumberField,
-                                      hint: AppLocale.of(context).num_hint,
-                                      label: AppLocale.of(context).num_hint,
-                                    ),
+                                ),
+                                SizedBox(width: 16),
+                                Flexible(
+                                  flex: 3,
+                                  child: FormTextField(
+                                    name: ProfileEditFormSettings.kCityField,
+                                    hint: AppLocale.of(context).location_hint,
+                                    label: AppLocale.of(context).location_hint,
                                   ),
-                                ],
-                              ),
-                              const SizedBox(height: 25),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Flexible(
-                                    child: FormTextField(
-                                      name: ProfileEditFormSettings
-                                          .kPostcodeField,
-                                      hint: AppLocale.of(context).post_hint,
-                                      label: AppLocale.of(context).post_hint,
-                                    ),
-                                  ),
-                                  SizedBox(width: 16),
-                                  Flexible(
-                                    flex: 3,
-                                    child: FormTextField(
-                                      name: ProfileEditFormSettings.kCityField,
-                                      hint: AppLocale.of(context).location_hint,
-                                      label:
-                                          AppLocale.of(context).location_hint,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 25),
-                              CountrySelector(
-                                cubit: widget.countrySelectorCubit,
-                              ),
-                            ],
-                          ),
-                        ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 25),
+                            CountrySelector(
+                              cubit: widget.countrySelectorCubit,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 32),
-            SizedBox(
-              height: 750,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Container(
+              const SizedBox(width: 32),
+              SizedBox(
+                height: 750,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: 450,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 46,
+                          horizontal: 50,
+                        ),
+                        decoration: const BoxDecoration(
+                          color: white,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppLocale.of(context).base_data,
+                              style: inter16SemiBold.copyWith(
+                                color: lynch,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            FormTextField(
+                              validationMessages: (control) =>
+                                  widget.formSettings.validationMessages,
+                              name: ProfileEditFormSettings
+                                  .kCommercialRegisterNumber,
+                              label: Intl.message(
+                                ProfileEditFormSettings
+                                    .kCommercialRegisterNumber,
+                                name: ProfileEditFormSettings
+                                    .kCommercialRegisterNumber,
+                              ),
+                              hint: Intl.message(
+                                ProfileEditFormSettings
+                                    .kCommercialRegisterNumber,
+                                name: ProfileEditFormSettings
+                                    .kCommercialRegisterNumber,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 25,
+                            ),
+                            FormTextField(
+                              validationMessages: (control) =>
+                                  widget.formSettings.validationMessages,
+                              name: ProfileEditFormSettings.kTaxNumber,
+                              label: Intl.message(
+                                ProfileEditFormSettings.kTaxNumber,
+                                name: ProfileEditFormSettings.kTaxNumber,
+                              ),
+                              hint: Intl.message(
+                                ProfileEditFormSettings.kTaxNumber,
+                                name: ProfileEditFormSettings.kTaxNumber,
+                              ),
+                            ),
+                            const SizedBox(height: 25),
+                            FormTextField(
+                              validationMessages: (control) =>
+                                  widget.formSettings.validationMessages,
+                              name: ProfileEditFormSettings.kVatId,
+                              label: Intl.message(
+                                ProfileEditFormSettings.kVatId,
+                                name: ProfileEditFormSettings.kVatId,
+                              ),
+                              hint: Intl.message(
+                                ProfileEditFormSettings.kVatId,
+                                name: ProfileEditFormSettings.kVatId,
+                              ),
+                            ),
+                            const SizedBox(height: 25),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Container(
                       width: 450,
+                      height: 280,
                       padding: const EdgeInsets.symmetric(
                         vertical: 46,
                         horizontal: 50,
@@ -451,106 +524,33 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                       decoration: const BoxDecoration(
                         color: white,
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            AppLocale.of(context).base_data,
-                            style: inter16SemiBold.copyWith(
-                              color: lynch,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 32,
-                          ),
-                          FormTextField(
-                            validationMessages: (control) =>
-                                widget.formSettings.validationMessages,
-                            name: ProfileEditFormSettings
-                                .kCommercialRegisterNumber,
-                            label: Intl.message(
-                              ProfileEditFormSettings.kCommercialRegisterNumber,
-                              name: ProfileEditFormSettings
-                                  .kCommercialRegisterNumber,
-                            ),
-                            hint: Intl.message(
-                              ProfileEditFormSettings.kCommercialRegisterNumber,
-                              name: ProfileEditFormSettings
-                                  .kCommercialRegisterNumber,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          FormTextField(
-                            validationMessages: (control) =>
-                                widget.formSettings.validationMessages,
-                            name: ProfileEditFormSettings.kTaxNumber,
-                            label: Intl.message(
-                              ProfileEditFormSettings.kTaxNumber,
-                              name: ProfileEditFormSettings.kTaxNumber,
-                            ),
-                            hint: Intl.message(
-                              ProfileEditFormSettings.kTaxNumber,
-                              name: ProfileEditFormSettings.kTaxNumber,
-                            ),
-                          ),
-                          const SizedBox(height: 25),
-                          FormTextField(
-                            validationMessages: (control) =>
-                                widget.formSettings.validationMessages,
-                            name: ProfileEditFormSettings.kVatId,
-                            label: Intl.message(
-                              ProfileEditFormSettings.kVatId,
-                              name: ProfileEditFormSettings.kVatId,
-                            ),
-                            hint: Intl.message(
-                              ProfileEditFormSettings.kVatId,
-                              name: ProfileEditFormSettings.kVatId,
-                            ),
-                          ),
-                          const SizedBox(height: 25),
-                        ],
+                      child: PaymentInfo(
+                        accountOwner: profileEditCubit.getControlValue(
+                              ProfileEditFormSettings.kAccountOwner,
+                            ) ??
+                            '',
+                        iban: profileEditCubit.getControlValue(
+                              ProfileEditFormSettings.kIban,
+                            ) ??
+                            '',
+                        onTap: () async {
+                          final result = await Navigator.pushNamed(
+                            context,
+                            AddPaymentPage.path,
+                          ) as Map<String, String>?;
+
+                          if (result == null) return;
+                          await profileEditCubit.updatePaymentData(result);
+                        },
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  Container(
-                    width: 450,
-                    height: 280,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 46,
-                      horizontal: 50,
-                    ),
-                    decoration: const BoxDecoration(
-                      color: white,
-                    ),
-                    child: PaymentInfo(
-                      accountOwner: profileEditCubit.getControlValue(
-                            ProfileEditFormSettings.kAccountOwner,
-                          ) ??
-                          '',
-                      iban: profileEditCubit.getControlValue(
-                            ProfileEditFormSettings.kIban,
-                          ) ??
-                          '',
-                      onTap: () async {
-                        final result = await Navigator.pushNamed(
-                          context,
-                          AddPaymentPage.path,
-                        ) as Map<String, String>?;
-
-                        if (result == null) return;
-                        await profileEditCubit.updatePaymentData(result);
-                      },
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
