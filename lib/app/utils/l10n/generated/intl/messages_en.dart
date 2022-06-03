@@ -29,7 +29,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m3(length) => "Maximum number ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Account owner"),
         "account_verification":
@@ -137,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
+        "firstName": MessageLookupByLibrary.simpleMessage("Vorname"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
             "For credits and regular billing, we still need your bank details and consent to the direct debit procedure"),
         "forgetPasswordCodeIncorrect": MessageLookupByLibrary.simpleMessage(
@@ -184,6 +184,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "If the branch is closed on the selected day(s), leave the fields below empty"),
         "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
             "If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging."),
+        "lastName": MessageLookupByLibrary.simpleMessage("Nachname"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
         "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
@@ -222,6 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt."),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Payment Information"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Telefonnummer"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),
         "post_hint": MessageLookupByLibrary.simpleMessage("Postcode"),
         "request_verification":

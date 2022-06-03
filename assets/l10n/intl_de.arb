@@ -192,5 +192,8 @@
   "add_branch_picture": "Filialbild hinzufügen",
   "to_save": "SPEICHERN",
   "edit_photo": "Bearbeiten Sie Ihr Profilfoto.",
-  "edit_photo_descr": "Wählen Sie den richtigen Bereich Ihres Profilfotos aus."
+  "edit_photo_descr": "Wählen Sie den richtigen Bereich Ihres Profilfotos aus.",
+  "firstName": "Vorname",
+  "lastName": "Nachname",
+  "phoneNumber": "Telefonnummer"
 }

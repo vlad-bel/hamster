@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1700,6 +1699,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Vorname`
+  String get firstName {
+    return Intl.message(
+      'Vorname',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nachname`
+  String get lastName {
+    return Intl.message(
+      'Nachname',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Telefonnummer`
+  String get phoneNumber {
+    return Intl.message(
+      'Telefonnummer',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -1714,10 +1743,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

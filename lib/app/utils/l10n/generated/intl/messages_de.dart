@@ -29,7 +29,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m3(length) => "Minimale Nummernlänge ${length} Zeichen";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Kontoinhaber"),
         "account_verification":
@@ -141,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
         "finance": MessageLookupByLibrary.simpleMessage("Finanzen"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finanzen1"),
+        "firstName": MessageLookupByLibrary.simpleMessage("Vorname"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
             "Für Gutschriften und regelmäßige Abrechnungen benötigen wir noch Ihre Bankverbindung und die Einwilligung zum Bankeinzugsverfahren"),
         "forgetPasswordCodeIncorrect": MessageLookupByLibrary.simpleMessage(
@@ -186,6 +186,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sollte die Filiale an dem/den zuvor ausgewählten Tag/en geschlossen sein so lassen Sie die unten stehenden Felder leer"),
         "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
             "Sollten Ihr Unternehmen und eine Filiale die identisch \nAdresse haben, dann markieren Sie bitte die \nübereinstimmenden Angaben."),
+        "lastName": MessageLookupByLibrary.simpleMessage("Nachname"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
         "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
@@ -224,6 +225,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt."),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Zahlungsinformationen"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Telefonnummer"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Anruf"),
         "post_hint": MessageLookupByLibrary.simpleMessage("PLZ"),
         "request_verification":
