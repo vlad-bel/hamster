@@ -1,11 +1,12 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
-import 'package:business_terminal/domain/temp/pos_raw.dart';
 import 'package:business_terminal/domain/model/file/app_file.dart';
+import 'package:business_terminal/domain/temp/pos_raw.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:dio/dio.dart';
@@ -229,6 +230,22 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   }
 
   void clearData() {
+    // formGroup.controls.forEach((key, value) {value.value("")});
+    for (final group in formGroup.controls.values) {
+      group
+        ..unfocus(touched: false)
+        ..setErrors({})
+        ..value = null;
+    }
+    final countrySelectorCubit = getIt.get<CountrySelectorCubit>();
+
+    for (final group in countrySelectorCubit.countryForm.controls.values) {
+      group
+        ..unfocus(touched: false)
+        ..setErrors({})
+        ..value = null;
+    }
+
     emit(
       BranchProfileState.init(
         avatarImages: state.avatarImages,
