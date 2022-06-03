@@ -143,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "falschesPasswort":
             MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
         "file_size_validation": MessageLookupByLibrary.simpleMessage(
-            "Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein"),
+            "The image should be in PNG, JPEG, BMP format and no larger than 10Mb"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
