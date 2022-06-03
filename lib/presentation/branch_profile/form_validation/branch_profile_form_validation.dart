@@ -22,7 +22,6 @@ class BranchProfileFormValidation {
   };
 
   final phoneNumValidationMessage = {
-
     ///need make dynamic valigation
     ///that depended from countrycodes
     ValidationMessage.maxLength: AppLocale.current.max_length_reached,

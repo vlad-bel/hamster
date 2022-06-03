@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.0.15
   image_picker: ^0.8.5+3
   crop_your_image: ^0.7.2
+  uuid: ^3.0.6
 
   # UI:
   flutter_svg: ^1.0.3
@@ -82,7 +83,6 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/logos/
-    - assets/translations/
     - assets/images/flags/
 
 flutter_intl:
