@@ -1,10 +1,9 @@
-import 'dart:typed_data';
-
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class DynamicImage extends StatelessWidget {
-  const DynamicImage({
+class DynamicBranchImage extends StatelessWidget {
+  const DynamicBranchImage({
     Key? key,
     required this.path,
     required this.fit,
@@ -25,8 +24,9 @@ class DynamicImage extends StatelessWidget {
     ///Works slow with big size images
     ///todo need more complex research
     ///todo how to improve loading speed of big memory images
+    final pictureModel = path as AppFile;
     return Image.memory(
-      path as Uint8List,
+      pictureModel.bytes!,
       filterQuality: FilterQuality.none,
       fit: fit,
     );

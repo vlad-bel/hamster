@@ -40,7 +40,9 @@ dependencies:
   iban: ^1.0.1
   shared_preferences: ^2.0.15
   image_picker: ^0.8.5+3
+  file_picker: ^4.6.1
   crop_your_image: ^0.7.2
+  uuid: ^3.0.6
 
   # UI:
   flutter_svg: ^1.0.3
@@ -50,6 +52,7 @@ dependencies:
   animated_custom_dropdown: ^1.2.0
   hamster_widgets:
     git:
+#      url: git@git.andersenlab.com:hamster/hamster-widgets.git
       url: https://git.andersenlab.com/hamster/hamster-widgets.git
       ref: develop
   cached_network_image:
@@ -82,7 +85,6 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/logos/
-    - assets/translations/
     - assets/images/flags/
 
 flutter_intl:

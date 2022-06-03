@@ -13,9 +13,11 @@ clone:
   tags:
     - hamster
   script:
-    - echo "$LOCAL_PATH - $ENVIRONMENT$S3_BUCKET_NAME"
     - git clone https://$GIT_USERNAME:$GIT_PASSWORD@bitbucket.org/raikjakschis/hamster_widgets.git
     - cd hamster_widgets && git checkout develop
+  only:
+    variables:
+      - ($CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "test")
   artifacts:
     paths:
       - hamster_widgets/**
@@ -31,6 +33,9 @@ build:
     - sed -i '53,54d' pubspec.yaml
     - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
     - flutter build web -t lib/main_development.dart --release --web-renderer html
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == "develop"
   artifacts:
     paths:
       - build/web/**
@@ -49,5 +54,8 @@ deploy:
     - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
     - aws s3 sync $LOCAL_PATH "s3://$ENVIRONMENT$S3_BUCKET_NAME" --acl public-read --delete
     - aws cloudfront create-invalidation --distribution-id $DEV_DISTRIBUTION_ID --paths '/*'
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == "develop"
 
 

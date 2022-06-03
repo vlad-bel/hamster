@@ -7,7 +7,7 @@ class AddPosFormSettings {
   static const kMaxLengthField = 256;
   static const kMaxPosCount = 50;
 
-  static const cashRegisterField = 'cashRegister';
+  static const cashRegisterManufacturerField = 'cashRegister';
   static const modelField = 'model';
   static const posNumberField = 'posNumber';
 
@@ -25,7 +25,7 @@ class AddPosFormSettings {
   FormGroup buildForm() {
     return FormGroup(
       {
-        cashRegisterField: FormControl<String>(
+        cashRegisterManufacturerField: FormControl<String>(
           validators: [
             Validators.required,
             Validators.minLength(kMinLengthField),

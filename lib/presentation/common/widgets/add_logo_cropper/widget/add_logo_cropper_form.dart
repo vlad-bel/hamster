@@ -165,7 +165,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                         ),
                         body: Column(
                           children: [
-                            SizedBox(height: 32),
+                            const SizedBox(height: 32),
                             Stack(
                               children: [
                                 SizedBox(
@@ -179,7 +179,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                         withCircleUi: widget.circleCrop,
                                         onCropped: (cropped) async {
                                           await Future.delayed(
-                                            Duration(milliseconds: 50),
+                                            const Duration(milliseconds: 50),
                                           );
                                           formState.maybeWhen(
                                             success: (
@@ -207,7 +207,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                         },
                                       ),
                                       Transform.translate(
-                                        offset: Offset(8, -12),
+                                        offset: const Offset(8, -12),
                                         child: Align(
                                           alignment: Alignment.topRight,
                                           child: EditButton(
@@ -223,9 +223,9 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                 ),
                                 state.whenOrNull(
                                       loading: () {
-                                        return SizedBox(
+                                        return const SizedBox(
                                           height: 350,
-                                          child: Center(
+                                          child: const Center(
                                             child: CircularProgressIndicator(),
                                           ),
                                         );
@@ -234,7 +234,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                     const SizedBox(),
                               ],
                             ),
-                            SizedBox(height: 62),
+                            const SizedBox(height: 62),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -255,7 +255,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                     Navigator.pop(context);
                                   },
                                 ),
-                                SizedBox(width: 26),
+                                const SizedBox(width: 26),
                                 ActionButtonBlue(
                                   isEnabled: state.maybeWhen(
                                     loading: () => false,
@@ -272,7 +272,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                   onPressed: () async {
                                     cubit.loading();
                                     await Future.delayed(
-                                      Duration(milliseconds: 50),
+                                      const Duration(milliseconds: 50),
                                     );
                                     _controller.crop();
                                   },
@@ -367,7 +367,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                         builder: (_, state) {
                                           return state.when(
                                             loading: (text) {
-                                              return Center(
+                                              return const Center(
                                                 child:
                                                     CircularProgressIndicator(),
                                               );

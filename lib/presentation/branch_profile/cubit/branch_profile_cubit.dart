@@ -1,27 +1,24 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/temp/pos_raw.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
 import 'package:dart_extensions/dart_extensions.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
-@injectable
+@singleton
 class BranchProfileCubit extends Cubit<BranchProfileState> {
   BranchProfileCubit(this.useCase)
       : super(
           const BranchProfileState.init(
-            ///todo mock images
-            branchImages: [
-              'https://cdn.cnn.com/cnnnext/dam/assets/211105205533-01-georgia-travel-file-full-169.jpg',
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty.jpg/1280px-24701-nature-natural-beauty.jpg',
-              'https://ds.static.rtbf.be/article/image/1248x702/2/1/b/7e32a07d16f1e5929d06b65594dfb643-1563791453.jpg',
-            ],
             avatarImages: [
-              'https://static.stacker.com/s3fs-public/styles/slide_desktop/s3/pepsi.png',
               'https://growyournutritionbusiness.com/wp-content/uploads/2019/11/company-logo-test.jpg',
             ],
             isCreateBranchButtonEnabled: true,
@@ -38,8 +35,9 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     final city = formGroup.control(_formSettings.kFieldCity).value as String;
     final street =
         formGroup.control(_formSettings.kFieldStreet).value as String;
-    final website =
-        formGroup.control(_formSettings.kFieldWebsite).value as String;
+    final website = formGroup
+        .control(BranchProfileFormValidation.kFieldWebsite)
+        .value as String;
     final entrancesCount =
         formGroup.control(_formSettings.kFieldEntrancesCount).value as String;
 
@@ -59,6 +57,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         subcategoriesParam,
         branchImages,
         avatarImages,
+        poses,
         hours,
         isCreateBranchButtonEnabled,
       ) async {
@@ -78,11 +77,29 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         final streetName =
             formGroup.control(_formSettings.kFieldStreet).value as String?;
 
-        final website =
-            formGroup.control(_formSettings.kFieldWebsite).value as String?;
+        final website = formGroup
+            .control(BranchProfileFormValidation.kFieldWebsite)
+            .value as String?;
 
-        final phoneNumber =
-            formGroup.control(_formSettings.kFieldPhone).value as String?;
+        final phoneNumber = formGroup
+            .control(BranchProfileFormValidation.kFieldPhone)
+            .value as String?;
+
+        final posDatas = <PosData>[];
+        poses?.forEach((pos) {
+          for (var i = 0; i < pos.tillCount; i++) {
+            final uuid = const Uuid().v4();
+            posDatas.add(
+              PosData(
+                name: '$uuid$i',
+                manufacturer: pos.manufacturer,
+                model: pos.model,
+                id: uuid,
+                isActive: false,
+              ),
+            );
+          }
+        });
 
         final branchProfileDummy = BranchProfile(
           branchName: name,
@@ -97,6 +114,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
           postalCode: postalCode,
           category: category,
           openingHours: hours,
+          posesData: posDatas,
           subcategories: subCategories,
         );
 
@@ -124,25 +142,15 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required String category,
     required List<String> subcategories,
   }) {
-    state.whenOrNull(
-      init: (
-        category,
-        subcategories,
-        branchImages,
-        avatarImages,
-        hours,
-        isCreateBranchButtonEnabled,
-      ) {
-        emit(
-          BranchProfileState.init(
-            category: category,
-            subcategories: subcategories,
-            branchImages: branchImages,
-            avatarImages: avatarImages,
-            hours: hours,
-          ),
-        );
-      },
+    emit(
+      BranchProfileState.init(
+        category: category,
+        subcategories: subcategories,
+        branchImages: state.branchImages,
+        avatarImages: state.avatarImages,
+        hours: state.hours,
+        isCreateBranchButtonEnabled: state.isCreateBranchButtonEnabled,
+      ),
     );
   }
 
@@ -150,6 +158,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required List<dynamic> branchImages,
     required List<dynamic> avatarImages,
   }) {
+    uploadImage(branchImages);
     emit(
       BranchProfileState.init(
         category: state.category,
@@ -169,19 +178,62 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         subcategories,
         branchImages,
         avatarImages,
+        poses,
+        _,
+        isCreateBranchButtonEnabled,
+      ) {
+        emit(state.copyWith(hours: hours));
+      },
+    );
+  }
+
+  void addPos({
+    required PosRaw? pos,
+  }) {
+    if (pos == null) return;
+
+    state.whenOrNull(
+      init: (
+        category,
+        subcategories,
+        branchImages,
+        avatarImages,
+        poses,
         hours,
         isCreateBranchButtonEnabled,
       ) {
         emit(
-          BranchProfileState.init(
-            category: category,
-            subcategories: subcategories,
-            branchImages: branchImages,
-            avatarImages: avatarImages,
-            hours: hours,
+          state.copyWith(
+            poses: (poses ?? [])..add(pos),
           ),
         );
       },
+    );
+  }
+
+  Future uploadImage(List<dynamic> images) async {
+    try {
+      final pictureFiles = <AppFile>[];
+
+      for (final image in images) {
+        if (image is AppFile) {
+          pictureFiles.add(image);
+        }
+      }
+
+      await useCase.uloadBranchProfilePictures(pictureFiles);
+      SnackBarManager.showSuccess('Uploaded!');
+    } on DioError catch (e) {
+      SnackBarManager.showError(e.message);
+    }
+  }
+
+  void clearData() {
+    emit(
+      BranchProfileState.init(
+        avatarImages: state.avatarImages,
+        isCreateBranchButtonEnabled: state.isCreateBranchButtonEnabled,
+      ),
     );
   }
 }

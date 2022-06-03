@@ -145,6 +145,7 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                                     await getIt
                                         .get<ProfileViewingCubit>()
                                         .getInitialData();
+
                                     if (!mounted) return;
                                     context
                                         .read<DashboardCubit>()

@@ -103,9 +103,11 @@ class _BranchProfileAvatarPictureFormState
     final branchProfileAvatarCubit =
         context.read<BranchProfileAvatarPictureCubit>();
 
-    final newBranchImages = [
-      branchProfilePictureCubit.state.selectedImage,
-    ];
+    final newBranchImages = [];
+
+    if (branchProfilePictureCubit.state.selectedImage != null) {
+      newBranchImages.add(branchProfilePictureCubit.state.selectedImage);
+    }
 
     if (branchProfilePictureCubit.state.images != null) {
       final filteredBranchImages =
@@ -114,14 +116,16 @@ class _BranchProfileAvatarPictureFormState
               (element) =>
                   element == branchProfilePictureCubit.state.selectedImage,
             );
+
       newBranchImages.addAll(
         filteredBranchImages,
       );
     }
 
-    final newAvatarImages = [
-      branchProfileAvatarCubit.state.selectedImage,
-    ];
+    final newAvatarImages = [];
+    if (branchProfileAvatarCubit.state.selectedImage != null) {
+      newAvatarImages.add(branchProfileAvatarCubit.state.selectedImage);
+    }
 
     if (branchProfileAvatarCubit.state.images != null) {
       final filteredAvatarImages = List.of(

@@ -11,7 +11,7 @@ part 'add_logo_cubit.freezed.dart';
 
 @injectable
 class AddLogoCubit extends Cubit<AddLogoState> {
-  AddLogoCubit() : super(AddLogoState.init());
+  AddLogoCubit() : super(const AddLogoState.init());
 
   void selectImage(AddedProfileLogoModel? imagePath) {
     emit(

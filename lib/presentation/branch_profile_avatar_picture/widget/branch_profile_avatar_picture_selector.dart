@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_state.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/widget/avatar_selected_picture.dart';
@@ -10,6 +11,7 @@ import 'package:business_terminal/presentation/common/cropper_page/cropper_page.
 import 'package:business_terminal/presentation/common/widgets/dashed_button/circle_dashed_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 class BranchProfileAvatarPictureSelector extends StatelessWidget {
   const BranchProfileAvatarPictureSelector({
@@ -52,10 +54,26 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
               const SizedBox(height: 12),
               Row(
                 children: _generatePhotoCells(
-                  state.images!,
+                  state.images!.sublist(
+                    0,
+                    state.images!.length > 5 ? 5 : state.images!.length,
+                  ),
                   state.selectedImage,
+                  true,
                 ),
               ),
+              SizedBox(height: 8),
+              if (state.images!.length > 5)
+                Row(
+                  children: _generatePhotoCells(
+                    state.images!.sublist(
+                      5,
+                      state.images!.length > 10 ? 10 : state.images!.length,
+                    ),
+                    state.selectedImage,
+                    false,
+                  ),
+                ),
             ],
           );
         }
@@ -81,9 +99,10 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
   List<Widget> _generatePhotoCells(
     List<dynamic> imagePaths,
     dynamic selectedImage,
+    bool showAddButtonForFirstRow,
   ) {
     final cells = <Widget>[
-      if (showAddButton)
+      if (showAddButton && showAddButtonForFirstRow)
         Padding(
           padding: const EdgeInsets.only(right: 3.0),
           child: BranchProfileAvatarRoundAddCell(),
@@ -110,7 +129,7 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
     final image = await cubit.pickImage(context);
     if (image != null) {
       cubit.loading();
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 200));
 
       final croppedImage = await Navigator.pushNamed<Uint8List>(
         context,
@@ -118,16 +137,23 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
         arguments: {
           CropperPage.pHeader: AppLocale.current.edit_photo,
           CropperPage.pSubheader: AppLocale.current.edit_photo_descr,
-          CropperPage.pImageForCrop: image,
+          CropperPage.pImageForCrop: image.bytes,
           CropperPage.pCircleCrop: true,
         },
       );
 
       if (croppedImage != null) {
-        return cubit.setImage(imageBytes: croppedImage);
+        final appFile = AppFile(
+          size: image.size,
+          extension: image.extension,
+          name: image.name,
+          bytes: croppedImage,
+        );
+
+        return cubit.setImage(appFile: appFile);
       }
 
-      return cubit.setImage(imageBytes: image);
+      return cubit.setImage(appFile: image);
     }
 
     return cubit.init();

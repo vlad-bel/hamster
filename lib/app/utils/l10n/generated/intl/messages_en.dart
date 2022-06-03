@@ -28,6 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m3(length) => "Maximum number ${length} characters";
 
+  static String m4(number) => "${number} Tills";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Account owner"),
@@ -57,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Add pictures of your branch."),
         "add_picture_for_branch_descr": MessageLookupByLibrary.simpleMessage(
             "Select and upload your branch images. Make sure that the selected image files are of sufficient quality."),
+        "add_pos": MessageLookupByLibrary.simpleMessage("Add POS system"),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Add subcategory"),
         "administration":
@@ -139,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "falschesPasswort":
             MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
+        "file_size_validation": MessageLookupByLibrary.simpleMessage(
+            "The image should be in PNG, JPEG, BMP format and no larger than 10Mb"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
@@ -155,6 +160,12 @@ class MessageLookup extends MessageLookupByLibrary {
             ". Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen."),
         "forget_password": MessageLookupByLibrary.simpleMessage(
             "Have you forgotten\nyour password?"),
+        "forget_password_email_inside_subtitle":
+            MessageLookupByLibrary.simpleMessage(
+                "Eine E-Mail ist unterwegs an die von Ihnen angegebenen "),
+        "forget_password_email_inside_subtitle2":
+            MessageLookupByLibrary.simpleMessage(
+                "\nBitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner."),
         "forget_password_header":
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forget_password_subtitle": MessageLookupByLibrary.simpleMessage(
@@ -166,6 +177,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetpassword_email_subtitle2":
             MessageLookupByLibrary.simpleMessage("\nto reset."),
         "friday": MessageLookupByLibrary.simpleMessage("Friday"),
+        "hasOneDigit": MessageLookupByLibrary.simpleMessage("1 Zahl"),
         "hasOneLoweCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 Kleinbuchstabe"),
         "hasOneSpecialCharacter":
@@ -228,6 +240,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Payment Information"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),
+        "phone_validation": MessageLookupByLibrary.simpleMessage(
+            "The phone number provided is invalid. Please try a different one"),
         "post_hint": MessageLookupByLibrary.simpleMessage("Postcode"),
         "request_verification":
             MessageLookupByLibrary.simpleMessage("Request verification"),
@@ -277,7 +291,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "telephone_number_if_available": MessageLookupByLibrary.simpleMessage(
             "Phone number for customers (if available)"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
+        "till": MessageLookupByLibrary.simpleMessage("Till"),
         "tills": MessageLookupByLibrary.simpleMessage("Tills"),
+        "tills_count": m4,
         "to_save": MessageLookupByLibrary.simpleMessage("TO SAVE"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "user": MessageLookupByLibrary.simpleMessage("USER"),
@@ -293,6 +309,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "visible": MessageLookupByLibrary.simpleMessage("Visible"),
         "website_if_available":
             MessageLookupByLibrary.simpleMessage("Website (if any)"),
+        "website_valigation": MessageLookupByLibrary.simpleMessage(
+            "The web site must be written according to the following template \'website.net\'"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
         "zip_code_and_location":
