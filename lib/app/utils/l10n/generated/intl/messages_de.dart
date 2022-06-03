@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -26,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(length) => "Maximale Nummernlänge ${length} Zeichen";
 
   static String m3(length) => "Minimale Nummernlänge ${length} Zeichen";
+
+  static String m4(number) => "${number} Kassen";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -57,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Fügen Sie Bilder Ihrer Filiale hinzu."),
         "add_picture_for_branch_descr": MessageLookupByLibrary.simpleMessage(
             "Wähle Sie Ihre Filialbilder aus und laden Sie sie hoch. Achten Sie darauf, dass die ausgewählten Bilddateien eine ausreichende Qualität haben."),
+        "add_pos":
+            MessageLookupByLibrary.simpleMessage("Kassensystem hinzufügen"),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Unterkategorie hinzufügen"),
         "administration":
@@ -160,6 +165,12 @@ class MessageLookup extends MessageLookupByLibrary {
             ". Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen."),
         "forget_password": MessageLookupByLibrary.simpleMessage(
             "Sie haben Ihr Passwort\nvergessen?"),
+        "forget_password_email_inside_subtitle":
+            MessageLookupByLibrary.simpleMessage(
+                "Eine E-Mail ist unterwegs an die von Ihnen angegebenen "),
+        "forget_password_email_inside_subtitle2":
+            MessageLookupByLibrary.simpleMessage(
+                "\nBitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner."),
         "forget_password_header": MessageLookupByLibrary.simpleMessage(
             "Sie haben Ihr Passwort vergessen?"),
         "forget_password_subtitle": MessageLookupByLibrary.simpleMessage(
@@ -169,10 +180,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetpassword_email_subtitle2":
             MessageLookupByLibrary.simpleMessage("\nde zurückzusetzen."),
         "friday": MessageLookupByLibrary.simpleMessage("Freitag"),
+        "hasOneDigit": MessageLookupByLibrary.simpleMessage("1 Zahl"),
         "hasOneLoweCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 Kleinbuchstabe"),
         "hasOneSpecialCharacter":
-            MessageLookupByLibrary.simpleMessage("1 Zahl"),
+            MessageLookupByLibrary.simpleMessage("1 Sonderzeichen"),
         "hasOneUpperCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 Großbuchstabe"),
         "hasTenCharacters":
@@ -282,7 +294,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "telephone_number_if_available": MessageLookupByLibrary.simpleMessage(
             "Telefonnummer für Kunden (falls vorhanden)"),
         "thursday": MessageLookupByLibrary.simpleMessage("Donnerstag"),
+        "till": MessageLookupByLibrary.simpleMessage("Kasse"),
         "tills": MessageLookupByLibrary.simpleMessage("Kassen"),
+        "tills_count": m4,
         "to_save": MessageLookupByLibrary.simpleMessage("SPEICHERN"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Dienstag"),
         "user": MessageLookupByLibrary.simpleMessage("NUTZER"),

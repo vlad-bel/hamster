@@ -100,7 +100,7 @@ class _CountrySelectorState extends State<CountrySelector> {
                   hint: AppLocale.of(context).country_hint,
                   readOnly: true,
                   validationMessages: (control) =>
-                  CountrySelectorCubit.validationMessages,
+                      CountrySelectorCubit.validationMessages,
                 ),
               );
             },
@@ -115,7 +115,7 @@ class _CountrySelectorState extends State<CountrySelector> {
                   readOnly: true,
                   onTap: showOverlay,
                   validationMessages: (control) =>
-                  CountrySelectorCubit.validationMessages,
+                      CountrySelectorCubit.validationMessages,
                 ),
               );
             },
@@ -126,7 +126,7 @@ class _CountrySelectorState extends State<CountrySelector> {
                 hint: AppLocale.of(context).country_hint,
                 readOnly: true,
                 validationMessages: (control) =>
-                CountrySelectorCubit.validationMessages,
+                    CountrySelectorCubit.validationMessages,
               );
             },
           ),
