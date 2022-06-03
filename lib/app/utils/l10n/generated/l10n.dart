@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -675,16 +676,6 @@ class S {
     return Intl.message(
       'E-mail',
       name: 'email',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sie erhalten in Kürze erneut eine E-Mail von uns.`
-  String get emailCodeSent {
-    return Intl.message(
-      'Sie erhalten in Kürze erneut eine E-Mail von uns.',
-      name: 'emailCodeSent',
       desc: '',
       args: [],
     );
@@ -1500,6 +1491,36 @@ class S {
     );
   }
 
+  /// `Sie erhalten in Kürze erneut eine E-Mail von uns.`
+  String get emailCodeSent {
+    return Intl.message(
+      'Sie erhalten in Kürze erneut eine E-Mail von uns.',
+      name: 'emailCodeSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The web site must be written according to the following template 'website.net'`
+  String get website_valigation {
+    return Intl.message(
+      'The web site must be written according to the following template \'website.net\'',
+      name: 'website_valigation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The phone number provided is invalid. Please try a different one`
+  String get phone_validation {
+    return Intl.message(
+      'The phone number provided is invalid. Please try a different one',
+      name: 'phone_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `The entered code was invalid.`
   String get sms_invalid {
     return Intl.message(
@@ -1779,26 +1800,6 @@ class S {
       args: [],
     );
   }
-
-  /// `The web site must be written according to the following template 'website.net'`
-  String get website_valigation {
-    return Intl.message(
-      'The web site must be written according to the following template \'website.net\'',
-      name: 'website_valigation',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `The phone number provided is invalid. Please try a different one`
-  String get phone_validation {
-    return Intl.message(
-      'The phone number provided is invalid. Please try a different one',
-      name: 'phone_validation',
-      desc: '',
-      args: [],
-    );
-  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -1813,8 +1814,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 
