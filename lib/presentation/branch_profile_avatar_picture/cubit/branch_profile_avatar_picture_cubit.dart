@@ -6,6 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
+class PictureModel {
+  final XFile imageFile;
+  final Uint8List imageBytes;
+
+  PictureModel({
+    required this.imageFile,
+    required this.imageBytes,
+  });
+}
+
 @injectable
 class BranchProfileAvatarPictureCubit
     extends Cubit<BranchProfileAvatarPictureState> {
@@ -19,7 +29,7 @@ class BranchProfileAvatarPictureCubit
     ));
   }
 
-  Future<Uint8List?> pickImage(BuildContext context) async {
+  Future<XFile?> pickImage(BuildContext context) async {
     final result = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
@@ -27,17 +37,22 @@ class BranchProfileAvatarPictureCubit
     if (result != null) {
       final imageBytes = await result.readAsBytes();
 
-      return imageBytes;
+      return result;
     }
 
     return null;
   }
 
-  void setImage({required Uint8List imageBytes}) {
-    final images = List.of(state.images ?? <String>[])..insert(0, imageBytes);
+  Future setImage({required XFile xFile}) async {
+    final pictureModel = PictureModel(
+      imageFile: xFile,
+      imageBytes: await xFile.readAsBytes(),
+    );
+
+    final images = List.of(state.images ?? <String>[])..insert(0, pictureModel);
 
     return emit(BranchProfileAvatarPictureState.init(
-      selectedImage: imageBytes,
+      selectedImage: pictureModel,
       images: images,
     ));
   }

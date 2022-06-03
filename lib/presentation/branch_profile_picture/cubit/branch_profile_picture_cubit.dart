@@ -1,3 +1,4 @@
+import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
 import 'dart:typed_data';
 
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_state.dart';
@@ -38,7 +39,7 @@ class BranchProfilePictureCubit extends Cubit<BranchProfilePictureState> {
     ));
   }
 
-  Future<Uint8List?> pickImage(BuildContext context) async {
+  Future<XFile?> pickImage(BuildContext context) async {
     final result = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
@@ -46,17 +47,22 @@ class BranchProfilePictureCubit extends Cubit<BranchProfilePictureState> {
     if (result != null) {
       final imageBytes = await result.readAsBytes();
 
-      return imageBytes;
+      return result;
     }
 
     return null;
   }
 
-  void setImage({required Uint8List imageBytes}) {
-    final images = List.of(state.images ?? <String>[])..insert(0, imageBytes);
+  Future setImage({required XFile xFile}) async {
+    final pictureModel = PictureModel(
+      imageFile: xFile,
+      imageBytes: await xFile.readAsBytes(),
+    );
+
+    final images = List.of(state.images ?? <String>[])..insert(0, pictureModel);
 
     return emit(BranchProfilePictureState.init(
-      selectedImage: imageBytes,
+      selectedImage: pictureModel,
       images: images,
     ));
   }

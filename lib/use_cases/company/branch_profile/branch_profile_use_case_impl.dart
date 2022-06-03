@@ -1,14 +1,21 @@
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile_with_paging.dart';
+import 'package:business_terminal/domain/repository/branch_profile/branch_profile_repository.dart';
+import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
+import 'package:dio/src/response.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: BranchProfileUseCase)
 class BranchProfileUseCaseImpl extends BranchProfileUseCase {
-  BranchProfileUseCaseImpl(this._repository);
+  BranchProfileUseCaseImpl(
+    this._repository,
+    this.branchProfileRepository,
+  );
 
   final RestClient _repository;
+  final BranchProfileRepository branchProfileRepository;
 
   @override
   Future<BranchProfile> createBranch(BranchProfile branchProfile) async {
@@ -60,5 +67,14 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
 
     final response = await _repository.updateBranchById(id, branchJson);
     return response;
+  }
+
+  @override
+  Future<Response> uloadBranchProfilePictures(
+    List<PictureModel> pictureModels,
+  ) {
+    return branchProfileRepository.uloadBranchProfilePictures(
+      pictureModels,
+    );
   }
 }

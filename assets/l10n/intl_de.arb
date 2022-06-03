@@ -195,5 +195,11 @@
   "edit_photo_descr": "Wählen Sie den richtigen Bereich Ihres Profilfotos aus.",
   "firstName": "Vorname",
   "lastName": "Nachname",
-  "phoneNumber": "Telefonnummer"
+  "phoneNumber": "Telefonnummer",
+  "edit_company_logo" : "Bearbeiten Sie Ihr Unternehmenslogo.",
+  "choose_background_color" : "Wählen Sie die passende Hintergrundfarbe aus.",
+  "close" : "SchliEßEn",
+  "palette" : "Farbenskala",
+  "website_valigation": "Die Website muss nach der folgenden Vorlage 'website.net' geschrieben werden",
+  "phone_validation": "Die angegebene Telefonnummer ist ungültig. Bitte versuchen Sie eine andere"
 }

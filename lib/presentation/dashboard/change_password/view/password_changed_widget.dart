@@ -1,7 +1,9 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PasswordChangedWidget extends StatelessWidget {
   const PasswordChangedWidget({Key? key}) : super(key: key);
@@ -10,10 +12,16 @@ class PasswordChangedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      constraints: BoxConstraints(maxWidth: 450),
-      padding: EdgeInsets.symmetric(vertical: 60, horizontal: 80),
+      constraints: const BoxConstraints(maxWidth: 450),
+      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 80),
       child: Column(
         children: [
+          SvgPicture.asset(
+            Assets.imagesKeyThin,
+            height: 80,
+            fit: BoxFit.fitHeight,
+          ),
+          const SizedBox(height: 24),
           Text(
             AppLocale.current.passwordChanged,
             style: inter24,

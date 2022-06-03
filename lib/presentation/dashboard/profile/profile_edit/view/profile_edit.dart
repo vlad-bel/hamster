@@ -7,8 +7,10 @@ import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
+import 'package:business_terminal/presentation/branch_profile_avatar_picture/widget/avatar_selected_picture.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo/add_logo_widget.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
@@ -143,6 +145,7 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                                     await getIt
                                         .get<ProfileViewingCubit>()
                                         .getInitialData();
+
                                     if (!mounted) return;
                                     context
                                         .read<DashboardCubit>()
@@ -160,29 +163,22 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
                               buildWhen: (previous, current) =>
                                   current is InitialProfileEditState,
                               builder: (context, state) {
-                                return state.when(
-                                  initial: (company, profileEditFormSettings) =>
-                                      _ProfileEditContent(
-                                    formSettings: profileEditFormSettings,
-                                    company: company,
-                                    countrySelectorCubit: countrySelectorCubit,
-                                  ),
-                                  error: (ApiFailure error) {
-                                    return Text(
-                                      AppLocale.of(context).error,
-                                    );
-                                  },
-                                  success: () {
-                                    return Text(
-                                      AppLocale.of(context).success,
-                                    );
-                                  },
-                                  loading: () {
-                                    return Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  },
-                                );
+                                return state.whenOrNull(
+                                      initial:
+                                          (company, profileEditFormSettings) =>
+                                              _ProfileEditContent(
+                                        formSettings: profileEditFormSettings,
+                                        company: company,
+                                        countrySelectorCubit:
+                                            countrySelectorCubit,
+                                      ),
+                                      loading: () {
+                                        return Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      },
+                                    ) ??
+                                    const SizedBox.shrink();
                               },
                             ),
                           ),
@@ -200,7 +196,7 @@ class _ProfileEditViewState extends State<_ProfileEditView> {
   }
 }
 
-class _ProfileEditContent extends StatelessWidget {
+class _ProfileEditContent extends StatefulWidget {
   const _ProfileEditContent({
     required this.formSettings,
     required this.company,
@@ -210,6 +206,13 @@ class _ProfileEditContent extends StatelessWidget {
   final Company company;
   final CountrySelectorCubit countrySelectorCubit;
   final ProfileEditFormSettings formSettings;
+
+  @override
+  State<_ProfileEditContent> createState() => _ProfileEditContentState();
+}
+
+class _ProfileEditContentState extends State<_ProfileEditContent> {
+  final PageController controller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -243,10 +246,110 @@ class _ProfileEditContent extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     Center(
-                      child: AppAddLogoWidget(
-                        onPressed: () {
-                          authNavigatorKey.currentState?.pushNamed(
-                            ProfileAddLogoPage.path,
+                      child: BlocBuilder<ProfileEditCubit, ProfileEditState>(
+                        builder: (context, state) {
+                          return state.maybeWhen(
+                            imagesAdded: (
+                              company,
+                              profileEditFormSettings,
+                              images,
+                            ) {
+                              return Stack(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      if (images.length > 1)
+                                        InkWell(
+                                          onTap: () async {
+                                            await controller.previousPage(
+                                              duration:
+                                                  Duration(milliseconds: 1),
+                                              curve: Curves.easeIn,
+                                            );
+                                            setState(() {});
+                                          },
+                                          child: Icon(
+                                            Icons.arrow_back_ios,
+                                            color: lynch,
+                                            size: 32,
+                                          ),
+                                        ),
+                                      SizedBox(
+                                        width: 200,
+                                        height: 200,
+                                        child: PageView.builder(
+                                          itemCount: images.length,
+                                          controller: controller,
+                                          itemBuilder: (
+                                            BuildContext context,
+                                            int index,
+                                          ) {
+                                            return AvatarSelectedPicture(
+                                              path: images[index].imageBytes,
+                                              showEditButton: true,
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      if (images.length > 1)
+                                        InkWell(
+                                          onTap: () async {
+                                            await controller.nextPage(
+                                              duration:
+                                                  Duration(milliseconds: 1),
+                                              curve: Curves.easeIn,
+                                            );
+                                            setState(() {});
+                                          },
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: lynch,
+                                            size: 32,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                  Positioned.fill(
+                                    child: Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Container(
+                                        padding: EdgeInsets.all(8),
+                                        color: white,
+                                        child: FutureBuilder(
+                                          future: Future.value(true),
+                                          builder: (
+                                            BuildContext context,
+                                            AsyncSnapshot<void> snap,
+                                          ) {
+                                            return Text(
+                                              '${(controller.page?.round() ?? 0) + 1} / ${images.length}',
+                                              style: inter14,
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                            orElse: () {
+                              return AppAddLogoWidget(
+                                onPressed: () async {
+                                  final result = await authNavigatorKey
+                                      .currentState
+                                      ?.pushNamed<List<AddedProfileLogoModel>>(
+                                    ProfileAddLogoPage.path,
+                                  );
+                                  if (result != null) {
+                                    await profileEditCubit.addImages(
+                                      result,
+                                    );
+                                  }
+                                },
+                              );
+                            },
                           );
                         },
                       ),
@@ -261,7 +364,7 @@ class _ProfileEditContent extends StatelessWidget {
                             children: [
                               FormTextField(
                                 validationMessages: (control) =>
-                                    formSettings.validationMessages,
+                                    widget.formSettings.validationMessages,
                                 name: ProfileEditFormSettings.kCompanyName,
                                 label: Intl.message(
                                   ProfileEditFormSettings.kCompanyName,
@@ -322,7 +425,7 @@ class _ProfileEditContent extends StatelessWidget {
                               ),
                               const SizedBox(height: 25),
                               CountrySelector(
-                                cubit: countrySelectorCubit,
+                                cubit: widget.countrySelectorCubit,
                               ),
                             ],
                           ),
@@ -363,7 +466,7 @@ class _ProfileEditContent extends StatelessWidget {
                           ),
                           FormTextField(
                             validationMessages: (control) =>
-                                formSettings.validationMessages,
+                                widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings
                                 .kCommercialRegisterNumber,
                             label: Intl.message(
@@ -382,7 +485,7 @@ class _ProfileEditContent extends StatelessWidget {
                           ),
                           FormTextField(
                             validationMessages: (control) =>
-                                formSettings.validationMessages,
+                                widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings.kTaxNumber,
                             label: Intl.message(
                               ProfileEditFormSettings.kTaxNumber,
@@ -396,7 +499,7 @@ class _ProfileEditContent extends StatelessWidget {
                           const SizedBox(height: 25),
                           FormTextField(
                             validationMessages: (control) =>
-                                formSettings.validationMessages,
+                                widget.formSettings.validationMessages,
                             name: ProfileEditFormSettings.kVatId,
                             label: Intl.message(
                               ProfileEditFormSettings.kVatId,

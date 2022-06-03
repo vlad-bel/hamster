@@ -23,6 +23,8 @@ class Company {
     this.iban,
     this.createdAt,
     this.updatedAt,
+    this.vatId,
+    this.commercialRegisterNumber,
   });
 
   @JsonKey(name: 'id')
@@ -50,13 +52,17 @@ class Company {
   @JsonKey(name: 'connectionsStatistics')
   final dynamic connectionsStatistics;
   @JsonKey(name: 'fillingProgress')
-  final int? fillingProgress;
+  final dynamic fillingProgress;
   @JsonKey(name: 'taxNumber')
   final dynamic taxNumber;
   @JsonKey(name: 'accountOwner')
   final dynamic accountOwner;
   @JsonKey(name: 'IBAN')
   final String? iban;
+  @JsonKey(name: 'vatId')
+  final String? vatId;
+  @JsonKey(name: 'commercialRegisterNumber')
+  final String? commercialRegisterNumber;
   @JsonKey(name: 'createdAt')
   final DateTime? createdAt;
   @JsonKey(name: 'updatedAt')

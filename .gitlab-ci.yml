@@ -4,7 +4,7 @@ stages:
   - deploy
 
 variables:
-  ENVIRONMENT: test
+  ENVIRONMENT: www
   LOCAL_PATH: 'build/web/'
 
 clone:
@@ -13,9 +13,11 @@ clone:
   tags:
     - hamster
   script:
-    - echo "$LOCAL_PATH - $ENVIRONMENT$S3_BUCKET_NAME"
     - git clone https://$GIT_USERNAME:$GIT_PASSWORD@bitbucket.org/raikjakschis/hamster_widgets.git
     - cd hamster_widgets && git checkout develop
+  only:
+    variables:
+      - ($CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "test")
   artifacts:
     paths:
       - hamster_widgets/**
@@ -25,14 +27,15 @@ build:
   stage: build
   tags:
     - hamster
-  before_script:
-    - sed '50,/git:/s/.*git.*/path[:] \.\/hamster_widgets/g pubspec.yaml
-    - sed '53,54d' pubspec.yaml
-    - sed -n 51,52p
   script:
-    - echo ""
-    #- flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
-    #- flutter build web -t lib/main_development.dart --release --web-renderer html
+    - sed -i 52's/git:/path:/g' pubspec.yaml
+    - sed -i 52's/$/ \.\/hamster_widgets &/' pubspec.yaml
+    - sed -i '53,54d' pubspec.yaml
+    - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
+    - flutter build web -t lib/main_development.dart --release --web-renderer html
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == "develop"
   artifacts:
     paths:
       - build/web/**
@@ -50,4 +53,9 @@ deploy:
     - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
     - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
     - aws s3 sync $LOCAL_PATH "s3://$ENVIRONMENT$S3_BUCKET_NAME" --acl public-read --delete
-    - aws cloudfront create-invalidation --distribution-id $TEST_DISTRIBUTION_ID --paths '/*'
+    - aws cloudfront create-invalidation --distribution-id $DEV_DISTRIBUTION_ID --paths '/*'
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == "develop"
+
+

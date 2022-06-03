@@ -32,7 +32,7 @@ class BranchDataForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ReactiveFormBuilder(
           form: () => formGroup,
           builder: (context, form, child) {
@@ -64,17 +64,17 @@ class BranchDataForm extends StatelessWidget {
                 CountrySelector(cubit: context.read<CountrySelectorCubit>()),
                 paddingBetweenTextInputs,
                 FormTextField(
-                  name: formSettings.kFieldWebsite,
+                  name: BranchProfileFormValidation.kFieldWebsite,
                   label: AppLocale.of(context).website_if_available,
                   validationMessages: (control) =>
                       formSettings.validationMessagesGeneric,
                 ),
                 paddingBetweenTextInputs,
                 FormTextField(
-                  name: formSettings.kFieldPhone,
+                  name: BranchProfileFormValidation.kFieldPhone,
                   label: AppLocale.of(context).telephone_number_if_available,
                   validationMessages: (control) =>
-                      formSettings.validationMessagesGeneric,
+                      formSettings.phoneNumValidationMessage,
                 ),
                 paddingBetweenTextInputs,
                 DropDown(

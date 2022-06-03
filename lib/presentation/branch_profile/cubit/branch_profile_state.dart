@@ -11,6 +11,7 @@ class BranchProfileState with _$BranchProfileState {
     List<dynamic>? branchImages,
     List<dynamic>? avatarImages,
     OpeningHours? hours,
+    bool? isCreateBranchButtonEnabled,
   }) = InitBranchProfileState;
 
   const factory BranchProfileState.branchWasCreatedSuccessfully({
@@ -19,6 +20,8 @@ class BranchProfileState with _$BranchProfileState {
     List<String>? subcategories,
     List<dynamic>? branchImages,
     List<dynamic>? avatarImages,
+    OpeningHours? hours,
+    bool? isCreateBranchButtonEnabled,
   }) = WasCreatedSuccesfullyBranchProfileState;
 
   const factory BranchProfileState.error({
@@ -27,5 +30,7 @@ class BranchProfileState with _$BranchProfileState {
     List<String>? subcategories,
     List<dynamic>? branchImages,
     List<dynamic>? avatarImages,
+    OpeningHours? hours,
+    bool? isCreateBranchButtonEnabled,
   }) = ErrorBranchProfileState;
 }

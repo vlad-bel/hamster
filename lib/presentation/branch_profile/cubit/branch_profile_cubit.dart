@@ -3,8 +3,11 @@ import 'package:business_terminal/domain/model/company/branch/branch_profile.dar
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
+import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
+import 'package:dart_extensions/dart_extensions.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -23,29 +26,83 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
               'https://static.stacker.com/s3fs-public/styles/slide_desktop/s3/pepsi.png',
               'https://growyournutritionbusiness.com/wp-content/uploads/2019/11/company-logo-test.jpg',
             ],
+            isCreateBranchButtonEnabled: true,
           ),
         );
 
   final BranchProfileUseCase useCase;
   final formGroup = BranchProfileFormValidation().buildForm();
+  final _formSettings = BranchProfileFormValidation();
+
+  bool isCreateBranchButtonEnabled() {
+    final name =
+        formGroup.control(_formSettings.kFieldBranchName).value as String;
+    final city = formGroup.control(_formSettings.kFieldCity).value as String;
+    final street =
+        formGroup.control(_formSettings.kFieldStreet).value as String;
+    final website = formGroup
+        .control(BranchProfileFormValidation.kFieldWebsite)
+        .value as String;
+    final entrancesCount =
+        formGroup.control(_formSettings.kFieldEntrancesCount).value as String;
+
+    final isInvalid = name.isEmptyOrNull &&
+        city.isEmptyOrNull &&
+        street.isEmptyOrNull &&
+        website.isEmptyOrNull &&
+        entrancesCount.isEmptyOrNull;
+    return !isInvalid;
+  }
 
   // TODO: add branch parameters
   Future<void> createBranch() async {
     await state.whenOrNull(
-      init: (category, subcategories, branchImages, avatarImages, hours) async {
+      init: (
+        categoryParam,
+        subcategoriesParam,
+        branchImages,
+        avatarImages,
+        hours,
+        isCreateBranchButtonEnabled,
+      ) async {
+        final name =
+            formGroup.control(_formSettings.kFieldBranchName).value as String?;
+
+        const branchNumber = '0001'; // TODO: mock replace after Demo
+        const country = 'Germany'; // TODO: mock replace after Demo
+        const streetNumber = '111'; // TODO: mock replace after Demo
+        const postalCode = '33111'; // TODO: mock replace after Demo
+        final category = categoryParam ?? 'Restaurant';
+        final subCategories = subcategoriesParam ?? [];
+
+        final city =
+            formGroup.control(_formSettings.kFieldCity).value as String?;
+
+        final streetName =
+            formGroup.control(_formSettings.kFieldStreet).value as String?;
+
+        final website = formGroup
+            .control(BranchProfileFormValidation.kFieldWebsite)
+            .value as String?;
+
+        final phoneNumber = formGroup
+            .control(BranchProfileFormValidation.kFieldPhone)
+            .value as String?;
+
         final branchProfileDummy = BranchProfile(
-          branchName: 'Branch name',
-          branchNumber: '1111',
-          city: 'City',
-          streetName: 'Street',
-          country: 'Germany',
-          streetNumber: '111',
-          website: 'www.example.com',
-          phoneNumber: '1234567890',
+          branchName: name,
+          branchNumber: branchNumber,
+          city: city,
+          streetName: streetName,
+          country: country,
+          streetNumber: streetNumber,
+          website: website,
+          phoneNumber: phoneNumber,
           entrances: 1,
-          postalCode: '33111',
-          category: 'Restaurant',
+          postalCode: postalCode,
+          category: category,
           openingHours: hours,
+          subcategories: subCategories,
         );
 
         try {
@@ -55,7 +112,10 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
           emit(const BranchProfileState.branchWasCreatedSuccessfully());
         } on ApiFailure catch (e) {
           logger.e('createBranch: $e');
-          SnackBarManager.showError(e.response.message.toString());
+          final errorMessage = e.response.message.toString();
+
+          SnackBarManager.showError(errorMessage);
+          // emit(const BranchProfileState.error(category: errorMessage));
         }
       },
     );
@@ -69,18 +129,15 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required String category,
     required List<String> subcategories,
   }) {
-    state.whenOrNull(
-      init: (category, subcategories, branchImages, avatarImages, hours) {
-        emit(
-          BranchProfileState.init(
-            category: category,
-            subcategories: subcategories,
-            branchImages: branchImages,
-            avatarImages: avatarImages,
-            hours: hours,
-          ),
-        );
-      },
+    emit(
+      BranchProfileState.init(
+        category: category,
+        subcategories: subcategories,
+        branchImages: state.branchImages,
+        avatarImages: state.avatarImages,
+        hours: state.hours,
+        isCreateBranchButtonEnabled: state.isCreateBranchButtonEnabled,
+      ),
     );
   }
 
@@ -88,6 +145,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required List<dynamic> branchImages,
     required List<dynamic> avatarImages,
   }) {
+    uploadImage(branchImages);
     emit(
       BranchProfileState.init(
         category: state.category,
@@ -102,7 +160,14 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     required OpeningHours hours,
   }) {
     state.whenOrNull(
-      init: (category, subcategories, branchImages, avatarImages, _) {
+      init: (
+        category,
+        subcategories,
+        branchImages,
+        avatarImages,
+        hours,
+        isCreateBranchButtonEnabled,
+      ) {
         emit(
           BranchProfileState.init(
             category: category,
@@ -114,5 +179,22 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         );
       },
     );
+  }
+
+  Future uploadImage(List<dynamic> images) async {
+    try {
+      final pictureModels = <PictureModel>[];
+
+      for (final image in images) {
+        if (image is PictureModel) {
+          pictureModels.add(image);
+        }
+      }
+
+      await useCase.uloadBranchProfilePictures(pictureModels);
+      SnackBarManager.showSuccess('Uploaded!');
+    } on DioError catch (e) {
+      SnackBarManager.showError(e.message);
+    }
   }
 }

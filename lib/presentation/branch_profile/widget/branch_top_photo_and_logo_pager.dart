@@ -62,7 +62,7 @@ class _BranchTopPhotoAndLogoPagerState
                           itemBuilder: (BuildContext context, int index) {
                             return SizedBox(
                               width: double.infinity,
-                              child: DynamicImage(
+                              child: DynamicBranchImage(
                                 path: state.branchImages?[index],
                                 fit: BoxFit.cover,
                               ),
@@ -105,7 +105,7 @@ class _BranchTopPhotoAndLogoPagerState
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8),
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: Container(
@@ -191,7 +191,7 @@ class BranchLogo extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(4),
       child: ClipOval(
-        child: DynamicImage(
+        child: DynamicBranchImage(
           path: image,
           fit: BoxFit.cover,
         ),

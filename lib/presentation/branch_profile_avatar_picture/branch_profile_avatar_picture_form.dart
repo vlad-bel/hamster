@@ -114,6 +114,7 @@ class _BranchProfileAvatarPictureFormState
               (element) =>
                   element == branchProfilePictureCubit.state.selectedImage,
             );
+
       newBranchImages.addAll(
         filteredBranchImages,
       );

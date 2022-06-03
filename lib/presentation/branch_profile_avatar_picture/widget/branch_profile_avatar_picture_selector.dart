@@ -10,6 +10,7 @@ import 'package:business_terminal/presentation/common/cropper_page/cropper_page.
 import 'package:business_terminal/presentation/common/widgets/dashed_button/circle_dashed_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 class BranchProfileAvatarPictureSelector extends StatelessWidget {
   const BranchProfileAvatarPictureSelector({
@@ -110,24 +111,31 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
     final image = await cubit.pickImage(context);
     if (image != null) {
       cubit.loading();
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 200));
 
+      final imageBytes = await image.readAsBytes();
       final croppedImage = await Navigator.pushNamed<Uint8List>(
         context,
         CropperPage.path,
         arguments: {
           CropperPage.pHeader: AppLocale.current.edit_photo,
           CropperPage.pSubheader: AppLocale.current.edit_photo_descr,
-          CropperPage.pImageForCrop: image,
+          CropperPage.pImageForCrop: imageBytes,
           CropperPage.pCircleCrop: true,
         },
       );
 
       if (croppedImage != null) {
-        return cubit.setImage(imageBytes: croppedImage);
+        final xFile = XFile.fromData(
+          croppedImage,
+          name: image.name,
+          mimeType: image.mimeType,
+        );
+
+        return cubit.setImage(xFile: xFile);
       }
 
-      return cubit.setImage(imageBytes: image);
+      return cubit.setImage(xFile: image);
     }
 
     return cubit.init();

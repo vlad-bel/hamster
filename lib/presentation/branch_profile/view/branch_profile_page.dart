@@ -19,6 +19,7 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_backgro
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class BranchProfilePage extends StatelessWidget {
   const BranchProfilePage({
@@ -58,18 +59,6 @@ class _BranchProfileView extends StatelessWidget {
       height: verticalPaddingBetweenTextInputs,
     );
 
-    final appBar = Padding(
-      padding: const EdgeInsets.only(bottom: 46),
-      child: HeaderAppBarWidget(
-        trailing: ActionButtonBlue(
-          isEnabled: true,
-          onPressed: () {
-            context.read<BranchProfileCubit>().createBranch();
-          },
-        ),
-      ),
-    );
-
     return BlocConsumer<BranchProfileCubit, BranchProfileState>(
       listener: (context, state) {
         state.whenOrNull(
@@ -78,6 +67,8 @@ class _BranchProfileView extends StatelessWidget {
             subcategories,
             branchImages,
             avatarImages,
+            hours,
+            isCreateBranchButtonEnabled,
           ) {
             Navigator.popUntil(
               context,
@@ -88,7 +79,41 @@ class _BranchProfileView extends StatelessWidget {
       },
       builder: (BuildContext context, state) {
         return OnboardingBackground(
-          customAppBar: appBar,
+          customAppBar: Padding(
+            padding: const EdgeInsets.only(bottom: 46),
+            child: BlocBuilder<BranchProfileCubit, BranchProfileState>(
+              builder: (context, state) {
+                return state.whenOrNull(
+                      init: (
+                        category,
+                        subcategories,
+                        branchImages,
+                        avatarImages,
+                        hours,
+                        isCreateBranchButtonEnabled,
+                      ) {
+                        return ReactiveFormBuilder(
+                          form: () =>
+                              context.read<BranchProfileCubit>().formGroup,
+                          builder: (context, form, child) {
+                            return HeaderAppBarWidget(
+                              trailing: ActionButtonBlue(
+                                isEnabled: form.valid,
+                                onPressed: () {
+                                  context
+                                      .read<BranchProfileCubit>()
+                                      .createBranch();
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ) ??
+                    Text(AppLocale.of(context).error);
+              },
+            ),
+          ),
           children: Column(
             children: [
               BranchProfileContainerWhite(
