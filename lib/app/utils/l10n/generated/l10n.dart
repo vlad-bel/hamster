@@ -1820,10 +1820,10 @@ class S {
     );
   }
 
-  /// `Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein`
+  /// `The image should be in PNG, JPEG, BMP format and no larger than 10Mb`
   String get file_size_validation {
     return Intl.message(
-      'Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein',
+      'The image should be in PNG, JPEG, BMP format and no larger than 10Mb',
       name: 'file_size_validation',
       desc: '',
       args: [],

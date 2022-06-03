@@ -100,6 +100,9 @@ class _BranchProfileView extends StatelessWidget {
                             return HeaderAppBarWidget(
                               trailing: ActionButtonBlue(
                                 isEnabled: form.valid,
+                                child: Text(
+                                  AppLocale.of(context).save.toUpperCase(),
+                                ),
                                 onPressed: () {
                                   context
                                       .read<BranchProfileCubit>()
