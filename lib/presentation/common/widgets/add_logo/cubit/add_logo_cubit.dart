@@ -1,12 +1,9 @@
-import 'dart:typed_data';
-
 import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 part 'add_logo_cubit.freezed.dart';
@@ -27,7 +24,10 @@ class AddLogoCubit extends Cubit<AddLogoState> {
   Future<AppFile?> pickImage(BuildContext context) async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['png', 'jpeg', 'svg'],
+      allowedExtensions: [
+        'png',
+        'jpeg',
+      ],
       withData: true,
     );
 

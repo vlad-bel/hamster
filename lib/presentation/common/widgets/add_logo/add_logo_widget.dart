@@ -11,6 +11,7 @@ import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/a
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/dashed_button/circle_dashed_button.dart';
+import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +22,12 @@ class AvatarPictureSelector extends StatelessWidget {
     Key? key,
     required this.showAddButton,
     required this.showEditButton,
+    required this.files,
   }) : super(key: key);
 
   final bool showAddButton;
   final bool showEditButton;
+  final List<AddedProfileLogoModel> files;
 
   Future pickAndCropImage(BuildContext context) async {
     final cubit = context.read<AddLogoCubit>();
@@ -100,6 +103,7 @@ class AvatarPictureSelector extends StatelessWidget {
             ),
             init: (_, __) => const SizedBox(),
           );
+
           if (state.images != null && state.selectedImage != null) {
             return Column(
               children: [
@@ -112,6 +116,8 @@ class AvatarPictureSelector extends StatelessWidget {
                         extension: null,
                         name: null,
                         bytes: state.selectedImage?.imageBytes,
+                        color:
+                            state.selectedImage?.backgroundColorModel?.colorHex,
                       ),
                       showEditButton: showEditButton,
                       onPressed: () {},
@@ -120,10 +126,13 @@ class AvatarPictureSelector extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                Row(
+                Wrap(
                   children: _generatePhotoCells(
                     context,
-                    state.images,
+                    [
+                      ...files,
+                      ...state.images ?? [],
+                    ],
                     state.selectedImage,
                   ),
                 ),
@@ -154,16 +163,39 @@ class AvatarPictureSelector extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  SizedBox(
-                    width: 220,
-                    height: 220,
-                    child: CircleDashedButton(
-                      label: AppLocale.of(context).add_logo,
-                      onTap: () {
-                        pickAndCropImage(context);
-                      },
+                  if (files.isNotEmpty)
+                    Column(
+                      children: [
+                        AppLogoViewer(
+                          images: files,
+                          onPressed: () async {
+                            pickAndCropImage(context);
+                          },
+                        ),
+                        const SizedBox(height: 12),
+                        Wrap(
+                          children: _generatePhotoCells(
+                            context,
+                            [
+                              ...files,
+                              ...state.images ?? [],
+                            ],
+                            state.selectedImage,
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    SizedBox(
+                      width: 220,
+                      height: 220,
+                      child: CircleDashedButton(
+                        label: AppLocale.of(context).add_logo,
+                        onTap: () {
+                          pickAndCropImage(context);
+                        },
+                      ),
                     ),
-                  ),
                   loader,
                 ],
               ),

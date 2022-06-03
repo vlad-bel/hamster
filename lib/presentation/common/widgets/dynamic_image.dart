@@ -1,8 +1,8 @@
+import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:business_terminal/config/image/image_paths.dart';
 import 'package:business_terminal/domain/model/file/app_file.dart';
-import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,8 +14,8 @@ class DynamicBranchImage extends StatelessWidget {
     required this.fit,
   }) : super(key: key);
 
-  final dynamic path;
   final BoxFit fit;
+  final dynamic path;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,16 @@ class DynamicBranchImage extends StatelessWidget {
         fit: fit,
       );
     }
+    if (path is Uint8List) {
+      final imageBytes = path as Uint8List;
+
+      return Image.memory(
+        imageBytes,
+        filterQuality: FilterQuality.none,
+        fit: fit,
+      );
+    }
+
     return SvgPicture.asset(
       ImagePaths.svgLogo(
         SvgPaths.brandLogoDenim,

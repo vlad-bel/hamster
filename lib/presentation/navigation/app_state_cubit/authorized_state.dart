@@ -51,7 +51,11 @@ class AuthorizedState extends AppState {
                 page = const ProfileEditPage();
                 break;
               case ProfileAddLogoPage.path:
-                page = const ProfileAddLogoPage();
+                final args = settings.arguments! as ProfileAddLogoArguments;
+
+                page = ProfileAddLogoPage(
+                  arguments: args,
+                );
                 return _buildHamsterPage<List<AddedProfileLogoModel>>(
                   page,
                   settings,

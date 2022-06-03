@@ -44,11 +44,17 @@ class AddLogoCropperForm extends StatefulWidget {
 }
 
 @immutable
-class AddedProfileLogoModel {
-  const AddedProfileLogoModel({
+class AddedProfileLogoModel extends AppFile {
+  AddedProfileLogoModel({
     required this.backgroundColorModel,
     required this.imageBytes,
-  });
+  }) : super(
+          bytes: imageBytes,
+          name: '',
+          extension: '',
+          size: null,
+          color: backgroundColorModel?.colorHex,
+        );
 
   final BackgroundColorModel? backgroundColorModel;
   final Uint8List imageBytes;
@@ -176,6 +182,19 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                   child: Stack(
                                     children: [
                                       Crop(
+                                        baseColor: formState.maybeWhen(
+                                          success: (
+                                            palette,
+                                            color,
+                                          ) {
+                                            return Color(
+                                              int.parse(
+                                                '0xFF${color.colorHex}',
+                                              ),
+                                            );
+                                          },
+                                          orElse: () => white,
+                                        ),
                                         controller: _controller,
                                         image: widget.imageForCrop.bytes!,
                                         withCircleUi: widget.circleCrop,

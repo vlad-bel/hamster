@@ -36,6 +36,7 @@ class AddLogoRoundImageCell extends StatelessWidget {
                       extension: null,
                       name: null,
                       bytes: imagePath.imageBytes,
+                      color: imagePath.color,
                     ),
                     fit: BoxFit.cover,
                   ),
