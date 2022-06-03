@@ -118,7 +118,7 @@ class AuthorizedState extends AppState {
               case BranchProfileAvatarPicturePage.path:
                 page = const BranchProfileAvatarPicturePage(
                   showEditButton: false,
-                  showAddButton: true,
+                  showAddButton: false,
                 );
                 break;
               case CropperPage.path:

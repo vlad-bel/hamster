@@ -1819,6 +1819,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein`
+  String get file_size_validation {
+    return Intl.message(
+      'Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein',
+      name: 'file_size_validation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

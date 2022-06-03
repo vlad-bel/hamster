@@ -209,5 +209,6 @@
   "wednesday": "Mittwoch",
   "work_in_progress": "wip",
   "zip_code_and_location": "Postleitzahl und Ort",
-  "add_pos": "Kassensystem hinzufügen"
+  "add_pos": "Kassensystem hinzufügen",
+  "file_size_validation": "Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein"
 }

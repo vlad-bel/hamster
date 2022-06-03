@@ -211,4 +211,6 @@
   "work_in_progress": "wip",
   "zip_code_and_location": "ZIP code and location",
   "add_pos": "Add POS system"
+  "file_size_validation": "The image should be in PNG, JPEG, BMP format and no larger than 10Mb",
+
 }
