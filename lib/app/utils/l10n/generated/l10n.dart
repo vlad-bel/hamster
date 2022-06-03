@@ -1420,10 +1420,10 @@ class S {
     );
   }
 
-  /// `1 Zahl`
+  /// `1 Sonderzeichen`
   String get hasOneSpecialCharacter {
     return Intl.message(
-      '1 Zahl',
+      '1 Sonderzeichen',
       name: 'hasOneSpecialCharacter',
       desc: '',
       args: [],
@@ -1755,6 +1755,16 @@ class S {
     return Intl.message(
       'The phone number provided is invalid. Please try a different one',
       name: 'phone_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 Zahl`
+  String get hasOneDigit {
+    return Intl.message(
+      '1 Zahl',
+      name: 'hasOneDigit',
       desc: '',
       args: [],
     );

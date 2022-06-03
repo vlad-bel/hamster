@@ -168,10 +168,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetpassword_email_subtitle2":
             MessageLookupByLibrary.simpleMessage("\nde zurückzusetzen."),
         "friday": MessageLookupByLibrary.simpleMessage("Freitag"),
+        "hasOneDigit": MessageLookupByLibrary.simpleMessage("1 Zahl"),
         "hasOneLoweCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 Kleinbuchstabe"),
         "hasOneSpecialCharacter":
-            MessageLookupByLibrary.simpleMessage("1 Zahl"),
+            MessageLookupByLibrary.simpleMessage("1 Sonderzeichen"),
         "hasOneUpperCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 Großbuchstabe"),
         "hasTenCharacters":

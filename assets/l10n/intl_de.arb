@@ -165,7 +165,7 @@
   "hasTenCharacters": "10 Zeichen lang",
   "hasOneLoweCaseLetter": "1 Kleinbuchstabe",
   "hasOneUpperCaseLetter": "1 Großbuchstabe",
-  "hasOneSpecialCharacter": "1 Zahl",
+  "hasOneSpecialCharacter": "1 Sonderzeichen",
   "closeHint": "Hinweis schließen",
   "passwordChanged": "Passwort geändert.",
   "passwordChangedDescription": "Sie haben erfolgreich Ihr altes durch ein neues Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden.",
@@ -198,5 +198,6 @@
   "close" : "SchliEßEn",
   "palette" : "Farbenskala",
   "website_valigation": "Die Website muss nach der folgenden Vorlage 'website.net' geschrieben werden",
-  "phone_validation": "Die angegebene Telefonnummer ist ungültig. Bitte versuchen Sie eine andere"
+  "phone_validation": "Die angegebene Telefonnummer ist ungültig. Bitte versuchen Sie eine andere",
+  "hasOneDigit": "1 Zahl"
 }
