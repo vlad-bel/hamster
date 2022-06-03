@@ -1,6 +1,7 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
@@ -16,14 +17,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   BranchProfileCubit(this.useCase)
       : super(
           const BranchProfileState.init(
-            ///todo mock images
-            branchImages: [
-              'https://cdn.cnn.com/cnnnext/dam/assets/211105205533-01-georgia-travel-file-full-169.jpg',
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty.jpg/1280px-24701-nature-natural-beauty.jpg',
-              'https://ds.static.rtbf.be/article/image/1248x702/2/1/b/7e32a07d16f1e5929d06b65594dfb643-1563791453.jpg',
-            ],
             avatarImages: [
-              'https://static.stacker.com/s3fs-public/styles/slide_desktop/s3/pepsi.png',
               'https://growyournutritionbusiness.com/wp-content/uploads/2019/11/company-logo-test.jpg',
             ],
             isCreateBranchButtonEnabled: true,
@@ -40,8 +34,9 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     final city = formGroup.control(_formSettings.kFieldCity).value as String;
     final street =
         formGroup.control(_formSettings.kFieldStreet).value as String;
-    final website =
-        formGroup.control(BranchProfileFormValidation.kFieldWebsite).value as String;
+    final website = formGroup
+        .control(BranchProfileFormValidation.kFieldWebsite)
+        .value as String;
     final entrancesCount =
         formGroup.control(_formSettings.kFieldEntrancesCount).value as String;
 
@@ -80,11 +75,13 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         final streetName =
             formGroup.control(_formSettings.kFieldStreet).value as String?;
 
-        final website =
-            formGroup.control(BranchProfileFormValidation.kFieldWebsite).value as String?;
+        final website = formGroup
+            .control(BranchProfileFormValidation.kFieldWebsite)
+            .value as String?;
 
-        final phoneNumber =
-            formGroup.control(BranchProfileFormValidation.kFieldPhone).value as String?;
+        final phoneNumber = formGroup
+            .control(BranchProfileFormValidation.kFieldPhone)
+            .value as String?;
 
         final branchProfileDummy = BranchProfile(
           branchName: name,
@@ -180,18 +177,26 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
 
   Future uploadImage(List<dynamic> images) async {
     try {
-      final pictureModels = <PictureModel>[];
+      final pictureFiles = <AppFile>[];
 
       for (final image in images) {
-        if (image is PictureModel) {
-          pictureModels.add(image);
+        if (image is AppFile) {
+          pictureFiles.add(image);
         }
       }
 
-      await useCase.uloadBranchProfilePictures(pictureModels);
+      await useCase.uloadBranchProfilePictures(pictureFiles);
       SnackBarManager.showSuccess('Uploaded!');
     } on DioError catch (e) {
       SnackBarManager.showError(e.message);
     }
+  }
+
+  void clearData() {
+    emit(
+      BranchProfileState.init(
+        avatarImages: state.avatarImages,
+      ),
+    );
   }
 }

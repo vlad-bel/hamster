@@ -67,12 +67,14 @@ class BranchProfilePictureSelector extends StatelessWidget {
     List<dynamic> imagePaths,
     dynamic selectedImage,
   ) {
-    final cells = <Widget>[
-      Padding(
+    final cells = <Widget>[];
+
+    if (imagePaths.length < 3) {
+      cells.add(Padding(
         padding: const EdgeInsets.only(right: 3.0),
         child: BranchProfileAddCell(),
-      )
-    ];
+      ));
+    }
 
     for (final imagePath in imagePaths) {
       cells.add(
