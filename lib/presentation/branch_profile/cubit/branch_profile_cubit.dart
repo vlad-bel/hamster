@@ -232,6 +232,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     emit(
       BranchProfileState.init(
         avatarImages: state.avatarImages,
+        isCreateBranchButtonEnabled: state.isCreateBranchButtonEnabled,
       ),
     );
   }
