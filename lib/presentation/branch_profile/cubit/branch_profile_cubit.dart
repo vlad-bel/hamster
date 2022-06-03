@@ -40,8 +40,9 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     final city = formGroup.control(_formSettings.kFieldCity).value as String;
     final street =
         formGroup.control(_formSettings.kFieldStreet).value as String;
-    final website =
-        formGroup.control(BranchProfileFormValidation.kFieldWebsite).value as String;
+    final website = formGroup
+        .control(BranchProfileFormValidation.kFieldWebsite)
+        .value as String;
     final entrancesCount =
         formGroup.control(_formSettings.kFieldEntrancesCount).value as String;
 
@@ -80,11 +81,13 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
         final streetName =
             formGroup.control(_formSettings.kFieldStreet).value as String?;
 
-        final website =
-            formGroup.control(BranchProfileFormValidation.kFieldWebsite).value as String?;
+        final website = formGroup
+            .control(BranchProfileFormValidation.kFieldWebsite)
+            .value as String?;
 
-        final phoneNumber =
-            formGroup.control(BranchProfileFormValidation.kFieldPhone).value as String?;
+        final phoneNumber = formGroup
+            .control(BranchProfileFormValidation.kFieldPhone)
+            .value as String?;
 
         final branchProfileDummy = BranchProfile(
           branchName: name,
