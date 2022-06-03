@@ -20,7 +20,6 @@ class NumberPrefix extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(width: 16),
           Text(country.emoji),
           const SizedBox(width: 8),
           const Icon(
