@@ -30,8 +30,9 @@ build:
   script:
     - sed -i 's/git:/path:/g' pubspec.yaml
     - sed -i 's/path:/ \.\/hamster_widgets &/' pubspec.yaml
-    #- sed -i 's/url:/^$/d' pubspec.yaml
-    #- sed -i 's/ref:/^$/d' pubspec.yaml
+    - sed -i '/url:/d' pubspec.yaml
+    - sed -i '/ref:/d' pubspec.yaml
+    - cat pubspec.yaml
     #- flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
     #- flutter build web -t lib/main_development.dart --release --web-renderer html
   only:
