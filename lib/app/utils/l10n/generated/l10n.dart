@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1201,6 +1200,16 @@ class S {
     );
   }
 
+  /// `Forgot your password?`
+  String get forget_pasword_header {
+    return Intl.message(
+      'Forgot your password?',
+      name: 'forget_pasword_header',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Palette`
   String get palette {
     return Intl.message(
@@ -1521,6 +1530,16 @@ class S {
     );
   }
 
+  /// `1 Zahl`
+  String get hasOneDigit {
+    return Intl.message(
+      '1 Zahl',
+      name: 'hasOneDigit',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `The entered code was invalid.`
   String get sms_invalid {
     return Intl.message(
@@ -1814,10 +1833,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

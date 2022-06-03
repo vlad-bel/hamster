@@ -31,7 +31,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m4(number) => "${number} Tills";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Account owner"),
         "account_verification":
@@ -169,11 +168,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forget_password_subtitle": MessageLookupByLibrary.simpleMessage(
             "Enter your email address associated with\nyour account to continue\nresetting your password."),
+        "forget_pasword_header":
+            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forgetpassword_email_subtitle": MessageLookupByLibrary.simpleMessage(
             "Choose your favorite method to recover the account password"),
         "forgetpassword_email_subtitle2":
             MessageLookupByLibrary.simpleMessage("\nto reset."),
         "friday": MessageLookupByLibrary.simpleMessage("Friday"),
+        "hasOneDigit": MessageLookupByLibrary.simpleMessage("1 Zahl"),
         "hasOneLoweCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 Kleinbuchstabe"),
         "hasOneSpecialCharacter":

@@ -6,6 +6,7 @@ class FormSettingsChangePassword {
   ValidatorFunction get _validPassword => PasswordValidator().validate;
 
   static const kMaxLength = 256;
+  static const kMinLengthPassword = 9;
 
   ///Field names
   final kFieldOldPassword = 'old_password';
@@ -17,10 +18,11 @@ class FormSettingsChangePassword {
   static const _kPasswordValidationRuleValidPass = 'passwordValid';
 
   final validationMessagePassword = {
-    ValidationMessage.required: '',
-    ValidationMessage.maxLength: '',
+      ValidationMessage.required: 'Should not be empty',
+      ValidationMessage.maxLength: 'Maximal length is $kMaxLength',
+      ValidationMessage.minLength: 'Minimal length is $kMinLengthPassword',
     _kPasswordValidationRuleMustMatch: 'Passwords should be the same',
-    _kPasswordValidationRuleValidPass: ''
+    _kPasswordValidationRuleValidPass: 'Password should be valid'
   };
 
   FormGroup buildForm() => FormGroup(
