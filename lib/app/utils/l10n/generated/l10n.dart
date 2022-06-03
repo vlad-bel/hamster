@@ -1779,6 +1779,26 @@ class S {
       args: [],
     );
   }
+
+  /// `The web site must be written according to the following template 'website.net'`
+  String get website_valigation {
+    return Intl.message(
+      'The web site must be written according to the following template \'website.net\'',
+      name: 'website_valigation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The phone number provided is invalid. Please try a different one`
+  String get phone_validation {
+    return Intl.message(
+      'The phone number provided is invalid. Please try a different one',
+      name: 'phone_validation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

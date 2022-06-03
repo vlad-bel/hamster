@@ -10,7 +10,6 @@ import 'package:business_terminal/presentation/branch_profile/widget/branch_data
 import 'package:business_terminal/presentation/branch_profile/widget/branch_profile_working_hours_table.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/branch_top_photo_and_logo_pager.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/pos_list_item.dart';
-import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/branch_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
@@ -20,6 +19,7 @@ import 'package:business_terminal/presentation/common/widgets/onboarding_backgro
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class BranchProfilePage extends StatelessWidget {
   const BranchProfilePage({
@@ -60,30 +60,22 @@ class _BranchProfileView extends StatelessWidget {
 
     return BlocConsumer<BranchProfileCubit, BranchProfileState>(
       listener: (context, state) {
-        state.whenOrNull(branchWasCreatedSuccessfully: (
-          category,
-          subcategories,
-          branchImages,
-          avatarImages,
-          poses,
-          hours,
-          isCreateBranchButtonEnabled,
-        ) {
-          Navigator.popUntil(
-            context,
-            (route) => route.settings.name == DashboardPage.path,
-          );
-        }, error: (
-          category,
-          subcategories,
-          branchImages,
-          avatarImages,
-          poses,
-          hours,
-          isCreateBranchButtonEnabled,
-        ) {
-          SnackBarManager.showError(category!);
-        });
+        state.whenOrNull(
+          branchWasCreatedSuccessfully: (
+            category,
+            subcategories,
+            branchImages,
+            avatarImages,
+            poses,
+            hours,
+            isCreateBranchButtonEnabled,
+          ) {
+            Navigator.popUntil(
+              context,
+              (route) => route.settings.name == DashboardPage.path,
+            );
+          },
+        );
       },
       builder: (BuildContext context, state) {
         return OnboardingBackground(
@@ -101,20 +93,21 @@ class _BranchProfileView extends StatelessWidget {
                         hours,
                         isCreateBranchButtonEnabled,
                       ) {
-                        return HeaderAppBarWidget(
-                          trailing: ActionButtonBlue(
-                            isEnabled: true,
-
-                            // TODO: check why bellow lines has runtime error
-                            /*context
-                                    .read<BranchProfileCubit>()
-                                    .isCreateBranchButtonEnabled() ??
-                                false,*/
-
-                            onPressed: () {
-                              context.read<BranchProfileCubit>().createBranch();
-                            },
-                          ),
+                        return ReactiveFormBuilder(
+                          form: () =>
+                              context.read<BranchProfileCubit>().formGroup,
+                          builder: (context, form, child) {
+                            return HeaderAppBarWidget(
+                              trailing: ActionButtonBlue(
+                                isEnabled: form.valid,
+                                onPressed: () {
+                                  context
+                                      .read<BranchProfileCubit>()
+                                      .createBranch();
+                                },
+                              ),
+                            );
+                          },
                         );
                       },
                     ) ??

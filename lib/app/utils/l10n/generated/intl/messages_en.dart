@@ -235,6 +235,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Payment Information"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),
+        "phone_validation": MessageLookupByLibrary.simpleMessage(
+            "The phone number provided is invalid. Please try a different one"),
         "post_hint": MessageLookupByLibrary.simpleMessage("Postcode"),
         "request_verification":
             MessageLookupByLibrary.simpleMessage("Request verification"),
@@ -302,6 +304,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "visible": MessageLookupByLibrary.simpleMessage("Visible"),
         "website_if_available":
             MessageLookupByLibrary.simpleMessage("Website (if any)"),
+        "website_valigation": MessageLookupByLibrary.simpleMessage(
+            "The web site must be written according to the following template \'website.net\'"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
         "zip_code_and_location":

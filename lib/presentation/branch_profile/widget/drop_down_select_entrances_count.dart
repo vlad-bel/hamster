@@ -77,6 +77,9 @@ class DropDown extends StatelessWidget {
       decoration: inputDecoration,
       focusColor: Colors.white,
       items: generateDropDownItems(),
+      validationMessages: (control) => {
+        ValidationMessage.required: AppLocale.current.required_field,
+      },
     );
   }
 

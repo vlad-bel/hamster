@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
@@ -24,6 +25,11 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   static const filterTextfield = 'filter';
 
   List<Country>? cachedCountries;
+
+  static final validationMessages = {
+    ValidationMessage.required: AppLocale.current.required_field,
+  };
+
   final countryForm = fb.group({
     countryField: FormControl<String>(
       value: '',
