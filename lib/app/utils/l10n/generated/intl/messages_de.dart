@@ -93,8 +93,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Passwort ändern"),
-        "choose_background_color": MessageLookupByLibrary.simpleMessage(
-            "Wählen Sie die passende Hintergrundfarbe aus."),
         "choose_main_category": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie eine Hauptkategorie aus."),
         "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
@@ -134,8 +132,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
-        "edit_company_logo": MessageLookupByLibrary.simpleMessage(
-            "Bearbeiten Sie Ihr Unternehmenslogo."),
+        "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
+            "Sie beabsichtigen Ihre E-Mail-Adresse zu ändern?"),
         "edit_photo": MessageLookupByLibrary.simpleMessage(
             "Bearbeiten Sie Ihr Profilfoto."),
         "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
@@ -151,6 +149,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein"),
         "finance": MessageLookupByLibrary.simpleMessage("Finanzen"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finanzen1"),
+        "firstName": MessageLookupByLibrary.simpleMessage("Vorname"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
             "Für Gutschriften und regelmäßige Abrechnungen benötigen wir noch Ihre Bankverbindung und die Einwilligung zum Bankeinzugsverfahren"),
         "forgetPasswordCodeIncorrect": MessageLookupByLibrary.simpleMessage(
@@ -203,6 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sollte die Filiale an dem/den zuvor ausgewählten Tag/en geschlossen sein so lassen Sie die unten stehenden Felder leer"),
         "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
             "Sollten Ihr Unternehmen und eine Filiale die identisch \nAdresse haben, dann markieren Sie bitte die \nübereinstimmenden Angaben."),
+        "lastName": MessageLookupByLibrary.simpleMessage("Nachname"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
         "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),
         "max_length_error": MessageLookupByLibrary.simpleMessage(
@@ -231,7 +231,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Anzahl Kassen"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Öffnungszeiten"),
         "opens": MessageLookupByLibrary.simpleMessage("Öffnet"),
-        "palette": MessageLookupByLibrary.simpleMessage("Farbenskala"),
         "passwordChanged":
             MessageLookupByLibrary.simpleMessage("Passwort geändert."),
         "passwordChangedDescription": MessageLookupByLibrary.simpleMessage(
@@ -242,6 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt."),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Zahlungsinformationen"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Telefonnummer"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Anruf"),
         "phone_validation": MessageLookupByLibrary.simpleMessage(
             "Die angegebene Telefonnummer ist ungültig. Bitte versuchen Sie eine andere"),
@@ -278,6 +278,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Sie erhalten in Kürze erneut eine SMS von uns"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "smsResent": MessageLookupByLibrary.simpleMessage(
+            "Sie erhalten in Kürze erneut eine SMS von uns"),
+        "smsSentDescription": MessageLookupByLibrary.simpleMessage(
             "Sie erhalten in Kürze erneut eine SMS von uns"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(
             "Der eingegebene Code war ungültig."),
@@ -316,7 +318,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "website_valigation": MessageLookupByLibrary.simpleMessage(
             "Die Website muss nach der folgenden Vorlage \'website.net\' geschrieben werden"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Mittwoch"),
+        "which_new_email": MessageLookupByLibrary.simpleMessage(
+            "Bitte teilen Sie uns mit, welche neue E-Mail-Adresse die momentan hinterlegte Adresse, ersetzen soll: "),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
+        "wrongPassword":
+            MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
         "zip_code_and_location":
             MessageLookupByLibrary.simpleMessage("Postleitzahl und Ort")
       };
