@@ -1210,6 +1210,26 @@ class S {
     );
   }
 
+  /// `wrong password`
+  String get wrongPassword {
+    return Intl.message(
+      'wrong password',
+      name: 'wrongPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TO SAVE`
+  String get to_save {
+    return Intl.message(
+      'TO SAVE',
+      name: 'to_save',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Palette`
   String get palette {
     return Intl.message(
@@ -1490,31 +1510,71 @@ class S {
     );
   }
 
-  /// `Sie erhalten in Kürze erneut eine SMS von uns`
+  /// `The web site must be written according to the following template 'website.net'`
+  String get website_valigation {
+    return Intl.message(
+      'The web site must be written according to the following template \'website.net\'',
+      name: 'website_valigation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will shortly receive another SMS from us`
+  String get smsSentDescription {
+    return Intl.message(
+      'You will shortly receive another SMS from us',
+      name: 'smsSentDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will receive another SMS from us shortly`
   String get smsResent {
     return Intl.message(
-      'Sie erhalten in Kürze erneut eine SMS von uns',
+      'You will receive another SMS from us shortly',
       name: 'smsResent',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sie erhalten in Kürze erneut eine E-Mail von uns.`
+  /// `You will receive another email from us shortly.`
   String get emailCodeSent {
     return Intl.message(
-      'Sie erhalten in Kürze erneut eine E-Mail von uns.',
+      'You will receive another email from us shortly.',
       name: 'emailCodeSent',
       desc: '',
       args: [],
     );
   }
 
-  /// `The web site must be written according to the following template 'website.net'`
-  String get website_valigation {
+  /// `First Name`
+  String get firstName {
     return Intl.message(
-      'The web site must be written according to the following template \'website.net\'',
-      name: 'website_valigation',
+      'First Name',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name`
+  String get lastName {
+    return Intl.message(
+      'Last Name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
       desc: '',
       args: [],
     );
@@ -1670,16 +1730,6 @@ class S {
     );
   }
 
-  /// `TO SAVE`
-  String get to_save {
-    return Intl.message(
-      'TO SAVE',
-      name: 'to_save',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Tuesday`
   String get tuesday {
     return Intl.message(
@@ -1825,6 +1875,26 @@ class S {
     return Intl.message(
       'The image should be in PNG, JPEG, BMP format and no larger than 10Mb',
       name: 'file_size_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you intend to change E-Mail?`
+  String get do_you_intend_change_email {
+    return Intl.message(
+      'Do you intend to change E-Mail?',
+      name: 'do_you_intend_change_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please let us know which new e-mail address should replace the currently stored address: `
+  String get which_new_email {
+    return Intl.message(
+      'Please let us know which new e-mail address should replace the currently stored address: ',
+      name: 'which_new_email',
       desc: '',
       args: [],
     );

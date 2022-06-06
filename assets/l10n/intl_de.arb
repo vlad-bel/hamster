@@ -212,5 +212,7 @@
   "work_in_progress": "wip",
   "zip_code_and_location": "Postleitzahl und Ort",
   "add_pos": "Kassensystem hinzufügen",
-  "file_size_validation": "Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein"
+  "file_size_validation": "Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein",
+  "do_you_intend_change_email": "Sie beabsichtigen Ihre E-Mail-Adresse zu ändern?",
+  "which_new_email": "Bitte teilen Sie uns mit, welche neue E-Mail-Adresse die momentan hinterlegte Adresse, ersetzen soll: "
 }
