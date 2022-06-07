@@ -1,7 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:image_picker/image_picker.dart';
-
 class AppFile {
   AppFile({
     required this.size,
@@ -12,6 +10,7 @@ class AppFile {
   });
 
   final Uint8List? bytes;
+
 // TODO REMOVe
   final String? color;
 
