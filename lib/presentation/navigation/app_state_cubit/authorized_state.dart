@@ -23,6 +23,7 @@ import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/w
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/dashboard/change_password/view/change_password_page.dart';
+import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/add_personal_avatar_page.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/edit_personal_data_page.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_add_logo/view/profile_add_logo.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
@@ -241,6 +242,8 @@ class AuthorizedState extends AppState {
               case AddOpeningHoursPage.path:
                 page = const AddOpeningHoursPage();
                 break;
+              case AddPersonalAvatarPage.path:
+                page = const AddPersonalAvatarPage();
             }
 
             return _buildHamsterPage<void>(page, settings);
