@@ -10,7 +10,6 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:image_picker/image_picker.dart';
 
 class BranchProfileAvatarRoundAddCell extends StatelessWidget {
   const BranchProfileAvatarRoundAddCell({

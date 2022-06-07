@@ -29,7 +29,7 @@ abstract class CompanyUsecase {
     required String companyId,
   });
 
-  void dispose(){
+  void dispose() {
     company = null;
     repCompany = null;
   }

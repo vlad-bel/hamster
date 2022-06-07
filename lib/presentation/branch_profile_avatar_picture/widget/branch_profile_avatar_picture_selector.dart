@@ -11,7 +11,6 @@ import 'package:business_terminal/presentation/common/cropper_page/cropper_page.
 import 'package:business_terminal/presentation/common/widgets/dashed_button/circle_dashed_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 
 class BranchProfileAvatarPictureSelector extends StatelessWidget {
   const BranchProfileAvatarPictureSelector({

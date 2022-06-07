@@ -1,5 +1,5 @@
 import 'package:business_terminal/domain/model/country/country.dart';
-import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/verify_phone_request.dart';
 
 abstract class NumberVerificationUseCase {
   Map<String, Country>? countries;

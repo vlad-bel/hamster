@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -550,11 +551,21 @@ class S {
     );
   }
 
-  /// `Confirm your phone number.`
+  /// `Confirm your phonenumber.`
   String get confirm_number_title {
     return Intl.message(
-      'Confirm your phone number.',
+      'Confirm your phonenumber.',
       name: 'confirm_number_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm your\nE-Mail-Adresse`
+  String get confirm_email_title {
+    return Intl.message(
+      'Confirm your\nE-Mail-Adresse',
+      name: 'confirm_email_title',
       desc: '',
       args: [],
     );
@@ -751,10 +762,10 @@ class S {
   }
 
   /// `Der eingegebene Code war ungültig.`
-  String get forgetPasswordCodeIncorrect {
+  String get otpCodeIncorrect {
     return Intl.message(
       'Der eingegebene Code war ungültig.',
-      name: 'forgetPasswordCodeIncorrect',
+      name: 'otpCodeIncorrect',
       desc: '',
       args: [],
     );
@@ -1530,6 +1541,16 @@ class S {
     );
   }
 
+  /// `You will shortly receive another E-Mail from us`
+  String get emailSentDescription {
+    return Intl.message(
+      'You will shortly receive another E-Mail from us',
+      name: 'emailSentDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You will receive another SMS from us shortly`
   String get smsResent {
     return Intl.message(
@@ -1953,8 +1974,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

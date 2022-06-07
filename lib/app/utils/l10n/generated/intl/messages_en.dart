@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(number) => "${number} Tills";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Account owner"),
         "account_verification":
@@ -115,12 +116,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können."),
         "confirmNewPasswordTitle": MessageLookupByLibrary.simpleMessage(
             "Ersetzen Sie Ihr altes Passwort."),
+        "confirm_email_title": MessageLookupByLibrary.simpleMessage(
+            "Confirm your\nE-Mail-Adresse"),
         "confirm_number_subtitle1": MessageLookupByLibrary.simpleMessage(
             "You will immediately receive an SMS to the number you have given "),
         "confirm_number_subtitle2": MessageLookupByLibrary.simpleMessage(
             " Please enter the popular 5-digit code to create your user account."),
-        "confirm_number_title": MessageLookupByLibrary.simpleMessage(
-            "Confirm your phone \vnumber."),
+        "confirm_number_title":
+            MessageLookupByLibrary.simpleMessage("Confirm your phone\vnumber."),
         "connection": MessageLookupByLibrary.simpleMessage("CONNECTION"),
         "continue_button": MessageLookupByLibrary.simpleMessage("CONTINUE"),
         "country_hint": MessageLookupByLibrary.simpleMessage("Country"),
@@ -144,6 +147,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "emailCodeSent": MessageLookupByLibrary.simpleMessage(
             "You will receive another email from us shortly."),
+        "emailSentDescription": MessageLookupByLibrary.simpleMessage(
+            "You will shortly receive another E-Mail from us"),
         "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "falschesPasswort":
@@ -155,8 +160,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
             "For credits and regular billing, we still need your bank details and consent to the direct debit procedure"),
-        "forgetPasswordCodeIncorrect": MessageLookupByLibrary.simpleMessage(
-            "Der eingegebene Code war ungültig."),
         "forgetPasswordPhoneCallSubtitle1": MessageLookupByLibrary.simpleMessage(
             "Sie erhalten gleich einen Anruf mit automatischer Sprachansage auf der mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpften Nummer"),
         "forgetPasswordPhoneCallSubtitle2": MessageLookupByLibrary.simpleMessage(
@@ -238,6 +241,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Number of registers"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Opening hours"),
         "opens": MessageLookupByLibrary.simpleMessage("Opens"),
+        "otpCodeIncorrect": MessageLookupByLibrary.simpleMessage(
+            "Der eingegebene Code war ungültig."),
         "palette": MessageLookupByLibrary.simpleMessage("Palette"),
         "passwordChanged":
             MessageLookupByLibrary.simpleMessage("Passwort geändert."),

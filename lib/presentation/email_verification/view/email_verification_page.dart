@@ -18,13 +18,32 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-class EmailVerificationPage extends StatelessWidget {
+class VerificationModel {
+  final String? userCredentials;
+  final String title;
+  final String wrongOtpText;
+  final String otpSentText;
+  final String previousEmailText;
+  final String previousEmailSpamText;
+
+  VerificationModel({
+    required this.userCredentials,
+    required this.title,
+    required this.wrongOtpText,
+    required this.otpSentText,
+    required this.previousEmailText,
+    required this.previousEmailSpamText,
+  });
+}
+
+class EmailVerificationPage<T extends EmailVerificationCubit>
+    extends StatelessWidget {
   const EmailVerificationPage({
     super.key,
-    required this.userEmail,
+    required this.model,
   });
 
-  final String? userEmail;
+  final VerificationModel model;
 
   static const path = '${RegistrationPage.path}/email_verification';
 
@@ -32,26 +51,26 @@ class EmailVerificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<EmailVerificationCubit>(
       create: (context) => getIt.get<EmailVerificationCubit>(),
-      child: EmailVerificationView(userEmail: userEmail),
+      child: EmailVerificationView(
+        model: model,
+      ),
     );
   }
 }
 
 class EmailVerificationView extends StatefulWidget {
-  const EmailVerificationView({super.key, this.userEmail});
+  const EmailVerificationView({
+    super.key,
+    required this.model,
+  });
 
-  final String? userEmail;
+  final VerificationModel model;
 
   @override
   State<EmailVerificationView> createState() => _EmailVerificationViewState();
 }
 
 class _EmailVerificationViewState extends State<EmailVerificationView> {
-  final title = 'Bestätigen Sie Ihre \nE-Mail-Adresse.';
-  final textWrongOtp = 'Der eingegebene Code war ungültig.';
-  final textEmailWasSent = 'Sie erhalten in Kürze erneut eine E-Mail von uns.';
-  final emailWasSentColor = fruitSalad;
-
   final pinController = TextEditingController();
 
   @override
@@ -61,24 +80,24 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: title,
-          subHeader: SubHeaderRichText(widget: widget),
+          header: widget.model.title,
+          subHeader: _SubHeaderRichText(widget: widget),
         ),
         body: Column(
           children: [
-            EmailVerificationPinWrapper(
+            _EmailVerificationPinWrapper(
               pinController: pinController,
               widget: widget,
               cubit: cubit,
             ),
-            ResendEmailCodeButton(
-              userEmail: widget.userEmail,
+            _ResendEmailCodeButton(
+              userEmail: widget.model.userCredentials,
               cubit: cubit,
             ),
-            EmailSentNotSentInfoBuilder(
-              textEmailWasSent: textEmailWasSent,
-              emailWasSentColor: emailWasSentColor,
-              textWrongOtp: textWrongOtp,
+            _EmailSentNotSentInfoBuilder(
+              textEmailWasSent: widget.model.otpSentText,
+              emailWasSentColor: fruitSalad,
+              textWrongOtp: widget.model.wrongOtpText,
               pinController: pinController,
             ),
             WhiteButton(
@@ -87,7 +106,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
                 Navigator.of(context).pop();
               },
             ),
-            EmailVerificationBlocListener(
+            _EmailVerificationBlocListener(
               pinController: pinController,
             ),
           ],
@@ -97,8 +116,8 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
   }
 }
 
-class SubHeaderRichText extends StatelessWidget {
-  const SubHeaderRichText({
+class _SubHeaderRichText extends StatelessWidget {
+  const _SubHeaderRichText({
     super.key,
     required this.widget,
   });
@@ -109,19 +128,15 @@ class SubHeaderRichText extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text: 'Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse ',
+        text: widget.model.previousEmailText,
         style: inter14.copyWith(height: 1.6),
         children: [
           TextSpan(
-            text: widget.userEmail,
+            text: widget.model.userCredentials,
             style: inter14.copyWith(color: denim),
           ),
           TextSpan(
-            text: ' Bitte geben Sie den 5-stelligen Code ein, um'
-                ' IhreE-Mail-Adresse zu verifizieren. Sollte'
-                ' die E-Mail in Kürze nicht in Ihrer Inbox'
-                ' auftauchen, so kontrollieren Sie bitte'
-                ' auch Ihren Spam-Ordner.',
+            text: widget.model.previousEmailSpamText,
             style: inter14,
           ),
         ],
@@ -130,9 +145,8 @@ class SubHeaderRichText extends StatelessWidget {
   }
 }
 
-class EmailSentNotSentInfoBuilder extends StatelessWidget {
-  const EmailSentNotSentInfoBuilder({
-    super.key,
+class _EmailSentNotSentInfoBuilder extends StatelessWidget {
+  const _EmailSentNotSentInfoBuilder({
     required this.textEmailWasSent,
     required this.emailWasSentColor,
     required this.textWrongOtp,
@@ -178,9 +192,8 @@ class EmailSentNotSentInfoBuilder extends StatelessWidget {
   }
 }
 
-class EmailVerificationBlocListener extends StatelessWidget {
-  const EmailVerificationBlocListener({
-    super.key,
+class _EmailVerificationBlocListener extends StatelessWidget {
+  const _EmailVerificationBlocListener({
     required this.pinController,
   });
 
@@ -222,9 +235,8 @@ class EmailVerificationBlocListener extends StatelessWidget {
   }
 }
 
-class ResendEmailCodeButton extends StatelessWidget {
-  const ResendEmailCodeButton({
-    super.key,
+class _ResendEmailCodeButton extends StatelessWidget {
+  const _ResendEmailCodeButton({
     required this.userEmail,
     required this.cubit,
   });
@@ -258,9 +270,8 @@ class ResendEmailCodeButton extends StatelessWidget {
   }
 }
 
-class EmailVerificationPinWrapper extends StatefulWidget {
-  const EmailVerificationPinWrapper({
-    super.key,
+class _EmailVerificationPinWrapper extends StatefulWidget {
+  const _EmailVerificationPinWrapper({
     required this.pinController,
     required this.widget,
     required this.cubit,
@@ -271,12 +282,12 @@ class EmailVerificationPinWrapper extends StatefulWidget {
   final EmailVerificationCubit cubit;
 
   @override
-  State<EmailVerificationPinWrapper> createState() =>
+  State<_EmailVerificationPinWrapper> createState() =>
       _EmailVerificationPinWrapperState();
 }
 
 class _EmailVerificationPinWrapperState
-    extends State<EmailVerificationPinWrapper> {
+    extends State<_EmailVerificationPinWrapper> {
   bool hasPinError = false;
 
   @override
@@ -285,7 +296,7 @@ class _EmailVerificationPinWrapperState
       builder: (context, state) {
         hasPinError = state is WrongOTPEmailVerification;
 
-        final pin = EmailVerificationPinInput(
+        final pin = _EmailVerificationPinInput(
           pinController: widget.pinController,
           hasPinError: hasPinError,
           widget: widget.widget,
@@ -298,9 +309,8 @@ class _EmailVerificationPinWrapperState
   }
 }
 
-class EmailVerificationPinInput extends StatelessWidget {
-  const EmailVerificationPinInput({
-    super.key,
+class _EmailVerificationPinInput extends StatelessWidget {
+  const _EmailVerificationPinInput({
     required this.pinController,
     required this.hasPinError,
     required this.widget,
@@ -324,7 +334,7 @@ class EmailVerificationPinInput extends StatelessWidget {
         textStyle: HamsterStyles.pincodeWeb,
         hasError: hasPinError,
         onCompleted: (String value) {
-          final email = widget.userEmail;
+          final email = widget.model.userCredentials;
           if (email != null) {
             cubit.verifyEmailByOTPCode(email, value);
           } else {
