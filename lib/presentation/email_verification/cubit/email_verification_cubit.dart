@@ -96,7 +96,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
   }
 }
 
-@injectable
+@factoryMethod
 abstract class OtpVerificationCubit extends Cubit<OtpVerificationState> {
   OtpVerificationCubit(this._useCase)
       : super(
