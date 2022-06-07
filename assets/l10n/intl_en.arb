@@ -133,9 +133,9 @@
   "main_category": "Main category",
   "max_length_error": "The maximum length is $0 characters",
   "max_length_reached": "Maximum length reached",
-  "max_number": "Minimum number {length} characters",
+  "min_number": "Minimum number {length} characters",
   "min_length_field": "The minimum number of characters was not reached",
-  "min_number": "Maximum number {length} characters",
+  "max_number": "Maximum number {length} characters",
   "model_if_known": "Model (if known)",
   "monday": "Monday",
   "my_company": "My Company",
@@ -181,7 +181,6 @@
   "sieErhaltenInKrzeErneutEineSmsVonUns": "Sie erhalten in Kürze erneut eine SMS von uns",
   "sms": "SMS",
   "website_valigation": "The web site must be written according to the following template 'website.net'",
-
   "smsSentDescription": "You will shortly receive another SMS from us",
   "smsResent": "You will receive another SMS from us shortly",
   "emailCodeSent": "You will receive another email from us shortly.",
@@ -217,5 +216,15 @@
   "work_in_progress": "wip",
   "zip_code_and_location": "ZIP code and location",
   "add_pos": "Add POS system",
-  "file_size_validation": "The image should be in PNG, JPEG, BMP format and no larger than 10Mb"
+  "file_size_validation": "The image should be in PNG, JPEG, BMP format and no larger than 10Mb",
+  "email_on_its_way": "An email is on its way to the address you specified",
+  "please_enter_code_to_verity_email": "Please enter the 5-digit code to verify your email address. If the email does not appear in your inbox shortly, please also check your spam folder",
+  "welcome_to_hamster": "Welcome to\nHamster!",
+  "welcome_to_hamster_description": "If you already have a business account, then log in directly. Otherwise you would have to register first.",
+  "password": "Password",
+  "did_not_have_account": "You don't have a business terminal account yet?",
+  "join_now": "Join now",
+  "not_empty_field": "Should not be empty",
+  "email_field": "Should be a valid email",
+  "notFound" : "Not found"
 }

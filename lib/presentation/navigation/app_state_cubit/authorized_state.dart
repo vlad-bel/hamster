@@ -58,7 +58,7 @@ class AuthorizedState extends AppState {
                 page = ProfileAddLogoPage(
                   arguments: args,
                 );
-                return _buildHamsterPage<List<AddedProfileLogoModel>>(
+                return _buildHamsterPage<List<AppColoredFile>>(
                   page,
                   settings,
                 );
@@ -196,7 +196,7 @@ class AuthorizedState extends AppState {
                   addLogoCropperArguments: params,
                 );
 
-                return _buildHamsterPage<AddedProfileLogoModel>(page, settings);
+                return _buildHamsterPage<AppColoredFile>(page, settings);
               case PickDayPage.path:
                 final params = settings.arguments as Map<String, dynamic>?;
                 if (params?[PickDayPage.paramDays] != null) {

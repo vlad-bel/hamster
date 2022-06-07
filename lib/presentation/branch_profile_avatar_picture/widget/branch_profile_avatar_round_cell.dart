@@ -1,6 +1,7 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/dynamic_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,8 +14,8 @@ class BranchProfileAvatarRoundCell extends StatelessWidget {
     required this.imagePath,
   }) : super(key: key);
 
+  final AppColoredFile imagePath;
   final bool isSelected;
-  final dynamic imagePath;
 
   @override
   Widget build(BuildContext context) {

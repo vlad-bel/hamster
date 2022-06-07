@@ -212,5 +212,15 @@
   "work_in_progress": "wip",
   "zip_code_and_location": "Postleitzahl und Ort",
   "add_pos": "Kassensystem hinzufügen",
-  "file_size_validation": "Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein"
+  "file_size_validation": "Das Bild sollte das Format PNG, JPEG, BMP haben und nicht größer als 10Mb sein",
+  "email_on_its_way": "Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse",
+  "please_enter_code_to_verity_email": "Bitte geben Sie den 5-stelligen Code ein, um IhreE-Mail-Adresse zu verifizieren. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner",
+  "welcome_to_hamster": "Willkommen bei\nHamster!",
+  "welcome_to_hamster_description": "Sollten Sie bereits einen BusinessAccount haben, dann melden Sie sich direkt an. Ansonsten müssten Sie sich zuerst noch registrieren",
+  "password": "Passwort",
+  "did_not_have_account": "Du hast noch keinen Business-Terminal-Account?",
+  "join_now": "Jetzt registrieren",
+  "not_empty_field": "Sollte nicht leer sein",
+  "email_field": "Sollte eine gültige E-Mail sein",
+  "notFound": "Nicht gefunden"
 }

@@ -2,11 +2,11 @@ import 'dart:typed_data';
 
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
 import 'package:business_terminal/presentation/common/cropper_page/cropper_page.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/dynamic_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,8 +19,8 @@ class BranchProfilePictureCell extends StatelessWidget {
     required this.imagePath,
   }) : super(key: key);
 
+  final AppColoredFile imagePath;
   final bool isSelected;
-  final dynamic imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -115,11 +115,11 @@ Future pickAndCropImage(
     );
 
     if (croppedImage != null) {
-      final appFile = AppFile(
+      final appFile = AppColoredFile(
         size: image.size,
-        extension: image.extension,
         name: image.name,
         bytes: croppedImage,
+        color: null,
       );
 
       return cubit.setImage(appFile: appFile);

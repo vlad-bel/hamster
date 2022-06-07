@@ -1041,10 +1041,10 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(int length) {
+  String min_number(int length) {
     return Intl.message(
       'Minimum number $length characters',
-      name: 'max_number',
+      name: 'min_number',
       desc: '',
       args: [length],
     );
@@ -1061,10 +1061,10 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(int length) {
+  String max_number(int length) {
     return Intl.message(
       'Maximum number $length characters',
-      name: 'min_number',
+      name: 'max_number',
       desc: '',
       args: [length],
     );
@@ -1205,6 +1205,26 @@ class S {
     return Intl.message(
       'Forgot your password?',
       name: 'forget_pasword_header',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `wrong password`
+  String get wrongPassword {
+    return Intl.message(
+      'wrong password',
+      name: 'wrongPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TO SAVE`
+  String get to_save {
+    return Intl.message(
+      'TO SAVE',
+      name: 'to_save',
       desc: '',
       args: [],
     );
@@ -1490,31 +1510,71 @@ class S {
     );
   }
 
-  /// `Sie erhalten in Kürze erneut eine SMS von uns`
+  /// `The web site must be written according to the following template 'website.net'`
+  String get website_valigation {
+    return Intl.message(
+      'The web site must be written according to the following template \'website.net\'',
+      name: 'website_valigation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will shortly receive another SMS from us`
+  String get smsSentDescription {
+    return Intl.message(
+      'You will shortly receive another SMS from us',
+      name: 'smsSentDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will receive another SMS from us shortly`
   String get smsResent {
     return Intl.message(
-      'Sie erhalten in Kürze erneut eine SMS von uns',
+      'You will receive another SMS from us shortly',
       name: 'smsResent',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sie erhalten in Kürze erneut eine E-Mail von uns.`
+  /// `You will receive another email from us shortly.`
   String get emailCodeSent {
     return Intl.message(
-      'Sie erhalten in Kürze erneut eine E-Mail von uns.',
+      'You will receive another email from us shortly.',
       name: 'emailCodeSent',
       desc: '',
       args: [],
     );
   }
 
-  /// `The web site must be written according to the following template 'website.net'`
-  String get website_valigation {
+  /// `First Name`
+  String get firstName {
     return Intl.message(
-      'The web site must be written according to the following template \'website.net\'',
-      name: 'website_valigation',
+      'First Name',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name`
+  String get lastName {
+    return Intl.message(
+      'Last Name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
       desc: '',
       args: [],
     );
@@ -1670,16 +1730,6 @@ class S {
     );
   }
 
-  /// `TO SAVE`
-  String get to_save {
-    return Intl.message(
-      'TO SAVE',
-      name: 'to_save',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Tuesday`
   String get tuesday {
     return Intl.message(
@@ -1825,6 +1875,106 @@ class S {
     return Intl.message(
       'The image should be in PNG, JPEG, BMP format and no larger than 10Mb',
       name: 'file_size_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An email is on its way to the address you specified`
+  String get email_on_its_way {
+    return Intl.message(
+      'An email is on its way to the address you specified',
+      name: 'email_on_its_way',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the 5-digit code to verify your email address. If the email does not appear in your inbox shortly, please also check your spam folder`
+  String get please_enter_code_to_verity_email {
+    return Intl.message(
+      'Please enter the 5-digit code to verify your email address. If the email does not appear in your inbox shortly, please also check your spam folder',
+      name: 'please_enter_code_to_verity_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to\nHamster!`
+  String get welcome_to_hamster {
+    return Intl.message(
+      'Welcome to\nHamster!',
+      name: 'welcome_to_hamster',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you already have a business account, then log in directly. Otherwise you would have to register first.`
+  String get welcome_to_hamster_description {
+    return Intl.message(
+      'If you already have a business account, then log in directly. Otherwise you would have to register first.',
+      name: 'welcome_to_hamster_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have a business terminal account yet?`
+  String get did_not_have_account {
+    return Intl.message(
+      'You don\'t have a business terminal account yet?',
+      name: 'did_not_have_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join now`
+  String get join_now {
+    return Intl.message(
+      'Join now',
+      name: 'join_now',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Should not be empty`
+  String get not_empty_field {
+    return Intl.message(
+      'Should not be empty',
+      name: 'not_empty_field',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Should be a valid email`
+  String get email_field {
+    return Intl.message(
+      'Should be a valid email',
+      name: 'email_field',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not found`
+  String get notFound {
+    return Intl.message(
+      'Not found',
+      name: 'notFound',
       desc: '',
       args: [],
     );

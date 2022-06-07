@@ -8,6 +8,7 @@ import 'package:business_terminal/presentation/branch_profile_avatar_picture/wid
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/widget/branch_profile_avatar_round_add_cell.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/widget/branch_profile_avatar_round_cell.dart';
 import 'package:business_terminal/presentation/common/cropper_page/cropper_page.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/dashed_button/circle_dashed_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +23,69 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
 
   final bool showAddButton;
   final bool showEditButton;
+
+  Future pickAndCropImage(BuildContext context) async {
+    final cubit = context.read<BranchProfileAvatarPictureCubit>();
+    final image = await cubit.pickImage(context);
+    if (image != null) {
+      cubit.loading();
+      await Future.delayed(Duration(milliseconds: 200));
+
+      final croppedImage = await Navigator.pushNamed<Uint8List>(
+        context,
+        CropperPage.path,
+        arguments: {
+          CropperPage.pHeader: AppLocale.current.edit_photo,
+          CropperPage.pSubheader: AppLocale.current.edit_photo_descr,
+          CropperPage.pImageForCrop: image.bytes,
+          CropperPage.pCircleCrop: true,
+        },
+      );
+
+      if (croppedImage != null) {
+        final appFile = AppColoredFile(
+          size: image.size,
+          name: image.name,
+          bytes: croppedImage,
+          color: null,
+        );
+
+        return cubit.setImage(appFile: appFile);
+      }
+
+      return cubit.setImage(appFile: image);
+    }
+
+    return cubit.init();
+  }
+
+  List<Widget> _generatePhotoCells(
+    List<AppColoredFile> imagePaths,
+    dynamic selectedImage,
+    bool showAddButtonForFirstRow,
+  ) {
+    final cells = <Widget>[
+      if (showAddButton && showAddButtonForFirstRow)
+        Padding(
+          padding: const EdgeInsets.only(right: 3.0),
+          child: BranchProfileAvatarRoundAddCell(),
+        )
+    ];
+
+    for (final imagePath in imagePaths) {
+      cells.add(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3),
+          child: BranchProfileAvatarRoundCell(
+            isSelected: imagePath == selectedImage,
+            imagePath: imagePath,
+          ),
+        ),
+      );
+    }
+
+    return cells;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +109,7 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   AvatarSelectedPicture(
-                    path: state.selectedImage,
+                    appFile: state.selectedImage!,
                     onPressed: () {},
                   ),
                   loader,
@@ -79,7 +143,7 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
         }
         return Stack(
           children: [
-            Container(
+            SizedBox(
               width: 220,
               height: 220,
               child: CircleDashedButton(
@@ -94,68 +158,5 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
         );
       },
     );
-  }
-
-  List<Widget> _generatePhotoCells(
-    List<dynamic> imagePaths,
-    dynamic selectedImage,
-    bool showAddButtonForFirstRow,
-  ) {
-    final cells = <Widget>[
-      if (showAddButton && showAddButtonForFirstRow)
-        Padding(
-          padding: const EdgeInsets.only(right: 3.0),
-          child: BranchProfileAvatarRoundAddCell(),
-        )
-    ];
-
-    for (final imagePath in imagePaths) {
-      cells.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 3),
-          child: BranchProfileAvatarRoundCell(
-            isSelected: imagePath == selectedImage,
-            imagePath: imagePath,
-          ),
-        ),
-      );
-    }
-
-    return cells;
-  }
-
-  Future pickAndCropImage(BuildContext context) async {
-    final cubit = context.read<BranchProfileAvatarPictureCubit>();
-    final image = await cubit.pickImage(context);
-    if (image != null) {
-      cubit.loading();
-      await Future.delayed(Duration(milliseconds: 200));
-
-      final croppedImage = await Navigator.pushNamed<Uint8List>(
-        context,
-        CropperPage.path,
-        arguments: {
-          CropperPage.pHeader: AppLocale.current.edit_photo,
-          CropperPage.pSubheader: AppLocale.current.edit_photo_descr,
-          CropperPage.pImageForCrop: image.bytes,
-          CropperPage.pCircleCrop: true,
-        },
-      );
-
-      if (croppedImage != null) {
-        final appFile = AppFile(
-          size: image.size,
-          extension: image.extension,
-          name: image.name,
-          bytes: croppedImage,
-        );
-
-        return cubit.setImage(appFile: appFile);
-      }
-
-      return cubit.setImage(appFile: image);
-    }
-
-    return cubit.init();
   }
 }

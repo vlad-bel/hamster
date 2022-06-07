@@ -7,6 +7,7 @@ import 'package:business_terminal/presentation/branch_profile_avatar_picture/cub
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_state.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/widget/branch_profile_avatar_picture_selector.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
@@ -43,6 +44,59 @@ class _BranchProfileAvatarPictureFormState
           selectedImage: branchProfileCubit.state.avatarImages?[0],
         ),
       );
+  }
+
+  void saveImagesToBranchProfile(BuildContext context) {
+    final branchProfilePageCubit = context.read<BranchProfileCubit>();
+    final branchProfilePictureCubit = context.read<BranchProfilePictureCubit>();
+    final branchProfileAvatarCubit =
+        context.read<BranchProfileAvatarPictureCubit>();
+
+    final newBranchImages = <AppColoredFile>[];
+
+    if (branchProfilePictureCubit.state.selectedImage != null) {
+      newBranchImages.add(branchProfilePictureCubit.state.selectedImage!);
+    }
+
+    if (branchProfilePictureCubit.state.images != null) {
+      final filteredBranchImages =
+          List.of(branchProfilePictureCubit.state.images!)
+            ..removeWhere(
+              (element) =>
+                  element == branchProfilePictureCubit.state.selectedImage,
+            );
+
+      newBranchImages.addAll(
+        filteredBranchImages,
+      );
+    }
+
+    final newAvatarImages = <AppColoredFile>[];
+    if (branchProfileAvatarCubit.state.selectedImage != null) {
+      newAvatarImages.add(branchProfileAvatarCubit.state.selectedImage!);
+    }
+
+    if (branchProfileAvatarCubit.state.images != null) {
+      final filteredAvatarImages = List.of(
+        branchProfileAvatarCubit.state.images!,
+      )..removeWhere(
+          (element) => element == branchProfileAvatarCubit.state.selectedImage,
+        );
+
+      newAvatarImages.addAll(
+        filteredAvatarImages,
+      );
+    }
+
+    branchProfilePageCubit.setImages(
+      branchImages: newBranchImages,
+      avatarImages: newAvatarImages,
+    );
+
+    Navigator.popUntil(
+      context,
+      (route) => route.settings.name == BranchProfilePage.path,
+    );
   }
 
   @override
@@ -94,59 +148,6 @@ class _BranchProfileAvatarPictureFormState
           ],
         ),
       ),
-    );
-  }
-
-  void saveImagesToBranchProfile(BuildContext context) {
-    final branchProfilePageCubit = context.read<BranchProfileCubit>();
-    final branchProfilePictureCubit = context.read<BranchProfilePictureCubit>();
-    final branchProfileAvatarCubit =
-        context.read<BranchProfileAvatarPictureCubit>();
-
-    final newBranchImages = [];
-
-    if (branchProfilePictureCubit.state.selectedImage != null) {
-      newBranchImages.add(branchProfilePictureCubit.state.selectedImage);
-    }
-
-    if (branchProfilePictureCubit.state.images != null) {
-      final filteredBranchImages =
-          List.of(branchProfilePictureCubit.state.images!)
-            ..removeWhere(
-              (element) =>
-                  element == branchProfilePictureCubit.state.selectedImage,
-            );
-
-      newBranchImages.addAll(
-        filteredBranchImages,
-      );
-    }
-
-    final newAvatarImages = [];
-    if (branchProfileAvatarCubit.state.selectedImage != null) {
-      newAvatarImages.add(branchProfileAvatarCubit.state.selectedImage);
-    }
-
-    if (branchProfileAvatarCubit.state.images != null) {
-      final filteredAvatarImages = List.of(
-        branchProfileAvatarCubit.state.images!,
-      )..removeWhere(
-          (element) => element == branchProfileAvatarCubit.state.selectedImage,
-        );
-
-      newAvatarImages.addAll(
-        filteredAvatarImages,
-      );
-    }
-
-    branchProfilePageCubit.setImages(
-      branchImages: newBranchImages,
-      avatarImages: newAvatarImages,
-    );
-
-    Navigator.popUntil(
-      context,
-      (route) => route.settings.name == BranchProfilePage.path,
     );
   }
 }

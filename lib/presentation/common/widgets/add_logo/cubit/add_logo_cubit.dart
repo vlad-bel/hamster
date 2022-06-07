@@ -12,10 +12,10 @@ part 'add_logo_cubit.freezed.dart';
 class AddLogoCubit extends Cubit<AddLogoState> {
   AddLogoCubit() : super(const AddLogoState.init());
 
-  void selectImage(AddedProfileLogoModel? imagePath) {
+  void selectImage(AppColoredFile? image) {
     emit(
       AddLogoState.init(
-        selectedImage: imagePath,
+        selectedImage: image,
         images: state.images,
       ),
     );
@@ -34,10 +34,9 @@ class AddLogoCubit extends Cubit<AddLogoState> {
     if (result != null) {
       final file = result.files.first;
       return AppFile(
-        extension: file.extension,
         bytes: file.bytes,
         size: file.size,
-        name: '',
+        name: file.name,
       );
     }
 
@@ -45,25 +44,25 @@ class AddLogoCubit extends Cubit<AddLogoState> {
   }
 
   void setImage({
-    required AddedProfileLogoModel addedProfileLogo,
+    required AppColoredFile image,
   }) {
     if (state.images?.isNotEmpty == true) {
-      state.images?.add(addedProfileLogo);
+      state.images?.add(image);
 
       return emit(
         AddLogoState.init(
-          selectedImage: addedProfileLogo,
+          selectedImage: image,
           images: state.images,
         ),
       );
     } else {
-      final images = <AddedProfileLogoModel>[]..insert(
+      final images = <AppColoredFile>[]..insert(
           0,
-          addedProfileLogo,
+          image,
         );
       return emit(
         AddLogoState.init(
-          selectedImage: addedProfileLogo,
+          selectedImage: image,
           images: images,
         ),
       );
@@ -92,12 +91,12 @@ class AddLogoCubit extends Cubit<AddLogoState> {
 @freezed
 class AddLogoState with _$AddLogoState {
   const factory AddLogoState.init({
-    AddedProfileLogoModel? selectedImage,
-    List<AddedProfileLogoModel>? images,
+    AppColoredFile? selectedImage,
+    List<AppColoredFile>? images,
   }) = _$InitAddLogoState;
 
   const factory AddLogoState.loading({
-    AddedProfileLogoModel? selectedImage,
-    List<AddedProfileLogoModel>? images,
+    AppColoredFile? selectedImage,
+    List<AppColoredFile>? images,
   }) = _$LoadingAddLogoState;
 }

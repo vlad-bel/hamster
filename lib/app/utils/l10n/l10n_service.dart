@@ -1,7 +1,9 @@
 import 'package:business_terminal/app/utils/l10n/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 
+@singleton
 class AppLocale {
   const AppLocale();
 

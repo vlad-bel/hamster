@@ -34,9 +34,8 @@ class ProfileEditUsecaseImpl extends ProfileEditUsecase {
         );
       }
 
-      // TODO(b.nurmoldanov) change hardcoded URI,
       await getIt.get<Dio>().put(
-            'http://localhost:3003/api/company/$companyId',
+            '/company/$companyId',
             data: formData,
           );
       return true;

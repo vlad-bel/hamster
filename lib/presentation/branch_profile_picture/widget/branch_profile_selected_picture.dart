@@ -1,4 +1,5 @@
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/bordered_container/bordered_edit_container.dart';
 import 'package:business_terminal/presentation/common/widgets/dynamic_image.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class SelectedPicture extends StatelessWidget {
   }) : super(key: key);
 
   ///could be string path or Uint8List data
-  final dynamic image;
+  final AppColoredFile image;
 
   @override
   Widget build(BuildContext context) {

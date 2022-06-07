@@ -17,8 +17,10 @@ Dio httpClientInit() {
     compact: false,
   );
 
-  final option = BaseOptions()
-    ..headers = <String, dynamic>{
+  final option = BaseOptions(
+    // TODO add .env file
+    baseUrl: 'http://localhost:3003/api/',
+  )..headers = <String, dynamic>{
       'Accept': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
     };
@@ -31,6 +33,7 @@ Dio httpClientInit() {
           RequestInterceptorHandler handler,
         ) async {
           final accessToken = await tokenRepository.getAccessToken();
+
           if (accessToken != null) {
             options.headers['Authorization'] = 'Bearer $accessToken';
           }
@@ -47,8 +50,8 @@ Dio httpClientInit() {
           return _refreshToken(error, handler);
         },
       ),
-    );
-  // ..interceptors.add(prettyDioLogger);
+    )
+    ..interceptors.add(prettyDioLogger);
 
   return dio;
 }

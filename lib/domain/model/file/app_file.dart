@@ -1,21 +1,20 @@
 import 'dart:typed_data';
 
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter/material.dart';
 
+@immutable
 class AppFile {
-  AppFile({
-    required this.size,
-    required this.extension,
-    required this.name,
-    this.color,
+  const AppFile({
     required this.bytes,
+    required this.name,
+    this.size,
   });
 
   final Uint8List? bytes;
-// TODO REMOVe
-  final String? color;
-
-  final String? extension;
   final String? name;
   final int? size;
+}
+
+extension AppFileExtension on AppFile {
+  String? get getExtension => name?.split('.').last;
 }

@@ -1,4 +1,3 @@
-import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'add_logo_cropper_form_state.freezed.dart';
@@ -18,7 +17,7 @@ class AddLogoCropperFormState with _$AddLogoCropperFormState {
   }) = _$LoadingAddLogoCropperFormState;
 
   const factory AddLogoCropperFormState.success({
-    required List<BackgroundColorModel> palette,
-    required BackgroundColorModel backgroundColorModel,
+    required List<String> palette,
+    required String color,
   }) = _$SuccessAddLogoCropperFormState;
 }

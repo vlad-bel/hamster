@@ -2,7 +2,6 @@ import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
-import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo/cubit/add_logo_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo/widgets/add_logo_round_add_cell.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo/widgets/add_logo_round_image_cell.dart';
@@ -11,7 +10,7 @@ import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/a
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/dashed_button/circle_dashed_button.dart';
-import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
+import 'package:business_terminal/presentation/common/widgets/logo_viewer/logo_viewer.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +24,9 @@ class AvatarPictureSelector extends StatelessWidget {
     required this.files,
   }) : super(key: key);
 
+  final List<AppColoredFile> files;
   final bool showAddButton;
   final bool showEditButton;
-  final List<AddedProfileLogoModel> files;
 
   Future pickAndCropImage(BuildContext context) async {
     final cubit = context.read<AddLogoCubit>();
@@ -36,7 +35,7 @@ class AvatarPictureSelector extends StatelessWidget {
       cubit.loading();
       await Future.delayed(const Duration(milliseconds: 50));
 
-      final croppedImage = await Navigator.pushNamed<AddedProfileLogoModel>(
+      final croppedImage = await Navigator.pushNamed<AppColoredFile>(
         context,
         AddLogoCropperPage.path,
         arguments: AddLogoCropperArguments(
@@ -48,7 +47,7 @@ class AvatarPictureSelector extends StatelessWidget {
       );
 
       if (croppedImage != null) {
-        return cubit.setImage(addedProfileLogo: croppedImage);
+        return cubit.setImage(image: croppedImage);
       }
     }
 
@@ -57,8 +56,8 @@ class AvatarPictureSelector extends StatelessWidget {
 
   List<Widget> _generatePhotoCells(
     BuildContext context,
-    List<AddedProfileLogoModel>? imagePaths,
-    AddedProfileLogoModel? selectedImage,
+    List<AppColoredFile>? images,
+    AppColoredFile? selectedImage,
   ) {
     final cells = <Widget>[
       if (showAddButton)
@@ -72,13 +71,13 @@ class AvatarPictureSelector extends StatelessWidget {
         )
     ];
 
-    for (final imagePath in imagePaths ?? <AddedProfileLogoModel>[]) {
+    for (final image in images ?? <AppColoredFile>[]) {
       cells.add(
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 3),
           child: AddLogoRoundImageCell(
-            isSelected: imagePath == selectedImage,
-            imagePath: imagePath,
+            isSelected: image == selectedImage,
+            file: image,
           ),
         ),
       );
@@ -111,13 +110,10 @@ class AvatarPictureSelector extends StatelessWidget {
                   alignment: Alignment.center,
                   children: [
                     AddLogoSelectedWidget(
-                      path: AppFile(
-                        size: null,
-                        extension: null,
-                        name: null,
-                        bytes: state.selectedImage?.imageBytes,
-                        color:
-                            state.selectedImage?.backgroundColorModel?.colorHex,
+                      file: AppColoredFile(
+                        name: state.selectedImage?.name,
+                        bytes: state.selectedImage?.bytes,
+                        color: state.selectedImage?.color,
                       ),
                       showEditButton: showEditButton,
                       onPressed: () {},

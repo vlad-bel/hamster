@@ -21,7 +21,7 @@ class BranchProfileRepository {
         filename: pictureFile.name,
         contentType: MediaType(
           'image',
-          'image/${pictureFile.extension}',
+          'image/${pictureFile.getExtension}',
         ),
       );
 

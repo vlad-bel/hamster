@@ -1,15 +1,16 @@
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
+import 'package:business_terminal/presentation/common/widgets/app_image/app_image_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/bordered_container/bordered_edit_container.dart';
-import 'package:business_terminal/presentation/common/widgets/dynamic_image.dart';
 import 'package:flutter/material.dart';
 
 class AvatarSelectedPicture extends StatelessWidget {
   const AvatarSelectedPicture({
     Key? key,
-    required this.path,
+    required this.appFile,
     required this.onPressed,
   }) : super(key: key);
 
-  final dynamic path;
+  final AppColoredFile appFile;
   final VoidCallback? onPressed;
 
   @override
@@ -20,8 +21,8 @@ class AvatarSelectedPicture extends StatelessWidget {
           width: 200,
           height: 200,
           child: ClipOval(
-            child: DynamicBranchImage(
-              path: path,
+            child: AppImageWidget(
+              appFile: appFile,
               fit: BoxFit.cover,
             ),
           ),
