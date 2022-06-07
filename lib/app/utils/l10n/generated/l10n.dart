@@ -1870,6 +1870,66 @@ class S {
     );
   }
 
+  /// `Do you intend to change E-Mail?`
+  String get do_you_intend_change_email {
+    return Intl.message(
+      'Do you intend to change E-Mail?',
+      name: 'do_you_intend_change_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please let us know which new e-mail address should replace the currently stored address: `
+  String get which_new_email {
+    return Intl.message(
+      'Please let us know which new e-mail address should replace the currently stored address: ',
+      name: 'which_new_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Should not be empty`
+  String get shouldNotBeEmpty {
+    return Intl.message(
+      'Should not be empty',
+      name: 'shouldNotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minimal length is {minLength}`
+  String minLength(Object minLength) {
+    return Intl.message(
+      'Minimal length is $minLength',
+      name: 'minLength',
+      desc: '',
+      args: [minLength],
+    );
+  }
+
+  /// `Maximal length is {maxLength}`
+  String maxLength(Object maxLength) {
+    return Intl.message(
+      'Maximal length is $maxLength',
+      name: 'maxLength',
+      desc: '',
+      args: [maxLength],
+    );
+  }
+
+  /// `Should not contain special characters`
+  String get shouldNotContainSpecialCharacters {
+    return Intl.message(
+      'Should not contain special characters',
+      name: 'shouldNotContainSpecialCharacters',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `The image should be in PNG, JPEG, BMP format and no larger than 10Mb`
   String get file_size_validation {
     return Intl.message(

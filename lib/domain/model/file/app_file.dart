@@ -13,8 +13,6 @@ class AppFile {
   final Uint8List? bytes;
   final String? name;
   final int? size;
-}
 
-extension AppFileExtension on AppFile {
-  String? get getExtension => name?.split('.').last;
+  String get getExtension => name?.split('.').last ?? 'unknown_extention';
 }

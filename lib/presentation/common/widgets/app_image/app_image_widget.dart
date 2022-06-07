@@ -40,6 +40,7 @@ class AppImageWidget extends StatelessWidget {
     if (appFile.name != null) {
       return AppNetworkImageWidget(
         fileName: appFile.name!,
+        fit: fit,
       );
     }
     return SvgPicture.asset(

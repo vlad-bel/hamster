@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:typed_data';
 
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
-import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/logo.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
@@ -13,10 +11,8 @@ import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/w
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
 import 'package:business_terminal/use_cases/profile/profile_edit/profile_edit_use_case.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:injectable/injectable.dart';
 
 part 'profile_edit_cubit.freezed.dart';
@@ -154,9 +150,10 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
           try {
             addedImages.add(
               AppColoredFile(
-                  bytes: null,
-                  color: logo.backgroundColor,
-                  name: logo.fileName),
+                bytes: null,
+                color: logo.backgroundColor,
+                name: logo.fileName,
+              ),
             );
           } catch (e, s) {
             log('Error is $e, StackTrace is $s');
@@ -227,29 +224,14 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
           ProfileEditFormSettings.kIban,
         )}',
         backgrounds: [
-          null,
           for (final file in filesToUpload) file.color,
         ],
       );
-      final uploadedFiles = <MultipartFile>[];
-      for (final file in filesToUpload) {
-        if (file.bytes != null) {
-          uploadedFiles.add(
-            MultipartFile.fromBytes(
-              file.bytes!,
-              filename: file.name,
-              contentType: MediaType(
-                'image',
-                'png',
-              ),
-            ),
-          );
-        }
-      }
+
       await profileEditUsecase.editProfile(
         companyId,
         profileEditRequest,
-        uploadedFiles,
+        filesToUpload,
       );
 
       emit(

@@ -60,6 +60,7 @@ unlinked_spec.ds
 **.g.dart
 **.config.dart
 **/generated_plugin_registrant.dart
+lib/app/utils/l10n/generated/intl/*.*
 
 # Android related
 **/android/**/gradle-wrapper.jar

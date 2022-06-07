@@ -24,11 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(number) => "Eingangstüren ${number}";
 
-  static String m2(length) => "Maximale Nummernlänge ${length} Zeichen";
+  static String m2(maxLength) => "Maximale Länge ist ${maxLength}";
 
-  static String m3(length) => "Minimale Nummernlänge ${length} Zeichen";
+  static String m3(length) => "Maximale Nummernlänge ${length} Zeichen";
 
-  static String m4(number) => "${number} Kassen";
+  static String m4(minLength) => "Mindestlänge ist ${minLength}";
+
+  static String m5(length) => "Minimale Nummernlänge ${length} Zeichen";
+
+  static String m6(number) => "${number} Kassen";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -134,6 +138,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
         "did_not_have_account": MessageLookupByLibrary.simpleMessage(
             "Du hast noch keinen Business-Terminal-Account?"),
+        "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
+            "Sie beabsichtigen Ihre E-Mail-Adresse zu ändern?"),
         "edit_photo": MessageLookupByLibrary.simpleMessage(
             "Bearbeiten Sie Ihr Profilfoto."),
         "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
@@ -210,14 +216,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastName": MessageLookupByLibrary.simpleMessage("Nachname"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
         "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),
+        "maxLength": m2,
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "Die maximale Länge entspricht \$0 Zeichen"),
         "max_length_reached": MessageLookupByLibrary.simpleMessage(
             "Die maximale Zeichenangabe ist erreicht"),
-        "max_number": m2,
+        "max_number": m3,
+        "minLength": m4,
         "min_length_field": MessageLookupByLibrary.simpleMessage(
             "Die mindestanzahl an Zeichen wurde nicht erreicht"),
-        "min_number": m3,
+        "min_number": m5,
         "model_if_known":
             MessageLookupByLibrary.simpleMessage("Modell (falls bekannt)"),
         "monday": MessageLookupByLibrary.simpleMessage("Montag"),
@@ -284,6 +292,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "select_week_days": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie zuerst den/die Wochentag/e aus, deren Öffnungszeiten Sie bearbeiten wollen"),
         "settings": MessageLookupByLibrary.simpleMessage("Einstellungen"),
+        "shouldNotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Sollte nicht leer sein"),
+        "shouldNotContainSpecialCharacters":
+            MessageLookupByLibrary.simpleMessage(
+                "Sollte keine Sonderzeichen enthalten"),
         "sieErhaltenInKrzeErneutEineSmsVonUns":
             MessageLookupByLibrary.simpleMessage(
                 "Sie erhalten in Kürze erneut eine SMS von uns"),
@@ -309,7 +322,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thursday": MessageLookupByLibrary.simpleMessage("Donnerstag"),
         "till": MessageLookupByLibrary.simpleMessage("Kasse"),
         "tills": MessageLookupByLibrary.simpleMessage("Kassen"),
-        "tills_count": m4,
+        "tills_count": m6,
         "to_save": MessageLookupByLibrary.simpleMessage("SPEICHERN"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Dienstag"),
         "user": MessageLookupByLibrary.simpleMessage("NUTZER"),
@@ -333,6 +346,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Willkommen bei\nHamster!"),
         "welcome_to_hamster_description": MessageLookupByLibrary.simpleMessage(
             "Sollten Sie bereits einen BusinessAccount haben, dann melden Sie sich direkt an. Ansonsten müssten Sie sich zuerst noch registrieren"),
+        "which_new_email": MessageLookupByLibrary.simpleMessage(
+            "Bitte teilen Sie uns mit, welche neue E-Mail-Adresse die momentan hinterlegte Adresse, ersetzen soll: "),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
         "wrongPassword":
             MessageLookupByLibrary.simpleMessage("Falsches Passwort"),

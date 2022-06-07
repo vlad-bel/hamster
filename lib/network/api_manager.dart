@@ -1,14 +1,18 @@
 import 'dart:convert';
 
+import 'package:business_terminal/domain/model/formdata/app_file_form_data.dart';
 import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:business_terminal/domain/repository/token/default_token_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final dio = httpClientInit();
 
 final tokenRepository = DefaultTokenRepository();
+
+final appFileFormDataKey = 'app_file_form_data';
 
 Dio httpClientInit() {
   final prettyDioLogger = PrettyDioLogger(
@@ -20,10 +24,12 @@ Dio httpClientInit() {
   final option = BaseOptions(
     // TODO add .env file
     baseUrl: 'http://localhost:3003/api/',
-  )..headers = <String, dynamic>{
+  )
+    ..headers = <String, dynamic>{
       'Accept': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
-    };
+    }
+    ..baseUrl = 'http://localhost:3003/api/';
 
   final dio = Dio(option)
     ..interceptors.add(
@@ -38,6 +44,13 @@ Dio httpClientInit() {
             options.headers['Authorization'] = 'Bearer $accessToken';
           }
 
+          final data = options.data as Map<String, dynamic>?;
+
+          final formData = getFormDataFromBody(data);
+          if (formData != null) {
+            options.data = formData;
+          }
+
           return handler.next(options);
         },
         onResponse: (
@@ -50,8 +63,8 @@ Dio httpClientInit() {
           return _refreshToken(error, handler);
         },
       ),
-    )
-    ..interceptors.add(prettyDioLogger);
+    );
+  // ..interceptors.add(prettyDioLogger);
 
   return dio;
 }
@@ -83,22 +96,18 @@ Future<void> _refreshToken(
       final options = error.requestOptions;
 
       options.headers['Authorization'] = 'Bearer ${loginResponse.accessToken}';
-      options.headers['content-type'] = 'application/json';
 
       try {
-        final newResponse = await dio.request<dynamic>(
-          ///TODO extract it to .env file after demo
-          'http://localhost:3003/api${options.path}',
-          data: options.data,
-          options: Options(
-            headers: options.headers,
-            method: options.method,
-            contentType: options.contentType,
-            responseType: options.responseType,
-          ),
-        );
+        final data = options.data as Map<String, dynamic>?;
 
-        return handler.resolve(newResponse);
+        final formData = getFormDataFromBody(data);
+        if (formData != null) {
+          options.data = formData;
+        }
+
+        final response = await request(options.data, options);
+
+        return handler.resolve(response);
       } on DioError catch (e) {
         return handler.next(e);
       }
@@ -108,4 +117,53 @@ Future<void> _refreshToken(
   }
 
   return handler.next(error);
+}
+
+Future<Response> request(
+  data,
+  RequestOptions options,
+) async {
+  return dio.request<dynamic>(
+    'http://localhost:3003/api${options.path}',
+    data: data,
+    queryParameters: options.queryParameters,
+    options: Options(
+      headers: options.headers,
+      method: options.method,
+      contentType: options.contentType,
+      responseType: options.responseType,
+    ),
+  );
+}
+
+FormData? getFormDataFromBody(Map<String, dynamic>? data) {
+  FormData? _formData;
+  data?.forEach((key, value) {
+    if (value is AppFileFormData) {
+      final formData = value.formData;
+      final formFiles = value.appFiles;
+
+      for (final formFile in formFiles) {
+        final multipartFile = MultipartFile.fromBytes(
+          formFile.bytes!,
+          filename: formFile.name,
+          contentType: MediaType(
+            'image',
+            formFile.getExtension,
+          ),
+        );
+
+        formData.files.add(
+          MapEntry(
+            'files',
+            multipartFile,
+          ),
+        );
+      }
+
+      _formData = formData;
+    }
+  });
+
+  return _formData;
 }

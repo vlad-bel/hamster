@@ -8,9 +8,11 @@ class AppNetworkImageWidget extends StatefulWidget {
   const AppNetworkImageWidget({
     Key? key,
     required this.fileName,
+    required this.fit,
   }) : super(key: key);
 
   final String fileName;
+  final BoxFit fit;
 
   @override
   State<AppNetworkImageWidget> createState() => _AppNetworkImageWidgetState();
@@ -46,7 +48,10 @@ class _AppNetworkImageWidgetState extends State<AppNetworkImageWidget> {
   @override
   Widget build(BuildContext context) {
     if (imageBytes != null) {
-      return Image.memory(imageBytes!);
+      return Image.memory(
+        imageBytes!,
+        fit: widget.fit,
+      );
     } else {
       return const Center(
         child: CircularProgressIndicator(),

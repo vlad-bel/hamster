@@ -24,11 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(number) => "Entrance doors amount ${number}";
 
-  static String m2(length) => "Maximum number ${length} characters";
+  static String m2(maxLength) => "Maximal length is ${maxLength}";
 
-  static String m3(length) => "Minimum number ${length} characters";
+  static String m3(length) => "Maximum number ${length} characters";
 
-  static String m4(number) => "${number} Tills";
+  static String m4(minLength) => "Minimal length is ${minLength}";
+
+  static String m5(length) => "Minimum number ${length} characters";
+
+  static String m6(number) => "${number} Tills";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -131,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
         "did_not_have_account": MessageLookupByLibrary.simpleMessage(
             "You don\'t have a business terminal account yet?"),
+        "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
+            "Do you intend to change E-Mail?"),
         "edit_company_logo":
             MessageLookupByLibrary.simpleMessage("Edit your company logo."),
         "edit_photo":
@@ -211,14 +217,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
         "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
+        "maxLength": m2,
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "The maximum length is \$0 characters"),
         "max_length_reached":
             MessageLookupByLibrary.simpleMessage("Maximum length reached"),
-        "max_number": m2,
+        "max_number": m3,
+        "minLength": m4,
         "min_length_field": MessageLookupByLibrary.simpleMessage(
             "The minimum number of characters was not reached"),
-        "min_number": m3,
+        "min_number": m5,
         "model_if_known":
             MessageLookupByLibrary.simpleMessage("Model (if known)"),
         "monday": MessageLookupByLibrary.simpleMessage("Monday"),
@@ -287,6 +295,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "select_week_days": MessageLookupByLibrary.simpleMessage(
             "First select the day(s) of the week whose opening hours you want to edit"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "shouldNotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Should not be empty"),
+        "shouldNotContainSpecialCharacters":
+            MessageLookupByLibrary.simpleMessage(
+                "Should not contain special characters"),
         "sieErhaltenInKrzeErneutEineSmsVonUns":
             MessageLookupByLibrary.simpleMessage(
                 "Sie erhalten in Kürze erneut eine SMS von uns"),
@@ -311,7 +324,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "till": MessageLookupByLibrary.simpleMessage("Till"),
         "tills": MessageLookupByLibrary.simpleMessage("Tills"),
-        "tills_count": m4,
+        "tills_count": m6,
         "to_save": MessageLookupByLibrary.simpleMessage("TO SAVE"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "user": MessageLookupByLibrary.simpleMessage("USER"),
@@ -334,6 +347,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Welcome to\nHamster!"),
         "welcome_to_hamster_description": MessageLookupByLibrary.simpleMessage(
             "If you already have a business account, then log in directly. Otherwise you would have to register first."),
+        "which_new_email": MessageLookupByLibrary.simpleMessage(
+            "Please let us know which new e-mail address should replace the currently stored address: "),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
         "wrongPassword": MessageLookupByLibrary.simpleMessage("wrong password"),
         "zip_code_and_location":
