@@ -152,22 +152,6 @@ class UnauthorizedState extends AppState {
                 );
             }
 
-            page = buildPage(
-              requiredParams: [],
-              child: EmailVerificationPage(
-                model: VerificationModel(
-                  userCredentials: appStorageService.getString(key: emailParam),
-                  title: AppLocale.current.confirm_email_title,
-                  wrongOtpText: AppLocale.current.otpCodeIncorrect,
-                  otpSentText: AppLocale.current.emailSentDescription,
-                  previousEmailText:
-                      AppLocale.current.forget_password_email_inside_subtitle,
-                  previousEmailSpamText:
-                      AppLocale.current.forget_password_email_inside_subtitle2,
-                ),
-              ),
-            );
-
             return PageRouteBuilder<void>(
               transitionDuration: Duration.zero,
               reverseTransitionDuration: Duration.zero,

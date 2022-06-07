@@ -1,11 +1,11 @@
 import 'package:business_terminal/domain/request_model/otp_verification/otp_verification_request.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'verify_sms_number_request.g.dart';
+part 'number_verification_request.g.dart';
 
 @JsonSerializable()
-class VerifySmsNumberRequest implements OtpVerificationRequest {
-  VerifySmsNumberRequest({
+class NumberVerificationRequest implements OtpVerificationRequest {
+  NumberVerificationRequest({
     required this.credential,
     required this.code,
   });
@@ -18,8 +18,10 @@ class VerifySmsNumberRequest implements OtpVerificationRequest {
   @JsonKey(name: 'code')
   final String code;
 
-  factory VerifySmsNumberRequest.fromJson(Map<String, dynamic> json) =>
-      _$VerifySmsNumberRequestFromJson(json);
+  @override
+  factory NumberVerificationRequest.fromJson(Map<String, dynamic> json) =>
+      _$NumberVerificationRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$VerifySmsNumberRequestToJson(this);
+  @override
+  Map<String, dynamic> toJson() => _$NumberVerificationRequestToJson(this);
 }

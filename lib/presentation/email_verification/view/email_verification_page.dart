@@ -105,7 +105,7 @@ class _OtpVerificationViewState<T extends OtpVerificationCubit>
         ),
         body: Column(
           children: [
-            _OtpVerificationPinWrapper(
+            _OtpVerificationPinWrapper<T>(
               pinController: pinController,
               widget: widget,
               cubit: cubit,
@@ -114,7 +114,7 @@ class _OtpVerificationViewState<T extends OtpVerificationCubit>
               credential: widget.model.userCredentials,
               cubit: cubit,
             ),
-            _OtpSentNotSentInfoBuilder(
+            _OtpSentNotSentInfoBuilder<T>(
               model: widget.model,
               pinController: pinController,
             ),
@@ -124,7 +124,7 @@ class _OtpVerificationViewState<T extends OtpVerificationCubit>
                 Navigator.of(context).pop();
               },
             ),
-            _OtpVerificationBlocListener(
+            _OtpVerificationBlocListener<T>(
               pinController: pinController,
             ),
           ],
@@ -162,7 +162,8 @@ class _SubHeaderRichText extends StatelessWidget {
   }
 }
 
-class _OtpSentNotSentInfoBuilder extends StatelessWidget {
+class _OtpSentNotSentInfoBuilder<T extends OtpVerificationCubit>
+    extends StatelessWidget {
   const _OtpSentNotSentInfoBuilder({
     required this.pinController,
     required this.model,
@@ -173,7 +174,7 @@ class _OtpSentNotSentInfoBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OtpVerificationCubit, OtpVerificationState>(
+    return BlocBuilder<T, OtpVerificationState>(
       builder: (context, state) {
         final emailSent = OtpResultInfoTextIcon(
           text: model.otpSentText,
@@ -205,7 +206,8 @@ class _OtpSentNotSentInfoBuilder extends StatelessWidget {
   }
 }
 
-class _OtpVerificationBlocListener extends StatelessWidget {
+class _OtpVerificationBlocListener<T extends OtpVerificationCubit>
+    extends StatelessWidget {
   const _OtpVerificationBlocListener({
     required this.pinController,
   });
@@ -214,7 +216,7 @@ class _OtpVerificationBlocListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<OtpVerificationCubit, OtpVerificationState>(
+    return BlocListener<T, OtpVerificationState>(
       listener: (context, state) {
         if (state is LoadingOtpVerification) {
           context.loaderOverlay.show();
@@ -243,6 +245,7 @@ class _OtpVerificationBlocListener extends StatelessWidget {
           }
         }
       },
+      child: const SizedBox.shrink(),
     );
   }
 }
@@ -282,7 +285,8 @@ class _ResendOtpCodeButton extends StatelessWidget {
   }
 }
 
-class _OtpVerificationPinWrapper extends StatefulWidget {
+class _OtpVerificationPinWrapper<T extends OtpVerificationCubit>
+    extends StatefulWidget {
   const _OtpVerificationPinWrapper({
     required this.pinController,
     required this.widget,
@@ -295,16 +299,16 @@ class _OtpVerificationPinWrapper extends StatefulWidget {
 
   @override
   State<_OtpVerificationPinWrapper> createState() =>
-      _OtpVerificationPinWrapperState();
+      _OtpVerificationPinWrapperState<T>();
 }
 
-class _OtpVerificationPinWrapperState
+class _OtpVerificationPinWrapperState<T extends OtpVerificationCubit>
     extends State<_OtpVerificationPinWrapper> {
   bool hasPinError = false;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OtpVerificationCubit, OtpVerificationState>(
+    return BlocBuilder<T, OtpVerificationState>(
       builder: (context, state) {
         hasPinError = state is WrongOtpVerification;
 
