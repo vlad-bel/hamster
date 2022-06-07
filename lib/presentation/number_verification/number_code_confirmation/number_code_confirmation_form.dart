@@ -123,14 +123,14 @@ class NumberVerificationResult extends StatelessWidget {
     return BlocBuilder<NumberCodeConfirmationCubit,
         NumberCodeConfirmationState>(
       builder: (context, state) {
-        final emailSent = EmailResultInfoTextIcon(
+        final emailSent = OtpResultInfoTextIcon(
           text: textEmailWasSent,
           textColor: emailWasSentColor,
           icon: Icons.send,
           height: 20,
         );
 
-        final wrongOtp = EmailResultInfoTextIcon(
+        final wrongOtp = OtpResultInfoTextIcon(
           text: textWrongOtp,
           textColor: razzmatazz,
           icon: Icons.error_outline_rounded,

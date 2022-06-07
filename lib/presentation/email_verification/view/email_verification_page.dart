@@ -36,30 +36,49 @@ class VerificationModel {
   });
 }
 
-class EmailVerificationPage<T extends EmailVerificationCubit>
-    extends StatelessWidget {
+class EmailVerificationPage
+    extends OtpVerificationPage<EmailVerificationCubit> {
   const EmailVerificationPage({
+    Key? key,
+    required super.model,
+  }) : super(key: key);
+
+  static const path = '${RegistrationPage.path}/email_verification';
+}
+
+class PhoneVerificationPage
+    extends OtpVerificationPage<EmailVerificationCubit> {
+  const PhoneVerificationPage({
+    Key? key,
+    required super.model,
+  }) : super(key: key);
+
+  static const path = '${RegistrationPage.path}/phone_verification';
+}
+
+abstract class OtpVerificationPage<T extends OtpVerificationCubit>
+    extends StatelessWidget {
+  const OtpVerificationPage({
     super.key,
     required this.model,
   });
 
   final VerificationModel model;
 
-  static const path = '${RegistrationPage.path}/email_verification';
-
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<EmailVerificationCubit>(
-      create: (context) => getIt.get<EmailVerificationCubit>(),
-      child: EmailVerificationView(
+    return BlocProvider<T>(
+      create: (context) => getIt.get<T>(),
+      child: OtpVerificationView<T>(
         model: model,
       ),
     );
   }
 }
 
-class EmailVerificationView extends StatefulWidget {
-  const EmailVerificationView({
+class OtpVerificationView<T extends OtpVerificationCubit>
+    extends StatefulWidget {
+  const OtpVerificationView({
     super.key,
     required this.model,
   });
@@ -67,15 +86,16 @@ class EmailVerificationView extends StatefulWidget {
   final VerificationModel model;
 
   @override
-  State<EmailVerificationView> createState() => _EmailVerificationViewState();
+  State<OtpVerificationView> createState() => _OtpVerificationViewState<T>();
 }
 
-class _EmailVerificationViewState extends State<EmailVerificationView> {
+class _OtpVerificationViewState<T extends OtpVerificationCubit>
+    extends State<OtpVerificationView> {
   final pinController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<EmailVerificationCubit>();
+    final cubit = context.read<T>();
 
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
@@ -85,19 +105,17 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
         ),
         body: Column(
           children: [
-            _EmailVerificationPinWrapper(
+            _OtpVerificationPinWrapper(
               pinController: pinController,
               widget: widget,
               cubit: cubit,
             ),
-            _ResendEmailCodeButton(
-              userEmail: widget.model.userCredentials,
+            _ResendOtpCodeButton(
+              credential: widget.model.userCredentials,
               cubit: cubit,
             ),
-            _EmailSentNotSentInfoBuilder(
-              textEmailWasSent: widget.model.otpSentText,
-              emailWasSentColor: fruitSalad,
-              textWrongOtp: widget.model.wrongOtpText,
+            _OtpSentNotSentInfoBuilder(
+              model: widget.model,
               pinController: pinController,
             ),
             WhiteButton(
@@ -106,7 +124,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
                 Navigator.of(context).pop();
               },
             ),
-            _EmailVerificationBlocListener(
+            _OtpVerificationBlocListener(
               pinController: pinController,
             ),
           ],
@@ -118,11 +136,10 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
 
 class _SubHeaderRichText extends StatelessWidget {
   const _SubHeaderRichText({
-    super.key,
     required this.widget,
   });
 
-  final EmailVerificationView widget;
+  final OtpVerificationView widget;
 
   @override
   Widget build(BuildContext context) {
@@ -145,31 +162,27 @@ class _SubHeaderRichText extends StatelessWidget {
   }
 }
 
-class _EmailSentNotSentInfoBuilder extends StatelessWidget {
-  const _EmailSentNotSentInfoBuilder({
-    required this.textEmailWasSent,
-    required this.emailWasSentColor,
-    required this.textWrongOtp,
+class _OtpSentNotSentInfoBuilder extends StatelessWidget {
+  const _OtpSentNotSentInfoBuilder({
     required this.pinController,
+    required this.model,
   });
 
-  final String textEmailWasSent;
-  final Color emailWasSentColor;
-  final String textWrongOtp;
+  final VerificationModel model;
   final TextEditingController pinController;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EmailVerificationCubit, EmailVerificationState>(
+    return BlocBuilder<OtpVerificationCubit, OtpVerificationState>(
       builder: (context, state) {
-        final emailSent = EmailResultInfoTextIcon(
-          text: textEmailWasSent,
-          textColor: emailWasSentColor,
+        final emailSent = OtpResultInfoTextIcon(
+          text: model.otpSentText,
+          textColor: fruitSalad,
           icon: Icons.send,
         );
 
-        final wrongOtp = EmailResultInfoTextIcon(
-          text: textWrongOtp,
+        final wrongOtp = OtpResultInfoTextIcon(
+          text: model.wrongOtpText,
           textColor: razzmatazz,
           icon: Icons.error_outline_rounded,
         );
@@ -181,7 +194,7 @@ class _EmailSentNotSentInfoBuilder extends StatelessWidget {
                 pinController.clear();
                 return emailSent;
               },
-              wrongOTPcode: () {
+              wrongOTPCode: () {
                 pinController.clear();
                 return wrongOtp;
               },
@@ -192,8 +205,8 @@ class _EmailSentNotSentInfoBuilder extends StatelessWidget {
   }
 }
 
-class _EmailVerificationBlocListener extends StatelessWidget {
-  const _EmailVerificationBlocListener({
+class _OtpVerificationBlocListener extends StatelessWidget {
+  const _OtpVerificationBlocListener({
     required this.pinController,
   });
 
@@ -201,15 +214,15 @@ class _EmailVerificationBlocListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<EmailVerificationCubit, EmailVerificationState>(
+    return BlocListener<OtpVerificationCubit, OtpVerificationState>(
       listener: (context, state) {
-        if (state is LoadingEmailVerification) {
+        if (state is LoadingOtpVerification) {
           context.loaderOverlay.show();
         } else {
           context.loaderOverlay.hide();
         }
 
-        if (state is ErrorEmailVerification) {
+        if (state is ErrorOtpVerification) {
           pinController.clear();
 
           final error = state.failure.exception as DioError;
@@ -218,7 +231,7 @@ class _EmailVerificationBlocListener extends StatelessWidget {
           SnackBarManager.showError(errorMessage);
         }
 
-        if (state is SuccessEmailVerification) {
+        if (state is SuccessOtpVerification) {
           SnackBarManager.showSuccess('OTP Code is correct');
           if (state.response == 'response') {
             Navigator.of(context).pushNamed(
@@ -230,19 +243,18 @@ class _EmailVerificationBlocListener extends StatelessWidget {
           }
         }
       },
-      child: Container(),
     );
   }
 }
 
-class _ResendEmailCodeButton extends StatelessWidget {
-  const _ResendEmailCodeButton({
-    required this.userEmail,
+class _ResendOtpCodeButton extends StatelessWidget {
+  const _ResendOtpCodeButton({
+    required this.credential,
     required this.cubit,
   });
 
-  final String? userEmail;
-  final EmailVerificationCubit cubit;
+  final String? credential;
+  final OtpVerificationCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -250,8 +262,8 @@ class _ResendEmailCodeButton extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          if (userEmail != null) {
-            cubit.resendEmailCode(userEmail!);
+          if (credential != null) {
+            cubit.resendOtpCode(credential!);
           } else {
             cubit.errorOccurred(
               UIFailure(
@@ -270,33 +282,33 @@ class _ResendEmailCodeButton extends StatelessWidget {
   }
 }
 
-class _EmailVerificationPinWrapper extends StatefulWidget {
-  const _EmailVerificationPinWrapper({
+class _OtpVerificationPinWrapper extends StatefulWidget {
+  const _OtpVerificationPinWrapper({
     required this.pinController,
     required this.widget,
     required this.cubit,
   });
 
   final TextEditingController pinController;
-  final EmailVerificationView widget;
-  final EmailVerificationCubit cubit;
+  final OtpVerificationView widget;
+  final OtpVerificationCubit cubit;
 
   @override
-  State<_EmailVerificationPinWrapper> createState() =>
-      _EmailVerificationPinWrapperState();
+  State<_OtpVerificationPinWrapper> createState() =>
+      _OtpVerificationPinWrapperState();
 }
 
-class _EmailVerificationPinWrapperState
-    extends State<_EmailVerificationPinWrapper> {
+class _OtpVerificationPinWrapperState
+    extends State<_OtpVerificationPinWrapper> {
   bool hasPinError = false;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EmailVerificationCubit, EmailVerificationState>(
+    return BlocBuilder<OtpVerificationCubit, OtpVerificationState>(
       builder: (context, state) {
-        hasPinError = state is WrongOTPEmailVerification;
+        hasPinError = state is WrongOtpVerification;
 
-        final pin = _EmailVerificationPinInput(
+        final pin = _OtpVerificationPinInput(
           pinController: widget.pinController,
           hasPinError: hasPinError,
           widget: widget.widget,
@@ -309,8 +321,8 @@ class _EmailVerificationPinWrapperState
   }
 }
 
-class _EmailVerificationPinInput extends StatelessWidget {
-  const _EmailVerificationPinInput({
+class _OtpVerificationPinInput extends StatelessWidget {
+  const _OtpVerificationPinInput({
     required this.pinController,
     required this.hasPinError,
     required this.widget,
@@ -319,8 +331,8 @@ class _EmailVerificationPinInput extends StatelessWidget {
 
   final TextEditingController pinController;
   final bool hasPinError;
-  final EmailVerificationView widget;
-  final EmailVerificationCubit cubit;
+  final OtpVerificationView widget;
+  final OtpVerificationCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -336,7 +348,7 @@ class _EmailVerificationPinInput extends StatelessWidget {
         onCompleted: (String value) {
           final email = widget.model.userCredentials;
           if (email != null) {
-            cubit.verifyEmailByOTPCode(email, value);
+            cubit.verifyByOTPCode(email, value);
           } else {
             throw Exception('userEmail is null');
           }
