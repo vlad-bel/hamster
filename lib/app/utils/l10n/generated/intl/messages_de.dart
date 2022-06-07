@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -132,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
+        "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
+            "Sie beabsichtigen Ihre E-Mail-Adresse zu ändern?"),
         "edit_photo": MessageLookupByLibrary.simpleMessage(
             "Bearbeiten Sie Ihr Profilfoto."),
         "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
@@ -316,6 +317,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "website_valigation": MessageLookupByLibrary.simpleMessage(
             "Die Website muss nach der folgenden Vorlage \'website.net\' geschrieben werden"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Mittwoch"),
+        "which_new_email": MessageLookupByLibrary.simpleMessage(
+            "Bitte teilen Sie uns mit, welche neue E-Mail-Adresse die momentan hinterlegte Adresse, ersetzen soll: "),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
         "wrongPassword":
             MessageLookupByLibrary.simpleMessage("Falsches Passwort"),

@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -129,6 +128,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
+        "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
+            "Do you intend to change E-Mail?"),
         "edit_company_logo":
             MessageLookupByLibrary.simpleMessage("Edit your company logo."),
         "edit_photo":
@@ -317,6 +318,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "website_valigation": MessageLookupByLibrary.simpleMessage(
             "The web site must be written according to the following template \'website.net\'"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
+        "which_new_email": MessageLookupByLibrary.simpleMessage(
+            "Please let us know which new e-mail address should replace the currently stored address: "),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
         "wrongPassword": MessageLookupByLibrary.simpleMessage("wrong password"),
         "zip_code_and_location":

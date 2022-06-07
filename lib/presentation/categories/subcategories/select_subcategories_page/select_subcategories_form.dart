@@ -85,11 +85,7 @@ class SelectSubCategoriesForm extends StatelessWidget {
                     SizedBox(width: 25),
                     ActionButtonBlue(
                       width: 162,
-                      isEnabled: state.whenOrNull(
-                            init: (_, __, selectedCategories) =>
-                                selectedCategories.isNotEmpty,
-                          ) ??
-                          false,
+                      isEnabled: true,
                       child: Text(
                         AppLocale.of(context).continue_button,
                         style: inter14.copyWith(
