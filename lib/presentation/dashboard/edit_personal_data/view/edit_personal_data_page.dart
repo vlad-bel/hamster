@@ -44,16 +44,16 @@ class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
                 FormTextField(
                   name: formSettings.kFieldName,
                   label: AppLocale.of(context).firstName,
-                  validationMessages: (_) =>
-                      formSettings.validationMessageNameSurname,
+                  validationMessages: (_) => formSettings
+                      .validationMessageNameSurname(AppLocale.of(context)),
                   initialText: 'John',
                 ),
                 const SizedBox(height: 16),
                 FormTextField(
                   name: formSettings.kFieldSurname,
                   label: AppLocale.of(context).lastName,
-                  validationMessages: (_) =>
-                      formSettings.validationMessageNameSurname,
+                  validationMessages: (_) => formSettings
+                      .validationMessageNameSurname(AppLocale.of(context)),
                   initialText: 'Doe',
                 ),
                 const SizedBox(height: 16),

@@ -8,7 +8,6 @@ class FormSettingsRegistrationUserInfo {
   static const kMaxLength = 256;
   static const kPasswordValidationRuleMustMatch = 'mustMatch';
   static const kPasswordValidationRuleValidPass = 'passwordValid';
-  final nameSurnameRegexp = RegExp(r"^[a-z ,.\'-]+$", caseSensitive: false);
 
   ValidatorFunction get validPassword => PasswordValidator().validate;
 
@@ -45,7 +44,7 @@ class FormSettingsRegistrationUserInfo {
       Validators.required,
       Validators.minLength(kNameSurnameMin),
       Validators.maxLength(nameEmailMaxLength),
-      Validators.pattern(nameSurnameRegexp)
+      Validators.pattern(ValidationConstants.nameSurnameRegexp)
     ];
 
     return FormGroup(
