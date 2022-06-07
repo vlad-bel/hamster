@@ -23,7 +23,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:image_picker/image_picker.dart';
 
 class AddLogoCropperForm extends StatefulWidget {
   const AddLogoCropperForm({
@@ -48,11 +47,14 @@ class AddedProfileLogoModel extends AppFile {
   AddedProfileLogoModel({
     required this.backgroundColorModel,
     required this.imageBytes,
+    String? extension,
+    String? name,
+    int? size,
   }) : super(
           bytes: imageBytes,
-          name: '',
-          extension: '',
-          size: null,
+          name: name,
+          extension: extension,
+          size: size,
           color: backgroundColorModel?.colorHex,
         );
 
@@ -212,6 +214,8 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                                 AddedProfileLogoModel(
                                                   backgroundColorModel: color,
                                                   imageBytes: cropped,
+                                                  extension: 'png',
+                                                  name: '${DateTime.now()}.png',
                                                 ),
                                               );
                                             },
@@ -221,6 +225,8 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                                 AddedProfileLogoModel(
                                                   imageBytes: cropped,
                                                   backgroundColorModel: null,
+                                                  extension: 'png',
+                                                  name: '${DateTime.now()}.png',
                                                 ),
                                               );
                                             },

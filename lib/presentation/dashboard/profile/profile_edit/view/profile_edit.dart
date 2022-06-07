@@ -266,6 +266,13 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                               profileEditFormSettings,
                               images,
                             ) {
+                              final addedProfileLogoModelList =
+                                  <AddedProfileLogoModel>[];
+                              for (final imageFile in images) {
+                                if (imageFile is AddedProfileLogoModel) {
+                                  addedProfileLogoModelList.add(imageFile);
+                                }
+                              }
                               return AppLogoViewer(
                                 images: images,
                                 onPressed: () async {
@@ -274,7 +281,7 @@ class _ProfileEditContentState extends State<_ProfileEditContent> {
                                       ?.pushNamed<List<AddedProfileLogoModel>>(
                                     ProfileAddLogoPage.path,
                                     arguments: ProfileAddLogoArguments(
-                                      files: images,
+                                      files: addedProfileLogoModelList,
                                     ),
                                   );
                                   if (result != null) {

@@ -1,16 +1,18 @@
 import 'dart:convert';
 
+import 'package:business_terminal/domain/model/formdata/app_file_form_data.dart';
 import 'package:business_terminal/domain/model/login/login_response.dart';
-import 'package:business_terminal/domain/repository/branch_profile/branch_profile_repository.dart';
 import 'package:business_terminal/domain/repository/token/default_token_repository.dart';
 import 'package:dio/dio.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final dio = httpClientInit();
 
 final tokenRepository = DefaultTokenRepository();
+
+final appFileFormDataKey = 'app_file_form_data';
 
 Dio httpClientInit() {
   final prettyDioLogger = PrettyDioLogger(
@@ -36,6 +38,13 @@ Dio httpClientInit() {
           final accessToken = await tokenRepository.getAccessToken();
           if (accessToken != null) {
             options.headers['Authorization'] = 'Bearer $accessToken';
+          }
+
+          final data = options.data as Map<String, dynamic>?;
+
+          final formData = getFormDataFromBody(data);
+          if (formData != null) {
+            options.data = formData;
           }
 
           return handler.next(options);
@@ -84,30 +93,11 @@ Future<void> _refreshToken(
       options.headers['Authorization'] = 'Bearer ${loginResponse.accessToken}';
 
       try {
-        if (options.data is FormData) {
-          final newData = FormData();
+        final data = options.data as Map<String, dynamic>?;
 
-          for (final pictureFile in cachedPictureFiles!) {
-            final multipartFile = MultipartFile.fromBytes(
-              pictureFile.bytes!,
-              filename: pictureFile.name,
-              contentType: MediaType(
-                'image',
-                'image/${pictureFile.extension}',
-              ),
-            );
-
-            newData.files.add(
-              MapEntry(
-                'files',
-                multipartFile,
-              ),
-            );
-          }
-
-          final response = await request(newData, options);
-
-          return handler.resolve(response);
+        final formData = getFormDataFromBody(data);
+        if (formData != null) {
+          options.data = formData;
         }
 
         final response = await request(options.data, options);
@@ -139,4 +129,36 @@ Future<Response> request(
       responseType: options.responseType,
     ),
   );
+}
+
+FormData? getFormDataFromBody(Map<String, dynamic>? data) {
+  FormData? _formData;
+  data?.forEach((key, value) {
+    if (value is AppFileFormData) {
+      final formData = value.formData;
+      final formFiles = value.appFiles;
+
+      for (final formFile in formFiles) {
+        final multipartFile = MultipartFile.fromBytes(
+          formFile.bytes!,
+          filename: formFile.name,
+          contentType: MediaType(
+            'image',
+            formFile.extension ?? 'unknown_extention',
+          ),
+        );
+
+        formData.files.add(
+          MapEntry(
+            'files',
+            multipartFile,
+          ),
+        );
+      }
+
+      _formData = formData;
+    }
+  });
+
+  return _formData;
 }
