@@ -6,6 +6,7 @@ import 'package:business_terminal/presentation/common/widgets/country_selector/c
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/form_validation_rules/edit_personal_data_form_group.dart';
+import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/add_personal_avatar_page.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/personal_data_avatar_container.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
@@ -34,7 +35,9 @@ class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
       showLanguageDropdown: false,
       children: PersonalDataAvatarContainer(
         imageUrl: '',
-        onAvatarClicked: () {},
+        onAvatarClicked: () {
+          Navigator.of(context).pushNamed(AddPersonalAvatarPage.path);
+        },
         child: ReactiveFormBuilder(
           form: formSettings.buildForm,
           builder: (context, formGroup, child) {
