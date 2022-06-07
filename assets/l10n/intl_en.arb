@@ -218,5 +218,9 @@
   "add_pos": "Add POS system",
   "file_size_validation": "The image should be in PNG, JPEG, BMP format and no larger than 10Mb",
   "do_you_intend_change_email": "Do you intend to change E-Mail?",
-  "which_new_email": "Please let us know which new e-mail address should replace the currently stored address: "
+  "which_new_email": "Please let us know which new e-mail address should replace the currently stored address: ",
+  "shouldNotBeEmpty": "Should not be empty",
+  "minLength": "Minimal length is {minLength}",
+  "maxLength": "Maximal length is {maxLength}",
+  "shouldNotContainSpecialCharacters": "Should not contain special characters"
 }

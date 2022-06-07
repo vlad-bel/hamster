@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -23,11 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(number) => "Eingangstüren ${number}";
 
-  static String m2(length) => "Maximale Nummernlänge ${length} Zeichen";
+  static String m2(maxLength) => "Maximale Länge ist ${maxLength}";
 
-  static String m3(length) => "Minimale Nummernlänge ${length} Zeichen";
+  static String m3(length) => "Maximale Nummernlänge ${length} Zeichen";
 
-  static String m4(number) => "${number} Kassen";
+  static String m4(minLength) => "Mindestlänge ist ${minLength}";
+
+  static String m5(length) => "Minimale Nummernlänge ${length} Zeichen";
+
+  static String m6(number) => "${number} Kassen";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -204,14 +209,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastName": MessageLookupByLibrary.simpleMessage("Nachname"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
         "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),
+        "maxLength": m2,
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "Die maximale Länge entspricht \$0 Zeichen"),
         "max_length_reached": MessageLookupByLibrary.simpleMessage(
             "Die maximale Zeichenangabe ist erreicht"),
-        "max_number": m2,
+        "max_number": m3,
+        "minLength": m4,
         "min_length_field": MessageLookupByLibrary.simpleMessage(
             "Die mindestanzahl an Zeichen wurde nicht erreicht"),
-        "min_number": m3,
+        "min_number": m5,
         "model_if_known":
             MessageLookupByLibrary.simpleMessage("Modell (falls bekannt)"),
         "monday": MessageLookupByLibrary.simpleMessage("Montag"),
@@ -272,6 +279,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "select_week_days": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie zuerst den/die Wochentag/e aus, deren Öffnungszeiten Sie bearbeiten wollen"),
         "settings": MessageLookupByLibrary.simpleMessage("Einstellungen"),
+        "shouldNotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Sollte nicht leer sein"),
+        "shouldNotContainSpecialCharacters":
+            MessageLookupByLibrary.simpleMessage(
+                "Sollte keine Sonderzeichen enthalten"),
         "sieErhaltenInKrzeErneutEineSmsVonUns":
             MessageLookupByLibrary.simpleMessage(
                 "Sie erhalten in Kürze erneut eine SMS von uns"),
@@ -297,7 +309,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thursday": MessageLookupByLibrary.simpleMessage("Donnerstag"),
         "till": MessageLookupByLibrary.simpleMessage("Kasse"),
         "tills": MessageLookupByLibrary.simpleMessage("Kassen"),
-        "tills_count": m4,
+        "tills_count": m6,
         "to_save": MessageLookupByLibrary.simpleMessage("SPEICHERN"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Dienstag"),
         "user": MessageLookupByLibrary.simpleMessage("NUTZER"),

@@ -5,7 +5,9 @@ import 'package:business_terminal/presentation/common/widgets/country_code_selec
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
+import 'package:business_terminal/presentation/dashboard/edit_personal_data/form_validation_rules/edit_personal_data_form_group.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/personal_data_avatar_container.dart';
+import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ class EditPersonalDataPage extends StatefulWidget {
 }
 
 class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
+  final formSettings = EditPersonalDataFormGroup();
   final countryCodeCubit = getIt.get<CountryCodeSelectorCubit>()
     ..getCountryList();
 
@@ -32,57 +35,67 @@ class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
       children: PersonalDataAvatarContainer(
         imageUrl: '',
         onAvatarClicked: () {},
-        child: Column(
-          children: [
-            const SizedBox(height: 16),
-            FormTextField(
-              label: AppLocale.of(context).firstName,
-              reactive: false,
-              initialText: 'John',
-            ),
-            const SizedBox(height: 16),
-            FormTextField(
-              label: AppLocale.of(context).lastName,
-              reactive: false,
-              initialText: 'Doe',
-            ),
-            const SizedBox(height: 16),
-            FormTextField(
-              label: AppLocale.of(context).email,
-              reactive: false,
-              readOnly: true,
-              initialText: 'john.doe@andersenlab.com',
-            ),
-            const SizedBox(height: 16),
-            ReactiveForm(
-              formGroup: countryCodeCubit.numberForm,
-              child: CountryCodeSelector(
-                cubit: countryCodeCubit,
-                loading: false,
-                label: AppLocale.of(context).phoneNumber,
-              ),
-            ),
-            const SizedBox(height: 16),
-            CountrySelector(cubit: GetIt.instance.get()),
-            const SizedBox(height: 16),
-            Row(
+        child: ReactiveFormBuilder(
+          form: formSettings.buildForm,
+          builder: (context, formGroup, child) {
+            return Column(
               children: [
-                Expanded(
-                  child: WhiteButton(
-                    onPressed: () => Navigator.of(context).pop(),
+                const SizedBox(height: 16),
+                FormTextField(
+                  name: formSettings.kFieldName,
+                  label: AppLocale.of(context).firstName,
+                  validationMessages: (_) => formSettings
+                      .validationMessageNameSurname(AppLocale.of(context)),
+                  initialText: 'John',
+                ),
+                const SizedBox(height: 16),
+                FormTextField(
+                  name: formSettings.kFieldSurname,
+                  label: AppLocale.of(context).lastName,
+                  validationMessages: (_) => formSettings
+                      .validationMessageNameSurname(AppLocale.of(context)),
+                  initialText: 'Doe',
+                ),
+                const SizedBox(height: 16),
+                FormTextField(
+                  label: AppLocale.of(context).email,
+                  reactive: false,
+                  readOnly: true,
+                  initialText: 'john.doe@andersenlab.com',
+                ),
+                const SizedBox(height: 16),
+                ReactiveForm(
+                  formGroup: countryCodeCubit.numberForm,
+                  child: CountryCodeSelector(
+                    cubit: countryCodeCubit,
+                    loading: false,
+                    label: AppLocale.of(context).phoneNumber,
                   ),
                 ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: ActionButtonBlue(
-                    child: Text(AppLocale.of(context).save),
-                    onPressed: () {},
-                  ),
+                const SizedBox(height: 16),
+                CountrySelector(cubit: GetIt.instance.get()),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    Expanded(
+                      child: WhiteButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: ActionButtonBlue(
+                        isEnabled: formGroup.valid,
+                        child: Text(AppLocale.of(context).save),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
                 ),
+                const SizedBox(height: 24),
               ],
-            ),
-            const SizedBox(height: 24),
-          ],
+            );
+          },
         ),
       ),
     );
