@@ -120,7 +120,7 @@ Future<void> _refreshToken(
 }
 
 Future<Response> request(
-  data,
+  dynamic data,
   RequestOptions options,
 ) async {
   return dio.request<dynamic>(
@@ -146,10 +146,10 @@ FormData? getFormDataFromBody(Map<String, dynamic>? data) {
       for (final formFile in formFiles) {
         final multipartFile = MultipartFile.fromBytes(
           formFile.bytes!,
-          filename: formFile.name ?? '${DateTime.now()}.png',
+          filename: formFile.name ?? '${DateTime.now()}.${formFile.extension}',
           contentType: MediaType(
             'image',
-            formFile.getExtension,
+            formFile.extension,
           ),
         );
 

@@ -153,6 +153,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
                 bytes: null,
                 color: logo.backgroundColor,
                 name: logo.fileName,
+                extension: 'png',
               ),
             );
           } catch (e, s) {

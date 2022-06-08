@@ -71,6 +71,7 @@ class _CropperFormState extends State<CropperForm> {
                             AppFile(
                               bytes: cropped,
                               name: null,
+                              extension: 'png',
                             ),
                           );
                         },

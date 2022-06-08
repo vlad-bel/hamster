@@ -24,7 +24,7 @@ class BranchProfilePictureCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: const BorderRadius.all(const Radius.circular(4)),
+      borderRadius: const BorderRadius.all(Radius.circular(4)),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -51,8 +51,7 @@ class BranchProfilePictureCell extends StatelessWidget {
                       width: 50,
                       height: 50,
                       decoration: const BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(const Radius.circular(4)),
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
                       ),
                     ),
                   ),
@@ -121,6 +120,7 @@ Future pickAndCropImage(
         name: null,
         bytes: croppedImage.bytes,
         color: null,
+        extension: 'png',
       );
 
       return cubit.setImage(appFile: appFile);

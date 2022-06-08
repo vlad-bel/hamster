@@ -44,6 +44,7 @@ class BranchProfileAvatarPictureCubit
         bytes: result.files.first.bytes,
         name: result.files.first.name,
         color: null,
+        extension: 'png',
       );
 
       return file;
@@ -101,6 +102,7 @@ class BranchProfileAvatarPictureCubit
               bytes: null,
               color: logo.backgroundColor,
               name: logo.fileName,
+              extension: 'png',
             ),
           );
         } catch (e, s) {

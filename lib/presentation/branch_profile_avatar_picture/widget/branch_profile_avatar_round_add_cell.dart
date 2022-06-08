@@ -41,6 +41,7 @@ class BranchProfileAvatarRoundAddCell extends StatelessWidget {
           name: null,
           bytes: croppedImage.bytes,
           color: null,
+          extension: 'png',
         );
 
         return cubit.setImage(appFile: appFile);

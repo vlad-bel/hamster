@@ -67,6 +67,7 @@ class _BranchTopPhotoAndLogoPagerState
                                 appFile: AppFile(
                                   bytes: state.branchImages?[index].bytes,
                                   name: state.branchImages?[index].name,
+                                  extension: 'png',
                                 ),
                                 fit: BoxFit.cover,
                               ),
@@ -156,6 +157,7 @@ class _BranchTopPhotoAndLogoPagerState
                       image: AppFile(
                         bytes: state.avatarImages?[0].bytes,
                         name: state.avatarImages?[0].name,
+                        extension: 'png',
                       ),
                     );
                   },

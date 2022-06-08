@@ -11,6 +11,10 @@ class AppLocale {
     return S.current;
   }
 
+  static Future<S> loadLocale({required Locale locale}) async {
+    return S.load(locale);
+  }
+
   static AppLocalizationDelegate get delegate {
     return S.delegate;
   }

@@ -37,6 +37,7 @@ class AddLogoCubit extends Cubit<AddLogoState> {
         bytes: file.bytes,
         size: file.size,
         name: file.name,
+        extension: 'png',
       );
     }
 

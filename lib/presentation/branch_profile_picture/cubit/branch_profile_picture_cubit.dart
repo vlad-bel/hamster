@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class BranchProfilePictureCubit extends Cubit<BranchProfilePictureState> {
-  BranchProfilePictureCubit() : super(BranchProfilePictureState.init());
+  BranchProfilePictureCubit() : super(const BranchProfilePictureState.init());
 
   void selectImage(AppColoredFile imagePath) {
     emit(
@@ -57,6 +57,7 @@ class BranchProfilePictureCubit extends Cubit<BranchProfilePictureState> {
         name: null,
         bytes: result.files.first.bytes,
         color: null,
+        extension: 'png',
       );
 
       return file;
@@ -81,16 +82,20 @@ class BranchProfilePictureCubit extends Cubit<BranchProfilePictureState> {
   }
 
   void loading() {
-    emit(BranchProfilePictureState.loading(
-      selectedImage: state.selectedImage,
-      images: state.images,
-    ));
+    emit(
+      BranchProfilePictureState.loading(
+        selectedImage: state.selectedImage,
+        images: state.images,
+      ),
+    );
   }
 
   void init() {
-    emit(BranchProfilePictureState.init(
-      selectedImage: state.selectedImage,
-      images: state.images,
-    ));
+    emit(
+      BranchProfilePictureState.init(
+        selectedImage: state.selectedImage,
+        images: state.images,
+      ),
+    );
   }
 }

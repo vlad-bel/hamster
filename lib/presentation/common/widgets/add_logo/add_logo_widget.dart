@@ -114,6 +114,7 @@ class AvatarPictureSelector extends StatelessWidget {
                         name: state.selectedImage?.name,
                         bytes: state.selectedImage?.bytes,
                         color: state.selectedImage?.color,
+                        extension: state.selectedImage!.getExtension!,
                       ),
                       showEditButton: showEditButton,
                       onPressed: () {},

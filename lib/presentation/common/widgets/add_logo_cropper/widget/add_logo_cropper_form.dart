@@ -46,6 +46,7 @@ class AppColoredFile extends AppFile {
     required this.color,
     required super.bytes,
     required super.name,
+    required super.extension,
     super.size,
   });
 
@@ -181,6 +182,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                                   bytes: cropped,
                                                   color: color,
                                                   name: null,
+                                                  extension: 'png',
                                                 ),
                                               );
                                             },
@@ -191,6 +193,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                                   bytes: cropped,
                                                   color: null,
                                                   name: null,
+                                                  extension: 'png',
                                                 ),
                                               );
                                             },
