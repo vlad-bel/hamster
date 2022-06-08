@@ -1,20 +1,22 @@
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
+
+@immutable
 class AppFile {
-  AppFile({
-    required this.size,
-    required this.extension,
-    required this.name,
-    this.color,
+  const AppFile({
     required this.bytes,
+    required this.name,
+    required this.extension,
+    this.size,
   });
 
   final Uint8List? bytes;
-
-// TODO REMOVe
-  final String? color;
-
-  final String? extension;
+  final String extension;
   final String? name;
   final int? size;
+
+  String? get getExtension => name?.split('.').last;
+
+  String get createName => '${DateTime.now()}.$extension';
 }

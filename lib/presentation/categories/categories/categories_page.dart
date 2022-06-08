@@ -8,6 +8,6 @@ class CategoriesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CategoriesForm();
+    return const CategoriesForm();
   }
 }

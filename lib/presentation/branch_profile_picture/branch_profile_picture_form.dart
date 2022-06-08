@@ -29,9 +29,9 @@ class BranchProfilePictureForm extends StatelessWidget {
         ),
         body: Column(
           children: [
-            SizedBox(height: 26),
-            BranchProfilePictureSelector(),
-            SizedBox(height: 38),
+            const SizedBox(height: 26),
+            const BranchProfilePictureSelector(),
+            const SizedBox(height: 38),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -45,7 +45,7 @@ class BranchProfilePictureForm extends StatelessWidget {
                     style: inter14.copyWith(color: denim),
                   ),
                 ),
-                SizedBox(width: 25),
+                const SizedBox(width: 25),
                 BlocBuilder<BranchProfilePictureCubit,
                     BranchProfilePictureState>(
                   builder: (context, state) {

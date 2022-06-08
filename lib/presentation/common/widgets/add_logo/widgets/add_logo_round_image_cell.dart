@@ -1,9 +1,8 @@
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo/cubit/add_logo_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
-import 'package:business_terminal/presentation/common/widgets/dynamic_image.dart';
+import 'package:business_terminal/presentation/common/widgets/app_image/app_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,11 +11,11 @@ class AddLogoRoundImageCell extends StatelessWidget {
   const AddLogoRoundImageCell({
     Key? key,
     required this.isSelected,
-    required this.imagePath,
+    required this.file,
   }) : super(key: key);
 
+  final AppColoredFile file;
   final bool isSelected;
-  final AddedProfileLogoModel imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +26,14 @@ class AddLogoRoundImageCell extends StatelessWidget {
           SizedBox(
             child: Stack(
               children: [
-                SizedBox(
+                Container(
                   width: 50,
                   height: 50,
-                  child: DynamicBranchImage(
-                    path: AppFile(
-                      size: null,
-                      extension: null,
-                      name: null,
-                      bytes: imagePath.imageBytes,
-                      color: imagePath.color,
-                    ),
+                  color: file.color != null && file.color?.length == 6
+                      ? Color(int.parse('0xFF${file.color}'))
+                      : Colors.transparent,
+                  child: AppImageWidget(
+                    appFile: file,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -45,7 +41,7 @@ class AddLogoRoundImageCell extends StatelessWidget {
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: () {
-                      context.read<AddLogoCubit>().selectImage(imagePath);
+                      context.read<AddLogoCubit>().selectImage(file);
                     },
                     child: Ink(
                       width: 50,
