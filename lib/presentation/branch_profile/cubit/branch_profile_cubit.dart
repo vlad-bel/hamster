@@ -50,8 +50,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     return !isInvalid;
   }
 
-  // TODO: add branch parameters
-  Future<void> createBranch() async {
+  Future<void> createBranch(String? countryParam) async {
     await state.whenOrNull(
       init: (
         categoryParam,
@@ -66,7 +65,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
             formGroup.control(_formSettings.kFieldBranchName).value as String?;
 
         const branchNumber = '0001'; // TODO: mock replace after Demo
-        const country = 'Germany'; // TODO: mock replace after Demo
+        final country = countryParam ?? '';
         const streetNumber = '111'; // TODO: mock replace after Demo
         const postalCode = '33111'; // TODO: mock replace after Demo
         final category = categoryParam ?? 'Restaurant';
@@ -86,11 +85,11 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
             .control(BranchProfileFormValidation.kFieldPhone)
             .value as String?;
 
-        final posDatas = <PosData>[];
+        final posData = <PosData>[];
         poses?.forEach((pos) {
           for (var i = 0; i < pos.tillCount; i++) {
             final uuid = const Uuid().v4();
-            posDatas.add(
+            posData.add(
               PosData(
                 name: '$uuid$i',
                 manufacturer: pos.manufacturer,
@@ -115,7 +114,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
           postalCode: postalCode,
           category: category,
           openingHours: hours,
-          posesData: posDatas,
+          posesData: posData,
           subcategories: subCategories,
         );
 
@@ -129,7 +128,6 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
           final errorMessage = e.response.message.toString();
 
           SnackBarManager.showError(errorMessage);
-          // emit(const BranchProfileState.error(category: errorMessage));
         }
       },
     );
