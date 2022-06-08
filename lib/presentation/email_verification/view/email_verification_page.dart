@@ -1,4 +1,3 @@
-import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
@@ -175,8 +174,6 @@ class _OtpSentNotSentInfoBuilder<T extends OtpVerificationCubit>
 
   final VerificationModel model;
   final TextEditingController pinController;
-  final String textEmailWasSent;
-  final String textWrongOtp;
 
   @override
   Widget build(BuildContext context) {
@@ -299,7 +296,6 @@ class _OtpVerificationPinWrapper<T extends OtpVerificationCubit>
     required this.cubit,
   });
 
-  final EmailVerificationCubit cubit;
   final TextEditingController pinController;
   final OtpVerificationView widget;
   final OtpVerificationCubit cubit;
@@ -340,8 +336,8 @@ class _OtpVerificationPinInput extends StatelessWidget {
     required this.cubit,
   });
 
-  final EmailVerificationCubit cubit;
   final bool hasPinError;
+  final TextEditingController pinController;
   final OtpVerificationView widget;
   final OtpVerificationCubit cubit;
 
