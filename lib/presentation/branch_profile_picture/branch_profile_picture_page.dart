@@ -14,11 +14,12 @@ class BranchProfilePicturePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final branchProfileCubit = context.read<BranchProfileCubit>();
 
-    context.read<BranchProfilePictureCubit>()
-      ..emit(BranchProfilePictureState.init(
-        selectedImage: branchProfileCubit.state.branchImages?[0],
-        images: branchProfileCubit.state.branchImages,
-      ));
+    context.read<BranchProfilePictureCubit>().emit(
+          BranchProfilePictureState.init(
+            selectedImage: branchProfileCubit.state.branchImages?[0],
+            images: branchProfileCubit.state.branchImages,
+          ),
+        );
 
     return BranchProfilePictureForm();
   }

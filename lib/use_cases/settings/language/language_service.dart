@@ -18,7 +18,7 @@ class LocaleSettingsService {
         languageCode: languageCode,
       );
     }
-    return Locale('de');
+    return const Locale('de');
   }
 
   List<AppLanguageModel> getLanguages() {
@@ -28,7 +28,7 @@ class LocaleSettingsService {
           return AppLanguageModel(
             value.languageCode,
             'English',
-            Assets.flagsGer, // TODO Add eng flag
+            Assets.flagsUk,
           );
         case 'de':
           return AppLanguageModel(
@@ -37,7 +37,7 @@ class LocaleSettingsService {
             Assets.flagsGer,
           );
         default:
-          return AppLanguageModel(
+          return const AppLanguageModel(
             'de',
             'Deutsch',
             Assets.flagsGer,

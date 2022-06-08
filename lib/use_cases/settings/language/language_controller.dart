@@ -1,6 +1,8 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/config/app_storage_keys.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/model/app_language_model.dart';
 import 'package:business_terminal/use_cases/settings/language/language_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,6 +38,7 @@ class LocaleSettingsController with ChangeNotifier {
           value: '$newLocale',
         );
     _locale = newLocale;
+    await AppLocale.loadLocale(locale: _locale);
     notifyListeners();
   }
 }

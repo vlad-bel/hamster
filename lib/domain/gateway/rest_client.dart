@@ -11,8 +11,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'rest_client.g.dart';
 
-///todo add .env file
-@RestApi(baseUrl: 'http://localhost:3003/api/')
+@RestApi()
 abstract class RestClient {
   @factoryMethod
   factory RestClient(

@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
@@ -24,9 +25,9 @@ class EmailVerificationPage extends StatelessWidget {
     required this.userEmail,
   });
 
-  final String? userEmail;
-
   static const path = '${RegistrationPage.path}/email_verification';
+
+  final String? userEmail;
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +48,11 @@ class EmailVerificationView extends StatefulWidget {
 }
 
 class _EmailVerificationViewState extends State<EmailVerificationView> {
-  final title = 'Bestätigen Sie Ihre \nE-Mail-Adresse.';
-  final textWrongOtp = 'Der eingegebene Code war ungültig.';
-  final textEmailWasSent = 'Sie erhalten in Kürze erneut eine E-Mail von uns.';
   final emailWasSentColor = fruitSalad;
-
   final pinController = TextEditingController();
+  final textEmailWasSent = 'Sie erhalten in Kürze erneut eine E-Mail von uns.';
+  final textWrongOtp = 'Der eingegebene Code war ungültig.';
+  final title = 'Bestätigen Sie Ihre \nE-Mail-Adresse.';
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +109,7 @@ class SubHeaderRichText extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        text: 'Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse ',
+        text: AppLocale.of(context).email_on_its_way,
         style: inter14.copyWith(height: 1.6),
         children: [
           TextSpan(
@@ -117,11 +117,7 @@ class SubHeaderRichText extends StatelessWidget {
             style: inter14.copyWith(color: denim),
           ),
           TextSpan(
-            text: ' Bitte geben Sie den 5-stelligen Code ein, um'
-                ' IhreE-Mail-Adresse zu verifizieren. Sollte'
-                ' die E-Mail in Kürze nicht in Ihrer Inbox'
-                ' auftauchen, so kontrollieren Sie bitte'
-                ' auch Ihren Spam-Ordner.',
+            text: AppLocale.of(context).please_enter_code_to_verity_email,
             style: inter14,
           ),
         ],
@@ -139,10 +135,10 @@ class EmailSentNotSentInfoBuilder extends StatelessWidget {
     required this.pinController,
   });
 
-  final String textEmailWasSent;
   final Color emailWasSentColor;
-  final String textWrongOtp;
   final TextEditingController pinController;
+  final String textEmailWasSent;
+  final String textWrongOtp;
 
   @override
   Widget build(BuildContext context) {
@@ -229,8 +225,8 @@ class ResendEmailCodeButton extends StatelessWidget {
     required this.cubit,
   });
 
-  final String? userEmail;
   final EmailVerificationCubit cubit;
+  final String? userEmail;
 
   @override
   Widget build(BuildContext context) {
@@ -266,9 +262,9 @@ class EmailVerificationPinWrapper extends StatefulWidget {
     required this.cubit,
   });
 
+  final EmailVerificationCubit cubit;
   final TextEditingController pinController;
   final EmailVerificationView widget;
-  final EmailVerificationCubit cubit;
 
   @override
   State<EmailVerificationPinWrapper> createState() =>
@@ -307,10 +303,10 @@ class EmailVerificationPinInput extends StatelessWidget {
     required this.cubit,
   });
 
-  final TextEditingController pinController;
-  final bool hasPinError;
-  final EmailVerificationView widget;
   final EmailVerificationCubit cubit;
+  final bool hasPinError;
+  final TextEditingController pinController;
+  final EmailVerificationView widget;
 
   @override
   Widget build(BuildContext context) {

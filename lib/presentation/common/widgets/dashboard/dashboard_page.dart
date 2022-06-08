@@ -11,12 +11,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 const finance1Path = '/finance/finance';
 const finance2Path = '/finance/finance1';
-const accountVerificationPath = '/administration/account-verification';
-const myCompanyPath = '/administration/my-company';
-const myCompanyEditPath = '/administration/my-company/edit';
-const myCompanyEditAddLogoPath = '/administration/my-company/edit/add-logo';
+const accountVerificationPath = '/administration/account_verification';
+const myCompanyPath = '/administration/my_company';
+const myCompanyEditPath = '/administration/my_company/edit';
+const myCompanyEditAddLogoPath = '/administration/my_company/edit/add_logo';
 
-const userManagementPath = '/administration/user-management';
+const userManagementPath = '/administration/user_management';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({
