@@ -12,7 +12,7 @@ class ProfileAddLogoArguments {
     required this.files,
   });
 
-  final List<AddedProfileLogoModel> files;
+  final List<AppColoredFile> files;
 }
 
 class ProfileAddLogoPage extends StatefulWidget {

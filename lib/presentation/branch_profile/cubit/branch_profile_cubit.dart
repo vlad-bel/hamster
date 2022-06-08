@@ -6,6 +6,7 @@ import 'package:business_terminal/domain/temp/pos_raw.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
 import 'package:dart_extensions/dart_extensions.dart';
@@ -19,15 +20,14 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   BranchProfileCubit(this.useCase)
       : super(
           const BranchProfileState.init(
-            avatarImages: [
-              'https://growyournutritionbusiness.com/wp-content/uploads/2019/11/company-logo-test.jpg',
-            ],
+            avatarImages: [],
             isCreateBranchButtonEnabled: true,
           ),
         );
 
-  final BranchProfileUseCase useCase;
   final formGroup = BranchProfileFormValidation().buildForm();
+  final BranchProfileUseCase useCase;
+
   final _formSettings = BranchProfileFormValidation();
 
   bool isCreateBranchButtonEnabled() {
@@ -50,8 +50,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
     return !isInvalid;
   }
 
-  // TODO: add branch parameters
-  Future<void> createBranch() async {
+  Future<void> createBranch(String? countryParam) async {
     await state.whenOrNull(
       init: (
         categoryParam,
@@ -66,7 +65,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
             formGroup.control(_formSettings.kFieldBranchName).value as String?;
 
         const branchNumber = '0001'; // TODO: mock replace after Demo
-        const country = 'Germany'; // TODO: mock replace after Demo
+        final country = countryParam ?? '';
         const streetNumber = '111'; // TODO: mock replace after Demo
         const postalCode = '33111'; // TODO: mock replace after Demo
         final category = categoryParam ?? 'Restaurant';
@@ -86,11 +85,11 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
             .control(BranchProfileFormValidation.kFieldPhone)
             .value as String?;
 
-        final posDatas = <PosData>[];
+        final posData = <PosData>[];
         poses?.forEach((pos) {
           for (var i = 0; i < pos.tillCount; i++) {
             final uuid = const Uuid().v4();
-            posDatas.add(
+            posData.add(
               PosData(
                 name: '$uuid$i',
                 manufacturer: pos.manufacturer,
@@ -115,7 +114,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
           postalCode: postalCode,
           category: category,
           openingHours: hours,
-          posesData: posDatas,
+          posesData: posData,
           subcategories: subCategories,
         );
 
@@ -129,7 +128,6 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
           final errorMessage = e.response.message.toString();
 
           SnackBarManager.showError(errorMessage);
-          // emit(const BranchProfileState.error(category: errorMessage));
         }
       },
     );
@@ -156,8 +154,8 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   }
 
   void setImages({
-    required List<dynamic> branchImages,
-    required List<dynamic> avatarImages,
+    required List<AppColoredFile> branchImages,
+    required List<AppColoredFile> avatarImages,
   }) {
     uploadImage(branchImages);
     emit(

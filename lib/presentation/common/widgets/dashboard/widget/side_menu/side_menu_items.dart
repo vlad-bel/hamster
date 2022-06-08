@@ -81,7 +81,7 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
                         },
                         badgeCountValue: 1,
                         selectedRoute: widget.selectedPage,
-                        routeName: '/administration/account-verification',
+                        routeName: '/administration/account_verification',
                       ),
                       MenuSubItem(
                         index: 1,
@@ -91,7 +91,7 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
                         },
                         badgeCountValue: count,
                         selectedRoute: widget.selectedPage,
-                        routeName: '/administration/my-company',
+                        routeName: '/administration/my_company',
                       ),
                       MenuSubItem(
                         index: 1,
@@ -100,7 +100,7 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
                           widget.navigateTo(index, routeName);
                         },
                         selectedRoute: widget.selectedPage,
-                        routeName: '/administration/user-management',
+                        routeName: '/administration/user_management',
                       ),
                     ],
                   );

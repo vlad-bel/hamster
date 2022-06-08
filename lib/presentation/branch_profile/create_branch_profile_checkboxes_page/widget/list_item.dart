@@ -26,7 +26,7 @@ class BranchProfileDataCheckboxListItem extends StatelessWidget {
           onChanged: (value) =>
               onChangeCheckBox(context, isSelectedParam: value),
         ),
-        CheckboxesListDivider(),
+        const CheckboxesListDivider(),
       ],
     );
   }

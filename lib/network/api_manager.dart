@@ -12,7 +12,7 @@ final dio = httpClientInit();
 
 final tokenRepository = DefaultTokenRepository();
 
-final appFileFormDataKey = 'app_file_form_data';
+const appFileFormDataKey = 'app_file_form_data';
 
 Dio httpClientInit() {
   final prettyDioLogger = PrettyDioLogger(
@@ -21,7 +21,10 @@ Dio httpClientInit() {
     compact: false,
   );
 
-  final option = BaseOptions()
+  final option = BaseOptions(
+    // TODO add .env file
+    baseUrl: 'http://localhost:3003/api/',
+  )
     ..headers = <String, dynamic>{
       'Accept': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
@@ -36,6 +39,7 @@ Dio httpClientInit() {
           RequestInterceptorHandler handler,
         ) async {
           final accessToken = await tokenRepository.getAccessToken();
+
           if (accessToken != null) {
             options.headers['Authorization'] = 'Bearer $accessToken';
           }
@@ -59,7 +63,8 @@ Dio httpClientInit() {
           return _refreshToken(error, handler);
         },
       ),
-    );
+    )
+    ..interceptors.add(prettyDioLogger);
 
   return dio;
 }
@@ -115,7 +120,7 @@ Future<void> _refreshToken(
 }
 
 Future<Response> request(
-  data,
+  dynamic data,
   RequestOptions options,
 ) async {
   return dio.request<dynamic>(
@@ -141,10 +146,10 @@ FormData? getFormDataFromBody(Map<String, dynamic>? data) {
       for (final formFile in formFiles) {
         final multipartFile = MultipartFile.fromBytes(
           formFile.bytes!,
-          filename: formFile.name,
+          filename: formFile.name ?? '${DateTime.now()}.${formFile.extension}',
           contentType: MediaType(
             'image',
-            formFile.extension ?? 'unknown_extention',
+            formFile.extension,
           ),
         );
 

@@ -67,4 +67,9 @@ class Country {
         emojiU: emojiU ?? this.emojiU,
         code: code ?? this.code,
       );
+
+  @override
+  String toString() {
+    return 'Country{name: $name, capital: $capital, emoji: $emoji}';
+  }
 }

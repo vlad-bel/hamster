@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
@@ -42,14 +43,16 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  TextEditingController? _controllerPassword;
+  final forgotPasswordText = 'Passwort vergessen';
   final formSettings = LoginFormSettings();
 
-  final title = 'Willkommen bei\nHamster!';
-  final subtitle = 'Sollten Sie bereits einen BusinessAccount haben,'
-      ' dann melden Sie sich direkt an. Ansonsten müssten Sie'
-      ' sich zuerst noch registrieren.';
-  final forgotPasswordText = 'Passwort vergessen';
+  TextEditingController? _controllerPassword;
+
+  @override
+  void dispose() {
+    _controllerPassword?.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -57,13 +60,30 @@ class _LoginViewState extends State<LoginView> {
     super.initState();
   }
 
+  void onPressLogin(FormGroup formGroup) {
+    final email = formGroup.value[formSettings.kFieldEmail] as String?;
+    final password = formGroup.value[formSettings.kFieldPassword] as String?;
+
+    context.read<LoginCubit>().login(email, password);
+  }
+
+  void onPressForgetPassword(BuildContext context) {
+    Navigator.of(context).pushNamed(ForgetPasswordEmailPage.path);
+  }
+
+  void onPressNavigateToRegistration(BuildContext context) {
+    Navigator.of(context).pushNamed(RegistrationPage.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     return OnboardingBackground(
       children: OnboardingWhiteContainer(
         header: OnboardingWhiteContainerHeader(
-          header: title,
-          subHeader: Text(subtitle),
+          header: AppLocale.of(context).welcome_to_hamster,
+          subHeader: Text(
+            AppLocale.of(context).welcome_to_hamster_description,
+          ),
         ),
         body: Column(
           children: [
@@ -76,18 +96,18 @@ class _LoginViewState extends State<LoginView> {
                     const SizedBox(height: 25),
                     FormTextField(
                       name: formSettings.kFieldEmail,
-                      label: 'E-Mail',
+                      label: AppLocale.of(context).email,
                       validationMessages: (control) =>
-                          formSettings.validationMessageEmail,
+                          formSettings.validationMessageEmail(context),
                       keyboardType: TextInputType.emailAddress,
                     ),
                     const FloatingWrongCredentialsView(),
                     const SizedBox(height: 18),
                     FormTextField(
                       name: formSettings.kFieldPassword,
-                      label: 'Passwort',
+                      label: AppLocale.of(context).password,
                       validationMessages: (control) =>
-                          formSettings.validationMessagePassword,
+                          formSettings.validationMessagePassword(context),
                       keyboardType: TextInputType.text,
                       obscureText: true,
                       controller: _controllerPassword,
@@ -112,13 +132,12 @@ class _LoginViewState extends State<LoginView> {
                       },
                     ),
                     Container(height: 28),
-
                     // Registration link:
-                    const Text(
-                      'Du hast noch keinen Business-Terminal-Account?',
+                    Text(
+                      AppLocale.of(context).did_not_have_account,
                     ),
                     TextButtonBlueLink(
-                      text: 'Jetzt registrieren',
+                      text: AppLocale.of(context).join_now,
                       onPressed: () => onPressNavigateToRegistration(context),
                     ),
                     const LoginBlocListener(),
@@ -131,52 +150,12 @@ class _LoginViewState extends State<LoginView> {
       ),
     );
   }
-
-  void onPressLogin(FormGroup formGroup) {
-    final email = formGroup.value[formSettings.kFieldEmail] as String?;
-    final password = formGroup.value[formSettings.kFieldPassword] as String?;
-
-    context.read<LoginCubit>().login(email, password);
-  }
-
-  void onPressForgetPassword(BuildContext context) {
-    Navigator.of(context).pushNamed(ForgetPasswordEmailPage.path);
-  }
-
-  void onPressNavigateToRegistration(BuildContext context) {
-    Navigator.of(context).pushNamed(RegistrationPage.path);
-  }
-
-  @override
-  void dispose() {
-    _controllerPassword?.dispose();
-    super.dispose();
-  }
 }
 
 class LoginBlocListener extends StatelessWidget {
   const LoginBlocListener({
     super.key,
   });
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
-      listener: (context, state) {
-        state.whenOrNull(
-          error: onError,
-          success: (path) => onSuccess(context, path),
-        );
-
-        if (state is LoadingLogin) {
-          context.loaderOverlay.show();
-        } else {
-          context.loaderOverlay.hide();
-        }
-      },
-      child: const SizedBox(),
-    );
-  }
 
   void onSuccess(
     BuildContext context,
@@ -196,5 +175,24 @@ class LoginBlocListener extends StatelessWidget {
     final message = errorMessage.toString();
 
     SnackBarManager.showError(message);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<LoginCubit, LoginState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          error: onError,
+          success: (path) => onSuccess(context, path),
+        );
+
+        if (state is LoadingLogin) {
+          context.loaderOverlay.show();
+        } else {
+          context.loaderOverlay.hide();
+        }
+      },
+      child: const SizedBox(),
+    );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/common/cropper_page/cubit/cropper_cubit.dart';
 import 'package:business_terminal/presentation/common/cropper_page/cubit/cropper_state.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
@@ -23,10 +24,10 @@ class CropperForm extends StatefulWidget {
     required this.circleCrop,
   }) : super(key: key);
 
-  final String header;
-  final String subheader;
-  final Uint8List imageForCrop;
   final bool circleCrop;
+  final String header;
+  final Uint8List imageForCrop;
+  final String subheader;
 
   @override
   State<CropperForm> createState() => _CropperFormState();
@@ -51,7 +52,7 @@ class _CropperFormState extends State<CropperForm> {
             ),
             body: Column(
               children: [
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 Stack(
                   children: [
                     SizedBox(
@@ -62,16 +63,25 @@ class _CropperFormState extends State<CropperForm> {
                         image: widget.imageForCrop,
                         withCircleUi: widget.circleCrop,
                         onCropped: (cropped) async {
-                          await Future.delayed(Duration(milliseconds: 200));
-                          Navigator.pop(context, cropped);
+                          await Future.delayed(
+                            const Duration(milliseconds: 200),
+                          );
+                          Navigator.pop(
+                            context,
+                            AppFile(
+                              bytes: cropped,
+                              name: null,
+                              extension: 'png',
+                            ),
+                          );
                         },
                       ),
                     ),
                     state.whenOrNull(
                           loading: () {
-                            return SizedBox(
+                            return const SizedBox(
                               height: 350,
-                              child: Center(
+                              child: const Center(
                                 child: CircularProgressIndicator(),
                               ),
                             );
@@ -80,7 +90,7 @@ class _CropperFormState extends State<CropperForm> {
                         const SizedBox(),
                   ],
                 ),
-                SizedBox(height: 62),
+                const SizedBox(height: 62),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -101,7 +111,7 @@ class _CropperFormState extends State<CropperForm> {
                         Navigator.pop(context);
                       },
                     ),
-                    SizedBox(width: 26),
+                    const SizedBox(width: 26),
                     ActionButtonBlue(
                       isEnabled: state.maybeWhen(
                         loading: () => false,
@@ -117,7 +127,7 @@ class _CropperFormState extends State<CropperForm> {
                       ),
                       onPressed: () async {
                         cubit.loading();
-                        await Future.delayed(Duration(milliseconds: 200));
+                        await Future.delayed(const Duration(milliseconds: 200));
                         _controller.crop();
                       },
                     ),

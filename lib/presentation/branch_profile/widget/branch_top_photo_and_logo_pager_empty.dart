@@ -32,7 +32,7 @@ class BranchTopPhotoAndLogoPagerEmpty extends StatelessWidget {
             child: Container(
               width: 150,
               height: 150,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
               ),

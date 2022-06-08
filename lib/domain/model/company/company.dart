@@ -104,4 +104,9 @@ class Company {
         ' ${postalCode ?? ""} '
         '${country ?? ""}';
   }
+
+  @override
+  String toString() {
+    return 'Company{branchNumber: $branchNumber, city: $city, companyName: $companyName, companyNumber: $companyNumber, country: $country, postalCode: $postalCode, streetName: $streetName, streetNumber: $streetNumber}';
+  }
 }

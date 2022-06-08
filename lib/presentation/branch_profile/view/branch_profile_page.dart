@@ -50,13 +50,10 @@ class _BranchProfileView extends StatelessWidget {
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
   final RepCompany company;
-  final verticalPaddingBetweenTextInputs = 18.0;
 
   @override
   Widget build(BuildContext context) {
-    final paddingBetweenTextInputs = SizedBox(
-      height: verticalPaddingBetweenTextInputs,
-    );
+    const paddingBetweenTextInputs = SizedBox(height: 18);
 
     return BlocConsumer<BranchProfileCubit, BranchProfileState>(
       listener: (context, state) {
@@ -79,45 +76,7 @@ class _BranchProfileView extends StatelessWidget {
       },
       builder: (BuildContext context, state) {
         return OnboardingBackground(
-          customAppBar: Padding(
-            padding: const EdgeInsets.only(bottom: 46),
-            child: BlocBuilder<BranchProfileCubit, BranchProfileState>(
-              builder: (context, state) {
-                return state.whenOrNull(
-                      init: (
-                        category,
-                        subcategories,
-                        branchImages,
-                        avatarImages,
-                        poses,
-                        hours,
-                        isCreateBranchButtonEnabled,
-                      ) {
-                        return ReactiveFormBuilder(
-                          form: () =>
-                              context.read<BranchProfileCubit>().formGroup,
-                          builder: (context, form, child) {
-                            return HeaderAppBarWidget(
-                              trailing: ActionButtonBlue(
-                                isEnabled: form.valid,
-                                child: Text(
-                                  AppLocale.of(context).save.toUpperCase(),
-                                ),
-                                onPressed: () {
-                                  context
-                                      .read<BranchProfileCubit>()
-                                      .createBranch();
-                                },
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ) ??
-                    Text(AppLocale.of(context).error);
-              },
-            ),
-          ),
+          customAppBar: const BranchProfileAppBar(),
           children: Column(
             children: [
               BranchProfileContainerWhite(
@@ -153,50 +112,122 @@ class _BranchProfileView extends StatelessWidget {
                   ],
                 ),
               ),
+
               // Branch category:
               const SizedBox(height: 16),
               BranchProfileContainerWhite(
                 headerLeft: Text(AppLocale.of(context).branch_category),
                 body: const BranchProfileCategories(),
               ),
+
               // Branch equipment:
               const SizedBox(height: 16),
-              BranchProfileContainerWhite(
-                headerLeft: Text(AppLocale.of(context).branch_equipment),
-                body: Column(
-                  children: [
-                    ListView.builder(
-                      itemCount: state.poses?.length ?? 0,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        final pos = (state.poses)?[index];
-                        if (pos == null) return const SizedBox.shrink();
-
-                        return PosListItem(
-                          tillCount: pos.tillCount,
-                          manufacturer: pos.manufacturer,
-                          model: pos.model,
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 32),
-                    DashedButton(
-                      onTap: () async {
-                        final pos = await Navigator.of(context)
-                            .pushNamed(AddPosPage.path) as PosRaw?;
-
-                        context.read<BranchProfileCubit>().addPos(pos: pos);
-                      },
-                      label: AppLocale.of(context).add_pos,
-                    ),
-                  ],
-                ),
-              ),
+              PosDataLayout(state: state),
               const SizedBox(height: 60),
             ],
           ),
         );
       },
+    );
+  }
+}
+
+class PosDataLayout extends StatelessWidget {
+  const PosDataLayout({
+    required this.state,
+    Key? key,
+  }) : super(key: key);
+
+  final InitBranchProfileState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return BranchProfileContainerWhite(
+      headerLeft: Text(AppLocale.of(context).branch_equipment),
+      body: Column(
+        children: [
+          ListView.builder(
+            itemCount: state.poses?.length ?? 0,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              final pos = (state.poses)?[index];
+              if (pos == null) return const SizedBox.shrink();
+
+              return PosListItem(
+                tillCount: pos.tillCount,
+                manufacturer: pos.manufacturer,
+                model: pos.model,
+              );
+            },
+          ),
+          const SizedBox(height: 32),
+          DashedButton(
+            onTap: () async {
+              final pos = await Navigator.of(context).pushNamed(AddPosPage.path)
+                  as PosRaw?;
+
+              context.read<BranchProfileCubit>().addPos(pos: pos);
+            },
+            label: AppLocale.of(context).add_pos,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BranchProfileAppBar extends StatelessWidget {
+  const BranchProfileAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 46),
+      child: BlocBuilder<BranchProfileCubit, BranchProfileState>(
+        builder: (context, state) {
+          return state.whenOrNull(
+                init: (
+                  category,
+                  subcategories,
+                  branchImages,
+                  avatarImages,
+                  poses,
+                  hours,
+                  isCreateBranchButtonEnabled,
+                ) {
+                  return ReactiveFormBuilder(
+                    form: () => context.read<BranchProfileCubit>().formGroup,
+                    builder: (context, form, child) {
+                      return HeaderAppBarWidget(
+                        trailing: ActionButtonBlue(
+                          isEnabled: form.valid,
+                          child: Text(
+                            AppLocale.of(context).save.toUpperCase(),
+                          ),
+                          onPressed: () {
+                            final countrySelected = context
+                                .read<CountrySelectorCubit>()
+                                .countryForm
+                                .control(
+                                  CountrySelectorCubit.filterTextfield,
+                                )
+                                .value as String?;
+
+                            context
+                                .read<BranchProfileCubit>()
+                                .createBranch(countrySelected);
+                          },
+                        ),
+                      );
+                    },
+                  );
+                },
+              ) ??
+              Text(AppLocale.of(context).error);
+        },
+      ),
     );
   }
 }
