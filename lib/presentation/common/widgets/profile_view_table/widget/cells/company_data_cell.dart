@@ -1,4 +1,5 @@
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/domain/model/company/logo.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_header.dart';
@@ -48,7 +49,7 @@ class CompanyCellAvatar extends StatelessWidget {
     this.imagePath,
   }) : super(key: key);
 
-  final List<String>? imagePath;
+  final List<CompanyLogo>? imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +96,7 @@ class CompanyCellAvatar extends StatelessWidget {
           child: Avatar(
             width: 50,
             height: 50,
-            image: imagePath![i],
+            image: imagePath![i].fileName,
 
             ///TODO remove mock data
             ///get data from backend

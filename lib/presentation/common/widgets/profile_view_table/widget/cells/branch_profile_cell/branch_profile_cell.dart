@@ -16,15 +16,7 @@ class BranchProfileCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CompanyCellAvatar(
-          imagePath: [
-            ///TODO remove mock data
-            ///get data from backend
-            'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-            'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-            'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-          ],
-        ),
+        const CompanyCellAvatar(),
         const SizedBox(width: 16),
         Expanded(
           child: Column(

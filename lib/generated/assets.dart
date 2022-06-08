@@ -4,7 +4,6 @@ class Assets {
 
   static const String flagsGer = 'assets/images/flags/ger.png';
   static const String iconsPalette = 'assets/icons/palette.svg';
-  static const String iconsPalette = 'assets/icons/palette.svg';
   static const String iconsTestAlert = 'assets/icons/test_alert.svg';
   static const String imagesAdministration = 'assets/images/administration.svg';
   static const String imagesAdvertising = 'assets/images/advertising.svg';
@@ -36,7 +35,5 @@ class Assets {
   static const String l10nIntlDe = 'assets/l10n/intl_de.arb';
   static const String l10nIntlEn = 'assets/l10n/intl_en.arb';
   static const String logosBrandLogoDenim = 'assets/logos/brand_logo_denim.svg';
-  static const String translationsDe = 'assets/translations/de.json';
-  static const String translationsEn = 'assets/translations/en.json';
 
 }
