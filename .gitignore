@@ -57,11 +57,7 @@ unlinked.ds
 unlinked_spec.ds
 .fvm/
 .build/
-**.freezed.dart
-**.g.dart
-**.config.dart
 **/generated_plugin_registrant.dart
-lib/app/utils/l10n/generated/intl/*.*
 
 # Android related
 **/android/**/gradle-wrapper.jar
@@ -144,6 +140,5 @@ pubspec.lock
 
 # Except this one
 !lib/generated/locale_keys.g.dart
-lib/app/utils/l10n/generated/**
 
-lib/app/utils/l10n/generated/
+lib/app/utils/l10n/generated/*
