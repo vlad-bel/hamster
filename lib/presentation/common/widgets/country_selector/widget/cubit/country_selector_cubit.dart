@@ -1,13 +1,15 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_state.dart';
 import 'package:business_terminal/use_cases/number_verification/number_verification_use_case.dart';
+import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-@injectable
+@singleton
 class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   CountrySelectorCubit({
     required this.useCase,
@@ -24,6 +26,11 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   static const filterTextfield = 'filter';
 
   List<Country>? cachedCountries;
+
+  static final validationMessages = {
+    ValidationMessage.required: AppLocale.current.required_field,
+  };
+
   final countryForm = fb.group({
     countryField: FormControl<String>(
       value: '',
@@ -85,8 +92,15 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
   /// Selects country in [cachedCountries] by [countryName]
   void selectInitialCountry({required String countryName}) {
     try {
+      logger.d('Countries: ${cachedCountries.toString()}');
+
       final selectedInitialCountry = cachedCountries?.firstWhere(
-        (element) => element.name == countryName,
+        (element) {
+          final isFound = element.name.equalsIgnoreCase(countryName);
+
+          logger.d('isFound COUNTRY: $isFound ; element = ${element.name}');
+          return isFound;
+        },
       );
       selectCountry(selectedInitialCountry);
     } on ApiFailure catch (e) {

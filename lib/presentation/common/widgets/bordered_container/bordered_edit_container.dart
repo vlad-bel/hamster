@@ -17,7 +17,7 @@ class BorderedEditContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final editButton = Transform.translate(
-      offset: Offset(5, -10),
+      offset: const Offset(5, -10),
       child: Align(
         alignment: Alignment.topRight,
         child: EditButton(
@@ -57,7 +57,7 @@ class EditButton extends StatelessWidget {
       child: RawMaterialButton(
         onPressed: onEditTap,
         fillColor: razzmatazz,
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         child: Icon(
           icon,
           color: white,

@@ -10,9 +10,6 @@ import 'package:business_terminal/presentation/common/widgets/form_text_field/ot
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-// TODO(@d.vakhnin): Change from local variable to persistant field instead of state.
-final _formSettings = AddPaymentFormSettings();
-
 /// Payment info - account owner and IBAN with possibility to edit this info
 /// and submit via [formConsumer]
 class PaymentInfo extends StatelessWidget {
@@ -21,9 +18,10 @@ class PaymentInfo extends StatelessWidget {
     this.accountOwner = '',
     this.iban = '',
     this.formConsumer,
+    required this.addPaymentFormSettings,
     required this.onTap,
   }) : super(key: key);
-
+  final AddPaymentFormSettings addPaymentFormSettings;
   final String accountOwner;
   final Widget? formConsumer;
   final String iban;
@@ -32,7 +30,7 @@ class PaymentInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ReactiveForm(
-      formGroup: _formSettings.buildForm(
+      formGroup: addPaymentFormSettings.buildForm(
         accountOnwer: accountOwner,
         iban: iban,
       ),
@@ -63,7 +61,6 @@ class PaymentInfo extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        // TODO add l18n key
                         AppLocale.of(context).add_bank_details,
                         style: inter14.copyWith(
                           color: denim1,

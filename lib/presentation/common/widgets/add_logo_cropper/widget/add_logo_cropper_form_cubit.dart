@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 class AddLogoCropperFormCubit extends Cubit<AddLogoCropperFormState> {
   AddLogoCropperFormCubit()
       : super(
-          AddLogoCropperFormState.init(
+          const AddLogoCropperFormState.init(
             text: 'init',
           ),
         );
@@ -15,7 +15,7 @@ class AddLogoCropperFormCubit extends Cubit<AddLogoCropperFormState> {
   final List<BackgroundColorModel> palette = [];
 
   void loading() {
-    emit(AddLogoCropperFormState.loading(text: 'loading'));
+    emit(const AddLogoCropperFormState.loading(text: 'loading'));
   }
 
   void addColorToPalette({
@@ -44,6 +44,6 @@ class AddLogoCropperFormCubit extends Cubit<AddLogoCropperFormState> {
 
   void hide() {
     loading();
-    emit(AddLogoCropperFormState.hide(text: 'hide'));
+    emit(const AddLogoCropperFormState.hide(text: 'hide'));
   }
 }

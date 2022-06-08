@@ -6,11 +6,11 @@ class AvatarSelectedPicture extends StatelessWidget {
   const AvatarSelectedPicture({
     Key? key,
     required this.path,
-    required this.showEditButton,
+    required this.onPressed,
   }) : super(key: key);
 
   final dynamic path;
-  final bool showEditButton;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -26,23 +26,23 @@ class AvatarSelectedPicture extends StatelessWidget {
             ),
           ),
         ),
-        if (showEditButton)
+        if (onPressed != null)
           SizedBox(
             width: 200,
             height: 200,
             child: Transform.translate(
-              offset: Offset(-12, 16),
+              offset: const Offset(-12, 16),
               child: Align(
                 alignment: Alignment.topRight,
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
                   ),
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   child: EditButton(
                     icon: Icons.edit,
-                    onEditTap: () {},
+                    onEditTap: onPressed!,
                   ),
                 ),
               ),

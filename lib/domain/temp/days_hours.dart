@@ -86,7 +86,7 @@ class DaysHours {
   }
 
   @override
-  get hashCode =>
+  int get hashCode =>
       monday.hashCode +
       tuesday.hashCode +
       wednesday.hashCode +

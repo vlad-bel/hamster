@@ -47,6 +47,7 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   streetNumber: '1',
                   postalCode: '36037',
                   city: 'Fulda',
+                  logos: [],
                   fillingProgress: 10,
                   isVerified: false,
                   isVerificationRequestDeclined: false,
@@ -71,6 +72,7 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   streetNumber: '2',
                   postalCode: '36038',
                   city: 'Berlin',
+                  logos: [],
                   fillingProgress: 5,
                   isVerified: false,
                   isVerificationRequestDeclined: false,
@@ -95,6 +97,7 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   streetNumber: '2',
                   postalCode: '36038',
                   city: 'Berlin',
+                  logos: [],
                   fillingProgress: 15,
                   isVerified: false,
                   isVerificationRequestDeclined: false,
@@ -118,7 +121,9 @@ class CompanyBranchTableWithData extends StatelessWidget {
     );
   }
 
-  void onNavigateToBranchProfilePage(RepCompany? company) {
+  void onNavigateToBranchProfilePage(
+    RepCompany? company,
+  ) {
     final args = {
       CreateBranchProfileCheckboxesPage.paramRepCompany: company,
     };

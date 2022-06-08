@@ -4,6 +4,7 @@ class Assets {
 
   static const String flagsGer = 'assets/images/flags/ger.png';
   static const String iconsPalette = 'assets/icons/palette.svg';
+  static const String iconsPalette = 'assets/icons/palette.svg';
   static const String iconsTestAlert = 'assets/icons/test_alert.svg';
   static const String imagesAdministration = 'assets/images/administration.svg';
   static const String imagesAdvertising = 'assets/images/advertising.svg';
@@ -22,6 +23,7 @@ class Assets {
   static const String imagesHome = 'assets/images/home.svg';
   static const String imagesIconPlus = 'assets/images/icon_plus.svg';
   static const String imagesInvisible = 'assets/images/invisible.svg';
+  static const String imagesKeyThin = 'assets/images/key_thin.svg';
   static const String imagesMenu = 'assets/images/menu.svg';
   static const String imagesPagerArrowLeft = 'assets/images/pager_arrow_left.svg';
   static const String imagesPagerArrowRight = 'assets/images/pager_arrow_right.svg';

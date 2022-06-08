@@ -1,41 +1,24 @@
-import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
+import 'package:business_terminal/domain/model/formdata/app_file_form_data.dart';
+import 'package:business_terminal/network/api_manager.dart';
 import 'package:dio/dio.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class BranchProfileRepository {
-  BranchProfileRepository({
-    required this.dio,
-  });
-
-  final Dio dio;
+  BranchProfileRepository();
 
   Future<Response> uloadBranchProfilePictures(
-    List<PictureModel> pictureModels,
+    List<AppFile> pictureFiles,
   ) async {
-    final formData = FormData();
-    for (final pictureModel in pictureModels) {
-      final multipartFile = MultipartFile.fromBytes(
-        pictureModel.imageBytes,
-        filename: pictureModel.imageFile.name,
-        contentType: MediaType(
-          'image',
-          pictureModel.imageFile.mimeType!,
-        ),
-      );
-
-      formData.files.add(
-        MapEntry(
-          'files',
-          multipartFile,
-        ),
-      );
-    }
+    final formData = AppFileFormData(
+      formData: FormData(),
+      appFiles: pictureFiles,
+    );
 
     final response = await dio.post(
-      'http://localhost:3003/api/branch/pictures',
-      data: formData,
+      '/branch/pictures',
+      data: {appFileFormDataKey: formData},
     );
 
     return response;

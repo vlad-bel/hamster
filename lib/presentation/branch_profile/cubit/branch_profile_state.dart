@@ -1,4 +1,5 @@
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
+import 'package:business_terminal/domain/temp/pos_raw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'branch_profile_state.freezed.dart';
@@ -10,6 +11,7 @@ class BranchProfileState with _$BranchProfileState {
     List<String>? subcategories,
     List<dynamic>? branchImages,
     List<dynamic>? avatarImages,
+    List<PosRaw>? poses,
     OpeningHours? hours,
     bool? isCreateBranchButtonEnabled,
   }) = InitBranchProfileState;
@@ -20,6 +22,7 @@ class BranchProfileState with _$BranchProfileState {
     List<String>? subcategories,
     List<dynamic>? branchImages,
     List<dynamic>? avatarImages,
+    List<PosRaw>? poses,
     OpeningHours? hours,
     bool? isCreateBranchButtonEnabled,
   }) = WasCreatedSuccesfullyBranchProfileState;
@@ -30,6 +33,7 @@ class BranchProfileState with _$BranchProfileState {
     List<String>? subcategories,
     List<dynamic>? branchImages,
     List<dynamic>? avatarImages,
+    List<PosRaw>? poses,
     OpeningHours? hours,
     bool? isCreateBranchButtonEnabled,
   }) = ErrorBranchProfileState;

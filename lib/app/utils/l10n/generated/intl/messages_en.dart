@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -23,9 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(number) => "Entrance doors amount ${number}";
 
-  static String m2(length) => "Minimum number ${length} characters";
+  static String m2(maxLength) => "Maximal length is ${maxLength}";
 
-  static String m3(length) => "Maximum number ${length} characters";
+  static String m3(length) => "Minimum number ${length} characters";
+
+  static String m4(minLength) => "Minimal length is ${minLength}";
+
+  static String m5(length) => "Maximum number ${length} characters";
+
+  static String m6(number) => "${number} Tills";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -56,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Add pictures of your branch."),
         "add_picture_for_branch_descr": MessageLookupByLibrary.simpleMessage(
             "Select and upload your branch images. Make sure that the selected image files are of sufficient quality."),
+        "add_pos": MessageLookupByLibrary.simpleMessage("Add POS system"),
         "add_subcategory":
             MessageLookupByLibrary.simpleMessage("Add subcategory"),
         "administration":
@@ -125,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
+        "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
+            "Do you intend to change E-Mail?"),
         "declined": MessageLookupByLibrary.simpleMessage("Declined"),
         "edit_company_logo":
             MessageLookupByLibrary.simpleMessage("Edit your company logo."),
@@ -134,13 +144,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select the correct section of your profile photo."),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "emailCodeSent": MessageLookupByLibrary.simpleMessage(
-            "Sie erhalten in Kürze erneut eine E-Mail von uns."),
+            "You will receive another email from us shortly."),
         "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "falschesPasswort":
             MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
+        "file_size_validation": MessageLookupByLibrary.simpleMessage(
+            "The image should be in PNG, JPEG, BMP format and no larger than 10Mb"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
+        "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
             "For credits and regular billing, we still need your bank details and consent to the direct debit procedure"),
         "forgetPasswordCodeIncorrect": MessageLookupByLibrary.simpleMessage(
@@ -155,6 +168,12 @@ class MessageLookup extends MessageLookupByLibrary {
             ". Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen."),
         "forget_password": MessageLookupByLibrary.simpleMessage(
             "Have you forgotten\nyour password?"),
+        "forget_password_email_inside_subtitle":
+            MessageLookupByLibrary.simpleMessage(
+                "Eine E-Mail ist unterwegs an die von Ihnen angegebenen "),
+        "forget_password_email_inside_subtitle2":
+            MessageLookupByLibrary.simpleMessage(
+                "\nBitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner."),
         "forget_password_header":
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forget_password_subtitle": MessageLookupByLibrary.simpleMessage(
@@ -166,6 +185,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetpassword_email_subtitle2":
             MessageLookupByLibrary.simpleMessage("\nto reset."),
         "friday": MessageLookupByLibrary.simpleMessage("Friday"),
+        "hasOneDigit": MessageLookupByLibrary.simpleMessage("1 Zahl"),
         "hasOneLoweCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 Kleinbuchstabe"),
         "hasOneSpecialCharacter":
@@ -188,16 +208,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "If the branch is closed on the selected day(s), leave the fields below empty"),
         "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
             "If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging."),
+        "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
         "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
+        "maxLength": m2,
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "The maximum length is \$0 characters"),
         "max_length_reached":
             MessageLookupByLibrary.simpleMessage("Maximum length reached"),
-        "max_number": m2,
+        "max_number": m3,
+        "minLength": m4,
         "min_length_field": MessageLookupByLibrary.simpleMessage(
             "The minimum number of characters was not reached"),
-        "min_number": m3,
+        "min_number": m5,
         "model_if_known":
             MessageLookupByLibrary.simpleMessage("Model (if known)"),
         "monday": MessageLookupByLibrary.simpleMessage("Monday"),
@@ -227,7 +250,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bitte überprüfen Sie nochmals das von Ihnen eingegebene aktuelle Passwort, da dies nicht mit unseren Daten übereinstimmt."),
         "payment_information":
             MessageLookupByLibrary.simpleMessage("Payment Information"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),
+        "phone_validation": MessageLookupByLibrary.simpleMessage(
+            "The phone number provided is invalid. Please try a different one"),
         "post_hint": MessageLookupByLibrary.simpleMessage("Postcode"),
         "request_verification":
             MessageLookupByLibrary.simpleMessage("Request verification"),
@@ -257,12 +283,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "select_week_days": MessageLookupByLibrary.simpleMessage(
             "First select the day(s) of the week whose opening hours you want to edit"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "shouldNotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Should not be empty"),
+        "shouldNotContainSpecialCharacters":
+            MessageLookupByLibrary.simpleMessage(
+                "Should not contain special characters"),
         "sieErhaltenInKrzeErneutEineSmsVonUns":
             MessageLookupByLibrary.simpleMessage(
                 "Sie erhalten in Kürze erneut eine SMS von uns"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "smsResent": MessageLookupByLibrary.simpleMessage(
-            "Sie erhalten in Kürze erneut eine SMS von uns"),
+            "You will receive another SMS from us shortly"),
+        "smsSentDescription": MessageLookupByLibrary.simpleMessage(
+            "You will shortly receive another SMS from us"),
         "sms_invalid": MessageLookupByLibrary.simpleMessage(
             "The entered code was invalid."),
         "sms_resend": MessageLookupByLibrary.simpleMessage("Send SMS again"),
@@ -277,7 +310,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "telephone_number_if_available": MessageLookupByLibrary.simpleMessage(
             "Phone number for customers (if available)"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
+        "till": MessageLookupByLibrary.simpleMessage("Till"),
         "tills": MessageLookupByLibrary.simpleMessage("Tills"),
+        "tills_count": m6,
         "to_save": MessageLookupByLibrary.simpleMessage("TO SAVE"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "user": MessageLookupByLibrary.simpleMessage("USER"),
@@ -295,8 +330,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Waiting for verification"),
         "website_if_available":
             MessageLookupByLibrary.simpleMessage("Website (if any)"),
+        "website_valigation": MessageLookupByLibrary.simpleMessage(
+            "The web site must be written according to the following template \'website.net\'"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
+        "which_new_email": MessageLookupByLibrary.simpleMessage(
+            "Please let us know which new e-mail address should replace the currently stored address: "),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),
+        "wrongPassword": MessageLookupByLibrary.simpleMessage("wrong password"),
         "zip_code_and_location":
             MessageLookupByLibrary.simpleMessage("ZIP code and location")
       };

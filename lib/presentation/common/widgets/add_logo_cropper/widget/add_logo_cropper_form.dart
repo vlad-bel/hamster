@@ -5,6 +5,7 @@ import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/image/image_paths.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/cubit/add_logo_cropper_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/cubit/add_logo_cropper_state.dart';
@@ -34,7 +35,7 @@ class AddLogoCropperForm extends StatefulWidget {
 
   final bool circleCrop;
   final String header;
-  final Uint8List imageForCrop;
+  final AppFile imageForCrop;
   final String subheader;
 
   @override
@@ -42,11 +43,20 @@ class AddLogoCropperForm extends StatefulWidget {
 }
 
 @immutable
-class AddedProfileLogoModel {
-  const AddedProfileLogoModel({
+class AddedProfileLogoModel extends AppFile {
+  AddedProfileLogoModel({
     required this.backgroundColorModel,
     required this.imageBytes,
-  });
+    String? extension,
+    String? name,
+    int? size,
+  }) : super(
+          bytes: imageBytes,
+          name: name,
+          extension: extension,
+          size: size,
+          color: backgroundColorModel?.colorHex,
+        );
 
   final BackgroundColorModel? backgroundColorModel;
   final Uint8List imageBytes;
@@ -174,8 +184,21 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                   child: Stack(
                                     children: [
                                       Crop(
+                                        baseColor: formState.maybeWhen(
+                                          success: (
+                                            palette,
+                                            color,
+                                          ) {
+                                            return Color(
+                                              int.parse(
+                                                '0xFF${color.colorHex}',
+                                              ),
+                                            );
+                                          },
+                                          orElse: () => white,
+                                        ),
                                         controller: _controller,
-                                        image: widget.imageForCrop,
+                                        image: widget.imageForCrop.bytes!,
                                         withCircleUi: widget.circleCrop,
                                         onCropped: (cropped) async {
                                           await Future.delayed(
@@ -191,6 +214,8 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                                 AddedProfileLogoModel(
                                                   backgroundColorModel: color,
                                                   imageBytes: cropped,
+                                                  extension: 'png',
+                                                  name: '${DateTime.now()}.png',
                                                 ),
                                               );
                                             },
@@ -200,6 +225,8 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                                 AddedProfileLogoModel(
                                                   imageBytes: cropped,
                                                   backgroundColorModel: null,
+                                                  extension: 'png',
+                                                  name: '${DateTime.now()}.png',
                                                 ),
                                               );
                                             },
@@ -225,7 +252,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                       loading: () {
                                         return const SizedBox(
                                           height: 350,
-                                          child: const Center(
+                                          child: Center(
                                             child: CircularProgressIndicator(),
                                           ),
                                         );
@@ -283,7 +310,14 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                         ),
                       ),
                       PortalTarget(
-                        visible: formState is! HideAddLogoCropperFormState,
+                        visible: formState.maybeMap(
+                          hide: (state) {
+                            return false;
+                          },
+                          orElse: () {
+                            return true;
+                          },
+                        ),
                         portalFollower: Transform.translate(
                           offset: const Offset(1150, -100),
                           child: Stack(

@@ -9,8 +9,6 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../model/company/branch/branch_profile_with_paging.dart';
-
 part 'rest_client.g.dart';
 
 ///todo add .env file
@@ -96,6 +94,11 @@ abstract class RestClient {
   @GET('/rep/company')
   Future<RepCompany> repCompany();
 
+  @GET('/files/{filename}')
+  Future getFileByName(
+    @Path('filename') String filename,
+  );
+
   // Branch Profile:
 
   // TODO: make page param as @query param during pagination implementation
@@ -126,5 +129,4 @@ abstract class RestClient {
 
   @POST('rep/reset-password')
   Future resetPassword(@Body() Map<String, dynamic> resetPasswordMap);
-
 }

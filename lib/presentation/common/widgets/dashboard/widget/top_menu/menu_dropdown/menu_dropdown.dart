@@ -6,6 +6,7 @@ import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/menu_dropdown/cubit/menu_dropdown_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/change_password/view/change_password_page.dart';
+import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/edit_personal_data_page.dart';
 import 'package:business_terminal/presentation/login/view/login_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:flutter/cupertino.dart';
@@ -58,7 +59,9 @@ class MenuDropDown extends StatelessWidget {
               const SizedBox(height: 8),
               CupertinoButton(
                 padding: EdgeInsets.zero,
-                onPressed: close,
+                onPressed: () {
+                  Navigator.of(context).pushNamed(EditPersonalDataPage.path);
+                },
                 child: Text(
                   AppLocale.of(context).user_account,
                   style: inter14Medium,

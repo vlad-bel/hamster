@@ -31,7 +31,7 @@ class BranchProfile {
   @JsonKey(name: 'fillingProgress')
   final int? fillingProgress;
   @JsonKey(name: 'posesData')
-  final List<PosesData>? posesData;
+  final List<PosData>? posesData;
   @JsonKey(name: 'category')
   final String? category;
   @JsonKey(name: 'subcategories')
@@ -78,7 +78,7 @@ class BranchProfile {
 }
 
 @JsonSerializable(ignoreUnannotated: false)
-class PosesData {
+class PosData {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'manufacturer')
@@ -90,7 +90,7 @@ class PosesData {
   @JsonKey(name: 'isActive')
   final bool isActive;
 
-  PosesData({
+  PosData({
     required this.name,
     required this.manufacturer,
     required this.model,
@@ -98,10 +98,10 @@ class PosesData {
     required this.isActive,
   });
 
-  factory PosesData.fromJson(Map<String, dynamic> json) =>
-      _$PosesDataFromJson(json);
+  factory PosData.fromJson(Map<String, dynamic> json) =>
+      _$PosDataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PosesDataToJson(this);
+  Map<String, dynamic> toJson() => _$PosDataToJson(this);
 }
 
 class OpeningHours {

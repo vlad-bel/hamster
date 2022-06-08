@@ -17,10 +17,12 @@ class CountryCodeSelector extends StatefulWidget {
     super.key,
     required this.cubit,
     required this.loading,
+    this.label,
   });
 
   final CountryCodeSelectorCubit cubit;
   final bool loading;
+  final String? label;
 
   @override
   State<CountryCodeSelector> createState() => _CountryCodeSelectorState();
@@ -77,6 +79,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
               overlayEntry: overlayEntry,
               showOverlay: showOverlay,
               loading: widget.loading,
+              label: widget.label,
             );
           },
           init: (selectedCountry, countries) {
@@ -87,12 +90,14 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
               overlayEntry: overlayEntry,
               showOverlay: showOverlay,
               loading: widget.loading,
+              label: widget.label,
             );
           },
           error: (e) {
             return FormTextField(
               name: CountryCodeSelectorCubit.numberTextfield,
               hint: AppLocale.of(context).select_country_code,
+              label: widget.label,
               readOnly: true,
             );
           },
@@ -110,6 +115,7 @@ class _Selector extends StatelessWidget {
     required this.showOverlay,
     required this.state,
     required this.loading,
+    this.label,
   });
 
   final LayerLink layerLink;
@@ -118,6 +124,7 @@ class _Selector extends StatelessWidget {
   final Country? selectedCountry;
   final Function({Country selectedCountry}) showOverlay;
   final CountryCodeSelectorState state;
+  final String? label;
 
   int _getPhoneLenghtString(int numLength) {
     return numLength - (selectedCountry?.phone.length ?? 0);
@@ -130,7 +137,8 @@ class _Selector extends StatelessWidget {
       child: FormTextField(
         name: CountryCodeSelectorCubit.numberTextfield,
         counter: const SizedBox(),
-        prefixIcon: selectedCountry != null
+        label: label,
+        customPrefix: selectedCountry != null
             ? NumberPrefix(
                 country: selectedCountry!,
                 onTap: loading

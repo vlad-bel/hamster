@@ -86,6 +86,8 @@ class _CountrySelectorState extends State<CountrySelector> {
                 name: CountrySelectorCubit.countryField,
                 hint: AppLocale.of(context).country_hint,
                 readOnly: true,
+                validationMessages: (control) =>
+                    CountrySelectorCubit.validationMessages,
               );
             },
             open: (selectedCountry, countries) {
@@ -97,6 +99,8 @@ class _CountrySelectorState extends State<CountrySelector> {
                   label: AppLocale.of(context).country_hint,
                   hint: AppLocale.of(context).country_hint,
                   readOnly: true,
+                  validationMessages: (control) =>
+                      CountrySelectorCubit.validationMessages,
                 ),
               );
             },
@@ -110,6 +114,8 @@ class _CountrySelectorState extends State<CountrySelector> {
                   hint: AppLocale.of(context).country_hint,
                   readOnly: true,
                   onTap: showOverlay,
+                  validationMessages: (control) =>
+                      CountrySelectorCubit.validationMessages,
                 ),
               );
             },
@@ -119,6 +125,8 @@ class _CountrySelectorState extends State<CountrySelector> {
                 name: CountrySelectorCubit.countryField,
                 hint: AppLocale.of(context).country_hint,
                 readOnly: true,
+                validationMessages: (control) =>
+                    CountrySelectorCubit.validationMessages,
               );
             },
           ),

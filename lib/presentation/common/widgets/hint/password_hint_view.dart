@@ -96,7 +96,7 @@ class _PasswordHintViewState extends State<PasswordHintView> {
                 enabled: has1UpperCaseLetter,
               ),
               CheckBoxIconGreen(
-                text: AppLocale.of(context).hasOneSpecialCharacter,
+                text: AppLocale.of(context).hasOneDigit,
                 enabled: has1Number,
               ),
               CheckBoxIconGreen(
