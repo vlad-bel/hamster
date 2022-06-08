@@ -1,5 +1,9 @@
+import 'dart:developer';
+
+import 'package:business_terminal/domain/model/company/logo.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_state.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
+import 'package:business_terminal/use_cases/company/company_use_case.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,10 +12,12 @@ import 'package:injectable/injectable.dart';
 @injectable
 class BranchProfileAvatarPictureCubit
     extends Cubit<BranchProfileAvatarPictureState> {
-  BranchProfileAvatarPictureCubit()
+  BranchProfileAvatarPictureCubit(this.companyUsecase)
       : super(
           const BranchProfileAvatarPictureState.init(),
         );
+
+  final CompanyUsecase companyUsecase;
 
   void selectImage(AppColoredFile image) {
     emit(
@@ -70,11 +76,42 @@ class BranchProfileAvatarPictureCubit
     );
   }
 
-  void init() {
+  void init() async {
     emit(
       BranchProfileAvatarPictureState.init(
         selectedImage: state.selectedImage,
         images: state.images,
+      ),
+    );
+  }
+
+  Future loadInitData() async {
+    loading();
+    final companyId = (await companyUsecase.getRepCompany()).company?.id;
+    final company = await companyUsecase.getCompany(
+      companyId: '$companyId',
+    );
+
+    final addedImages = <AppColoredFile>[];
+    for (final logo in company.logos ?? <CompanyLogo>[]) {
+      if (logo.fileName != null) {
+        try {
+          addedImages.add(
+            AppColoredFile(
+              bytes: null,
+              color: logo.backgroundColor,
+              name: logo.fileName,
+            ),
+          );
+        } catch (e, s) {
+          log('Error is $e, StackTrace is $s');
+        }
+      }
+    }
+    emit(
+      BranchProfileAvatarPictureState.init(
+        selectedImage: addedImages[0],
+        images: addedImages,
       ),
     );
   }

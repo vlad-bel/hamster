@@ -14,7 +14,7 @@ class AppFile {
   final String? name;
   final int? size;
 
-  String get getExtension => name?.split('.').last ?? 'unknown_extention';
+  String get getExtension => name?.split('.').last ?? 'png';
 
   String get createName => '${DateTime.now()}.$getExtension';
 }

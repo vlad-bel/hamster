@@ -35,6 +35,7 @@
 /dev/integration_tests/**/xcuserdata
 /dev/integration_tests/**/Pods
 /packages/flutter/coverage/
+
 version
 
 # packages file containing multi-root paths
@@ -143,3 +144,4 @@ pubspec.lock
 
 # Except this one
 !lib/generated/locale_keys.g.dart
+lib/app/utils/l10n/generated/**

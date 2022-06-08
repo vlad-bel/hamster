@@ -146,7 +146,7 @@ FormData? getFormDataFromBody(Map<String, dynamic>? data) {
       for (final formFile in formFiles) {
         final multipartFile = MultipartFile.fromBytes(
           formFile.bytes!,
-          filename: formFile.name,
+          filename: formFile.name ?? '${DateTime.now()}.png',
           contentType: MediaType(
             'image',
             formFile.getExtension,

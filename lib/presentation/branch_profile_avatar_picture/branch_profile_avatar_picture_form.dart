@@ -4,7 +4,6 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
-import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_state.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/widget/branch_profile_avatar_picture_selector.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
@@ -36,14 +35,8 @@ class _BranchProfileAvatarPictureFormState
   @override
   void initState() {
     super.initState();
-    final branchProfileCubit = context.read<BranchProfileCubit>();
     final cubit = context.read<BranchProfileAvatarPictureCubit>()
-      ..emit(
-        BranchProfileAvatarPictureState.init(
-          images: branchProfileCubit.state.avatarImages,
-          selectedImage: branchProfileCubit.state.avatarImages?[0],
-        ),
-      );
+      ..loadInitData();
   }
 
   void saveImagesToBranchProfile(BuildContext context) {

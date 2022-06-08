@@ -101,7 +101,6 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
         if (state.images != null && state.selectedImage != null) {
           return Column(
             children: [
-              Text(state.selectedImage!.bytes.toString()),
               Stack(
                 alignment: Alignment.center,
                 children: [
