@@ -1,5 +1,4 @@
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/cubit/profile_viewing_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/view/company_branch_table.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/view/company_profile_table.dart';
@@ -21,48 +20,56 @@ class ProfileViewing extends StatelessWidget {
   }
 }
 
-class CompanyProfileView extends StatelessWidget {
+class CompanyProfileView extends StatefulWidget {
   const CompanyProfileView({super.key});
+
+  @override
+  State<CompanyProfileView> createState() => _CompanyProfileViewState();
+}
+
+class _CompanyProfileViewState extends State<CompanyProfileView> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final cubit = context.read<ProfileViewingCubit>();
+    cubit.getInitialData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: BlocProvider(
-        create: (BuildContext context) {
-          return getIt.get<ProfileViewingCubit>()..getInitialData();
+      child: BlocBuilder<ProfileViewingCubit, ProfileViewingState>(
+        buildWhen: (previous, current) {
+          return current is SuccessProfileViewingState ||
+              current is LoadingProfileViewingState;
         },
-        child: BlocBuilder<ProfileViewingCubit, ProfileViewingState>(
-          buildWhen: (previous, current) {
-            return current is SuccessProfileViewingState ||
-                current is LoadingProfileViewingState;
-          },
-          builder: (context, state) {
-            return state.when(
-              error: (error) {
-                return SizedBox.shrink();
-              },
-              success: (company) {
-                return Column(
-                  children: [
-                    CompanyProfileTable(
-                      repCompany: company,
-                    ),
-                    const SizedBox(height: 25),
-                    const CompanyBranchTable(),
-                  ],
-                );
-              },
-              loading: () {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-              initial: () {
-                return SizedBox.shrink();
-              },
-            );
-          },
-        ),
+        builder: (context, state) {
+          return state.when(
+            error: (error) {
+              return SizedBox.shrink();
+            },
+            success: (company) {
+              return Column(
+                children: [
+                  CompanyProfileTable(
+                    repCompany: company,
+                  ),
+                  const SizedBox(height: 25),
+                  const CompanyBranchTable(),
+                ],
+              );
+            },
+            loading: () {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+            initial: () {
+              return SizedBox.shrink();
+            },
+          );
+        },
       ),
     );
   }

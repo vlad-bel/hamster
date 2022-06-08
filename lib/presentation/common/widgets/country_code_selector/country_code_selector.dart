@@ -165,11 +165,11 @@ class _Selector extends StatelessWidget {
         ],
         validationMessages: (control) => {
           ValidationMessage.required: AppLocale.of(context).required_field,
-          ValidationMessage.minLength: AppLocale.of(context).min_number(
-            _getPhoneLenghtString(10),
-          ),
           ValidationMessage.maxLength: AppLocale.of(context).max_number(
             _getPhoneLenghtString(15),
+          ),
+          ValidationMessage.minLength: AppLocale.of(context).min_number(
+            _getPhoneLenghtString(10),
           ),
         },
         onTap: loading

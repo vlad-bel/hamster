@@ -4,7 +4,11 @@ import 'package:injectable/injectable.dart';
 
 @Singleton(as: TokenRepository)
 class DefaultTokenRepository extends TokenRepository {
-  final storage = const FlutterSecureStorage();
+  final storage = const FlutterSecureStorage(
+    aOptions: AndroidOptions(
+      encryptedSharedPreferences: true,
+    ),
+  );
 
   final String _accessTokenKey = 'access_token';
   final String _refreshTokenKey = 'refresh_token';
