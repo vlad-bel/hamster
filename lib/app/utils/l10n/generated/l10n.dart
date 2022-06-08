@@ -1041,10 +1041,10 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(Object length) {
+  String min_number(Object length) {
     return Intl.message(
       'Minimum number $length characters',
-      name: 'max_number',
+      name: 'min_number',
       desc: '',
       args: [length],
     );
@@ -1061,10 +1061,10 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(Object length) {
+  String max_number(Object length) {
     return Intl.message(
       'Maximum number $length characters',
-      name: 'min_number',
+      name: 'max_number',
       desc: '',
       args: [length],
     );

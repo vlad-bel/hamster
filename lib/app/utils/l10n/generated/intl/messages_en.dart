@@ -25,11 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(maxLength) => "Maximal length is ${maxLength}";
 
-  static String m3(length) => "Minimum number ${length} characters";
+  static String m3(length) => "Maximum number ${length} characters";
 
   static String m4(minLength) => "Minimal length is ${minLength}";
 
-  static String m5(length) => "Maximum number ${length} characters";
+  static String m5(length) => "Minimum number ${length} characters";
 
   static String m6(number) => "${number} Tills";
 
