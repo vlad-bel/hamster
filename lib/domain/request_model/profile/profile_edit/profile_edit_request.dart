@@ -27,7 +27,7 @@ class ProfileEditRequest {
   final String accountOwner;
 
   @JsonKey(name: 'backgrounds')
-  final List<String> backgrounds;
+  final List<String?> backgrounds;
 
   @JsonKey(name: 'city')
   final String city;

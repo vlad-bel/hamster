@@ -136,6 +136,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
+        "did_not_have_account": MessageLookupByLibrary.simpleMessage(
+            "Du hast noch keinen Business-Terminal-Account?"),
         "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
             "Sie beabsichtigen Ihre E-Mail-Adresse zu ändern?"),
         "edit_photo": MessageLookupByLibrary.simpleMessage(
@@ -145,6 +147,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "emailCodeSent": MessageLookupByLibrary.simpleMessage(
             "Sie erhalten in Kürze erneut eine E-Mail von uns."),
+        "email_field": MessageLookupByLibrary.simpleMessage(
+            "Sollte eine gültige E-Mail sein"),
+        "email_on_its_way": MessageLookupByLibrary.simpleMessage(
+            "Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse"),
         "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Fehler"),
         "falschesPasswort":
@@ -206,6 +212,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sollte die Filiale an dem/den zuvor ausgewählten Tag/en geschlossen sein so lassen Sie die unten stehenden Felder leer"),
         "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
             "Sollten Ihr Unternehmen und eine Filiale die identisch \nAdresse haben, dann markieren Sie bitte die \nübereinstimmenden Angaben."),
+        "join_now": MessageLookupByLibrary.simpleMessage("Jetzt registrieren"),
         "lastName": MessageLookupByLibrary.simpleMessage("Nachname"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
         "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),
@@ -228,6 +235,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPasswordIntalledDescription": MessageLookupByLibrary.simpleMessage(
             "Sie haben erfolgreich Ihr altes durch ein neues. Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden."),
         "next": MessageLookupByLibrary.simpleMessage("Weiter"),
+        "notFound": MessageLookupByLibrary.simpleMessage("Nicht gefunden"),
+        "not_empty_field":
+            MessageLookupByLibrary.simpleMessage("Sollte nicht leer sein"),
         "not_visible": MessageLookupByLibrary.simpleMessage("Nicht sichtbar"),
         "num_hint": MessageLookupByLibrary.simpleMessage("Nr."),
         "number": MessageLookupByLibrary.simpleMessage("NUMMER"),
@@ -237,6 +247,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Anzahl Kassen"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Öffnungszeiten"),
         "opens": MessageLookupByLibrary.simpleMessage("Öffnet"),
+        "password": MessageLookupByLibrary.simpleMessage("Passwort"),
         "passwordChanged":
             MessageLookupByLibrary.simpleMessage("Passwort geändert."),
         "passwordChangedDescription": MessageLookupByLibrary.simpleMessage(
@@ -251,6 +262,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_call": MessageLookupByLibrary.simpleMessage("Anruf"),
         "phone_validation": MessageLookupByLibrary.simpleMessage(
             "Die angegebene Telefonnummer ist ungültig. Bitte versuchen Sie eine andere"),
+        "please_enter_code_to_verity_email": MessageLookupByLibrary.simpleMessage(
+            "Bitte geben Sie den 5-stelligen Code ein, um IhreE-Mail-Adresse zu verifizieren. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner"),
         "post_hint": MessageLookupByLibrary.simpleMessage("PLZ"),
         "request_verification":
             MessageLookupByLibrary.simpleMessage("Verifikation beantragen"),
@@ -329,6 +342,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "website_valigation": MessageLookupByLibrary.simpleMessage(
             "Die Website muss nach der folgenden Vorlage \'website.net\' geschrieben werden"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Mittwoch"),
+        "welcome_to_hamster":
+            MessageLookupByLibrary.simpleMessage("Willkommen bei\nHamster!"),
+        "welcome_to_hamster_description": MessageLookupByLibrary.simpleMessage(
+            "Sollten Sie bereits einen BusinessAccount haben, dann melden Sie sich direkt an. Ansonsten müssten Sie sich zuerst noch registrieren"),
         "which_new_email": MessageLookupByLibrary.simpleMessage(
             "Bitte teilen Sie uns mit, welche neue E-Mail-Adresse die momentan hinterlegte Adresse, ersetzen soll: "),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),

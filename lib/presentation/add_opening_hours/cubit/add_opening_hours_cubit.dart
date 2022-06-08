@@ -10,7 +10,7 @@ part 'add_opening_hours_cubit.freezed.dart';
 class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
   AddOpeningHoursCubit()
       : super(
-          AddOpeningHoursState.initial(
+          const AddOpeningHoursState.initial(
             hourRanges: <int>[],
             error: '',
           ),
@@ -114,23 +114,6 @@ class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
     );
   }
 
-  void _updateValidators() {
-    formSettings.formGroup.setValidators([
-      for (var i = 0; i < formSettings.openFields.length; i++)
-        formSettings.openCloseValidator(
-          formSettings.openFields[i],
-          formSettings.closeFields[i],
-        ),
-      if (formSettings.openFields.length > 1)
-        formSettings.collisionValidator(
-          formSettings.openFields.first,
-          formSettings.closeFields.first,
-          formSettings.openFields.last,
-          formSettings.closeFields.last,
-        ),
-    ]);
-  }
-
   List<Map<String, String>> openingHours() {
     final hoursList = <Map<String, String>>[];
 
@@ -148,6 +131,23 @@ class AddOpeningHoursCubit extends Cubit<AddOpeningHoursState> {
     }
 
     return hoursList;
+  }
+
+  void _updateValidators() {
+    formSettings.formGroup.setValidators([
+      for (var i = 0; i < formSettings.openFields.length; i++)
+        formSettings.openCloseValidator(
+          formSettings.openFields[i],
+          formSettings.closeFields[i],
+        ),
+      if (formSettings.openFields.length > 1)
+        formSettings.collisionValidator(
+          formSettings.openFields.first,
+          formSettings.closeFields.first,
+          formSettings.openFields.last,
+          formSettings.closeFields.last,
+        ),
+    ]);
   }
 }
 

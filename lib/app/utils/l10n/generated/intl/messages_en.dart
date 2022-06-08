@@ -26,11 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(maxLength) => "Maximal length is ${maxLength}";
 
-  static String m3(length) => "Minimum number ${length} characters";
+  static String m3(length) => "Maximum number ${length} characters";
 
   static String m4(minLength) => "Minimal length is ${minLength}";
 
-  static String m5(length) => "Maximum number ${length} characters";
+  static String m5(length) => "Minimum number ${length} characters";
 
   static String m6(number) => "${number} Tills";
 
@@ -133,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
+        "did_not_have_account": MessageLookupByLibrary.simpleMessage(
+            "You don\'t have a business terminal account yet?"),
         "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
             "Do you intend to change E-Mail?"),
         "edit_company_logo":
@@ -144,6 +146,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "emailCodeSent": MessageLookupByLibrary.simpleMessage(
             "You will receive another email from us shortly."),
+        "email_field":
+            MessageLookupByLibrary.simpleMessage("Should be a valid email"),
+        "email_on_its_way": MessageLookupByLibrary.simpleMessage(
+            "An email is on its way to the address you specified"),
         "entrances_count": m1,
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "falschesPasswort":
@@ -207,6 +213,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "If the branch is closed on the selected day(s), leave the fields below empty"),
         "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
             "If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging."),
+        "join_now": MessageLookupByLibrary.simpleMessage("Join now"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
         "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
@@ -229,6 +236,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPasswordIntalledDescription": MessageLookupByLibrary.simpleMessage(
             "Sie haben erfolgreich Ihr altes durch ein neues. Passwort ersetzt und können sich ab sofort mit diesem bereits anmelden."),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "notFound": MessageLookupByLibrary.simpleMessage("Not found"),
+        "not_empty_field":
+            MessageLookupByLibrary.simpleMessage("Should not be empty"),
         "not_visible": MessageLookupByLibrary.simpleMessage("Not visible"),
         "num_hint": MessageLookupByLibrary.simpleMessage("No."),
         "number": MessageLookupByLibrary.simpleMessage("NUMBER"),
@@ -239,6 +249,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "opening_hours": MessageLookupByLibrary.simpleMessage("Opening hours"),
         "opens": MessageLookupByLibrary.simpleMessage("Opens"),
         "palette": MessageLookupByLibrary.simpleMessage("Palette"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordChanged":
             MessageLookupByLibrary.simpleMessage("Passwort geändert."),
         "passwordChangedDescription": MessageLookupByLibrary.simpleMessage(
@@ -253,6 +264,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_call": MessageLookupByLibrary.simpleMessage("Phone"),
         "phone_validation": MessageLookupByLibrary.simpleMessage(
             "The phone number provided is invalid. Please try a different one"),
+        "please_enter_code_to_verity_email": MessageLookupByLibrary.simpleMessage(
+            "Please enter the 5-digit code to verify your email address. If the email does not appear in your inbox shortly, please also check your spam folder"),
         "post_hint": MessageLookupByLibrary.simpleMessage("Postcode"),
         "request_verification":
             MessageLookupByLibrary.simpleMessage("Request verification"),
@@ -330,6 +343,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "website_valigation": MessageLookupByLibrary.simpleMessage(
             "The web site must be written according to the following template \'website.net\'"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
+        "welcome_to_hamster":
+            MessageLookupByLibrary.simpleMessage("Welcome to\nHamster!"),
+        "welcome_to_hamster_description": MessageLookupByLibrary.simpleMessage(
+            "If you already have a business account, then log in directly. Otherwise you would have to register first."),
         "which_new_email": MessageLookupByLibrary.simpleMessage(
             "Please let us know which new e-mail address should replace the currently stored address: "),
         "work_in_progress": MessageLookupByLibrary.simpleMessage("wip"),

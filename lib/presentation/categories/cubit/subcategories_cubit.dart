@@ -9,13 +9,13 @@ class SubcategoriesCubit extends Cubit<SubcategoriesState> {
   SubcategoriesCubit({
     required this.companyUsecase,
   }) : super(
-          SubcategoriesState.loading(),
+          const SubcategoriesState.loading(),
         );
 
   final CompanyUsecase companyUsecase;
 
   Future loadCategories() async {
-    emit(SubcategoriesState.loading());
+    emit(const SubcategoriesState.loading());
     try {
       final categories = await companyUsecase.getCategories();
       emit(

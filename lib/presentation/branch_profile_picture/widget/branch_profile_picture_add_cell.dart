@@ -17,8 +17,8 @@ class BranchProfileAddCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
-        borderRadius: BorderRadius.all(
-          Radius.circular(4),
+        borderRadius: const BorderRadius.all(
+          const Radius.circular(4),
         ),
         onTap: () {
           pickAndCropImage(context);
@@ -29,7 +29,7 @@ class BranchProfileAddCell extends StatelessWidget {
           child: DottedBorder(
             dashPattern: dashPattertn,
             color: lynch.withOpacity(0.3),
-            radius: Radius.circular(4),
+            radius: const Radius.circular(4),
             strokeWidth: 1.2,
             child: Padding(
               padding: const EdgeInsets.all(4),
@@ -37,9 +37,9 @@ class BranchProfileAddCell extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: denim.withOpacity(0.1),
                 ),
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: white,
                     shape: BoxShape.circle,
                   ),
