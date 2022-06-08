@@ -31,6 +31,7 @@ build-dev:
     - sed -i 's/path:/& \.\/hamster_widgets/' pubspec.yaml
     - sed -i '/url:/d' pubspec.yaml
     - sed -i '/ref:/d' pubspec.yaml
+    - flutter pub add intl_utils
     - flutter pub global run intl_utils:generate
     - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
     - flutter build web -t lib/main_development.dart --release --web-renderer html
