@@ -40,189 +40,269 @@ class ProfileEditContentState extends State<ProfileEditContent> {
   Widget build(BuildContext context) {
     final profileEditCubit = context.read<ProfileEditCubit>();
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 450,
-              height: 750,
-              decoration: const BoxDecoration(
-                color: white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 46,
-                  horizontal: 50,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 450,
+                height: 750,
+                decoration: const BoxDecoration(
+                  color: white,
                 ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 46,
+                    horizontal: 50,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocale.of(context).company_profile,
+                        style: inter16SemiBold.copyWith(
+                          color: lynch,
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      Center(
+                        child: BlocBuilder<ProfileEditCubit, ProfileEditState>(
+                          buildWhen: (prev, current) {
+                            return current.maybeWhen(
+                              imagesAdded: (
+                                company,
+                                profileEditFormSettings,
+                                images,
+                              ) =>
+                                  true,
+                              initial: (company, settings) => true,
+                              orElse: () => false,
+                            );
+                          },
+                          builder: (context, state) {
+                            return state.maybeWhen(
+                              imagesAdded: (
+                                company,
+                                profileEditFormSettings,
+                                images,
+                              ) {
+                                return AppLogoViewer(
+                                  images: images,
+                                  onPressed: () async {
+                                    final result = await authNavigatorKey
+                                        .currentState
+                                        ?.pushNamed<List<AppColoredFile>>(
+                                      ProfileAddLogoPage.path,
+                                      arguments: ProfileAddLogoArguments(
+                                        files: images,
+                                      ),
+                                    );
+                                    if (result != null) {
+                                      await profileEditCubit.addImages(
+                                        result,
+                                        withUpload: true,
+                                      );
+                                    }
+                                  },
+                                );
+                              },
+                              orElse: () {
+                                return AppAddLogoWidget(
+                                  onPressed: () async {
+                                    final result = await authNavigatorKey
+                                        .currentState
+                                        ?.pushNamed<List<AppColoredFile>>(
+                                      ProfileAddLogoPage.path,
+                                      arguments: ProfileAddLogoArguments(
+                                        files: [],
+                                      ),
+                                    );
+                                    if (result != null) {
+                                      await profileEditCubit.addImages(
+                                        result,
+                                        withUpload: true,
+                                      );
+                                    }
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 25,
+                        ),
+                        child: Column(
+                          children: [
+                            Column(
+                              children: [
+                                FormTextField(
+                                  validationMessages: (control) =>
+                                      widget.formSettings.validationMessages,
+                                  name: ProfileEditFormSettings.kCompanyName,
+                                  label: Intl.message(
+                                    ProfileEditFormSettings.kCompanyName,
+                                    name: ProfileEditFormSettings.kCompanyName,
+                                  ),
+                                  hint: Intl.message(
+                                    ProfileEditFormSettings.kCompanyName,
+                                    name: ProfileEditFormSettings.kCompanyName,
+                                  ),
+                                ),
+                                const SizedBox(height: 25),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      flex: 3,
+                                      child: FormTextField(
+                                        name: ProfileEditFormSettings
+                                            .kStreetField,
+                                        hint: AppLocale.of(context).street_hint,
+                                        label:
+                                            AppLocale.of(context).street_hint,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 16),
+                                    Flexible(
+                                      child: FormTextField(
+                                        name: ProfileEditFormSettings
+                                            .kStreetNumberField,
+                                        hint: AppLocale.of(context).num_hint,
+                                        label: AppLocale.of(context).num_hint,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 25),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: FormTextField(
+                                        name: ProfileEditFormSettings
+                                            .kPostcodeField,
+                                        hint: AppLocale.of(context).post_hint,
+                                        label: AppLocale.of(context).post_hint,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 16),
+                                    Flexible(
+                                      flex: 3,
+                                      child: FormTextField(
+                                        name:
+                                            ProfileEditFormSettings.kCityField,
+                                        hint:
+                                            AppLocale.of(context).location_hint,
+                                        label:
+                                            AppLocale.of(context).location_hint,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 25),
+                                CountrySelector(
+                                  cubit: widget.countrySelectorCubit,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(width: 32),
+              SizedBox(
+                height: 750,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      AppLocale.of(context).company_profile,
-                      style: inter16SemiBold.copyWith(
-                        color: lynch,
+                    Expanded(
+                      child: Container(
+                        width: 450,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 46,
+                          horizontal: 50,
+                        ),
+                        decoration: const BoxDecoration(
+                          color: white,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppLocale.of(context).base_data,
+                              style: inter16SemiBold.copyWith(
+                                color: lynch,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            FormTextField(
+                              validationMessages: (control) =>
+                                  widget.formSettings.validationMessages,
+                              name: ProfileEditFormSettings
+                                  .kCommercialRegisterNumber,
+                              label: Intl.message(
+                                ProfileEditFormSettings
+                                    .kCommercialRegisterNumber,
+                                name: ProfileEditFormSettings
+                                    .kCommercialRegisterNumber,
+                              ),
+                              hint: Intl.message(
+                                ProfileEditFormSettings
+                                    .kCommercialRegisterNumber,
+                                name: ProfileEditFormSettings
+                                    .kCommercialRegisterNumber,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 25,
+                            ),
+                            FormTextField(
+                              validationMessages: (control) =>
+                                  widget.formSettings.validationMessages,
+                              name: ProfileEditFormSettings.kTaxNumber,
+                              label: Intl.message(
+                                ProfileEditFormSettings.kTaxNumber,
+                                name: ProfileEditFormSettings.kTaxNumber,
+                              ),
+                              hint: Intl.message(
+                                ProfileEditFormSettings.kTaxNumber,
+                                name: ProfileEditFormSettings.kTaxNumber,
+                              ),
+                            ),
+                            const SizedBox(height: 25),
+                            FormTextField(
+                              validationMessages: (control) =>
+                                  widget.formSettings.validationMessages,
+                              name: ProfileEditFormSettings.kVatId,
+                              label: Intl.message(
+                                ProfileEditFormSettings.kVatId,
+                                name: ProfileEditFormSettings.kVatId,
+                              ),
+                              hint: Intl.message(
+                                ProfileEditFormSettings.kVatId,
+                                name: ProfileEditFormSettings.kVatId,
+                              ),
+                            ),
+                            const SizedBox(height: 25),
+                          ],
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 30),
-                    Center(
-                      child: BlocBuilder<ProfileEditCubit, ProfileEditState>(
-                        buildWhen: (prev, current) {
-                          return current.maybeWhen(
-                            imagesAdded: (
-                              company,
-                              profileEditFormSettings,
-                              images,
-                            ) =>
-                                true,
-                            initial: (company, settings) => true,
-                            orElse: () => false,
-                          );
-                        },
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            imagesAdded: (
-                              company,
-                              profileEditFormSettings,
-                              images,
-                            ) {
-                              return AppLogoViewer(
-                                images: images,
-                                onPressed: () async {
-                                  final result = await authNavigatorKey
-                                      .currentState
-                                      ?.pushNamed<List<AppColoredFile>>(
-                                    ProfileAddLogoPage.path,
-                                    arguments: ProfileAddLogoArguments(
-                                      files: images,
-                                    ),
-                                  );
-                                  if (result != null) {
-                                    await profileEditCubit.addImages(
-                                      result,
-                                      withUpload: true,
-                                    );
-                                  }
-                                },
-                              );
-                            },
-                            orElse: () {
-                              return AppAddLogoWidget(
-                                onPressed: () async {
-                                  final result = await authNavigatorKey
-                                      .currentState
-                                      ?.pushNamed<List<AppColoredFile>>(
-                                    ProfileAddLogoPage.path,
-                                    arguments: ProfileAddLogoArguments(
-                                      files: [],
-                                    ),
-                                  );
-                                  if (result != null) {
-                                    await profileEditCubit.addImages(
-                                      result,
-                                      withUpload: true,
-                                    );
-                                  }
-                                },
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 25,
-                      ),
-                      child: Column(
-                        children: [
-                          Column(
-                            children: [
-                              FormTextField(
-                                validationMessages: (control) =>
-                                    widget.formSettings.validationMessages,
-                                name: ProfileEditFormSettings.kCompanyName,
-                                label: Intl.message(
-                                  ProfileEditFormSettings.kCompanyName,
-                                  name: ProfileEditFormSettings.kCompanyName,
-                                ),
-                                hint: Intl.message(
-                                  ProfileEditFormSettings.kCompanyName,
-                                  name: ProfileEditFormSettings.kCompanyName,
-                                ),
-                              ),
-                              const SizedBox(height: 25),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Flexible(
-                                    flex: 3,
-                                    child: FormTextField(
-                                      name:
-                                          ProfileEditFormSettings.kStreetField,
-                                      hint: AppLocale.of(context).street_hint,
-                                      label: AppLocale.of(context).street_hint,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 16),
-                                  Flexible(
-                                    child: FormTextField(
-                                      name: ProfileEditFormSettings
-                                          .kStreetNumberField,
-                                      hint: AppLocale.of(context).num_hint,
-                                      label: AppLocale.of(context).num_hint,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 25),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Flexible(
-                                    child: FormTextField(
-                                      name: ProfileEditFormSettings
-                                          .kPostcodeField,
-                                      hint: AppLocale.of(context).post_hint,
-                                      label: AppLocale.of(context).post_hint,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 16),
-                                  Flexible(
-                                    flex: 3,
-                                    child: FormTextField(
-                                      name: ProfileEditFormSettings.kCityField,
-                                      hint: AppLocale.of(context).location_hint,
-                                      label:
-                                          AppLocale.of(context).location_hint,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 25),
-                              CountrySelector(
-                                cubit: widget.countrySelectorCubit,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(width: 32),
-            SizedBox(
-              height: 750,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Container(
+                    const SizedBox(height: 24),
+                    Container(
                       width: 450,
+                      height: 280,
                       padding: const EdgeInsets.symmetric(
                         vertical: 46,
                         horizontal: 50,
@@ -230,111 +310,38 @@ class ProfileEditContentState extends State<ProfileEditContent> {
                       decoration: const BoxDecoration(
                         color: white,
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            AppLocale.of(context).base_data,
-                            style: inter16SemiBold.copyWith(
-                              color: lynch,
+                      child: PaymentInfo(
+                        addPaymentFormSettings: AddPaymentFormSettings(),
+                        accountOwner: profileEditCubit.getControlValue(
+                              ProfileEditFormSettings.kAccountOwner,
+                            ) ??
+                            '',
+                        iban: profileEditCubit.getControlValue(
+                              ProfileEditFormSettings.kIban,
+                            ) ??
+                            '',
+                        onTap: () async {
+                          final result = await Navigator.pushNamed(
+                            context,
+                            AddPaymentPage.path,
+                            arguments: AddPaymentArguments(
+                              addPaymentArguments:
+                                  profileEditCubit.addPaymentFormSettings,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 32,
-                          ),
-                          FormTextField(
-                            validationMessages: (control) =>
-                                widget.formSettings.validationMessages,
-                            name: ProfileEditFormSettings
-                                .kCommercialRegisterNumber,
-                            label: Intl.message(
-                              ProfileEditFormSettings.kCommercialRegisterNumber,
-                              name: ProfileEditFormSettings
-                                  .kCommercialRegisterNumber,
-                            ),
-                            hint: Intl.message(
-                              ProfileEditFormSettings.kCommercialRegisterNumber,
-                              name: ProfileEditFormSettings
-                                  .kCommercialRegisterNumber,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          FormTextField(
-                            validationMessages: (control) =>
-                                widget.formSettings.validationMessages,
-                            name: ProfileEditFormSettings.kTaxNumber,
-                            label: Intl.message(
-                              ProfileEditFormSettings.kTaxNumber,
-                              name: ProfileEditFormSettings.kTaxNumber,
-                            ),
-                            hint: Intl.message(
-                              ProfileEditFormSettings.kTaxNumber,
-                              name: ProfileEditFormSettings.kTaxNumber,
-                            ),
-                          ),
-                          const SizedBox(height: 25),
-                          FormTextField(
-                            validationMessages: (control) =>
-                                widget.formSettings.validationMessages,
-                            name: ProfileEditFormSettings.kVatId,
-                            label: Intl.message(
-                              ProfileEditFormSettings.kVatId,
-                              name: ProfileEditFormSettings.kVatId,
-                            ),
-                            hint: Intl.message(
-                              ProfileEditFormSettings.kVatId,
-                              name: ProfileEditFormSettings.kVatId,
-                            ),
-                          ),
-                          const SizedBox(height: 25),
-                        ],
+                          ) as Map<String, String>?;
+
+                          if (result == null) return;
+                          await profileEditCubit.updatePaymentData(result);
+                        },
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  Container(
-                    width: 450,
-                    height: 280,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 46,
-                      horizontal: 50,
-                    ),
-                    decoration: const BoxDecoration(
-                      color: white,
-                    ),
-                    child: PaymentInfo(
-                      addPaymentFormSettings: AddPaymentFormSettings(),
-                      accountOwner: profileEditCubit.getControlValue(
-                            ProfileEditFormSettings.kAccountOwner,
-                          ) ??
-                          '',
-                      iban: profileEditCubit.getControlValue(
-                            ProfileEditFormSettings.kIban,
-                          ) ??
-                          '',
-                      onTap: () async {
-                        final result = await Navigator.pushNamed(
-                          context,
-                          AddPaymentPage.path,
-                          arguments: AddPaymentArguments(
-                            addPaymentArguments:
-                                profileEditCubit.addPaymentFormSettings,
-                          ),
-                        ) as Map<String, String>?;
-
-                        if (result == null) return;
-                        await profileEditCubit.updatePaymentData(result);
-                      },
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
