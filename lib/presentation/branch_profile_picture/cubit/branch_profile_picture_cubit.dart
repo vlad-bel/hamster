@@ -54,8 +54,7 @@ class BranchProfilePictureCubit extends Cubit<BranchProfilePictureState> {
 
     if (result != null) {
       final file = AppColoredFile(
-        size: result.files.first.size,
-        name: result.files.first.name,
+        name: null,
         bytes: result.files.first.bytes,
         color: null,
       );

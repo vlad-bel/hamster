@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
@@ -12,7 +10,6 @@ import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/w
 import 'package:business_terminal/presentation/common/widgets/dashed_button/circle_dashed_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 
 class BranchProfileAvatarPictureSelector extends StatelessWidget {
   const BranchProfileAvatarPictureSelector({
@@ -29,9 +26,8 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
     final image = await cubit.pickImage(context);
     if (image != null) {
       cubit.loading();
-      await Future.delayed(Duration(milliseconds: 200));
-
-      final croppedImage = await Navigator.pushNamed<Uint8List>(
+      await Future.delayed(const Duration(milliseconds: 200));
+      final croppedImage = await Navigator.pushNamed<AppFile>(
         context,
         CropperPage.path,
         arguments: {
@@ -45,8 +41,8 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
       if (croppedImage != null) {
         final appFile = AppColoredFile(
           size: image.size,
-          name: image.name,
-          bytes: croppedImage,
+          name: null,
+          bytes: croppedImage.bytes,
           color: null,
         );
 
@@ -66,8 +62,8 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
   ) {
     final cells = <Widget>[
       if (showAddButton && showAddButtonForFirstRow)
-        Padding(
-          padding: const EdgeInsets.only(right: 3.0),
+        const Padding(
+          padding: EdgeInsets.only(right: 3),
           child: BranchProfileAvatarRoundAddCell(),
         )
     ];
@@ -93,7 +89,7 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
         BranchProfileAvatarPictureState>(
       builder: (context, state) {
         final loader = state.when(
-          loading: (_, __) => SizedBox(
+          loading: (_, __) => const SizedBox(
             height: 220,
             width: 220,
             child: Center(
@@ -105,6 +101,7 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
         if (state.images != null && state.selectedImage != null) {
           return Column(
             children: [
+              Text(state.selectedImage!.bytes.toString()),
               Stack(
                 alignment: Alignment.center,
                 children: [
@@ -126,7 +123,7 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
                   true,
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               if (state.images!.length > 5)
                 Row(
                   children: _generatePhotoCells(

@@ -53,6 +53,8 @@ class _BranchProfileAvatarPictureFormState
         context.read<BranchProfileAvatarPictureCubit>();
 
     final newBranchImages = <AppColoredFile>[];
+    print(
+        'set saveImagesToBranchProfile saveImagesToBranchProfile, saveImagesToBranchProfile');
 
     if (branchProfilePictureCubit.state.selectedImage != null) {
       newBranchImages.add(branchProfilePictureCubit.state.selectedImage!);

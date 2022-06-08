@@ -12,7 +12,7 @@ final dio = httpClientInit();
 
 final tokenRepository = DefaultTokenRepository();
 
-final appFileFormDataKey = 'app_file_form_data';
+const appFileFormDataKey = 'app_file_form_data';
 
 Dio httpClientInit() {
   final prettyDioLogger = PrettyDioLogger(
@@ -63,8 +63,8 @@ Dio httpClientInit() {
           return _refreshToken(error, handler);
         },
       ),
-    );
-  // ..interceptors.add(prettyDioLogger);
+    )
+    ..interceptors.add(prettyDioLogger);
 
   return dio;
 }

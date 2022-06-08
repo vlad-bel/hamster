@@ -20,14 +20,7 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   BranchProfileCubit(this.useCase)
       : super(
           const BranchProfileState.init(
-            avatarImages: [
-              AppColoredFile(
-                bytes: null,
-                color: null,
-                name:
-                    'https://growyournutritionbusiness.com/wp-content/uploads/2019/11/company-logo-test.jpg',
-              ),
-            ],
+            avatarImages: [],
             isCreateBranchButtonEnabled: true,
           ),
         );

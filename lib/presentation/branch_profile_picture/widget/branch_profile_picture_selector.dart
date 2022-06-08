@@ -16,7 +16,7 @@ class BranchProfilePictureSelector extends StatelessWidget {
     return BlocBuilder<BranchProfilePictureCubit, BranchProfilePictureState>(
       builder: (context, state) {
         final loader = state.when(
-          loading: (_, __) => SizedBox(
+          loading: (_, __) => const SizedBox(
             height: 150,
             child: Center(
               child: CircularProgressIndicator(),
@@ -71,10 +71,12 @@ class BranchProfilePictureSelector extends StatelessWidget {
     final cells = <Widget>[];
 
     if (imagePaths.length < 3) {
-      cells.add(Padding(
-        padding: const EdgeInsets.only(right: 3.0),
-        child: BranchProfileAddCell(),
-      ));
+      cells.add(
+        const Padding(
+          padding: EdgeInsets.only(right: 3),
+          child: BranchProfileAddCell(),
+        ),
+      );
     }
 
     for (final imagePath in imagePaths) {

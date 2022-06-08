@@ -5,6 +5,7 @@ import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/domain/temp/days_hours.dart';
 import 'package:business_terminal/presentation/add_opening_hours/view/add_opening_hours_page.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
@@ -188,7 +189,7 @@ class AuthorizedState extends AppState {
                   ),
                 );
 
-                return _buildHamsterPage<Uint8List>(page, settings);
+                return _buildHamsterPage<AppFile>(page, settings);
               case AddLogoCropperPage.path:
                 final params = settings.arguments! as AddLogoCropperArguments;
 

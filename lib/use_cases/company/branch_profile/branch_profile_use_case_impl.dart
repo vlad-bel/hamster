@@ -72,7 +72,7 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
 
   @override
   Future<Response> uloadBranchProfilePictures(
-      List<AppFile> pictureFiles,
+    List<AppFile> pictureFiles,
   ) {
     return branchProfileRepository.uloadBranchProfilePictures(
       pictureFiles,

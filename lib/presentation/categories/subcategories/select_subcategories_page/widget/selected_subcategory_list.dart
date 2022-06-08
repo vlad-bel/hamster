@@ -24,7 +24,7 @@ class SelectedSubcategoryList extends StatelessWidget {
                         children: [
                           ListTile(
                             minVerticalPadding: 0,
-                            contentPadding: EdgeInsets.only(
+                            contentPadding: const EdgeInsets.only(
                               left: 16,
                             ),
                             onTap: () {},
@@ -40,7 +40,7 @@ class SelectedSubcategoryList extends StatelessWidget {
                                 onPressed: () {
                                   cubit.removeSelectedSubcategory(index);
                                 },
-                                child: Icon(
+                                child: const Icon(
                                   Icons.close_rounded,
                                   size: 16,
                                   color: lynch,
