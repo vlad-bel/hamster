@@ -232,5 +232,6 @@
   "join_now": "Join now",
   "not_empty_field": "Should not be empty",
   "email_field": "Should be a valid email",
-  "notFound" : "Not found"
+  "notFound" : "Not found",
+  "custom_number": "Custom number:"
 }
