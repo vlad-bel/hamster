@@ -53,7 +53,7 @@ class RectDashedButton extends StatelessWidget {
                           ),
                           const SizedBox(width: 12),
                           Text(
-                            AppLocale.current.add_branch_picture,
+                            AppLocale.of(context).add_branch_picture,
                             style: inter14.copyWith(
                               color: denim,
                             ),

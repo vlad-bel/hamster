@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/image/image_paths.dart';
@@ -23,7 +21,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:image_picker/image_picker.dart';
 
 class AddLogoCropperForm extends StatefulWidget {
   const AddLogoCropperForm({
@@ -44,52 +41,24 @@ class AddLogoCropperForm extends StatefulWidget {
 }
 
 @immutable
-class AddedProfileLogoModel extends AppFile {
-  AddedProfileLogoModel({
-    required this.backgroundColorModel,
-    required this.imageBytes,
-  }) : super(
-          bytes: imageBytes,
-          name: '',
-          extension: '',
-          size: null,
-          color: backgroundColorModel?.colorHex,
-        );
-
-  final BackgroundColorModel? backgroundColorModel;
-  final Uint8List imageBytes;
-}
-
-// TODO(b.nurmoldanov) extract to file
-@immutable
-class BackgroundColorModel {
-  const BackgroundColorModel({
-    required this.colorTitle,
-    required this.colorHex,
+class AppColoredFile extends AppFile {
+  const AppColoredFile({
+    required this.color,
+    required super.bytes,
+    required super.name,
+    required super.extension,
+    super.size,
   });
 
-  final String colorHex;
-  final String colorTitle;
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other.runtimeType != runtimeType) return false;
-    return other is BackgroundColorModel &&
-        other.colorTitle == colorTitle &&
-        other.colorHex == colorHex;
-  }
-
-  @override
-  int get hashCode => colorHex.length ^ colorTitle.length;
+  final String? color;
 }
 
 class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
   final _controller = CropController();
 
   List<Widget> _generatePhotoCells(
-    List<BackgroundColorModel> colors,
-    BackgroundColorModel? selectedColor,
+    List<String> colors,
+    String? selectedColor,
     BuildContext context,
   ) {
     final cells = <Widget>[];
@@ -101,7 +70,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
           child: InkWell(
             onTap: () {
               context.read<AddLogoCropperFormCubit>().changeBackground(
-                    backgroundColorModel: color,
+                    color: color,
                   );
             },
             child: ClipOval(
@@ -114,7 +83,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                     child: ColoredBox(
                       color: Color(
                         int.parse(
-                          '0xFF${color.colorHex}',
+                          '0xFF$color',
                         ),
                       ),
                     ),
@@ -189,7 +158,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                           ) {
                                             return Color(
                                               int.parse(
-                                                '0xFF${color.colorHex}',
+                                                '0xFF$color',
                                               ),
                                             );
                                           },
@@ -209,18 +178,22 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                             ) {
                                               Navigator.pop(
                                                 context,
-                                                AddedProfileLogoModel(
-                                                  backgroundColorModel: color,
-                                                  imageBytes: cropped,
+                                                AppColoredFile(
+                                                  bytes: cropped,
+                                                  color: color,
+                                                  name: null,
+                                                  extension: 'png',
                                                 ),
                                               );
                                             },
                                             orElse: () {
                                               Navigator.pop(
                                                 context,
-                                                AddedProfileLogoModel(
-                                                  imageBytes: cropped,
-                                                  backgroundColorModel: null,
+                                                AppColoredFile(
+                                                  bytes: cropped,
+                                                  color: null,
+                                                  name: null,
+                                                  extension: 'png',
                                                 ),
                                               );
                                             },
@@ -367,11 +340,7 @@ class _AddLogoCropperFormState extends State<AddLogoCropperForm> {
                                           formContext
                                               .read<AddLogoCropperFormCubit>()
                                               .addColorToPalette(
-                                                backgroundColorModel:
-                                                    BackgroundColorModel(
-                                                  colorTitle: newColor.hex,
-                                                  colorHex: newColor.hex,
-                                                ),
+                                                color: newColor.hex,
                                               );
                                         },
                                         child: SvgPicture.asset(

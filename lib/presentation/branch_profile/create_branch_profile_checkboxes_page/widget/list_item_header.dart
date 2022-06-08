@@ -25,7 +25,7 @@ class BranchProfileDataCheckboxListItemHeader extends StatelessWidget {
             onChanged: (bool? value) => onChangeCheckBox(context, value: value),
           ),
         ),
-        CheckboxesListDivider(),
+        const CheckboxesListDivider(),
       ],
     );
   }

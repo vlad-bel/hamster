@@ -28,4 +28,9 @@ abstract class CompanyUsecase {
   Future<Company> getCompany({
     required String companyId,
   });
+
+  void dispose(){
+    company = null;
+    repCompany = null;
+  }
 }

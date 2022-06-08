@@ -54,14 +54,14 @@ class CreateBranchProfileCheckboxesView extends StatelessWidget {
                   initial: (data) {
                     return Column(
                       children: [
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
 
                         // Listview with checkboxes:
                         BranchProfileDataCheckBoxesList(
                           data,
                           company: company,
                         ),
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
 
                         // Bottom action buttons:
                         Row(
@@ -69,7 +69,7 @@ class CreateBranchProfileCheckboxesView extends StatelessWidget {
                             WhiteButton(
                               onPressed: () => onPressGoBack(context),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             ActionButtonBlue(
                               isEnabled: true,
                               onPressed: () {
@@ -82,7 +82,7 @@ class CreateBranchProfileCheckboxesView extends StatelessWidget {
                     );
                   },
                 ) ??
-                CircularProgressIndicator();
+                const CircularProgressIndicator();
           },
         ),
       ),

@@ -9,6 +9,7 @@ enum CompanyDataCommonFieldsWithBranchData {
   streetNameAndNumber,
   postalCode,
   city,
+  country,
   allSelected,
 }
 
@@ -19,7 +20,7 @@ typedef CreateBranchProfileCheckboxesData
 class CreateBranchProfileCheckboxesCubit
     extends Cubit<CreateBranchProfileCheckboxesState> {
   CreateBranchProfileCheckboxesCubit()
-      : super(CreateBranchProfileCheckboxesState.initial({})) {
+      : super(const CreateBranchProfileCheckboxesState.initial({})) {
     emit(InitialBranchCheckboxes(dataMap));
   }
 
@@ -28,6 +29,7 @@ class CreateBranchProfileCheckboxesCubit
     CompanyDataCommonFieldsWithBranchData.streetNameAndNumber: false,
     CompanyDataCommonFieldsWithBranchData.postalCode: false,
     CompanyDataCommonFieldsWithBranchData.city: false,
+    CompanyDataCommonFieldsWithBranchData.country: false,
     CompanyDataCommonFieldsWithBranchData.allSelected: false,
   };
 
@@ -76,7 +78,7 @@ class CreateBranchProfileCheckboxesCubit
   void updateState(CreateBranchProfileCheckboxesData newMap) {
     // TODO: investigate why removing of line below (LoadingBranchCheckboxes) will break UI update
     // TODO: and why deep/shallow copy of map does not solve it
-    emit(LoadingBranchCheckboxes());
+    emit(const LoadingBranchCheckboxes());
     emit(InitialBranchCheckboxes(newMap));
   }
 }
