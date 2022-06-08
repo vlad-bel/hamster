@@ -26,7 +26,7 @@ class MenuDropDown extends StatelessWidget {
     context.read<DashboardCubit>().logout();
     context.read<AppStateCubit>().goToUnauthZone(LoginPage.path);
 
-    unauthNavigatorKey.currentState!.pushNamedAndRemoveUntil(
+    unauthNavigatorKey.currentState?.pushNamedAndRemoveUntil(
       LoginPage.path,
       (predicate) => predicate.isFirst,
     );
