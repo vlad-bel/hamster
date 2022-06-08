@@ -1,4 +1,4 @@
-import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/verify_phone_request.dart';
 import 'package:equatable/equatable.dart';
 
 class CallMethodSelectorPageState extends Equatable {

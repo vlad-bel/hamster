@@ -1,7 +1,7 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
-import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/code_verification_form/code_verification_form.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_was_sent_text_icon.dart';
@@ -123,14 +123,14 @@ class NumberVerificationResult extends StatelessWidget {
     return BlocBuilder<NumberCodeConfirmationCubit,
         NumberCodeConfirmationState>(
       builder: (context, state) {
-        final emailSent = EmailResultInfoTextIcon(
+        final emailSent = OtpResultInfoTextIcon(
           text: textEmailWasSent,
           textColor: emailWasSentColor,
           icon: Icons.send,
           height: 20,
         );
 
-        final wrongOtp = EmailResultInfoTextIcon(
+        final wrongOtp = OtpResultInfoTextIcon(
           text: textWrongOtp,
           textColor: razzmatazz,
           icon: Icons.error_outline_rounded,

@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
-import 'package:business_terminal/domain/request_model/registration/email_verification/email_verification_request.dart';
-import 'package:business_terminal/domain/request_model/registration/email_verification/resend_email_code_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/email_verification/email_verification_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/email_verification/resend_email_code_request.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/use_cases/otp_verification/otp_verification_use_case.dart';
 import 'package:business_terminal/use_cases/registration/email_verification/email_verification.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -11,55 +12,69 @@ import 'package:injectable/injectable.dart';
 part 'email_verification_cubit.freezed.dart';
 
 @injectable
-class EmailVerificationCubit extends Cubit<EmailVerificationState> {
-  EmailVerificationCubit(this._useCase)
-      : super(
-          const EmailVerificationState.initial(),
-        );
+class EmailVerificationCubit extends OtpVerificationCubit {
+  EmailVerificationCubit({required this.useCase}) : super(useCase);
 
-  final EmailVerificationUseCase _useCase;
+  @override
+  final EmailVerificationUseCase useCase;
 
-  Future resendEmailCode(String email) async {
-    emit(const EmailVerificationState.loading());
+  @override
+  Future resendOtpCode(String email) async {
+    emit(const OtpVerificationState.loading());
     final request = ResendEmailCodeRequest(
-      email: email,
+      credential: email,
     );
 
     try {
-      await _useCase.resendCode(request);
-      emit(const EmailVerificationState.mailSent());
+      await useCase.resendCode(request);
+      emit(const OtpVerificationState.mailSent());
     } on ApiFailure catch (e) {
       displayErrorSnackbar(e);
     }
   }
 
-  void wrongOTPCode() {
-    emit(const EmailVerificationState.wrongOTPcode());
-  }
-
-  void errorOccurred(Failure e) {
-    emit(EmailVerificationState.error(e));
-  }
-
-  Future<void> verifyEmailByOTPCode(String email, String otpCode) async {
-    emit(const EmailVerificationState.loading());
+  @override
+  Future<void> verifyByOTPCode(String email, String otpCode) async {
+    emit(const OtpVerificationState.loading());
 
     try {
       final request = EmailVerificationRequest(
-        email: email,
+        credential: email,
         code: otpCode,
       );
-      final response = await _useCase.verifyEmail(request);
+      final response = await useCase.verifyEmail(request);
 
       logger.d('response: $response');
 
       if (response == 'OK') {
-        emit(EmailVerificationState.success('response', email));
+        emit(OtpVerificationState.success('response', email));
       }
     } on ApiFailure catch (e) {
       onErrorVerifyMail(e);
     }
   }
+}
+
+@factoryMethod
+abstract class OtpVerificationCubit extends Cubit<OtpVerificationState> {
+  OtpVerificationCubit(this.useCase)
+      : super(
+          const OtpVerificationState.initial(),
+        );
+
+  final OtpVerificationUseCase useCase;
+
+  Future resendOtpCode(String email);
+
+  void wrongOTPCode() {
+    emit(const OtpVerificationState.wrongOTPCode());
+  }
+
+  void errorOccurred(Failure e) {
+    emit(OtpVerificationState.error(e));
+  }
+
+  Future<void> verifyByOTPCode(String email, String otpCode);
 
   void onErrorVerifyMail(ApiFailure e) {
     if (e.response.statusCode == 400) {
@@ -91,26 +106,25 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
   void displayErrorSnackbar(ApiFailure e) {
     logger.e(e);
     SnackBarManager.showError(e.response.message.toString());
-    emit(const EmailVerificationState.initial());
+    emit(const OtpVerificationState.initial());
   }
 }
 
 @freezed
-class EmailVerificationState with _$EmailVerificationState {
-  const factory EmailVerificationState.initial() = InitialEmailVerification;
+class OtpVerificationState with _$OtpVerificationState {
+  const factory OtpVerificationState.initial() = InitialOtpVerification;
 
-  const factory EmailVerificationState.loading() = LoadingEmailVerification;
+  const factory OtpVerificationState.loading() = LoadingOtpVerification;
 
-  const factory EmailVerificationState.wrongOTPcode() =
-      WrongOTPEmailVerification;
+  const factory OtpVerificationState.wrongOTPCode() = WrongOtpVerification;
 
-  const factory EmailVerificationState.mailSent() = MailSent_EmailVerification;
+  const factory OtpVerificationState.mailSent() = MailSentOtpVerification;
 
-  const factory EmailVerificationState.success(
+  const factory OtpVerificationState.success(
     String response,
     String email,
-  ) = SuccessEmailVerification;
+  ) = SuccessOtpVerification;
 
-  const factory EmailVerificationState.error(Failure failure) =
-      ErrorEmailVerification;
+  const factory OtpVerificationState.error(Failure failure) =
+      ErrorOtpVerification;
 }
