@@ -53,8 +53,6 @@ class _BranchProfileAvatarPictureFormState
         context.read<BranchProfileAvatarPictureCubit>();
 
     final newBranchImages = <AppColoredFile>[];
-    print(
-        'set saveImagesToBranchProfile saveImagesToBranchProfile, saveImagesToBranchProfile');
 
     if (branchProfilePictureCubit.state.selectedImage != null) {
       newBranchImages.add(branchProfilePictureCubit.state.selectedImage!);
@@ -133,7 +131,7 @@ class _BranchProfileAvatarPictureFormState
                     style: inter14.copyWith(color: denim),
                   ),
                 ),
-                SizedBox(width: 25),
+                const SizedBox(width: 25),
                 ActionButtonBlue(
                   onPressed: () {
                     saveImagesToBranchProfile(context);
