@@ -218,5 +218,7 @@
   "shouldNotBeEmpty": "Sollte nicht leer sein",
   "minLength": "Mindestlänge ist {minLength}",
   "maxLength": "Maximale Länge ist {maxLength}",
-  "shouldNotContainSpecialCharacters": "Sollte keine Sonderzeichen enthalten"
+  "shouldNotContainSpecialCharacters": "Sollte keine Sonderzeichen enthalten",
+  "editYourProfilePhoto": "Bearbeiten Sie Ihr Profilfoto.",
+  "selectCorrectAvatarSection": "Wählen Sie den richtigen Bereich Ihres Profilfotos aus."
 }

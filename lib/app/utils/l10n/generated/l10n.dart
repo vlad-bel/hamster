@@ -1939,6 +1939,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Bearbeiten Sie Ihr Profilfoto.`
+  String get editYourProfilePhoto {
+    return Intl.message(
+      'Bearbeiten Sie Ihr Profilfoto.',
+      name: 'editYourProfilePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wählen Sie den richtigen Bereich Ihres Profilfotos aus.`
+  String get selectCorrectAvatarSection {
+    return Intl.message(
+      'Wählen Sie den richtigen Bereich Ihres Profilfotos aus.',
+      name: 'selectCorrectAvatarSection',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

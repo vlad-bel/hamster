@@ -1,6 +1,5 @@
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import 'app_file.dart';
 
 part 'app_image.freezed.dart';
 

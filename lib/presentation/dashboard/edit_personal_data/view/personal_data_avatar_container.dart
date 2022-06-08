@@ -1,18 +1,21 @@
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/domain/model/file/app_image.dart';
+import 'package:business_terminal/generated/assets.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_header.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class PersonalDataAvatarContainer extends StatelessWidget {
   static const _kAvatarRadius = 50.0;
 
   final Widget child;
-  final String imageUrl;
+  final AppImage? image;
   final VoidCallback onAvatarClicked;
 
   const PersonalDataAvatarContainer(
       {Key? key,
       required this.child,
-      required this.imageUrl,
+      required this.image,
       required this.onAvatarClicked})
       : super(key: key);
 
@@ -40,7 +43,7 @@ class PersonalDataAvatarContainer extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: _AvatarView(
               radius: _kAvatarRadius,
-              imageUrl: imageUrl,
+              image: image,
               onClicked: onAvatarClicked,
             ),
           ),
@@ -52,13 +55,13 @@ class PersonalDataAvatarContainer extends StatelessWidget {
 
 class _AvatarView extends StatelessWidget {
   final double radius;
-  final String imageUrl;
+  final AppImage? image;
   final VoidCallback onClicked;
 
   const _AvatarView({
     Key? key,
     required this.radius,
-    required this.imageUrl,
+    required this.image,
     required this.onClicked,
   }) : super(key: key);
 
@@ -66,16 +69,20 @@ class _AvatarView extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = radius * 2;
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: onClicked,
       child: SizedBox(
         width: size,
         height: size,
         child: Stack(
           children: [
-            Avatar(
-              width: size,
-              height: size,
-              image: imageUrl,
+            CircleAvatar(
+              radius: radius,
+              foregroundImage: image?.when(
+                    network: CachedNetworkImageProvider.new,
+                    file: (appFile) => MemoryImage(appFile.bytes!),
+                  ) ??
+                  const AssetImage(Assets.imagesProfileIconGrey),
             ),
             Align(
               alignment: Alignment.bottomRight,

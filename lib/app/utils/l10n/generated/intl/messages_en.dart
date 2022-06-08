@@ -135,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
         "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
             "Do you intend to change E-Mail?"),
+        "editYourProfilePhoto": MessageLookupByLibrary.simpleMessage(
+            "Bearbeiten Sie Ihr Profilfoto."),
         "edit_company_logo":
             MessageLookupByLibrary.simpleMessage("Edit your company logo."),
         "edit_photo":
@@ -270,6 +272,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "selectCorrectAvatarSection": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie den richtigen Bereich Ihres Profilfotos aus."),
         "select_all": MessageLookupByLibrary.simpleMessage("Select all"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Select country code"),

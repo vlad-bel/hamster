@@ -3,13 +3,13 @@ import 'package:business_terminal/presentation/common/widgets/add_logo/add_logo_
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
+import 'package:business_terminal/presentation/dashboard/edit_personal_data/cubit/edit_personal_data_cubit.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddPersonalAvatarPage extends StatelessWidget {
-  static const path = 'add_personal_avatar';
-
   const AddPersonalAvatarPage({Key? key}) : super(key: key);
 
   @override
@@ -27,7 +27,9 @@ class AddPersonalAvatarPage extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 24),
-              AppAddLogoWidget(onPressed: () {}),
+              AppAddLogoWidget(onPressed: () {
+                context.read<EditPersonalDataCubit>().pickNewAvatar();
+              }),
               const SizedBox(height: 24),
               Row(
                 children: [

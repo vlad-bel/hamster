@@ -17,13 +17,27 @@ class EditPersonalDataState with _$EditPersonalDataState {
     required Country? residency,
   }) = _EditPersonalDataState;
 
-  factory EditPersonalDataState.initial() => const EditPersonalDataState(
-      firstName: '',
-      lastName: '',
-      avatar: null,
-      loading: true,
-      email: '',
-      phoneCountry: null,
-      phoneNumber: '',
-      residency: null);
+  factory EditPersonalDataState.initial() =>
+      const EditPersonalDataState(
+        firstName: '',
+        lastName: '',
+        avatar: null,
+        loading: true,
+        email: '',
+        phoneCountry: null,
+        phoneNumber: '',
+        residency: null,
+      );
+
+  factory EditPersonalDataState.mock() =>
+      const EditPersonalDataState(
+        firstName: 'John',
+        lastName: 'Dow',
+        avatar: null,
+        loading: false,
+        email: 'user10@mail.com',
+        phoneCountry: null,
+        phoneNumber: '',
+        residency: null,
+      );
 }
