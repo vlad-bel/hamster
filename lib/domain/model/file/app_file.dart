@@ -14,7 +14,7 @@ class AppFile {
   });
 
   final Uint8List? bytes;
-  final String? extension;
+  final String extension;
   final String? name;
   final int? size;
 
@@ -24,7 +24,7 @@ class AppFile {
 
   factory AppFile.fromFilePickerResult(FilePickerResult result) => AppFile(
         size: result.files.first.size,
-        extension: result.files.first.extension,
+        extension: result.files.first.extension!,
         name: result.files.first.name,
         bytes: result.files.first.bytes,
       );

@@ -38,7 +38,7 @@ class EditPersonalDataCubit extends Cubit<EditPersonalDataState> {
         avatar: AppImage.file(
           AppFile(
             size: bytes.length,
-            extension: null,
+            extension: '',
             name: null,
             bytes: bytes,
           ),
