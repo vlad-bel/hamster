@@ -3,6 +3,7 @@ import 'package:business_terminal/presentation/branch_profile_picture/cubit/bran
 import 'package:business_terminal/presentation/branch_profile_picture/widget/branch_profile_picture_add_cell.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/widget/branch_profile_picture_cell.dart';
 import 'package:business_terminal/presentation/branch_profile_picture/widget/branch_profile_selected_picture.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/dashed_button/rect_dashed_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +16,7 @@ class BranchProfilePictureSelector extends StatelessWidget {
     return BlocBuilder<BranchProfilePictureCubit, BranchProfilePictureState>(
       builder: (context, state) {
         final loader = state.when(
-          loading: (_, __) => SizedBox(
+          loading: (_, __) => const SizedBox(
             height: 150,
             child: Center(
               child: CircularProgressIndicator(),
@@ -30,7 +31,7 @@ class BranchProfilePictureSelector extends StatelessWidget {
               Stack(
                 children: [
                   SelectedPicture(
-                    image: state.selectedImage,
+                    image: state.selectedImage!,
                   ),
                   loader,
                 ],
@@ -64,15 +65,19 @@ class BranchProfilePictureSelector extends StatelessWidget {
   }
 
   List<Widget> _generatePhotoCells(
-    List<dynamic> imagePaths,
+    List<AppColoredFile> imagePaths,
     dynamic selectedImage,
   ) {
-    final cells = <Widget>[
-      Padding(
-        padding: const EdgeInsets.only(right: 3.0),
-        child: BranchProfileAddCell(),
-      )
-    ];
+    final cells = <Widget>[];
+
+    if (imagePaths.length < 3) {
+      cells.add(
+        const Padding(
+          padding: EdgeInsets.only(right: 3),
+          child: BranchProfileAddCell(),
+        ),
+      );
+    }
 
     for (final imagePath in imagePaths) {
       cells.add(

@@ -47,17 +47,17 @@ class SelectSubCategoriesForm extends StatelessWidget {
                               height: 246,
                               child: BorderedContainer(
                                 title: AppLocale.of(context).subcategory,
-                                child: SelectedSubcategoryList(),
+                                child: const SelectedSubcategoryList(),
                               ),
                             ),
                           );
                         }
 
-                        return SizedBox();
+                        return const SizedBox();
                       },
                     ) ??
                     const SizedBox(),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 DashedButton(
                   onTap: () {
                     Navigator.of(context).pushNamed(
@@ -66,7 +66,7 @@ class SelectSubCategoriesForm extends StatelessWidget {
                   },
                   label: AppLocale.of(context).add_subcategory,
                 ),
-                SizedBox(height: 36),
+                const SizedBox(height: 36),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -82,14 +82,10 @@ class SelectSubCategoriesForm extends StatelessWidget {
                         Navigator.pop(context);
                       },
                     ),
-                    SizedBox(width: 25),
+                    const SizedBox(width: 25),
                     ActionButtonBlue(
                       width: 162,
-                      isEnabled: state.whenOrNull(
-                            init: (_, __, selectedCategories) =>
-                                selectedCategories.isNotEmpty,
-                          ) ??
-                          false,
+                      isEnabled: true,
                       child: Text(
                         AppLocale.of(context).continue_button,
                         style: inter14.copyWith(

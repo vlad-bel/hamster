@@ -153,6 +153,7 @@ class _FormTextFieldState extends State<FormTextField>
       focusColor: widget.focusColor,
       fillColor: widget.fillColor,
       labelText: widget.label,
+      prefixStyle: inter14,
       floatingLabelAlignment: FloatingLabelAlignment.start,
       floatingLabelStyle: inter12,
       labelStyle: inter14.copyWith(color: lynch.withOpacity(0.3)),

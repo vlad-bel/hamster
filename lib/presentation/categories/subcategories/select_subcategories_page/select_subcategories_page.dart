@@ -9,6 +9,6 @@ class SelectSubCategoriesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SelectSubCategoriesForm();
+    return const SelectSubCategoriesForm();
   }
 }

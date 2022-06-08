@@ -1,4 +1,5 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
@@ -32,11 +33,11 @@ class BranchDataForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ReactiveFormBuilder(
           form: () => formGroup,
           builder: (context, form, child) {
-            fillUpPredefinedData(form);
+            fillUpPredefinedData(form, context);
 
             return Column(
               children: [
@@ -64,17 +65,17 @@ class BranchDataForm extends StatelessWidget {
                 CountrySelector(cubit: context.read<CountrySelectorCubit>()),
                 paddingBetweenTextInputs,
                 FormTextField(
-                  name: formSettings.kFieldWebsite,
+                  name: BranchProfileFormValidation.kFieldWebsite,
                   label: AppLocale.of(context).website_if_available,
                   validationMessages: (control) =>
                       formSettings.validationMessagesGeneric,
                 ),
                 paddingBetweenTextInputs,
                 FormTextField(
-                  name: formSettings.kFieldPhone,
+                  name: BranchProfileFormValidation.kFieldPhone,
                   label: AppLocale.of(context).telephone_number_if_available,
                   validationMessages: (control) =>
-                      formSettings.validationMessagesGeneric,
+                      formSettings.phoneNumValidationMessage,
                 ),
                 paddingBetweenTextInputs,
                 DropDown(
@@ -89,7 +90,7 @@ class BranchDataForm extends StatelessWidget {
     );
   }
 
-  void fillUpPredefinedData(FormGroup form) {
+  void fillUpPredefinedData(FormGroup form, BuildContext context) {
     // Company Name
     final companyNameSelected = branchSelectedFieldsMap[
             CompanyDataCommonFieldsWithBranchData.companyName] ??
@@ -121,6 +122,21 @@ class BranchDataForm extends StatelessWidget {
       final value = company.company?.city;
 
       form.control(formSettings.kFieldCity).value = value;
+    }
+
+    // Country
+    final countrySelected = branchSelectedFieldsMap[
+            CompanyDataCommonFieldsWithBranchData.country] ??
+        false;
+
+    if (countrySelected) {
+      final value = company.company?.country ?? '';
+
+      logger.d('\n\n\n\nCountry = $value');
+
+      context
+          .read<CountrySelectorCubit>()
+          .selectInitialCountry(countryName: value);
     }
   }
 }

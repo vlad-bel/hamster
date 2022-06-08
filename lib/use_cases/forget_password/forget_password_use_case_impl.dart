@@ -62,7 +62,11 @@ class ForgetPasswordUseCaseImpl extends ForgetPasswordUseCase {
     ForgetPasswordResendCodeRequest resendCodeRequest,
   ) async {
     try {
-      return await _restClient.resendSMSCode(resendCodeRequest.toJson());
+      if (resendCodeRequest.method == ForgetPasswordVerificationMethod.email) {
+        return await _restClient.resendEmailCode(resendCodeRequest.toJson());
+      } else {
+        return await _restClient.resendSMSCode(resendCodeRequest.toJson());
+      }
     } on DioError catch (e) {
       throw ApiFailure(
         ApiFailureResponse.fromJson(e),

@@ -49,7 +49,7 @@ class SubcategoriesForm extends StatelessWidget {
                       },
                     ) ??
                     const SizedBox(),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 WhiteButton(
                   width: 500,
                   child: Text(

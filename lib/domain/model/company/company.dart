@@ -1,3 +1,4 @@
+import 'package:business_terminal/domain/model/company/logo.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'company.g.dart';
@@ -25,51 +26,74 @@ class Company {
     this.updatedAt,
     this.vatId,
     this.commercialRegisterNumber,
+    this.logos,
   });
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'companyName')
-  final String? companyName;
-  @JsonKey(name: 'companyLogo')
-  final String? companyLogo;
-  @JsonKey(name: 'city')
-  final String? city;
-  @JsonKey(name: 'streetName')
-  final String? streetName;
-  @JsonKey(name: 'streetNumber')
-  final String? streetNumber;
-  @JsonKey(name: 'postalCode')
-  final String? postalCode;
-  @JsonKey(name: 'country')
-  final String? country;
-  @JsonKey(name: 'companyNumber')
-  final String? companyNumber;
-  @JsonKey(name: 'branchNumber')
-  final String? branchNumber;
-  @JsonKey(name: 'user')
-  final dynamic user;
-  @JsonKey(name: 'connectionsStatistics')
-  final dynamic connectionsStatistics;
-  @JsonKey(name: 'fillingProgress')
-  final int? fillingProgress;
-  @JsonKey(name: 'taxNumber')
-  final dynamic taxNumber;
-  @JsonKey(name: 'accountOwner')
-  final dynamic accountOwner;
-  @JsonKey(name: 'IBAN')
-  final String? iban;
-  @JsonKey(name: 'vatId')
-  final String? vatId;
-  @JsonKey(name: 'commercialRegisterNumber')
-  final String? commercialRegisterNumber;
-  @JsonKey(name: 'createdAt')
-  final DateTime? createdAt;
-  @JsonKey(name: 'updatedAt')
-  final DateTime? updatedAt;
 
   factory Company.fromJson(Map<String, dynamic> json) =>
       _$CompanyFromJson(json);
+
+  @JsonKey(name: 'accountOwner')
+  final dynamic accountOwner;
+
+  @JsonKey(name: 'branchNumber')
+  final String? branchNumber;
+
+  @JsonKey(name: 'city')
+  final String? city;
+
+  @JsonKey(name: 'commercialRegisterNumber')
+  final String? commercialRegisterNumber;
+
+  @JsonKey(name: 'companyLogo')
+  final String? companyLogo;
+
+  @JsonKey(name: 'companyName')
+  final String? companyName;
+
+  @JsonKey(name: 'companyNumber')
+  final String? companyNumber;
+
+  @JsonKey(name: 'connectionsStatistics')
+  final dynamic connectionsStatistics;
+
+  @JsonKey(name: 'country')
+  final String? country;
+
+  @JsonKey(name: 'createdAt')
+  final DateTime? createdAt;
+
+  @JsonKey(name: 'fillingProgress')
+  final dynamic fillingProgress;
+
+  @JsonKey(name: 'IBAN')
+  final String? iban;
+
+  @JsonKey(name: 'id')
+  final String? id;
+
+  @JsonKey(name: 'logos')
+  final List<CompanyLogo>? logos;
+
+  @JsonKey(name: 'postalCode')
+  final String? postalCode;
+
+  @JsonKey(name: 'streetName')
+  final String? streetName;
+
+  @JsonKey(name: 'streetNumber')
+  final String? streetNumber;
+
+  @JsonKey(name: 'taxNumber')
+  final dynamic taxNumber;
+
+  @JsonKey(name: 'updatedAt')
+  final DateTime? updatedAt;
+
+  @JsonKey(name: 'user')
+  final dynamic user;
+
+  @JsonKey(name: 'vatId')
+  final String? vatId;
 
   Map<String, dynamic> toJson() => _$CompanyToJson(this);
 
@@ -79,5 +103,10 @@ class Company {
         ','
         ' ${postalCode ?? ""} '
         '${country ?? ""}';
+  }
+
+  @override
+  String toString() {
+    return 'Company{branchNumber: $branchNumber, city: $city, companyName: $companyName, companyNumber: $companyNumber, country: $country, postalCode: $postalCode, streetName: $streetName, streetNumber: $streetNumber}';
   }
 }

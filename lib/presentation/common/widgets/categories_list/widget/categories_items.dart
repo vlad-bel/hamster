@@ -19,7 +19,7 @@ class CategoriesItems extends StatelessWidget {
       height: 260,
       decoration: BoxDecoration(
         border: Border.all(color: lynch.withOpacity(.3)),
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(4),
           bottomRight: Radius.circular(4),
         ),
@@ -35,7 +35,7 @@ class CategoriesItems extends StatelessWidget {
                   children: [
                     ListTile(
                       minVerticalPadding: 0,
-                      contentPadding: EdgeInsets.only(
+                      contentPadding: const EdgeInsets.only(
                         left: 16,
                       ),
                       onTap: () {

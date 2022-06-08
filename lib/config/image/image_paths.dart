@@ -19,6 +19,11 @@ class ImagePaths {
 
   static String svg(String name) => _assetPath(name);
 
+  static String svgLogo(String name) => _assetPath(
+        name,
+        path: _logosPath,
+      );
+
   static String logo(String name) => _assetPath(
         name,
         path: _logosPath,

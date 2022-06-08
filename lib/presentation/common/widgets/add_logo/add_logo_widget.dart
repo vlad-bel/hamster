@@ -10,6 +10,7 @@ import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/a
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/dash_bordered_container/dash_bordered_container_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/dashed_button/circle_dashed_button.dart';
+import 'package:business_terminal/presentation/common/widgets/logo_viewer/logo_viewer.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,10 @@ class AvatarPictureSelector extends StatelessWidget {
     Key? key,
     required this.showAddButton,
     required this.showEditButton,
+    required this.files,
   }) : super(key: key);
 
+  final List<AppColoredFile> files;
   final bool showAddButton;
   final bool showEditButton;
 
@@ -30,21 +33,21 @@ class AvatarPictureSelector extends StatelessWidget {
     final image = await cubit.pickImage(context);
     if (image != null) {
       cubit.loading();
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
 
-      final croppedImage = await Navigator.pushNamed<AddedProfileLogoModel>(
+      final croppedImage = await Navigator.pushNamed<AppColoredFile>(
         context,
         AddLogoCropperPage.path,
-        arguments: {
-          AddLogoCropperPage.pHeader: AppLocale.of(context).edit_company_logo,
-          AddLogoCropperPage.pSubheader: '',
-          AddLogoCropperPage.pImageForCrop: image,
-          AddLogoCropperPage.pCircleCrop: true,
-        },
+        arguments: AddLogoCropperArguments(
+          header: AppLocale.of(context).edit_company_logo,
+          subheader: '',
+          imageForCrop: image,
+          circleCrop: true,
+        ),
       );
 
       if (croppedImage != null) {
-        return cubit.setImage(imageBytes: croppedImage);
+        return cubit.setImage(image: croppedImage);
       }
     }
 
@@ -53,8 +56,8 @@ class AvatarPictureSelector extends StatelessWidget {
 
   List<Widget> _generatePhotoCells(
     BuildContext context,
-    List<AddedProfileLogoModel>? imagePaths,
-    AddedProfileLogoModel? selectedImage,
+    List<AppColoredFile>? images,
+    AppColoredFile? selectedImage,
   ) {
     final cells = <Widget>[
       if (showAddButton)
@@ -68,13 +71,13 @@ class AvatarPictureSelector extends StatelessWidget {
         )
     ];
 
-    for (final imagePath in imagePaths ?? <AddedProfileLogoModel>[]) {
+    for (final image in images ?? <AppColoredFile>[]) {
       cells.add(
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 3),
           child: AddLogoRoundImageCell(
-            isSelected: imagePath == selectedImage,
-            imagePath: imagePath,
+            isSelected: image == selectedImage,
+            file: image,
           ),
         ),
       );
@@ -90,7 +93,7 @@ class AvatarPictureSelector extends StatelessWidget {
       child: BlocBuilder<AddLogoCubit, AddLogoState>(
         builder: (context, state) {
           final loader = state.when(
-            loading: (_, __) => SizedBox(
+            loading: (_, __) => const SizedBox(
               height: 220,
               width: 220,
               child: Center(
@@ -99,6 +102,7 @@ class AvatarPictureSelector extends StatelessWidget {
             ),
             init: (_, __) => const SizedBox(),
           );
+
           if (state.images != null && state.selectedImage != null) {
             return Column(
               children: [
@@ -106,7 +110,12 @@ class AvatarPictureSelector extends StatelessWidget {
                   alignment: Alignment.center,
                   children: [
                     AddLogoSelectedWidget(
-                      path: state.selectedImage?.imageBytes,
+                      file: AppColoredFile(
+                        name: state.selectedImage?.name,
+                        bytes: state.selectedImage?.bytes,
+                        color: state.selectedImage?.color,
+                        extension: state.selectedImage!.getExtension!,
+                      ),
                       showEditButton: showEditButton,
                       onPressed: () {},
                     ),
@@ -114,10 +123,13 @@ class AvatarPictureSelector extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                Row(
+                Wrap(
                   children: _generatePhotoCells(
                     context,
-                    state.images,
+                    [
+                      ...files,
+                      ...state.images ?? [],
+                    ],
                     state.selectedImage,
                   ),
                 ),
@@ -148,16 +160,39 @@ class AvatarPictureSelector extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  SizedBox(
-                    width: 220,
-                    height: 220,
-                    child: CircleDashedButton(
-                      label: AppLocale.of(context).add_logo,
-                      onTap: () {
-                        pickAndCropImage(context);
-                      },
+                  if (files.isNotEmpty)
+                    Column(
+                      children: [
+                        AppLogoViewer(
+                          images: files,
+                          onPressed: () async {
+                            pickAndCropImage(context);
+                          },
+                        ),
+                        const SizedBox(height: 12),
+                        Wrap(
+                          children: _generatePhotoCells(
+                            context,
+                            [
+                              ...files,
+                              ...state.images ?? [],
+                            ],
+                            state.selectedImage,
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    SizedBox(
+                      width: 220,
+                      height: 220,
+                      child: CircleDashedButton(
+                        label: AppLocale.of(context).add_logo,
+                        onTap: () {
+                          pickAndCropImage(context);
+                        },
+                      ),
                     ),
-                  ),
                   loader,
                 ],
               ),
@@ -170,7 +205,7 @@ class AvatarPictureSelector extends StatelessWidget {
                       Navigator.pop(context);
                     },
                   ),
-                  ActionButtonBlue(
+                  const ActionButtonBlue(
                     onPressed: null,
                   ),
                 ],

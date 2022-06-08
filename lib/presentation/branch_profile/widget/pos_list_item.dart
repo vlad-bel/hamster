@@ -3,9 +3,16 @@ import 'package:business_terminal/presentation/common/widgets/form_text_field/fo
 import 'package:flutter/widgets.dart';
 
 class PosListItem extends StatelessWidget {
-  const PosListItem({Key? key, required this.index}) : super(key: key);
+  const PosListItem({
+    Key? key,
+    required this.manufacturer,
+    required this.model,
+    required this.tillCount,
+  }) : super(key: key);
 
-  final int index;
+  final String manufacturer;
+  final String model;
+  final int tillCount;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +25,7 @@ class PosListItem extends StatelessWidget {
             child: FormTextField(
               hint: AppLocale.of(context).cash_register_manufacturer,
               label: AppLocale.of(context).cash_register_manufacturer,
-              // TODO(dvakhnin): integrate with BE
-              initialText: 'Manufacturer',
+              initialText: manufacturer,
               readOnly: true,
               reactive: false,
             ),
@@ -30,8 +36,7 @@ class PosListItem extends StatelessWidget {
             child: FormTextField(
               hint: AppLocale.of(context).model_if_known,
               label: AppLocale.of(context).model_if_known,
-              // TODO(dvakhnin): integrate with BE
-              initialText: 'Model',
+              initialText: model,
               readOnly: true,
               reactive: false,
             ),
@@ -42,8 +47,7 @@ class PosListItem extends StatelessWidget {
             child: FormTextField(
               hint: AppLocale.of(context).number_of_registers,
               label: AppLocale.of(context).number_of_registers,
-              // TODO(dvakhnin): integrate with BE
-              initialText: 'Kassa $index',
+              initialText: AppLocale.current.tills_count(tillCount),
               readOnly: true,
               reactive: false,
             ),

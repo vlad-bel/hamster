@@ -1,17 +1,18 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
+import 'package:business_terminal/domain/model/company/logo.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/request_model/profile/profile_edit/profile_edit_request.dart';
+import 'package:business_terminal/presentation/add_payment/form_validation/add_payment_form_validation.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/form_validation/profile_edit_form_validation.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
 import 'package:business_terminal/use_cases/profile/profile_edit/profile_edit_use_case.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:injectable/injectable.dart';
 
 part 'profile_edit_cubit.freezed.dart';
@@ -21,16 +22,22 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
   ProfileEditCubit({
     required this.profileEditFormSettings,
     required this.profileEditUsecase,
+    required this.addPaymentFormSettings,
   }) : super(
           const ProfileEditState.loading(),
         );
 
+  final AddPaymentFormSettings addPaymentFormSettings;
   final CompanyUsecase companyUsecase = getIt.get<CompanyUsecase>();
-  final List<AddedProfileLogoModel> files = [];
+  final List<AppColoredFile> files = [];
+  final List<AppColoredFile> filesToUpload = [];
   final ProfileEditFormSettings profileEditFormSettings;
   final ProfileEditUsecase profileEditUsecase;
 
-  Future<void> addImages(List<AddedProfileLogoModel> images) async {
+  Future<void> addImages(
+    List<AppColoredFile> images, {
+    bool withUpload = false,
+  }) async {
     emit(
       const ProfileEditState.loading(),
     );
@@ -39,19 +46,23 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
     final company = await companyUsecase.getCompany(
       companyId: '$companyId',
     );
+    if (withUpload) {
+      filesToUpload.addAll(images);
+    }
     files.addAll(images);
+
     emit(
       ProfileEditState.imagesAdded(
         company: company,
         profileEditFormSettings: profileEditFormSettings,
-        image: images,
+        image: files,
       ),
     );
   }
 
   Future<void> updatePaymentData(Map<String, String> values) async {
     emit(
-      ProfileEditState.loading(),
+      const ProfileEditState.loading(),
     );
     _setControlValue(
       ProfileEditFormSettings.kAccountOwner,
@@ -62,16 +73,10 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
       values[ProfileEditFormSettings.kIban],
     );
 
-    final companyId = (await companyUsecase.getRepCompany()).company?.id;
-
-    final company = await companyUsecase.getCompany(
-      companyId: '$companyId',
-    );
-
     emit(
-      ProfileEditState.initial(
-        company: company,
-        profileEditFormSettings: profileEditFormSettings,
+      ProfileEditState.paymentInfoAdded(
+        accountOwner: values[ProfileEditFormSettings.kAccountOwner]!,
+        iban: values[ProfileEditFormSettings.kIban]!,
       ),
     );
     return;
@@ -85,7 +90,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
       );
 
       emit(
-        ProfileEditState.loading(),
+        const ProfileEditState.loading(),
       );
       _setControlValue(
         ProfileEditFormSettings.kStreetField,
@@ -139,6 +144,28 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
         ProfileEditFormSettings.kIban,
         '${company.iban}',
       );
+      final addedImages = <AppColoredFile>[];
+      for (final logo in company.logos ?? <CompanyLogo>[]) {
+        if (logo.fileName != null) {
+          try {
+            addedImages.add(
+              AppColoredFile(
+                bytes: null,
+                color: logo.backgroundColor,
+                name: logo.fileName,
+                extension: 'png',
+              ),
+            );
+          } catch (e, s) {
+            log('Error is $e, StackTrace is $s');
+          }
+        }
+      }
+      if (addedImages.isNotEmpty) {
+        addImages(
+          addedImages,
+        );
+      }
 
       emit(
         ProfileEditState.initial(
@@ -146,6 +173,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
           profileEditFormSettings: profileEditFormSettings,
         ),
       );
+
       return;
     } on ApiFailure catch (e) {
       logger.e(e.response.message);
@@ -197,43 +225,30 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
           ProfileEditFormSettings.kIban,
         )}',
         backgrounds: [
-          for (final file in files)
-            if (file.backgroundColorModel?.colorTitle != null) ...[
-              file.backgroundColorModel!.colorTitle,
-            ],
+          for (final file in filesToUpload) file.color,
         ],
       );
-      final uploadedFiles = <MultipartFile>[];
-      for (final file in files) {
-        uploadedFiles.add(
-          MultipartFile.fromBytes(
-            file.imageBytes,
-            filename: '${DateTime.now()}.png',
-            contentType: MediaType(
-              'image',
-              'png',
-            ),
-          ),
-        );
-      }
 
       await profileEditUsecase.editProfile(
         companyId,
         profileEditRequest,
-        uploadedFiles,
+        filesToUpload,
+      );
+
+      emit(
+        const ProfileEditState.success(),
+      );
+      final company = await companyUsecase.getCompany(
+        companyId: companyId,
+      );
+      emit(
+        ProfileEditState.initial(
+          company: company,
+          profileEditFormSettings: profileEditFormSettings,
+        ),
       );
       state.whenOrNull(
-        initial: (company, profileEditFormSettings) {
-          emit(
-            ProfileEditState.success(),
-          );
-          emit(
-            ProfileEditState.initial(
-              company: company,
-              profileEditFormSettings: profileEditFormSettings,
-            ),
-          );
-        },
+        initial: (company, profileEditFormSettings) {},
       );
     } on ApiFailure catch (e) {
       logger.e(e.response.message);
@@ -243,6 +258,12 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
         ),
       );
     }
+  }
+
+  String? getAddPaymentControlValue(
+    String key,
+  ) {
+    return addPaymentFormSettings.controls[key]?.value.toString();
   }
 
   String? getControlValue(
@@ -262,20 +283,25 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
 class ProfileEditState with _$ProfileEditState {
   const factory ProfileEditState.error({
     required ApiFailure error,
-  }) = ErrorProfileEditState;
+  }) = _$ErrorProfileEditState;
 
   const factory ProfileEditState.imagesAdded({
     required Company company,
     required ProfileEditFormSettings profileEditFormSettings,
-    required List<AddedProfileLogoModel> image,
-  }) = ImagesAddedProfileEditState;
+    required List<AppColoredFile> image,
+  }) = _$ImagesAddedProfileEditState;
 
   const factory ProfileEditState.initial({
     required Company company,
     required ProfileEditFormSettings profileEditFormSettings,
-  }) = InitialProfileEditState;
+  }) = _$InitialProfileEditState;
 
-  const factory ProfileEditState.loading() = LoadingProfileEditState;
+  const factory ProfileEditState.loading() = _$LoadingProfileEditState;
 
-  const factory ProfileEditState.success() = SuccessProfileEditState;
+  const factory ProfileEditState.paymentInfoAdded({
+    required String accountOwner,
+    required String iban,
+  }) = _$PaymentInfoAddedProfileEditState;
+
+  const factory ProfileEditState.success() = _$SuccessProfileEditState;
 }

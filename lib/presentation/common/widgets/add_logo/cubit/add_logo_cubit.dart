@@ -1,10 +1,9 @@
-import 'dart:typed_data';
-
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 part 'add_logo_cubit.freezed.dart';
@@ -13,41 +12,62 @@ part 'add_logo_cubit.freezed.dart';
 class AddLogoCubit extends Cubit<AddLogoState> {
   AddLogoCubit() : super(const AddLogoState.init());
 
-  void selectImage(AddedProfileLogoModel? imagePath) {
+  void selectImage(AppColoredFile? image) {
     emit(
       AddLogoState.init(
-        selectedImage: imagePath,
+        selectedImage: image,
         images: state.images,
       ),
     );
   }
 
-  Future<Uint8List?> pickImage(BuildContext context) async {
-    final result = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
+  Future<AppFile?> pickImage(BuildContext context) async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: [
+        'png',
+        'jpeg',
+      ],
+      withData: true,
     );
 
     if (result != null) {
-      final imageBytes = await result.readAsBytes();
-
-      return imageBytes;
+      final file = result.files.first;
+      return AppFile(
+        bytes: file.bytes,
+        size: file.size,
+        name: file.name,
+        extension: 'png',
+      );
     }
 
     return null;
   }
 
   void setImage({
-    required AddedProfileLogoModel imageBytes,
+    required AppColoredFile image,
   }) {
-    final images = List.of(state.images ?? <AddedProfileLogoModel>[])
-      ..insert(0, imageBytes);
+    if (state.images?.isNotEmpty == true) {
+      state.images?.add(image);
 
-    return emit(
-      AddLogoState.init(
-        selectedImage: imageBytes,
-        images: images,
-      ),
-    );
+      return emit(
+        AddLogoState.init(
+          selectedImage: image,
+          images: state.images,
+        ),
+      );
+    } else {
+      final images = <AppColoredFile>[]..insert(
+          0,
+          image,
+        );
+      return emit(
+        AddLogoState.init(
+          selectedImage: image,
+          images: images,
+        ),
+      );
+    }
   }
 
   void loading() {
@@ -72,12 +92,12 @@ class AddLogoCubit extends Cubit<AddLogoState> {
 @freezed
 class AddLogoState with _$AddLogoState {
   const factory AddLogoState.init({
-    AddedProfileLogoModel? selectedImage,
-    List<AddedProfileLogoModel>? images,
+    AppColoredFile? selectedImage,
+    List<AppColoredFile>? images,
   }) = _$InitAddLogoState;
 
   const factory AddLogoState.loading({
-    AddedProfileLogoModel? selectedImage,
-    List<AddedProfileLogoModel>? images,
+    AppColoredFile? selectedImage,
+    List<AppColoredFile>? images,
   }) = _$LoadingAddLogoState;
 }

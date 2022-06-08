@@ -1,18 +1,19 @@
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
+import 'package:business_terminal/presentation/common/widgets/app_image/app_image_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/bordered_container/bordered_edit_container.dart';
-import 'package:business_terminal/presentation/common/widgets/dynamic_image.dart';
 import 'package:flutter/material.dart';
 
 class AddLogoSelectedWidget extends StatelessWidget {
   const AddLogoSelectedWidget({
     Key? key,
-    required this.path,
+    required this.file,
     required this.showEditButton,
     required this.onPressed,
   }) : super(key: key);
 
-  final dynamic path;
-  final bool showEditButton;
+  final AppColoredFile file;
   final VoidCallback onPressed;
+  final bool showEditButton;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +23,16 @@ class AddLogoSelectedWidget extends StatelessWidget {
           width: 200,
           height: 200,
           child: ClipOval(
-            child: DynamicImage(
-              path: path,
-              fit: BoxFit.cover,
+            child: Container(
+              color: file.color != null && file.color?.length == 6
+                  ? Color(
+                      int.parse('0xFF${file.color!}'),
+                    )
+                  : Colors.transparent,
+              child: AppImageWidget(
+                appFile: file,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

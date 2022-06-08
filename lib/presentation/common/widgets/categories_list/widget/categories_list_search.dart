@@ -43,7 +43,7 @@ class _CategoriesListSearchState extends State<CategoriesListSearch> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(4),
           topRight: Radius.circular(4),
         ),
@@ -65,13 +65,13 @@ class _CategoriesListSearchState extends State<CategoriesListSearch> {
         ),
         suffix: focusNode.hasFocus
             ? Transform.translate(
-                offset: Offset(0, 4),
+                offset: const Offset(0, 4),
                 child: MaterialButton(
                   onPressed: _clearFilter,
                   padding: EdgeInsets.zero,
                   minWidth: 32,
                   height: 16,
-                  child: Icon(
+                  child: const Icon(
                     Icons.close_rounded,
                     color: lynch,
                     size: 16,
@@ -83,7 +83,7 @@ class _CategoriesListSearchState extends State<CategoriesListSearch> {
           borderSide: BorderSide(
             color: lynch.withOpacity(0.3),
           ),
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(4),
             topRight: Radius.circular(4),
           ),

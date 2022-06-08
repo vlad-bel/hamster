@@ -9,6 +9,6 @@ class SubcategoriesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SubcategoriesForm();
+    return const SubcategoriesForm();
   }
 }

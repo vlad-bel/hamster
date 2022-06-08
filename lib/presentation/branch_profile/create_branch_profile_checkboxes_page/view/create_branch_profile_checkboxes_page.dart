@@ -3,6 +3,7 @@ import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/widget/list.dart';
+import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/view/branch_profile_page.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
@@ -53,14 +54,14 @@ class CreateBranchProfileCheckboxesView extends StatelessWidget {
                   initial: (data) {
                     return Column(
                       children: [
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
 
                         // Listview with checkboxes:
                         BranchProfileDataCheckBoxesList(
                           data,
                           company: company,
                         ),
-                        SizedBox(height: 25),
+                        const SizedBox(height: 25),
 
                         // Bottom action buttons:
                         Row(
@@ -68,7 +69,7 @@ class CreateBranchProfileCheckboxesView extends StatelessWidget {
                             WhiteButton(
                               onPressed: () => onPressGoBack(context),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             ActionButtonBlue(
                               isEnabled: true,
                               onPressed: () {
@@ -81,7 +82,7 @@ class CreateBranchProfileCheckboxesView extends StatelessWidget {
                     );
                   },
                 ) ??
-                CircularProgressIndicator();
+                const CircularProgressIndicator();
           },
         ),
       ),
@@ -93,6 +94,7 @@ class CreateBranchProfileCheckboxesView extends StatelessWidget {
     RepCompany company,
     CreateBranchProfileCheckboxesData data,
   ) {
+    context.read<BranchProfileCubit>().clearData();
     Navigator.of(context).pushNamed(
       BranchProfilePage.path,
       arguments: {
