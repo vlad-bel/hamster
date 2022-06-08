@@ -60,8 +60,6 @@ class BranchProfileFormValidation {
         validators: [
           websiteValidator,
           Validators.maxLength(256),
-
-          // TODO: add website validation after demo
         ],
       ),
       kFieldPhone: FormControl<String>(

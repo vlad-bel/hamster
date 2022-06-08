@@ -1,5 +1,6 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/widget/list_item.dart';
@@ -49,6 +50,9 @@ class BranchProfileDataCheckBoxesList extends StatelessWidget {
     final streetNumber = company.company?.streetNumber;
     final postalCode = company.company?.postalCode;
     final city = company.company?.city;
+    final country = company.company?.country;
+
+    logger.d(company.company.toString());
 
     return [
       if (!companyName.isEmptyOrNull)
@@ -73,6 +77,12 @@ class BranchProfileDataCheckBoxesList extends StatelessWidget {
         BranchProfileDataCheckboxListItem(
           fieldContent: city!,
           fieldType: CompanyDataCommonFieldsWithBranchData.city,
+          state: state,
+        ),
+      if (!country.isEmptyOrNull)
+        BranchProfileDataCheckboxListItem(
+          fieldContent: country!,
+          fieldType: CompanyDataCommonFieldsWithBranchData.country,
           state: state,
         ),
     ];
