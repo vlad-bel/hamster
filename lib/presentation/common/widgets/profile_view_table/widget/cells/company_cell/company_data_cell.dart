@@ -1,24 +1,28 @@
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/logo.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/generated/assets.dart';
-import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_header.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
+import 'package:business_terminal/presentation/common/widgets/app_image/app_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class CompanyCell extends StatelessWidget {
   const CompanyCell({
     Key? key,
     required this.repCompany,
+    required this.company,
   }) : super(key: key);
 
   final RepCompany repCompany;
+  final Company? company;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         CompanyCellAvatar(
-          imagePath: repCompany.company?.logos,
+          imagePath: company?.logos,
         ),
         const SizedBox(width: 16),
         Expanded(
@@ -89,21 +93,33 @@ class CompanyCellAvatar extends StatelessWidget {
     final avatars = <Widget>[];
     const horizontalOffset = 32.0;
     for (var i = 0; i < imagePath!.length; i++) {
+      final imageLogo = imagePath![i];
       if (i == 2) break;
-      avatars.add(
-        Positioned(
-          left: i * horizontalOffset,
-          child: Avatar(
-            width: 50,
-            height: 50,
-            image: imagePath![i].fileName,
 
-            ///TODO remove mock data
-            ///get data from backend
-            placeholderImage: Assets.imagesProfileIcon,
-          ),
-        ),
-      );
+      if (imageLogo.fileName != null) {
+        try {
+          avatars.add(
+            Positioned(
+              width: 50,
+              height: 50,
+              left: i * horizontalOffset,
+              child: ClipOval(
+                child: AppImageWidget(
+                  appFile: AppColoredFile(
+                    bytes: null,
+                    color: imageLogo.backgroundColor,
+                    name: imageLogo.fileName,
+                    extension: 'png',
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          );
+        } catch (e, s) {
+          debugPrint('Error is $e, StackTrace is $s');
+        }
+      }
     }
 
     return avatars;

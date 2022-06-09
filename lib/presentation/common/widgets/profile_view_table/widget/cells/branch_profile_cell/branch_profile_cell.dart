@@ -1,6 +1,6 @@
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/company_data_cell.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/company_cell/company_data_cell.dart';
 import 'package:flutter/material.dart';
 
 class BranchProfileCell extends StatelessWidget {

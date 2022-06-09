@@ -5,4 +5,6 @@ class SvgPaths {
   static const dismiss = 'dismiss';
   static const palette = 'palette';
   static const testAlert = 'test_alert';
+  static const awaitingVerification = 'awaiting_verification';
+  static const declined = 'declined';
 }

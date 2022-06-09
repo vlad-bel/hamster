@@ -120,6 +120,7 @@ class CompanyBranchTableWithData extends StatelessWidget {
                 ),
               ),
             ],
+            company: null,
           ),
         ),
         const SizedBox(height: 16),

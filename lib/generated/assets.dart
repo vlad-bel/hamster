@@ -10,10 +10,12 @@ class Assets {
   static const String imagesAdvertising = 'assets/images/advertising.svg';
   static const String imagesArrowDown = 'assets/images/arrow_down.svg';
   static const String imagesArrowUp = 'assets/images/arrow_up.svg';
+  static const String imagesAwaitingVerification = 'assets/images/awaiting_verification.svg';
   static const String imagesBackgroundImageSignUp = 'assets/images/background_image_sign_up.png';
   static const String imagesBranchProfile = 'assets/images/branch_profile.svg';
   static const String imagesCheckMark = 'assets/images/check_mark.svg';
   static const String imagesCompanyProfile = 'assets/images/company_profile.svg';
+  static const String imagesDeclined = 'assets/images/declined.svg';
   static const String imagesDismiss = 'assets/images/dismiss.svg';
   static const String imagesEdit = 'assets/images/edit.svg';
   static const String imagesEditPencil = 'assets/images/edit_pencil.svg';

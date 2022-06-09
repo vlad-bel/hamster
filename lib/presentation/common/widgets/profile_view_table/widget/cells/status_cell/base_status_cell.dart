@@ -60,7 +60,7 @@ class AwaitingVerificationCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseStatusCell(
       icon: SvgPicture.asset(
-        ImagePaths.svg(SvgPaths.testAlert),
+        ImagePaths.svg(SvgPaths.awaitingVerification),
         width: 22,
         height: 22,
       ),
@@ -78,7 +78,7 @@ class DeclinedCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseStatusCell(
       icon: SvgPicture.asset(
-        ImagePaths.svg(SvgPaths.testAlert),
+        ImagePaths.svg(SvgPaths.declined),
         width: 22,
         height: 22,
       ),
@@ -138,6 +138,7 @@ class DataCompleteStatusCell extends StatelessWidget {
     Key? key,
     required this.value,
   }) : super(key: key);
+
   final int value;
 
   @override

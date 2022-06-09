@@ -1,6 +1,7 @@
+import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/company_data_cell.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/edit_cell.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/company_cell/company_data_cell.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/edit_cell/edit_cell.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/status_cell/status_cell.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,11 @@ class ProfileViewTableRow extends DataTableSource {
   ProfileViewTableRow({
     required this.companies,
     required this.onPressed,
+    this.company,
   });
 
   final List<RepCompany> companies;
+  final Company? company;
   final VoidCallback onPressed;
 
   @override
@@ -26,6 +29,7 @@ class ProfileViewTableRow extends DataTableSource {
         DataCell(
           CompanyCell(
             repCompany: repCompany,
+            company: company,
           ),
         ),
 
