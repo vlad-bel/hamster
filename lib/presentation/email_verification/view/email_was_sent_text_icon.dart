@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class EmailResultInfoTextIcon extends StatelessWidget {
-  const EmailResultInfoTextIcon({
+class OtpResultInfoTextIcon extends StatelessWidget {
+  const OtpResultInfoTextIcon({
     super.key,
     required this.text,
     required this.textColor,

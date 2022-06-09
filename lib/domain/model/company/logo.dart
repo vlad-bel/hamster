@@ -13,6 +13,7 @@ class CompanyLogo {
   final String? fileName;
   @JsonKey(name: 'backgroundColor')
   final String? backgroundColor;
+
   factory CompanyLogo.fromJson(Map<String, dynamic> json) =>
       _$CompanyLogoFromJson(json);
 

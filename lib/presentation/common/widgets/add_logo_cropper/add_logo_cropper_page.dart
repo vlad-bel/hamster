@@ -28,6 +28,7 @@ class AddLogoCropperPage extends StatelessWidget {
   static const path = '/add-logo-cropper-page';
 
   final AddLogoCropperArguments addLogoCropperArguments;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AddLogoCropperCubit>(

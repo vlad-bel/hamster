@@ -11,7 +11,6 @@ import 'package:business_terminal/presentation/dashboard/edit_personal_data/form
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/add_personal_avatar_page.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/personal_avatar_page.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/personal_data_avatar_container.dart';
-import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';

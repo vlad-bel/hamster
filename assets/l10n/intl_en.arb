@@ -84,7 +84,8 @@
   "confirmNewPasswordTitle": "Ersetzen Sie Ihr altes Passwort.",
   "confirm_number_subtitle1": "You will immediately receive an SMS to the number you have given ",
   "confirm_number_subtitle2": " Please enter the popular 5-digit code to create your user account.",
-  "confirm_number_title": "Confirm your phone \u000bnumber.",
+  "confirm_number_title": "Confirm your phone\u000bnumber.",
+  "confirm_email_title": "Confirm your\nE-Mail-Adresse",
   "connection": "CONNECTION",
   "continue_button": "CONTINUE",
   "country_hint": "Country",
@@ -104,7 +105,7 @@
   "finance": "Finance",
   "finance1": "Finance1",
   "for_credits_and_regular_billing": "For credits and regular billing, we still need your bank details and consent to the direct debit procedure",
-  "forgetPasswordCodeIncorrect": "Der eingegebene Code war ungültig.",
+  "otpCodeIncorrect": "Der eingegebene Code war ungültig.",
   "forgetPasswordPhoneCallSubtitle1": "Sie erhalten gleich einen Anruf mit automatischer Sprachansage auf der mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpften Nummer",
   "forgetPasswordPhoneCallSubtitle2": "Bitte geben Sie den 5-stelligen Code ein, um Ihre Passwort zurück zu setzen.",
   "forgetPasswordSmsSubtitle1": "Sie erhalten gleich eine SMS an die mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpfte Nummer",
@@ -182,6 +183,7 @@
   "sms": "SMS",
   "website_valigation": "The web site must be written according to the following template 'website.net'",
   "smsSentDescription": "You will shortly receive another SMS from us",
+  "emailSentDescription": "You will shortly receive another E-Mail from us",
   "smsResent": "You will receive another SMS from us shortly",
   "emailCodeSent": "You will receive another email from us shortly.",
   "firstName": "First Name",
@@ -234,5 +236,6 @@
   "join_now": "Join now",
   "not_empty_field": "Should not be empty",
   "email_field": "Should be a valid email",
-  "notFound" : "Not found"
+  "notFound" : "Not found",
+  "custom_number": "Custom number:"
 }

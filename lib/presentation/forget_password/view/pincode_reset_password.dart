@@ -324,7 +324,7 @@ class _CodeStatusWidget extends StatelessWidget {
           const SizedBox(width: 16),
           Flexible(
             child: Text(
-              AppLocale.of(context).forgetPasswordCodeIncorrect,
+              AppLocale.of(context).otpCodeIncorrect,
               style: inter16.copyWith(color: razzmatazz),
             ),
           )

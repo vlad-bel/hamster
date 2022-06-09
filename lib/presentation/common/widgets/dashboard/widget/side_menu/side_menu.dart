@@ -1,4 +1,6 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_header.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_items.dart';
@@ -49,6 +51,12 @@ class _SideMenuState extends State<SideMenu> {
             selectedPage: widget.selectedPage,
             isBlockFinance: widget.isBlockFinance,
           ),
+          Text(
+            '${AppLocale.of(context).custom_number} ${widget.repCompany?.company?.companyNumber}',
+            style: inter14.copyWith(
+              color: lynch.withOpacity(0.9),
+            ),
+          )
         ],
       ),
     );
