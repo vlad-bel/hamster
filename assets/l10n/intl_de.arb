@@ -230,5 +230,6 @@
   "join_now": "Jetzt registrieren",
   "not_empty_field": "Sollte nicht leer sein",
   "email_field": "Sollte eine gültige E-Mail sein",
-  "notFound": "Nicht gefunden"
+  "notFound": "Nicht gefunden",
+  "custom_number": "Kundennummer:"
 }
