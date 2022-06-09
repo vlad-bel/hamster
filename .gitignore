@@ -147,3 +147,4 @@ pubspec.lock
 lib/app/utils/l10n/generated/**
 
 lib/app/utils/l10n/generated/
+/lib/app/utils/l10n/generated/

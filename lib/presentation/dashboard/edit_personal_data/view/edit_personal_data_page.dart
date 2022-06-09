@@ -42,7 +42,6 @@ class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
         return PersonalDataAvatarContainer(
           image: state.avatar,
           onAvatarClicked: () {
-            logger.d('Click on avatar');
             Navigator.of(context).pushNamed(PersonalAvatarPage.path);
           },
           child: ReactiveFormBuilder(
