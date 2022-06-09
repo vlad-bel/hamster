@@ -47,7 +47,7 @@ class BreadCrumbs extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          currentLastPath,
+          Intl.message(currentLastPath, name: currentLastPath),
           style: inter24SemiBold,
         ),
         const SizedBox(height: 8),

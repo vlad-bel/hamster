@@ -7,7 +7,6 @@ import 'package:business_terminal/presentation/common/widgets/form_text_field/fo
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/form_validation_rules/edit_personal_data_form_group.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/personal_data_avatar_container.dart';
-import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';

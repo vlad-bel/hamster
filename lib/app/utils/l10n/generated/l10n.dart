@@ -550,11 +550,21 @@ class S {
     );
   }
 
-  /// `Confirm your phone number.`
+  /// `Confirm your phonenumber.`
   String get confirm_number_title {
     return Intl.message(
-      'Confirm your phone number.',
+      'Confirm your phonenumber.',
       name: 'confirm_number_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm your\nE-Mail-Adresse`
+  String get confirm_email_title {
+    return Intl.message(
+      'Confirm your\nE-Mail-Adresse',
+      name: 'confirm_email_title',
       desc: '',
       args: [],
     );
@@ -751,10 +761,10 @@ class S {
   }
 
   /// `Der eingegebene Code war ungültig.`
-  String get forgetPasswordCodeIncorrect {
+  String get otpCodeIncorrect {
     return Intl.message(
       'Der eingegebene Code war ungültig.',
-      name: 'forgetPasswordCodeIncorrect',
+      name: 'otpCodeIncorrect',
       desc: '',
       args: [],
     );
@@ -1041,10 +1051,10 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String max_number(Object length) {
+  String min_number(Object length) {
     return Intl.message(
       'Minimum number $length characters',
-      name: 'max_number',
+      name: 'min_number',
       desc: '',
       args: [length],
     );
@@ -1061,10 +1071,10 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String min_number(Object length) {
+  String max_number(Object length) {
     return Intl.message(
       'Maximum number $length characters',
-      name: 'min_number',
+      name: 'max_number',
       desc: '',
       args: [length],
     );
@@ -1530,6 +1540,16 @@ class S {
     );
   }
 
+  /// `You will shortly receive another E-Mail from us`
+  String get emailSentDescription {
+    return Intl.message(
+      'You will shortly receive another E-Mail from us',
+      name: 'emailSentDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You will receive another SMS from us shortly`
   String get smsResent {
     return Intl.message(
@@ -1870,16 +1890,6 @@ class S {
     );
   }
 
-  /// `The image should be in PNG, JPEG, BMP format and no larger than 10Mb`
-  String get file_size_validation {
-    return Intl.message(
-      'The image should be in PNG, JPEG, BMP format and no larger than 10Mb',
-      name: 'file_size_validation',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Do you intend to change E-Mail?`
   String get do_you_intend_change_email {
     return Intl.message(
@@ -1935,6 +1945,116 @@ class S {
     return Intl.message(
       'Should not contain special characters',
       name: 'shouldNotContainSpecialCharacters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The image should be in PNG, JPEG, BMP format and no larger than 10Mb`
+  String get file_size_validation {
+    return Intl.message(
+      'The image should be in PNG, JPEG, BMP format and no larger than 10Mb',
+      name: 'file_size_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An email is on its way to the address you specified`
+  String get email_on_its_way {
+    return Intl.message(
+      'An email is on its way to the address you specified',
+      name: 'email_on_its_way',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the 5-digit code to verify your email address. If the email does not appear in your inbox shortly, please also check your spam folder`
+  String get please_enter_code_to_verity_email {
+    return Intl.message(
+      'Please enter the 5-digit code to verify your email address. If the email does not appear in your inbox shortly, please also check your spam folder',
+      name: 'please_enter_code_to_verity_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to\nHamster!`
+  String get welcome_to_hamster {
+    return Intl.message(
+      'Welcome to\nHamster!',
+      name: 'welcome_to_hamster',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you already have a business account, then log in directly. Otherwise you would have to register first.`
+  String get welcome_to_hamster_description {
+    return Intl.message(
+      'If you already have a business account, then log in directly. Otherwise you would have to register first.',
+      name: 'welcome_to_hamster_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have a business terminal account yet?`
+  String get did_not_have_account {
+    return Intl.message(
+      'You don\'t have a business terminal account yet?',
+      name: 'did_not_have_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join now`
+  String get join_now {
+    return Intl.message(
+      'Join now',
+      name: 'join_now',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Should not be empty`
+  String get not_empty_field {
+    return Intl.message(
+      'Should not be empty',
+      name: 'not_empty_field',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Should be a valid email`
+  String get email_field {
+    return Intl.message(
+      'Should be a valid email',
+      name: 'email_field',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not found`
+  String get notFound {
+    return Intl.message(
+      'Not found',
+      name: 'notFound',
       desc: '',
       args: [],
     );

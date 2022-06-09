@@ -30,7 +30,6 @@ class ProfileEditUsecaseImpl extends ProfileEditUsecase {
         appFiles: appFiles,
       );
 
-      // TODO(b.nurmoldanov) change hardcoded URI,
       await getIt.get<Dio>().put(
         'company/$companyId',
         data: {appFileFormDataKey: formData},

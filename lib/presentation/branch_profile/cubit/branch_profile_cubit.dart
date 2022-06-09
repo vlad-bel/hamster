@@ -6,6 +6,7 @@ import 'package:business_terminal/domain/temp/pos_raw.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/branch_profile/form_validation/branch_profile_form_validation.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
 import 'package:dart_extensions/dart_extensions.dart';
@@ -19,15 +20,14 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   BranchProfileCubit(this.useCase)
       : super(
           const BranchProfileState.init(
-            avatarImages: [
-              'https://growyournutritionbusiness.com/wp-content/uploads/2019/11/company-logo-test.jpg',
-            ],
+            avatarImages: [],
             isCreateBranchButtonEnabled: true,
           ),
         );
 
-  final BranchProfileUseCase useCase;
   final formGroup = BranchProfileFormValidation().buildForm();
+  final BranchProfileUseCase useCase;
+
   final _formSettings = BranchProfileFormValidation();
 
   bool isCreateBranchButtonEnabled() {
@@ -154,8 +154,8 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
   }
 
   void setImages({
-    required List<dynamic> branchImages,
-    required List<dynamic> avatarImages,
+    required List<AppColoredFile> branchImages,
+    required List<AppColoredFile> avatarImages,
   }) {
     uploadImage(branchImages);
     emit(

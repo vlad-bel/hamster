@@ -1,6 +1,7 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
-import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/forget_password/view/choose_verify_page.dart';
 import 'package:business_terminal/presentation/forget_password/view/confirm_new_password_page.dart';
@@ -48,7 +49,17 @@ class UnauthorizedState extends AppState {
                 page = buildPage(
                   requiredParams: [emailParam],
                   child: EmailVerificationPage(
-                    userEmail: appStorageService.getString(key: emailParam),
+                    model: VerificationModel(
+                      userCredentials:
+                          appStorageService.getString(key: emailParam),
+                      title: AppLocale.current.confirm_email_title,
+                      wrongOtpText: AppLocale.current.otpCodeIncorrect,
+                      otpSentText: AppLocale.current.emailSentDescription,
+                      previousEmailText: AppLocale
+                          .current.forget_password_email_inside_subtitle,
+                      previousEmailSpamText: AppLocale
+                          .current.forget_password_email_inside_subtitle2,
+                    ),
                   ),
                 );
                 break;

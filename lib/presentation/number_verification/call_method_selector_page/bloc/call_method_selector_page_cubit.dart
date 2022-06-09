@@ -1,5 +1,5 @@
 import 'package:business_terminal/domain/model/errors/failures.dart';
-import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/number_verification/call_method_selector_page/bloc/call_method_selector_page_state.dart';
 import 'package:business_terminal/use_cases/number_verification/number_verification_use_case.dart';

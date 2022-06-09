@@ -2,9 +2,11 @@ import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
-import 'package:business_terminal/domain/request_model/number_verification/create_phone_request.dart';
-import 'package:business_terminal/domain/request_model/number_verification/verify_phone_request.dart';
-import 'package:business_terminal/domain/request_model/number_verification/verify_sms_number_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/otp_verification_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/create_phone_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/number_verification_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/verify_phone_request.dart';
+import 'package:business_terminal/domain/request_model/otp_verification/resend_otp_code_request.dart';
 import 'package:business_terminal/use_cases/number_verification/number_verification_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -95,9 +97,9 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
   }) async {
     try {
       final response = await repository.verifyNumber(
-        VerifySmsNumberRequest(
+        NumberVerificationRequest(
           code: code,
-          email: email,
+          credential: email,
         ).toJson(),
       );
 
@@ -128,5 +130,17 @@ class NumberVerificationUseCaseImpl extends NumberVerificationUseCase {
         'createPhone',
       );
     }
+  }
+
+  @override
+  Future<String> resendCode(ResendOtpCodeRequest request) {
+    // TODO: implement resendCode
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> verifyEmail(OtpVerificationRequest request) {
+    // TODO: implement verifyEmail
+    throw UnimplementedError();
   }
 }
