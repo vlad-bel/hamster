@@ -23,7 +23,7 @@ class CompanyStatusCell extends StatelessWidget {
     switch (getStatusType()) {
       case CompanyStatusCellType.notFullData:
         return DataCompleteStatusCell(
-          value: _parseFillingProgress(
+          value: parseFillingProgress(
             repCompany.company?.fillingProgress,
           ),
         );
@@ -40,12 +40,11 @@ class CompanyStatusCell extends StatelessWidget {
 
   CompanyStatusCellType getStatusType() {
     if (repCompany.company?.fillingProgress != null) {
-      // repCompany.company?.fillingProgress = 100;
-      if (_parseFillingProgress(repCompany.company?.fillingProgress) < 100) {
+      if (parseFillingProgress(repCompany.company?.fillingProgress) < 100) {
         return CompanyStatusCellType.notFullData;
       }
 
-      if (_parseFillingProgress(repCompany.company?.fillingProgress) == 100) {
+      if (parseFillingProgress(repCompany.company?.fillingProgress) == 100) {
         return CompanyStatusCellType.waitingForVerification;
       }
 
@@ -64,15 +63,15 @@ class CompanyStatusCell extends StatelessWidget {
 
     return CompanyStatusCellType.unknown;
   }
+}
 
-  ///parse dynamic fillingProgress field from backend
-  ///because it's receive sometimes like String and sometimes like Int
-  ///TODO this is temporary solution. remove after fix on backend
-  int _parseFillingProgress(dynamic value) {
-    if (value is String) {
-      return int.parse(value);
-    }
-
-    return value as int;
+///parse dynamic fillingProgress field from backend
+///because it's receive sometimes like String and sometimes like Int
+///TODO this is temporary solution. remove after fix on backend
+int parseFillingProgress(dynamic value) {
+  if (value is String) {
+    return int.parse(value);
   }
+
+  return value as int;
 }

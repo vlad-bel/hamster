@@ -64,7 +64,7 @@ class Company {
   @JsonKey(name: 'createdAt')
   final DateTime? createdAt;
   @JsonKey(name: 'fillingProgress')
-  dynamic fillingProgress;
+  final fillingProgress;
   @JsonKey(name: 'IBAN')
   final String? iban;
 
