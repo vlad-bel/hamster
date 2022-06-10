@@ -6,6 +6,35 @@ Hamster Systems Business Terminal
 
 ## Getting Started 🚀
 
+Clone the repo
+
+``` bash
+git clone ssh/http_source
+```
+
+Get pub dependencies
+
+``` bash
+flutter pub get
+```
+
+Generate .g and .freezed generated files
+
+``` bash
+flutter packages pub run build_runner build --delete-conflicting-outputs
+```
+
+Generate localization files
+
+``` bash
+flutter/dart pub add intl_utils
+flutter/dart pub global activate intl_utils 2.6.1
+flutter/dart pub global run intl_utils:generate
+```
+
+> Attention:
+> Localization files will autogenerate on .arb file saves
+
 This project contains 3 flavors:
 
 - development
@@ -35,7 +64,7 @@ _\*Business Terminal works on iOS, Android, Web, and Windows._
 To run all unit and widget tests use the following command:
 
 ```sh
-$ flutter test --coverage --test-randomize-ordering-seed random
+flutter test --coverage --test-randomize-ordering-seed random
 ```
 
 To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov)
@@ -58,8 +87,8 @@ the [official internationalization guide for Flutter][internationalization_link]
 
 ### Adding Strings
 
-1. For example to add a new localizable string, open the `app_en.arb` file
-   at `lib/l10n/arb/app_en.arb`.
+1. For example to add a new localizable string, open the `intl_en.arb` file
+   at `assets/l10n/intl_en.arb`.
 
 ```arb
 {
@@ -90,12 +119,11 @@ the [official internationalization guide for Flutter][internationalization_link]
 3. Use the new string
 
 ```dart
-import 'package:business_terminal/l10n/l10n.dart';
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 
 @override
 Widget build(BuildContext context) {
-  final l10n = context.l10n;
-  return Text(l10n.helloWorld);
+  return Text(AppLocale.of(context).helloWorld);
 }
 ```
 
@@ -109,7 +137,7 @@ the new locale.
 
 <key>CFBundleLocalizations</key>    <array>
 <string>en</string>
-<string>es</string>
+<string>de</string>
 </array>
 
     ...
@@ -117,35 +145,47 @@ the new locale.
 
 ### Adding Translations
 
-1. For each supported locale, add a new ARB file in `lib/l10n/arb`.
+1. For each supported locale, add a new ARB file in `assets/l10n/`.
 
 ```
-├── l10n
-│   ├── arb
-│   │   ├── app_en.arb
-│   │   └── app_ru.arb
+├── assets
+│   ├── l10n
+│   │   ├── intl_en.arb
+│   │   └── intl_de.arb
 ```
 
 2. Add the translated strings to each `.arb` file:
 
-`app_en.arb`
+`intl_en.arb`
 
 ```arb
 {
     "@@locale": "en",
-    "registrationAppBarTitle": "Registration",
+    "registrationAppBarTitle": "Registration"
 }
 ```
 
-`app_ru.arb`
+`intl_de.arb`
 
 ```arb
 {
     "@@locale": "ru",
-    "registrationAppBarTitle": "Регистрация",
+    "registrationAppBarTitle": "Anmeldung"
 }
 ```
 
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
 
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+
+### Translations code gen
+
+To generate new localization keys:
+
+``` bash
+flutter/dart pub add intl_utils
+flutter/dart pub global activate intl_utils 2.6.1
+flutter/dart pub global run intl_utils:generate
+```
+
+Code generation already configured in CI/CD.

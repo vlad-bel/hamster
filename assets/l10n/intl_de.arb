@@ -220,6 +220,9 @@
   "shouldNotBeEmpty": "Sollte nicht leer sein",
   "minLength": "Mindestlänge ist {minLength}",
   "maxLength": "Maximale Länge ist {maxLength}",
+  "shouldNotContainSpecialCharacters": "Sollte keine Sonderzeichen enthalten",
+  "editYourProfilePhoto": "Bearbeiten Sie Ihr Profilfoto.",
+  "selectCorrectAvatarSection": "Wählen Sie den richtigen Bereich Ihres Profilfotos aus.",
   "email_on_its_way": "Eine E-Mail ist unterwegs an die von Ihnen angegebenen Adresse",
   "please_enter_code_to_verity_email": "Bitte geben Sie den 5-stelligen Code ein, um IhreE-Mail-Adresse zu verifizieren. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner",
   "welcome_to_hamster": "Willkommen bei\nHamster!",
@@ -230,7 +233,7 @@
   "not_empty_field": "Sollte nicht leer sein",
   "email_field": "Sollte eine gültige E-Mail sein",
   "notFound": "Nicht gefunden",
-  "shouldNotContainSpecialCharacters": "Sollte keine Sonderzeichen enthalten",
   "waiting_for_verification": "Warten auf Überprüfung",
-  "declined": "Zurückgegangen"
+  "declined": "Zurückgegangen",
+  "custom_number": "Kundennummer:"
 }
