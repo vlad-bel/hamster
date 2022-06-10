@@ -1,4 +1,3 @@
-import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 
 class DaysHours {
@@ -53,11 +52,11 @@ class DaysHours {
   }
 
   String concatenateStrings(List<OpeningHourItem>? str) {
-    final buffer = StringBuffer();
-
     if (str == null || str.isEmpty) {
-      return AppLocale.current.closed;
+      return '';
     }
+
+    final buffer = StringBuffer();
 
     for (var i = 0; i < str.length; i++) {
       buffer.write('${str[i].from} - ${str[i].to}');
