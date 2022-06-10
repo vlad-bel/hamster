@@ -11,7 +11,7 @@ class BranchProfileRepository {
   Future<Response> uloadBranchProfilePictures(
     List<AppFile> pictureFiles,
   ) async {
-    final formData = AppFileFormData(
+    final formData = AppFilesFormData(
       formData: FormData(),
       appFiles: pictureFiles,
     );

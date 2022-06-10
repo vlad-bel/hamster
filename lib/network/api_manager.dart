@@ -139,7 +139,7 @@ Future<Response> request(
 FormData? getFormDataFromBody(Map<String, dynamic>? data) {
   FormData? _formData;
   data?.forEach((key, value) {
-    if (value is AppFileFormData) {
+    if (value is AppFilesFormData) {
       final formData = value.formData;
       final formFiles = value.appFiles;
 
@@ -160,6 +160,29 @@ FormData? getFormDataFromBody(Map<String, dynamic>? data) {
           ),
         );
       }
+
+      _formData = formData;
+    }
+
+    if (value is AppFileFormData) {
+      final formData = value.formData;
+      final formFile = value.appFile;
+
+      final multipartFile = MultipartFile.fromBytes(
+        formFile.bytes!,
+        filename: formFile.name ?? '${DateTime.now()}.${formFile.extension}',
+        contentType: MediaType(
+          'image',
+          formFile.extension,
+        ),
+      );
+
+      formData.files.add(
+        MapEntry(
+          'file',
+          multipartFile,
+        ),
+      );
 
       _formData = formData;
     }

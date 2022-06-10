@@ -23,7 +23,7 @@ class ProfileEditUsecaseImpl extends ProfileEditUsecase {
     List<AppFile> appFiles,
   ) async {
     try {
-      final formData = AppFileFormData(
+      final formData = AppFilesFormData(
         formData: FormData.fromMap(
           profileEditRequest.toJson(),
         ),
