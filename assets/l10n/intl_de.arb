@@ -233,5 +233,7 @@
   "not_empty_field": "Sollte nicht leer sein",
   "email_field": "Sollte eine gültige E-Mail sein",
   "notFound": "Nicht gefunden",
-  "custom_number": "Kundennummer:"
+  "custom_number": "Kundennummer:",
+  "language": "Sprache",
+  "de_language": "🇩🇪 Deutsch"
 }

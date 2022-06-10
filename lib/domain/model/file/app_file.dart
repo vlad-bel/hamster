@@ -28,4 +28,12 @@ class AppFile {
         name: result.files.first.name,
         bytes: result.files.first.bytes,
       );
+
+  factory AppFile.fromJson(Map<String, dynamic> json) {
+    final bytes = Uint8List.fromList(
+      // ignore: avoid_dynamic_calls
+      List<int>.from(json['buffer']!['data'] as List<dynamic>),
+    );
+    return AppFile(bytes: bytes, name: '', extension: '');
+  }
 }

@@ -3,8 +3,10 @@ import 'package:business_terminal/domain/model/company/branch/branch_profile_wit
 import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
+import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/domain/model/forget_password/send_verification_code_response.dart';
 import 'package:business_terminal/domain/model/login/login_response.dart';
+import 'package:business_terminal/domain/model/personal_data/personal_data_response.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
@@ -98,6 +100,11 @@ abstract class RestClient {
     @Path('filename') String filename,
   );
 
+  @GET('/files/{filename}')
+  Future<AppFile> getAppFileByName(
+    @Path('filename') String filename,
+  );
+
   // Branch Profile:
 
   // TODO: make page param as @query param during pagination implementation
@@ -128,4 +135,7 @@ abstract class RestClient {
 
   @POST('rep/reset-password')
   Future resetPassword(@Body() Map<String, dynamic> resetPasswordMap);
+
+  @GET('rep/')
+  Future<PersonalDataResponse> getPersonalData();
 }
