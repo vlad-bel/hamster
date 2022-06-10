@@ -1950,6 +1950,26 @@ class S {
     );
   }
 
+  /// `Edit your profile photo.`
+  String get editYourProfilePhoto {
+    return Intl.message(
+      'Edit your profile photo.',
+      name: 'editYourProfilePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the correct section of your profile photo.`
+  String get selectCorrectAvatarSection {
+    return Intl.message(
+      'Select the correct section of your profile photo.',
+      name: 'selectCorrectAvatarSection',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `The image should be in PNG, JPEG, BMP format and no larger than 10Mb`
   String get file_size_validation {
     return Intl.message(
@@ -2045,6 +2065,16 @@ class S {
     return Intl.message(
       'Should be a valid email',
       name: 'email_field',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Custom number:`
+  String get custom_number {
+    return Intl.message(
+      'Custom number:',
+      name: 'custom_number',
       desc: '',
       args: [],
     );
