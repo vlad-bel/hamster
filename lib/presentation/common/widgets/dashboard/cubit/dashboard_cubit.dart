@@ -1,3 +1,4 @@
+import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile_with_paging.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
@@ -28,13 +29,10 @@ class DashboardCubit extends Cubit<DashboardState> {
   }
 
   ///test function for demo from other place
-  void increaseCount() {
+  void increaseCount(int count) {
     state.when(
       init: (state) {
-        state.testCount ??= 0;
-        state.testCount = 3;
-
-        final newState = state.copyWith(testCount: 3);
+        final newState = state.copyWith(testCount: count);
 
         emit(DashboardState.init(stateObject: newState));
       },
@@ -46,7 +44,7 @@ class DashboardCubit extends Cubit<DashboardState> {
       ) {
         emit(
           DashboardState.error(
-            testCount: testCount,
+            testCount: count,
             finansenOpen: finansenOpen,
             administrationOpen: administrationOpen,
             repCompany: repCompany,
@@ -68,7 +66,36 @@ class DashboardCubit extends Cubit<DashboardState> {
         );
 
         emit(DashboardState.init(stateObject: newState));
+
+        calculateMyCompanyFillingCount(
+          branchProfilesList?.data,
+          repCompany,
+        );
       },
     );
+  }
+
+  void calculateMyCompanyFillingCount(
+    List<BranchProfile>? branchProfileList,
+    RepCompany? repCompany,
+  ) {
+    var fillingCount = 0;
+    if (repCompany?.company?.fillingProgress != null) {
+      if (repCompany!.company!.fillingProgress! < 100) {
+        fillingCount++;
+      }
+    }
+
+    if (branchProfileList != null) {
+      for (final branch in branchProfileList) {
+        if (branch.fillingProgress != null) {
+          if (branch.fillingProgress! < 100) {
+            fillingCount++;
+          }
+        }
+      }
+    }
+
+    increaseCount(fillingCount);
   }
 }
