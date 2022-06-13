@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:business_terminal/app/utils/images_util.dart';
+import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/domain/model/company/logo.dart';
 import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_state.dart';
 import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/widget/add_logo_cropper_form.dart';
@@ -12,12 +14,15 @@ import 'package:injectable/injectable.dart';
 @injectable
 class BranchProfileAvatarPictureCubit
     extends Cubit<BranchProfileAvatarPictureState> {
-  BranchProfileAvatarPictureCubit(this.companyUsecase)
-      : super(
+  BranchProfileAvatarPictureCubit(
+    this.companyUsecase,
+    this.client,
+  ) : super(
           const BranchProfileAvatarPictureState.init(),
         );
 
   final CompanyUsecase companyUsecase;
+  final RestClient client;
 
   void selectImage(AppColoredFile image) {
     emit(
@@ -97,22 +102,35 @@ class BranchProfileAvatarPictureCubit
     for (final logo in company.logos ?? <CompanyLogo>[]) {
       if (logo.fileName != null) {
         try {
-          addedImages.add(
-            AppColoredFile(
-              bytes: null,
-              color: logo.backgroundColor,
-              name: logo.fileName,
-              extension: 'png',
-            ),
+          final preloadImage = await loadImage(
+            client: client,
+            fileName: logo.fileName!,
           );
+          if(preloadImage != null){
+            addedImages.add(
+              AppColoredFile(
+                bytes: preloadImage,
+                color: logo.backgroundColor,
+                name: null,
+                extension: 'png',
+              ),
+            );
+          }
+
         } catch (e, s) {
           log('Error is $e, StackTrace is $s');
         }
       }
     }
+
+    AppColoredFile? selectedImage;
+    if (addedImages.isNotEmpty) {
+      selectedImage = addedImages[0];
+    }
+
     emit(
       BranchProfileAvatarPictureState.init(
-        selectedImage: addedImages[0],
+        selectedImage: selectedImage,
         images: addedImages,
       ),
     );

@@ -10,7 +10,7 @@ class NumberPrefix extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
-  final Country country;
+  final Country? country;
   final VoidCallback? onTap;
 
   @override
@@ -20,7 +20,7 @@ class NumberPrefix extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(country.emoji),
+          Text(country?.emoji ?? "no"),
           const SizedBox(width: 8),
           const Icon(
             Icons.keyboard_arrow_down_rounded,
@@ -35,7 +35,7 @@ class NumberPrefix extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            '+${country.phone}',
+            '+${country?.phone ?? "no"}',
             style: inter14,
           ),
           const SizedBox(width: 8),

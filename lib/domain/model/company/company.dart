@@ -106,7 +106,7 @@ class Company {
         '${streetNumber ?? ""}'
         ','
         ' ${postalCode ?? ""} '
-        '${country ?? ""}';
+        '${city ?? ""}';
   }
 
   @override

@@ -132,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Let us know how your company can be reached by post."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
+        "custom_number": MessageLookupByLibrary.simpleMessage("Custom number:"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
         "declined": MessageLookupByLibrary.simpleMessage("Declined"),
@@ -139,6 +140,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You don\'t have a business terminal account yet?"),
         "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
             "Do you intend to change E-Mail?"),
+        "editYourProfilePhoto":
+            MessageLookupByLibrary.simpleMessage("Edit your profile photo."),
         "edit_company_logo":
             MessageLookupByLibrary.simpleMessage("Edit your company logo."),
         "edit_photo":
@@ -287,6 +290,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "selectCorrectAvatarSection": MessageLookupByLibrary.simpleMessage(
+            "Select the correct section of your profile photo."),
         "select_all": MessageLookupByLibrary.simpleMessage("Select all"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Select country code"),

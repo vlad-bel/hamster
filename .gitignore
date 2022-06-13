@@ -145,3 +145,5 @@ lib/app/utils/l10n/generated/*
 # Except this one
 !lib/generated/locale_keys.g.dart
 
+lib/app/utils/l10n/generated/
+/lib/app/utils/l10n/generated/

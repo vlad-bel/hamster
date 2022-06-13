@@ -135,6 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Teilen Sie uns mit, wie Ihr Unternehmen postalisch erreicht werden kann."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
+        "custom_number": MessageLookupByLibrary.simpleMessage("Kundennummer:"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
         "declined": MessageLookupByLibrary.simpleMessage("Zurückgegangen"),
@@ -142,6 +143,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Du hast noch keinen Business-Terminal-Account?"),
         "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
             "Sie beabsichtigen Ihre E-Mail-Adresse zu ändern?"),
+        "editYourProfilePhoto": MessageLookupByLibrary.simpleMessage(
+            "Bearbeiten Sie Ihr Profilfoto."),
         "edit_photo": MessageLookupByLibrary.simpleMessage(
             "Bearbeiten Sie Ihr Profilfoto."),
         "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
@@ -284,6 +287,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "saturday": MessageLookupByLibrary.simpleMessage("Samstag"),
         "save": MessageLookupByLibrary.simpleMessage("Speichern"),
         "search": MessageLookupByLibrary.simpleMessage("Suchen"),
+        "selectCorrectAvatarSection": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie den richtigen Bereich Ihres Profilfotos aus."),
         "select_all": MessageLookupByLibrary.simpleMessage("Alles auswählen"),
         "select_country_code":
             MessageLookupByLibrary.simpleMessage("Ländervorwahl wählen"),
