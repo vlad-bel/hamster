@@ -179,7 +179,7 @@ FormData? getFormDataFromBody(Map<String, dynamic>? data) {
 
       formData.files.add(
         MapEntry(
-          'file',
+          'files',
           multipartFile,
         ),
       );
