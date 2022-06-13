@@ -18,6 +18,7 @@ import 'package:business_terminal/presentation/navigation/app_state_cubit/app_st
 import 'package:business_terminal/presentation/navigation/app_state_cubit/authorized_state.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/presentation/navigation/splash_page.dart';
+import 'package:business_terminal/presentation/number_verification/country_code/country_code_page.dart';
 import 'package:business_terminal/use_cases/settings/language/language_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
