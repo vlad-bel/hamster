@@ -8,10 +8,12 @@ class AvatarSelectedPicture extends StatelessWidget {
     Key? key,
     required this.appFile,
     required this.onPressed,
+    required this.showEditButton
   }) : super(key: key);
 
   final AppColoredFile appFile;
   final VoidCallback? onPressed;
+  final bool showEditButton;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class AvatarSelectedPicture extends StatelessWidget {
             ),
           ),
         ),
-        if (onPressed != null)
+        if (onPressed != null && showEditButton)
           SizedBox(
             width: 200,
             height: 200,

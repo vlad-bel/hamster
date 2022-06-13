@@ -106,10 +106,10 @@ class BranchProfileAvatarPictureSelector extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   AvatarSelectedPicture(
+                    showEditButton: showEditButton,
                     appFile: state.selectedImage!,
                     onPressed: () {},
                   ),
-                  loader,
                 ],
               ),
               const SizedBox(height: 12),

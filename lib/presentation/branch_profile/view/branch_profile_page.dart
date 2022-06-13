@@ -10,6 +10,7 @@ import 'package:business_terminal/presentation/branch_profile/widget/branch_data
 import 'package:business_terminal/presentation/branch_profile/widget/branch_profile_working_hours_table.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/branch_top_photo_and_logo_pager.dart';
 import 'package:business_terminal/presentation/branch_profile/widget/pos_list_item.dart';
+import 'package:business_terminal/presentation/branch_profile_avatar_picture/cubit/branch_profile_avatar_picture_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/branch_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
@@ -42,7 +43,7 @@ class BranchProfilePage extends StatelessWidget {
   }
 }
 
-class _BranchProfileView extends StatelessWidget {
+class _BranchProfileView extends StatefulWidget {
   const _BranchProfileView(
     this.company,
     this.branchSelectedFieldsMap,
@@ -50,6 +51,17 @@ class _BranchProfileView extends StatelessWidget {
 
   final CreateBranchProfileCheckboxesData branchSelectedFieldsMap;
   final RepCompany company;
+
+  @override
+  State<_BranchProfileView> createState() => _BranchProfileViewState();
+}
+
+class _BranchProfileViewState extends State<_BranchProfileView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<BranchProfileAvatarPictureCubit>()..loadInitData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +108,9 @@ class _BranchProfileView extends StatelessWidget {
                           formGroup:
                               context.read<BranchProfileCubit>().formGroup,
                           paddingBetweenTextInputs: paddingBetweenTextInputs,
-                          branchSelectedFieldsMap: branchSelectedFieldsMap,
-                          company: company,
+                          branchSelectedFieldsMap:
+                              widget.branchSelectedFieldsMap,
+                          company: widget.company,
                         ),
                         const SizedBox(width: 45),
 
