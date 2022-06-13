@@ -1,4 +1,5 @@
 import 'package:business_terminal/domain/model/company/company.dart';
+import 'package:business_terminal/domain/model/company/logo.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'rep_company.g.dart';
@@ -47,7 +48,7 @@ class Rep {
   @JsonKey(name: 'surname')
   final String surname;
   @JsonKey(name: 'avatar')
-  final String? avatar;
+  final CompanyLogo? avatar;
 
   factory Rep.fromJson(Map<String, dynamic> json) => _$RepFromJson(json);
 

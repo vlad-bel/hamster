@@ -1,5 +1,6 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/config/image/image_paths.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/generated/assets.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class BaseStatusCell extends StatelessWidget {
     required this.name,
     required this.padding,
   }) : super(key: key);
+
   final Widget icon;
   final double padding;
   final String name;
@@ -50,6 +52,42 @@ class VerifiedStatusCell extends StatelessWidget {
   }
 }
 
+///show verifiend status
+class AwaitingVerificationCell extends StatelessWidget {
+  const AwaitingVerificationCell({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BaseStatusCell(
+      icon: SvgPicture.asset(
+        ImagePaths.svg(SvgPaths.awaitingVerification),
+        width: 22,
+        height: 22,
+      ),
+      name: AppLocale.of(context).waiting_for_verification,
+      padding: 8,
+    );
+  }
+}
+
+///show verifiend status
+class DeclinedCell extends StatelessWidget {
+  const DeclinedCell({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BaseStatusCell(
+      icon: SvgPicture.asset(
+        ImagePaths.svg(SvgPaths.declined),
+        width: 22,
+        height: 22,
+      ),
+      name: AppLocale.of(context).declined,
+      padding: 8,
+    );
+  }
+}
+
 ///shows visible/invisible status
 class VisibleStatusCell extends StatelessWidget {
   const VisibleStatusCell({
@@ -75,12 +113,32 @@ class VisibleStatusCell extends StatelessWidget {
   }
 }
 
+class UnknownStatusCell extends StatelessWidget {
+  const UnknownStatusCell({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BaseStatusCell(
+      icon: SvgPicture.asset(
+        Assets.imagesInvisible,
+        width: 22,
+        height: 22,
+      ),
+      name: 'Unknown status',
+      padding: 8,
+    );
+  }
+}
+
 ///shows company fill completion status
 class DataCompleteStatusCell extends StatelessWidget {
   const DataCompleteStatusCell({
     Key? key,
     required this.value,
   }) : super(key: key);
+
   final int value;
 
   @override

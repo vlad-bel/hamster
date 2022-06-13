@@ -1,4 +1,5 @@
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
+import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
@@ -13,21 +14,27 @@ part 'profile_viewing_cubit.freezed.dart';
 class ProfileViewingCubit extends Cubit<ProfileViewingState> {
   ProfileViewingCubit({
     required this.profileViewingUsecase,
+    required this.companyUseCase,
   }) : super(
           const ProfileViewingState.initial(),
         );
 
   final ProfileViewingUsecase profileViewingUsecase;
+  final CompanyUsecase companyUseCase;
 
   Future<void> getInitialData() async {
     try {
       emit(
         const ProfileViewingState.loading(),
       );
-      final repCompany = await getIt.get<CompanyUsecase>().getRepCompany();
+      final repCompany = await companyUseCase.getRepCompany();
+      final company = await companyUseCase.getCompany(
+        companyId: repCompany.company?.id ?? '',
+      );
       emit(
         ProfileViewingState.success(
           repCompany: repCompany,
+          company: company,
         ),
       );
 
@@ -55,5 +62,6 @@ class ProfileViewingState with _$ProfileViewingState {
 
   const factory ProfileViewingState.success({
     required RepCompany repCompany,
+    required Company company,
   }) = SuccessProfileViewingState;
 }

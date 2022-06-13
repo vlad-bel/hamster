@@ -32,8 +32,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final cubit = context.read<ProfileViewingCubit>();
-    cubit.getInitialData();
+    final cubit = context.read<ProfileViewingCubit>()..getInitialData();
   }
 
   @override
@@ -49,11 +48,12 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
             error: (error) {
               return SizedBox.shrink();
             },
-            success: (company) {
+            success: (repCompany, company) {
               return Column(
                 children: [
                   CompanyProfileTable(
-                    repCompany: company,
+                    repCompany: repCompany,
+                    company: company,
                   ),
                   const SizedBox(height: 25),
                   const CompanyBranchTable(),

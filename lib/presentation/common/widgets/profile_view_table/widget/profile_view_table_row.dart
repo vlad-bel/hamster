@@ -1,19 +1,22 @@
-import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/company_data_cell.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/connection_cell.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/edit_cell.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/status_cell.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/company_cell/company_data_cell.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/edit_cell/edit_cell.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/status_cell/status_cell.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+
+import 'cells/connection_cell/connection_data.dart';
 
 class ProfileViewTableRow extends DataTableSource {
   ProfileViewTableRow({
     required this.companies,
     required this.onPressed,
+    this.company,
   });
 
   final List<RepCompany> companies;
+  final Company? company;
   final VoidCallback onPressed;
 
   @override
@@ -26,6 +29,7 @@ class ProfileViewTableRow extends DataTableSource {
         DataCell(
           CompanyCell(
             repCompany: repCompany,
+            company: company,
           ),
         ),
 
@@ -38,35 +42,21 @@ class ProfileViewTableRow extends DataTableSource {
         ),
         DataCell(
           CompanyCellAvatar(
-            imagePath: [
-              ///TODO remove mock data
-              ///get data from backend
-              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-              'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-            ],
+            imagePath: repCompany.rep?.avatar != null
+                ? [
+                    repCompany.rep!.avatar!,
+                  ]
+                : null,
           ),
         ),
         DataCell(
-          Row(
-            children: [
-              ConnectionCell(
-                title: AppLocale.current.tills,
-                currentConnectionValue: 5,
-                maxConnectionValue: 5,
-              ),
-              const SizedBox(width: 8),
-              ConnectionCell(
-                currentConnectionValue: 2,
-                maxConnectionValue: 5,
-                title: AppLocale.current.branches,
-              ),
-            ],
+          ConnectionData(
+            repCompany: repCompany,
           ),
         ),
-        const DataCell(
-          VisibleStatusCell(
-            visible: false,
+        DataCell(
+          CompanyStatusCell(
+            repCompany: repCompany,
           ),
         ),
         DataCell(

@@ -2,6 +2,7 @@ import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/status_cell/status_cell.dart';
 import 'package:business_terminal/use_cases/company/branch_profile/branch_profile_use_case.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +46,7 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
               progressUserAccount: repCompany.rep?.fillingProgress,
               progressCompanyProfile:
                   repCompany.company?.fillingProgress != null
-                      ? _parseFillingProgress(
+                      ? parseFillingProgress(
                           repCompany.company!.fillingProgress,
                         )
                       : null,
@@ -60,13 +61,6 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
     }
   }
 
-  int _parseFillingProgress(dynamic value) {
-    if (value is String) {
-      return int.parse(value);
-    }
-
-    return value as int;
-  }
 
   final fullyCompleted = 100;
 

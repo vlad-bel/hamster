@@ -233,5 +233,7 @@
   "not_empty_field": "Sollte nicht leer sein",
   "email_field": "Sollte eine gültige E-Mail sein",
   "notFound": "Nicht gefunden",
+  "waiting_for_verification": "Warten auf Überprüfung",
+  "declined": "Zurückgegangen",
   "custom_number": "Kundennummer:"
 }

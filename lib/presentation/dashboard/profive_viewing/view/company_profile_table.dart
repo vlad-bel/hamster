@@ -1,5 +1,6 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/styles.dart';
+import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/profile_view_table.dart';
@@ -12,9 +13,11 @@ class CompanyProfileTable extends StatelessWidget {
   const CompanyProfileTable({
     super.key,
     required this.repCompany,
+    required this.company,
   });
 
   final RepCompany repCompany;
+  final Company company;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +38,7 @@ class CompanyProfileTable extends StatelessWidget {
               companies: [
                 repCompany,
               ],
+              company: company,
             ),
           ),
         ],

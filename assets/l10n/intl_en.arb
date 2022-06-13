@@ -236,6 +236,8 @@
   "join_now": "Join now",
   "not_empty_field": "Should not be empty",
   "email_field": "Should be a valid email",
+  "custom_number": "Custom number:",
   "notFound" : "Not found",
-  "custom_number": "Custom number:"
+  "waiting_for_verification": "Waiting for verification",
+  "declined": "Declined"
 }

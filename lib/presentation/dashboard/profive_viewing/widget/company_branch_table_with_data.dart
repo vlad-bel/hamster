@@ -1,6 +1,7 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile_with_paging.dart';
 import 'package:business_terminal/domain/model/company/company.dart';
+import 'package:business_terminal/domain/model/company/logo.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/app/view/app.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/view/create_branch_profile_checkboxes_page.dart';
@@ -37,7 +38,10 @@ class CompanyBranchTableWithData extends StatelessWidget {
               RepCompany(
                 rep: Rep(
                   name: 'test',
-                  avatar: '',
+                  avatar: CompanyLogo(
+                    fileName: '',
+                    backgroundColor: 'red',
+                  ),
                   surname: 'test',
                   fillingProgress: 1,
                 ),
@@ -48,6 +52,12 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   postalCode: '36037',
                   city: 'Fulda',
                   logos: [],
+                  fillingProgress: 10,
+                  isVerified: false,
+                  isVerificationRequestDeclined: false,
+                  connectionsStatistics: {
+                    "test": "10/10",
+                  },
                 ),
                 branch: Branch(
                   fillingProgress: 1,
@@ -56,7 +66,10 @@ class CompanyBranchTableWithData extends StatelessWidget {
               RepCompany(
                 rep: Rep(
                   name: 'test1',
-                  avatar: '',
+                  avatar: CompanyLogo(
+                    fileName: '',
+                    backgroundColor: 'red',
+                  ),
                   surname: 'test1',
                   fillingProgress: 1,
                 ),
@@ -67,6 +80,12 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   postalCode: '36038',
                   city: 'Berlin',
                   logos: [],
+                  fillingProgress: 5,
+                  isVerified: false,
+                  isVerificationRequestDeclined: false,
+                  connectionsStatistics: {
+                    "test": "5/10",
+                  },
                 ),
                 branch: Branch(
                   fillingProgress: 2,
@@ -75,7 +94,10 @@ class CompanyBranchTableWithData extends StatelessWidget {
               RepCompany(
                 rep: Rep(
                   name: 'test1',
-                  avatar: '',
+                  avatar: CompanyLogo(
+                    fileName: '',
+                    backgroundColor: 'red',
+                  ),
                   surname: 'test1',
                   fillingProgress: 1,
                 ),
@@ -86,12 +108,19 @@ class CompanyBranchTableWithData extends StatelessWidget {
                   postalCode: '36038',
                   city: 'Berlin',
                   logos: [],
+                  fillingProgress: 15,
+                  isVerified: false,
+                  isVerificationRequestDeclined: false,
+                  connectionsStatistics: {
+                    "test": "1/10",
+                  },
                 ),
                 branch: Branch(
                   fillingProgress: 2,
                 ),
               ),
             ],
+            company: null,
           ),
         ),
         const SizedBox(height: 16),
