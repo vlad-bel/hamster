@@ -32,6 +32,10 @@ class ProfileEditUsecaseImpl extends ProfileEditUsecase {
 
       await getIt.get<Dio>().put(
         'company/$companyId',
+
+        ///Attached files must be placed on map like {String, FormData}
+        ///This structure need to parse attached files
+        ///This FormData parses in [ApiManager] interceptors
         data: {appFileFormDataKey: formData},
       );
       return true;
