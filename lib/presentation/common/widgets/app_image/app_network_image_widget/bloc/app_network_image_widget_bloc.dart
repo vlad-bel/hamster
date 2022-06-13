@@ -1,5 +1,4 @@
-import 'dart:typed_data';
-
+import 'package:business_terminal/app/utils/images_util.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 import 'package:business_terminal/presentation/common/widgets/app_image/app_network_image_widget/bloc/app_network_image_widget_state.dart';
@@ -18,23 +17,17 @@ class AppNetworkImageWidgetCubit extends Cubit<AppNetworkImageWidgetState> {
 
   Future<void> loadFile({required String fileName}) async {
     try {
-      final result = await _client.getFileByName(fileName);
-      if (result is Map<String, dynamic> && result['buffer'] != null) {
-        final bytes = Uint8List.fromList(
-          List<int>.from(result['buffer']!['data'] as List<dynamic>),
-        );
-        emit(
-          AppNetworkImageWidgetState.success(
-            bytes: bytes,
-          ),
-        );
-      } else {
-        emit(
-          const AppNetworkImageWidgetState.error(
-            title: 'Error',
-          ),
-        );
+      final imageBytes = await loadImage(client: _client, fileName: fileName);
+      if (imageBytes != null) {
+        return emit(AppNetworkImageWidgetState.success(
+          bytes: imageBytes,
+        ));
       }
+      return emit(
+        const AppNetworkImageWidgetState.error(
+          title: 'Error',
+        ),
+      );
     } on DioError catch (e, s) {
       logger.e('loadFile: $e ,$s');
       final errorMessage = e.response?.statusMessage.toString();
