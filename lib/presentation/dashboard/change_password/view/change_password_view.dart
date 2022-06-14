@@ -16,6 +16,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+/// Main view of password changing flow
+/// Mockup - [https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/b3e05f96-b4ab-4ba3-a063-0c70e71e72be/]
 class ChangePasswordView extends StatefulWidget {
   const ChangePasswordView({Key? key}) : super(key: key);
 
@@ -125,7 +127,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                         },
                       ),
                     ),
-                    SizedBox(width: 16),
+                    const SizedBox(width: 16),
                     Expanded(
                       child: ReactiveFormConsumer(builder: (_, formGroup, __) {
                         return ActionButtonBlue(
