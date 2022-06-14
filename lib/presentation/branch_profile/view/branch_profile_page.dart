@@ -225,7 +225,7 @@ class BranchProfileAppBar extends StatelessWidget {
                                 .read<CountrySelectorCubit>()
                                 .countryForm
                                 .control(
-                                  CountrySelectorCubit.filterTextfield,
+                                  CountrySelectorCubit.countryField,
                                 )
                                 .value as String?;
 
