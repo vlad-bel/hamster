@@ -67,6 +67,7 @@ class _AppLogoViewerState extends State<AppLogoViewer> {
                     child: AvatarSelectedPicture(
                       appFile: widget.images[index],
                       onPressed: widget.onPressed,
+                      showEditButton: true,
                     ),
                   );
                 },

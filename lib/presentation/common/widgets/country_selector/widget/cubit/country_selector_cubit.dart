@@ -15,8 +15,8 @@ class CountrySelectorCubit extends Cubit<CountrySelectorState> {
     required this.useCase,
   }) : super(const CountrySelectorState.loading()) {
     countryForm.valueChanges.listen((event) {
-      final filterValue = (event![filterTextfield])! as String;
-      filterCountryList(filterValue);
+      final filterValue = event![filterTextfield];
+      filterCountryList(filterValue.toString());
     });
 
     getCountryList();

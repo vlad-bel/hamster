@@ -34,17 +34,25 @@ class AccountVerificationCheckboxWithButton extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 25),
-        ActionButtonBlue(
-          onPressed: () {
-            SnackBarManager.showSuccess(
-              'Verifikation feature is work in progress',
+        ReactiveFormConsumer(
+          builder: (context, form, child) {
+            return ActionButtonBlue(
+              onPressed: () {
+                SnackBarManager.showSuccess(
+                  AppLocale.of(context).verifikation_wip,
+                );
+              },
+              isEnabled: isActionButtonEnabled(form),
+              width: 580,
+              child: Text(
+                AppLocale.of(context).request_verification.toUpperCase(),
+              ),
             );
           },
-          isEnabled: formGroup.valid,
-          width: 580,
-          child: Text(AppLocale.of(context).request_verification.toUpperCase()),
         ),
       ],
     );
   }
+
+  bool isActionButtonEnabled(FormGroup form) => form.valid && isFullyCompleted;
 }

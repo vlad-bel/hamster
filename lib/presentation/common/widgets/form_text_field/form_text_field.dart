@@ -100,6 +100,10 @@ class _FormTextFieldState extends State<FormTextField>
     if (widget.hintOverlayBuilder != null && _focusListener.hasFocus) {
       showOverlay();
     }
+
+    if (widget.initialText != null) {
+      _controller.text = widget.initialText!;
+    }
   }
 
   OutlineInputBorder get outlineInputBorder => const OutlineInputBorder(

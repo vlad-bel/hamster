@@ -1,6 +1,6 @@
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/company_data_cell.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/company_cell/company_data_cell.dart';
 import 'package:flutter/material.dart';
 
 class BranchProfileCell extends StatelessWidget {
@@ -16,15 +16,7 @@ class BranchProfileCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CompanyCellAvatar(
-          imagePath: [
-            ///TODO remove mock data
-            ///get data from backend
-            'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-            'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-            'https://avavatar.ru/images/avatars/7/avatar_YBlDMPmbBUuzbNcO.jpg',
-          ],
-        ),
+        const CompanyCellAvatar(),
         const SizedBox(width: 16),
         Expanded(
           child: Column(
