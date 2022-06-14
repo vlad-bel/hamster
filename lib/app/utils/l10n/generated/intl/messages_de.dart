@@ -118,9 +118,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "company_profile":
             MessageLookupByLibrary.simpleMessage("Unternehmensprofil"),
         "complete_at_least_one_branch": MessageLookupByLibrary.simpleMessage(
-            "Vervollständigen Sie mindestens ein Filialprofil,\'                   \' welches Ihren Kunden in der HamsterApp angezeigt wird."),
+            "Vervollständigen Sie mindestens ein Filialprofil, welches Ihren Kunden in der HamsterApp angezeigt wird."),
         "complete_your_company_profile": MessageLookupByLibrary.simpleMessage(
-            "Vervollständigen Sie Ihr Unternehmensprofil, damit wir\'                   \' Sie verifizieren können."),
+            "Vervollständigen Sie Ihr Unternehmensprofil, damit wir Sie verifizieren können."),
         "confirmNewPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
             "Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können."),
         "confirmNewPasswordTitle": MessageLookupByLibrary.simpleMessage(
@@ -142,9 +142,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "create_company_profile_descr": MessageLookupByLibrary.simpleMessage(
             "Teilen Sie uns mit, wie Ihr Unternehmen postalisch erreicht werden kann."),
         "create_user_account_subtitle": MessageLookupByLibrary.simpleMessage(
-            "Erstellen Sie einen Nutzeraccount, um einen\'                   \' Zugang zum BusinessTerminal zu erhalten und damit\'                   \' Hamster zu nutzen."),
+            "Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
+        "custom_number": MessageLookupByLibrary.simpleMessage("Kundennummer:"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
         "declined": MessageLookupByLibrary.simpleMessage("Zurückgegangen"),
@@ -372,7 +373,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "we_lack_info": MessageLookupByLibrary.simpleMessage(
             "Ein paar Informationen fehlen uns noch"),
         "we_lack_info_subtitle": MessageLookupByLibrary.simpleMessage(
-            "Die drei nachfolgenden Bedingungen müssen erfüllt\'           \' sein bevor Sie die Verifikation Ihres Unternehmens mit den\'           \'\ndazugehörigen Filialen beantragen können, um in\'           \' der HamsterApp aufgeführt zu werden."),
+            "Die drei nachfolgenden Bedingungen müssen erfüllt sein bevor Sie die Verifikation Ihres Unternehmens mit den\ndazugehörigen Filialen beantragen können, um in der HamsterApp aufgeführt zu werden."),
         "website_if_available":
             MessageLookupByLibrary.simpleMessage("Webseite (falls vorhanden)"),
         "website_valigation": MessageLookupByLibrary.simpleMessage(
