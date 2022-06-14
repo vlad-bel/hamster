@@ -1,5 +1,4 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
-import 'package:business_terminal/presentation/common/widgets/add_logo/add_logo_widget.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
@@ -11,6 +10,7 @@ import 'package:crop_your_image/crop_your_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Page for avatar editing. User can crop existing avatar or upload new
 class EditPersonalAvatarPage extends StatefulWidget {
   const EditPersonalAvatarPage({Key? key}) : super(key: key);
 
