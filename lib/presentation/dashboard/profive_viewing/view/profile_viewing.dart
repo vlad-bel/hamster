@@ -1,6 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/cubit/profile_viewing_cubit.dart';
-import 'package:business_terminal/presentation/dashboard/profive_viewing/view/company_branch_table.dart';
+import 'package:business_terminal/presentation/dashboard/profive_viewing/branch_profile_table/company_branch_table.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/view/company_profile_table.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,7 +46,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
         builder: (context, state) {
           return state.when(
             error: (error) {
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             },
             success: (repCompany, company) {
               return Column(
@@ -56,17 +56,17 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                     company: company,
                   ),
                   const SizedBox(height: 25),
-                  const CompanyBranchTable(),
+                  const BranchProfileTable(),
                 ],
               );
             },
             loading: () {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             },
             initial: () {
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             },
           );
         },

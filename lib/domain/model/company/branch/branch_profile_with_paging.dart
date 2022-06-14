@@ -37,4 +37,9 @@ class BranchProfileWithPaging {
       _$BranchProfileWithPagingFromJson(json);
 
   Map<String, dynamic> toJson() => _$BranchProfileWithPagingToJson(this);
+
+  String getPrintableString() {
+    final branches = data.map((e) => e.toJson().toString()).toList().toString();
+    return branches;
+  }
 }

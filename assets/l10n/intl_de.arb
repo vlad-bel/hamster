@@ -197,6 +197,8 @@
   "choose_background_color": "Wählen Sie die passende Hintergrundfarbe aus.",
   "close": "SchliEßEn",
   "palette": "Farbenskala",
+  "waiting_for_verification": "Warten auf Überprüfung",
+  "declined": "Zurückgegangen",
   "firstName": "Vorname",
   "lastName": "Nachname",
   "phoneNumber": "Telefonnummer",
@@ -237,8 +239,6 @@
   "email_field": "Sollte eine gültige E-Mail sein",
   "notFound": "Nicht gefunden",
   "branch": "Filialen",
-  "waiting_for_verification": "Warten auf Überprüfung",
-  "declined": "Zurückgegangen",
   "custom_number": "Kundennummer:",
   "create_user_account_subtitle": "Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen.",
   "complete_your_company_profile": "Vervollständigen Sie Ihr Unternehmensprofil, damit wir Sie verifizieren können.",
@@ -247,7 +247,7 @@
   "unternehmensprofil_wip": "Unternehmensprofil feature is work in progress",
   "filialprofil_wip": "Filialprofil feature is work in progress",
   "verifikation_wip": "Verifikation feature is work in progress",
-  "to_edit": "BEARBEITEN",
   "we_lack_info": "Ein paar Informationen fehlen uns noch",
-  "we_lack_info_subtitle": "Die drei nachfolgenden Bedingungen müssen erfüllt sein bevor Sie die Verifikation Ihres Unternehmens mit den\ndazugehörigen Filialen beantragen können, um in der HamsterApp aufgeführt zu werden."
+  "we_lack_info_subtitle": "Die drei nachfolgenden Bedingungen müssen erfüllt sein bevor Sie die Verifikation Ihres Unternehmens mit den\ndazugehörigen Filialen beantragen können, um in der HamsterApp aufgeführt zu werden.",
+  "to_edit": "BEARBEITEN"
 }

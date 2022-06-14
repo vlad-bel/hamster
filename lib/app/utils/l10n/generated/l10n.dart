@@ -1940,16 +1940,6 @@ class S {
     );
   }
 
-  /// `Der eingegebene Code war ungültig.`
-  String get forgetPasswordCodeIncorrect {
-    return Intl.message(
-      'Der eingegebene Code war ungültig.',
-      name: 'forgetPasswordCodeIncorrect',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Should not contain special characters`
   String get shouldNotContainSpecialCharacters {
     return Intl.message(
@@ -2090,6 +2080,16 @@ class S {
     );
   }
 
+  /// `Custom number:`
+  String get custom_number {
+    return Intl.message(
+      'Custom number:',
+      name: 'custom_number',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Not found`
   String get notFound {
     return Intl.message(
@@ -2110,50 +2110,40 @@ class S {
     );
   }
 
-  /// `Zurückgegangen`
+  /// `Declined`
   String get declined {
     return Intl.message(
-      'Zurückgegangen',
+      'Declined',
       name: 'declined',
       desc: '',
       args: [],
     );
   }
 
-  /// `Kundennummer:`
-  String get custom_number {
-    return Intl.message(
-      'Kundennummer:',
-      name: 'custom_number',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen.`
+  /// `Erstellen Sie einen Nutzeraccount, um einen'                   ' Zugang zum BusinessTerminal zu erhalten und damit'                   ' Hamster zu nutzen.`
   String get create_user_account_subtitle {
     return Intl.message(
-      'Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen.',
+      'Erstellen Sie einen Nutzeraccount, um einen\'                   \' Zugang zum BusinessTerminal zu erhalten und damit\'                   \' Hamster zu nutzen.',
       name: 'create_user_account_subtitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Vervollständigen Sie Ihr Unternehmensprofil, damit wir Sie verifizieren können.`
+  /// `Vervollständigen Sie Ihr Unternehmensprofil, damit wir'                   ' Sie verifizieren können.`
   String get complete_your_company_profile {
     return Intl.message(
-      'Vervollständigen Sie Ihr Unternehmensprofil, damit wir Sie verifizieren können.',
+      'Vervollständigen Sie Ihr Unternehmensprofil, damit wir\'                   \' Sie verifizieren können.',
       name: 'complete_your_company_profile',
       desc: '',
       args: [],
     );
   }
 
-  /// `Vervollständigen Sie mindestens ein Filialprofil, welches Ihren Kunden in der HamsterApp angezeigt wird.`
+  /// `Vervollständigen Sie mindestens ein Filialprofil,'                   ' welches Ihren Kunden in der HamsterApp angezeigt wird.`
   String get complete_at_least_one_branch {
     return Intl.message(
-      'Vervollständigen Sie mindestens ein Filialprofil, welches Ihren Kunden in der HamsterApp angezeigt wird.',
+      'Vervollständigen Sie mindestens ein Filialprofil,\'                   \' welches Ihren Kunden in der HamsterApp angezeigt wird.',
       name: 'complete_at_least_one_branch',
       desc: '',
       args: [],
@@ -2200,16 +2190,6 @@ class S {
     );
   }
 
-  /// `BEARBEITEN`
-  String get to_edit {
-    return Intl.message(
-      'BEARBEITEN',
-      name: 'to_edit',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Ein paar Informationen fehlen uns noch`
   String get we_lack_info {
     return Intl.message(
@@ -2225,6 +2205,16 @@ class S {
     return Intl.message(
       'Die drei nachfolgenden Bedingungen müssen erfüllt sein bevor Sie die Verifikation Ihres Unternehmens mit den\ndazugehörigen Filialen beantragen können, um in der HamsterApp aufgeführt zu werden.',
       name: 'we_lack_info_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BEARBEITEN`
+  String get to_edit {
+    return Intl.message(
+      'BEARBEITEN',
+      name: 'to_edit',
       desc: '',
       args: [],
     );
