@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Administration"),
         "ass": MessageLookupByLibrary.simpleMessage("as"),
         "base_data": MessageLookupByLibrary.simpleMessage("Base data"),
+        "branch": MessageLookupByLibrary.simpleMessage("Filialen"),
         "branch_category":
             MessageLookupByLibrary.simpleMessage("Store Categories"),
         "branch_equipment":
@@ -139,7 +140,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Erstellen Sie einen Nutzeraccount, um einen\'                   \' Zugang zum BusinessTerminal zu erhalten und damit\'                   \' Hamster zu nutzen."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
-        "custom_number": MessageLookupByLibrary.simpleMessage("Custom number:"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
         "declined": MessageLookupByLibrary.simpleMessage("Declined"),
@@ -177,6 +177,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
             "For credits and regular billing, we still need your bank details and consent to the direct debit procedure"),
+        "forgetPasswordCodeIncorrect": MessageLookupByLibrary.simpleMessage(
+            "Der eingegebene Code war ungültig."),
         "forgetPasswordPhoneCallSubtitle1": MessageLookupByLibrary.simpleMessage(
             "Sie erhalten gleich einen Anruf mit automatischer Sprachansage auf der mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpften Nummer"),
         "forgetPasswordPhoneCallSubtitle2": MessageLookupByLibrary.simpleMessage(

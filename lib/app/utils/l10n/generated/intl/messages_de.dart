@@ -72,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Administration"),
         "ass": MessageLookupByLibrary.simpleMessage("as"),
         "base_data": MessageLookupByLibrary.simpleMessage("Stammdaten"),
+        "branch": MessageLookupByLibrary.simpleMessage("Filialen"),
         "branch_category":
             MessageLookupByLibrary.simpleMessage("Filialkategorien"),
         "branch_equipment":
@@ -97,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ersetzen Sie nun ihr altes, ausgedientes Passwort durch ein neues, um die Sicherheit Ihres Accounts zu wahren"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Passwort ändern"),
+        "choose_background_color": MessageLookupByLibrary.simpleMessage(
+            "Wählen Sie die passende Hintergrundfarbe aus."),
         "choose_main_category": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie eine Hauptkategorie aus."),
         "choose_main_category_descr": MessageLookupByLibrary.simpleMessage(
@@ -142,7 +145,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Erstellen Sie einen Nutzeraccount, um einen\'                   \' Zugang zum BusinessTerminal zu erhalten und damit\'                   \' Hamster zu nutzen."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
-        "custom_number": MessageLookupByLibrary.simpleMessage("Kundennummer:"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
         "declined": MessageLookupByLibrary.simpleMessage("Zurückgegangen"),
@@ -152,6 +154,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sie beabsichtigen Ihre E-Mail-Adresse zu ändern?"),
         "editYourProfilePhoto": MessageLookupByLibrary.simpleMessage(
             "Bearbeiten Sie Ihr Profilfoto."),
+        "edit_company_logo": MessageLookupByLibrary.simpleMessage(
+            "Bearbeiten Sie Ihr Unternehmenslogo."),
         "edit_photo": MessageLookupByLibrary.simpleMessage(
             "Bearbeiten Sie Ihr Profilfoto."),
         "edit_photo_descr": MessageLookupByLibrary.simpleMessage(
@@ -265,6 +269,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "opens": MessageLookupByLibrary.simpleMessage("Öffnet"),
         "otpCodeIncorrect": MessageLookupByLibrary.simpleMessage(
             "Der eingegebene Code war ungültig."),
+        "palette": MessageLookupByLibrary.simpleMessage("Farbenskala"),
         "password": MessageLookupByLibrary.simpleMessage("Passwort"),
         "passwordChanged":
             MessageLookupByLibrary.simpleMessage("Passwort geändert."),
