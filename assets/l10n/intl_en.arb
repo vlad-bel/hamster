@@ -240,15 +240,16 @@
   "branch": "Filialen",
   "notFound" : "Not found",
   "waiting_for_verification": "Waiting for verification",
-  "declined": "Declined",
-  "create_user_account_subtitle": "Erstellen Sie einen Nutzeraccount, um einen'                   ' Zugang zum BusinessTerminal zu erhalten und damit'                   ' Hamster zu nutzen.",
-  "complete_your_company_profile": "Vervollständigen Sie Ihr Unternehmensprofil, damit wir'                   ' Sie verifizieren können.",
-  "complete_at_least_one_branch": "Vervollständigen Sie mindestens ein Filialprofil,'                   ' welches Ihren Kunden in der HamsterApp angezeigt wird.",
+  "declined": "Zurückgegangen",
+  "custom_number": "Kundennummer:",
+  "create_user_account_subtitle": "Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen.",
+  "complete_your_company_profile": "Vervollständigen Sie Ihr Unternehmensprofil, damit wir Sie verifizieren können.",
+  "complete_at_least_one_branch": "Vervollständigen Sie mindestens ein Filialprofil, welches Ihren Kunden in der HamsterApp angezeigt wird.",
   "nutzeraccount_wip": "Nutzeraccount feature is work in progress",
   "unternehmensprofil_wip": "Unternehmensprofil feature is work in progress",
   "filialprofil_wip": "Filialprofil feature is work in progress",
   "verifikation_wip": "Verifikation feature is work in progress",
+  "to_edit": "BEARBEITEN",
   "we_lack_info": "Ein paar Informationen fehlen uns noch",
-  "we_lack_info_subtitle": "Die drei nachfolgenden Bedingungen müssen erfüllt'           ' sein bevor Sie die Verifikation Ihres Unternehmens mit den'           '\ndazugehörigen Filialen beantragen können, um in'           ' der HamsterApp aufgeführt zu werden.",
-  "to_edit": "BEARBEITEN"
+  "we_lack_info_subtitle": "Die drei nachfolgenden Bedingungen müssen erfüllt sein bevor Sie die Verifikation Ihres Unternehmens mit den\ndazugehörigen Filialen beantragen können, um in der HamsterApp aufgeführt zu werden."
 }
