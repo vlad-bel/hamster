@@ -10,7 +10,7 @@ class AddOpeningHoursFormSettings {
   static const _openCloseError = 'open_close_error';
   static const _rangesCollideError = 'range_collide_error';
 
-  static const _timeFormat = r'[0-2][0-9]:[0-5][\d]';
+  static const _timeFormat = r'^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$';
   static const _timePattern = 'HH:mm';
 
   final openFields = <String>[];

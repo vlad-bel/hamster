@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/domain/temp/days_hours.dart';
-import 'package:business_terminal/presentation/pick_day/form_validation/pick_day_form_validation.dart';
+import 'package:business_terminal/presentation/opening_hours/pick_day/form_validation/pick_day_form_validation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -12,7 +12,14 @@ part 'pick_day_cubit.freezed.dart';
 
 @injectable
 class PickDayCubit extends Cubit<PickDayState> {
-  PickDayCubit() : super(PickDayState.initial(hours: DaysHours.empty()));
+  PickDayCubit()
+      : super(
+          PickDayState.initial(
+            hours: DaysHours.empty(),
+            modified: false,
+            allUnchecked: true,
+          ),
+        );
 
   final formSettings = PickDayFormSettings();
 
@@ -26,8 +33,22 @@ class PickDayCubit extends Cubit<PickDayState> {
   /// Skip next untick when need to change only select all state
   bool skipNextUntick = false;
 
-  bool get needSetupSubs =>
-      selectAllSubscription == null || checkboxesSubscription == null;
+  void checkCheckboxes() {
+    var allUnchecked = true;
+    for (final element in formSettings.formGroup.controls.values) {
+      if (element.value as bool) {
+        allUnchecked = false;
+      }
+    }
+
+    if (state.allUnchecked != allUnchecked) {
+      emit(
+        state.copyWith(
+          allUnchecked: allUnchecked,
+        ),
+      );
+    }
+  }
 
   @override
   Future<void> close() {
@@ -37,6 +58,8 @@ class PickDayCubit extends Cubit<PickDayState> {
   }
 
   void setupSubs(FormGroup formGroup) {
+    if (selectAllSubscription != null) return;
+
     selectAllSubscription = (formGroup
             .control(PickDayFormSettings.selectAllField)
             .valueChanges as Stream<bool?>)
@@ -54,14 +77,14 @@ class PickDayCubit extends Cubit<PickDayState> {
         }
         skipNextUntick = false;
       }
-      Timer(Duration(milliseconds: 30), () {
+      Timer(const Duration(milliseconds: 30), () {
         lockTicking = false;
       });
     });
 
-    checkboxesSubscription = (formGroup.valueChanges.map((event) =>
-            event!.map((key, value) => MapEntry(key, value as bool))))
-        .listen((event) {
+    checkboxesSubscription = (formGroup.valueChanges.map(
+      (event) => event!.map((key, value) => MapEntry(key, value as bool)),
+    )).listen((event) {
       if (lockTicking) return;
 
       var counterWeek = 0;
@@ -79,13 +102,15 @@ class PickDayCubit extends Cubit<PickDayState> {
       if (counterWeek > 6) {
         formGroup.control(PickDayFormSettings.selectAllField).value = true;
       }
+
+      checkCheckboxes();
     });
   }
 
   void setInitialHours(DaysHours? hours) {
     if (hours == null) return;
 
-    emit(state.copyWith(hours: state.hours));
+    emit(state.copyWith(hours: hours));
   }
 
   void setOpeningHours({
@@ -103,12 +128,11 @@ class PickDayCubit extends Cubit<PickDayState> {
       }
     }
 
-    state.whenOrNull(
-      initial: (
-        oldHours,
-      ) {
-        emit(state.copyWith(hours: state.hours));
-      },
+    emit(
+      state.copyWith(
+        hours: state.hours,
+        modified: true,
+      ),
     );
     formSettings.formGroup.forEachChild((checkbox) {
       checkbox.value = false;
@@ -162,6 +186,9 @@ class PickDayCubit extends Cubit<PickDayState> {
 
 @freezed
 class PickDayState with _$PickDayState {
-  const factory PickDayState.initial({required DaysHours hours}) =
-      InitialPickDay;
+  const factory PickDayState.initial({
+    required DaysHours hours,
+    required bool modified,
+    required bool allUnchecked,
+  }) = InitialPickDay;
 }
