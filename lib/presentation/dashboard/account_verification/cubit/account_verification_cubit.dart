@@ -38,11 +38,12 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
         repCompany: repCompany,
         branchProfilesList: branchProfiles,
       );
+      final isComplete = isFullyCompleted(repCompany);
       state.whenOrNull(
         initial: (isFullyCompleted, __, ___, ____) {
           emit(
             VerifyAccountState.initial(
-              isFullyCompleted: isFullyCompleted,
+              isFullyCompleted: isComplete,
               progressUserAccount: repCompany.rep?.fillingProgress,
               progressCompanyProfile:
                   repCompany.company?.fillingProgress != null

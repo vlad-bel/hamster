@@ -261,7 +261,7 @@ class S {
   }
 
   /// `Number: {number}`
-  String branch_id(Object number) {
+  String branch_id(int number) {
     return Intl.message(
       'Number: $number',
       name: 'branch_id',
@@ -691,7 +691,7 @@ class S {
   }
 
   /// `Entrance doors amount {number}`
-  String entrances_count(Object number) {
+  String entrances_count(int number) {
     return Intl.message(
       'Entrance doors amount $number',
       name: 'entrances_count',
@@ -701,7 +701,7 @@ class S {
   }
 
   /// `{number} Tills`
-  String tills_count(Object number) {
+  String tills_count(int number) {
     return Intl.message(
       '$number Tills',
       name: 'tills_count',
@@ -1051,7 +1051,7 @@ class S {
   }
 
   /// `Minimum number {length} characters`
-  String min_number(Object length) {
+  String min_number(int length) {
     return Intl.message(
       'Minimum number $length characters',
       name: 'min_number',
@@ -1071,7 +1071,7 @@ class S {
   }
 
   /// `Maximum number {length} characters`
-  String max_number(Object length) {
+  String max_number(int length) {
     return Intl.message(
       'Maximum number $length characters',
       name: 'max_number',
@@ -2105,6 +2105,106 @@ class S {
     return Intl.message(
       'Declined',
       name: 'declined',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Erstellen Sie einen Nutzeraccount, um einen'                   ' Zugang zum BusinessTerminal zu erhalten und damit'                   ' Hamster zu nutzen.`
+  String get create_user_account_subtitle {
+    return Intl.message(
+      'Erstellen Sie einen Nutzeraccount, um einen\'                   \' Zugang zum BusinessTerminal zu erhalten und damit\'                   \' Hamster zu nutzen.',
+      name: 'create_user_account_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vervollständigen Sie Ihr Unternehmensprofil, damit wir'                   ' Sie verifizieren können.`
+  String get complete_your_company_profile {
+    return Intl.message(
+      'Vervollständigen Sie Ihr Unternehmensprofil, damit wir\'                   \' Sie verifizieren können.',
+      name: 'complete_your_company_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vervollständigen Sie mindestens ein Filialprofil,'                   ' welches Ihren Kunden in der HamsterApp angezeigt wird.`
+  String get complete_at_least_one_branch {
+    return Intl.message(
+      'Vervollständigen Sie mindestens ein Filialprofil,\'                   \' welches Ihren Kunden in der HamsterApp angezeigt wird.',
+      name: 'complete_at_least_one_branch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nutzeraccount feature is work in progress`
+  String get nutzeraccount_wip {
+    return Intl.message(
+      'Nutzeraccount feature is work in progress',
+      name: 'nutzeraccount_wip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unternehmensprofil feature is work in progress`
+  String get unternehmensprofil_wip {
+    return Intl.message(
+      'Unternehmensprofil feature is work in progress',
+      name: 'unternehmensprofil_wip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filialprofil feature is work in progress`
+  String get filialprofil_wip {
+    return Intl.message(
+      'Filialprofil feature is work in progress',
+      name: 'filialprofil_wip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verifikation feature is work in progress`
+  String get verifikation_wip {
+    return Intl.message(
+      'Verifikation feature is work in progress',
+      name: 'verifikation_wip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ein paar Informationen fehlen uns noch`
+  String get we_lack_info {
+    return Intl.message(
+      'Ein paar Informationen fehlen uns noch',
+      name: 'we_lack_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Die drei nachfolgenden Bedingungen müssen erfüllt'           ' sein bevor Sie die Verifikation Ihres Unternehmens mit den'           '\ndazugehörigen Filialen beantragen können, um in'           ' der HamsterApp aufgeführt zu werden.`
+  String get we_lack_info_subtitle {
+    return Intl.message(
+      'Die drei nachfolgenden Bedingungen müssen erfüllt\'           \' sein bevor Sie die Verifikation Ihres Unternehmens mit den\'           \'\ndazugehörigen Filialen beantragen können, um in\'           \' der HamsterApp aufgeführt zu werden.',
+      name: 'we_lack_info_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BEARBEITEN`
+  String get to_edit {
+    return Intl.message(
+      'BEARBEITEN',
+      name: 'to_edit',
       desc: '',
       args: [],
     );

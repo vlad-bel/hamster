@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -110,6 +111,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "company_name": MessageLookupByLibrary.simpleMessage("Company name"),
         "company_profile":
             MessageLookupByLibrary.simpleMessage("Company profile"),
+        "complete_at_least_one_branch": MessageLookupByLibrary.simpleMessage(
+            "Vervollständigen Sie mindestens ein Filialprofil,\'                   \' welches Ihren Kunden in der HamsterApp angezeigt wird."),
+        "complete_your_company_profile": MessageLookupByLibrary.simpleMessage(
+            "Vervollständigen Sie Ihr Unternehmensprofil, damit wir\'                   \' Sie verifizieren können."),
         "confirmNewPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
             "Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können."),
         "confirmNewPasswordTitle": MessageLookupByLibrary.simpleMessage(
@@ -130,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Create your company profile."),
         "create_company_profile_descr": MessageLookupByLibrary.simpleMessage(
             "Let us know how your company can be reached by post."),
+        "create_user_account_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Erstellen Sie einen Nutzeraccount, um einen\'                   \' Zugang zum BusinessTerminal zu erhalten und damit\'                   \' Hamster zu nutzen."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
         "custom_number": MessageLookupByLibrary.simpleMessage("Custom number:"),
@@ -163,6 +170,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Falsches Passwort"),
         "file_size_validation": MessageLookupByLibrary.simpleMessage(
             "The image should be in PNG, JPEG, BMP format and no larger than 10Mb"),
+        "filialprofil_wip": MessageLookupByLibrary.simpleMessage(
+            "Filialprofil feature is work in progress"),
         "finance": MessageLookupByLibrary.simpleMessage("Finance"),
         "finance1": MessageLookupByLibrary.simpleMessage("Finance1"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
@@ -251,6 +260,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Number of store entrances"),
         "number_of_registers":
             MessageLookupByLibrary.simpleMessage("Number of registers"),
+        "nutzeraccount_wip": MessageLookupByLibrary.simpleMessage(
+            "Nutzeraccount feature is work in progress"),
         "opening_hours": MessageLookupByLibrary.simpleMessage("Opening hours"),
         "opens": MessageLookupByLibrary.simpleMessage("Opens"),
         "otpCodeIncorrect": MessageLookupByLibrary.simpleMessage(
@@ -334,8 +345,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "till": MessageLookupByLibrary.simpleMessage("Till"),
         "tills": MessageLookupByLibrary.simpleMessage("Tills"),
         "tills_count": m6,
+        "to_edit": MessageLookupByLibrary.simpleMessage("BEARBEITEN"),
         "to_save": MessageLookupByLibrary.simpleMessage("TO SAVE"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
+        "unternehmensprofil_wip": MessageLookupByLibrary.simpleMessage(
+            "Unternehmensprofil feature is work in progress"),
         "user": MessageLookupByLibrary.simpleMessage("USER"),
         "user_account": MessageLookupByLibrary.simpleMessage("User account"),
         "user_account_created":
@@ -346,9 +360,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("User Management"),
         "vat_id": MessageLookupByLibrary.simpleMessage("VAT ID (if available)"),
         "verified": MessageLookupByLibrary.simpleMessage("Verified"),
+        "verifikation_wip": MessageLookupByLibrary.simpleMessage(
+            "Verifikation feature is work in progress"),
         "visible": MessageLookupByLibrary.simpleMessage("Visible"),
         "waiting_for_verification":
             MessageLookupByLibrary.simpleMessage("Waiting for verification"),
+        "we_lack_info": MessageLookupByLibrary.simpleMessage(
+            "Ein paar Informationen fehlen uns noch"),
+        "we_lack_info_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Die drei nachfolgenden Bedingungen müssen erfüllt\'           \' sein bevor Sie die Verifikation Ihres Unternehmens mit den\'           \'\ndazugehörigen Filialen beantragen können, um in\'           \' der HamsterApp aufgeführt zu werden."),
         "website_if_available":
             MessageLookupByLibrary.simpleMessage("Website (if any)"),
         "website_valigation": MessageLookupByLibrary.simpleMessage(
