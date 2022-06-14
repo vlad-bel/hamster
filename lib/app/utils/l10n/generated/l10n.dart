@@ -1940,6 +1940,16 @@ class S {
     );
   }
 
+  /// `Der eingegebene Code war ungültig.`
+  String get forgetPasswordCodeIncorrect {
+    return Intl.message(
+      'Der eingegebene Code war ungültig.',
+      name: 'forgetPasswordCodeIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Should not contain special characters`
   String get shouldNotContainSpecialCharacters {
     return Intl.message(
@@ -2070,11 +2080,11 @@ class S {
     );
   }
 
-  /// `Custom number:`
-  String get custom_number {
+  /// `Filialen`
+  String get branch {
     return Intl.message(
-      'Custom number:',
-      name: 'custom_number',
+      'Filialen',
+      name: 'branch',
       desc: '',
       args: [],
     );
