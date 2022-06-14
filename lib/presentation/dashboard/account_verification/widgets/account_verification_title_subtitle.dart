@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -11,15 +12,12 @@ class AccountVerificationTitleSubtitle extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'Ein paar Informationen fehlen uns noch',
+          AppLocale.of(context).we_lack_info,
           style: inter20,
         ),
         const SizedBox(height: 30),
         Text(
-          'Die drei nachfolgenden Bedingungen müssen erfüllt'
-          ' sein bevor Sie die Verifikation Ihres Unternehmens mit den'
-          '\ndazugehörigen Filialen beantragen können, um in'
-          ' der HamsterApp aufgeführt zu werden.',
+          AppLocale.of(context).we_lack_info_subtitle,
           style: inter14,
           textAlign: TextAlign.center,
         ),

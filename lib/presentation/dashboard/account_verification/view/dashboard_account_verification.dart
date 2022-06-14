@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../../../../app/utils/l10n/l10n_service.dart';
+
 class DashboardAccountVerificationPage extends StatelessWidget {
   const DashboardAccountVerificationPage({super.key});
 
@@ -86,13 +88,11 @@ class _AccountVerificationContent extends StatelessWidget {
             DashboardProfileFeelUpPercentsBox(
               percentsProgress: progressUserAccount,
               imagePath: Assets.imagesUserAccount,
-              title: 'Nutzeraccount',
-              subTitle: 'Erstellen Sie einen Nutzeraccount, um einen'
-                  ' Zugang zum BusinessTerminal zu erhalten und damit'
-                  ' Hamster zu nutzen.',
+              title: AppLocale.of(context).user_account,
+              subTitle: AppLocale.of(context).create_user_account_subtitle,
               onPressed: () {
                 SnackBarManager.showSuccess(
-                  'Nutzeraccount feature is work in progress',
+                  AppLocale.of(context).nutzeraccount_wip,
                 );
               },
             ),
@@ -100,12 +100,11 @@ class _AccountVerificationContent extends StatelessWidget {
             DashboardProfileFeelUpPercentsBox(
               percentsProgress: progressCompanyProfile,
               imagePath: Assets.imagesCompanyProfile,
-              title: 'Unternehmensprofil',
-              subTitle: 'Vervollständigen Sie Ihr Unternehmensprofil, damit wir'
-                  ' Sie verifizieren können.',
+              title: AppLocale.of(context).company_profile,
+              subTitle: AppLocale.of(context).complete_your_company_profile,
               onPressed: () {
                 SnackBarManager.showSuccess(
-                  'Unternehmensprofil feature is work in progress',
+                  AppLocale.of(context).unternehmensprofil_wip,
                 );
               },
             ),
@@ -113,12 +112,11 @@ class _AccountVerificationContent extends StatelessWidget {
             DashboardProfileFeelUpPercentsBox(
               percentsProgress: progressBranchProfile,
               imagePath: Assets.imagesBranchProfile,
-              title: 'Filialprofil',
-              subTitle: 'Vervollständigen Sie mindestens ein Filialprofil,'
-                  ' welches Ihren Kunden in der HamsterApp angezeigt wird.',
+              title: AppLocale.of(context).branch_profile,
+              subTitle: AppLocale.of(context).complete_at_least_one_branch,
               onPressed: () {
                 SnackBarManager.showSuccess(
-                  'Filialprofil feature is work in progress',
+                  AppLocale.of(context).filialprofil_wip,
                 );
               },
             ),
@@ -135,7 +133,7 @@ class _AccountVerificationContent extends StatelessWidget {
             return AccountVerificationCheckboxWithButton(
               checkboxName: DashboardFormValidation.acceptCheckBox,
               formGroup: formGroup,
-              isFullyCompleted: true, //isFullyCompleted ?? false,
+              isFullyCompleted: isFullyCompleted ?? false,
             );
           },
         ),

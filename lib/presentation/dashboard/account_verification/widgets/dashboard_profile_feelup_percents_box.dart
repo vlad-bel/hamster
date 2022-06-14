@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/registration/widgets/simple_button_light_blue.dart';
@@ -70,7 +71,7 @@ class DashboardProfileFeelUpPercentsBox extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 SimpleButtonLightBlue(
-                  text: 'BEARBEITEN',
+                  text: AppLocale.of(context).to_edit,
                   onPressed: onPressed,
                   isEnabled: true,
                 ),
