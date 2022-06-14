@@ -32,7 +32,7 @@ class CompanyCell extends StatelessWidget {
             children: [
               Text(
                 repCompany.company?.companyName ?? '',
-                style: inter14Medium,
+                style: inter14Semibold,
               ),
               Text(
                 repCompany.getFullAddress(),

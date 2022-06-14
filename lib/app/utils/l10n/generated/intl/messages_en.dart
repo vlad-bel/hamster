@@ -113,9 +113,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "company_profile":
             MessageLookupByLibrary.simpleMessage("Company profile"),
         "complete_at_least_one_branch": MessageLookupByLibrary.simpleMessage(
-            "Vervollständigen Sie mindestens ein Filialprofil, welches Ihren Kunden in der HamsterApp angezeigt wird."),
+            "Vervollständigen Sie mindestens ein Filialprofil,\'                   \' welches Ihren Kunden in der HamsterApp angezeigt wird."),
         "complete_your_company_profile": MessageLookupByLibrary.simpleMessage(
-            "Vervollständigen Sie Ihr Unternehmensprofil, damit wir Sie verifizieren können."),
+            "Vervollständigen Sie Ihr Unternehmensprofil, damit wir\'                   \' Sie verifizieren können."),
         "confirmNewPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
             "Ersetzen Sie nun Ihr altes, ausgedientes Passwort durch ein neues, um wieder ohne Probleme auf Ihren Account zugreifen zu können."),
         "confirmNewPasswordTitle": MessageLookupByLibrary.simpleMessage(
@@ -137,13 +137,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "create_company_profile_descr": MessageLookupByLibrary.simpleMessage(
             "Let us know how your company can be reached by post."),
         "create_user_account_subtitle": MessageLookupByLibrary.simpleMessage(
-            "Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen."),
+            "Erstellen Sie einen Nutzeraccount, um einen\'                   \' Zugang zum BusinessTerminal zu erhalten und damit\'                   \' Hamster zu nutzen."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
-        "custom_number": MessageLookupByLibrary.simpleMessage("Kundennummer:"),
+        "custom_number": MessageLookupByLibrary.simpleMessage("Custom number:"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
-        "declined": MessageLookupByLibrary.simpleMessage("Zurückgegangen"),
+        "declined": MessageLookupByLibrary.simpleMessage("Declined"),
         "did_not_have_account": MessageLookupByLibrary.simpleMessage(
             "You don\'t have a business terminal account yet?"),
         "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
@@ -178,8 +178,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "for_credits_and_regular_billing": MessageLookupByLibrary.simpleMessage(
             "For credits and regular billing, we still need your bank details and consent to the direct debit procedure"),
-        "forgetPasswordCodeIncorrect": MessageLookupByLibrary.simpleMessage(
-            "Der eingegebene Code war ungültig."),
         "forgetPasswordPhoneCallSubtitle1": MessageLookupByLibrary.simpleMessage(
             "Sie erhalten gleich einen Anruf mit automatischer Sprachansage auf der mit dem Nutzeraccount, beispiel@unternehmen.de, verknüpften Nummer"),
         "forgetPasswordPhoneCallSubtitle2": MessageLookupByLibrary.simpleMessage(
