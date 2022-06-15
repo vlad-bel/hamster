@@ -248,6 +248,8 @@ class AuthorizedState extends AppState {
           },
         );
 
+  static final appStorageService = getIt.get<AppStorageService>();
+
   static PageRouteBuilder<T> _buildHamsterPage<T>(
     Widget? page,
     RouteSettings settings,
@@ -264,6 +266,4 @@ class AuthorizedState extends AppState {
       settings: settings,
     );
   }
-
-  static final appStorageService = getIt.get<AppStorageService>();
 }

@@ -102,6 +102,15 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
                         selectedRoute: widget.selectedPage,
                         routeName: '/administration/user_management',
                       ),
+                      MenuSubItem(
+                        index: 1,
+                        name: 'Kassenanbindung',
+                        onTap: (index, routeName) {
+                          widget.navigateTo(index, routeName);
+                        },
+                        selectedRoute: widget.selectedPage,
+                        routeName: posOverviewPath,
+                      ),
                     ],
                   );
                 },
