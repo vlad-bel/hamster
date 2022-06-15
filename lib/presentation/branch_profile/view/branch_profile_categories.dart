@@ -18,7 +18,7 @@ class BranchProfileCategories extends StatelessWidget {
     context.read<SubcategoriesCubit>().loadCategories();
     return BlocBuilder<BranchProfileCubit, BranchProfileState>(
       builder: (context, state) {
-        if (state.category != null && state.subcategories != null) {
+        if (state.category != null) {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

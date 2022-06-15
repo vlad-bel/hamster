@@ -145,7 +145,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
         '${company.iban}',
       );
       final addedImages = <AppColoredFile>[];
-      for (final logo in company.logos ?? <CompanyLogo>[]) {
+      /*for (final logo in company.logos ?? <CompanyLogo>[]) {
         if (logo.fileName != null) {
           try {
             addedImages.add(
@@ -160,7 +160,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
             log('Error is $e, StackTrace is $s');
           }
         }
-      }
+      }*/
       if (addedImages.isNotEmpty) {
         addImages(
           addedImages,

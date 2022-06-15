@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:business_terminal/presentation/add_opening_hours/form_validation/add_opening_hours_form_validation.dart';
+import 'package:business_terminal/presentation/opening_hours/add_opening_hours/form_validation/add_opening_hours_form_validation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';

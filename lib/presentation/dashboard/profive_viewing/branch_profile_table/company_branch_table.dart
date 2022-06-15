@@ -1,12 +1,12 @@
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
-import 'package:business_terminal/presentation/dashboard/profive_viewing/widget/company_branch_table_with_data.dart';
+import 'package:business_terminal/presentation/dashboard/profive_viewing/branch_profile_table/company_branch_table_with_data.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/widget/profile_view_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CompanyBranchTable extends StatelessWidget {
-  const CompanyBranchTable({super.key});
+class BranchProfileTable extends StatelessWidget {
+  const BranchProfileTable({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +15,9 @@ class CompanyBranchTable extends StatelessWidget {
         builder: (context, state) {
           return state.when(
             init: (state) {
-              // TODO: fetch branchProfile and put here
-              return CompanyBranchTableWithData(
+              return BranchProfileTableWithData(
                 repCompany: state.repCompany,
-                branchProfile: state.branchProfilesList,
+                branchProfiles: state.branchProfilesList,
               );
             },
             error: error,
@@ -29,6 +28,6 @@ class CompanyBranchTable extends StatelessWidget {
   }
 
   Widget error(testCount, finansenOpen, administrationOpen, repCompany) {
-    return Center(child: Text('CompanyBranchTable -> DashboardCubit Error'));
+    return const Center(child: Text('CompanyBranchTable -> DashboardCubit Error'));
   }
 }

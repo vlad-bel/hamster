@@ -113,7 +113,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
   }
 }
 
-class _Selector extends StatelessWidget {
+class _Selector extends StatefulWidget {
   const _Selector({
     required this.overlayEntry,
     required this.layerLink,
@@ -134,31 +134,43 @@ class _Selector extends StatelessWidget {
   final String? label;
   final bool readOnly;
 
+  @override
+  State<_Selector> createState() => _SelectorState();
+}
+
+class _SelectorState extends State<_Selector> {
   int _getPhoneLenghtString(int numLength) {
-    return numLength - (selectedCountry?.phone.length ?? 0);
+    return numLength - (widget.selectedCountry?.phone.length ?? 0);
   }
+
+  final focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
+    final numberPrefix = NumberPrefix(
+      country: widget.selectedCountry,
+      onTap: widget.loading
+          ? null
+          : () {
+              widget.showOverlay(selectedCountry: widget.selectedCountry!);
+            },
+    );
     return CompositedTransformTarget(
-      link: layerLink,
+      link: widget.layerLink,
       child: FormTextField(
         name: CountryCodeSelectorCubit.numberTextfield,
         counter: const SizedBox(),
-        label: label,
-        customPrefix: selectedCountry != null
-            ? NumberPrefix(
-                country: selectedCountry!,
-                onTap: loading
-                    ? null
-                    : () {
-                        showOverlay(selectedCountry: selectedCountry!);
-                      },
+        label: widget.label,
+        focusListener: focusNode,
+        prefixIcon: widget.selectedCountry != null
+            ? Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: numberPrefix,
               )
             : null,
-        customSuffix: selectedCountry == null
+        customSuffix: widget.selectedCountry == null
             ? Icon(
-                state.runtimeType == CountryCodeSelectorState
+                widget.state.runtimeType == CountryCodeSelectorState
                     ? Icons.keyboard_arrow_down_rounded
                     : Icons.keyboard_arrow_up_rounded,
                 size: 16,
@@ -166,7 +178,7 @@ class _Selector extends StatelessWidget {
               )
             : null,
         hint: AppLocale.of(context).select_country_code,
-        readOnly: readOnly || selectedCountry == null,
+        readOnly: widget.readOnly || widget.selectedCountry == null,
         keyboardType: TextInputType.phone,
         inputFormatters: <TextInputFormatter>[
           FilteringTextInputFormatter.allow(RegExp('[0-9]')),
@@ -180,11 +192,11 @@ class _Selector extends StatelessWidget {
             _getPhoneLenghtString(10),
           ),
         },
-        onTap: loading
+        onTap: widget.loading
             ? null
             : () {
-                if (selectedCountry == null) {
-                  showOverlay();
+                if (widget.selectedCountry == null) {
+                  widget.showOverlay();
                 }
               },
       ),

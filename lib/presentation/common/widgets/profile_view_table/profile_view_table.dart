@@ -1,6 +1,6 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/header_cell.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/header_cell/header_cell.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/profile_view_table_row.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -70,17 +70,17 @@ class _ProfileViewTableState extends State<ProfileViewTable> {
             name: AppLocale.of(context).connection,
             sortable: widget.sortable,
           ),
+          size: ColumnSize.L,
         ),
         DataColumn2(
           label: HeaderCell(
             name: AppLocale.of(context).status,
             sortable: widget.sortable,
           ),
-          size: ColumnSize.S,
         ),
-        DataColumn2(
+        const DataColumn2(
           label: Text(''),
-          size: ColumnSize.S,
+          fixedWidth: 64,
         ),
       ],
       rows: List<DataRow>.generate(
@@ -90,3 +90,6 @@ class _ProfileViewTableState extends State<ProfileViewTable> {
     );
   }
 }
+
+
+

@@ -42,6 +42,7 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
         branchNumber: '1111',
         city: 'City',
         entrances: 1,
+        fillingProgress: 100,
       ),
     ];
 

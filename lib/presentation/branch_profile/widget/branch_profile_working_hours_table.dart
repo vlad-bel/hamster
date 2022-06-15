@@ -3,7 +3,7 @@ import 'package:business_terminal/domain/temp/days_hours.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_cubit.dart';
 import 'package:business_terminal/presentation/branch_profile/cubit/branch_profile_state.dart';
 import 'package:business_terminal/presentation/common/widgets/bordered_container/bordered_edit_container.dart';
-import 'package:business_terminal/presentation/pick_day/view/pick_day_page.dart';
+import 'package:business_terminal/presentation/opening_hours/pick_day/view/pick_day_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,6 +30,16 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
         workingHours,
       ],
     );
+  }
+
+  Widget weekText(String value) {
+    var text = '';
+    if (value.isEmpty) {
+      text = AppLocale.current.closed;
+    } else {
+      text = value;
+    }
+    return Text(text);
   }
 
   @override
@@ -64,31 +74,31 @@ class BranchProfileWorkingHoursTable extends StatelessWidget {
           children: <TableRow>[
             _buildTableRow(
               AppLocale.of(context).monday,
-              Text(hours.monday),
+              weekText(hours.monday),
             ),
             _buildTableRow(
               AppLocale.of(context).tuesday,
-              Text(hours.tuesday),
+              weekText(hours.tuesday),
             ),
             _buildTableRow(
               AppLocale.of(context).wednesday,
-              Text(hours.wednesday),
+              weekText(hours.wednesday),
             ),
             _buildTableRow(
               AppLocale.of(context).thursday,
-              Text(hours.thursday),
+              weekText(hours.thursday),
             ),
             _buildTableRow(
               AppLocale.of(context).friday,
-              Text(hours.friday),
+              weekText(hours.friday),
             ),
             _buildTableRow(
               AppLocale.of(context).saturday,
-              Text(hours.saturday),
+              weekText(hours.saturday),
             ),
             _buildTableRow(
               AppLocale.of(context).sunday,
-              Text(hours.sunday),
+              weekText(hours.sunday),
             ),
           ],
         ),
