@@ -14,17 +14,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-class EnterEmailPage extends StatelessWidget {
-  const EnterEmailPage({super.key, required this.previousEmail});
+class EmailVerificationArguments {
+  EmailVerificationArguments({required this.email});
 
-  final String previousEmail;
+  final String email;
+}
+
+class EnterEmailPage extends StatelessWidget {
+  const EnterEmailPage({super.key, required this.emailArguments});
+
+  final EmailVerificationArguments emailArguments;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<EnterEmailCubit>(
       create: (context) => getIt.get<EnterEmailCubit>(),
       child: EnterEmailView(
-        previousEmail: previousEmail,
+        emailArguments: emailArguments,
       ),
     );
   }
@@ -33,10 +39,10 @@ class EnterEmailPage extends StatelessWidget {
 class EnterEmailView extends StatelessWidget {
   const EnterEmailView({
     Key? key,
-    required this.previousEmail,
+    required this.emailArguments,
   }) : super(key: key);
 
-  final String previousEmail;
+  final EmailVerificationArguments emailArguments;
   static const path = '/enter_email';
 
   @override
@@ -51,7 +57,7 @@ class EnterEmailView extends StatelessWidget {
               style: inter14,
               children: [
                 TextSpan(
-                  text: previousEmail,
+                  text: emailArguments.email,
                   style: inter14.copyWith(
                     color: denim,
                   ),
@@ -66,7 +72,7 @@ class EnterEmailView extends StatelessWidget {
               success: () {
                 Navigator.of(context).pushReplacementNamed(
                   EmailVerificationPage.path,
-                  arguments: {'email': previousEmail},
+                  arguments: {'email': emailArguments},
                 );
               },
             );
@@ -92,7 +98,7 @@ class EnterEmailView extends StatelessWidget {
                       onTap: (form) {
                         context
                             .read<EnterEmailCubit>()
-                            .resendOtpCode(previousEmail);
+                            .resendOtpCode(emailArguments.email);
                       },
                     ),
                   ],

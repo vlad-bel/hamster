@@ -28,6 +28,7 @@ import 'package:business_terminal/presentation/dashboard/edit_personal_data/view
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/personal_avatar_page.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_add_logo/view/profile_add_logo.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
+import 'package:business_terminal/presentation/enter_email/view/enter_email_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/nav_utils.dart';
 import 'package:business_terminal/presentation/navigation/unknown_page.dart';
@@ -62,10 +63,11 @@ class AuthorizedState extends AppState {
                 break;
               case EmailVerificationPage.path:
                 if (params?[emailParam] != null) {
-                  final email = params![emailParam]! as String;
+                  final args =
+                      params![emailParam]! as EmailVerificationArguments;
                   appStorageService.setString(
                     key: emailParam,
-                    value: email,
+                    value: args.email,
                   );
                 }
 
