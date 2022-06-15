@@ -48,7 +48,7 @@ build-dev:
     - dart pub global activate intl_utils 2.6.1
     - flutter pub global run intl_utils:generate
     - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
-    - flutter build web -t lib/main_development.dart --release --web-renderer html
+    - flutter build web -t lib/main_development.dart --release --web-renderer html --dart-define="$DEV_BASE_URL"
   only:
     variables:
       - $CI_COMMIT_BRANCH == "develop"
@@ -67,7 +67,7 @@ build-stage:
     - sed -i '/url:/d' pubspec.yaml
     - sed -i '/ref:/d' pubspec.yaml
     - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
-    - flutter build web -t lib/main_development.dart --release --web-renderer html
+    - flutter build web -t lib/main_development.dart --release --web-renderer html --dart-define="$STAGE_BASE_URL"
   only:
     variables:
       - $CI_COMMIT_BRANCH == "test"
