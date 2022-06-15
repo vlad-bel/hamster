@@ -11,6 +11,10 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 final dio = httpClientInit();
 
 final tokenRepository = DefaultTokenRepository();
+const baseUrl = String.fromEnvironment(
+  'base_url',
+  defaultValue: 'http://localhost:3003/api/',
+);
 
 const appFileFormDataKey = 'app_file_form_data';
 
@@ -22,14 +26,11 @@ Dio httpClientInit() {
   );
 
   final option = BaseOptions(
-    // TODO add .env file
-    baseUrl: 'http://localhost:3003/api/',
-  )
-    ..headers = <String, dynamic>{
+    baseUrl: baseUrl,
+  )..headers = <String, dynamic>{
       'Accept': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
-    }
-    ..baseUrl = 'http://localhost:3003/api/';
+    };
 
   final dio = Dio(option)
     ..interceptors.add(
@@ -78,7 +79,7 @@ Future<void> _refreshToken(
     final oldRefreshToken = await tokenRepository.getRefreshToken();
 
     final response = await http.post(
-      Uri.parse('http://localhost:3003/api/rep/refresh'),
+      Uri.parse('$baseUrl/rep/refresh'),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -124,7 +125,7 @@ Future<Response> request(
   RequestOptions options,
 ) async {
   return dio.request<dynamic>(
-    'http://localhost:3003/api${options.path}',
+    '$baseUrl${options.path}',
     data: data,
     queryParameters: options.queryParameters,
     options: Options(
