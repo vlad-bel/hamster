@@ -10,6 +10,7 @@ import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/w
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
+import 'package:business_terminal/presentation/common/widgets/form_text_field/other/iban_input_formatter.dart';
 import 'package:business_terminal/presentation/common/widgets/logo_viewer/logo_viewer.dart';
 import 'package:business_terminal/presentation/common/widgets/payment_info.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_add_logo/view/profile_add_logo.dart';
@@ -310,30 +311,213 @@ class ProfileEditContentState extends State<ProfileEditContent> {
                       decoration: const BoxDecoration(
                         color: white,
                       ),
-                      child: PaymentInfo(
-                        addPaymentFormSettings: AddPaymentFormSettings(),
-                        accountOwner: profileEditCubit.getControlValue(
-                              ProfileEditFormSettings.kAccountOwner,
-                            ) ??
-                            '',
-                        iban: profileEditCubit.getControlValue(
-                              ProfileEditFormSettings.kIban,
-                            ) ??
-                            '',
-                        onTap: () async {
-                          final result = await Navigator.pushNamed(
-                            context,
-                            AddPaymentPage.path,
-                            arguments: AddPaymentArguments(
-                              addPaymentArguments:
-                                  profileEditCubit.addPaymentFormSettings,
-                            ),
-                          ) as Map<String, String>?;
+                      child: BlocBuilder<ProfileEditCubit, ProfileEditState>(
+                          buildWhen: (prev, current) {
+                        return current.maybeWhen(
+                          initial: (company, profileEditFormSettings) => true,
+                          paymentInfoAdded: (company, settings) => true,
+                          orElse: () => false,
+                        );
+                      }, builder: (context, state) {
+                        return state.maybeWhen(
+                          imagesAdded: (
+                            company,
+                            profileEditFormSettings,
+                            images,
+                          ) =>
+                              company.accountOwner?.isNotEmpty == true &&
+                                      company.iban?.isNotEmpty == true
+                                  ? Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          AppLocale.of(context)
+                                              .payment_information,
+                                          style: inter16SemiBold,
+                                        ),
+                                        const SizedBox(height: 24),
+                                        FormTextField(
+                                          name: ProfileEditFormSettings
+                                              .kAccountOwner,
+                                          hint: AppLocale.of(context)
+                                              .account_owner,
+                                          label: AppLocale.of(context)
+                                              .account_owner,
+                                          validationMessages: (control) =>
+                                              AddPaymentFormSettings
+                                                  .validationMessageAccountOwner,
+                                        ),
+                                        const SizedBox(height: 16),
+                                        FormTextField(
+                                          name: ProfileEditFormSettings.kIban,
+                                          hint: AppLocale.of(context).iban,
+                                          inputFormatters: [
+                                            IbanInputFormatter(),
+                                          ],
+                                          label: AppLocale.of(context).iban,
+                                          validationMessages: (control) =>
+                                              AddPaymentFormSettings
+                                                  .validationMessageIban,
+                                        ),
+                                      ],
+                                    )
+                                  : PaymentInfo(
+                                      accountOwner: company.accountOwner == null
+                                          ? ''
+                                          : company.accountOwner.toString(),
+                                      iban: company.iban ?? '',
+                                      addPaymentFormSettings:
+                                          AddPaymentFormSettings(),
+                                      onTap: () async {
+                                        final result =
+                                            await Navigator.pushNamed(
+                                          context,
+                                          AddPaymentPage.path,
+                                          arguments: AddPaymentArguments(
+                                            addPaymentArguments:
+                                                profileEditCubit
+                                                    .addPaymentFormSettings,
+                                          ),
+                                        ) as Map<String, String>?;
 
-                          if (result == null) return;
-                          await profileEditCubit.updatePaymentData(result);
-                        },
-                      ),
+                                        if (result == null) return;
+                                        await profileEditCubit
+                                            .updatePaymentData(result);
+                                      },
+                                    ),
+                          paymentInfoAdded: (accountOwner, iban) => accountOwner
+                                          .isNotEmpty ==
+                                      true &&
+                                  iban.isNotEmpty == true
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      AppLocale.of(context).payment_information,
+                                      style: inter16SemiBold,
+                                    ),
+                                    const SizedBox(height: 24),
+                                    FormTextField(
+                                      name:
+                                          ProfileEditFormSettings.kAccountOwner,
+                                      hint: AppLocale.of(context).account_owner,
+                                      label:
+                                          AppLocale.of(context).account_owner,
+                                      validationMessages: (control) =>
+                                          AddPaymentFormSettings
+                                              .validationMessageAccountOwner,
+                                    ),
+                                    const SizedBox(height: 16),
+                                    FormTextField(
+                                      name: ProfileEditFormSettings.kIban,
+                                      hint: AppLocale.of(context).iban,
+                                      label: AppLocale.of(context).iban,
+                                      inputFormatters: const [],
+                                      validationMessages: (control) =>
+                                          AddPaymentFormSettings
+                                              .validationMessageIban,
+                                    ),
+                                  ],
+                                )
+                              : PaymentInfo(
+                                  accountOwner: accountOwner,
+                                  iban: iban,
+                                  addPaymentFormSettings:
+                                      AddPaymentFormSettings(),
+                                  onTap: () async {
+                                    final result = await Navigator.pushNamed(
+                                      context,
+                                      AddPaymentPage.path,
+                                      arguments: AddPaymentArguments(
+                                        addPaymentArguments: profileEditCubit
+                                            .addPaymentFormSettings,
+                                      ),
+                                    ) as Map<String, String>?;
+
+                                    if (result == null) return;
+                                    await profileEditCubit
+                                        .updatePaymentData(result);
+                                  },
+                                ),
+                          initial: (company, settings) => company
+                                          .accountOwner?.isNotEmpty ==
+                                      true &&
+                                  company.iban?.isNotEmpty == true
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      AppLocale.of(context).payment_information,
+                                      style: inter16SemiBold,
+                                    ),
+                                    const SizedBox(height: 24),
+                                    FormTextField(
+                                      name:
+                                          ProfileEditFormSettings.kAccountOwner,
+                                      hint: AppLocale.of(context).account_owner,
+                                      label:
+                                          AppLocale.of(context).account_owner,
+                                      validationMessages: (control) =>
+                                          AddPaymentFormSettings
+                                              .validationMessageAccountOwner,
+                                    ),
+                                    const SizedBox(height: 16),
+                                    FormTextField(
+                                      name: ProfileEditFormSettings.kIban,
+                                      hint: AppLocale.of(context).iban,
+                                      label: AppLocale.of(context).iban,
+                                      inputFormatters: const [],
+                                      validationMessages: (control) =>
+                                          AddPaymentFormSettings
+                                              .validationMessageIban,
+                                    ),
+                                  ],
+                                )
+                              : PaymentInfo(
+                                  accountOwner: company.accountOwner == null
+                                      ? ''
+                                      : company.accountOwner.toString(),
+                                  iban: company.iban ?? '',
+                                  addPaymentFormSettings:
+                                      AddPaymentFormSettings(),
+                                  onTap: () async {
+                                    final result = await Navigator.pushNamed(
+                                      context,
+                                      AddPaymentPage.path,
+                                      arguments: AddPaymentArguments(
+                                        addPaymentArguments: profileEditCubit
+                                            .addPaymentFormSettings,
+                                      ),
+                                    ) as Map<String, String>?;
+
+                                    if (result == null) return;
+                                    await profileEditCubit
+                                        .updatePaymentData(result);
+                                  },
+                                ),
+                          orElse: () {
+                            return Text('orElse');
+                            return PaymentInfo(
+                              addPaymentFormSettings: AddPaymentFormSettings(),
+                              onTap: () async {
+                                final result = await Navigator.pushNamed(
+                                  context,
+                                  AddPaymentPage.path,
+                                  arguments: AddPaymentArguments(
+                                    addPaymentArguments:
+                                        profileEditCubit.addPaymentFormSettings,
+                                  ),
+                                ) as Map<String, String>?;
+
+                                if (result == null) return;
+                                await profileEditCubit
+                                    .updatePaymentData(result);
+                              },
+                            );
+                          },
+                        );
+                      }),
                     ),
                   ],
                 ),

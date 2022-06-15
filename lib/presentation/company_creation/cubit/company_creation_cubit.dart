@@ -31,7 +31,7 @@ class CompanyCreationCubit extends Cubit<CompanyCreationState> {
     companyField: FormControl<String>(
       validators: [
         Validators.minLength(2),
-        Validators.maxLength(32),
+        Validators.maxLength(256),
         Validators.required,
       ],
     ),

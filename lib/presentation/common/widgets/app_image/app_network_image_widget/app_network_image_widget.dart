@@ -1,7 +1,10 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/config/image/image_paths.dart';
+import 'package:business_terminal/config/image/raster_paths.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/common/widgets/app_image/app_network_image_widget/bloc/app_network_image_widget_bloc.dart';
 import 'package:business_terminal/presentation/common/widgets/app_image/app_network_image_widget/bloc/app_network_image_widget_state.dart';
+import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,8 +40,12 @@ class _AppNetworkImageWidgetState extends State<AppNetworkImageWidget>
         builder: (context, state) {
           return state.when(
             error: (title) {
-              return Center(
-                child: Text(title),
+              return Avatar(
+                width: 50,
+                height: 50,
+                placeholderImage: ImagePaths.png(
+                  RasterPaths.profileIcon,
+                ),
               );
             },
             loading: () {

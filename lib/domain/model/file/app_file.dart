@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 @immutable
 class AppFile {
@@ -19,4 +21,11 @@ class AppFile {
   String? get getExtension => name?.split('.').last;
 
   String get createName => '${DateTime.now()}.$extension';
+
+  factory AppFile.fromFilePickerResult(FilePickerResult result) => AppFile(
+        size: result.files.first.size,
+        extension: result.files.first.extension!,
+        name: result.files.first.name,
+        bytes: result.files.first.bytes,
+      );
 }

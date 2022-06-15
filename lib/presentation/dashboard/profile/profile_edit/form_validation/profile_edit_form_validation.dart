@@ -1,4 +1,5 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:iban/iban.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -10,6 +11,16 @@ class ProfileEditFormSettings {
   static const kCommercialRegisterNumber = 'commercial_register_number';
   static const kCompanyName = 'company_name';
   static const kIban = 'iban';
+  static const kMaxLengthAccountOwner = 256;
+
+  /// Actual value is 34 aligned by spaces
+  static const kMaxLengthIban = 42;
+
+  static const kMinLengthAccountOwner = 2;
+
+  /// Actual value is 10 aligned by spaces
+  static const kMinLengthIban = 12;
+
   static const kPostcodeField = 'postcode';
   static const kStreetField = 'street';
   static const kStreetNumberField = 'houseNum';
@@ -58,10 +69,18 @@ class ProfileEditFormSettings {
       ],
     ),
     kAccountOwner: FormControl<String>(
-      validators: [],
+      validators: [
+        Validators.minLength(kMinLengthAccountOwner),
+        Validators.maxLength(kMaxLengthAccountOwner),
+      ],
     ),
     kIban: FormControl<String>(
-      validators: [],
+      // Disable validators when in read only mode
+      validators: [
+        Validators.minLength(kMinLengthIban),
+        Validators.maxLength(kMaxLengthIban),
+        _ibanValidator,
+      ],
     ),
   };
 
@@ -73,5 +92,13 @@ class ProfileEditFormSettings {
 
   FormGroup buildForm() {
     return FormGroup(controls);
+  }
+
+  static Map<String, bool>? _ibanValidator(AbstractControl<dynamic> control) {
+    return control.isNotNull &&
+            control.value is String &&
+            isValid(control.value as String)
+        ? null
+        : {'pattern': true};
   }
 }

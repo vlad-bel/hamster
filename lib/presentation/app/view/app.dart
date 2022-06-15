@@ -11,12 +11,14 @@ import 'package:business_terminal/presentation/common/widgets/country_selector/w
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/cubit/profile_viewing_cubit.dart';
+import 'package:business_terminal/presentation/dashboard/edit_personal_data/cubit/edit_personal_data_cubit.dart';
 import 'package:business_terminal/presentation/forget_password/cubit/forget_password_cubit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state_cubit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/authorized_state.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
 import 'package:business_terminal/presentation/navigation/splash_page.dart';
+import 'package:business_terminal/presentation/number_verification/country_code/country_code_page.dart';
 import 'package:business_terminal/use_cases/settings/language/language_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,7 +69,8 @@ class App extends StatelessWidget {
               return getIt.get<ProfileViewingCubit>();
             },
           ),
-          BlocProvider<ForgetPasswordCubit>(create: (_) => getIt.get())
+          BlocProvider<ForgetPasswordCubit>(create: (_) => getIt.get()),
+          BlocProvider<EditPersonalDataCubit>(create: (_) => getIt.get())
         ],
         child: BlocBuilder<AppStateCubit, AppState>(
           builder: (context, state) {

@@ -79,7 +79,6 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
                         onTap: (index, routeName) {
                           widget.navigateTo(index, routeName);
                         },
-                        badgeCountValue: 1,
                         selectedRoute: widget.selectedPage,
                         routeName: '/administration/account_verification',
                       ),
@@ -249,7 +248,7 @@ class MenuSubItem extends StatelessWidget {
                     : inter16Medium,
               ),
               const Spacer(),
-              if (badgeCountValue != null)
+              if (badgeCountValue != null && badgeCountValue != 0)
                 Container(
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(

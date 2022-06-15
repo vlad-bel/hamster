@@ -7,7 +7,6 @@ import 'package:business_terminal/domain/model/company/branch/branch_profile.dar
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/domain/temp/days_hours.dart';
-import 'package:business_terminal/presentation/add_opening_hours/view/add_opening_hours_page.dart';
 import 'package:business_terminal/presentation/add_payment/view/add_payment_page.dart';
 import 'package:business_terminal/presentation/add_pos/view/add_pos_page.dart';
 import 'package:business_terminal/presentation/branch_profile/create_branch_profile_checkboxes_page/cubit/create_branch_profile_checkboxes_cubit.dart';
@@ -24,13 +23,16 @@ import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/w
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/dashboard/change_password/view/change_password_page.dart';
+import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/add_personal_avatar_page.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/edit_personal_data_page.dart';
+import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/personal_avatar_page.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_add_logo/view/profile_add_logo.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_edit/view/profile_edit.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/app_state.dart';
 import 'package:business_terminal/presentation/navigation/nav_utils.dart';
 import 'package:business_terminal/presentation/navigation/unknown_page.dart';
-import 'package:business_terminal/presentation/pick_day/view/pick_day_page.dart';
+import 'package:business_terminal/presentation/opening_hours/add_opening_hours/view/add_opening_hours_page.dart';
+import 'package:business_terminal/presentation/opening_hours/pick_day/view/pick_day_page.dart';
 import 'package:flutter/material.dart';
 
 class AuthorizedState extends AppState {
@@ -213,9 +215,7 @@ class AuthorizedState extends AppState {
                 }
 
                 DaysHours? storageHours;
-                if (appStorageService.getString(
-                      key: PickDayPage.paramDays,
-                    ) !=
+                if (appStorageService.getString(key: PickDayPage.paramDays) !=
                     null) {
                   final str = appStorageService.getString(
                     key: PickDayPage.paramDays,
@@ -242,6 +242,8 @@ class AuthorizedState extends AppState {
               case AddOpeningHoursPage.path:
                 page = const AddOpeningHoursPage();
                 break;
+              case PersonalAvatarPage.path:
+                page = const PersonalAvatarPage();
             }
 
             return _buildHamsterPage<void>(page, settings);

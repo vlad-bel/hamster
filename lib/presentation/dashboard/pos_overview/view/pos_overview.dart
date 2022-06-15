@@ -9,7 +9,7 @@ import 'package:business_terminal/domain/model/company/branch/branch_profile.dar
 import 'package:business_terminal/domain/model/company/branch/branch_profile_with_paging.dart';
 import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:business_terminal/presentation/common/widgets/app_image/app_image_widget.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/header_cell.dart';
+import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/header_cell/header_cell.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';

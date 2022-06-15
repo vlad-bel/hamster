@@ -1,5 +1,6 @@
 stages:
   - clone
+  - analyze
   - build
   - deploy
 
@@ -20,6 +21,18 @@ clone:
   artifacts:
     paths:
       - hamster_widgets/**
+
+analyze:
+  image: cirrusci/flutter:stable
+  stage: analyze
+  tags:
+    - hamster
+  script:
+    - dart analyze
+  allow_failure: true
+  only:
+    variables:
+      - ($CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "test")
 
 build-dev:
   image: cirrusci/flutter:stable

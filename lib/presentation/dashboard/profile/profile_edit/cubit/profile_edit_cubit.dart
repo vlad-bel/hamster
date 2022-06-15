@@ -145,7 +145,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
         '${company.iban}',
       );
       final addedImages = <AppColoredFile>[];
-      for (final logo in company.logos ?? <CompanyLogo>[]) {
+      /*for (final logo in company.logos ?? <CompanyLogo>[]) {
         if (logo.fileName != null) {
           try {
             addedImages.add(
@@ -160,7 +160,7 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
             log('Error is $e, StackTrace is $s');
           }
         }
-      }
+      }*/
       if (addedImages.isNotEmpty) {
         addImages(
           addedImages,
@@ -221,9 +221,9 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
         accountOwner: '${getControlValue(
           ProfileEditFormSettings.kAccountOwner,
         )}',
-        iban: '${getControlValue(
+        iban: getControlValue(
           ProfileEditFormSettings.kIban,
-        )}',
+        )?.replaceAll(' ', ''),
         backgrounds: [
           for (final file in filesToUpload) file.color,
         ],
@@ -269,7 +269,11 @@ class ProfileEditCubit extends Cubit<ProfileEditState> {
   String? getControlValue(
     String key,
   ) {
-    return profileEditFormSettings.controls[key]?.value;
+    final value = profileEditFormSettings.controls[key]?.value;
+    if (value?.isNotEmpty == true) {
+      return value;
+    }
+    return null;
   }
 
   void _setControlValue(String key, String? value) {
