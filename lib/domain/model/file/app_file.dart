@@ -4,8 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-
-///Image file of app class AppFile {
+class AppFile {
+  ///Image file of app class AppFile {
   const AppFile({
     required this.bytes,
     required this.name,
@@ -25,15 +25,11 @@ import 'package:flutter/material.dart';
   ///size in bytes
   final int? size;
 
-  String? get getExtension =>
-      name
-          ?.split('.')
-          .last;
+  String? get getExtension => name?.split('.').last;
 
   String get createName => '${DateTime.now()}.$extension';
 
-  factory AppFile.fromFilePickerResult(FilePickerResult result) =>
-      AppFile(
+  factory AppFile.fromFilePickerResult(FilePickerResult result) => AppFile(
         size: result.files.first.size,
         extension: result.files.first.extension!,
         name: result.files.first.name,
