@@ -5,7 +5,6 @@ import 'package:business_terminal/use_cases/otp_verification/otp_verification_us
 ///UseCase for verification of email
 ///Uses on [email_verification_flow]
 abstract class EmailVerificationUseCase implements OtpVerificationUseCase {
-
   ///verificate created email by code
   @override
   Future<String> verifyEmail(OtpVerificationRequest request);

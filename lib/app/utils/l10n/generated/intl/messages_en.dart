@@ -141,9 +141,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Erstellen Sie einen Nutzeraccount, um einen\'                   \' Zugang zum BusinessTerminal zu erhalten und damit\'                   \' Hamster zu nutzen."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
-        "custom_number": MessageLookupByLibrary.simpleMessage("Custom number:"),
+        "custom_number": MessageLookupByLibrary.simpleMessage("Kundennummer:"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
+        "de_language": MessageLookupByLibrary.simpleMessage("🇩🇪 Deutsch"),
         "declined": MessageLookupByLibrary.simpleMessage("Declined"),
         "did_not_have_account": MessageLookupByLibrary.simpleMessage(
             "You don\'t have a business terminal account yet?"),
@@ -230,6 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
             "If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging."),
         "join_now": MessageLookupByLibrary.simpleMessage("Join now"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
         "main_category": MessageLookupByLibrary.simpleMessage("Main category"),

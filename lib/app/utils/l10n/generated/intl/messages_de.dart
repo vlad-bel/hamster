@@ -149,6 +149,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "custom_number": MessageLookupByLibrary.simpleMessage("Kundennummer:"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
+        "de_language": MessageLookupByLibrary.simpleMessage("🇩🇪 Deutsch"),
         "declined": MessageLookupByLibrary.simpleMessage("Zurückgegangen"),
         "did_not_have_account": MessageLookupByLibrary.simpleMessage(
             "Du hast noch keinen Business-Terminal-Account?"),
@@ -233,6 +234,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
             "Sollten Ihr Unternehmen und eine Filiale die identisch \nAdresse haben, dann markieren Sie bitte die \nübereinstimmenden Angaben."),
         "join_now": MessageLookupByLibrary.simpleMessage("Jetzt registrieren"),
+        "language": MessageLookupByLibrary.simpleMessage("Sprache"),
         "lastName": MessageLookupByLibrary.simpleMessage("Nachname"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
         "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),
