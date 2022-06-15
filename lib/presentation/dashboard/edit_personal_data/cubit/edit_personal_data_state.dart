@@ -17,8 +17,7 @@ class EditPersonalDataState with _$EditPersonalDataState {
     required Country? residency,
   }) = _EditPersonalDataState;
 
-  factory EditPersonalDataState.initial() =>
-      const EditPersonalDataState(
+  factory EditPersonalDataState.initial() => const EditPersonalDataState(
         firstName: '',
         lastName: '',
         avatar: null,
@@ -29,8 +28,7 @@ class EditPersonalDataState with _$EditPersonalDataState {
         residency: null,
       );
 
-  factory EditPersonalDataState.mock() =>
-      const EditPersonalDataState(
+  factory EditPersonalDataState.mock() => const EditPersonalDataState(
         firstName: 'John',
         lastName: 'Dow',
         avatar: null,

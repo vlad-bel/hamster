@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
@@ -23,7 +24,6 @@ import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/w
 import 'package:business_terminal/presentation/common/widgets/dashboard/dashboard_page.dart';
 import 'package:business_terminal/presentation/company_creation/company_creation_page.dart';
 import 'package:business_terminal/presentation/dashboard/change_password/view/change_password_page.dart';
-import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/add_personal_avatar_page.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/edit_personal_data_page.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/view/personal_avatar_page.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_add_logo/view/profile_add_logo.dart';
@@ -33,16 +33,21 @@ import 'package:business_terminal/presentation/navigation/nav_utils.dart';
 import 'package:business_terminal/presentation/navigation/unknown_page.dart';
 import 'package:business_terminal/presentation/opening_hours/add_opening_hours/view/add_opening_hours_page.dart';
 import 'package:business_terminal/presentation/opening_hours/pick_day/view/pick_day_page.dart';
+import 'package:business_terminal/presentation/otp_verification/view/otp_verification_page.dart';
 import 'package:flutter/material.dart';
+
+String emailParam = 'email';
+String phoneNumberParam = 'phone_number';
+String verifyMethodParam = 'verify_method';
 
 class AuthorizedState extends AppState {
   AuthorizedState({
     required super.initialRoute,
   }) : super(
-          onGenerateRoute: (RouteSettings settings) {
+          onGenerateRoute: (RouteSettings routeSettings) {
             Widget? page;
-
-            switch (settings.name) {
+            final params = routeSettings.arguments as Map<String, dynamic>?;
+            switch (routeSettings.name) {
               case CompanyCreationPage.path:
                 page = const CompanyCreationPage();
                 break;
@@ -55,21 +60,48 @@ class AuthorizedState extends AppState {
               case ProfileEditPage.path:
                 page = const ProfileEditPage();
                 break;
+              case EmailVerificationPage.path:
+                if (params?[emailParam] != null) {
+                  final email = params![emailParam]! as String;
+                  appStorageService.setString(
+                    key: emailParam,
+                    value: email,
+                  );
+                }
+
+                page = buildPage(
+                  requiredParams: [emailParam],
+                  child: EmailVerificationPage(
+                    model: VerificationModel(
+                      userCredentials:
+                          appStorageService.getString(key: emailParam),
+                      title: AppLocale.current.confirm_email_title,
+                      wrongOtpText: AppLocale.current.otpCodeIncorrect,
+                      otpSentText: AppLocale.current.emailSentDescription,
+                      previousEmailText: AppLocale
+                          .current.forget_password_email_inside_subtitle,
+                      previousEmailSpamText: AppLocale
+                          .current.forget_password_email_inside_subtitle2,
+                    ),
+                  ),
+                );
+                break;
               case ProfileAddLogoPage.path:
-                final args = settings.arguments! as ProfileAddLogoArguments;
+                final args =
+                    routeSettings.arguments! as ProfileAddLogoArguments;
 
                 page = ProfileAddLogoPage(
                   arguments: args,
                 );
                 return _buildHamsterPage<List<AppColoredFile>>(
                   page,
-                  settings,
+                  routeSettings,
                 );
               case ChangePasswordPage.path:
                 page = const ChangePasswordPage();
                 break;
               case AddPaymentPage.path:
-                final args = settings.arguments! as AddPaymentArguments;
+                final args = routeSettings.arguments! as AddPaymentArguments;
 
                 page = AddPaymentPage(
                   addPaymentArguments: args,
@@ -79,7 +111,7 @@ class AuthorizedState extends AppState {
                 page = const EditPersonalDataPage();
                 break;
               case CreateBranchProfileCheckboxesPage.path:
-                final params = settings.arguments as Map<String, dynamic>?;
+                final params = routeSettings.arguments as Map<String, dynamic>?;
                 final company =
                     params?[CreateBranchProfileCheckboxesPage.paramRepCompany]
                         as RepCompany?;
@@ -97,7 +129,7 @@ class AuthorizedState extends AppState {
                 }
                 break;
               case BranchProfilePage.path:
-                final params = settings.arguments as Map<String, dynamic>?;
+                final params = routeSettings.arguments as Map<String, dynamic>?;
                 final data = params?[BranchProfilePage.paramData]
                     as CreateBranchProfileCheckboxesData?;
                 final company =
@@ -138,7 +170,7 @@ class AuthorizedState extends AppState {
                 );
                 break;
               case CropperPage.path:
-                final params = settings.arguments as Map<String, dynamic>?;
+                final params = routeSettings.arguments as Map<String, dynamic>?;
                 final imageForCrop =
                     params?[CropperPage.pImageForCrop] as Uint8List;
                 final header = params?[CropperPage.pHeader] as String;
@@ -191,17 +223,18 @@ class AuthorizedState extends AppState {
                   ),
                 );
 
-                return _buildHamsterPage<AppFile>(page, settings);
+                return _buildHamsterPage<AppFile>(page, routeSettings);
               case AddLogoCropperPage.path:
-                final params = settings.arguments! as AddLogoCropperArguments;
+                final params =
+                    routeSettings.arguments! as AddLogoCropperArguments;
 
                 page = AddLogoCropperPage(
                   addLogoCropperArguments: params,
                 );
 
-                return _buildHamsterPage<AppColoredFile>(page, settings);
+                return _buildHamsterPage<AppColoredFile>(page, routeSettings);
               case PickDayPage.path:
-                final params = settings.arguments as Map<String, dynamic>?;
+                final params = routeSettings.arguments as Map<String, dynamic>?;
                 if (params?[PickDayPage.paramDays] != null) {
                   final hours = json.encode(
                     (params![PickDayPage.paramDays] as DaysHours?)
@@ -246,7 +279,7 @@ class AuthorizedState extends AppState {
                 page = const PersonalAvatarPage();
             }
 
-            return _buildHamsterPage<void>(page, settings);
+            return _buildHamsterPage<void>(page, routeSettings);
           },
         );
 

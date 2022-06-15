@@ -1,6 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/presentation/dashboard/profive_viewing/cubit/profile_viewing_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/branch_profile_table/company_branch_table.dart';
+import 'package:business_terminal/presentation/dashboard/profive_viewing/cubit/profile_viewing_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/view/company_profile_table.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

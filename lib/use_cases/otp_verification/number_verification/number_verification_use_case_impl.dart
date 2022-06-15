@@ -7,7 +7,7 @@ import 'package:business_terminal/domain/request_model/otp_verification/phone_ve
 import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/number_verification_request.dart';
 import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/verify_phone_request.dart';
 import 'package:business_terminal/domain/request_model/otp_verification/resend_otp_code_request.dart';
-import 'package:business_terminal/use_cases/number_verification/number_verification_use_case.dart';
+import 'package:business_terminal/use_cases/otp_verification/number_verification/number_verification_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 

@@ -4,12 +4,12 @@ import 'package:business_terminal/presentation/common/widgets/bordered_container
 import 'package:flutter/material.dart';
 
 class AvatarSelectedPicture extends StatelessWidget {
-  const AvatarSelectedPicture({
-    Key? key,
-    required this.appFile,
-    required this.onPressed,
-    required this.showEditButton
-  }) : super(key: key);
+  const AvatarSelectedPicture(
+      {Key? key,
+      required this.appFile,
+      required this.onPressed,
+      required this.showEditButton})
+      : super(key: key);
 
   final AppColoredFile appFile;
   final VoidCallback? onPressed;

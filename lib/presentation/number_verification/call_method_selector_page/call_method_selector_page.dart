@@ -12,7 +12,7 @@ class CallMethodSelectorPage extends StatelessWidget {
     required this.email,
   });
 
-  static const path = '${CountriesCodePage.path}/call_method';
+  static const path = '${CountryCodePage.path}/call_method';
 
   final String phoneNumber;
   final String email;

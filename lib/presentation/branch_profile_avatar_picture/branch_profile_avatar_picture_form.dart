@@ -33,7 +33,6 @@ class BranchProfileAvatarPictureForm extends StatefulWidget {
 
 class _BranchProfileAvatarPictureFormState
     extends State<BranchProfileAvatarPictureForm> {
-
   void saveImagesToBranchProfile(BuildContext context) {
     final branchProfilePageCubit = context.read<BranchProfileCubit>();
     final branchProfilePictureCubit = context.read<BranchProfilePictureCubit>();

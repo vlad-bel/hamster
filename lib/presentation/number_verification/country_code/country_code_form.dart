@@ -15,8 +15,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 ///form for CountriesListPage
-class ContryCodeForm extends StatelessWidget {
-  const ContryCodeForm({super.key});
+class CountryCodeForm extends StatelessWidget {
+  const CountryCodeForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class ContryCodeForm extends StatelessWidget {
                     );
                   },
                   builder: (context, state) {
-                    final contryCodeCubit =
+                    final countryCodeCubit =
                         BlocProvider.of<CountryCodeCubit>(context);
                     return Column(
                       children: [
@@ -76,15 +76,15 @@ class ContryCodeForm extends StatelessWidget {
                         state.when(
                           loading: () => const CountryCodeLoadingButton(),
                           init: () => CountryCodeActiveButton(
-                            cubit: contryCodeCubit,
+                            cubit: countryCodeCubit,
                             formGroup: formGroup,
                           ),
                           error: (e) => CountryCodeActiveButton(
-                            cubit: contryCodeCubit,
+                            cubit: countryCodeCubit,
                             formGroup: formGroup,
                           ),
                           next: (email, phone) => CountryCodeActiveButton(
-                            cubit: contryCodeCubit,
+                            cubit: countryCodeCubit,
                             formGroup: formGroup,
                           ),
                         ),
