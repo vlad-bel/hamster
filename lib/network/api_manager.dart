@@ -13,6 +13,7 @@ final dio = httpClientInit();
 final tokenRepository = DefaultTokenRepository();
 
 const appFileFormDataKey = 'app_file_form_data';
+const baseUrl = 'https://35.158.96.146/';
 
 Dio httpClientInit() {
   final prettyDioLogger = PrettyDioLogger(
@@ -23,13 +24,13 @@ Dio httpClientInit() {
 
   final option = BaseOptions(
     // TODO add .env file
-    baseUrl: 'https://3.121.222.131/api/',
+    baseUrl: '${baseUrl}api/',
   )
     ..headers = <String, dynamic>{
       'Accept': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
     }
-    ..baseUrl = 'https://3.121.222.131/api/';
+    ..baseUrl = '${baseUrl}api/';
 
   final dio = Dio(option)
     ..interceptors.add(
@@ -79,7 +80,7 @@ Future<void> _refreshToken(
 
     final response = await http.post(
       Uri.parse(
-        'https://3.121.222.131/api/rep/refresh',
+        '${baseUrl}api/rep/refresh',
       ),
       headers: {
         'Accept': 'application/json',
@@ -126,7 +127,7 @@ Future<Response> request(
   RequestOptions options,
 ) async {
   return dio.request<dynamic>(
-    'https://3.121.222.131/api${options.path}',
+    '${baseUrl}api${options.path}',
     data: data,
     queryParameters: options.queryParameters,
     options: Options(
