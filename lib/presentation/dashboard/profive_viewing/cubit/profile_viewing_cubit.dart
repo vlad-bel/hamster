@@ -3,7 +3,6 @@ import 'package:business_terminal/domain/model/company/company.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/use_cases/company/company_use_case.dart';
-import 'package:business_terminal/use_cases/profile/profile_viewing/profile_viewing_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -13,13 +12,11 @@ part 'profile_viewing_cubit.freezed.dart';
 @Singleton()
 class ProfileViewingCubit extends Cubit<ProfileViewingState> {
   ProfileViewingCubit({
-    required this.profileViewingUsecase,
     required this.companyUseCase,
   }) : super(
           const ProfileViewingState.initial(),
         );
 
-  final ProfileViewingUsecase profileViewingUsecase;
   final CompanyUsecase companyUseCase;
 
   Future<void> getInitialData() async {
