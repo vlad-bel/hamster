@@ -250,5 +250,13 @@
   "verifikation_wip": "Verifikation feature is work in progress",
   "we_lack_info": "Ein paar Informationen fehlen uns noch",
   "we_lack_info_subtitle": "Die drei nachfolgenden Bedingungen müssen erfüllt sein bevor Sie die Verifikation Ihres Unternehmens mit den\ndazugehörigen Filialen beantragen können, um in der HamsterApp aufgeführt zu werden.",
-  "to_edit": "BEARBEITEN"
+  "to_edit": "BEARBEITEN",
+  "description": "Description",
+  "manufacturer": "Manufacturer",
+  "model": "Model",
+  "pos_identifier": "Pos Identifier",
+  "action": "Action",
+  "active": "Active",
+  "inactive": "Inactive",
+  "pos_overview": "POS connection"
 }

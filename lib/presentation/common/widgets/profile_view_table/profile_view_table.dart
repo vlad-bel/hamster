@@ -90,6 +90,3 @@ class _ProfileViewTableState extends State<ProfileViewTable> {
     );
   }
 }
-
-
-

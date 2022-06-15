@@ -99,10 +99,11 @@ abstract class RestClient {
   );
 
   // Branch Profile:
-  @GET('/branch/?page={page}')
+  @GET('/branch/?page={page}&take={take}')
   Future<BranchProfileWithPaging> getBranchesByRepresentative(
-    @Path('page') int page,
-  );
+    @Path('page') int page, {
+    @Path('take') int take = 5,
+  });
 
   @GET('/branch/{id}')
   Future<BranchProfile> getBranchById(

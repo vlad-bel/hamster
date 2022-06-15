@@ -21,10 +21,7 @@ Dio httpClientInit() {
     compact: false,
   );
 
-  final option = BaseOptions(
-    // TODO add .env file
-    baseUrl: 'http://localhost:3003/api/',
-  )
+  final option = BaseOptions()
     ..headers = <String, dynamic>{
       'Accept': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
@@ -63,8 +60,8 @@ Dio httpClientInit() {
           return _refreshToken(error, handler);
         },
       ),
-    );
-  // ..interceptors.add(prettyDioLogger);
+    )
+    ..interceptors.add(prettyDioLogger);
 
   return dio;
 }
@@ -78,7 +75,7 @@ Future<void> _refreshToken(
     final oldRefreshToken = await tokenRepository.getRefreshToken();
 
     final response = await http.post(
-      Uri.parse('http://localhost:3003/api/rep/refresh'),
+      Uri.parse('${dio.options.baseUrl}rep/refresh'),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -124,7 +121,7 @@ Future<Response> request(
   RequestOptions options,
 ) async {
   return dio.request<dynamic>(
-    'http://localhost:3003/api${options.path}',
+    options.path,
     data: data,
     queryParameters: options.queryParameters,
     options: Options(
