@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 @immutable
+///Image file of app
 class AppFile {
   const AppFile({
     required this.bytes,
@@ -12,9 +13,14 @@ class AppFile {
     this.size,
   });
 
+  ///bytes representation of image
   final Uint8List? bytes;
+  /// image ext like 'png', 'jpg' etc
   final String extension;
+  /// filename
   final String? name;
+
+  ///size in bytes
   final int? size;
 
   String? get getExtension => name?.split('.').last;
