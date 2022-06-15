@@ -1,4 +1,5 @@
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile_with_paging.dart';
 import 'package:business_terminal/domain/model/company/rep_company.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_state.dart';
@@ -23,7 +24,7 @@ class DashboardCubit extends Cubit<DashboardState> {
       loginUseCase.logout();
     } catch (e) {
       emit(
-        DashboardState.error(),
+        const DashboardState.error(),
       );
     }
   }
@@ -58,6 +59,9 @@ class DashboardCubit extends Cubit<DashboardState> {
     RepCompany? repCompany,
     BranchProfileWithPaging? branchProfilesList,
   }) {
+    final branches = branchProfilesList?.getPrintableString();
+    logger.d(branches);
+
     state.whenOrNull(
       init: (stateObject) {
         final newState = stateObject.copyWith(

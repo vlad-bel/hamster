@@ -75,6 +75,8 @@ class BranchProfile {
       _$BranchProfileFromJson(json);
 
   Map<String, dynamic> toJson() => _$BranchProfileToJson(this);
+
+  String getFullAddress() => '${streetName ?? ''} ${streetNumber ?? ''}';
 }
 
 @JsonSerializable(ignoreUnannotated: false)

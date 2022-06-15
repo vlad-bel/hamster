@@ -1,25 +1,25 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/cells/header_cell/header_cell.dart';
-import 'package:business_terminal/presentation/common/widgets/profile_view_table/widget/profile_view_table_row.dart';
+import 'package:business_terminal/presentation/dashboard/profive_viewing/branch_profile_table/branch_profile_view_table_row.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 
-class ProfileViewTable extends StatefulWidget {
-  const ProfileViewTable({
+class BranchProfileViewTable extends StatefulWidget {
+  const BranchProfileViewTable({
     Key? key,
     required this.row,
     this.sortable = false,
   }) : super(key: key);
 
-  final ProfileViewTableRow row;
+  final BranchProfileViewTableRow row;
   final bool sortable;
 
   @override
-  State<ProfileViewTable> createState() => _ProfileViewTableState();
+  State<BranchProfileViewTable> createState() => _BranchProfileViewTableState();
 }
 
-class _ProfileViewTableState extends State<ProfileViewTable> {
+class _BranchProfileViewTableState extends State<BranchProfileViewTable> {
   @override
   Widget build(BuildContext context) {
     return DataTable2(
@@ -47,7 +47,7 @@ class _ProfileViewTableState extends State<ProfileViewTable> {
         DataColumn2(
           size: ColumnSize.L,
           label: HeaderCell(
-            name: AppLocale.of(context).companies,
+            name: AppLocale.of(context).branch,
             sortable: widget.sortable,
           ),
         ),
@@ -90,6 +90,3 @@ class _ProfileViewTableState extends State<ProfileViewTable> {
     );
   }
 }
-
-
-
