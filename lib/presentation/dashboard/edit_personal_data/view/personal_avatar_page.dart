@@ -7,6 +7,9 @@ import 'package:business_terminal/presentation/dashboard/edit_personal_data/view
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Container for personal avatar
+/// Shows [AddPersonalAvatarPage] if avatar does not exist
+/// Shows [EditPersonalAvatarPage] if exists
 class PersonalAvatarPage extends StatelessWidget {
   static const path = '${EditPersonalDataPage.path}/avatar';
 
@@ -16,7 +19,6 @@ class PersonalAvatarPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<EditPersonalDataCubit, EditPersonalDataState>(
       builder: (context, state) {
-        logger.d('Personal data state emitted $state');
         if (state.avatar == null) {
           return const AddPersonalAvatarPage();
         } else {

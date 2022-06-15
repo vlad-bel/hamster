@@ -1,5 +1,6 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_state.dart';
@@ -18,11 +19,13 @@ class CountryCodeSelector extends StatefulWidget {
     required this.cubit,
     required this.loading,
     this.label,
+    this.readOnly = false,
   });
 
   final CountryCodeSelectorCubit cubit;
   final bool loading;
   final String? label;
+  final bool readOnly;
 
   @override
   State<CountryCodeSelector> createState() => _CountryCodeSelectorState();
@@ -33,6 +36,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
   OverlayEntry? overlayEntry;
 
   void showOverlay({Country? selectedCountry}) {
+    if (widget.readOnly) return;
     widget.cubit.state.whenOrNull(
       init: (country, countryList) {
         overlayEntry ??= _createOverlayEntry();
@@ -76,6 +80,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
               state: state,
               selectedCountry: selectedCountry,
               layerLink: layerLink,
+              readOnly: widget.readOnly,
               overlayEntry: overlayEntry,
               showOverlay: showOverlay,
               loading: widget.loading,
@@ -87,6 +92,7 @@ class _CountryCodeSelectorState extends State<CountryCodeSelector> {
               state: state,
               selectedCountry: selectedCountry,
               layerLink: layerLink,
+              readOnly: widget.readOnly,
               overlayEntry: overlayEntry,
               showOverlay: showOverlay,
               loading: widget.loading,
@@ -116,6 +122,7 @@ class _Selector extends StatefulWidget {
     required this.state,
     required this.loading,
     this.label,
+    this.readOnly = false,
   });
 
   final LayerLink layerLink;
@@ -125,6 +132,7 @@ class _Selector extends StatefulWidget {
   final Function({Country selectedCountry}) showOverlay;
   final CountryCodeSelectorState state;
   final String? label;
+  final bool readOnly;
 
   @override
   State<_Selector> createState() => _SelectorState();
@@ -170,7 +178,7 @@ class _SelectorState extends State<_Selector> {
               )
             : null,
         hint: AppLocale.of(context).select_country_code,
-        readOnly: widget.selectedCountry == null,
+        readOnly: widget.readOnly || widget.selectedCountry == null,
         keyboardType: TextInputType.phone,
         inputFormatters: <TextInputFormatter>[
           FilteringTextInputFormatter.allow(RegExp('[0-9]')),

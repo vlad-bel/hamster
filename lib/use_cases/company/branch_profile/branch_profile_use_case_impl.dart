@@ -33,8 +33,6 @@ class BranchProfileUseCaseImpl extends BranchProfileUseCase {
 
   @override
   Future<BranchProfileWithPaging> getBranchesListByRepresentative() async {
-    // final response = await _repository.getBranchesByRepresentative();
-
     // TODO: mock
     final branchProfile = [
       BranchProfile(

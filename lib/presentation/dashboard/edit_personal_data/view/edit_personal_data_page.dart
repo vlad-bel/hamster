@@ -2,7 +2,6 @@ import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/country_code_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
-import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/dashboard/edit_personal_data/cubit/edit_personal_data_cubit.dart';
@@ -14,9 +13,10 @@ import 'package:business_terminal/presentation/registration/widgets/action_butto
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+/// Page of user personal data editing
+/// Layout mockup - [https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/e1a77de1-24a8-48ff-b983-48876e10554b/]
 class EditPersonalDataPage extends StatefulWidget {
   static const path = 'edit_personal_data';
 
@@ -27,7 +27,8 @@ class EditPersonalDataPage extends StatefulWidget {
 }
 
 class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
-  final formSettings = EditPersonalDataFormGroup();
+  /// Logic of country code picking is encapsulated in this cubit
+  /// Other logic is inside [EditPersonalDataCubit]
   final countryCodeCubit = getIt.get<CountryCodeSelectorCubit>()
     ..getCountryList();
 
@@ -43,44 +44,55 @@ class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
             Navigator.of(context).pushNamed(PersonalAvatarPage.path);
           },
           child: ReactiveFormBuilder(
-            form: formSettings.buildForm,
+            form: () => context.read<EditPersonalDataCubit>().form,
             builder: (context, formGroup, child) {
               return Column(
                 children: [
                   const SizedBox(height: 16),
                   FormTextField(
-                    name: formSettings.kFieldName,
+                    name: EditPersonalDataFormGroup.kFieldName,
                     label: AppLocale.of(context).firstName,
-                    validationMessages: (_) => formSettings
-                        .validationMessageNameSurname(AppLocale.of(context)),
-                    initialText: 'John',
+                    validationMessages: (_) =>
+                        EditPersonalDataFormGroup.validationMessageNameSurname(
+                            AppLocale.of(context)),
                   ),
                   const SizedBox(height: 16),
                   FormTextField(
-                    name: formSettings.kFieldSurname,
+                    name: EditPersonalDataFormGroup.kFieldSurname,
                     label: AppLocale.of(context).lastName,
-                    validationMessages: (_) => formSettings
-                        .validationMessageNameSurname(AppLocale.of(context)),
-                    initialText: 'Doe',
+                    validationMessages: (_) =>
+                        EditPersonalDataFormGroup.validationMessageNameSurname(
+                      AppLocale.of(context),
+                    ),
                   ),
                   const SizedBox(height: 16),
                   FormTextField(
+                    name: EditPersonalDataFormGroup.kFieldEmail,
                     label: AppLocale.of(context).email,
-                    reactive: false,
                     readOnly: true,
-                    initialText: 'john.doe@andersenlab.com',
                   ),
                   const SizedBox(height: 16),
                   ReactiveForm(
-                    formGroup: countryCodeCubit.numberForm,
+                    formGroup: context
+                        .read<EditPersonalDataCubit>()
+                        .countryCodeSelectorCubit
+                        .numberForm,
                     child: CountryCodeSelector(
-                      cubit: countryCodeCubit,
+                      cubit: context
+                          .read<EditPersonalDataCubit>()
+                          .countryCodeSelectorCubit,
                       loading: false,
+                      readOnly: true,
                       label: AppLocale.of(context).phoneNumber,
                     ),
                   ),
                   const SizedBox(height: 16),
-                  CountrySelector(cubit: GetIt.instance.get()),
+                  FormTextField(
+                    label: AppLocale.of(context).language,
+                    initialText: AppLocale.of(context).de_language,
+                    readOnly: true,
+                    reactive: false,
+                  ),
                   const SizedBox(height: 16),
                   Row(
                     children: [
@@ -94,7 +106,11 @@ class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
                         child: ActionButtonBlue(
                           isEnabled: formGroup.valid,
                           child: Text(AppLocale.of(context).save),
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<EditPersonalDataCubit>().saveData(() {
+                              Navigator.of(context).pop();
+                            });
+                          },
                         ),
                       ),
                     ],

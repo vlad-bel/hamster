@@ -17,6 +17,8 @@ import 'package:get_it/get_it.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
+/// Page with OTP input
+/// Mockup - [https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/9b1c64be-a731-4278-8ceb-d6f91412c0ae/]
 class PinCodePasswordResetPage extends StatelessWidget {
   static const _kEmailKey = '$path/email';
   static const _kMethodKey = '$path/method';

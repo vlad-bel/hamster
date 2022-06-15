@@ -15,6 +15,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+/// New password confirmation. The last step of reset password flow
+/// Mockup - [https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/395247ee-a8f3-4b4d-8239-02137b0f4a1e/]
 class ConfirmNewPasswordPage extends StatefulWidget {
   static const path = 'confirm_new_password';
 

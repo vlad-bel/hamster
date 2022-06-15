@@ -9,10 +9,12 @@ class EditPersonalDataFormGroup {
   static const kPasswordValidationRuleValidPass = 'passwordValid';
 
   // Form fields:
-  final kFieldName = 'name';
-  final kFieldSurname = 'surname';
+  static const kFieldName = 'name';
+  static const kFieldSurname = 'surname';
+  static const kFieldEmail = 'email';
+  static const kFieldPhone = 'phone';
 
-  Map<String, String> validationMessageNameSurname(S localization) => {
+  static Map<String, String> validationMessageNameSurname(S localization) => {
         ValidationMessage.required: localization.shouldNotBeEmpty,
         ValidationMessage.minLength: localization.minLength(kNameMaxLength),
         ValidationMessage.maxLength: localization.maxLength(kNameMaxLength),
@@ -36,6 +38,8 @@ class EditPersonalDataFormGroup {
         kFieldSurname: FormControl<String>(
           validators: nameSurnameValidators,
         ),
+        kFieldEmail: FormControl<String>(),
+        kFieldPhone: FormControl<String>()
       },
     );
   }

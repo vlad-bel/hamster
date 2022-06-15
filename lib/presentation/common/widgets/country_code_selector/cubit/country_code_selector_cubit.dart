@@ -1,3 +1,4 @@
+import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_state.dart';
@@ -81,7 +82,7 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
   }
 
   void selectCountry(Country country) {
-    state.whenOrNull(
+    state.maybeWhen(
       open: (_, countries) {
         numberForm.control(numberTextfield).setValidators([
           Validators.maxLength(15 - country.phone.length),
@@ -94,6 +95,41 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
           ),
         );
       },
+      orElse: () {
+        emit(
+          CountryCodeSelectorState.init(
+            selectedCountry: country,
+            countries: cachedCountries,
+          ),
+        );
+      },
     );
+  }
+
+  void setPhoneNumber(String phoneNumber) {
+    final country = _findCountry(phoneNumber);
+    logger.d('Found country = ${country?.name}');
+    if (country == null) return;
+
+    final phoneNumberWithoutCode = phoneNumber.replaceFirst(country.phone, '');
+    selectCountry(country);
+    numberForm.control(numberTextfield).value = phoneNumberWithoutCode;
+  }
+
+  Country? _findCountry(String originalQuery, [String? query]) {
+    query ??= originalQuery.substring(0, 2);
+
+    final countries = cachedCountries!.where(
+      (country) => country.phone.startsWith(query!),
+    );
+
+    if (countries.isEmpty) return null;
+    if (countries.length > 1 && originalQuery.length != query.length) {
+      return _findCountry(
+        originalQuery,
+        originalQuery.substring(0, query.length + 1),
+      );
+    }
+    return countries.first;
   }
 }
