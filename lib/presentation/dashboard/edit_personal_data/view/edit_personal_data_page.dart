@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+/// Page of user personal data editing
+/// Layout mockup - [https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/e1a77de1-24a8-48ff-b983-48876e10554b/]
 class EditPersonalDataPage extends StatefulWidget {
   static const path = 'edit_personal_data';
 
@@ -25,6 +27,8 @@ class EditPersonalDataPage extends StatefulWidget {
 }
 
 class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
+  /// Logic of country code picking is encapsulated in this cubit
+  /// Other logic is inside [EditPersonalDataCubit]
   final countryCodeCubit = getIt.get<CountryCodeSelectorCubit>()
     ..getCountryList();
 
@@ -51,7 +55,6 @@ class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
                     validationMessages: (_) =>
                         EditPersonalDataFormGroup.validationMessageNameSurname(
                             AppLocale.of(context)),
-                    initialText: 'John',
                   ),
                   const SizedBox(height: 16),
                   FormTextField(
@@ -61,7 +64,6 @@ class _EditPersonalDataPageState extends State<EditPersonalDataPage> {
                         EditPersonalDataFormGroup.validationMessageNameSurname(
                       AppLocale.of(context),
                     ),
-                    initialText: 'Doe',
                   ),
                   const SizedBox(height: 16),
                   FormTextField(

@@ -8,6 +8,8 @@ import 'package:business_terminal/presentation/registration/widgets/action_butto
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+/// Page with message, then new password has been installed
+/// Mockup - [https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/8b798cf6-3e2e-4f7b-b0f8-2bc323049889/]
 class NewPasswordInstalledPage extends StatelessWidget {
   static const path = 'new_password_installed';
 
