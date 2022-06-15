@@ -1,12 +1,22 @@
 import 'package:business_terminal/domain/model/file/app_file.dart';
 import 'package:dio/dio.dart';
 
-class AppFileFormData {
+class AppFilesFormData {
   final FormData formData;
   List<AppFile> appFiles;
 
-  AppFileFormData({
+  AppFilesFormData({
     required this.formData,
     required this.appFiles,
+  });
+}
+
+class AppFileFormData {
+  final FormData formData;
+  AppFile appFile;
+
+  AppFileFormData({
+    required this.formData,
+    required this.appFile,
   });
 }
