@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:business_terminal/domain/model/formdata/app_file_form_data.dart';
 import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:business_terminal/domain/repository/token/default_token_repository.dart';
@@ -9,28 +8,24 @@ import 'package:http_parser/http_parser.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final dio = httpClientInit();
-
 final tokenRepository = DefaultTokenRepository();
 const baseUrl = String.fromEnvironment(
   'base_url',
   defaultValue: 'https://35.158.96.146/api',
 );
-
 const appFileFormDataKey = 'app_file_form_data';
-
 Dio httpClientInit() {
   final prettyDioLogger = PrettyDioLogger(
     requestHeader: true,
     requestBody: true,
     compact: false,
   );
-
-  final option = BaseOptions()
-    ..headers = <String, dynamic>{
+  final option = BaseOptions(
+    baseUrl: baseUrl,
+  )..headers = <String, dynamic>{
       'Accept': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
     };
-
   final dio = Dio(option)
     ..interceptors.add(
       InterceptorsWrapper(
@@ -39,18 +34,14 @@ Dio httpClientInit() {
           RequestInterceptorHandler handler,
         ) async {
           final accessToken = await tokenRepository.getAccessToken();
-
           if (accessToken != null) {
             options.headers['Authorization'] = 'Bearer $accessToken';
           }
-
           final data = options.data as Map<String, dynamic>?;
-
           final formData = getFormDataFromBody(data);
           if (formData != null) {
             options.data = formData;
           }
-
           return handler.next(options);
         },
         onResponse: (
@@ -63,9 +54,8 @@ Dio httpClientInit() {
           return _refreshToken(error, handler);
         },
       ),
-    );
-  // ..interceptors.add(prettyDioLogger);
-
+    )
+    ..interceptors.add(prettyDioLogger);
   return dio;
 }
 
@@ -76,9 +66,8 @@ Future<void> _refreshToken(
   if (error.response?.statusCode == 401 &&
       error.requestOptions.path != '/rep/login') {
     final oldRefreshToken = await tokenRepository.getRefreshToken();
-
     final response = await http.post(
-      Uri.parse('${dio.options.baseUrl}rep/refresh'),
+      Uri.parse('$baseUrl/rep/refresh'),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -89,33 +78,24 @@ Future<void> _refreshToken(
       final loginResponse = LoginResponse.fromJson(
         jsonDecode(response.body) as Map<String, dynamic>,
       );
-
       await tokenRepository.setAccessToken(loginResponse.accessToken);
       await tokenRepository.setRefreshToken(loginResponse.refreshToken);
-
       final options = error.requestOptions;
-
       options.headers['Authorization'] = 'Bearer ${loginResponse.accessToken}';
-
       try {
         final data = options.data as Map<String, dynamic>?;
-
         final formData = getFormDataFromBody(data);
         if (formData != null) {
           options.data = formData;
         }
-
         final response = await request(options.data, options);
-
         return handler.resolve(response);
       } on DioError catch (e) {
         return handler.next(e);
       }
     }
-
     return handler.next(error);
   }
-
   return handler.next(error);
 }
 
@@ -124,7 +104,7 @@ Future<Response> request(
   RequestOptions options,
 ) async {
   return dio.request<dynamic>(
-    options.path,
+    '$baseUrl${options.path}',
     data: data,
     queryParameters: options.queryParameters,
     options: Options(
@@ -142,7 +122,6 @@ FormData? getFormDataFromBody(Map<String, dynamic>? data) {
     if (value is AppFilesFormData) {
       final formData = value.formData;
       final formFiles = value.appFiles;
-
       for (final formFile in formFiles) {
         final multipartFile = MultipartFile.fromBytes(
           formFile.bytes!,
@@ -152,7 +131,6 @@ FormData? getFormDataFromBody(Map<String, dynamic>? data) {
             formFile.extension,
           ),
         );
-
         formData.files.add(
           MapEntry(
             'files',
@@ -160,14 +138,11 @@ FormData? getFormDataFromBody(Map<String, dynamic>? data) {
           ),
         );
       }
-
       _formData = formData;
     }
-
     if (value is AppFileFormData) {
       final formData = value.formData;
       final formFile = value.appFile;
-
       final multipartFile = MultipartFile.fromBytes(
         formFile.bytes!,
         filename: formFile.name ?? '${DateTime.now()}.${formFile.extension}',
@@ -176,17 +151,14 @@ FormData? getFormDataFromBody(Map<String, dynamic>? data) {
           formFile.extension,
         ),
       );
-
       formData.files.add(
         MapEntry(
           'file',
           multipartFile,
         ),
       );
-
       _formData = formData;
     }
   });
-
   return _formData;
 }
