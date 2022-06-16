@@ -2080,21 +2080,31 @@ class S {
     );
   }
 
-  /// `Custom number:`
-  String get custom_number {
-    return Intl.message(
-      'Custom number:',
-      name: 'custom_number',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Not found`
   String get notFound {
     return Intl.message(
       'Not found',
       name: 'notFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `🇩🇪 Deutsch`
+  String get de_language {
+    return Intl.message(
+      '🇩🇪 Deutsch',
+      name: 'de_language',
       desc: '',
       args: [],
     );
@@ -2115,6 +2125,16 @@ class S {
     return Intl.message(
       'Declined',
       name: 'declined',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kundennummer:`
+  String get custom_number {
+    return Intl.message(
+      'Kundennummer:',
+      name: 'custom_number',
       desc: '',
       args: [],
     );
@@ -2215,6 +2235,96 @@ class S {
     return Intl.message(
       'BEARBEITEN',
       name: 'to_edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manufacturer`
+  String get manufacturer {
+    return Intl.message(
+      'Manufacturer',
+      name: 'manufacturer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Model`
+  String get model {
+    return Intl.message(
+      'Model',
+      name: 'model',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pos Identifier`
+  String get pos_identifier {
+    return Intl.message(
+      'Pos Identifier',
+      name: 'pos_identifier',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Action`
+  String get action {
+    return Intl.message(
+      'Action',
+      name: 'action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get active {
+    return Intl.message(
+      'Active',
+      name: 'active',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inactive`
+  String get inactive {
+    return Intl.message(
+      'Inactive',
+      name: 'inactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `POS connection`
+  String get pos_overview {
+    return Intl.message(
+      'POS connection',
+      name: 'pos_overview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `House number`
+  String get house_number {
+    return Intl.message(
+      'House number',
+      name: 'house_number',
       desc: '',
       args: [],
     );

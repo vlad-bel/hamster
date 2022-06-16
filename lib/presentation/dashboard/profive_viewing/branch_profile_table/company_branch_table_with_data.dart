@@ -63,7 +63,8 @@ class BranchProfileTableWithData extends StatelessWidget {
   ) {
     final dataMap = {
       CompanyDataCommonFieldsWithBranchData.companyName: true,
-      CompanyDataCommonFieldsWithBranchData.streetNameAndNumber: true,
+      CompanyDataCommonFieldsWithBranchData.streetName: true,
+      CompanyDataCommonFieldsWithBranchData.streetNumber: true,
       CompanyDataCommonFieldsWithBranchData.postalCode: true,
       CompanyDataCommonFieldsWithBranchData.city: true,
       CompanyDataCommonFieldsWithBranchData.country: false,

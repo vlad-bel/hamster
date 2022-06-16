@@ -1,3 +1,4 @@
+import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/generated/assets.dart';
@@ -18,10 +19,10 @@ class SideMenuItems extends StatefulWidget {
     this.isBlockFinance,
   }) : super(key: key);
 
+  final bool? isBlockFinance;
   final Function(int, String routeName) navigateTo;
   final int selectedIndex;
   final String selectedPage;
-  final bool? isBlockFinance;
 
   @override
   State<SideMenuItems> createState() => _SideMenuItemsState();
@@ -101,6 +102,15 @@ class _SideMenuItemsState extends State<SideMenuItems> with RouteAware {
                         selectedRoute: widget.selectedPage,
                         routeName: '/administration/user_management',
                       ),
+                      MenuSubItem(
+                        index: 1,
+                        name: AppLocale.of(context).pos_overview,
+                        onTap: (index, routeName) {
+                          widget.navigateTo(index, routeName);
+                        },
+                        selectedRoute: widget.selectedPage,
+                        routeName: posOverviewPath,
+                      ),
                     ],
                   );
                 },
@@ -124,12 +134,12 @@ class MenuItem extends StatefulWidget {
     this.isBlocked = true,
   }) : super(key: key);
 
-  final String name;
-  final String initialRouteName;
-  final String selectedRoute;
   final String image;
-  final List<MenuSubItem> subItems;
+  final String initialRouteName;
   final bool? isBlocked;
+  final String name;
+  final String selectedRoute;
+  final List<MenuSubItem> subItems;
 
   @override
   State<MenuItem> createState() => _MenuItemState();
@@ -201,12 +211,11 @@ class MenuSubItem extends StatelessWidget {
   })  : isSelected = selectedRoute == routeName,
         super(key: key);
 
-  final String name;
   final int? badgeCountValue;
-  final bool isSelected;
-  final Function(int index, String routeName) onTap;
-
   final int index;
+  final bool isSelected;
+  final String name;
+  final Function(int index, String routeName) onTap;
   final String routeName;
   final String selectedRoute;
 

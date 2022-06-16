@@ -85,10 +85,10 @@ class PaymentInfo extends StatelessWidget {
                 FormTextField(
                   name: AddPaymentFormSettings.kIbanField,
                   hint: AppLocale.of(context).iban,
-                  label: AppLocale.of(context).iban,
                   inputFormatters: [
                     IbanInputFormatter(),
                   ],
+                  label: AppLocale.of(context).iban,
                   validationMessages: (control) =>
                       AddPaymentFormSettings.validationMessageIban,
                 ),

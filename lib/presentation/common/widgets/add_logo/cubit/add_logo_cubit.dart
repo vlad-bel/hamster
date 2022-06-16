@@ -48,12 +48,14 @@ class AddLogoCubit extends Cubit<AddLogoState> {
     required AppColoredFile image,
   }) {
     if (state.images?.isNotEmpty == true) {
-      state.images?.add(image);
-
+      final _images = <AppColoredFile>[
+        image,
+        ...?state.images,
+      ];
       return emit(
         AddLogoState.init(
           selectedImage: image,
-          images: state.images,
+          images: _images,
         ),
       );
     } else {

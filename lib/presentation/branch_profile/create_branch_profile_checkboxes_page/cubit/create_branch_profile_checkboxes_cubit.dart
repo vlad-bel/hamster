@@ -6,7 +6,8 @@ part 'create_branch_profile_checkboxes_cubit.freezed.dart';
 
 enum CompanyDataCommonFieldsWithBranchData {
   companyName,
-  streetNameAndNumber,
+  streetName,
+  streetNumber,
   postalCode,
   city,
   country,
@@ -26,7 +27,7 @@ class CreateBranchProfileCheckboxesCubit
 
   CreateBranchProfileCheckboxesData dataMap = {
     CompanyDataCommonFieldsWithBranchData.companyName: false,
-    CompanyDataCommonFieldsWithBranchData.streetNameAndNumber: false,
+    CompanyDataCommonFieldsWithBranchData.streetName: false,
     CompanyDataCommonFieldsWithBranchData.postalCode: false,
     CompanyDataCommonFieldsWithBranchData.city: false,
     CompanyDataCommonFieldsWithBranchData.country: false,

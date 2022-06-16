@@ -8,7 +8,9 @@ class BranchProfileFormValidation {
 
   final kFieldBranchName = 'branchName';
   final kFieldStreet = 'street';
+  final kFieldStreetNumber = 'streetNumber';
   final kFieldCity = 'city';
+  final kFieldPostalCode = 'zipCode';
   static const kFieldWebsite = 'website';
   static const kFieldPhone = 'phone';
   final kFieldEntrancesCount = 'entrancesCount';
@@ -49,11 +51,25 @@ class BranchProfileFormValidation {
           Validators.maxLength(120),
         ],
       ),
+      kFieldStreetNumber: FormControl<String>(
+        validators: [
+          Validators.required,
+          Validators.minLength(kMinLength),
+          Validators.maxLength(10),
+        ],
+      ),
       kFieldCity: FormControl<String>(
         validators: [
           Validators.required,
           Validators.minLength(kMinLength),
           Validators.maxLength(128),
+        ],
+      ),
+      kFieldPostalCode: FormControl<String>(
+        validators: [
+          Validators.required,
+          Validators.minLength(kMinLength),
+          Validators.maxLength(10),
         ],
       ),
       kFieldWebsite: FormControl<String>(

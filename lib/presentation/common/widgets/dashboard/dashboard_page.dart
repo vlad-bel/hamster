@@ -4,6 +4,7 @@ import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/da
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/widget/top_menu/top_menu.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/view/dashboard_account_verification.dart';
+import 'package:business_terminal/presentation/dashboard/pos_overview/view/pos_overview.dart';
 import 'package:business_terminal/presentation/dashboard/profive_viewing/view/profile_viewing.dart';
 import 'package:business_terminal/presentation/navigation/unknown_page.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ const myCompanyEditPath = '/administration/my_company/edit';
 const myCompanyEditAddLogoPath = '/administration/my_company/edit/add_logo';
 
 const userManagementPath = '/administration/user_management';
+const posOverviewPath = '/administration/pos_overview';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({
@@ -28,8 +30,8 @@ class DashboardPage extends StatefulWidget {
 
   static const String path = '/dashboard';
 
-  final String initialPagePath;
   final int initialPageIndex;
+  final String initialPagePath;
 
   ///need to bloc finance menu
   final bool? isBlockFinance;
@@ -46,6 +48,7 @@ final navigatorKeys = <int, GlobalKey<NavigatorState>>{
 class _DashboardPageState extends State<DashboardPage> {
   ///TODO replace to cubit
   late int pageIndex;
+
   late String selectedPage;
 
   @override
@@ -144,6 +147,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                         case myCompanyPath:
                                           page = const ProfileViewing();
                                           break;
+                                        case posOverviewPath:
+                                          page = const PosOverviewView();
+                                          break;
                                         case userManagementPath:
                                           page = Container(
                                             color: solitude1,
@@ -194,9 +200,9 @@ class NavigatorPage extends StatelessWidget {
     required this.initialRoute,
   }) : super(key: key);
 
+  final String initialRoute;
   final GlobalKey navigatorKey;
   final RouteFactory? onGenerateRoute;
-  final String initialRoute;
 
   @override
   Widget build(BuildContext context) {

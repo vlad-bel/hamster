@@ -60,8 +60,8 @@ class _BranchProfileViewState extends State<_BranchProfileView> {
   @override
   void initState() {
     super.initState();
-    final cubit = context.read<BranchProfileAvatarPictureCubit>();
-    cubit.loadInitData();
+    context.read<BranchProfileAvatarPictureCubit>()
+      .loadInitData();
   }
 
   @override

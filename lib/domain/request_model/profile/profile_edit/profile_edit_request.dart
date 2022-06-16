@@ -24,7 +24,7 @@ class ProfileEditRequest {
       _$ProfileEditRequestFromJson(json);
 
   @JsonKey(name: 'accountOwner')
-  final String accountOwner;
+  final String? accountOwner;
 
   @JsonKey(name: 'backgrounds')
   final List<String?> backgrounds;
@@ -43,7 +43,7 @@ class ProfileEditRequest {
   final String countryCode;
 
   @JsonKey(name: 'IBAN')
-  final String iban;
+  final String? iban;
 
   @JsonKey(name: 'postalCode')
   final String postalCode;
