@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/config/image/image_paths.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
@@ -13,6 +14,7 @@ import 'package:business_terminal/presentation/dashboard/pos_overview/widget/pos
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PosOverviewView extends StatelessWidget {
   const PosOverviewView({Key? key}) : super(key: key);
@@ -99,11 +101,15 @@ class PosOverviewView extends StatelessWidget {
                                       : null,
                                   child: const Text('>'),
                                 ),
-                                const Icon(Icons.search),
+                                SvgPicture.asset(
+                                  ImagePaths.icon(SvgPaths.search),
+                                ),
                                 const SizedBox(
                                   width: 20,
                                 ),
-                                const Icon(Icons.filter_alt),
+                                SvgPicture.asset(
+                                  ImagePaths.icon(SvgPaths.filterSink),
+                                ),
                               ],
                             )
                           ],

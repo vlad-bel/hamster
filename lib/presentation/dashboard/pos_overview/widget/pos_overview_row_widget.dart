@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:business_terminal/config/image/image_paths.dart';
 import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/model/company/branch/branch_profile.dart';
 import 'package:business_terminal/domain/model/file/app_file.dart';
@@ -7,6 +8,7 @@ import 'package:business_terminal/presentation/common/widgets/app_image/app_imag
 import 'package:business_terminal/presentation/dashboard/pos_overview/widget/pos_active_status_widget.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class PosOverviewRow extends DataTableSource {
   PosOverviewRow({
@@ -86,8 +88,8 @@ class PosOverviewRow extends DataTableSource {
                 ),
               ),
               const Spacer(),
-              const Icon(
-                Icons.copy,
+              SvgPicture.asset(
+                ImagePaths.icon(SvgPaths.copy),
               ),
               const SizedBox(
                 width: 4,
@@ -102,21 +104,21 @@ class PosOverviewRow extends DataTableSource {
         ),
         DataCell(
           Row(
-            children: const [
-              Icon(
-                Icons.edit,
+            children: [
+              SvgPicture.asset(
+                ImagePaths.icon(SvgPaths.edit),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 4,
               ),
-              Icon(
-                Icons.ios_share_rounded,
+              SvgPicture.asset(
+                ImagePaths.icon(SvgPaths.share),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 4,
               ),
-              Icon(
-                Icons.close,
+              SvgPicture.asset(
+                ImagePaths.icon(SvgPaths.close),
               ),
             ],
           ),

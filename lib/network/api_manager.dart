@@ -60,8 +60,8 @@ Dio httpClientInit() {
           return _refreshToken(error, handler);
         },
       ),
-    )
-    ..interceptors.add(prettyDioLogger);
+    );
+  // ..interceptors.add(prettyDioLogger);
 
   return dio;
 }

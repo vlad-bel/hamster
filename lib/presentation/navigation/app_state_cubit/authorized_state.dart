@@ -70,7 +70,6 @@ class AuthorizedState extends AppState {
                 break;
               case AddPaymentPage.path:
                 final args = settings.arguments! as AddPaymentArguments;
-
                 page = AddPaymentPage(
                   addPaymentArguments: args,
                 );
@@ -89,7 +88,7 @@ class AuthorizedState extends AppState {
                     repCompany: company,
                   );
                 } else {
-// TODO: add ErroPage later and display error
+                  // TODO: add ErroPage later and display error
                   throw Exception(
                     'CreateBranchProfileCheckboxesPage company '
                     'parameter is NULL',
