@@ -3,7 +3,6 @@ import 'package:business_terminal/domain/request_model/otp_verification/resend_o
 
 ///UseCase for sending data to OTP service
 abstract class OtpVerificationUseCase {
-
   ///verify new email
   Future<String> verifyEmail(OtpVerificationRequest request);
 

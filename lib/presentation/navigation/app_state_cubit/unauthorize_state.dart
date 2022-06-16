@@ -2,7 +2,6 @@ import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
 import 'package:business_terminal/app/utils/storage/storage_service.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/verify_phone_request.dart';
-import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/forget_password/view/choose_verify_page.dart';
 import 'package:business_terminal/presentation/forget_password/view/confirm_new_password_page.dart';
 import 'package:business_terminal/presentation/forget_password/view/forget_password_email.dart';
@@ -16,6 +15,7 @@ import 'package:business_terminal/presentation/number_verification/call_method_s
 import 'package:business_terminal/presentation/number_verification/country_code/country_code_page.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/number_code_confirmaion_page.dart';
 import 'package:business_terminal/presentation/number_verification/result_page/result_page.dart';
+import 'package:business_terminal/presentation/otp_verification/view/otp_verification_page.dart';
 import 'package:business_terminal/presentation/registration/view/registration_page.dart';
 import 'package:flutter/material.dart';
 
@@ -63,10 +63,10 @@ class UnauthorizedState extends AppState {
                   ),
                 );
                 break;
-              case CountriesCodePage.path:
+              case CountryCodePage.path:
                 page = buildPage(
                   requiredParams: [emailParam],
-                  child: CountriesCodePage(
+                  child: CountryCodePage(
                     email: appStorageService.getString(key: emailParam)!,
                   ),
                 );

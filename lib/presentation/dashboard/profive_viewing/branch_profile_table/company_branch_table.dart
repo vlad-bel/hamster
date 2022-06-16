@@ -28,6 +28,7 @@ class BranchProfileTable extends StatelessWidget {
   }
 
   Widget error(testCount, finansenOpen, administrationOpen, repCompany) {
-    return const Center(child: Text('CompanyBranchTable -> DashboardCubit Error'));
+    return const Center(
+        child: Text('CompanyBranchTable -> DashboardCubit Error'));
   }
 }

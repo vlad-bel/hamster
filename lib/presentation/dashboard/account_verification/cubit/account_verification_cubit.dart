@@ -62,7 +62,6 @@ class AccountVerificationCubit extends Cubit<VerifyAccountState> {
     }
   }
 
-
   final fullyCompleted = 100;
 
   bool isFullyCompleted(RepCompany repCompany) {

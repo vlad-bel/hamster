@@ -106,7 +106,7 @@ class BranchProfileAvatarPictureCubit
             client: client,
             fileName: logo.fileName!,
           );
-          if(preloadImage != null){
+          if (preloadImage != null) {
             addedImages.add(
               AppColoredFile(
                 bytes: preloadImage,
@@ -116,7 +116,6 @@ class BranchProfileAvatarPictureCubit
               ),
             );
           }
-
         } catch (e, s) {
           log('Error is $e, StackTrace is $s');
         }

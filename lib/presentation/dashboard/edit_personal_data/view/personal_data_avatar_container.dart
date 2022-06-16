@@ -1,7 +1,6 @@
 import 'package:business_terminal/config/colors.dart';
 import 'package:business_terminal/domain/model/file/app_image.dart';
 import 'package:business_terminal/generated/assets.dart';
-import 'package:business_terminal/presentation/common/widgets/dashboard/widget/side_menu/side_menu_header.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

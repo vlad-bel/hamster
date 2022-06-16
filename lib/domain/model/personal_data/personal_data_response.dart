@@ -19,13 +19,12 @@ class PersonalDataResponse {
   @JsonKey(name: 'avatar')
   final String? avatarFileName;
 
-  PersonalDataResponse({
-    required this.email,
-    required this.firstName,
-    required this.lastName,
-    required this.phone,
-    required this.avatarFileName
-  });
+  PersonalDataResponse(
+      {required this.email,
+      required this.firstName,
+      required this.lastName,
+      required this.phone,
+      required this.avatarFileName});
 
   factory PersonalDataResponse.fromJson(Map<String, dynamic> json) =>
       _$PersonalDataResponseFromJson(json);

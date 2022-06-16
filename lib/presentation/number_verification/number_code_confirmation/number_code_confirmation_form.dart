@@ -4,10 +4,10 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/domain/request_model/otp_verification/phone_verification/verify_phone_request.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
 import 'package:business_terminal/presentation/common/widgets/code_verification_form/code_verification_form.dart';
-import 'package:business_terminal/presentation/email_verification/view/email_was_sent_text_icon.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/cubit/number_code_confirmation_cubit.dart';
 import 'package:business_terminal/presentation/number_verification/number_code_confirmation/cubit/number_code_confirmation_state.dart';
 import 'package:business_terminal/presentation/number_verification/result_page/result_page.dart';
+import 'package:business_terminal/presentation/otp_verification/view/otp_result_info_text_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

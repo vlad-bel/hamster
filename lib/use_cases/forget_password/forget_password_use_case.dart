@@ -25,7 +25,6 @@ abstract class ForgetPasswordUseCase {
     ForgetPasswordResendCodeRequest resendCodeRequest,
   );
 
-
   ///Confirm of reseting password
   ///Creates new password for user
   Future<void> resetPassword(ResetPasswordRequest request);

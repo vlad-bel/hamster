@@ -3,7 +3,7 @@ import 'package:business_terminal/domain/model/errors/api_failure_response.dart'
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/domain/request_model/otp_verification/otp_verification_request.dart';
 import 'package:business_terminal/domain/request_model/otp_verification/resend_otp_code_request.dart';
-import 'package:business_terminal/use_cases/registration/email_verification/email_verification.dart';
+import 'package:business_terminal/use_cases/otp_verification/email_verification/email_verification.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 

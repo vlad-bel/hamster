@@ -10,8 +10,8 @@ import 'package:business_terminal/presentation/common/widgets/hint/password_hint
 import 'package:business_terminal/presentation/common/widgets/horizontal_line_short_grey.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_appbar/language_dropdown.dart';
 import 'package:business_terminal/presentation/common/widgets/text_title.dart';
-import 'package:business_terminal/presentation/email_verification/view/email_verification_page.dart';
 import 'package:business_terminal/presentation/navigation/app_state_cubit/unauthorize_state.dart';
+import 'package:business_terminal/presentation/otp_verification/view/otp_verification_page.dart';
 import 'package:business_terminal/presentation/registration/cubit/user_info_init_cubit.dart';
 import 'package:business_terminal/presentation/registration/form_validation_rules/user_info_form_group.dart';
 import 'package:business_terminal/presentation/registration/widgets/action_button_blue.dart';

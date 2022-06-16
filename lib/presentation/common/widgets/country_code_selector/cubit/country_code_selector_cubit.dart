@@ -2,7 +2,7 @@ import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/country/country.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
 import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_state.dart';
-import 'package:business_terminal/use_cases/number_verification/number_verification_use_case.dart';
+import 'package:business_terminal/use_cases/otp_verification/number_verification/number_verification_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
