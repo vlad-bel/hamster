@@ -2,7 +2,9 @@ import 'dart:typed_data';
 
 import 'package:business_terminal/domain/gateway/rest_client.dart';
 
-///Provides image bytes of image uloaded from backend by filename
+///Uploading images from backend by filename
+///Returns Uint8List
+///Uses for loading or precaches files
 Future<Uint8List?> loadImage({
   required RestClient client,
   required String fileName,

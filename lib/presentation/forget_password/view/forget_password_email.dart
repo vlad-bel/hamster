@@ -12,6 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+/// The first step of password recovery flow
+/// User should type his email to continue
+/// Mockup - [https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/86d83e30-e318-41fa-ae61-e5a568129ca4/]
 class ForgetPasswordEmailPage extends StatelessWidget {
   const ForgetPasswordEmailPage({super.key});
 
@@ -19,19 +22,19 @@ class ForgetPasswordEmailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ForgetPasswordEmailView();
+    return const _ForgetPasswordEmailView();
   }
 }
 
-class ForgetPasswordEmailView extends StatefulWidget {
-  const ForgetPasswordEmailView({super.key});
+class _ForgetPasswordEmailView extends StatefulWidget {
+  const _ForgetPasswordEmailView({super.key});
 
   @override
-  State<ForgetPasswordEmailView> createState() =>
+  State<_ForgetPasswordEmailView> createState() =>
       _ForgetPasswordEmailViewState();
 }
 
-class _ForgetPasswordEmailViewState extends State<ForgetPasswordEmailView> {
+class _ForgetPasswordEmailViewState extends State<_ForgetPasswordEmailView> {
   final _formSettings = ForgetPasswordFormSettings();
 
   @override

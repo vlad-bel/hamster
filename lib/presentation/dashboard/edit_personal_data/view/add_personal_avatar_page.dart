@@ -9,6 +9,8 @@ import 'package:business_terminal/presentation/registration/widgets/white_button
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Screen with placeholder for personal avatar uploading
+/// Mockups is not provided. Layout is inspired by [https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/b11e8ab5-d38c-4133-8301-12e5abc998cd/]
 class AddPersonalAvatarPage extends StatelessWidget {
   const AddPersonalAvatarPage({Key? key}) : super(key: key);
 

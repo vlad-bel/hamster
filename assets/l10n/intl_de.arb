@@ -238,6 +238,8 @@
   "not_empty_field": "Sollte nicht leer sein",
   "email_field": "Sollte eine gültige E-Mail sein",
   "notFound": "Nicht gefunden",
+  "language": "Sprache",
+  "de_language": "🇩🇪 Deutsch",
   "branch": "Filialen",
   "custom_number": "Kundennummer:",
   "create_user_account_subtitle": "Erstellen Sie einen Nutzeraccount, um einen Zugang zum BusinessTerminal zu erhalten und damit Hamster zu nutzen.",

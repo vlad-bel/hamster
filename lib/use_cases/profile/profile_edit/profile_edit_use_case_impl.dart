@@ -23,7 +23,7 @@ class ProfileEditUsecaseImpl extends ProfileEditUsecase {
     List<AppFile> appFiles,
   ) async {
     try {
-      final formData = AppFileFormData(
+      final formData = AppFilesFormData(
         formData: FormData.fromMap(
           profileEditRequest.toJson(),
         ),
@@ -32,6 +32,10 @@ class ProfileEditUsecaseImpl extends ProfileEditUsecase {
 
       await getIt.get<Dio>().put(
         'company/$companyId',
+
+        ///Attached files must be placed on map like {String, FormData}
+        ///This structure need to parse attached files
+        ///This FormData parses in [ApiManager] interceptors
         data: {appFileFormDataKey: formData},
       );
       return true;

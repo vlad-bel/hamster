@@ -16,21 +16,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
+/// Mockup - [https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/0bc92cbb-b689-4d76-9b49-b1f74978e656/]
 class ChooseVerifyPage extends StatelessWidget {
   static const path = '/choose_verify_page';
   static const _kEmailKey = '$path/email';
 
-  const ChooseVerifyPage({super.key, required this.email});
+  const ChooseVerifyPage._({super.key, required this.email});
 
+  /// Build params to pass them to this page later
   static Map<String, dynamic> buildParams(String email) => {_kEmailKey: email};
 
+  /// Save params to restore them in case of page reloading
   static void saveParams(
       AppStorageService service, Map<String, dynamic> params) {
     service.setString(key: _kEmailKey, value: params[_kEmailKey] as String);
   }
 
-  factory ChooseVerifyPage.fromStorage(AppStorageService service) =>
-      ChooseVerifyPage(email: service.getString(key: _kEmailKey)!);
+  factory ChooseVerifyPage.fromStorage(AppStorageService service, {Key? key}) =>
+      ChooseVerifyPage._(key: key, email: service.getString(key: _kEmailKey)!);
 
   final String email;
 
@@ -53,7 +56,7 @@ class _ChooseVerifyView extends StatelessWidget {
       listener: (context, state) {
         state
           ..whenOrNull(
-            sent: (type, _) => onPressNavigateToPinCodePage(
+            sent: (type, _) => _onPressNavigateToPinCodePage(
               context,
               email,
               type,
@@ -197,7 +200,7 @@ class SubHeaderEmailRichText extends StatelessWidget {
   }
 }
 
-void onPressNavigateToPinCodePage(
+void _onPressNavigateToPinCodePage(
   BuildContext context,
   String email,
   ForgetPasswordVerificationMethod method,

@@ -15,9 +15,8 @@ clone:
   script:
     - git clone https://$GIT_USERNAME:$GIT_PASSWORD@bitbucket.org/raikjakschis/hamster_widgets.git
     - cd hamster_widgets && git checkout develop
-  only:
-    variables:
-      - ($CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "test")
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   artifacts:
     paths:
       - hamster_widgets/**
@@ -30,9 +29,8 @@ analyze:
   script:
     - dart analyze
   allow_failure: true
-  only:
-    variables:
-      - ($CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "test")
+  rules:
+    - if: ('$CI_PIPELINE_SOURCE == "merge_request_event"' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop")
 
 build-dev:
   image: cirrusci/flutter:stable
@@ -48,10 +46,9 @@ build-dev:
     - dart pub global activate intl_utils 2.6.1
     - flutter pub global run intl_utils:generate
     - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
-    - flutter build web -t lib/main_development.dart --release --web-renderer html
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == "develop"
+    - flutter build web -t lib/main_development.dart --release --web-renderer html --dart-define="base_url=$DEV_BASE_URL"
+  rules:
+    - if: ('$CI_PIPELINE_SOURCE == "merge_request_event"' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop")
   artifacts:
     paths:
       - build/web/**
@@ -67,10 +64,9 @@ build-stage:
     - sed -i '/url:/d' pubspec.yaml
     - sed -i '/ref:/d' pubspec.yaml
     - flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
-    - flutter build web -t lib/main_development.dart --release --web-renderer html
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == "test"
+    - flutter build web -t lib/main_development.dart --release --web-renderer html --dart-define="base_url=$STAGE_BASE_URL"
+  rules:
+    - if: ('$CI_PIPELINE_SOURCE == "merge_request_event"' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "test")
   artifacts:
     paths:
       - build/web/**
@@ -90,9 +86,8 @@ deploy-dev:
     - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
     - aws s3 sync $LOCAL_PATH "s3://$CI_ENVIRONMENT_NAME$S3_BUCKET_NAME" --acl public-read --delete
     - aws cloudfront create-invalidation --distribution-id $DEV_DISTRIBUTION_ID --paths '/*'
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == "develop"
+  rules:
+    - if: ('$CI_PIPELINE_SOURCE == "merge_request_event"' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop")
 
 deploy-stage:
   image: atlassian/default-image:2
@@ -109,10 +104,8 @@ deploy-stage:
     - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
     - aws s3 sync $LOCAL_PATH "s3://$CI_ENVIRONMENT_NAME$S3_BUCKET_NAME" --acl public-read --delete
     - aws cloudfront create-invalidation --distribution-id $STAGE_DISTRIBUTION_ID --paths '/*'
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == "test"
+  rules:
+    - if: ('$CI_PIPELINE_SOURCE == "merge_request_event"' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "test")
 
-#
 
 

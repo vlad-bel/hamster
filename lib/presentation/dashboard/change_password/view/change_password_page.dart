@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+/// Container for changing password flow
+/// Changes current page to [PasswordChangedWidget]
+///   when password changed successfully
+/// Else shows [ChangePasswordView]
 class ChangePasswordPage extends StatelessWidget {
   static const path = '/change_password';
 

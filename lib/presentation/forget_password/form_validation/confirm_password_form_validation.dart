@@ -43,9 +43,10 @@ class FormSettingsConfirmPassword {
         },
         validators: [
           ValidationUtils.mustMatch(
-              validationRuleKey: _kPasswordValidationRuleMustMatch,
-              controlName: kFieldNewPassword,
-              matchingControlName: kFieldNewPasswordConfirmation)
+            validationRuleKey: _kPasswordValidationRuleMustMatch,
+            controlName: kFieldNewPassword,
+            matchingControlName: kFieldNewPasswordConfirmation,
+          )
         ],
       );
 }

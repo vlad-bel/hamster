@@ -3,6 +3,8 @@ import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/widgets/hint/password_hint_background.dart';
 import 'package:flutter/material.dart';
 
+/// Floating hint when current password incorrect
+/// Using example - [https://xd.adobe.com/view/37f6c84a-adf8-42b8-4a26-d95fc5f52f2a-41c7/screen/d6698e94-9275-4ed6-b9fb-944a36f684c2/]
 class CurrentPasswordIncorrectHint extends StatelessWidget
     implements PreferredSizeWidget {
   static const _kDefaultWidth = 360.0;
@@ -46,11 +48,11 @@ class CurrentPasswordIncorrectHint extends StatelessWidget
                   onPressed: onPressed,
                   child: Text(
                     AppLocale.current.closeHint,
-                    style: TextStyle(color: Color(0xffe10054)),
+                    style: const TextStyle(color: Color(0xffe10054)),
                   ),
                 ),
               ),
-              Spacer()
+              const Spacer()
             ],
           ),
         ),
@@ -60,5 +62,5 @@ class CurrentPasswordIncorrectHint extends StatelessWidget
 
   @override
   Size get preferredSize =>
-      Size(_kDefaultWidth + _kDefaultStartMargin, _kDefaultHeight);
+      const Size(_kDefaultWidth + _kDefaultStartMargin, _kDefaultHeight);
 }
