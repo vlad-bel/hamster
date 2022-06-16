@@ -142,9 +142,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Erstellen Sie einen Nutzeraccount, um einen\'                   \' Zugang zum BusinessTerminal zu erhalten und damit\'                   \' Hamster zu nutzen."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Aktuelles Passwort"),
-        "custom_number": MessageLookupByLibrary.simpleMessage("Custom number:"),
+        "custom_number": MessageLookupByLibrary.simpleMessage("Kundennummer:"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Data incomplete"),
+        "de_language": MessageLookupByLibrary.simpleMessage("🇩🇪 Deutsch"),
         "declined": MessageLookupByLibrary.simpleMessage("Declined"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "did_not_have_account": MessageLookupByLibrary.simpleMessage(
@@ -220,6 +221,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "help_center": MessageLookupByLibrary.simpleMessage("Help center"),
         "help_us_connect_branch": MessageLookupByLibrary.simpleMessage(
             "Help us connect your branch by specifying you POS systems"),
+        "house_number": MessageLookupByLibrary.simpleMessage("House number"),
         "i_authorize_collect_payment": MessageLookupByLibrary.simpleMessage(
             "I authorize Hamster Systems AG to collect payments from my account by direct debit. At the same time, I instruct my bank to redeem the direct debits drawn by Hamster Systems AG on my account. By accepting this agreement, Hamster Systems AG undertakes to im to the same extent on the payment of credit to the above account"),
         "i_certify_info_correct": MessageLookupByLibrary.simpleMessage(
@@ -233,6 +235,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "If your company and a branch have the identical\naddress, please mark the \ninformation that is over -aging."),
         "inactive": MessageLookupByLibrary.simpleMessage("Inactive"),
         "join_now": MessageLookupByLibrary.simpleMessage("Join now"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Location"),
         "main_category": MessageLookupByLibrary.simpleMessage("Main category"),
