@@ -6,6 +6,7 @@ import 'package:business_terminal/domain/model/login/login_response.dart';
 import 'package:business_terminal/domain/repository/token/default_token_repository.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -17,6 +18,7 @@ const baseUrl = String.fromEnvironment(
   defaultValue: 'https://35.158.96.146/api',
 );
 const appFileFormDataKey = 'app_file_form_data';
+
 Dio httpClientInit() {
   final prettyDioLogger = PrettyDioLogger(
     requestHeader: true,
@@ -60,12 +62,14 @@ Dio httpClientInit() {
     )
     ..interceptors.add(prettyDioLogger);
 
-  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-      (HttpClient client) {
-    client.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    return client;
-  };
+  if (!kIsWeb) {
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (HttpClient client) {
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+      return client;
+    };
+  }
 
   return dio;
 }
