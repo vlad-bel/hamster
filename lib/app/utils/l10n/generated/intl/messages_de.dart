@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "account_owner": MessageLookupByLibrary.simpleMessage("Kontoinhaber"),
         "account_verification":
             MessageLookupByLibrary.simpleMessage("Account Verifikation"),
+        "action": MessageLookupByLibrary.simpleMessage("Aktion"),
         "addYourCompanyLogo": MessageLookupByLibrary.simpleMessage(
             "Fügen Sie Ihr Unternehmenslogo hinzu."),
         "addYourCompanyLogoDescription": MessageLookupByLibrary.simpleMessage(
@@ -149,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
         "declined": MessageLookupByLibrary.simpleMessage("Zurückgegangen"),
+        "description": MessageLookupByLibrary.simpleMessage("Bezeichnung"),
         "did_not_have_account": MessageLookupByLibrary.simpleMessage(
             "Du hast noch keinen Business-Terminal-Account?"),
         "do_you_intend_change_email": MessageLookupByLibrary.simpleMessage(
@@ -235,6 +237,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastName": MessageLookupByLibrary.simpleMessage("Nachname"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
         "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),
+        "manufacturer": MessageLookupByLibrary.simpleMessage("Hersteller"),
         "maxLength": m2,
         "max_length_error": MessageLookupByLibrary.simpleMessage(
             "Die maximale Länge entspricht \$0 Zeichen"),
@@ -245,6 +248,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "min_length_field": MessageLookupByLibrary.simpleMessage(
             "Die mindestanzahl an Zeichen wurde nicht erreicht"),
         "min_number": m5,
+        "model": MessageLookupByLibrary.simpleMessage("Modell"),
         "model_if_known":
             MessageLookupByLibrary.simpleMessage("Modell (falls bekannt)"),
         "monday": MessageLookupByLibrary.simpleMessage("Montag"),
@@ -288,6 +292,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Die angegebene Telefonnummer ist ungültig. Bitte versuchen Sie eine andere"),
         "please_enter_code_to_verity_email": MessageLookupByLibrary.simpleMessage(
             "Bitte geben Sie den 5-stelligen Code ein, um IhreE-Mail-Adresse zu verifizieren. Sollte die E-Mail in Kürze nicht in Ihrer Inbox auftauchen, so kontrollieren Sie bitte auch Ihren Spam-Ordner"),
+        "pos_identifier":
+            MessageLookupByLibrary.simpleMessage("Pos Identifier"),
+        "pos_overview": MessageLookupByLibrary.simpleMessage("Kassenanbindung"),
         "post_hint": MessageLookupByLibrary.simpleMessage("PLZ"),
         "request_verification":
             MessageLookupByLibrary.simpleMessage("Verifikation beantragen"),

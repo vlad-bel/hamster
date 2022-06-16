@@ -10,6 +10,7 @@ import 'package:business_terminal/presentation/common/widgets/add_logo_cropper/w
 import 'package:business_terminal/presentation/common/widgets/country_selector/country_selector.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/form_text_field/form_text_field.dart';
+import 'package:business_terminal/presentation/common/widgets/form_text_field/other/iban_input_formatter.dart';
 import 'package:business_terminal/presentation/common/widgets/logo_viewer/logo_viewer.dart';
 import 'package:business_terminal/presentation/common/widgets/payment_info.dart';
 import 'package:business_terminal/presentation/dashboard/profile/profile_add_logo/view/profile_add_logo.dart';
@@ -351,8 +352,10 @@ class ProfileEditContentState extends State<ProfileEditContent> {
                                         FormTextField(
                                           name: ProfileEditFormSettings.kIban,
                                           hint: AppLocale.of(context).iban,
+                                          inputFormatters: [
+                                            IbanInputFormatter(),
+                                          ],
                                           label: AppLocale.of(context).iban,
-                                          inputFormatters: const [],
                                           validationMessages: (control) =>
                                               AddPaymentFormSettings
                                                   .validationMessageIban,

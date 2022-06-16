@@ -22,70 +22,72 @@ class BranchProfileViewTable extends StatefulWidget {
 class _BranchProfileViewTableState extends State<BranchProfileViewTable> {
   @override
   Widget build(BuildContext context) {
-    return DataTable2(
-      minWidth: 1350,
-      dividerThickness: 0,
-      border: TableBorder(
-        top: BorderSide(
-          color: lynch.withOpacity(0.1),
-        ),
-        bottom: BorderSide(
-          color: lynch.withOpacity(0.1),
-        ),
-        horizontalInside: BorderSide(
-          color: lynch.withOpacity(0.1),
-        ),
-      ),
-      dataRowHeight: 76,
-      headingRowHeight: 48,
-      onSelectAll: (value) {},
-      horizontalMargin: 0,
-      showCheckboxColumn: false,
-      columnSpacing: 0,
-      lmRatio: 1.5,
-      columns: [
-        DataColumn2(
-          size: ColumnSize.L,
-          label: HeaderCell(
-            name: AppLocale.of(context).branch,
-            sortable: widget.sortable,
+    return Expanded(
+      child: DataTable2(
+        minWidth: 1350,
+        dividerThickness: 0,
+        border: TableBorder(
+          top: BorderSide(
+            color: lynch.withOpacity(0.1),
+          ),
+          bottom: BorderSide(
+            color: lynch.withOpacity(0.1),
+          ),
+          horizontalInside: BorderSide(
+            color: lynch.withOpacity(0.1),
           ),
         ),
-        DataColumn2(
-          label: HeaderCell(
-            name: AppLocale.of(context).number,
-            sortable: widget.sortable,
+        dataRowHeight: 76,
+        headingRowHeight: 48,
+        onSelectAll: (value) {},
+        horizontalMargin: 0,
+        showCheckboxColumn: false,
+        columnSpacing: 0,
+        lmRatio: 1.5,
+        columns: [
+          DataColumn2(
+            size: ColumnSize.L,
+            label: HeaderCell(
+              name: AppLocale.of(context).branch,
+              sortable: widget.sortable,
+            ),
           ),
-          size: ColumnSize.S,
-        ),
-        DataColumn2(
-          label: HeaderCell(
-            name: AppLocale.of(context).user,
-            sortable: widget.sortable,
+          DataColumn2(
+            label: HeaderCell(
+              name: AppLocale.of(context).number,
+              sortable: widget.sortable,
+            ),
+            size: ColumnSize.S,
           ),
-          size: ColumnSize.S,
-        ),
-        DataColumn2(
-          label: HeaderCell(
-            name: AppLocale.of(context).connection,
-            sortable: widget.sortable,
+          DataColumn2(
+            label: HeaderCell(
+              name: AppLocale.of(context).user,
+              sortable: widget.sortable,
+            ),
+            size: ColumnSize.S,
           ),
-          size: ColumnSize.L,
-        ),
-        DataColumn2(
-          label: HeaderCell(
-            name: AppLocale.of(context).status,
-            sortable: widget.sortable,
+          DataColumn2(
+            label: HeaderCell(
+              name: AppLocale.of(context).connection,
+              sortable: widget.sortable,
+            ),
+            size: ColumnSize.L,
           ),
+          DataColumn2(
+            label: HeaderCell(
+              name: AppLocale.of(context).status,
+              sortable: widget.sortable,
+            ),
+          ),
+          const DataColumn2(
+            label: Text(''),
+            fixedWidth: 64,
+          ),
+        ],
+        rows: List<DataRow>.generate(
+          widget.row.rowCount,
+          widget.row.getRow,
         ),
-        const DataColumn2(
-          label: Text(''),
-          fixedWidth: 64,
-        ),
-      ],
-      rows: List<DataRow>.generate(
-        widget.row.rowCount,
-        widget.row.getRow,
       ),
     );
   }
