@@ -37,40 +37,38 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: BlocBuilder<ProfileViewingCubit, ProfileViewingState>(
-        buildWhen: (previous, current) {
-          return current is SuccessProfileViewingState ||
-              current is LoadingProfileViewingState;
-        },
-        builder: (context, state) {
-          return state.when(
-            error: (error) {
-              return const SizedBox.shrink();
-            },
-            success: (repCompany, company) {
-              return Column(
-                children: [
-                  CompanyProfileTable(
-                    repCompany: repCompany,
-                    company: company,
-                  ),
-                  const SizedBox(height: 25),
-                  const BranchProfileTable(),
-                ],
-              );
-            },
-            loading: () {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-            initial: () {
-              return const SizedBox.shrink();
-            },
-          );
-        },
-      ),
+    return BlocBuilder<ProfileViewingCubit, ProfileViewingState>(
+      buildWhen: (previous, current) {
+        return current is SuccessProfileViewingState ||
+            current is LoadingProfileViewingState;
+      },
+      builder: (context, state) {
+        return state.when(
+          error: (error) {
+            return const SizedBox.shrink();
+          },
+          success: (repCompany, company) {
+            return Column(
+              children: [
+                CompanyProfileTable(
+                  repCompany: repCompany,
+                  company: company,
+                ),
+                const SizedBox(height: 25),
+                const BranchProfileTable(),
+              ],
+            );
+          },
+          loading: () {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+          initial: () {
+            return const SizedBox.shrink();
+          },
+        );
+      },
     );
   }
 }

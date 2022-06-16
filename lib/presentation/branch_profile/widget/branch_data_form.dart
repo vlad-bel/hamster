@@ -56,7 +56,21 @@ class BranchDataForm extends StatelessWidget {
                 ),
                 paddingBetweenTextInputs,
                 FormTextField(
+                  name: formSettings.kFieldStreetNumber,
+                  label: AppLocale.of(context).house_number,
+                  validationMessages: (control) =>
+                      formSettings.validationMessagesGeneric,
+                ),
+                paddingBetweenTextInputs,
+                FormTextField(
                   name: formSettings.kFieldCity,
+                  label: AppLocale.of(context).zip_code_and_location,
+                  validationMessages: (control) =>
+                      formSettings.validationMessagesGeneric,
+                ),
+                paddingBetweenTextInputs,
+                FormTextField(
+                  name: formSettings.kFieldPostalCode,
                   label: AppLocale.of(context).zip_code_and_location,
                   validationMessages: (control) =>
                       formSettings.validationMessagesGeneric,
@@ -102,15 +116,26 @@ class BranchDataForm extends StatelessWidget {
     }
 
     // Street
-    final streetNameAndNumberSelected = branchSelectedFieldsMap[
-            CompanyDataCommonFieldsWithBranchData.streetNameAndNumber] ??
+    final streetNameSelected = branchSelectedFieldsMap[
+            CompanyDataCommonFieldsWithBranchData.streetName] ??
         false;
 
-    if (streetNameAndNumberSelected) {
+    if (streetNameSelected) {
       final value = company.company?.streetName;
-      final streetNumber = company.company?.streetNumber;
 
-      form.control(formSettings.kFieldStreet).value = '$value $streetNumber';
+      form.control(formSettings.kFieldStreet).value = '$value';
+    }
+
+    // Street number
+    final streetNumberSelected = branchSelectedFieldsMap[
+            CompanyDataCommonFieldsWithBranchData.streetNumber] ??
+        false;
+
+    if (streetNumberSelected) {
+      final value = company.company?.streetNumber;
+
+      // TODO:
+      form.control(formSettings.kFieldStreetNumber).value = '$value';
     }
 
     // City
@@ -122,6 +147,17 @@ class BranchDataForm extends StatelessWidget {
       final value = company.company?.city;
 
       form.control(formSettings.kFieldCity).value = value;
+    }
+
+    // Postal code
+    final postalCodeSelected = branchSelectedFieldsMap[
+            CompanyDataCommonFieldsWithBranchData.postalCode] ??
+        false;
+
+    if (postalCodeSelected) {
+      final value = company.company?.postalCode;
+
+      form.control(formSettings.kFieldPostalCode).value = value;
     }
 
     // Country

@@ -66,16 +66,21 @@ class BranchProfileCubit extends Cubit<BranchProfileState> {
 
         const branchNumber = '0001'; // TODO: mock replace after Demo
         final country = countryParam ?? '';
-        const streetNumber = '111'; // TODO: mock replace after Demo
-        const postalCode = '33111'; // TODO: mock replace after Demo
-        final category = categoryParam ?? 'Restaurant';
+        final category = categoryParam ?? '';
         final subCategories = subcategoriesParam ?? [];
 
         final city =
             formGroup.control(_formSettings.kFieldCity).value as String?;
 
+        final postalCode =
+            formGroup.control(_formSettings.kFieldPostalCode).value as String?;
+
         final streetName =
             formGroup.control(_formSettings.kFieldStreet).value as String?;
+
+        final streetNumber = formGroup
+            .control(_formSettings.kFieldStreetNumber)
+            .value as String?;
 
         final website = formGroup
             .control(BranchProfileFormValidation.kFieldWebsite)

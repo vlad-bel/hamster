@@ -123,7 +123,7 @@ class AuthorizedState extends AppState {
                     repCompany: company,
                   );
                 } else {
-// TODO: add ErroPage later and display error
+                  // TODO: add ErroPage later and display error
                   throw Exception(
                     'CreateBranchProfileCheckboxesPage company '
                     'parameter is NULL',
@@ -285,6 +285,8 @@ class AuthorizedState extends AppState {
           },
         );
 
+  static final appStorageService = getIt.get<AppStorageService>();
+
   static PageRouteBuilder<T> _buildHamsterPage<T>(
     Widget? page,
     RouteSettings settings,
@@ -301,6 +303,4 @@ class AuthorizedState extends AppState {
       settings: settings,
     );
   }
-
-  static final appStorageService = getIt.get<AppStorageService>();
 }

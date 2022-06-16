@@ -63,8 +63,15 @@ class BranchProfileDataCheckBoxesList extends StatelessWidget {
         ),
       if (!streetName.isEmptyOrNull)
         BranchProfileDataCheckboxListItem(
-          fieldContent: '${streetName!} ${streetNumber!}',
-          fieldType: CompanyDataCommonFieldsWithBranchData.streetNameAndNumber,
+          fieldContent: streetName!,
+          fieldType: CompanyDataCommonFieldsWithBranchData.streetName,
+          state: state,
+        ),
+
+      if (!streetNumber.isEmptyOrNull)
+        BranchProfileDataCheckboxListItem(
+          fieldContent: streetNumber!,
+          fieldType: CompanyDataCommonFieldsWithBranchData.streetNumber,
           state: state,
         ),
       if (!postalCode.isEmptyOrNull)
