@@ -1,4 +1,5 @@
 import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/config/styles.dart';
 import 'package:flutter/material.dart';
 
 class TextButtonBlueLink extends StatelessWidget {
@@ -6,10 +7,12 @@ class TextButtonBlueLink extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.text,
+    this.customStyle,
   }) : super(key: key);
 
   final VoidCallback onPressed;
   final String text;
+  final TextStyle? customStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,10 @@ class TextButtonBlueLink extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text,
-        style: const TextStyle(color: denim),
+        style: customStyle ??
+            inter14.copyWith(
+              color: denim,
+            ),
       ),
     );
   }

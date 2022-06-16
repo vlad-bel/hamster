@@ -1,4 +1,6 @@
 import 'package:business_terminal/app/utils/l10n/l10n_service.dart';
+import 'package:business_terminal/config/colors.dart';
+import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/dependency_injection/injectible_init.dart';
 import 'package:business_terminal/domain/model/errors/api_failure_response.dart';
 import 'package:business_terminal/domain/model/errors/failures.dart';
@@ -138,6 +140,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     TextButtonBlueLink(
                       text: AppLocale.of(context).join_now,
+                      customStyle: inter14Semibold.copyWith(color: denim),
                       onPressed: () => onPressNavigateToRegistration(context),
                     ),
                     const LoginBlocListener(),

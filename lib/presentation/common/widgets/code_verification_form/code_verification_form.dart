@@ -1,8 +1,7 @@
-import 'package:business_terminal/config/colors.dart';
-import 'package:business_terminal/config/styles.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_background.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container.dart';
 import 'package:business_terminal/presentation/common/widgets/onboarding_white_container/onboarding_white_container_header.dart';
+import 'package:business_terminal/presentation/common/widgets/text_button_link.dart';
 import 'package:business_terminal/presentation/registration/widgets/white_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hamster_widgets/hamster_widgets.dart';
@@ -82,16 +81,11 @@ class CodeVerificationForm extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.centerRight,
-              child: Transform.translate(
-                offset: const Offset(14, 0),
-                child: CupertinoButton(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: TextButtonBlueLink(
+                  text: resendButtonTitle,
                   onPressed: resendButtonCallback,
-                  child: Text(
-                    resendButtonTitle,
-                    style: inter14.copyWith(
-                      color: denim,
-                    ),
-                  ),
                 ),
               ),
             ),
