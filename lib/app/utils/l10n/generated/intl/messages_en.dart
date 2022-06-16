@@ -35,7 +35,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(number) => "${number} Tills";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account_owner": MessageLookupByLibrary.simpleMessage("Account owner"),
         "account_verification":
