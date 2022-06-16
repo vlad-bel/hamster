@@ -2080,21 +2080,31 @@ class S {
     );
   }
 
-  /// `Custom number:`
-  String get custom_number {
-    return Intl.message(
-      'Custom number:',
-      name: 'custom_number',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Not found`
   String get notFound {
     return Intl.message(
       'Not found',
       name: 'notFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `🇩🇪 Deutsch`
+  String get de_language {
+    return Intl.message(
+      '🇩🇪 Deutsch',
+      name: 'de_language',
       desc: '',
       args: [],
     );
@@ -2115,6 +2125,16 @@ class S {
     return Intl.message(
       'Declined',
       name: 'declined',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kundennummer:`
+  String get custom_number {
+    return Intl.message(
+      'Kundennummer:',
+      name: 'custom_number',
       desc: '',
       args: [],
     );
@@ -2295,6 +2315,16 @@ class S {
     return Intl.message(
       'POS connection',
       name: 'pos_overview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `House number`
+  String get house_number {
+    return Intl.message(
+      'House number',
+      name: 'house_number',
       desc: '',
       args: [],
     );

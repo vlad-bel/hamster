@@ -149,6 +149,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "custom_number": MessageLookupByLibrary.simpleMessage("Kundennummer:"),
         "data_incomplete":
             MessageLookupByLibrary.simpleMessage("Daten unvollständig"),
+        "de_language": MessageLookupByLibrary.simpleMessage("🇩🇪 Deutsch"),
         "declined": MessageLookupByLibrary.simpleMessage("Zurückgegangen"),
         "description": MessageLookupByLibrary.simpleMessage("Bezeichnung"),
         "did_not_have_account": MessageLookupByLibrary.simpleMessage(
@@ -222,6 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "help_center": MessageLookupByLibrary.simpleMessage("Hilfe-Center"),
         "help_us_connect_branch": MessageLookupByLibrary.simpleMessage(
             "Helfen Sie uns Ihre Filiale schnell anzubinden indem Sie Ihre Kassensysteme angeben"),
+        "house_number": MessageLookupByLibrary.simpleMessage("Hausnummer"),
         "i_authorize_collect_payment": MessageLookupByLibrary.simpleMessage(
             "Ich ermächtige die Hamster Systems AG Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von der Hamster Systems AG auf mein Konto gezogenen Lastschriften einzulösen. Mit Akzeptanz dieser Vereinbarung verpflichtet sich die Hamster Systems AG im gleichen Maße auf die Auszahlung von Guthaben auf das o.g. Konto"),
         "i_certify_info_correct": MessageLookupByLibrary.simpleMessage(
@@ -234,6 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "if_identical_addresses": MessageLookupByLibrary.simpleMessage(
             "Sollten Ihr Unternehmen und eine Filiale die identisch \nAdresse haben, dann markieren Sie bitte die \nübereinstimmenden Angaben."),
         "join_now": MessageLookupByLibrary.simpleMessage("Jetzt registrieren"),
+        "language": MessageLookupByLibrary.simpleMessage("Sprache"),
         "lastName": MessageLookupByLibrary.simpleMessage("Nachname"),
         "location_hint": MessageLookupByLibrary.simpleMessage("Ort"),
         "main_category": MessageLookupByLibrary.simpleMessage("Hauptkategorie"),

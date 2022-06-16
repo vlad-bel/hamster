@@ -260,5 +260,6 @@
   "action": "Action",
   "active": "Active",
   "inactive": "Inactive",
-  "pos_overview": "POS connection"
+  "pos_overview": "POS connection",
+  "house_number": "House number"
 }

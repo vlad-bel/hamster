@@ -259,5 +259,6 @@
   "action": "Aktion",
   "aktiv": "Aktiv",
   "inaktiv": "inaktiv",
-  "pos_overview": "Kassenanbindung"
+  "pos_overview": "Kassenanbindung",
+  "house_number": "Hausnummer"
 }
