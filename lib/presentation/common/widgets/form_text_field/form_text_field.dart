@@ -160,9 +160,14 @@ class _FormTextFieldState extends State<FormTextField>
       prefixStyle: inter14,
       floatingLabelAlignment: FloatingLabelAlignment.start,
       floatingLabelStyle: inter12,
-      labelStyle: inter14.copyWith(color: lynch.withOpacity(0.3)),
+      labelStyle: inter14.copyWith(
+        color: lynch.withOpacity(0.3),
+        fontStyle: FontStyle.italic,
+      ),
       alignLabelWithHint: true,
-      hintStyle: inter14.copyWith(color: lynch.withOpacity(0.3)),
+      hintStyle: inter14.copyWith(
+        color: lynch.withOpacity(0.3),
+      ),
       suffixIcon:
           !widget.obscureText ? widget.customSuffix : showHidePasswordIcon,
       prefix: widget.customPrefix,

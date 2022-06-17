@@ -31,7 +31,7 @@ class CountryCodeSelector extends StatefulWidget {
 }
 
 class _CountryCodeSelectorState extends State<CountryCodeSelector> {
-  var layerLink = LayerLink();
+  final layerLink = LayerLink();
   OverlayEntry? overlayEntry;
 
   @override
