@@ -81,28 +81,38 @@ class CountryCodeSelectorCubit extends Cubit<CountryCodeSelectorState> {
     );
   }
 
-  void selectCountry(Country country) {
-    state.maybeWhen(
-      open: (_, countries) {
-        numberForm.control(numberTextfield).setValidators([
-          Validators.maxLength(15 - country.phone.length),
-          Validators.minLength(10 - country.phone.length),
-        ]);
-        emit(
-          CountryCodeSelectorState.init(
-            selectedCountry: country,
-            countries: countries,
-          ),
-        );
-      },
-      orElse: () {
-        emit(
-          CountryCodeSelectorState.init(
-            selectedCountry: country,
-            countries: cachedCountries,
-          ),
-        );
-      },
+  void selectCountry(Country? country) {
+    if (country != null) {
+      state.maybeWhen(
+        open: (_, countries) {
+          numberForm.control(numberTextfield).setValidators([
+            Validators.maxLength(15 - country.phone.length),
+            Validators.minLength(10 - country.phone.length),
+          ]);
+          emit(
+            CountryCodeSelectorState.init(
+              selectedCountry: country,
+              countries: countries,
+            ),
+          );
+        },
+        orElse: () {
+          emit(
+            CountryCodeSelectorState.init(
+              selectedCountry: country,
+              countries: cachedCountries,
+            ),
+          );
+        },
+      );
+      return;
+    }
+
+    emit(
+      CountryCodeSelectorState.init(
+        selectedCountry: country,
+        countries: cachedCountries,
+      ),
     );
   }
 

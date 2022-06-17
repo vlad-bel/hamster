@@ -21,11 +21,6 @@ class CountryCodePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<CountryCodeSelectorCubit>(
-          create: (context) {
-            return getIt.get<CountryCodeSelectorCubit>()..getCountryList();
-          },
-        ),
         BlocProvider<CountryCodeCubit>(
           create: (context) {
             return getIt.get<CountryCodeCubit>()..email ??= email;

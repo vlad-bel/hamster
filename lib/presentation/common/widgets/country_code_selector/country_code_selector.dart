@@ -31,14 +31,32 @@ class CountryCodeSelector extends StatefulWidget {
 }
 
 class _CountryCodeSelectorState extends State<CountryCodeSelector> {
-  final layerLink = LayerLink();
+  var layerLink = LayerLink();
   OverlayEntry? overlayEntry;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _disposeOverlayEntry();
+  }
+
+  void _disposeOverlayEntry() {
+    widget.cubit.state.whenOrNull(open: (_, __) {
+      widget.cubit.numberForm
+          .control(
+            CountryCodeSelectorCubit.numberTextfield,
+          )
+          .value = '';
+      widget.cubit.selectCountry(null);
+      overlayEntry?.remove();
+    });
+  }
 
   void showOverlay({Country? selectedCountry}) {
     if (widget.readOnly) return;
     widget.cubit.state.whenOrNull(
       init: (country, countryList) {
-        overlayEntry ??= _createOverlayEntry();
+        overlayEntry = _createOverlayEntry();
         Overlay.of(context)?.insert(overlayEntry!);
         widget.cubit.showCountryList(selectedCountry: selectedCountry);
       },
@@ -169,9 +187,9 @@ class _SelectorState extends State<_Selector> {
             : null,
         customSuffix: widget.selectedCountry == null
             ? Icon(
-                widget.state.runtimeType == CountryCodeSelectorState
-                    ? Icons.keyboard_arrow_down_rounded
-                    : Icons.keyboard_arrow_up_rounded,
+                widget.state.runtimeType == InitCountryCodeSelectorState
+                    ? Icons.keyboard_arrow_up_rounded
+                    : Icons.keyboard_arrow_down_rounded,
                 size: 16,
                 color: lynch,
               )

@@ -7,6 +7,7 @@ import 'package:business_terminal/presentation/branch_profile_avatar_picture/cub
 import 'package:business_terminal/presentation/branch_profile_picture/cubit/branch_profile_picture_cubit.dart';
 import 'package:business_terminal/presentation/categories/cubit/subcategories_cubit.dart';
 import 'package:business_terminal/presentation/common/snackbar_manager.dart';
+import 'package:business_terminal/presentation/common/widgets/country_code_selector/cubit/country_code_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/country_selector/widget/cubit/country_selector_cubit.dart';
 import 'package:business_terminal/presentation/common/widgets/dashboard/cubit/dashboard_cubit.dart';
 import 'package:business_terminal/presentation/dashboard/account_verification/cubit/account_verification_cubit.dart';
@@ -69,7 +70,12 @@ class App extends StatelessWidget {
             },
           ),
           BlocProvider<ForgetPasswordCubit>(create: (_) => getIt.get()),
-          BlocProvider<EditPersonalDataCubit>(create: (_) => getIt.get())
+          BlocProvider<EditPersonalDataCubit>(create: (_) => getIt.get()),
+          BlocProvider<CountryCodeSelectorCubit>(
+            create: (context) {
+              return getIt.get<CountryCodeSelectorCubit>()..getCountryList();
+            },
+          ),
         ],
         child: BlocBuilder<AppStateCubit, AppState>(
           builder: (context, state) {
