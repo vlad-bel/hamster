@@ -25,7 +25,6 @@ dependencies:
   intl: ^0.17.0
   reactive_forms: ^13.0.0
 
-
   # Network:
   dio: 4.0.6
   retrofit:
@@ -51,7 +50,7 @@ dependencies:
   animated_custom_dropdown: ^1.2.0
   hamster_widgets:
     git:
-      url: git@git.andersenlab.com:hamster/hamster-widgets.git
+      url: https://bitbucket.org/raikjakschis/hamster_widgets
       ref: develop
   cached_network_image: ^3.2.1
   loader_overlay: ^2.0.6

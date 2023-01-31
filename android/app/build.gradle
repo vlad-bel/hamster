@@ -50,8 +50,10 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.hamstersystems.business.terminal.business_terminal"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+//        minSdkVersion flutter.minSdkVersion
+//        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 18
+        targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -81,7 +83,7 @@ android {
     }
 
     flavorDimensions "default"
-    productFlavors { 
+    productFlavors {
         production {
             dimension "default"
             applicationIdSuffix ""
@@ -91,7 +93,7 @@ android {
             dimension "default"
             applicationIdSuffix ".stg"
             manifestPlaceholders = [appName: "[STG] Business Terminal"]
-        }        
+        }
         development {
             dimension "default"
             applicationIdSuffix ".dev"
